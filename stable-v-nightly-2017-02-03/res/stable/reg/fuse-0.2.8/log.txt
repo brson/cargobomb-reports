@@ -1,0 +1,15 @@
+boom! testing fuse-0.2.8 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 3ce4b472c6609f0af794807b32bac02c4a3ff1cac2f88603b85b65c644f5f20b
+boom! running `docker start -a 3ce4b472c6609f0af794807b32bac02c4a3ff1cac2f88603b85b65c644f5f20b`
+kablam!    Compiling fuse v0.2.8 (file:///source)
+kablam! error: failed to run custom build command for `fuse v0.2.8 (file:///source)`
+kablam! process didn't exit successfully: `/target/debug/build/fuse-d619e459c7712a3c/build-script-build` (exit code: 101)
+kablam! --- stderr
+kablam! thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: Command { command: "\"pkg-config\" \"--libs\" \"--cflags\" \"fuse\"", cause: Error { repr: Os { code: 2, message: "No such file or directory" } } }', ../src/libcore/result.rs:837
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f 3ce4b472c6609f0af794807b32bac02c4a3ff1cac2f88603b85b65c644f5f20b`
+blam! 3ce4b472c6609f0af794807b32bac02c4a3ff1cac2f88603b85b65c644f5f20b

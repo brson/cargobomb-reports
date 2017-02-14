@@ -1,0 +1,90 @@
+boom! testing memory-pool-0.1.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 1ab905c0d7e2ec2587c02acad39e0c30fc6707478444715175d0d8faab66f642
+boom! running `docker start -a 1ab905c0d7e2ec2587c02acad39e0c30fc6707478444715175d0d8faab66f642`
+kablam!    Compiling memory-pool v0.1.0 (file:///source)
+kablam! warning: unnecessary `unsafe` block, #[warn(unused_unsafe)] on by default
+kablam!   --> src/memory_pool.rs:29:9
+kablam!    |
+kablam! 29 |         unsafe {
+kablam!    |         ^
+kablam! 
+kablam! warning: unnecessary `unsafe` block, #[warn(unused_unsafe)] on by default
+kablam!   --> src/memory_pool.rs:70:9
+kablam!    |
+kablam! 70 |         unsafe {
+kablam!    |         ^
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 0.28 secs
+boom! running `docker rm -f 1ab905c0d7e2ec2587c02acad39e0c30fc6707478444715175d0d8faab66f642`
+blam! 1ab905c0d7e2ec2587c02acad39e0c30fc6707478444715175d0d8faab66f642
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! ad7db1f973de5d20f185f711859b9f251a11e5e6abc4584fe139f364a4047304
+boom! running `docker start -a ad7db1f973de5d20f185f711859b9f251a11e5e6abc4584fe139f364a4047304`
+kablam!    Compiling memory-pool v0.1.0 (file:///source)
+kablam! warning: unnecessary `unsafe` block, #[warn(unused_unsafe)] on by default
+kablam!   --> src/memory_pool.rs:29:9
+kablam!    |
+kablam! 29 |         unsafe {
+kablam!    |         ^
+kablam! 
+kablam! warning: unnecessary `unsafe` block, #[warn(unused_unsafe)] on by default
+kablam!   --> src/memory_pool.rs:70:9
+kablam!    |
+kablam! 70 |         unsafe {
+kablam!    |         ^
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 1.8 secs
+boom! running `docker rm -f ad7db1f973de5d20f185f711859b9f251a11e5e6abc4584fe139f364a4047304`
+blam! ad7db1f973de5d20f185f711859b9f251a11e5e6abc4584fe139f364a4047304
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! f0c7aea011b71f4d06c4b352df56da283f737506a4653e24097b88aacb9bc036
+boom! running `docker start -a f0c7aea011b71f4d06c4b352df56da283f737506a4653e24097b88aacb9bc036`
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/memory_pool-7214d648fe1a9dbe
+blam! 
+blam! running 3 tests
+blam! test memory_pool::tests::borrow_string_and_vector ... ok
+blam! test memory_pool::tests::borrow_string ... ok
+blam! test memory_pool::tests::acquire_and_release_string ... ok
+blam! 
+blam! test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!    Doc-tests memory_pool
+blam! 
+blam! running 3 tests
+blam! test _2 ... FAILED
+blam! test _1 ... ok
+blam! test _0 ... ok
+blam! 
+blam! failures:
+blam! 
+blam! ---- _2 stdout ----
+blam! 	error: cannot borrow immutable local variable `buffer` as mutable
+blam!  --> <anon>:4:1
+blam!   |
+blam! 3 | let buffer: String = memory_pool::acquire();
+blam!   |     ------ use `mut buffer` here to make mutable
+blam! 4 | buffer.push_str( "I like cupcakes!" );
+blam!   | ^^^^^^ cannot borrow mutably
+blam! 
+blam! error: aborting due to previous error(s)
+blam! 
+blam! thread '_2' panicked at 'Box<Any>', ../src/librustc/session/mod.rs:191
+blam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+blam! 
+blam! 
+blam! failures:
+blam!     _2
+blam! 
+blam! test result: FAILED. 2 passed; 1 failed; 0 ignored; 0 measured
+blam! 
+kablam! error: test failed
+boom! running `docker rm -f f0c7aea011b71f4d06c4b352df56da283f737506a4653e24097b88aacb9bc036`
+blam! f0c7aea011b71f4d06c4b352df56da283f737506a4653e24097b88aacb9bc036

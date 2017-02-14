@@ -1,0 +1,56 @@
+boom! testing android_glue-0.1.3 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! b7c46f7467404739b9fc8edaf3b16b5bf13b14743460da458b1cbac75431f265
+boom! running `docker start -a b7c46f7467404739b9fc8edaf3b16b5bf13b14743460da458b1cbac75431f265`
+kablam!    Compiling android_glue v0.1.3 (file:///source)
+kablam! error[E0432]: unresolved import `this_platform_is_not_supported`
+kablam!    --> src/lib.rs:131:5
+kablam!     |
+kablam! 131 | use this_platform_is_not_supported;
+kablam!     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `this_platform_is_not_supported` in the root
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:212:24
+kablam!     |
+kablam! 212 |     std::io::set_print(Box::new(ToLogWriter::new()));
+kablam!     |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `std::option::Option`, found box
+kablam!     |
+kablam!     = note: expected type `std::option::Option<Box<std::io::Write + std::marker::Send + 'static>>`
+kablam!                found type `Box<ToLogWriter>`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:213:24
+kablam!     |
+kablam! 213 |     std::io::set_panic(Box::new(ToLogWriter::new()));
+kablam!     |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `std::option::Option`, found box
+kablam!     |
+kablam!     = note: expected type `std::option::Option<Box<std::io::Write + std::marker::Send + 'static>>`
+kablam!                found type `Box<ToLogWriter>`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:237:32
+kablam!     |
+kablam! 237 |             std::io::set_print(Box::new(ToLogWriter::new()));
+kablam!     |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `std::option::Option`, found box
+kablam!     |
+kablam!     = note: expected type `std::option::Option<Box<std::io::Write + std::marker::Send + 'static>>`
+kablam!                found type `Box<ToLogWriter>`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:238:32
+kablam!     |
+kablam! 238 |             std::io::set_panic(Box::new(ToLogWriter::new()));
+kablam!     |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `std::option::Option`, found box
+kablam!     |
+kablam!     = note: expected type `std::option::Option<Box<std::io::Write + std::marker::Send + 'static>>`
+kablam!                found type `Box<ToLogWriter>`
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `android_glue`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f b7c46f7467404739b9fc8edaf3b16b5bf13b14743460da458b1cbac75431f265`
+blam! b7c46f7467404739b9fc8edaf3b16b5bf13b14743460da458b1cbac75431f265

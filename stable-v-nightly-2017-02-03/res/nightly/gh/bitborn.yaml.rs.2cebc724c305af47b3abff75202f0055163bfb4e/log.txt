@@ -1,0 +1,50 @@
+boom! testing https://github.com/bitborn/yaml.rs#2cebc724c305af47b3abff75202f0055163bfb4e against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 4058d4d9965d7c2c84d66761a6122627d66f7bd0fabcad58eadd3dbc04d8b371
+boom! running `docker start -a 4058d4d9965d7c2c84d66761a6122627d66f7bd0fabcad58eadd3dbc04d8b371`
+kablam!    Compiling yaml v0.0.0 (file:///source)
+kablam! warning: unnecessary parentheses around `if` condition, #[warn(unused_parens)] on by default
+kablam!   --> src/lib.rs:48:11
+kablam!    |
+kablam! 48 |         if(self.stack.len() == 0) {
+kablam!    |           ^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::IoResult`
+kablam!   --> src/lib.rs:10:15
+kablam!    |
+kablam! 10 | use std::io::{IoResult, MemReader};
+kablam!    |               ^^^^^^^^ no `IoResult` in `io`. Did you mean to use `Result`?
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::MemReader`
+kablam!   --> src/lib.rs:10:25
+kablam!    |
+kablam! 10 | use std::io::{IoResult, MemReader};
+kablam!    |                         ^^^^^^^^^ no `MemReader` in `io`. Did you mean to use `BufReader`?
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::MemReader`
+kablam!    --> src/lib.rs:421:9
+kablam!     |
+kablam! 421 |     use std::io::MemReader;
+kablam!     |         ^^^^^^^^^^^^^^^^^^ no `MemReader` in `io`. Did you mean to use `BufReader`?
+kablam! 
+kablam! error[E0405]: cannot find trait `Reader` in this scope
+kablam!   --> src/lib.rs:20:17
+kablam!    |
+kablam! 20 |     reader: Box<Reader + 'a>,
+kablam!    |                 ^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0405]: cannot find trait `Reader` in this scope
+kablam!   --> src/lib.rs:27:19
+kablam!    |
+kablam! 27 |     pub fn new<T: Reader + 'a>(reader: Box<T>) -> Tokenizer<'a> {
+kablam!    |                   ^^^^^^ not found in this scope
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `yaml`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 4058d4d9965d7c2c84d66761a6122627d66f7bd0fabcad58eadd3dbc04d8b371`
+blam! 4058d4d9965d7c2c84d66761a6122627d66f7bd0fabcad58eadd3dbc04d8b371

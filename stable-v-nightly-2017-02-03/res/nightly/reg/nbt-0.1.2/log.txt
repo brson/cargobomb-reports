@@ -1,0 +1,32 @@
+boom! testing nbt-0.1.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! fe79a0e7a86a6d426c123f120c98b7298c0fec13410eac7947ede71dbe9d293a
+boom! running `docker start -a fe79a0e7a86a6d426c123f120c98b7298c0fec13410eac7947ede71dbe9d293a`
+kablam!    Compiling nbt v0.1.2 (file:///source)
+kablam! error[E0277]: the trait bound `Self: std::marker::Sized` is not satisfied
+kablam!   --> src/traits.rs:84:5
+kablam!    |
+kablam! 84 |     fn from_nbt(val: &Tag) -> Option<Self>;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::marker::Sized` is not implemented for `Self`
+kablam!    |
+kablam!    = help: consider adding a `where Self: std::marker::Sized` bound
+kablam!    = note: required by `std::option::Option`
+kablam! 
+kablam! error[E0277]: the trait bound `Self: std::marker::Sized` is not satisfied
+kablam!   --> src/lib.rs:79:5
+kablam!    |
+kablam! 79 |     fn from_bytes(d: &[u8]) -> Option<Self>;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::marker::Sized` is not implemented for `Self`
+kablam!    |
+kablam!    = help: consider adding a `where Self: std::marker::Sized` bound
+kablam!    = note: required by `std::option::Option`
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `nbt`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f fe79a0e7a86a6d426c123f120c98b7298c0fec13410eac7947ede71dbe9d293a`
+blam! fe79a0e7a86a6d426c123f120c98b7298c0fec13410eac7947ede71dbe9d293a

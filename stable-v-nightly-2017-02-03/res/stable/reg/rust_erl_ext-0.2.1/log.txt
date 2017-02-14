@@ -1,0 +1,108 @@
+boom! testing rust_erl_ext-0.2.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 4ee30af7fd8cff0ef84f9bfd8daca940dfabd39259ae6b2221c28465f6e23d59
+boom! running `docker start -a 4ee30af7fd8cff0ef84f9bfd8daca940dfabd39259ae6b2221c28465f6e23d59`
+kablam!    Compiling rust_erl_ext v0.2.1 (file:///source)
+kablam! error[E0412]: type name `byteorder::Error` is undefined or not in scope
+kablam!    --> src/erl_ext.rs:182:11
+kablam!     |
+kablam! 182 | impl From<byteorder::Error> for Error {
+kablam!     |           ^^^^^^^^^^^^^^^^ undefined or not in scope
+kablam!     |
+kablam!     = help: you can import several candidates into scope (`use ...;`):
+kablam!     = help:   `Error`
+kablam!     = help:   `std::error::Error`
+kablam!     = help:   `std::fmt::Error`
+kablam!     = help:   `std::io::Error`
+kablam! 
+kablam! error[E0412]: type name `byteorder::Error` is undefined or not in scope
+kablam!    --> src/erl_ext.rs:183:19
+kablam!     |
+kablam! 183 |     fn from (err: byteorder::Error) -> Error {
+kablam!     |                   ^^^^^^^^^^^^^^^^ undefined or not in scope
+kablam!     |
+kablam!     = help: you can import several candidates into scope (`use ...;`):
+kablam!     = help:   `Error`
+kablam!     = help:   `std::error::Error`
+kablam!     = help:   `std::fmt::Error`
+kablam!     = help:   `std::io::Error`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Error` in `byteorder`
+kablam!    --> src/erl_ext.rs:185:13
+kablam!     |
+kablam! 185 |             byteorder::Error::Io(ioe) => Error::Io(ioe),
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^ Could not find `Error` in `byteorder`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Error` in `byteorder`
+kablam!    --> src/erl_ext.rs:186:13
+kablam!     |
+kablam! 186 |             byteorder::Error::UnexpectedEOF => Error::ByteorderUnexpectedEOF
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `Error` in `byteorder`
+kablam! 
+kablam! error[E0412]: type name `byteorder::Result` is undefined or not in scope
+kablam!    --> src/erl_ext.rs:324:48
+kablam!     |
+kablam! 324 |     fn _decode_small_tuple_arity(&mut self) -> byteorder::Result<u8> {
+kablam!     |                                                ^^^^^^^^^^^^^^^^^^^^^ undefined or not in scope
+kablam!     |
+kablam!     = help: you can import several candidates into scope (`use ...;`):
+kablam!     = help:   `std::fmt::Result`
+kablam!     = help:   `std::io::Result`
+kablam!     = help:   `std::prelude::v1::Result`
+kablam!     = help:   `std::result::Result`
+kablam!     = help:   `std::thread::Result`
+kablam! 
+kablam! error[E0412]: type name `byteorder::Result` is undefined or not in scope
+kablam!    --> src/erl_ext.rs:337:48
+kablam!     |
+kablam! 337 |     fn _decode_large_tuple_arity(&mut self) -> byteorder::Result<u32> {
+kablam!     |                                                ^^^^^^^^^^^^^^^^^^^^^^ undefined or not in scope
+kablam!     |
+kablam!     = help: you can import several candidates into scope (`use ...;`):
+kablam!     = help:   `std::fmt::Result`
+kablam!     = help:   `std::io::Result`
+kablam!     = help:   `std::prelude::v1::Result`
+kablam!     = help:   `std::result::Result`
+kablam!     = help:   `std::thread::Result`
+kablam! 
+kablam! error[E0412]: type name `byteorder::Result` is undefined or not in scope
+kablam!    --> src/erl_ext.rs:350:40
+kablam!     |
+kablam! 350 |     fn _decode_map_arity(&mut self) -> byteorder::Result<u32> {
+kablam!     |                                        ^^^^^^^^^^^^^^^^^^^^^^ undefined or not in scope
+kablam!     |
+kablam!     = help: you can import several candidates into scope (`use ...;`):
+kablam!     = help:   `std::fmt::Result`
+kablam!     = help:   `std::io::Result`
+kablam!     = help:   `std::prelude::v1::Result`
+kablam!     = help:   `std::result::Result`
+kablam!     = help:   `std::thread::Result`
+kablam! 
+kablam! error[E0412]: type name `byteorder::Result` is undefined or not in scope
+kablam!    --> src/erl_ext.rs:371:39
+kablam!     |
+kablam! 371 |     fn _decode_list_len(&mut self) -> byteorder::Result<u32> {
+kablam!     |                                       ^^^^^^^^^^^^^^^^^^^^^^ undefined or not in scope
+kablam!     |
+kablam!     = help: you can import several candidates into scope (`use ...;`):
+kablam!     = help:   `std::fmt::Result`
+kablam!     = help:   `std::io::Result`
+kablam!     = help:   `std::prelude::v1::Result`
+kablam!     = help:   `std::result::Result`
+kablam!     = help:   `std::thread::Result`
+kablam! 
+kablam! error[E0277]: the trait bound `(): std::ops::Add<i32>` is not satisfied
+kablam!    --> src/erl_ext.rs:376:19
+kablam!     |
+kablam! 376 |         let len = try!(self._decode_list_len()) + 1;
+kablam!     |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::ops::Add<i32>` is not implemented for `()`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `rust_erl_ext`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 4ee30af7fd8cff0ef84f9bfd8daca940dfabd39259ae6b2221c28465f6e23d59`
+blam! 4ee30af7fd8cff0ef84f9bfd8daca940dfabd39259ae6b2221c28465f6e23d59

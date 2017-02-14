@@ -1,0 +1,24 @@
+boom! testing zmq-rs-0.1.7 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 0d3a2fa11a73ec3ef2a08f8e69c99f0fc4c8f517357487249dd557e1f30d0b0c
+boom! running `docker start -a 0d3a2fa11a73ec3ef2a08f8e69c99f0fc4c8f517357487249dd557e1f30d0b0c`
+kablam!    Compiling zmq-ffi v0.1.2
+kablam!    Compiling zmq-rs v0.1.7 (file:///source)
+kablam! error: `unsafe extern "C" fn(*mut libc::c_void, *mut libc::c_void) {zmq_free_fn}` is now zero-sized and has to be cast to a pointer before transmuting to `*mut unsafe extern "C" fn(*mut libc::c_void, *mut libc::c_void)`, #[deny(transmute_from_fn_item_types)] on by default
+kablam!    --> src/lib.rs:317:32
+kablam!     |
+kablam! 317 |         let free_fn = unsafe { transmute(zmq_free_fn) };
+kablam!     |                                ^^^^^^^^^
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #19925 <https://github.com/rust-lang/rust/issues/19925>
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `zmq-rs`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 0d3a2fa11a73ec3ef2a08f8e69c99f0fc4c8f517357487249dd557e1f30d0b0c`
+blam! 0d3a2fa11a73ec3ef2a08f8e69c99f0fc4c8f517357487249dd557e1f30d0b0c

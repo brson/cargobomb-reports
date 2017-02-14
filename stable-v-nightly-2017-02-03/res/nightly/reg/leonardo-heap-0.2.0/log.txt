@@ -1,0 +1,228 @@
+boom! testing leonardo-heap-0.2.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 0cc59e1f3419f021e91e4c73c44e3c377629d7997f34325d4379ca8830e17950
+boom! running `docker start -a 0cc59e1f3419f021e91e4c73c44e3c377629d7997f34325d4379ca8830e17950`
+kablam!    Compiling leonardo-heap v0.2.0 (file:///source)
+kablam! warning: method is never used: `new`, #[warn(dead_code)] on by default
+kablam!   --> src/subheap.rs:20:5
+kablam!    |
+kablam! 20 |       pub fn new(data: &[T], order: u32) -> SubHeap<T> {
+kablam!    |  _____^ starting here...
+kablam! 21 | |         assert_eq!(data.len(), leonardo(order));
+kablam! 22 | |
+kablam! 23 | |         SubHeap {
+kablam! 24 | |             data: data,
+kablam! 25 | |             order: order,
+kablam! 26 | |         }
+kablam! 27 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `destructure`, #[warn(dead_code)] on by default
+kablam!   --> src/subheap.rs:29:5
+kablam!    |
+kablam! 29 |     pub fn destructure(&self) -> (&T, Option<(SubHeap<T>, SubHeap<T>)>) {
+kablam!    |     ^
+kablam! 
+kablam! warning: method is never used: `value`, #[warn(dead_code)] on by default
+kablam!   --> src/subheap.rs:47:5
+kablam!    |
+kablam! 47 |       pub fn value(&self) -> &T {
+kablam!    |  _____^ starting here...
+kablam! 48 | |         self.data.last().unwrap()
+kablam! 49 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `children`, #[warn(dead_code)] on by default
+kablam!   --> src/subheap.rs:52:5
+kablam!    |
+kablam! 52 |       pub fn children(&self) -> Option<(SubHeap<T>, SubHeap<T>)> {
+kablam!    |  _____^ starting here...
+kablam! 53 | |         let (_, children) = self.destructure();
+kablam! 54 | |         return children
+kablam! 55 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `destructure`, #[warn(dead_code)] on by default
+kablam!   --> src/subheap.rs:76:5
+kablam!    |
+kablam! 76 |     pub fn destructure(&self) -> (&T, Option<(SubHeap<T>, SubHeap<T>)>) {
+kablam!    |     ^
+kablam! 
+kablam! warning: method is never used: `children`, #[warn(dead_code)] on by default
+kablam!    --> src/subheap.rs:143:5
+kablam!     |
+kablam! 143 |       fn children(&self) -> Option<(SubHeap<T>, SubHeap<T>)> {
+kablam!     |  _____^ starting here...
+kablam! 144 | |         let (_, children) = self.destructure();
+kablam! 145 | |         return children
+kablam! 146 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `children_mut`, #[warn(dead_code)] on by default
+kablam!    --> src/subheap.rs:149:5
+kablam!     |
+kablam! 149 |       fn children_mut(&mut self) -> Option<(SubHeapMut<T>, SubHeapMut<T>)> {
+kablam!     |  _____^ starting here...
+kablam! 150 | |         let (_, children) = self.destructure_mut();
+kablam! 151 | |         return children
+kablam! 152 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `into_children`, #[warn(dead_code)] on by default
+kablam!    --> src/subheap.rs:155:5
+kablam!     |
+kablam! 155 |       fn into_children(self) -> Option<(SubHeapMut<'a, T>, SubHeapMut<'a, T>)> {
+kablam!     |  _____^ starting here...
+kablam! 156 | |         let (_, children) = self.into_components();
+kablam! 157 | |         return children
+kablam! 158 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `new_from_len`, #[warn(dead_code)] on by default
+kablam!   --> src/layout.rs:30:5
+kablam!    |
+kablam! 30 |     pub fn new_from_len(size: usize) -> Self {
+kablam!    |     ^
+kablam! 
+kablam! warning: unused import: `leonardo::leonardo`, #[warn(unused_imports)] on by default
+kablam!   --> src/lib.rs:17:5
+kablam!    |
+kablam! 17 | use leonardo::leonardo;
+kablam!    |     ^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.64 secs
+boom! running `docker rm -f 0cc59e1f3419f021e91e4c73c44e3c377629d7997f34325d4379ca8830e17950`
+blam! 0cc59e1f3419f021e91e4c73c44e3c377629d7997f34325d4379ca8830e17950
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 1d582048fb688b7ec5c0cd4c638e247b304473fad794793dc8ad8c9488a1cf45
+boom! running `docker start -a 1d582048fb688b7ec5c0cd4c638e247b304473fad794793dc8ad8c9488a1cf45`
+kablam!    Compiling leonardo-heap v0.2.0 (file:///source)
+kablam! warning: method is never used: `new`, #[warn(dead_code)] on by default
+kablam!   --> src/subheap.rs:20:5
+kablam!    |
+kablam! 20 |       pub fn new(data: &[T], order: u32) -> SubHeap<T> {
+kablam!    |  _____^ starting here...
+kablam! 21 | |         assert_eq!(data.len(), leonardo(order));
+kablam! 22 | |
+kablam! 23 | |         SubHeap {
+kablam! 24 | |             data: data,
+kablam! 25 | |             order: order,
+kablam! 26 | |         }
+kablam! 27 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `destructure`, #[warn(dead_code)] on by default
+kablam!   --> src/subheap.rs:29:5
+kablam!    |
+kablam! 29 |     pub fn destructure(&self) -> (&T, Option<(SubHeap<T>, SubHeap<T>)>) {
+kablam!    |     ^
+kablam! 
+kablam! warning: method is never used: `value`, #[warn(dead_code)] on by default
+kablam!   --> src/subheap.rs:47:5
+kablam!    |
+kablam! 47 |       pub fn value(&self) -> &T {
+kablam!    |  _____^ starting here...
+kablam! 48 | |         self.data.last().unwrap()
+kablam! 49 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `children`, #[warn(dead_code)] on by default
+kablam!   --> src/subheap.rs:52:5
+kablam!    |
+kablam! 52 |       pub fn children(&self) -> Option<(SubHeap<T>, SubHeap<T>)> {
+kablam!    |  _____^ starting here...
+kablam! 53 | |         let (_, children) = self.destructure();
+kablam! 54 | |         return children
+kablam! 55 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `destructure`, #[warn(dead_code)] on by default
+kablam!   --> src/subheap.rs:76:5
+kablam!    |
+kablam! 76 |     pub fn destructure(&self) -> (&T, Option<(SubHeap<T>, SubHeap<T>)>) {
+kablam!    |     ^
+kablam! 
+kablam! warning: method is never used: `children`, #[warn(dead_code)] on by default
+kablam!    --> src/subheap.rs:143:5
+kablam!     |
+kablam! 143 |       fn children(&self) -> Option<(SubHeap<T>, SubHeap<T>)> {
+kablam!     |  _____^ starting here...
+kablam! 144 | |         let (_, children) = self.destructure();
+kablam! 145 | |         return children
+kablam! 146 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `children_mut`, #[warn(dead_code)] on by default
+kablam!    --> src/subheap.rs:149:5
+kablam!     |
+kablam! 149 |       fn children_mut(&mut self) -> Option<(SubHeapMut<T>, SubHeapMut<T>)> {
+kablam!     |  _____^ starting here...
+kablam! 150 | |         let (_, children) = self.destructure_mut();
+kablam! 151 | |         return children
+kablam! 152 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `into_children`, #[warn(dead_code)] on by default
+kablam!    --> src/subheap.rs:155:5
+kablam!     |
+kablam! 155 |       fn into_children(self) -> Option<(SubHeapMut<'a, T>, SubHeapMut<'a, T>)> {
+kablam!     |  _____^ starting here...
+kablam! 156 | |         let (_, children) = self.into_components();
+kablam! 157 | |         return children
+kablam! 158 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: unused import: `leonardo::leonardo`, #[warn(unused_imports)] on by default
+kablam!   --> src/lib.rs:17:5
+kablam!    |
+kablam! 17 | use leonardo::leonardo;
+kablam!    |     ^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused imports: `Iter`, `restring`, #[warn(unused_imports)] on by default
+kablam!    --> src/lib.rs:338:24
+kablam!     |
+kablam! 338 |     use {LeonardoHeap, Iter, restring, sift_down, balance_after_push, balance_after_pop};
+kablam!     |                        ^^^^  ^^^^^^^^
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 3.52 secs
+boom! running `docker rm -f 1d582048fb688b7ec5c0cd4c638e247b304473fad794793dc8ad8c9488a1cf45`
+blam! 1d582048fb688b7ec5c0cd4c638e247b304473fad794793dc8ad8c9488a1cf45
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 0da0667b5e972f2714fe2110f4fcbf6ec2afd14f0ff17b47b64b273e80e4487b
+boom! running `docker start -a 0da0667b5e972f2714fe2110f4fcbf6ec2afd14f0ff17b47b64b273e80e4487b`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/leonardo_heap-b399487fb2781a51
+blam! 
+blam! running 21 tests
+blam! test tests::test_balance_after_pop_one ... ok
+blam! test tests::test_balance_after_pop_empty ... ok
+blam! test tests::test_balance_after_pop_mutiple_layers ... ok
+blam! test tests::test_balance_after_pop_mismatched_lengths ... ok
+blam! test tests::test_balance_after_pop_restring_after_sift ... ok
+blam! test tests::test_balance_after_pop_split_heaps ... ok
+blam! test tests::test_balance_after_push_first ... ok
+blam! test tests::test_balance_after_pop_two ... ok
+blam! test tests::test_balance_after_push_merge ... ok
+blam! test tests::test_balance_after_push_mismatched_lengths ... ok
+blam! test tests::test_iter ... ok
+blam! test tests::test_balance_after_push_second ... ok
+blam! test tests::test_sift_down_sorting ... ok
+blam! test tests::test_push_pop ... ok
+blam! test tests::test_sift_down_three ... ok
+blam! test tests::test_sift_down_one ... ok
+blam! test tests::test_random ... ok
+blam! test tests::test_sift_down_two ... ok
+blam! test tests::test_sift_down_wrong_order ... ok
+blam! test tests::test_sift_down_zero ... ok
+blam! test tests::test_sort_random ... ok
+blam! 
+blam! test result: ok. 21 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f 0da0667b5e972f2714fe2110f4fcbf6ec2afd14f0ff17b47b64b273e80e4487b`
+blam! 0da0667b5e972f2714fe2110f4fcbf6ec2afd14f0ff17b47b64b273e80e4487b

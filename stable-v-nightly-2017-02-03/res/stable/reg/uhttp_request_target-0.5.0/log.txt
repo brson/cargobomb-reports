@@ -1,0 +1,188 @@
+boom! testing uhttp_request_target-0.5.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 579f33c2e7826d5a3481ef82cd551d4100817d19e125912effdca0b14832b346
+boom! running `docker start -a 579f33c2e7826d5a3481ef82cd551d4100817d19e125912effdca0b14832b346`
+kablam!    Compiling libc v0.2.20
+kablam!    Compiling void v1.0.2
+kablam!    Compiling unreachable v0.1.1
+kablam!    Compiling memchr v1.0.1
+kablam!    Compiling thread-id v3.0.0
+kablam!    Compiling thread_local v0.3.2
+kablam!    Compiling aho-corasick v0.6.1
+kablam!    Compiling regex v0.2.1
+kablam!    Compiling uhttp_request_target v0.5.0 (file:///source)
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 14.69 secs
+boom! running `docker rm -f 579f33c2e7826d5a3481ef82cd551d4100817d19e125912effdca0b14832b346`
+blam! 579f33c2e7826d5a3481ef82cd551d4100817d19e125912effdca0b14832b346
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! a490fa1deebae978831b0c635720f519555c6d4e6b50a07e282642f444d2a312
+boom! running `docker start -a a490fa1deebae978831b0c635720f519555c6d4e6b50a07e282642f444d2a312`
+kablam!    Compiling uhttp_request_target v0.5.0 (file:///source)
+kablam! error[E0432]: unresolved import `self::RequestTarget::*`
+kablam!   --> src/lib.rs:86:13
+kablam!    |
+kablam! 86 |         use self::RequestTarget::*;
+kablam!    |             ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `RequestTarget` in `test`
+kablam! 
+kablam! error[E0425]: unresolved name `ServerOptions`
+kablam!   --> src/lib.rs:92:53
+kablam!    |
+kablam! 92 |         assert_eq!("*".parse::<RequestTarget>(), Ok(ServerOptions));
+kablam!    |                                                     ^^^^^^^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `AbsPath`
+kablam!   --> src/lib.rs:97:64
+kablam!    |
+kablam! 97 |         assert_eq!("/path/sub/42".parse::<RequestTarget>(), Ok(AbsPath));
+kablam!    |                                                                ^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `AbsPath`
+kablam!   --> src/lib.rs:98:74
+kablam!    |
+kablam! 98 |         assert_eq!("/path/sub/42?key=value".parse::<RequestTarget>(), Ok(AbsPath));
+kablam!    |                                                                          ^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `AbsPath`
+kablam!   --> src/lib.rs:99:64
+kablam!    |
+kablam! 99 |         assert_eq!("/where?q=now".parse::<RequestTarget>(), Ok(AbsPath));
+kablam!    |                                                                ^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Authority`
+kablam!    --> src/lib.rs:103:70
+kablam!     |
+kablam! 103 |         assert_eq!("www.example.com:80".parse::<RequestTarget>(), Ok(Authority));
+kablam!     |                                                                      ^^^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Authority`
+kablam!    --> src/lib.rs:104:67
+kablam!     |
+kablam! 104 |         assert_eq!("www.example.com".parse::<RequestTarget>(), Ok(Authority));
+kablam!     |                                                                   ^^^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Authority`
+kablam!    --> src/lib.rs:105:63
+kablam!     |
+kablam! 105 |         assert_eq!("example.com".parse::<RequestTarget>(), Ok(Authority));
+kablam!     |                                                               ^^^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Authority`
+kablam!    --> src/lib.rs:106:68
+kablam!     |
+kablam! 106 |         assert_eq!("user@example.com".parse::<RequestTarget>(), Ok(Authority));
+kablam!     |                                                                    ^^^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `AbsURI`
+kablam!    --> src/lib.rs:110:68
+kablam!     |
+kablam! 110 |         assert_eq!("http://zombo.com".parse::<RequestTarget>(), Ok(AbsURI));
+kablam!     |                                                                    ^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `AbsURI`
+kablam!    --> src/lib.rs:111:76
+kablam!     |
+kablam! 111 |         assert_eq!("http://picard.ytmnd.com/".parse::<RequestTarget>(), Ok(AbsURI));
+kablam!     |                                                                            ^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `AbsURI`
+kablam!    --> src/lib.rs:112:73
+kablam!     |
+kablam! 112 |         assert_eq!("https://rust-lang.org".parse::<RequestTarget>(), Ok(AbsURI));
+kablam!     |                                                                         ^^^^^^ unresolved name
+kablam! 
+kablam! error: aborting due to 12 previous errors
+kablam! 
+kablam! error: Could not compile `uhttp_request_target`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f a490fa1deebae978831b0c635720f519555c6d4e6b50a07e282642f444d2a312`
+blam! a490fa1deebae978831b0c635720f519555c6d4e6b50a07e282642f444d2a312
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! d1e8f99d062aa147b741c3aba233525d43433bc160fb11465d92e16c99818679
+boom! running `docker start -a d1e8f99d062aa147b741c3aba233525d43433bc160fb11465d92e16c99818679`
+kablam!    Compiling uhttp_request_target v0.5.0 (file:///source)
+kablam! error[E0432]: unresolved import `self::RequestTarget::*`
+kablam!   --> src/lib.rs:86:13
+kablam!    |
+kablam! 86 |         use self::RequestTarget::*;
+kablam!    |             ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `RequestTarget` in `test`
+kablam! 
+kablam! error[E0425]: unresolved name `ServerOptions`
+kablam!   --> src/lib.rs:92:53
+kablam!    |
+kablam! 92 |         assert_eq!("*".parse::<RequestTarget>(), Ok(ServerOptions));
+kablam!    |                                                     ^^^^^^^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `AbsPath`
+kablam!   --> src/lib.rs:97:64
+kablam!    |
+kablam! 97 |         assert_eq!("/path/sub/42".parse::<RequestTarget>(), Ok(AbsPath));
+kablam!    |                                                                ^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `AbsPath`
+kablam!   --> src/lib.rs:98:74
+kablam!    |
+kablam! 98 |         assert_eq!("/path/sub/42?key=value".parse::<RequestTarget>(), Ok(AbsPath));
+kablam!    |                                                                          ^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `AbsPath`
+kablam!   --> src/lib.rs:99:64
+kablam!    |
+kablam! 99 |         assert_eq!("/where?q=now".parse::<RequestTarget>(), Ok(AbsPath));
+kablam!    |                                                                ^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Authority`
+kablam!    --> src/lib.rs:103:70
+kablam!     |
+kablam! 103 |         assert_eq!("www.example.com:80".parse::<RequestTarget>(), Ok(Authority));
+kablam!     |                                                                      ^^^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Authority`
+kablam!    --> src/lib.rs:104:67
+kablam!     |
+kablam! 104 |         assert_eq!("www.example.com".parse::<RequestTarget>(), Ok(Authority));
+kablam!     |                                                                   ^^^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Authority`
+kablam!    --> src/lib.rs:105:63
+kablam!     |
+kablam! 105 |         assert_eq!("example.com".parse::<RequestTarget>(), Ok(Authority));
+kablam!     |                                                               ^^^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Authority`
+kablam!    --> src/lib.rs:106:68
+kablam!     |
+kablam! 106 |         assert_eq!("user@example.com".parse::<RequestTarget>(), Ok(Authority));
+kablam!     |                                                                    ^^^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `AbsURI`
+kablam!    --> src/lib.rs:110:68
+kablam!     |
+kablam! 110 |         assert_eq!("http://zombo.com".parse::<RequestTarget>(), Ok(AbsURI));
+kablam!     |                                                                    ^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `AbsURI`
+kablam!    --> src/lib.rs:111:76
+kablam!     |
+kablam! 111 |         assert_eq!("http://picard.ytmnd.com/".parse::<RequestTarget>(), Ok(AbsURI));
+kablam!     |                                                                            ^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `AbsURI`
+kablam!    --> src/lib.rs:112:73
+kablam!     |
+kablam! 112 |         assert_eq!("https://rust-lang.org".parse::<RequestTarget>(), Ok(AbsURI));
+kablam!     |                                                                         ^^^^^^ unresolved name
+kablam! 
+kablam! error: aborting due to 12 previous errors
+kablam! 
+kablam! error: Could not compile `uhttp_request_target`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f d1e8f99d062aa147b741c3aba233525d43433bc160fb11465d92e16c99818679`
+blam! d1e8f99d062aa147b741c3aba233525d43433bc160fb11465d92e16c99818679

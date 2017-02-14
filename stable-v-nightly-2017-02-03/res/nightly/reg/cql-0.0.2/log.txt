@@ -1,0 +1,80 @@
+boom! testing cql-0.0.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! d7588f8ab5d64d42a7403b91908ed30c8b4d9768bd3ad91e8c5391be14d1f242
+boom! running `docker start -a d7588f8ab5d64d42a7403b91908ed30c8b4d9768bd3ad91e8c5391be14d1f242`
+kablam!    Compiling cql v0.0.2 (file:///source)
+kablam! warning: unnecessary parentheses around `for` head expression, #[warn(unused_parens)] on by default
+kablam!    --> src/lib.rs:238:18
+kablam!     |
+kablam! 238 |         for _ in (0 .. column_count) {
+kablam!     |                  ^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unnecessary parentheses around `for` head expression, #[warn(unused_parens)] on by default
+kablam!    --> src/lib.rs:279:18
+kablam!     |
+kablam! 279 |         for _ in (0 .. rows_count) {
+kablam!     |                  ^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0432]: unresolved import `std::error::FromError`
+kablam!   --> src/lib.rs:12:5
+kablam!    |
+kablam! 12 | use std::error::FromError;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^ no `FromError` in `error`
+kablam! 
+kablam! error[E0412]: cannot find type `Error` in module `byteorder`
+kablam!    --> src/lib.rs:147:15
+kablam!     |
+kablam! 147 |     ByteOrder(byteorder::Error),
+kablam!     |               ^^^^^^^^^^^^^^^^ not found in `byteorder`
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use Error;`
+kablam!               `use std::error::Error;`
+kablam!               `use std::fmt::Error;`
+kablam!               `use std::io::Error;`
+kablam! 
+kablam! error[E0412]: cannot find type `Error` in module `byteorder`
+kablam!    --> src/lib.rs:157:16
+kablam!     |
+kablam! 157 | impl FromError<byteorder::Error> for Error {
+kablam!     |                ^^^^^^^^^^^^^^^^ not found in `byteorder`
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use Error;`
+kablam!               `use std::error::Error;`
+kablam!               `use std::fmt::Error;`
+kablam!               `use std::io::Error;`
+kablam! 
+kablam! error[E0412]: cannot find type `Error` in module `byteorder`
+kablam!    --> src/lib.rs:158:24
+kablam!     |
+kablam! 158 |     fn from_error(err: byteorder::Error) -> Error {
+kablam!     |                        ^^^^^^^^^^^^^^^^ not found in `byteorder`
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use Error;`
+kablam!               `use std::error::Error;`
+kablam!               `use std::fmt::Error;`
+kablam!               `use std::io::Error;`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Error` in `byteorder`
+kablam!    --> src/lib.rs:160:13
+kablam!     |
+kablam! 160 |             byteorder::Error::UnexpectedEOF => Error::UnexpectedEOF,
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `Error` in `byteorder`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Error` in `byteorder`
+kablam!    --> src/lib.rs:161:13
+kablam!     |
+kablam! 161 |             byteorder::Error::Io(e) => Error::Io(e),
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^ Could not find `Error` in `byteorder`
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `cql`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f d7588f8ab5d64d42a7403b91908ed30c8b4d9768bd3ad91e8c5391be14d1f242`
+blam! d7588f8ab5d64d42a7403b91908ed30c8b4d9768bd3ad91e8c5391be14d1f242

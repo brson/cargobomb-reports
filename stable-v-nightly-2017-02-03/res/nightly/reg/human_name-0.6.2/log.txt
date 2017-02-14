@@ -1,0 +1,76 @@
+boom! testing human_name-0.6.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 9c7fd26f2c28257a25a983bf46f1ce1c293ed3ce50cc126747542d534127944a
+boom! running `docker start -a 9c7fd26f2c28257a25a983bf46f1ce1c293ed3ce50cc126747542d534127944a`
+kablam!    Compiling phf_generator v0.7.21
+kablam!    Compiling phf_macros v0.7.21
+kablam!    Compiling human_name v0.6.2 (file:///source)
+kablam! error: lifetime parameter `'a` declared on fn `utils::transliterate` appears only in the return type, but here is required to be higher-ranked, which means that `'a` must appear in both argument and return types, #[deny(hr_lifetime_in_assoc_type)] on by default
+kablam!    --> src/comparison.rs:413:33
+kablam!     |
+kablam! 413 |                                .filter_map(lowercase_if_alpha);
+kablam!     |                                 ^^^^^^^^^^
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #33685 <https://github.com/rust-lang/rust/issues/33685>
+kablam! 
+kablam! error: lifetime parameter `'a` declared on fn `utils::transliterate` appears only in the return type, but here is required to be higher-ranked, which means that `'a` must appear in both argument and return types, #[deny(hr_lifetime_in_assoc_type)] on by default
+kablam!    --> src/comparison.rs:417:37
+kablam!     |
+kablam! 417 |                                    .filter_map(lowercase_if_alpha);
+kablam!     |                                     ^^^^^^^^^^
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #33685 <https://github.com/rust-lang/rust/issues/33685>
+kablam! 
+kablam! error: lifetime parameter `'a` declared on fn `utils::transliterate` appears only in the return type, but here is required to be higher-ranked, which means that `'a` must appear in both argument and return types, #[deny(hr_lifetime_in_assoc_type)] on by default
+kablam!    --> src/lib.rs:405:34
+kablam!     |
+kablam! 405 |                                 .rev();
+kablam!     |                                  ^^^
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #33685 <https://github.com/rust-lang/rust/issues/33685>
+kablam! 
+kablam! warning: private type `comparison::ComparisonResult` in public interface (error E0446), #[warn(private_in_public)] on by default
+kablam!    --> src/comparison.rs:398:5
+kablam!     |
+kablam! 398 |     pub fn check_consistency(&self,
+kablam!     |     ^
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #34537 <https://github.com/rust-lang/rust/issues/34537>
+kablam! 
+kablam! warning: use of deprecated item: use `std::collections::hash_map::DefaultHasher` instead, #[warn(deprecated)] on by default
+kablam!   --> src/lib.rs:38:31
+kablam!    |
+kablam! 38 | use std::hash::{Hash, Hasher, SipHasher};
+kablam!    |                               ^^^^^^^^^
+kablam! 
+kablam! warning: unused import: `itertools::Itertools`, #[warn(unused_imports)] on by default
+kablam!   --> src/lib.rs:42:5
+kablam!    |
+kablam! 42 | use itertools::Itertools;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: use of deprecated item: use `std::collections::hash_map::DefaultHasher` instead, #[warn(deprecated)] on by default
+kablam!    --> src/lib.rs:420:25
+kablam!     |
+kablam! 420 |             let mut s = SipHasher::new();
+kablam!     |                         ^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: use of deprecated item: use `std::collections::hash_map::DefaultHasher` instead, #[warn(deprecated)] on by default
+kablam!    --> src/lib.rs:420:25
+kablam!     |
+kablam! 420 |             let mut s = SipHasher::new();
+kablam!     |                         ^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `human_name`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 9c7fd26f2c28257a25a983bf46f1ce1c293ed3ce50cc126747542d534127944a`
+blam! 9c7fd26f2c28257a25a983bf46f1ce1c293ed3ce50cc126747542d534127944a

@@ -1,0 +1,50 @@
+boom! testing raw-0.0.6 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! c49ad78b12be9128a51c4645c4307b2ef0f739e15be3661abce094611b19a317
+boom! running `docker start -a c49ad78b12be9128a51c4645c4307b2ef0f739e15be3661abce094611b19a317`
+kablam!    Compiling raw v0.0.6 (file:///source)
+kablam! error[E0432]: unresolved import `std::raw::Slice`
+kablam!   --> src/rawptr.rs:13:5
+kablam!    |
+kablam! 13 | use std::raw::Slice;
+kablam!    |     ^^^^^^^^^^^^^^^ no `Slice` in `raw`
+kablam! 
+kablam! error[E0432]: unresolved import `std::rt::heap`
+kablam!  --> src/alloc/plain.rs:1:21
+kablam!   |
+kablam! 1 | use std::rt::heap::{self, usable_size, EMPTY};
+kablam!   |                     ^^^^ no `heap` in `rt`
+kablam! 
+kablam! error[E0432]: unresolved import `std::rt::heap::usable_size`
+kablam!  --> src/alloc/plain.rs:1:27
+kablam!   |
+kablam! 1 | use std::rt::heap::{self, usable_size, EMPTY};
+kablam!   |                           ^^^^^^^^^^^ Could not find `heap` in `rt`
+kablam! 
+kablam! error[E0432]: unresolved import `std::rt::heap::EMPTY`
+kablam!  --> src/alloc/plain.rs:1:40
+kablam!   |
+kablam! 1 | use std::rt::heap::{self, usable_size, EMPTY};
+kablam!   |                                        ^^^^^ Could not find `heap` in `rt`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!   --> src/lib.rs:11:1
+kablam!    |
+kablam! 11 | #![feature(core)]
+kablam!    | ^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!   --> src/lib.rs:12:1
+kablam!    |
+kablam! 12 | #![feature(alloc)]
+kablam!    | ^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `raw`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f c49ad78b12be9128a51c4645c4307b2ef0f739e15be3661abce094611b19a317`
+blam! c49ad78b12be9128a51c4645c4307b2ef0f739e15be3661abce094611b19a317

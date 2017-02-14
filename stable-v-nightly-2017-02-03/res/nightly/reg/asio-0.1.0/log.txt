@@ -1,0 +1,58 @@
+boom! testing asio-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! af00188ffa7a6173580754258c65c60ff508ceac0cf18c64b3b8feb527635543
+boom! running `docker start -a af00188ffa7a6173580754258c65c60ff508ceac0cf18c64b3b8feb527635543`
+kablam!    Compiling slab v0.1.3
+kablam!    Compiling bytes v0.3.0
+kablam!    Compiling net2 v0.2.26
+kablam!    Compiling ws2_32-sys v0.2.1
+kablam!    Compiling nix v0.5.1
+kablam!    Compiling miow v0.1.5
+kablam!    Compiling mio v0.5.1
+kablam!    Compiling asio v0.1.0 (file:///source)
+kablam! error[E0276]: impl has stricter requirements than trait, #[deny(extra_requirement_in_impl)] on by default
+kablam!   --> src/loop_scheduler.rs:38:5
+kablam!    |
+kablam! 38 |       fn post<F : FnOnce() + 'static>(&self, f: F) {
+kablam!    |  _____^ starting here...
+kablam! 39 | |         self.pending_jobs.borrow_mut().push_back(Closure::new(f));
+kablam! 40 | |     }
+kablam!    | |_____^ ...ending here: impl has extra requirement `F: 'static`
+kablam!    | 
+kablam!   ::: src/executor.rs
+kablam!    |
+kablam! 9  |       fn post<F : FnOnce()>(&self, f: F);
+kablam!    |       ----------------------------------- definition of `post` from trait
+kablam!    |
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #37166 <https://github.com/rust-lang/rust/issues/37166>
+kablam! 
+kablam! error[E0276]: impl has stricter requirements than trait, #[deny(extra_requirement_in_impl)] on by default
+kablam!    --> src/io_service.rs:118:5
+kablam!     |
+kablam! 118 |       fn post<F : FnOnce() + 'static>(&self, f: F) {
+kablam!     |  _____^ starting here...
+kablam! 119 | |         let cur = self.next_msg();
+kablam! 120 | |         *self.pending_jobs.borrow_mut() += 1;
+kablam! 121 | |         self.pending_msgs.borrow_mut().insert(cur, Closure::new(f));
+kablam! 122 | |         self.msg_sender.send(Message::UserClosure(cur)).unwrap();
+kablam! 123 | |     }
+kablam!     | |_____^ ...ending here: impl has extra requirement `F: 'static`
+kablam!     | 
+kablam!    ::: src/executor.rs
+kablam!     |
+kablam! 9   |       fn post<F : FnOnce()>(&self, f: F);
+kablam!     |       ----------------------------------- definition of `post` from trait
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #37166 <https://github.com/rust-lang/rust/issues/37166>
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `asio`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f af00188ffa7a6173580754258c65c60ff508ceac0cf18c64b3b8feb527635543`
+blam! af00188ffa7a6173580754258c65c60ff508ceac0cf18c64b3b8feb527635543

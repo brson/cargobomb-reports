@@ -1,0 +1,30 @@
+boom! testing yaml-0.2.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! f803819a163d935b9cdf293d2365052ffc4f9fd32a17c853d487af0315783873
+boom! running `docker start -a f803819a163d935b9cdf293d2365052ffc4f9fd32a17c853d487af0315783873`
+kablam!    Compiling yaml v0.2.0 (file:///source)
+kablam!    Compiling regex_macros v0.1.38
+kablam! error[E0432]: unresolved import `std::fs::PathExt`
+kablam!  --> build.rs:3:21
+kablam!   |
+kablam! 3 | use std::fs::{File, PathExt};
+kablam!   |                     ^^^^^^^ no `PathExt` in `fs`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error[E0061]: this function takes 3 parameters but 2 parameters were supplied
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/regex_macros-0.1.38/src/lib.rs:487:21
+kablam!     |
+kablam! 487 |                     quote_expr!(self.cx, $start), quote_expr!(self.cx, $end)));
+kablam!     |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 3 parameters
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `yaml`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f803819a163d935b9cdf293d2365052ffc4f9fd32a17c853d487af0315783873`
+blam! f803819a163d935b9cdf293d2365052ffc4f9fd32a17c853d487af0315783873

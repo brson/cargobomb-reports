@@ -1,0 +1,38 @@
+boom! testing eventual-0.1.7 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 2aaa5fd74064a5482f68ba7b729f3935923a24fddfc6cc65d9c370d4c318ed52
+boom! running `docker start -a 2aaa5fd74064a5482f68ba7b729f3935923a24fddfc6cc65d9c370d4c318ed52`
+kablam!    Compiling eventual v0.1.7 (file:///source)
+kablam! error: unused import: `Async`
+kablam!  --> src/core.rs:1:6
+kablam!   |
+kablam! 1 | use {Async, BoxedReceive, AsyncResult, AsyncError};
+kablam!   |      ^^^^^
+kablam!   |
+kablam! note: lint level defined here
+kablam!  --> src/lib.rs:50:9
+kablam!   |
+kablam! 50| #![deny(warnings)]
+kablam!   |         ^^^^^^^^
+kablam! 
+kablam! error: unused import: `Pair`
+kablam!  --> src/run.rs:1:20
+kablam!   |
+kablam! 1 | use super::{Async, Pair, AsyncError, Future};
+kablam!   |                    ^^^^
+kablam! 
+kablam! error: unused import: `syncbox::Task`
+kablam!  --> src/run.rs:2:5
+kablam!   |
+kablam! 2 | use syncbox::Task;
+kablam!   |     ^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `eventual`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 2aaa5fd74064a5482f68ba7b729f3935923a24fddfc6cc65d9c370d4c318ed52`
+blam! 2aaa5fd74064a5482f68ba7b729f3935923a24fddfc6cc65d9c370d4c318ed52

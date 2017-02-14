@@ -1,0 +1,50 @@
+boom! testing pcp-0.2.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! f68afa4f4a7a783622293354ca324d5563736e7b6b1e6522b5b9f8e216b6b227
+boom! running `docker start -a f68afa4f4a7a783622293354ca324d5563736e7b6b1e6522b5b9f8e216b6b227`
+kablam!    Compiling ctrlc v1.1.1
+kablam!    Compiling quickersort v1.0.1
+kablam!    Compiling pcp v0.2.0 (file:///source)
+kablam! error: use of unstable library feature 'ordering_chaining' (see issue #37053)
+kablam!    --> src/stats.rs:153:10
+kablam!     |
+kablam! 153 |         .then(|| a.leading().cmp(&b.leading()))
+kablam!     |          ^^^^
+kablam!     |
+kablam!     = help: add #![feature(ordering_chaining)] to the crate attributes to enable
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/stats.rs:153:15
+kablam!     |
+kablam! 153 |         .then(|| a.leading().cmp(&b.leading()))
+kablam!     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `std::cmp::Ordering`, found closure
+kablam!     |
+kablam!     = note: expected type `std::cmp::Ordering`
+kablam!                found type `[closure@src/stats.rs:153:15: 153:47 a:_, b:_]`
+kablam! 
+kablam! error: use of unstable library feature 'ordering_chaining' (see issue #37053)
+kablam!    --> src/stats.rs:154:10
+kablam!     |
+kablam! 154 |         .then(|| a.len().cmp(&b.len()))
+kablam!     |          ^^^^
+kablam!     |
+kablam!     = help: add #![feature(ordering_chaining)] to the crate attributes to enable
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/stats.rs:154:15
+kablam!     |
+kablam! 154 |         .then(|| a.len().cmp(&b.len()))
+kablam!     |               ^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `std::cmp::Ordering`, found closure
+kablam!     |
+kablam!     = note: expected type `std::cmp::Ordering`
+kablam!                found type `[closure@src/stats.rs:154:15: 154:39 a:_, b:_]`
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `pcp`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f68afa4f4a7a783622293354ca324d5563736e7b6b1e6522b5b9f8e216b6b227`
+blam! f68afa4f4a7a783622293354ca324d5563736e7b6b1e6522b5b9f8e216b6b227

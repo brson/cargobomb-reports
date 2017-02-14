@@ -1,0 +1,177 @@
+boom! testing kinetic-0.1.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! f914c71d847a3670a5bcbfe5f1f1df2949f09ce24021f972a175c9d5400ab677
+boom! running `docker start -a f914c71d847a3670a5bcbfe5f1f1df2949f09ce24021f972a175c9d5400ab677`
+kablam! warning: dependency (rust-crypto) specified without providing a local path, Git repository, or version to use. This will be considered an error in future versions
+kablam! warning: dependency (term) specified without providing a local path, Git repository, or version to use. This will be considered an error in future versions
+kablam! warning: dependency (libc) specified without providing a local path, Git repository, or version to use. This will be considered an error in future versions
+kablam! warning: dependency (byteorder) specified without providing a local path, Git repository, or version to use. This will be considered an error in future versions
+kablam! warning: dependency (rustc-serialize) specified without providing a local path, Git repository, or version to use. This will be considered an error in future versions
+kablam! warning: dependency (docopt) specified without providing a local path, Git repository, or version to use. This will be considered an error in future versions
+kablam! warning: dependency (shell) specified without providing a local path, Git repository, or version to use. This will be considered an error in future versions
+kablam! warning: dependency (log) specified without providing a local path, Git repository, or version to use. This will be considered an error in future versions
+kablam! warning: dependency (protobuf) specified without providing a local path, Git repository, or version to use. This will be considered an error in future versions
+kablam!    Compiling shell v0.3.1
+kablam!    Compiling kinetic v0.1.1 (file:///source)
+kablam! error[E0432]: unresolved import `std::sync::Future`
+kablam!   --> src/kinetic/client.rs:24:5
+kablam!    |
+kablam! 24 | use std::sync::Future;
+kablam!    |     ^^^^^^^^^^^^^^^^^ no `Future` in `sync`
+kablam! 
+kablam! error[E0412]: cannot find type `Error` in module `byteorder`
+kablam!    --> src/kinetic/error.rs:108:11
+kablam!     |
+kablam! 108 | impl From<::byteorder::Error> for KineticError {
+kablam!     |           ^^^^^^^^^^^^^^^^^^ not found in `byteorder`
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use std::error::Error;`
+kablam!               `use std::fmt::Error;`
+kablam!               `use std::io::Error;`
+kablam! 
+kablam! error[E0412]: cannot find type `Error` in module `byteorder`
+kablam!    --> src/kinetic/error.rs:110:18
+kablam!     |
+kablam! 110 |     fn from(err: ::byteorder::Error) -> KineticError {
+kablam!     |                  ^^^^^^^^^^^^^^^^^^ not found in `byteorder`
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use std::error::Error;`
+kablam!               `use std::fmt::Error;`
+kablam!               `use std::io::Error;`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Error` in `byteorder`
+kablam!    --> src/kinetic/error.rs:112:13
+kablam!     |
+kablam! 112 |             ::byteorder::Error::Io(err) => KineticError::IoError(err),
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^^^ Could not find `Error` in `byteorder`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Error` in `byteorder`
+kablam!    --> src/kinetic/error.rs:113:13
+kablam!     |
+kablam! 113 |             ::byteorder::Error::UnexpectedEOF =>
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `Error` in `byteorder`
+kablam! 
+kablam! error[E0277]: the trait bound `std::cell::Cell<u32>: std::marker::Sync` is not satisfied in `proto::raw::Local`
+kablam!   --> src/kinetic/proto/raw.rs:79:6
+kablam!    |
+kablam! 79 | impl ::protobuf::Message for Local {
+kablam!    |      ^^^^^^^^^^^^^^^^^^^ within `proto::raw::Local`, the trait `std::marker::Sync` is not implemented for `std::cell::Cell<u32>`
+kablam!    |
+kablam!    = note: `std::cell::Cell<u32>` cannot be shared between threads safely
+kablam!    = note: required because it appears within the type `proto::raw::Local`
+kablam!    = note: required by `protobuf::Message`
+kablam! 
+kablam! error[E0277]: the trait bound `std::cell::Cell<u32>: std::marker::Sync` is not satisfied in `proto::raw::Message`
+kablam!    --> src/kinetic/proto/raw.rs:355:6
+kablam!     |
+kablam! 355 | impl ::protobuf::Message for Message {
+kablam!     |      ^^^^^^^^^^^^^^^^^^^ within `proto::raw::Message`, the trait `std::marker::Sync` is not implemented for `std::cell::Cell<u32>`
+kablam!     |
+kablam!     = note: `std::cell::Cell<u32>` cannot be shared between threads safely
+kablam!     = note: required because it appears within the type `proto::raw::Message`
+kablam!     = note: required by `protobuf::Message`
+kablam! 
+kablam! error[E0277]: the trait bound `std::cell::Cell<u32>: std::marker::Sync` is not satisfied in `proto::raw::Message_HMACauth`
+kablam!    --> src/kinetic/proto/raw.rs:627:6
+kablam!     |
+kablam! 627 | impl ::protobuf::Message for Message_HMACauth {
+kablam!     |      ^^^^^^^^^^^^^^^^^^^ within `proto::raw::Message_HMACauth`, the trait `std::marker::Sync` is not implemented for `std::cell::Cell<u32>`
+kablam!     |
+kablam!     = note: `std::cell::Cell<u32>` cannot be shared between threads safely
+kablam!     = note: required because it appears within the type `proto::raw::Message_HMACauth`
+kablam!     = note: required by `protobuf::Message`
+kablam! 
+kablam! error[E0277]: the trait bound `std::cell::Cell<u32>: std::marker::Sync` is not satisfied in `proto::raw::Message_PINauth`
+kablam!    --> src/kinetic/proto/raw.rs:832:6
+kablam!     |
+kablam! 832 | impl ::protobuf::Message for Message_PINauth {
+kablam!     |      ^^^^^^^^^^^^^^^^^^^ within `proto::raw::Message_PINauth`, the trait `std::marker::Sync` is not implemented for `std::cell::Cell<u32>`
+kablam!     |
+kablam!     = note: `std::cell::Cell<u32>` cannot be shared between threads safely
+kablam!     = note: required because it appears within the type `proto::raw::Message_PINauth`
+kablam!     = note: required by `protobuf::Message`
+kablam! 
+kablam! error[E0275]: overflow evaluating the requirement `std::option::Option<Box<proto::raw::Command_P2POperation_Peer>>: std::marker::Sync`
+kablam!     --> src/kinetic/proto/raw.rs:1123:6
+kablam!      |
+kablam! 1123 | impl ::protobuf::Message for Command {
+kablam!      |      ^^^^^^^^^^^^^^^^^^^
+kablam!      |
+kablam!      = note: consider adding a `#![recursion_limit="128"]` attribute to your crate
+kablam!      = note: required because it appears within the type `protobuf::SingularPtrField<proto::raw::Command_P2POperation_Peer>`
+kablam!      = note: required because it appears within the type `proto::raw::Command_P2POperation`
+kablam!      = note: required because it appears within the type `Box<proto::raw::Command_P2POperation>`
+kablam!      = note: required because it appears within the type `std::option::Option<Box<proto::raw::Command_P2POperation>>`
+kablam!      = note: required because it appears within the type `protobuf::SingularPtrField<proto::raw::Command_P2POperation>`
+kablam!      = note: required because it appears within the type `proto::raw::Command_P2POperation_Operation`
+kablam!      = note: required because of the requirements on the impl of `std::marker::Sync` for `std::ptr::Unique<proto::raw::Command_P2POperation_Operation>`
+kablam!      = note: required because it appears within the type `alloc::raw_vec::RawVec<proto::raw::Command_P2POperation_Operation>`
+kablam!      = note: required because it appears within the type `std::vec::Vec<proto::raw::Command_P2POperation_Operation>`
+kablam!      = note: required because it appears within the type `protobuf::RepeatedField<proto::raw::Command_P2POperation_Operation>`
+kablam!      = note: required because it appears within the type `proto::raw::Command_P2POperation`
+kablam!      = note: required because it appears within the type `Box<proto::raw::Command_P2POperation>`
+kablam!      = note: required because it appears within the type `std::option::Option<Box<proto::raw::Command_P2POperation>>`
+kablam!      = note: required because it appears within the type `protobuf::SingularPtrField<proto::raw::Command_P2POperation>`
+kablam!      = note: required because it appears within the type `proto::raw::Command_P2POperation_Operation`
+kablam!      = note: required because of the requirements on the impl of `std::marker::Sync` for `std::ptr::Unique<proto::raw::Command_P2POperation_Operation>`
+kablam!      = note: required because it appears within the type `alloc::raw_vec::RawVec<proto::raw::Command_P2POperation_Operation>`
+kablam!      = note: required because it appears within the type `std::vec::Vec<proto::raw::Command_P2POperation_Operation>`
+kablam!      = note: required because it appears within the type `protobuf::RepeatedField<proto::raw::Command_P2POperation_Operation>`
+kablam!      = note: required because it appears within the type `proto::raw::Command_P2POperation`
+kablam!      = note: required because it appears within the type `Box<proto::raw::Command_P2POperation>`
+kablam!      = note: required because it appears within the type `std::option::Option<Box<proto::raw::Command_P2POperation>>`
+kablam!      = note: required because it appears within the type `protobuf::SingularPtrField<proto::raw::Command_P2POperation>`
+kablam!      = note: required because it appears within the type `proto::raw::Command_P2POperation_Operation`
+kablam!      = note: required because of the requirements on the impl of `std::marker::Sync` for `std::ptr::Unique<proto::raw::Command_P2POperation_Operation>`
+kablam!      = note: required because it appears within the type `alloc::raw_vec::RawVec<proto::raw::Command_P2POperation_Operation>`
+kablam!      = note: required because it appears within the type `std::vec::Vec<proto::raw::Command_P2POperation_Operation>`
+kablam!      = note: required because it appears within the type `protobuf::RepeatedField<proto::raw::Command_P2POperation_Operation>`
+kablam!      = note: required because it appears within the type `proto::raw::Command_P2POperation`
+kablam!      = note: required because it appears within the type `Box<proto::raw::Command_P2POperation>`
+kablam!      = note: required because it appears within the type `std::option::Option<Box<proto::raw::Command_P2POperation>>`
+kablam!      = note: required because it appears within the type `protobuf::SingularPtrField<proto::raw::Command_P2POperation>`
+kablam!      = note: required because it appears within the type `proto::raw::Command_P2POperation_Operation`
+kablam!      = note: required because of the requirements on the impl of `std::marker::Sync` for `std::ptr::Unique<proto::raw::Command_P2POperation_Operation>`
+kablam!      = note: required because it appears within the type `alloc::raw_vec::RawVec<proto::raw::Command_P2POperation_Operation>`
+kablam!      = note: required because it appears within the type `std::vec::Vec<proto::raw::Command_P2POperation_Operation>`
+kablam!      = note: required because it appears within the type `protobuf::RepeatedField<proto::raw::Command_P2POperation_Operation>`
+kablam!      = note: required because it appears within the type `proto::raw::Command_P2POperation`
+kablam!      = note: required because it appears within the type `Box<proto::raw::Command_P2POperation>`
+kablam!      = note: required because it appears within the type `std::option::Option<Box<proto::raw::Command_P2POperation>>`
+kablam!      = note: required because it appears within the type `protobuf::SingularPtrField<proto::raw::Command_P2POperation>`
+kablam!      = note: required because it appears within the type `proto::raw::Command_P2POperation_Operation`
+kablam!      = note: required because of the requirements on the impl of `std::marker::Sync` for `std::ptr::Unique<proto::raw::Command_P2POperation_Operation>`
+kablam!      = note: required because it appears within the type `alloc::raw_vec::RawVec<proto::raw::Command_P2POperation_Operation>`
+kablam!      = note: required because it appears within the type `std::vec::Vec<proto::raw::Command_P2POperation_Operation>`
+kablam!      = note: required because it appears within the type `protobuf::RepeatedField<proto::raw::Command_P2POperation_Operation>`
+kablam!      = note: required because it appears within the type `proto::raw::Command_P2POperation`
+kablam!      = note: required because it appears within the type `Box<proto::raw::Command_P2POperation>`
+kablam!      = note: required because it appears within the type `std::option::Option<Box<proto::raw::Command_P2POperation>>`
+kablam!      = note: required because it appears within the type `protobuf::SingularPtrField<proto::raw::Command_P2POperation>`
+kablam!      = note: required because it appears within the type `proto::raw::Command_P2POperation_Operation`
+kablam!      = note: required because of the requirements on the impl of `std::marker::Sync` for `std::ptr::Unique<proto::raw::Command_P2POperation_Operation>`
+kablam!      = note: required because it appears within the type `alloc::raw_vec::RawVec<proto::raw::Command_P2POperation_Operation>`
+kablam!      = note: required because it appears within the type `std::vec::Vec<proto::raw::Command_P2POperation_Operation>`
+kablam!      = note: required because it appears within the type `protobuf::RepeatedField<proto::raw::Command_P2POperation_Operation>`
+kablam!      = note: required because it appears within the type `proto::raw::Command_P2POperation`
+kablam!      = note: required because it appears within the type `Box<proto::raw::Command_P2POperation>`
+kablam!      = note: required because it appears within the type `std::option::Option<Box<proto::raw::Command_P2POperation>>`
+kablam!      = note: required because it appears within the type `protobuf::SingularPtrField<proto::raw::Command_P2POperation>`
+kablam!      = note: required because it appears within the type `proto::raw::Command_Body`
+kablam!      = note: required because it appears within the type `Box<proto::raw::Command_Body>`
+kablam!      = note: required because it appears within the type `std::option::Option<Box<proto::raw::Command_Body>>`
+kablam!      = note: required because it appears within the type `protobuf::SingularPtrField<proto::raw::Command_Body>`
+kablam!      = note: required because it appears within the type `proto::raw::Command`
+kablam!      = note: required by `protobuf::Message`
+kablam! 
+kablam! error: aborting due to 10 previous errors
+kablam! 
+kablam! error: Could not compile `kinetic`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f914c71d847a3670a5bcbfe5f1f1df2949f09ce24021f972a175c9d5400ab677`
+blam! f914c71d847a3670a5bcbfe5f1f1df2949f09ce24021f972a175c9d5400ab677

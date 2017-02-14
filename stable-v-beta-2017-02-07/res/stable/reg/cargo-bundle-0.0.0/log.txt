@@ -1,0 +1,34 @@
+boom! testing cargo-bundle-0.0.0 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! bfe8027d00f1f377bc085a521b07505eb747859d6e88812e8f14f2b7db960138
+boom! running `docker start -a bfe8027d00f1f377bc085a521b07505eb747859d6e88812e8f14f2b7db960138`
+kablam!    Compiling plist v0.1.0
+kablam!    Compiling cargo-bundle v0.0.0 (file:///source)
+kablam! error[E0308]: match arms have incompatible types
+kablam!   --> src/bundle/mod.rs:35:5
+kablam!    |
+kablam! 35 |     match settings.package_type {
+kablam!    |     ^ expected struct `std::vec::Vec`, found ()
+kablam!    |
+kablam!    = note: expected type `_`
+kablam!    = note:    found type `std::result::Result<(), Box<std::error::Error + std::marker::Send + std::marker::Sync>>`
+kablam! note: match arm with an incompatible type
+kablam!   --> src/bundle/mod.rs:36:17
+kablam!    |
+kablam! 36 |           None => deb_bundle::bundle_project(&settings)
+kablam!    |  _________________^ starting here...
+kablam! 37 | |             .and_then(|deb_path| {
+kablam! 38 | |                 let rpm_path = try!(rpm_bundle::bundle_project(&settings));
+kablam! 39 | |                 Ok(deb_path.extend(rpm_path))
+kablam! 40 | |             }),
+kablam!    | |______________^ ...ending here
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `cargo-bundle`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f bfe8027d00f1f377bc085a521b07505eb747859d6e88812e8f14f2b7db960138`
+blam! bfe8027d00f1f377bc085a521b07505eb747859d6e88812e8f14f2b7db960138

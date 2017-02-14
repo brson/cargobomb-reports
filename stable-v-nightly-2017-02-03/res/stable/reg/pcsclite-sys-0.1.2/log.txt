@@ -1,0 +1,18 @@
+boom! testing pcsclite-sys-0.1.2 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 1e2e61bd9acd8f44d02672ff6003fa179c1037a95ac3e0530bd01810c0c8eb45
+boom! running `docker start -a 1e2e61bd9acd8f44d02672ff6003fa179c1037a95ac3e0530bd01810c0c8eb45`
+kablam!    Compiling pcsclite-sys v0.1.2 (file:///source)
+kablam! error: failed to run custom build command for `pcsclite-sys v0.1.2 (file:///source)`
+kablam! process didn't exit successfully: `/target/debug/build/pcsclite-sys-2ee614acac7f5e97/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! cargo:rustc-link-lib=dylib=pcsclite
+kablam! 
+kablam! --- stderr
+kablam! thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: "Failed to run `\"pkg-config\" \"--libs\" \"--cflags\" \"libpcsclite\"`: No such file or directory (os error 2)"', ../src/libcore/result.rs:837
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f 1e2e61bd9acd8f44d02672ff6003fa179c1037a95ac3e0530bd01810c0c8eb45`
+blam! 1e2e61bd9acd8f44d02672ff6003fa179c1037a95ac3e0530bd01810c0c8eb45

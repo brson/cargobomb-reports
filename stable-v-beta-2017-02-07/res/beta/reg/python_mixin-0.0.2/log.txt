@@ -1,0 +1,98 @@
+boom! testing python_mixin-0.0.2 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 9aac6862ae4c0a7902ccb0a2edb8ae14225dd49e159a5224f52dd8b0a22f671b
+boom! running `docker start -a 9aac6862ae4c0a7902ccb0a2edb8ae14225dd49e159a5224f52dd8b0a22f671b`
+kablam!    Compiling python_mixin v0.0.2 (file:///source)
+kablam! error[E0432]: unresolved import `std::fs::TempDir`
+kablam!  --> src/lib.rs:8:21
+kablam!   |
+kablam! 8 | use std::fs::{self, TempDir, File};
+kablam!   |                     ^^^^^^^ no `TempDir` in `fs`
+kablam! 
+kablam! error[E0432]: unresolved import `rustc::plugin::Registry`
+kablam!   --> src/lib.rs:17:5
+kablam!    |
+kablam! 17 | use rustc::plugin::Registry;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `plugin` in `rustc`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::attr::ParserAttr`
+kablam!   --> src/parser_any_macro.rs:11:5
+kablam!    |
+kablam! 11 | use syntax::parse::attr::ParserAttr;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `ParserAttr` in `parse::attr`
+kablam! 
+kablam! error[E0407]: method `make_methods` is not a member of trait `MacResult`
+kablam!   --> src/parser_any_macro.rs:72:5
+kablam!    |
+kablam! 72 |     fn make_methods(self: Box<ParserAnyMacro<'a>>) -> Option<SmallVector<P<ast::Method>>> {
+kablam!    |     ^ not a member of trait `MacResult`
+kablam! 
+kablam! error[E0412]: cannot find type `Method` in module `ast`
+kablam!   --> src/parser_any_macro.rs:72:76
+kablam!    |
+kablam! 72 |     fn make_methods(self: Box<ParserAnyMacro<'a>>) -> Option<SmallVector<P<ast::Method>>> {
+kablam!    |                                                                            ^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0407]: method `make_stmt` is not a member of trait `MacResult`
+kablam!   --> src/parser_any_macro.rs:87:5
+kablam!    |
+kablam! 87 |       fn make_stmt(self: Box<ParserAnyMacro<'a>>) -> Option<P<ast::Stmt>> {
+kablam!    |  _____^ starting here...
+kablam! 88 | |         let attrs = self.parser.borrow_mut().parse_outer_attributes();
+kablam! 89 | |         let ret = self.parser.borrow_mut().parse_stmt(attrs);
+kablam! 90 | |         self.ensure_complete_parse(true);
+kablam! 91 | |         Some(ret)
+kablam! 92 | |     }
+kablam!    | |_____^ ...ending here: not a member of trait `MacResult`
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!   --> src/lib.rs:33:41
+kablam!    |
+kablam! 33 |     registrar.register_syntax_extension(token::intern("python_mixin"),
+kablam!    |                                         ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!   --> src/lib.rs:46:31
+kablam!    |
+kablam! 46 |                    raw_tts: &[ast::TokenTree])
+kablam!    |                               ^^^^^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `TtDelimited` in module `ast`
+kablam!   --> src/lib.rs:62:19
+kablam!    |
+kablam! 62 |             Some(&ast::TtDelimited(_, ref delim)) if delim.delim == token::Brace => {
+kablam!    |                   ^^^^^^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!    --> src/lib.rs:149:35
+kablam!     |
+kablam! 149 |     fn parse(cx: &ExtCtxt, tts: &[ast::TokenTree]) -> Options {
+kablam!     |                                   ^^^^^^^^^^^^^^ not found in `ast`
+kablam!     |
+kablam!     = help: possible candidate is found in another module, you can import it into scope:
+kablam!               `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> src/lib.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(quote, plugin_registrar, rustc_private)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> src/lib.rs:2:1
+kablam!   |
+kablam! 2 | #![feature(tempdir, path, io, fs, process)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `python_mixin`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 9aac6862ae4c0a7902ccb0a2edb8ae14225dd49e159a5224f52dd8b0a22f671b`
+blam! 9aac6862ae4c0a7902ccb0a2edb8ae14225dd49e159a5224f52dd8b0a22f671b

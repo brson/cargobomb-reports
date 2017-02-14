@@ -1,0 +1,440 @@
+boom! testing rustproof-libsmt-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 5e5fd212449257204dc0859c54bfc8157bd4576c856de442d42028947b019939
+boom! running `docker start -a 5e5fd212449257204dc0859c54bfc8157bd4576c856de442d42028947b019939`
+kablam!    Compiling rustproof-libsmt v0.1.0 (file:///source)
+kablam! warning: type `QF_BV_Sorts` should have a camel case name such as `QfBvSorts`, #[warn(non_camel_case_types)] on by default
+kablam!   --> src/logics/utils.rs:7:9
+kablam!    |
+kablam! 7  |            pub enum $logic {
+kablam!    |   _________^ starting here...
+kablam! 8  |  |             $(
+kablam! 9  |  |                 $variant($sort),
+kablam! 10 |  |             )*
+kablam! 11 |  |         }
+kablam!    |  |_________^ ...ending here
+kablam!    | 
+kablam!   ::: src/logics/qf_bv.rs
+kablam!    |
+kablam! 11 |    define_sorts_for_logic!(QF_BV_Sorts,
+kablam!    |  __- starting here...
+kablam! 12 | |                    BV -> bitvec::Sorts,
+kablam! 13 | |                    Core -> core::Sorts
+kablam! 14 | |                   );
+kablam!    | |____________________- ...ending here: in this macro invocation
+kablam! 
+kablam! warning: type `QF_BV_Fn` should have a camel case name such as `QfBvFn`, #[warn(non_camel_case_types)] on by default
+kablam!   --> src/logics/utils.rs:38:9
+kablam!    |
+kablam! 38 |           pub enum $logic {
+kablam!    |  _________^ starting here...
+kablam! 39 | |             $(
+kablam! 40 | |                 $variant($sort),
+kablam! 41 | |             )*
+kablam! 42 | |         }
+kablam!    | |_________^ ...ending here
+kablam!    | 
+kablam!   ::: src/logics/qf_bv.rs
+kablam!    |
+kablam! 16 |   define_fns_for_logic!(QF_BV_Fn,
+kablam!    |  _- starting here...
+kablam! 17 | |                       BVOps -> bitvec::OpCodes,
+kablam! 18 | |                       CoreOps -> core::OpCodes
+kablam! 19 | |                      );
+kablam!    | |_______________________- ...ending here: in this macro invocation
+kablam! 
+kablam! warning: type `QF_BV` should have a camel case name such as `QfBv`, #[warn(non_camel_case_types)] on by default
+kablam!   --> src/logics/utils.rs:87:9
+kablam!    |
+kablam! 87 |           pub struct $logic;
+kablam!    |           ^^^^^^^^^^^^^^^^^^
+kablam!    | 
+kablam!   ::: src/logics/qf_bv.rs
+kablam!    |
+kablam! 21 |   define_logic!(QF_BV,
+kablam!    |  _- starting here...
+kablam! 22 | |               QF_BV_Fn,
+kablam! 23 | |               QF_BV_Sorts,
+kablam! 24 | |               map {
+kablam! 25 | |                   QF_BV_Sorts::BV(_) => bitvec::OpCodes::FreeVar
+kablam! 26 | |               }
+kablam! 27 | |              );
+kablam!    | |_______________- ...ending here: in this macro invocation
+kablam! 
+kablam! warning: type `QF_AUFBV_Sorts` should have a camel case name such as `QfAufbvSorts`, #[warn(non_camel_case_types)] on by default
+kablam!   --> src/logics/utils.rs:7:9
+kablam!    |
+kablam! 7  |            pub enum $logic {
+kablam!    |  __________^ starting here...
+kablam! 8  | |              $(
+kablam! 9  | |                  $variant($sort),
+kablam! 10 | |              )*
+kablam! 11 | |          }
+kablam!    | |__________^ ...ending here
+kablam!    | 
+kablam!   ::: src/logics/qf_aufbv.rs
+kablam!    |
+kablam! 6  |    define_sorts_for_logic!(QF_AUFBV_Sorts,
+kablam!    |   _- starting here...
+kablam! 7  |  |                         BV -> bitvec::Sorts,
+kablam! 8  |  |                         Core -> core::Sorts,
+kablam! 9  |  |                         ArrayEx -> array_ex::Sorts<QF_AUFBV_Sorts, QF_AUFBV_Sorts>
+kablam! 10 |  |                         );
+kablam!    |  |__________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! warning: type `QF_AUFBV_Fn` should have a camel case name such as `QfAufbvFn`, #[warn(non_camel_case_types)] on by default
+kablam!   --> src/logics/utils.rs:38:9
+kablam!    |
+kablam! 38 |           pub enum $logic {
+kablam!    |  _________^ starting here...
+kablam! 39 | |             $(
+kablam! 40 | |                 $variant($sort),
+kablam! 41 | |             )*
+kablam! 42 | |         }
+kablam!    | |_________^ ...ending here
+kablam!    | 
+kablam!   ::: src/logics/qf_aufbv.rs
+kablam!    |
+kablam! 12 |   define_fns_for_logic!(QF_AUFBV_Fn,
+kablam!    |  _- starting here...
+kablam! 13 | |                       BVOps -> bitvec::OpCodes,
+kablam! 14 | |                       CoreOps -> core::OpCodes,
+kablam! 15 | |                       ArrayOps -> array_ex::OpCodes<QF_AUFBV_Sorts, QF_AUFBV_Sorts, QF_AUFBV_Fn>
+kablam! 16 | |                       );
+kablam!    | |________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! warning: type `QF_AUFBV` should have a camel case name such as `QfAufbv`, #[warn(non_camel_case_types)] on by default
+kablam!   --> src/logics/utils.rs:87:9
+kablam!    |
+kablam! 87 |           pub struct $logic;
+kablam!    |           ^^^^^^^^^^^^^^^^^^
+kablam!    | 
+kablam!   ::: src/logics/qf_aufbv.rs
+kablam!    |
+kablam! 18 |   define_logic!(QF_AUFBV,
+kablam!    |  _- starting here...
+kablam! 19 | |               QF_AUFBV_Fn,
+kablam! 20 | |               QF_AUFBV_Sorts,
+kablam! 21 | |               map { QF_AUFBV_Sorts::BV(_) => bitvec::OpCodes::FreeVar,
+kablam! 22 | |                   QF_AUFBV_Sorts::ArrayEx(_) => array_ex::OpCodes::FreeVar
+kablam! 23 | |               }
+kablam! 24 | |               );
+kablam!    | |________________- ...ending here: in this macro invocation
+kablam! 
+kablam! warning: type `QF_ABV_Sorts` should have a camel case name such as `QfAbvSorts`, #[warn(non_camel_case_types)] on by default
+kablam!   --> src/logics/utils.rs:7:9
+kablam!    |
+kablam! 7  |            pub enum $logic {
+kablam!    |  __________^ starting here...
+kablam! 8  | |              $(
+kablam! 9  | |                  $variant($sort),
+kablam! 10 | |              )*
+kablam! 11 | |          }
+kablam!    | |__________^ ...ending here
+kablam!    | 
+kablam!   ::: src/logics/qf_abv.rs
+kablam!    |
+kablam! 6  |    define_sorts_for_logic!(QF_ABV_Sorts,
+kablam!    |   _- starting here...
+kablam! 7  |  |                         BV -> bitvec::Sorts,
+kablam! 8  |  |                         Core -> core::Sorts,
+kablam! 9  |  |                         ArrayEx -> array_ex::Sorts<QF_ABV_Sorts, QF_ABV_Sorts>
+kablam! 10 |  |                         );
+kablam!    |  |__________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! warning: type `QF_ABV_Fn` should have a camel case name such as `QfAbvFn`, #[warn(non_camel_case_types)] on by default
+kablam!   --> src/logics/utils.rs:38:9
+kablam!    |
+kablam! 38 |           pub enum $logic {
+kablam!    |  _________^ starting here...
+kablam! 39 | |             $(
+kablam! 40 | |                 $variant($sort),
+kablam! 41 | |             )*
+kablam! 42 | |         }
+kablam!    | |_________^ ...ending here
+kablam!    | 
+kablam!   ::: src/logics/qf_abv.rs
+kablam!    |
+kablam! 12 |   define_fns_for_logic!(QF_ABV_Fn,
+kablam!    |  _- starting here...
+kablam! 13 | |                       BVOps -> bitvec::OpCodes,
+kablam! 14 | |                       CoreOps -> core::OpCodes,
+kablam! 15 | |                       ArrayOps -> array_ex::OpCodes<QF_ABV_Sorts, QF_ABV_Sorts, QF_ABV_Fn>
+kablam! 16 | |                       );
+kablam!    | |________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! warning: type `QF_ABV` should have a camel case name such as `QfAbv`, #[warn(non_camel_case_types)] on by default
+kablam!   --> src/logics/utils.rs:87:9
+kablam!    |
+kablam! 87 |           pub struct $logic;
+kablam!    |           ^^^^^^^^^^^^^^^^^^
+kablam!    | 
+kablam!   ::: src/logics/qf_abv.rs
+kablam!    |
+kablam! 18 |   define_logic!(QF_ABV,
+kablam!    |  _- starting here...
+kablam! 19 | |               QF_ABV_Fn,
+kablam! 20 | |               QF_ABV_Sorts,
+kablam! 21 | |               map { QF_ABV_Sorts::BV(_) => bitvec::OpCodes::FreeVar,
+kablam! 22 | |               QF_ABV_Sorts::ArrayEx(_) => array_ex::OpCodes::FreeVar
+kablam! 23 | |               }
+kablam! 24 | |               );
+kablam!    | |________________- ...ending here: in this macro invocation
+kablam! 
+kablam! warning: type `LIA_Sorts` should have a camel case name such as `LiaSorts`, #[warn(non_camel_case_types)] on by default
+kablam!   --> src/logics/utils.rs:7:9
+kablam!    |
+kablam! 7  |            pub enum $logic {
+kablam!    |   _________^ starting here...
+kablam! 8  |  |             $(
+kablam! 9  |  |                 $variant($sort),
+kablam! 10 |  |             )*
+kablam! 11 |  |         }
+kablam!    |  |_________^ ...ending here
+kablam!    | 
+kablam!   ::: src/logics/lia.rs
+kablam!    |
+kablam! 10 |    define_sorts_for_logic!(LIA_Sorts,
+kablam!    |  __- starting here...
+kablam! 11 | |                    Int -> integer::Sorts,
+kablam! 12 | |                    Core -> core::Sorts
+kablam! 13 | |                   );
+kablam!    | |____________________- ...ending here: in this macro invocation
+kablam! 
+kablam! warning: type `LIA_Fn` should have a camel case name such as `LiaFn`, #[warn(non_camel_case_types)] on by default
+kablam!   --> src/logics/utils.rs:38:9
+kablam!    |
+kablam! 38 |           pub enum $logic {
+kablam!    |  _________^ starting here...
+kablam! 39 | |             $(
+kablam! 40 | |                 $variant($sort),
+kablam! 41 | |             )*
+kablam! 42 | |         }
+kablam!    | |_________^ ...ending here
+kablam!    | 
+kablam!   ::: src/logics/lia.rs
+kablam!    |
+kablam! 15 |   define_fns_for_logic!(LIA_Fn,
+kablam!    |  _- starting here...
+kablam! 16 | |                       IntOps -> integer::OpCodes,
+kablam! 17 | |                       CoreOps -> core::OpCodes
+kablam! 18 | |                      );
+kablam!    | |_______________________- ...ending here: in this macro invocation
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/backends/smtlib2.rs:207:9
+kablam!     |
+kablam! 207 |         smt_proc.write(format!("(set-logic {})\n", logic));
+kablam!     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/backends/smtlib2.rs:241:13
+kablam!     |
+kablam! 241 |             smt_proc.write(w);
+kablam!     |             ^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/backends/smtlib2.rs:244:9
+kablam!     |
+kablam! 244 |         smt_proc.write("(check-sat)\n".to_owned());
+kablam!     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/backends/smtlib2.rs:257:13
+kablam!     |
+kablam! 257 |         let mut result = HashMap::new();
+kablam!     |             ^^^^^^^^^^
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/backends/smtlib2.rs:262:17
+kablam!     |
+kablam! 262 |                 smt_proc.write("(get-model)\n".to_owned());
+kablam!     |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 2.14 secs
+boom! running `docker rm -f 5e5fd212449257204dc0859c54bfc8157bd4576c856de442d42028947b019939`
+blam! 5e5fd212449257204dc0859c54bfc8157bd4576c856de442d42028947b019939
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 861f845931f9b070f676ed49d681e305ea5f51934b66f64cb0e9003f81d9ea40
+boom! running `docker start -a 861f845931f9b070f676ed49d681e305ea5f51934b66f64cb0e9003f81d9ea40`
+kablam!    Compiling rustproof-libsmt v0.1.0 (file:///source)
+kablam! error[E0463]: can't find crate for `libsmt`
+kablam!   --> examples/bajr.rs:22:1
+kablam!    |
+kablam! 22 | extern crate libsmt;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^ can't find crate
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error[E0463]: can't find crate for `libsmt`
+kablam!   --> examples/simple_example.rs:22:1
+kablam!    |
+kablam! 22 | extern crate libsmt;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^ can't find crate
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+blam! Build failed, waiting for other jobs to finish...
+kablam! error[E0463]: can't find crate for `libsmt`
+kablam!  --> examples/fiestel.rs:6:14
+kablam!   |
+kablam! 6 | #[macro_use] extern crate libsmt;
+kablam!   |              ^^^^^^^^^^^^^^^^^^^^ can't find crate
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error[E0061]: this function takes 2 parameters but 1 parameter was supplied
+kablam!   --> src/backends/z3.rs:70:35
+kablam!    |
+kablam! 70 |         let result = solver.solve(&mut z3).unwrap();
+kablam!    |                                   ^^^^^^^ expected 2 parameters
+kablam!    | 
+kablam!   ::: src/backends/backend.rs
+kablam!    |
+kablam! 61 |     fn solve<S: SMTProc>(&mut self, &mut S, bool) -> (SMTResult<HashMap<Self::Idx, u64>>, SMTRes);
+kablam!    |     ---------------------------------------------------------------------------------------------- defined here
+kablam! 
+kablam! error: no method named `unwrap` found for type `(std::result::Result<std::collections::HashMap<petgraph::graph::NodeIndex, u64>, backends::backend::SMTError>, backends::backend::SMTRes)` in the current scope
+kablam!   --> src/backends/z3.rs:70:44
+kablam!    |
+kablam! 70 |         let result = solver.solve(&mut z3).unwrap();
+kablam!    |                                            ^^^^^^
+kablam! 
+kablam! error[E0061]: this function takes 2 parameters but 1 parameter was supplied
+kablam!   --> src/backends/z3.rs:86:35
+kablam!    |
+kablam! 86 |         let result = solver.solve(&mut z3).unwrap();
+kablam!    |                                   ^^^^^^^ expected 2 parameters
+kablam!    | 
+kablam!   ::: src/backends/backend.rs
+kablam!    |
+kablam! 61 |     fn solve<S: SMTProc>(&mut self, &mut S, bool) -> (SMTResult<HashMap<Self::Idx, u64>>, SMTRes);
+kablam!    |     ---------------------------------------------------------------------------------------------- defined here
+kablam! 
+kablam! error: no method named `unwrap` found for type `(std::result::Result<std::collections::HashMap<petgraph::graph::NodeIndex, u64>, backends::backend::SMTError>, backends::backend::SMTRes)` in the current scope
+kablam!   --> src/backends/z3.rs:86:44
+kablam!    |
+kablam! 86 |         let result = solver.solve(&mut z3).unwrap();
+kablam!    |                                            ^^^^^^
+kablam! 
+kablam! error[E0061]: this function takes 2 parameters but 1 parameter was supplied
+kablam!   --> src/backends/z3.rs:99:35
+kablam!    |
+kablam! 99 |         let result = solver.solve(&mut z3).unwrap();
+kablam!    |                                   ^^^^^^^ expected 2 parameters
+kablam!    | 
+kablam!   ::: src/backends/backend.rs
+kablam!    |
+kablam! 61 |     fn solve<S: SMTProc>(&mut self, &mut S, bool) -> (SMTResult<HashMap<Self::Idx, u64>>, SMTRes);
+kablam!    |     ---------------------------------------------------------------------------------------------- defined here
+kablam! 
+kablam! error: no method named `unwrap` found for type `(std::result::Result<std::collections::HashMap<petgraph::graph::NodeIndex, u64>, backends::backend::SMTError>, backends::backend::SMTRes)` in the current scope
+kablam!   --> src/backends/z3.rs:99:44
+kablam!    |
+kablam! 99 |         let result = solver.solve(&mut z3).unwrap();
+kablam!    |                                            ^^^^^^
+kablam! 
+kablam! error: aborting due to 6 previous errors
+kablam! 
+kablam! error: Could not compile `rustproof-libsmt`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 861f845931f9b070f676ed49d681e305ea5f51934b66f64cb0e9003f81d9ea40`
+blam! 861f845931f9b070f676ed49d681e305ea5f51934b66f64cb0e9003f81d9ea40
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! c837290b3c3e38b1a3f8b5d7df436a02782c399403812d9921c8ddcfa4377e60
+boom! running `docker start -a c837290b3c3e38b1a3f8b5d7df436a02782c399403812d9921c8ddcfa4377e60`
+kablam!    Compiling rustproof-libsmt v0.1.0 (file:///source)
+kablam! error[E0463]: can't find crate for `libsmt`
+kablam!  --> examples/fiestel.rs:6:14
+kablam!   |
+kablam! 6 | #[macro_use] extern crate libsmt;
+kablam!   |              ^^^^^^^^^^^^^^^^^^^^ can't find crate
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error[E0463]: can't find crate for `libsmt`
+kablam!   --> examples/simple_example.rs:22:1
+kablam!    |
+kablam! 22 | extern crate libsmt;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^ can't find crate
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error[E0463]: can't find crate for `libsmt`
+kablam!   --> examples/bajr.rs:22:1
+kablam!    |
+kablam! 22 | extern crate libsmt;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^ can't find crate
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+blam! Build failed, waiting for other jobs to finish...
+kablam! error[E0061]: this function takes 2 parameters but 1 parameter was supplied
+kablam!   --> src/backends/z3.rs:70:35
+kablam!    |
+kablam! 70 |         let result = solver.solve(&mut z3).unwrap();
+kablam!    |                                   ^^^^^^^ expected 2 parameters
+kablam!    | 
+kablam!   ::: src/backends/backend.rs
+kablam!    |
+kablam! 61 |     fn solve<S: SMTProc>(&mut self, &mut S, bool) -> (SMTResult<HashMap<Self::Idx, u64>>, SMTRes);
+kablam!    |     ---------------------------------------------------------------------------------------------- defined here
+kablam! 
+kablam! error: no method named `unwrap` found for type `(std::result::Result<std::collections::HashMap<petgraph::graph::NodeIndex, u64>, backends::backend::SMTError>, backends::backend::SMTRes)` in the current scope
+kablam!   --> src/backends/z3.rs:70:44
+kablam!    |
+kablam! 70 |         let result = solver.solve(&mut z3).unwrap();
+kablam!    |                                            ^^^^^^
+kablam! 
+kablam! error[E0061]: this function takes 2 parameters but 1 parameter was supplied
+kablam!   --> src/backends/z3.rs:86:35
+kablam!    |
+kablam! 86 |         let result = solver.solve(&mut z3).unwrap();
+kablam!    |                                   ^^^^^^^ expected 2 parameters
+kablam!    | 
+kablam!   ::: src/backends/backend.rs
+kablam!    |
+kablam! 61 |     fn solve<S: SMTProc>(&mut self, &mut S, bool) -> (SMTResult<HashMap<Self::Idx, u64>>, SMTRes);
+kablam!    |     ---------------------------------------------------------------------------------------------- defined here
+kablam! 
+kablam! error: no method named `unwrap` found for type `(std::result::Result<std::collections::HashMap<petgraph::graph::NodeIndex, u64>, backends::backend::SMTError>, backends::backend::SMTRes)` in the current scope
+kablam!   --> src/backends/z3.rs:86:44
+kablam!    |
+kablam! 86 |         let result = solver.solve(&mut z3).unwrap();
+kablam!    |                                            ^^^^^^
+kablam! 
+kablam! error[E0061]: this function takes 2 parameters but 1 parameter was supplied
+kablam!   --> src/backends/z3.rs:99:35
+kablam!    |
+kablam! 99 |         let result = solver.solve(&mut z3).unwrap();
+kablam!    |                                   ^^^^^^^ expected 2 parameters
+kablam!    | 
+kablam!   ::: src/backends/backend.rs
+kablam!    |
+kablam! 61 |     fn solve<S: SMTProc>(&mut self, &mut S, bool) -> (SMTResult<HashMap<Self::Idx, u64>>, SMTRes);
+kablam!    |     ---------------------------------------------------------------------------------------------- defined here
+kablam! 
+kablam! error: no method named `unwrap` found for type `(std::result::Result<std::collections::HashMap<petgraph::graph::NodeIndex, u64>, backends::backend::SMTError>, backends::backend::SMTRes)` in the current scope
+kablam!   --> src/backends/z3.rs:99:44
+kablam!    |
+kablam! 99 |         let result = solver.solve(&mut z3).unwrap();
+kablam!    |                                            ^^^^^^
+kablam! 
+kablam! error: aborting due to 6 previous errors
+kablam! 
+kablam! error: Could not compile `rustproof-libsmt`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f c837290b3c3e38b1a3f8b5d7df436a02782c399403812d9921c8ddcfa4377e60`
+blam! c837290b3c3e38b1a3f8b5d7df436a02782c399403812d9921c8ddcfa4377e60

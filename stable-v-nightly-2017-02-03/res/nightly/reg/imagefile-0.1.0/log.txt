@@ -1,0 +1,54 @@
+boom! testing imagefile-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 8c98b05af0c6fd2cc1d5ee6a4a4fb11241dbbaf7aa74175c8bbefd27cec23957
+boom! running `docker start -a 8c98b05af0c6fd2cc1d5ee6a4a4fb11241dbbaf7aa74175c8bbefd27cec23957`
+kablam!    Compiling imagefile v0.1.0 (file:///source)
+kablam! error[E0532]: expected tuple struct/variant, found unit variant `ImgfileError::NotEnoughData`
+kablam!   --> src/lib.rs:59:13
+kablam!    |
+kablam! 59 |             ImgfileError::NotEnoughData(..) => &"Not enough data",
+kablam!    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^ not a tuple struct/variant
+kablam! 
+kablam! error[E0412]: cannot find type `Error` in module `byteorder`
+kablam!   --> src/lib.rs:79:11
+kablam!    |
+kablam! 79 | impl From<byteorder::Error> for ImgfileError {
+kablam!    |           ^^^^^^^^^^^^^^^^ not found in `byteorder`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use std::error::Error;`
+kablam!              `use std::fmt::Error;`
+kablam!              `use std::io::Error;`
+kablam! 
+kablam! error[E0412]: cannot find type `Error` in module `byteorder`
+kablam!   --> src/lib.rs:80:18
+kablam!    |
+kablam! 80 |     fn from(err: byteorder::Error) -> ImgfileError {
+kablam!    |                  ^^^^^^^^^^^^^^^^ not found in `byteorder`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use std::error::Error;`
+kablam!              `use std::fmt::Error;`
+kablam!              `use std::io::Error;`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Error` in `byteorder`
+kablam!   --> src/lib.rs:82:13
+kablam!    |
+kablam! 82 |             byteorder::Error::UnexpectedEOF => ImgfileError::ImageEnd,
+kablam!    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `Error` in `byteorder`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Error` in `byteorder`
+kablam!   --> src/lib.rs:83:13
+kablam!    |
+kablam! 83 |             byteorder::Error::Io(err) => ImgfileError::IoError(err),
+kablam!    |             ^^^^^^^^^^^^^^^^^^^^ Could not find `Error` in `byteorder`
+kablam! 
+kablam! error: aborting due to 5 previous errors
+kablam! 
+kablam! error: Could not compile `imagefile`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 8c98b05af0c6fd2cc1d5ee6a4a4fb11241dbbaf7aa74175c8bbefd27cec23957`
+blam! 8c98b05af0c6fd2cc1d5ee6a4a4fb11241dbbaf7aa74175c8bbefd27cec23957

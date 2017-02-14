@@ -1,0 +1,228 @@
+boom! testing rgo-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 2380814aff0c0f3bcd09106ae0e0b269af6381a07a88bb13e5b60f2d2b76b27d
+boom! running `docker start -a 2380814aff0c0f3bcd09106ae0e0b269af6381a07a88bb13e5b60f2d2b76b27d`
+kablam!    Compiling convenience v0.1.0
+kablam!    Compiling rgo v0.1.0 (file:///source)
+kablam! warning: unused `#[macro_use]` import, #[warn(unused_imports)] on by default
+kablam!   --> src/lib.rs:16:1
+kablam!    |
+kablam! 16 | #[macro_use]
+kablam!    | ^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused `#[macro_use]` import, #[warn(unused_imports)] on by default
+kablam!   --> src/lib.rs:18:1
+kablam!    |
+kablam! 18 | #[macro_use]
+kablam!    | ^^^^^^^^^^^^
+kablam! 
+kablam! warning: method is never used: `next_kind`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/mod.rs:88:5
+kablam!    |
+kablam! 88 |       fn next_kind(&mut self) -> TokenKind {
+kablam!    |  _____^ starting here...
+kablam! 89 | |         self.reader.peek().map(|x| x.token.kind).unwrap_or(TokenKind::Eof)
+kablam! 90 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `eat_and_get`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/mod.rs:101:5
+kablam!     |
+kablam! 101 |       fn eat_and_get(&mut self, expected: TokenKind) -> PResult<(Token)> {
+kablam!     |  _____^ starting here...
+kablam! 102 | |         if self.token.kind != expected {
+kablam! 103 | |             return Err(self.err(ErrorKind::unexpected_token(vec![expected], self.token.clone())));
+kablam! 104 | |         }
+kablam! 105 | |         Ok(self.bump_and_get())
+kablam! 106 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `parse_basic_lit`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/mod.rs:555:5
+kablam!     |
+kablam! 555 |     fn parse_basic_lit(&mut self) -> PResult<ast::BasicLit> {
+kablam!     |     ^
+kablam! 
+kablam! warning: method is never used: `parse_rune_lit`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/mod.rs:587:5
+kablam!     |
+kablam! 587 |     fn parse_rune_lit(&mut self) -> PResult<char> {
+kablam!     |     ^
+kablam! 
+kablam! warning: method is never used: `interpret_float_lit`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/mod.rs:637:5
+kablam!     |
+kablam! 637 |     fn interpret_float_lit(&mut self, value: &str, token_name: &str) -> PResult<BigRational> {
+kablam!     |     ^
+kablam! 
+kablam! warning: method is never used: `parse_int_lit`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/mod.rs:706:5
+kablam!     |
+kablam! 706 |     fn parse_int_lit(&mut self) -> PResult<BigInt> {
+kablam!     |     ^
+kablam! 
+kablam! warning: method is never used: `interpret_int`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/mod.rs:743:5
+kablam!     |
+kablam! 743 |     fn interpret_int(&mut self, lit: &str, base: u32, token_name: &str) -> PResult<BigInt> {
+kablam!     |     ^
+kablam! 
+kablam! warning: method is never used: `parse_unary_operation`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/mod.rs:761:5
+kablam!     |
+kablam! 761 |       fn parse_unary_operation(&mut self) -> PResult<ast::UnaryOperation> {
+kablam!     |  _____^ starting here...
+kablam! 762 | |         trace!("parse_unary_operation");
+kablam! 763 | |
+kablam! 764 | |         Ok(ast::UnaryOperation {
+kablam! 765 | |             operator: try!(self.parse_unary_operator()),
+kablam! 766 | |             operand: Box::new(try!(self.parse_unary_expr())),
+kablam! 767 | |         })
+kablam! 768 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 8.33 secs
+boom! running `docker rm -f 2380814aff0c0f3bcd09106ae0e0b269af6381a07a88bb13e5b60f2d2b76b27d`
+blam! 2380814aff0c0f3bcd09106ae0e0b269af6381a07a88bb13e5b60f2d2b76b27d
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! f3dfa57da345782796d9a0f9262b00166d1587a1ba91f07a466cd9326b5d2c27
+boom! running `docker start -a f3dfa57da345782796d9a0f9262b00166d1587a1ba91f07a466cd9326b5d2c27`
+kablam!    Compiling rgo v0.1.0 (file:///source)
+kablam! warning: unused `#[macro_use]` import, #[warn(unused_imports)] on by default
+kablam!   --> src/lib.rs:16:1
+kablam!    |
+kablam! 16 | #[macro_use]
+kablam!    | ^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused `#[macro_use]` import, #[warn(unused_imports)] on by default
+kablam!   --> src/lib.rs:18:1
+kablam!    |
+kablam! 18 | #[macro_use]
+kablam!    | ^^^^^^^^^^^^
+kablam! 
+kablam! warning: method is never used: `next_kind`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/mod.rs:88:5
+kablam!    |
+kablam! 88 |       fn next_kind(&mut self) -> TokenKind {
+kablam!    |  _____^ starting here...
+kablam! 89 | |         self.reader.peek().map(|x| x.token.kind).unwrap_or(TokenKind::Eof)
+kablam! 90 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `parse_unary_operation`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/mod.rs:761:5
+kablam!     |
+kablam! 761 |       fn parse_unary_operation(&mut self) -> PResult<ast::UnaryOperation> {
+kablam!     |  _____^ starting here...
+kablam! 762 | |         trace!("parse_unary_operation");
+kablam! 763 | |
+kablam! 764 | |         Ok(ast::UnaryOperation {
+kablam! 765 | |             operator: try!(self.parse_unary_operator()),
+kablam! 766 | |             operand: Box::new(try!(self.parse_unary_expr())),
+kablam! 767 | |         })
+kablam! 768 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 7.62 secs
+boom! running `docker rm -f f3dfa57da345782796d9a0f9262b00166d1587a1ba91f07a466cd9326b5d2c27`
+blam! f3dfa57da345782796d9a0f9262b00166d1587a1ba91f07a466cd9326b5d2c27
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 8c6c48913615c55093c1aabd77d7ac12b31871ef987305748fbb7c1cbe19eb61
+boom! running `docker start -a 8c6c48913615c55093c1aabd77d7ac12b31871ef987305748fbb7c1cbe19eb61`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/rgo-290c36591540799c
+blam! 
+blam! running 26 tests
+blam! test lexer::test::tokenize_comments ... ok
+blam! test lexer::test::test_text_literals ... ok
+blam! test lexer::test::test_numerical_tokens ... ok
+blam! test lexer::test::tokenize_hello ... ok
+blam! test lexer::test::tokenize_hello_with_comments ... ok
+blam! test lexer::test::tokenize_package_declaration ... ok
+blam! test lexer::test::tokenize_ident ... ok
+blam! test lexer::test::tokenize_mixed_whitespace ... ok
+blam! test lexer::test::tokenize_plain_interpreted_str ... ok
+blam! test lexer::test::tokenize_simple_assignment ... ok
+blam! test lexer::test::tokenize_keywords ... ok
+blam! test lexer::test::tokenize_simple_import ... ok
+blam! test lexer::test::tokenize_simple_assignment_with_inline_comment ... ok
+blam! test lexer::test::tokenize_simple ... ok
+blam! test parser::test::test_interpret_ints ... ok
+blam! test parser::test::test_interpret_rune_invalid_codepoint ... ok
+blam! test parser::test::test_interpret_rune_surrogate_half ... ok
+blam! test parser::test::test_interpret_rune_too_few_hex_digits ... ok
+blam! test parser::test::test_interpret_rune_too_few_octal_digits ... ok
+blam! test parser::test::test_interpret_rune_too_many_characters ... ok
+blam! test parser::test::test_interpret_runes ... ok
+blam! test parser::test::test_interpret_string_illegal_surrogate_half ... ok
+blam! test parser::test::test_interpret_string_invalid_codepoint ... ok
+blam! test parser::test::test_interpret_strings ... ok
+blam! test parser::test::test_interpret_floats ... ok
+blam! test parser::test::test_interpret_imaginaries ... ok
+blam! 
+blam! test result: ok. 26 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/rgo-f2f5961d15e5f6ca
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/runner-9b659e62b9a13659
+kablam! thread 'main' panicked at 'not yet implemented', src/parser/mod.rs:547
+kablam! stack backtrace:
+kablam!    1:     0x557254e0f3fc - std::sys::imp::backtrace::tracing::imp::write::h9c41d2f69e5caabf
+kablam!                         at /buildslave/rust-buildbot/slave/nightly-dist-rustc-linux/build/src/libstd/sys/unix/backtrace/tracing/gcc_s.rs:42
+kablam!    2:     0x557254e11bee - std::panicking::default_hook::{{closure}}::hcc803c8663cda123
+kablam!                         at /buildslave/rust-buildbot/slave/nightly-dist-rustc-linux/build/src/libstd/panicking.rs:351
+kablam!    3:     0x557254e117f4 - std::panicking::default_hook::hd5bda4e453dfb4be
+kablam!                         at /buildslave/rust-buildbot/slave/nightly-dist-rustc-linux/build/src/libstd/panicking.rs:367
+kablam!    4:     0x557254e1202b - std::panicking::rust_panic_with_hook::hffbc74969c7b5d87
+kablam!                         at /buildslave/rust-buildbot/slave/nightly-dist-rustc-linux/build/src/libstd/panicking.rs:555
+kablam!    5:     0x557254ccda83 - std::panicking::begin_panic::h0803ae75b7eab2d5
+kablam!                         at /buildslave/rust-buildbot/slave/nightly-dist-rustc-linux/build/src/libstd/panicking.rs:517
+kablam!    6:     0x557254cbf196 - <rgo::parser::Parser<R>>::parse_unary_expr::h5b14f2046079bd4f
+kablam!                         at /source/<panic macros>:3
+kablam!    7:     0x557254cc7620 - <rgo::parser::Parser<R>>::parse_potential_binary_expr::hde2e52f2eaff9692
+kablam!                         at /source/src/parser/mod.rs:776
+kablam!    8:     0x557254cb7d46 - <rgo::parser::Parser<R>>::parse_expr::h382f920aaf0a2353
+kablam!                         at /source/src/parser/mod.rs:531
+kablam!    9:     0x557254cc1bd3 - <rgo::parser::Parser<R>>::parse_return_stmt::hc2aed13c25edd22f
+kablam!                         at /source/src/parser/mod.rs:488
+kablam!   10:     0x557254cbbfc2 - <rgo::parser::Parser<R>>::parse_statement::h02549b4b1bca7d1a
+kablam!                         at /source/src/parser/mod.rs:455
+kablam!   11:     0x557254cb95fe - <rgo::parser::Parser<R>>::parse_block::h284b7381c68e7e40
+kablam!                         at /source/src/parser/mod.rs:430
+kablam!   12:     0x557254cbb4d3 - <rgo::parser::Parser<R>>::parse_func_decl::h27197a6c1d277a45
+kablam!                         at /source/src/parser/mod.rs:243
+kablam!   13:     0x557254cc62ae - <rgo::parser::Parser<R>>::parse_top_level_decls::hc61ef62fc8f83c01
+kablam!                         at /source/src/parser/mod.rs:216
+kablam!   14:     0x557254cc908e - <rgo::parser::Parser<R>>::parse::hff90604b126d2934
+kablam!                         at /source/src/parser/mod.rs:40
+kablam!   15:     0x557254cdf2ff - runner::parsing_does_not_panic::{{closure}}::h360e452afbea8a31
+kablam!                         at /source/tests/runner.rs:47
+kablam!   16:     0x557254cde843 - runner::for_all_in::haf5bfe2e732730b1
+kablam!                         at /source/tests/runner.rs:25
+kablam!   17:     0x557254cdf1aa - runner::parsing_does_not_panic::h92e411d8e46c5e78
+kablam!                         at /source/tests/runner.rs:45
+kablam!   18:     0x557254cdf073 - runner::main::h9e49b5378af40a89
+kablam!                         at /source/tests/runner.rs:35
+kablam!   19:     0x557254e18eba - __rust_maybe_catch_panic
+kablam!                         at /buildslave/rust-buildbot/slave/nightly-dist-rustc-linux/build/src/libpanic_unwind/lib.rs:98
+kablam!   20:     0x557254e12796 - std::rt::lang_start::ha0568cc91d8c5b09
+kablam!                         at /buildslave/rust-buildbot/slave/nightly-dist-rustc-linux/build/src/libstd/panicking.rs:436
+kablam!                         at /buildslave/rust-buildbot/slave/nightly-dist-rustc-linux/build/src/libstd/panic.rs:361
+kablam!                         at /buildslave/rust-buildbot/slave/nightly-dist-rustc-linux/build/src/libstd/rt.rs:57
+kablam!   21:     0x557254cdf5d2 - main
+kablam!   22:     0x7fb4afc12abf - __libc_start_main
+kablam!   23:     0x557254cb5d58 - _start
+kablam!   24:                0x0 - <unknown>
+kablam! error: test failed
+boom! running `docker rm -f 8c6c48913615c55093c1aabd77d7ac12b31871ef987305748fbb7c1cbe19eb61`
+blam! 8c6c48913615c55093c1aabd77d7ac12b31871ef987305748fbb7c1cbe19eb61

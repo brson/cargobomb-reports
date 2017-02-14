@@ -1,0 +1,39 @@
+boom! testing corepack-0.1.1 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 947edbb3e320e13cf3f5a2b75027be689014e16352cef96facbc1dbd9a6a9852
+boom! running `docker start -a 947edbb3e320e13cf3f5a2b75027be689014e16352cef96facbc1dbd9a6a9852`
+kablam!    Compiling serde v0.8.23
+kablam!    Compiling corepack v0.1.1 (file:///source)
+kablam! error[E0405]: cannot find trait `Reflect` in module `core::marker`
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde-0.8.23/src/error.rs:8:36
+kablam!   |
+kablam! 8 | pub trait Error: Debug + Display + ::core::marker::Reflect {
+kablam!   |                                    ^^^^^^^^^^^^^^^^^^^^^^^ not found in `core::marker`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde-0.8.23/src/lib.rs:14:35
+kablam!    |
+kablam! 14 | #![cfg_attr(feature = "unstable", feature(reflect_marker, unicode, nonzero, plugin, step_trait, zero_one))]
+kablam!    |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde-0.8.23/src/lib.rs:15:32
+kablam!    |
+kablam! 15 | #![cfg_attr(feature = "alloc", feature(alloc))]
+kablam!    |                                ^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde-0.8.23/src/lib.rs:16:38
+kablam!    |
+kablam! 16 | #![cfg_attr(feature = "collections", feature(collections, enumset))]
+kablam!    |                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `serde`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f 947edbb3e320e13cf3f5a2b75027be689014e16352cef96facbc1dbd9a6a9852`
+blam! 947edbb3e320e13cf3f5a2b75027be689014e16352cef96facbc1dbd9a6a9852

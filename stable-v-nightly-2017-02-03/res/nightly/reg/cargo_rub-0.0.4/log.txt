@@ -1,0 +1,58 @@
+boom! testing cargo_rub-0.0.4 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! d6df0cb8296eaa568c696a3b807ab947b2c527829caaf54e90d4b27b2f8bcd7d
+boom! running `docker start -a d6df0cb8296eaa568c696a3b807ab947b2c527829caaf54e90d4b27b2f8bcd7d`
+kablam!    Compiling commandext v0.1.0
+kablam!    Compiling buildable v0.0.5
+kablam!    Compiling cargo_rub v0.0.4 (file:///source)
+kablam! error[E0432]: unresolved import `std::io::File`
+kablam!  --> build.rs:6:5
+kablam!   |
+kablam! 6 | use std::io::File;
+kablam!   |     ^^^^^^^^^^^^^ no `File` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::process::Command`
+kablam!  --> build.rs:7:5
+kablam!   |
+kablam! 7 | use std::io::process::Command;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `process` in `io`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> build.rs:58:15
+kablam!    |
+kablam! 58 |     let dst = Path::new(os::getenv("OUT_DIR").unwrap());
+kablam!    |               ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error[E0425]: cannot find function `getenv` in module `os`
+kablam!   --> build.rs:58:25
+kablam!    |
+kablam! 58 |     let dst = Path::new(os::getenv("OUT_DIR").unwrap());
+kablam!    |                         ^^^^^^^^^^ not found in `os`
+kablam! 
+kablam! error: `#[derive]` for custom traits is not stable enough for use. It is deprecated and will be removed in v1.15 (see issue #29644)
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/buildable-0.0.5/src/lib.rs:214:47
+kablam!     |
+kablam! 214 | #[derive(Copy,PartialEq, Eq, PartialOrd, Ord, Show)]
+kablam!     |                                               ^^^^
+kablam!     |
+kablam!     = help: add #![feature(custom_derive)] to the crate attributes to enable
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: no method named `as_slice` found for type `std::string::String` in the current scope
+kablam!   --> build.rs:60:25
+kablam!    |
+kablam! 60 |     f.write_str(version.as_slice()).unwrap();
+kablam!    |                         ^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `buildable`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f d6df0cb8296eaa568c696a3b807ab947b2c527829caaf54e90d4b27b2f8bcd7d`
+blam! d6df0cb8296eaa568c696a3b807ab947b2c527829caaf54e90d4b27b2f8bcd7d

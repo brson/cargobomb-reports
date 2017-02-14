@@ -1,0 +1,26 @@
+boom! testing cereal_macros-0.3.5 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! b012d7bcbd78a63e0ec460160587b6219102679aea963563cd3fba640fa5cb15
+boom! running `docker start -a b012d7bcbd78a63e0ec460160587b6219102679aea963563cd3fba640fa5cb15`
+kablam!    Compiling cereal_macros v0.3.5 (file:///source)
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!   --> src/plugin.rs:19:40
+kablam!    |
+kablam! 19 |     registry.register_syntax_extension(token::intern("derive_CerealData"),
+kablam!    |                                        ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/plugin.rs:123:82
+kablam!     |
+kablam! 123 |                 let pat = ecx.pat_lit(span, ecx.expr_lit(span, ast::LitKind::Int(id as u64, ast::LitIntType::Unsigned(ast::UintTy::U64))));
+kablam!     |                                                                                  ^^^^^^^^^ expected u128, found u64
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `cereal_macros`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f b012d7bcbd78a63e0ec460160587b6219102679aea963563cd3fba640fa5cb15`
+blam! b012d7bcbd78a63e0ec460160587b6219102679aea963563cd3fba640fa5cb15

@@ -1,0 +1,58 @@
+boom! testing intertwine-0.0.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 2b30c4389d88395285378628aea0394f08df6b3c754e93e8b6abd96d28a270c7
+boom! running `docker start -a 2b30c4389d88395285378628aea0394f08df6b3c754e93e8b6abd96d28a270c7`
+kablam!    Compiling intertwine v0.0.1 (file:///source)
+kablam! error: expected expression, found reserved keyword `proc`
+kablam!   --> src/lib.rs:26:19
+kablam!    |
+kablam! 26 |             spawn(proc() {
+kablam!    |                   ^^^^
+kablam! 
+kablam! error: expected one of `)`, `.`, `;`, `<`, `?`, `break`, `continue`, `false`, `for`, `if`, `loop`, `match`, `move`, `return`, `true`, `unsafe`, `while`, `}`, or an operator, found `proc`
+kablam!   --> src/lib.rs:26:19
+kablam!    |
+kablam! 26 |             spawn(proc() {
+kablam!    |                   ^^^^
+kablam! 
+kablam! error[E0432]: unresolved import `std::comm::Receiver`
+kablam!  --> src/lib.rs:7:5
+kablam!   |
+kablam! 7 | use std::comm::Receiver;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^ Could not find `comm` in `std`
+kablam! 
+kablam! error[E0425]: cannot find function `channel` in this scope
+kablam!   --> src/lib.rs:22:24
+kablam!    |
+kablam! 22 |         let (tx, rx) = channel();
+kablam!    |                        ^^^^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::sync::mpsc::channel;`
+kablam! 
+kablam! error[E0425]: cannot find function `spawn` in this scope
+kablam!   --> src/lib.rs:26:13
+kablam!    |
+kablam! 26 |             spawn(proc() {
+kablam!    |             ^^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::thread::spawn;`
+kablam! 
+kablam! error: The attribute `license` is currently unknown to the compiler and may have meaning added to it in the future (see issue #29642)
+kablam!  --> src/lib.rs:1:1
+kablam!   |
+kablam! 1 | #![license = "MIT"]
+kablam!   | ^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = help: add #![feature(custom_attribute)] to the crate attributes to enable
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `intertwine`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 2b30c4389d88395285378628aea0394f08df6b3c754e93e8b6abd96d28a270c7`
+blam! 2b30c4389d88395285378628aea0394f08df6b3c754e93e8b6abd96d28a270c7

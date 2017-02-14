@@ -1,0 +1,44 @@
+boom! testing gopher-0.0.3 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 4e2a77d9fda254499d5fa89decfe862fede886e87df69e365efb03d8503e0061
+boom! running `docker start -a 4e2a77d9fda254499d5fa89decfe862fede886e87df69e365efb03d8503e0061`
+kablam!    Compiling gopher v0.0.3 (file:///source)
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/lib.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(globs)]
+kablam!   | ^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: The attribute `deriving` is currently unknown to the compiler and may have meaning added to it in the future (see issue #29642)
+kablam!  --> src/protocol.rs:6:1
+kablam!   |
+kablam! 6 | #[deriving(Copy, Show, PartialEq, Eq, FromPrimitive)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: The attribute `deriving` is currently unknown to the compiler and may have meaning added to it in the future (see issue #29642)
+kablam!   --> src/protocol.rs:26:1
+kablam!    |
+kablam! 26 | #[deriving(Copy, Show, PartialEq, Eq)]
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: The attribute `deriving` is currently unknown to the compiler and may have meaning added to it in the future (see issue #29642)
+kablam!   --> src/protocol.rs:41:1
+kablam!    |
+kablam! 41 | #[deriving(Show, PartialEq, Eq)]
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: box expression syntax is experimental; you can call `Box::new` instead. (see issue #27779)
+kablam!   --> src/protocol.rs:78:21
+kablam!    |
+kablam! 78 |             reader: box reader as Box<Reader>,
+kablam!    |                     ^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 5 previous errors
+kablam! 
+kablam! error: Could not compile `gopher`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 4e2a77d9fda254499d5fa89decfe862fede886e87df69e365efb03d8503e0061`
+blam! 4e2a77d9fda254499d5fa89decfe862fede886e87df69e365efb03d8503e0061

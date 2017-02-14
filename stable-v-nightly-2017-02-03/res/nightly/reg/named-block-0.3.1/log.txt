@@ -1,0 +1,163 @@
+boom! testing named-block-0.3.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! d4852771a587e524ff3a39fe4f5a5b63b8886fa62495272c9191a8218caed502
+boom! running `docker start -a d4852771a587e524ff3a39fe4f5a5b63b8886fa62495272c9191a8218caed502`
+kablam!    Compiling named-block v0.3.1 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.12 secs
+boom! running `docker rm -f d4852771a587e524ff3a39fe4f5a5b63b8886fa62495272c9191a8218caed502`
+blam! d4852771a587e524ff3a39fe4f5a5b63b8886fa62495272c9191a8218caed502
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! e6153d6e692f512ceba142e2d78e567ae8012746a8bd4a278fac9266d8ea5860
+boom! running `docker start -a e6153d6e692f512ceba142e2d78e567ae8012746a8bd4a278fac9266d8ea5860`
+kablam!    Compiling static-cond v0.1.1
+kablam!    Compiling named-block v0.3.1 (file:///source)
+kablam! warning: label name `'b` shadows a label name that is already in scope
+kablam!    --> src/lib.rs:362:17
+kablam!     |
+kablam! 334 |         let x = block!('b: {
+kablam!     |                 - in this macro invocation
+kablam! ...
+kablam! 352 |                 block!('b: {
+kablam!     |                        -- first declared here
+kablam! ...
+kablam! 362 |                 'b: while false {
+kablam!     |                 ^^ lifetime 'b already in scope
+kablam! 
+kablam! warning: label name `'a` shadows a label name that is already in scope
+kablam!    --> src/lib.rs:392:31
+kablam!     |
+kablam! 391 |         assert_eq!(42, block!('a: loop { break 'a 42 }));
+kablam!     |                               -- first declared here
+kablam! 392 |         assert_eq!((), block!('a: {})); // make sure it works with no breaks
+kablam!     |                        -------^^-----
+kablam!     |                        |      |
+kablam!     |                        |      lifetime 'a already in scope
+kablam!     |                        in this macro invocation
+kablam! 
+kablam! warning: label name `'a` shadows a label name that is already in scope
+kablam!    --> src/lib.rs:396:16
+kablam!     |
+kablam! 391 |           assert_eq!(42, block!('a: loop { break 'a 42 }));
+kablam!     |                                 -- first declared here
+kablam! ...
+kablam! 396 |           block!('a: loop {
+kablam!     |           -      ^^ lifetime 'a already in scope
+kablam!     |  _________|
+kablam!     | |         starting here...
+kablam! 397 | |             i += 1;
+kablam! 398 | |             if i == 5 {
+kablam! 399 | |                 continue 'a;
+kablam! 400 | |             } else if i == 10 {
+kablam! 401 | |                 break 'a;
+kablam! 402 | |             }
+kablam! 403 | |             v.push(i);
+kablam! 404 | |         });
+kablam!     | |___________- ...ending here: in this macro invocation
+kablam! 
+kablam! warning: label name `'a` shadows a label name that is already in scope
+kablam!    --> src/lib.rs:396:16
+kablam!     |
+kablam! 392 |           assert_eq!((), block!('a: {})); // make sure it works with no breaks
+kablam!     |                                 -- first declared here
+kablam! ...
+kablam! 396 |           block!('a: loop {
+kablam!     |           -      ^^ lifetime 'a already in scope
+kablam!     |  _________|
+kablam!     | |         starting here...
+kablam! 397 | |             i += 1;
+kablam! 398 | |             if i == 5 {
+kablam! 399 | |                 continue 'a;
+kablam! 400 | |             } else if i == 10 {
+kablam! 401 | |                 break 'a;
+kablam! 402 | |             }
+kablam! 403 | |             v.push(i);
+kablam! 404 | |         });
+kablam!     | |___________- ...ending here: in this macro invocation
+kablam! 
+kablam! warning: unreachable expression, #[warn(unreachable_code)] on by default
+kablam!    --> src/lib.rs:299:31
+kablam!     |
+kablam! 299 |         block!(@scan {} $life _ret ($($body)*) -> () (() () ()))
+kablam!     |                               ^
+kablam! ...
+kablam! 334 |         let x = block!('b: {
+kablam!     |                 - in this macro invocation
+kablam! 
+kablam! warning: unreachable expression, #[warn(unreachable_code)] on by default
+kablam!    --> src/lib.rs:299:31
+kablam!     |
+kablam! 299 |         block!(@scan {} $life _ret ($($body)*) -> () (() () ()))
+kablam!     |                               ^
+kablam! ...
+kablam! 334 |         let x = block!('b: {
+kablam!     |                 - in this macro invocation
+kablam! 
+kablam! warning: unreachable expression, #[warn(unreachable_code)] on by default
+kablam!    --> src/lib.rs:299:31
+kablam!     |
+kablam! 299 |         block!(@scan {} $life _ret ($($body)*) -> () (() () ()))
+kablam!     |                               ^
+kablam! ...
+kablam! 334 |         let x = block!('b: {
+kablam!     |                 - in this macro invocation
+kablam! 
+kablam! warning: unreachable expression, #[warn(unreachable_code)] on by default
+kablam!    --> src/lib.rs:299:31
+kablam!     |
+kablam! 299 |           block!(@scan {} $life _ret ($($body)*) -> () (() () ()))
+kablam!     |                                 ^
+kablam! ...
+kablam! 381 |               block!('d: {
+kablam!     |  _____________- starting here...
+kablam! 382 | |                 //continue; //~ERROR NoBareContinueInNamedBlock
+kablam! 383 | |                 //continue 'd; //~ERROR NoMatchedContinueInNamedBlock
+kablam! 384 | |                 continue 'e;
+kablam! 385 | |             });
+kablam!     | |_______________- ...ending here: in this macro invocation
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 2.59 secs
+boom! running `docker rm -f e6153d6e692f512ceba142e2d78e567ae8012746a8bd4a278fac9266d8ea5860`
+blam! e6153d6e692f512ceba142e2d78e567ae8012746a8bd4a278fac9266d8ea5860
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 1e902bfca0100a5b9890e08b953c5939d99550e2d5a381fa8d1cc2e4a2b80df2
+boom! running `docker start -a 1e902bfca0100a5b9890e08b953c5939d99550e2d5a381fa8d1cc2e4a2b80df2`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/named_block-63e174a672fd8f24
+blam! 
+blam! running 3 tests
+blam! test tests::shadowing ... ok
+blam! test tests::loops ... ok
+blam! test tests::it_works ... ok
+blam! 
+blam! test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!    Doc-tests named-block
+blam! 
+blam! running 2 tests
+blam! warning: unreachable expression, #[warn(unreachable_code)] on by default
+blam!  --> <anon>:6:5
+blam!   |
+blam! 6 |     1
+blam!   |     ^
+blam! 
+blam! test block_0 ... ok
+blam! warning: unreachable expression, #[warn(unreachable_code)] on by default
+blam!   --> <anon>:4:1
+blam!    |
+blam! 4  | assert_eq!(
+blam!    | ^
+blam!    |
+blam!    = note: this error originates in a macro outside of the current crate
+blam! 
+blam! test block_1 ... ok
+blam! 
+blam! test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f 1e902bfca0100a5b9890e08b953c5939d99550e2d5a381fa8d1cc2e4a2b80df2`
+blam! 1e902bfca0100a5b9890e08b953c5939d99550e2d5a381fa8d1cc2e4a2b80df2

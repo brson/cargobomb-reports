@@ -1,0 +1,131 @@
+boom! testing horrorshow-0.5.8 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 6a57d1699b6b9166ef4664e1bebb871a4ac3b9b56bdfed6abd4e11e855750c2c
+boom! running `docker start -a 6a57d1699b6b9166ef4664e1bebb871a4ac3b9b56bdfed6abd4e11e855750c2c`
+kablam!    Compiling horrorshow v0.5.8 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.63 secs
+boom! running `docker rm -f 6a57d1699b6b9166ef4664e1bebb871a4ac3b9b56bdfed6abd4e11e855750c2c`
+blam! 6a57d1699b6b9166ef4664e1bebb871a4ac3b9b56bdfed6abd4e11e855750c2c
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 1cd1e0541c4ebf6bd9194d4b64950f743b413175c0499a6cfe5ed3c51ea2b16c
+boom! running `docker start -a 1cd1e0541c4ebf6bd9194d4b64950f743b413175c0499a6cfe5ed3c51ea2b16c`
+kablam!    Compiling maud v0.11.1
+kablam!    Compiling maud_macros v0.11.1
+kablam! error[E0432]: unresolved import `syntax::parse::token::keywords`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.11.1/src/parse.rs:11:5
+kablam!    |
+kablam! 11 | use syntax::parse::token::keywords;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `keywords` in `parse::token`
+kablam! 
+kablam! error[E0425]: cannot find function `gensym_ident` in module `token`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.11.1/src/render.rs:19:22
+kablam!    |
+kablam! 19 |         let writer = token::gensym_ident("__maud_writer");
+kablam!    |                      ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0061]: this function takes 2 parameters but 3 parameters were supplied
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.11.1/src/parse.rs:105:47
+kablam!     |
+kablam! 105 |         let mut parser = parse::tts_to_parser(self.render.cx.parse_sess, tts,
+kablam!     |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 2 parameters
+kablam! 
+kablam! error: attempted to take value of method `cfg` on type `&'cx syntax::ext::base::ExtCtxt<'a>`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.11.1/src/parse.rs:106:62
+kablam!     |
+kablam! 106 |                                               self.render.cx.cfg.clone());
+kablam!     |                                                              ^^^
+kablam!     |
+kablam!     = help: maybe a `()` to call it is missing? If not, try an anonymous function
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.11.1/src/parse.rs:190:32
+kablam!     |
+kablam! 190 |             self.render.string(&s);
+kablam!     |                                ^^ expected str, found struct `syntax::ast::Symbol`
+kablam!     |
+kablam!     = note: expected type `&str`
+kablam!                found type `&syntax::ast::Symbol`
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `open_span`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.11.1/src/parse.rs:368:13
+kablam!     |
+kablam! 368 |             open_span: sp,
+kablam!     |             ^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `close_span`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.11.1/src/parse.rs:370:13
+kablam!     |
+kablam! 370 |             close_span: sp,
+kablam!     |             ^^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error: aborting due to 5 previous errors
+kablam! 
+kablam! error: Could not compile `maud_macros`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 1cd1e0541c4ebf6bd9194d4b64950f743b413175c0499a6cfe5ed3c51ea2b16c`
+blam! 1cd1e0541c4ebf6bd9194d4b64950f743b413175c0499a6cfe5ed3c51ea2b16c
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 6ee937f37e46b8174d5c4444617b977e83588320fddc254aea9dc7ee26913c61
+boom! running `docker start -a 6ee937f37e46b8174d5c4444617b977e83588320fddc254aea9dc7ee26913c61`
+kablam!    Compiling maud_macros v0.11.1
+kablam! error[E0432]: unresolved import `syntax::parse::token::keywords`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.11.1/src/parse.rs:11:5
+kablam!    |
+kablam! 11 | use syntax::parse::token::keywords;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `keywords` in `parse::token`
+kablam! 
+kablam! error[E0425]: cannot find function `gensym_ident` in module `token`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.11.1/src/render.rs:19:22
+kablam!    |
+kablam! 19 |         let writer = token::gensym_ident("__maud_writer");
+kablam!    |                      ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0061]: this function takes 2 parameters but 3 parameters were supplied
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.11.1/src/parse.rs:105:47
+kablam!     |
+kablam! 105 |         let mut parser = parse::tts_to_parser(self.render.cx.parse_sess, tts,
+kablam!     |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 2 parameters
+kablam! 
+kablam! error: attempted to take value of method `cfg` on type `&'cx syntax::ext::base::ExtCtxt<'a>`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.11.1/src/parse.rs:106:62
+kablam!     |
+kablam! 106 |                                               self.render.cx.cfg.clone());
+kablam!     |                                                              ^^^
+kablam!     |
+kablam!     = help: maybe a `()` to call it is missing? If not, try an anonymous function
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.11.1/src/parse.rs:190:32
+kablam!     |
+kablam! 190 |             self.render.string(&s);
+kablam!     |                                ^^ expected str, found struct `syntax::ast::Symbol`
+kablam!     |
+kablam!     = note: expected type `&str`
+kablam!                found type `&syntax::ast::Symbol`
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `open_span`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.11.1/src/parse.rs:368:13
+kablam!     |
+kablam! 368 |             open_span: sp,
+kablam!     |             ^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `close_span`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.11.1/src/parse.rs:370:13
+kablam!     |
+kablam! 370 |             close_span: sp,
+kablam!     |             ^^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error: aborting due to 5 previous errors
+kablam! 
+kablam! error: Could not compile `maud_macros`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 6ee937f37e46b8174d5c4444617b977e83588320fddc254aea9dc7ee26913c61`
+blam! 6ee937f37e46b8174d5c4444617b977e83588320fddc254aea9dc7ee26913c61

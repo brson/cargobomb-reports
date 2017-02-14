@@ -1,0 +1,38 @@
+boom! testing speculate-0.0.17 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! d1e5754d298cfb229b166a7a9c3a453a1431d4e2f903d903204de6d9a3b6e244
+boom! running `docker start -a d1e5754d298cfb229b166a7a9c3a453a1431d4e2f903d903204de6d9a3b6e244`
+kablam!    Compiling speculate v0.0.17 (file:///source)
+kablam! error[E0432]: unresolved import `rustc::plugin::Registry`
+kablam!  --> src/lib.rs:6:5
+kablam!   |
+kablam! 6 | use rustc::plugin::Registry;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `plugin` in `rustc`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::ast::TokenTree`
+kablam!  --> src/lib.rs:7:5
+kablam!   |
+kablam! 7 | use syntax::ast::TokenTree;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^ no `TokenTree` in `ast`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> src/lib.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(rustc_private)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> src/lib.rs:2:1
+kablam!   |
+kablam! 2 | #![feature(plugin_registrar, quote)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `speculate`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f d1e5754d298cfb229b166a7a9c3a453a1431d4e2f903d903204de6d9a3b6e244`
+blam! d1e5754d298cfb229b166a7a9c3a453a1431d4e2f903d903204de6d9a3b6e244

@@ -1,0 +1,626 @@
+boom! testing https://github.com/bschwind/mqtt#36acbe04a81231bfb4c7c24fe654bb7d2b7fd7da against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 0f467ff7a53fe65da474bfccac08c041c8ab2bf3fd5b330d8a934070cf9fea6a
+boom! running `docker start -a 0f467ff7a53fe65da474bfccac08c041c8ab2bf3fd5b330d8a934070cf9fea6a`
+kablam!    Compiling net2 v0.2.26
+kablam!    Compiling nix v0.6.0
+kablam!    Compiling mio v0.6.0
+kablam!    Compiling mqtt v0.1.0 (file:///source)
+kablam! warning: unused import: `nom::Err::NodePosition`, #[warn(unused_imports)] on by default
+kablam!  --> src/parser.rs:5:5
+kablam!   |
+kablam! 5 | use nom::Err::NodePosition;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused import: `nom::ErrorKind::Custom`, #[warn(unused_imports)] on by default
+kablam!  --> src/parser.rs:6:5
+kablam!   |
+kablam! 6 | use nom::ErrorKind::Custom;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: function is never used: `length_prefixed_utf8_parser`, #[warn(dead_code)] on by default
+kablam!   --> src/parser.rs:81:1
+kablam!    |
+kablam! 81 | named!(pub length_prefixed_utf8_parser<&[u8], &str, MqttParseError>,
+kablam!    | ^
+kablam!    |
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: function is never used: `length_prefixed_byte_array`, #[warn(dead_code)] on by default
+kablam!    --> src/parser.rs:97:1
+kablam!     |
+kablam! 97  |   named!(pub length_prefixed_byte_array<&[u8], &[u8], MqttParseError>,
+kablam!     |  _^ starting here...
+kablam! 98  | | 	chain!(
+kablam! 99  | | 		length: fix_error!(MqttParseError, be_u16) ~
+kablam! 100 | | 		valid_str: fix_error!(MqttParseError, take!(length)),
+kablam! 101 | | 		|| {
+kablam! 102 | | 			valid_str
+kablam! 103 | | 		}
+kablam! 104 | | 	)
+kablam! 105 | | );
+kablam!     | |__^ ...ending here
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: function is never used: `connect_variable_header_parser`, #[warn(dead_code)] on by default
+kablam!    --> src/parser.rs:108:1
+kablam!     |
+kablam! 108 | named!(pub connect_variable_header_parser<&[u8], VariableHeader, MqttParseError>,
+kablam!     | ^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: function is never used: `connect_payload_parser`, #[warn(dead_code)] on by default
+kablam!    --> src/parser.rs:125:1
+kablam!     |
+kablam! 125 | named!(pub connect_payload_parser<&[u8], Payload, MqttParseError>,
+kablam!     | ^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused variable: `protocol_name`, #[warn(unused_variables)] on by default
+kablam!    --> src/parser.rs:127:3
+kablam!     |
+kablam! 127 | 		protocol_name: length_prefixed_utf8_parser ~
+kablam!     | 		^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused variable: `protocol_level`, #[warn(unused_variables)] on by default
+kablam!    --> src/parser.rs:128:3
+kablam!     |
+kablam! 128 | 		protocol_level: fix_error!(MqttParseError, be_u8) ~
+kablam!     | 		^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused variable: `connect_flags`, #[warn(unused_variables)] on by default
+kablam!    --> src/parser.rs:129:3
+kablam!     |
+kablam! 129 | 		connect_flags: fix_error!(MqttParseError, be_u8) ~
+kablam!     | 		^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused variable: `keep_alive`, #[warn(unused_variables)] on by default
+kablam!    --> src/parser.rs:130:3
+kablam!     |
+kablam! 130 | 		keep_alive: fix_error!(MqttParseError, be_u16),
+kablam!     | 		^^^^^^^^^^
+kablam! 
+kablam! warning: function is never used: `connect_packet_parser`, #[warn(dead_code)] on by default
+kablam!    --> src/parser.rs:143:1
+kablam!     |
+kablam! 143 |   named!(pub connect_packet_parser<&[u8], (VariableHeader, Payload), MqttParseError>,
+kablam!     |  _^ starting here...
+kablam! 144 | | 	chain!(
+kablam! 145 | | 		variable_header: connect_variable_header_parser ~
+kablam! 146 | | 		payload: connect_payload_parser,
+kablam! 147 | | 		|| {
+kablam! 148 | | 			(variable_header, payload)
+kablam! 149 | | 		}
+kablam! 150 | | 	)
+kablam! 151 | | );
+kablam!     | |__^ ...ending here
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: variant is never used: `ReadingPayload`, #[warn(dead_code)] on by default
+kablam!    --> src/parser.rs:159:2
+kablam!     |
+kablam! 159 | 	ReadingPayload,
+kablam!     | 	^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `Writing`, #[warn(dead_code)] on by default
+kablam!  --> src/session_state.rs:3:2
+kablam!   |
+kablam! 3 | 	Writing,
+kablam!   | 	^^^^^^^
+kablam! 
+kablam! warning: unused import: `protocol::control_packet_type::ControlPacketType`, #[warn(unused_imports)] on by default
+kablam!  --> src/protocol/variable_header.rs:1:5
+kablam!   |
+kablam! 1 | use protocol::control_packet_type::ControlPacketType;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `Connect`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/variable_header.rs:50:2
+kablam!    |
+kablam! 50 | 	Connect(ConnectVariableHeader),
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `ConnectAck`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/variable_header.rs:51:2
+kablam!    |
+kablam! 51 | 	ConnectAck(ConnectAckVariableHeader),
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `Publish`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/variable_header.rs:52:2
+kablam!    |
+kablam! 52 | 	Publish(PublishVariableHeader),
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `PublishAck`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/variable_header.rs:53:2
+kablam!    |
+kablam! 53 | 	PublishAck(PublishAckVariableHeader),
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `PublishReceived`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/variable_header.rs:54:2
+kablam!    |
+kablam! 54 | 	PublishReceived(PublishReceivedVariableHeader),
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `PublishRelease`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/variable_header.rs:55:2
+kablam!    |
+kablam! 55 | 	PublishRelease(PublishReleaseVariableHeader),
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `PublishComplete`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/variable_header.rs:56:2
+kablam!    |
+kablam! 56 | 	PublishComplete(PublishCompleteVariableHeader),
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `Subscribe`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/variable_header.rs:57:2
+kablam!    |
+kablam! 57 | 	Subscribe(SubscribeVariableHeader),
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `SubscribeAck`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/variable_header.rs:58:2
+kablam!    |
+kablam! 58 | 	SubscribeAck,
+kablam!    | 	^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `Unsubscribe`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/variable_header.rs:59:2
+kablam!    |
+kablam! 59 | 	Unsubscribe,
+kablam!    | 	^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `UnsubscribeAck`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/variable_header.rs:60:2
+kablam!    |
+kablam! 60 | 	UnsubscribeAck,
+kablam!    | 	^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `PingRequest`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/variable_header.rs:61:2
+kablam!    |
+kablam! 61 | 	PingRequest,
+kablam!    | 	^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `PingResponse`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/variable_header.rs:62:2
+kablam!    |
+kablam! 62 | 	PingResponse,
+kablam!    | 	^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `Disconnect`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/variable_header.rs:63:2
+kablam!    |
+kablam! 63 | 	Disconnect
+kablam!    | 	^^^^^^^^^^
+kablam! 
+kablam! warning: unused import: `protocol::control_packet_type::ControlPacketType`, #[warn(unused_imports)] on by default
+kablam!  --> src/protocol/payload.rs:1:5
+kablam!   |
+kablam! 1 | use protocol::control_packet_type::ControlPacketType;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `Connect`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/payload.rs:14:2
+kablam!    |
+kablam! 14 | 	Connect(ConnectPayload),
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `ConnectAck`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/payload.rs:15:2
+kablam!    |
+kablam! 15 | 	ConnectAck,
+kablam!    | 	^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `Publish`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/payload.rs:16:2
+kablam!    |
+kablam! 16 | 	Publish,
+kablam!    | 	^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `PublishAck`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/payload.rs:17:2
+kablam!    |
+kablam! 17 | 	PublishAck,
+kablam!    | 	^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `PublishReceived`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/payload.rs:18:2
+kablam!    |
+kablam! 18 | 	PublishReceived,
+kablam!    | 	^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `PublishRelease`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/payload.rs:19:2
+kablam!    |
+kablam! 19 | 	PublishRelease,
+kablam!    | 	^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `PublishComplete`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/payload.rs:20:2
+kablam!    |
+kablam! 20 | 	PublishComplete,
+kablam!    | 	^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `Subscribe`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/payload.rs:21:2
+kablam!    |
+kablam! 21 | 	Subscribe,
+kablam!    | 	^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `SubscribeAck`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/payload.rs:22:2
+kablam!    |
+kablam! 22 | 	SubscribeAck,
+kablam!    | 	^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `Unsubscribe`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/payload.rs:23:2
+kablam!    |
+kablam! 23 | 	Unsubscribe,
+kablam!    | 	^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `UnsubscribeAck`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/payload.rs:24:2
+kablam!    |
+kablam! 24 | 	UnsubscribeAck,
+kablam!    | 	^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `PingRequest`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/payload.rs:25:2
+kablam!    |
+kablam! 25 | 	PingRequest,
+kablam!    | 	^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `PingResponse`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/payload.rs:26:2
+kablam!    |
+kablam! 26 | 	PingResponse,
+kablam!    | 	^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `Disconnect`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/payload.rs:27:2
+kablam!    |
+kablam! 27 | 	Disconnect
+kablam!    | 	^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `InvalidUTF8Sequence`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/mod.rs:15:2
+kablam!    |
+kablam! 15 | 	InvalidUTF8Sequence
+kablam!    | 	^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 12.52 secs
+boom! running `docker rm -f 0f467ff7a53fe65da474bfccac08c041c8ab2bf3fd5b330d8a934070cf9fea6a`
+blam! 0f467ff7a53fe65da474bfccac08c041c8ab2bf3fd5b330d8a934070cf9fea6a
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 90e690fa73995d1f7ebd1dd6ceeee652e546941168f4e440be0fb0bc51fb341b
+boom! running `docker start -a 90e690fa73995d1f7ebd1dd6ceeee652e546941168f4e440be0fb0bc51fb341b`
+kablam!    Compiling mqtt v0.1.0 (file:///source)
+kablam! warning: function is never used: `length_prefixed_byte_array`, #[warn(dead_code)] on by default
+kablam!    --> src/parser.rs:97:1
+kablam!     |
+kablam! 97  |   named!(pub length_prefixed_byte_array<&[u8], &[u8], MqttParseError>,
+kablam!     |  _^ starting here...
+kablam! 98  | | 	chain!(
+kablam! 99  | | 		length: fix_error!(MqttParseError, be_u16) ~
+kablam! 100 | | 		valid_str: fix_error!(MqttParseError, take!(length)),
+kablam! 101 | | 		|| {
+kablam! 102 | | 			valid_str
+kablam! 103 | | 		}
+kablam! 104 | | 	)
+kablam! 105 | | );
+kablam!     | |__^ ...ending here
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: function is never used: `connect_payload_parser`, #[warn(dead_code)] on by default
+kablam!    --> src/parser.rs:125:1
+kablam!     |
+kablam! 125 | named!(pub connect_payload_parser<&[u8], Payload, MqttParseError>,
+kablam!     | ^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused variable: `protocol_name`, #[warn(unused_variables)] on by default
+kablam!    --> src/parser.rs:127:3
+kablam!     |
+kablam! 127 | 		protocol_name: length_prefixed_utf8_parser ~
+kablam!     | 		^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused variable: `protocol_level`, #[warn(unused_variables)] on by default
+kablam!    --> src/parser.rs:128:3
+kablam!     |
+kablam! 128 | 		protocol_level: fix_error!(MqttParseError, be_u8) ~
+kablam!     | 		^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused variable: `connect_flags`, #[warn(unused_variables)] on by default
+kablam!    --> src/parser.rs:129:3
+kablam!     |
+kablam! 129 | 		connect_flags: fix_error!(MqttParseError, be_u8) ~
+kablam!     | 		^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused variable: `keep_alive`, #[warn(unused_variables)] on by default
+kablam!    --> src/parser.rs:130:3
+kablam!     |
+kablam! 130 | 		keep_alive: fix_error!(MqttParseError, be_u16),
+kablam!     | 		^^^^^^^^^^
+kablam! 
+kablam! warning: function is never used: `connect_packet_parser`, #[warn(dead_code)] on by default
+kablam!    --> src/parser.rs:143:1
+kablam!     |
+kablam! 143 |   named!(pub connect_packet_parser<&[u8], (VariableHeader, Payload), MqttParseError>,
+kablam!     |  _^ starting here...
+kablam! 144 | | 	chain!(
+kablam! 145 | | 		variable_header: connect_variable_header_parser ~
+kablam! 146 | | 		payload: connect_payload_parser,
+kablam! 147 | | 		|| {
+kablam! 148 | | 			(variable_header, payload)
+kablam! 149 | | 		}
+kablam! 150 | | 	)
+kablam! 151 | | );
+kablam!     | |__^ ...ending here
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: variant is never used: `ReadingPayload`, #[warn(dead_code)] on by default
+kablam!    --> src/parser.rs:159:2
+kablam!     |
+kablam! 159 | 	ReadingPayload,
+kablam!     | 	^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused variable: `i`, #[warn(unused_variables)] on by default
+kablam!    --> src/parser.rs:360:17
+kablam!     |
+kablam! 360 | 		IResult::Done(i, o) => {
+kablam!     | 		              ^
+kablam! 
+kablam! warning: unused variable: `i`, #[warn(unused_variables)] on by default
+kablam!    --> src/parser.rs:384:17
+kablam!     |
+kablam! 384 | 		IResult::Done(i, o) => {
+kablam!     | 		              ^
+kablam! 
+kablam! warning: unused variable: `i`, #[warn(unused_variables)] on by default
+kablam!    --> src/parser.rs:397:17
+kablam!     |
+kablam! 397 | 		IResult::Done(i, o) => {
+kablam!     | 		              ^
+kablam! 
+kablam! warning: unused variable: `o`, #[warn(unused_variables)] on by default
+kablam!    --> src/parser.rs:397:20
+kablam!     |
+kablam! 397 | 		IResult::Done(i, o) => {
+kablam!     | 		                 ^
+kablam! 
+kablam! warning: unused variable: `i`, #[warn(unused_variables)] on by default
+kablam!    --> src/parser.rs:415:17
+kablam!     |
+kablam! 415 | 		IResult::Done(i, o) => {
+kablam!     | 		              ^
+kablam! 
+kablam! warning: variant is never used: `Writing`, #[warn(dead_code)] on by default
+kablam!  --> src/session_state.rs:3:2
+kablam!   |
+kablam! 3 | 	Writing,
+kablam!   | 	^^^^^^^
+kablam! 
+kablam! warning: literal out of range for u8, #[warn(overflowing_literals)] on by default
+kablam!   --> src/protocol/control_packet_type.rs:69:15
+kablam!    |
+kablam! 69 | 	for n in 15..256 {
+kablam!    | 	             ^^^
+kablam! 
+kablam! warning: unused import: `protocol::control_packet_type::ControlPacketType`, #[warn(unused_imports)] on by default
+kablam!  --> src/protocol/variable_header.rs:1:5
+kablam!   |
+kablam! 1 | use protocol::control_packet_type::ControlPacketType;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `ConnectAck`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/variable_header.rs:51:2
+kablam!    |
+kablam! 51 | 	ConnectAck(ConnectAckVariableHeader),
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `Publish`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/variable_header.rs:52:2
+kablam!    |
+kablam! 52 | 	Publish(PublishVariableHeader),
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `PublishAck`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/variable_header.rs:53:2
+kablam!    |
+kablam! 53 | 	PublishAck(PublishAckVariableHeader),
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `PublishReceived`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/variable_header.rs:54:2
+kablam!    |
+kablam! 54 | 	PublishReceived(PublishReceivedVariableHeader),
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `PublishRelease`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/variable_header.rs:55:2
+kablam!    |
+kablam! 55 | 	PublishRelease(PublishReleaseVariableHeader),
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `PublishComplete`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/variable_header.rs:56:2
+kablam!    |
+kablam! 56 | 	PublishComplete(PublishCompleteVariableHeader),
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `Subscribe`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/variable_header.rs:57:2
+kablam!    |
+kablam! 57 | 	Subscribe(SubscribeVariableHeader),
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `SubscribeAck`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/variable_header.rs:58:2
+kablam!    |
+kablam! 58 | 	SubscribeAck,
+kablam!    | 	^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `Unsubscribe`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/variable_header.rs:59:2
+kablam!    |
+kablam! 59 | 	Unsubscribe,
+kablam!    | 	^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `UnsubscribeAck`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/variable_header.rs:60:2
+kablam!    |
+kablam! 60 | 	UnsubscribeAck,
+kablam!    | 	^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `PingRequest`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/variable_header.rs:61:2
+kablam!    |
+kablam! 61 | 	PingRequest,
+kablam!    | 	^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `PingResponse`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/variable_header.rs:62:2
+kablam!    |
+kablam! 62 | 	PingResponse,
+kablam!    | 	^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `Disconnect`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/variable_header.rs:63:2
+kablam!    |
+kablam! 63 | 	Disconnect
+kablam!    | 	^^^^^^^^^^
+kablam! 
+kablam! warning: unused import: `protocol::control_packet_type::ControlPacketType`, #[warn(unused_imports)] on by default
+kablam!  --> src/protocol/payload.rs:1:5
+kablam!   |
+kablam! 1 | use protocol::control_packet_type::ControlPacketType;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `Connect`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/payload.rs:14:2
+kablam!    |
+kablam! 14 | 	Connect(ConnectPayload),
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `ConnectAck`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/payload.rs:15:2
+kablam!    |
+kablam! 15 | 	ConnectAck,
+kablam!    | 	^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `Publish`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/payload.rs:16:2
+kablam!    |
+kablam! 16 | 	Publish,
+kablam!    | 	^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `PublishAck`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/payload.rs:17:2
+kablam!    |
+kablam! 17 | 	PublishAck,
+kablam!    | 	^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `PublishReceived`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/payload.rs:18:2
+kablam!    |
+kablam! 18 | 	PublishReceived,
+kablam!    | 	^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `PublishRelease`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/payload.rs:19:2
+kablam!    |
+kablam! 19 | 	PublishRelease,
+kablam!    | 	^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `PublishComplete`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/payload.rs:20:2
+kablam!    |
+kablam! 20 | 	PublishComplete,
+kablam!    | 	^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `Subscribe`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/payload.rs:21:2
+kablam!    |
+kablam! 21 | 	Subscribe,
+kablam!    | 	^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `SubscribeAck`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/payload.rs:22:2
+kablam!    |
+kablam! 22 | 	SubscribeAck,
+kablam!    | 	^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `Unsubscribe`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/payload.rs:23:2
+kablam!    |
+kablam! 23 | 	Unsubscribe,
+kablam!    | 	^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `UnsubscribeAck`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/payload.rs:24:2
+kablam!    |
+kablam! 24 | 	UnsubscribeAck,
+kablam!    | 	^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `PingRequest`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/payload.rs:25:2
+kablam!    |
+kablam! 25 | 	PingRequest,
+kablam!    | 	^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `PingResponse`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/payload.rs:26:2
+kablam!    |
+kablam! 26 | 	PingResponse,
+kablam!    | 	^^^^^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `Disconnect`, #[warn(dead_code)] on by default
+kablam!   --> src/protocol/payload.rs:27:2
+kablam!    |
+kablam! 27 | 	Disconnect
+kablam!    | 	^^^^^^^^^^
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 2.99 secs
+boom! running `docker rm -f 90e690fa73995d1f7ebd1dd6ceeee652e546941168f4e440be0fb0bc51fb341b`
+blam! 90e690fa73995d1f7ebd1dd6ceeee652e546941168f4e440be0fb0bc51fb341b
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 1caf1838fb4b1806210965cc5c18082cedabaa07ccb44917e2f9b8f9115c9b7b
+boom! running `docker start -a 1caf1838fb4b1806210965cc5c18082cedabaa07ccb44917e2f9b8f9115c9b7b`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/mqtt-5c04c97e0aa1cb23
+blam! 
+blam! running 10 tests
+blam! test parser::test_connect_variable_header_parser ... ok
+blam! test parser::test_first_byte_parser ... ok
+blam! test parser::test_invalid_remaining_length ... ok
+blam! test parser::test_first_byte_parser_invalid_data ... ok
+blam! test parser::test_fixed_header_parser ... ok
+blam! test parser::test_length ... ok
+blam! test parser::test_utf8_parser_invalid ... ok
+blam! test parser::test_remaining_length_needs_more ... ok
+blam! test protocol::control_packet_type::test_from_u8 ... ok
+blam! test parser::test_utf8_parser_valid ... ok
+blam! 
+blam! test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f 1caf1838fb4b1806210965cc5c18082cedabaa07ccb44917e2f9b8f9115c9b7b`
+blam! 1caf1838fb4b1806210965cc5c18082cedabaa07ccb44917e2f9b8f9115c9b7b

@@ -1,0 +1,567 @@
+boom! testing handy_io-0.1.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 5576092979e25d5b823521a5246f716c18f490b5016eac4664f2b5c96e60a75d
+boom! running `docker start -a 5576092979e25d5b823521a5246f716c18f490b5016eac4664f2b5c96e60a75d`
+kablam!    Compiling handy_io v0.1.2 (file:///source)
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!    --> src/io/read/primitives.rs:114:1
+kablam!     |
+kablam! 114 |   type MapFuture<R, P, T> where P: Pattern =
+kablam!     |  _^ starting here...
+kablam! 115 | |     <pattern::combinators::Map<P, fn(P::Value) -> T> as ReadFrom<R>>::Future;
+kablam!     | |_____________________________________________________________________________^ ...ending here
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!    --> src/io/read/primitives.rs:208:1
+kablam!     |
+kablam! 208 |   pub type ReadEos<R> where R: Read = io_futures::ReadThen<R,
+kablam!     |  _^ starting here...
+kablam! 209 | |                                                          read::U8,
+kablam! 210 | |                                                          io::Result<Result<(), u8>>,
+kablam! 211 | |                                                          fn(io::Result<u8>)
+kablam! 212 | |                                                             -> io::Result<Result<(), u8>>>;
+kablam!     | |___________________________________________________________________________________________^ ...ending here
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!   --> src/io/read/combinators.rs:85:1
+kablam!    |
+kablam! 85 |   pub type ReadAndThen<R, P0, P1, F>
+kablam!    |  _^ starting here...
+kablam! 86 | |     where P0: ReadFrom<R>,
+kablam! 87 | |           P1: ReadFrom<R>,
+kablam! 88 | |           F: FnOnce(P0::Value) -> P1,
+kablam! 89 | |           R: Read = ReadThen<R,
+kablam! 90 | |                              (P0, io::Result<F>),
+kablam! 91 | |                              Branch<P1, io::Result<P1::Value>>,
+kablam! 92 | |                              fn(io::Result<(P0::Value, F)>) -> Branch<P1, io::Result<P1::Value>>>;
+kablam!    | |__________________________________________________________________________________________________^ ...ending here
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!    --> src/io/read/combinators.rs:196:1
+kablam!     |
+kablam! 196 |   type ReadMapInner<R, P, F, T>
+kablam!     |  _^ starting here...
+kablam! 197 | |     where P: ReadFrom<R>,
+kablam! 198 | |           F: FnOnce(P::Value) -> T,
+kablam! 199 | |           R: Read = ReadAndThen<R,
+kablam! 200 | |                                 (P, io::Result<F>),
+kablam! 201 | |                                 io::Result<T>,
+kablam! 202 | |                                 fn((P::Value, F)) -> io::Result<T>>;
+kablam!     | |____________________________________________________________________^ ...ending here
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!    --> src/io/read/combinators.rs:342:1
+kablam!     |
+kablam! 342 |   pub type ReadIter<R, I>
+kablam!     |  _^ starting here...
+kablam! 343 | |     where I: Iterator,
+kablam! 344 | |           I::Item: ReadFrom<R>,
+kablam! 345 | |           R: Read = ReadIterFold<R, I::Item, I, fn((), <I::Item as Pattern>::Value) -> (), ()>;
+kablam!     | |_______________________________________________________________________________________________^ ...ending here
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!    --> src/io/read/combinators.rs:374:1
+kablam!     |
+kablam! 374 |   pub type ReadOption<R, P>
+kablam!     |  _^ starting here...
+kablam! 375 | |     where R: Read,
+kablam! 376 | |           P: ReadFrom<R> = Branch<ReadMap<R,
+kablam! 377 | |                                           P,
+kablam! 378 | |                                           fn(P::Value) -> Option<P::Value>,
+kablam! 379 | |                                           Option<P::Value>>,
+kablam! 380 | |                                   futures::Done<(R, Option<P::Value>), (R, io::Error)>>;
+kablam!     | |________________________________________________________________________________________^ ...ending here
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!    --> src/io/read/combinators.rs:434:1
+kablam!     |
+kablam! 434 | type MapFuture<F, T> where F: Future = futures::Map<F, fn(F::Item) -> T>;
+kablam!     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!    --> src/io/read/combinators.rs:478:1
+kablam!     |
+kablam! 478 | pub type ReadBranch<R, A, B, C, D, E, F, G, H>
+kablam!     | ^
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!    --> src/io/write/primitives.rs:101:1
+kablam!     |
+kablam! 101 |   type MapFuture<W,P,T> where P: WriteTo<W> =
+kablam!     |  _^ starting here...
+kablam! 102 | |      <pattern::combinators::Map<P, fn (P::Value) -> T> as WriteTo<W>>::Future;
+kablam!     | |______________________________________________________________________________^ ...ending here
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!   --> src/io/write/combinators.rs:91:1
+kablam!    |
+kablam! 91 |   type WriteAndThenInner<W, P0, P1, F>
+kablam!    |  _^ starting here...
+kablam! 92 | |     where P0: WriteTo<W>,
+kablam! 93 | |           P1: WriteTo<W>,
+kablam! 94 | |           F: FnOnce(P0::Value) -> P1,
+kablam! 95 | |           W: Write = WriteThen<W,
+kablam! 96 | |                                (P0, io::Result<F>),
+kablam! 97 | |                                Branch<P1, io::Result<P1::Value>>,
+kablam! 98 | |                                fn(io::Result<(P0::Value, F)>) -> Branch<P1, io::Result<P1::Value>>>;
+kablam!    | |____________________________________________________________________________________________________^ ...ending here
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!    --> src/io/write/combinators.rs:301:1
+kablam!     |
+kablam! 301 |   type MapFuture<W,P,T> where P: WriteTo<W> =
+kablam!     |  _^ starting here...
+kablam! 302 | |      <pattern::combinators::Map<P, fn (P::Value) -> T> as WriteTo<W>>::Future;
+kablam!     | |______________________________________________________________________________^ ...ending here
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!    --> src/io/write/combinators.rs:345:1
+kablam!     |
+kablam! 345 | pub type WriteBranch<W, A, B, C, D, E, F, G, H>
+kablam!     | ^
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!    --> src/io/write/combinators.rs:459:1
+kablam!     |
+kablam! 459 |   pub type WriteIter<W, I>
+kablam!     |  _^ starting here...
+kablam! 460 | |     where I: Iterator,
+kablam! 461 | |           I::Item: Pattern = WriteIterFold<W,
+kablam! 462 | |                                            I::Item,
+kablam! 463 | |                                            I,
+kablam! 464 | |                                            fn((), <I::Item as Pattern>::Value) -> (),
+kablam! 465 | |                                            ()>;
+kablam!     | |_______________________________________________^ ...ending here
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!    --> src/io/write/combinators.rs:497:1
+kablam!     |
+kablam! 497 |   pub type WriteOption<W, P> where P: Pattern =
+kablam!     |  _^ starting here...
+kablam! 498 | |     <Branch<pattern::combinators::Map<P, fn(P::Value) -> Option<P::Value>>,
+kablam! 499 | |            io::Result<Option<P::Value>>> as WriteTo<W>>::Future;
+kablam!     | |________________________________________________________________^ ...ending here
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 2.86 secs
+boom! running `docker rm -f 5576092979e25d5b823521a5246f716c18f490b5016eac4664f2b5c96e60a75d`
+blam! 5576092979e25d5b823521a5246f716c18f490b5016eac4664f2b5c96e60a75d
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! b66d46f956f4f32eb1d8b708acc8fd708563110ed692f73ab728b481ebb6535e
+boom! running `docker start -a b66d46f956f4f32eb1d8b708acc8fd708563110ed692f73ab728b481ebb6535e`
+kablam!    Compiling handy_io v0.1.2 (file:///source)
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!    --> src/io/read/primitives.rs:114:1
+kablam!     |
+kablam! 114 |   type MapFuture<R, P, T> where P: Pattern =
+kablam!     |  _^ starting here...
+kablam! 115 | |     <pattern::combinators::Map<P, fn(P::Value) -> T> as ReadFrom<R>>::Future;
+kablam!     | |_____________________________________________________________________________^ ...ending here
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!    --> src/io/read/primitives.rs:208:1
+kablam!     |
+kablam! 208 |   pub type ReadEos<R> where R: Read = io_futures::ReadThen<R,
+kablam!     |  _^ starting here...
+kablam! 209 | |                                                          read::U8,
+kablam! 210 | |                                                          io::Result<Result<(), u8>>,
+kablam! 211 | |                                                          fn(io::Result<u8>)
+kablam! 212 | |                                                             -> io::Result<Result<(), u8>>>;
+kablam!     | |___________________________________________________________________________________________^ ...ending here
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!   --> src/io/read/combinators.rs:85:1
+kablam!    |
+kablam! 85 |   pub type ReadAndThen<R, P0, P1, F>
+kablam!    |  _^ starting here...
+kablam! 86 | |     where P0: ReadFrom<R>,
+kablam! 87 | |           P1: ReadFrom<R>,
+kablam! 88 | |           F: FnOnce(P0::Value) -> P1,
+kablam! 89 | |           R: Read = ReadThen<R,
+kablam! 90 | |                              (P0, io::Result<F>),
+kablam! 91 | |                              Branch<P1, io::Result<P1::Value>>,
+kablam! 92 | |                              fn(io::Result<(P0::Value, F)>) -> Branch<P1, io::Result<P1::Value>>>;
+kablam!    | |__________________________________________________________________________________________________^ ...ending here
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!    --> src/io/read/combinators.rs:196:1
+kablam!     |
+kablam! 196 |   type ReadMapInner<R, P, F, T>
+kablam!     |  _^ starting here...
+kablam! 197 | |     where P: ReadFrom<R>,
+kablam! 198 | |           F: FnOnce(P::Value) -> T,
+kablam! 199 | |           R: Read = ReadAndThen<R,
+kablam! 200 | |                                 (P, io::Result<F>),
+kablam! 201 | |                                 io::Result<T>,
+kablam! 202 | |                                 fn((P::Value, F)) -> io::Result<T>>;
+kablam!     | |____________________________________________________________________^ ...ending here
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!    --> src/io/read/combinators.rs:342:1
+kablam!     |
+kablam! 342 |   pub type ReadIter<R, I>
+kablam!     |  _^ starting here...
+kablam! 343 | |     where I: Iterator,
+kablam! 344 | |           I::Item: ReadFrom<R>,
+kablam! 345 | |           R: Read = ReadIterFold<R, I::Item, I, fn((), <I::Item as Pattern>::Value) -> (), ()>;
+kablam!     | |_______________________________________________________________________________________________^ ...ending here
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!    --> src/io/read/combinators.rs:374:1
+kablam!     |
+kablam! 374 |   pub type ReadOption<R, P>
+kablam!     |  _^ starting here...
+kablam! 375 | |     where R: Read,
+kablam! 376 | |           P: ReadFrom<R> = Branch<ReadMap<R,
+kablam! 377 | |                                           P,
+kablam! 378 | |                                           fn(P::Value) -> Option<P::Value>,
+kablam! 379 | |                                           Option<P::Value>>,
+kablam! 380 | |                                   futures::Done<(R, Option<P::Value>), (R, io::Error)>>;
+kablam!     | |________________________________________________________________________________________^ ...ending here
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!    --> src/io/read/combinators.rs:434:1
+kablam!     |
+kablam! 434 | type MapFuture<F, T> where F: Future = futures::Map<F, fn(F::Item) -> T>;
+kablam!     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!    --> src/io/read/combinators.rs:478:1
+kablam!     |
+kablam! 478 | pub type ReadBranch<R, A, B, C, D, E, F, G, H>
+kablam!     | ^
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!    --> src/io/write/primitives.rs:101:1
+kablam!     |
+kablam! 101 |   type MapFuture<W,P,T> where P: WriteTo<W> =
+kablam!     |  _^ starting here...
+kablam! 102 | |      <pattern::combinators::Map<P, fn (P::Value) -> T> as WriteTo<W>>::Future;
+kablam!     | |______________________________________________________________________________^ ...ending here
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!   --> src/io/write/combinators.rs:91:1
+kablam!    |
+kablam! 91 |   type WriteAndThenInner<W, P0, P1, F>
+kablam!    |  _^ starting here...
+kablam! 92 | |     where P0: WriteTo<W>,
+kablam! 93 | |           P1: WriteTo<W>,
+kablam! 94 | |           F: FnOnce(P0::Value) -> P1,
+kablam! 95 | |           W: Write = WriteThen<W,
+kablam! 96 | |                                (P0, io::Result<F>),
+kablam! 97 | |                                Branch<P1, io::Result<P1::Value>>,
+kablam! 98 | |                                fn(io::Result<(P0::Value, F)>) -> Branch<P1, io::Result<P1::Value>>>;
+kablam!    | |____________________________________________________________________________________________________^ ...ending here
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!    --> src/io/write/combinators.rs:301:1
+kablam!     |
+kablam! 301 |   type MapFuture<W,P,T> where P: WriteTo<W> =
+kablam!     |  _^ starting here...
+kablam! 302 | |      <pattern::combinators::Map<P, fn (P::Value) -> T> as WriteTo<W>>::Future;
+kablam!     | |______________________________________________________________________________^ ...ending here
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!    --> src/io/write/combinators.rs:345:1
+kablam!     |
+kablam! 345 | pub type WriteBranch<W, A, B, C, D, E, F, G, H>
+kablam!     | ^
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!    --> src/io/write/combinators.rs:459:1
+kablam!     |
+kablam! 459 |   pub type WriteIter<W, I>
+kablam!     |  _^ starting here...
+kablam! 460 | |     where I: Iterator,
+kablam! 461 | |           I::Item: Pattern = WriteIterFold<W,
+kablam! 462 | |                                            I::Item,
+kablam! 463 | |                                            I,
+kablam! 464 | |                                            fn((), <I::Item as Pattern>::Value) -> (),
+kablam! 465 | |                                            ()>;
+kablam!     | |_______________________________________________^ ...ending here
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!    --> src/io/write/combinators.rs:497:1
+kablam!     |
+kablam! 497 |   pub type WriteOption<W, P> where P: Pattern =
+kablam!     |  _^ starting here...
+kablam! 498 | |     <Branch<pattern::combinators::Map<P, fn(P::Value) -> Option<P::Value>>,
+kablam! 499 | |            io::Result<Option<P::Value>>> as WriteTo<W>>::Future;
+kablam!     | |________________________________________________________________^ ...ending here
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 4.24 secs
+boom! running `docker rm -f b66d46f956f4f32eb1d8b708acc8fd708563110ed692f73ab728b481ebb6535e`
+blam! b66d46f956f4f32eb1d8b708acc8fd708563110ed692f73ab728b481ebb6535e
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! e94427788c26537821c98c940e1bee2cc9bb3c24ceedfa4007a3c02f277a1c1b
+boom! running `docker start -a e94427788c26537821c98c940e1bee2cc9bb3c24ceedfa4007a3c02f277a1c1b`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/handy_io-20ea34066a3bb806
+blam! 
+blam! running 1 test
+blam! test io::read::combinators::test::it_works ... ok
+blam! 
+blam! test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!    Doc-tests handy_io
+blam! 
+blam! running 33 tests
+blam! warning: field is never used: `source_port`, #[warn(dead_code)] on by default
+blam!   --> <anon>:11:5
+blam!    |
+blam! 11 |     source_port: u16,
+blam!    |     ^^^^^^^^^^^^^^^^
+blam! 
+blam! warning: field is never used: `destination_port`, #[warn(dead_code)] on by default
+blam!   --> <anon>:12:5
+blam!    |
+blam! 12 |     destination_port: u16,
+blam!    |     ^^^^^^^^^^^^^^^^^^^^^
+blam! 
+blam! warning: field is never used: `sequence_number`, #[warn(dead_code)] on by default
+blam!   --> <anon>:13:5
+blam!    |
+blam! 13 |     sequence_number: u32,
+blam!    |     ^^^^^^^^^^^^^^^^^^^^
+blam! 
+blam! warning: field is never used: `acknowledgment_number`, #[warn(dead_code)] on by default
+blam!   --> <anon>:14:5
+blam!    |
+blam! 14 |     acknowledgment_number: u32,
+blam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+blam! 
+blam! warning: field is never used: `data_offset`, #[warn(dead_code)] on by default
+blam!   --> <anon>:15:5
+blam!    |
+blam! 15 |     data_offset: u8, // 4 bits
+blam!    |     ^^^^^^^^^^^^^^^
+blam! 
+blam! warning: field is never used: `reserved`, #[warn(dead_code)] on by default
+blam!   --> <anon>:16:5
+blam!    |
+blam! 16 |     reserved: u8, // 6 bits
+blam!    |     ^^^^^^^^^^^^
+blam! 
+blam! warning: field is never used: `flags`, #[warn(dead_code)] on by default
+blam!   --> <anon>:17:5
+blam!    |
+blam! 17 |     flags: u8, // 6 bits
+blam!    |     ^^^^^^^^^
+blam! 
+blam! warning: field is never used: `window`, #[warn(dead_code)] on by default
+blam!   --> <anon>:18:5
+blam!    |
+blam! 18 |     window: u16,
+blam!    |     ^^^^^^^^^^^
+blam! 
+blam! warning: field is never used: `checksum`, #[warn(dead_code)] on by default
+blam!   --> <anon>:19:5
+blam!    |
+blam! 19 |     checksum: u16,
+blam!    |     ^^^^^^^^^^^^^
+blam! 
+blam! warning: field is never used: `urgent_pointer`, #[warn(dead_code)] on by default
+blam!   --> <anon>:20:5
+blam!    |
+blam! 20 |     urgent_pointer: u16,
+blam!    |     ^^^^^^^^^^^^^^^^^^^
+blam! 
+blam! warning: unused variable: `reader`, #[warn(unused_variables)] on by default
+blam!   --> <anon>:50:37
+blam!    |
+blam! 50 |     pattern.read_from(reader).map(|(reader, header)| header).boxed()
+blam!    |                                     ^^^^^^
+blam! 
+blam! warning: unused variable: `tcp_header`, #[warn(unused_variables)] on by default
+blam!   --> <anon>:55:9
+blam!    |
+blam! 55 |     let tcp_header = future.wait().expect("Failed to read tcp header");
+blam!    |         ^^^^^^^^^^
+blam! 
+blam! test _0 ... ok
+blam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+blam!   --> <anon>:10:9
+blam!    |
+blam! 10 |     let mut reader = std::io::Cursor::new(vec![0, 1, 2]);
+blam!    |         ^^^^^^^^^^
+blam! 
+blam! test io::read::AsyncRead::async_read_stream_0 ... ok
+blam! warning: unused import: `Pattern`, #[warn(unused_imports)] on by default
+blam!  --> <anon>:5:25
+blam!   |
+blam! 5 | use handy_io::pattern::{Pattern, Endian};
+blam!   |                         ^^^^^^^
+blam! 
+blam! test io::read::ReadFrom::read_from_0 ... ok
+blam! test io::read::combinators::ReadAndThen_0 ... ok
+blam! warning: unused import: `Pattern`, #[warn(unused_imports)] on by default
+blam!  --> <anon>:4:25
+blam!   |
+blam! 4 | use handy_io::pattern::{Pattern, Endian};
+blam!   |                         ^^^^^^^
+blam! 
+blam! test io::read::ReadFrom::sync_read_from_0 ... ok
+blam! warning: unused import: `I8`, #[warn(unused_imports)] on by default
+blam!  --> <anon>:5:35
+blam!   |
+blam! 5 | use handy_io::pattern::read::{U8, I8};
+blam!   |                                   ^^
+blam! 
+blam! test io::read::combinators::ReadBranch_0 ... ok
+blam! warning: unused import: `Pattern`, #[warn(unused_imports)] on by default
+blam!  --> <anon>:4:25
+blam!   |
+blam! 4 | use handy_io::pattern::{Pattern, Iter};
+blam!   |                         ^^^^^^^
+blam! 
+blam! test io::read::combinators::ReadIterFold_0 ... ok
+blam! test io::read::combinators::ReadChain_0 ... ok
+blam! warning: unused import: `Pattern`, #[warn(unused_imports)] on by default
+blam!  --> <anon>:4:25
+blam!   |
+blam! 4 | use handy_io::pattern::{Pattern, Iter};
+blam!   |                         ^^^^^^^
+blam! 
+blam! test io::read::combinators::ReadIter_0 ... ok
+blam! test io::read::combinators::ReadMap_0 ... ok
+blam! warning: unused import: `handy_io::pattern::Pattern`, #[warn(unused_imports)] on by default
+blam!  --> <anon>:4:5
+blam!   |
+blam! 4 | use handy_io::pattern::Pattern;
+blam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+blam! 
+blam! test io::read::combinators::ReadResult_0 ... ok
+blam! warning: unused import: `handy_io::pattern::Pattern`, #[warn(unused_imports)] on by default
+blam!  --> <anon>:4:5
+blam!   |
+blam! 4 | use handy_io::pattern::Pattern;
+blam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+blam! 
+blam! test io::read::combinators::ReadOption_0 ... ok
+blam! warning: unused variable: `e`, #[warn(unused_variables)] on by default
+blam!  --> <anon>:7:35
+blam!   |
+blam! 7 | let or_else_pattern = U8.or_else(|e| Ok(0xFF));
+blam!   |                                   ^
+blam! 
+blam! test io::read::combinators::ReadOrElse_0 ... ok
+blam! warning: unused result which must be used: futures do nothing unless polled, #[warn(unused_must_use)] on by default
+blam!  --> <anon>:6:1
+blam!   |
+blam! 6 | vec![0; 32].read_from(std::io::empty());
+blam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+blam! 
+blam! warning: unused result which must be used: futures do nothing unless polled, #[warn(unused_must_use)] on by default
+blam!  --> <anon>:7:1
+blam!   |
+blam! 7 | Buf([0; 32]).read_from(std::io::empty());
+blam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+blam! 
+blam! warning: unused result which must be used: futures do nothing unless polled, #[warn(unused_must_use)] on by default
+blam!  --> <anon>:8:1
+blam!   |
+blam! 8 | Window::new([0; 32]).skip(4).read_from(std::io::empty());
+blam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+blam! 
+blam! test io::read::primitives::ReadBuf_0 ... ok
+blam! test io::read::primitives::ReadPartialBuf_0 ... ok
+blam! warning: unused result which must be used: futures do nothing unless polled, #[warn(unused_must_use)] on by default
+blam!  --> <anon>:6:1
+blam!   |
+blam! 6 | str_buf.read_from(std::io::empty());
+blam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+blam! 
+blam! test io::read::primitives::ReadString_0 ... ok
+blam! test io::read::combinators::ReadThen_0 ... ok
+blam! test io::write::AsyncWrite::async_write_stream_0 ... ok
+blam! test io::read::primitives::ReadEos_0 ... ok
+blam! warning: unused import: `Pattern`, #[warn(unused_imports)] on by default
+blam!  --> <anon>:4:25
+blam!   |
+blam! 4 | use handy_io::pattern::{Pattern, Endian};
+blam!   |                         ^^^^^^^
+blam! 
+blam! test io::write::WriteTo::sync_write_to_0 ... ok
+blam! warning: unused import: `Pattern`, #[warn(unused_imports)] on by default
+blam!  --> <anon>:6:25
+blam!   |
+blam! 6 | use handy_io::pattern::{Pattern, Endian};
+blam!   |                         ^^^^^^^
+blam! 
+blam! test io::write::WriteTo::write_to_0 ... ok
+blam! test io::write::combinators::WriteBranch_0 ... ok
+blam! test io::write::combinators::WriteAndThen_0 ... ok
+blam! test io::write::combinators::WriteChain_0 ... ok
+blam! warning: unused import: `Pattern`, #[warn(unused_imports)] on by default
+blam!  --> <anon>:4:25
+blam!   |
+blam! 4 | use handy_io::pattern::{Pattern, Iter};
+blam!   |                         ^^^^^^^
+blam! 
+blam! test io::write::combinators::WriteIterFold_0 ... ok
+blam! warning: unused import: `Pattern`, #[warn(unused_imports)] on by default
+blam!  --> <anon>:4:25
+blam!   |
+blam! 4 | use handy_io::pattern::{Pattern, Iter};
+blam!   |                         ^^^^^^^
+blam! 
+blam! warning: unused variable: `value`, #[warn(unused_variables)] on by default
+blam!  --> <anon>:8:5
+blam!   |
+blam! 8 | let value = iter_fold_pattern.sync_write_to(&mut &mut buf[..]).unwrap();
+blam!   |     ^^^^^
+blam! 
+blam! test io::write::combinators::WriteIter_0 ... ok
+blam! test io::write::combinators::WriteMap_0 ... ok
+blam! warning: unused import: `handy_io::pattern::Pattern`, #[warn(unused_imports)] on by default
+blam!  --> <anon>:4:5
+blam!   |
+blam! 4 | use handy_io::pattern::Pattern;
+blam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+blam! 
+blam! test io::write::combinators::WriteOption_0 ... ok
+blam! warning: unused import: `handy_io::pattern::Pattern`, #[warn(unused_imports)] on by default
+blam!  --> <anon>:5:5
+blam!   |
+blam! 5 | use handy_io::pattern::Pattern;
+blam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+blam! 
+blam! test io::write::combinators::WriteOrElse_0 ... ok
+blam! warning: unused import: `handy_io::pattern::Pattern`, #[warn(unused_imports)] on by default
+blam!  --> <anon>:4:5
+blam!   |
+blam! 4 | use handy_io::pattern::Pattern;
+blam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+blam! 
+blam! test io::write::combinators::WriteResult_0 ... ok
+blam! warning: unused result which must be used: futures do nothing unless polled, #[warn(unused_must_use)] on by default
+blam!  --> <anon>:6:1
+blam!   |
+blam! 6 | vec![0; 32].write_to(std::io::sink());
+blam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+blam! 
+blam! warning: unused result which must be used: futures do nothing unless polled, #[warn(unused_must_use)] on by default
+blam!  --> <anon>:7:1
+blam!   |
+blam! 7 | Buf([0; 32]).write_to(std::io::sink());
+blam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+blam! 
+blam! warning: unused result which must be used: futures do nothing unless polled, #[warn(unused_must_use)] on by default
+blam!  --> <anon>:8:1
+blam!   |
+blam! 8 | Window::new([0; 32]).skip(4).write_to(std::io::sink());
+blam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+blam! 
+blam! test io::write::primitives::WriteBuf_0 ... ok
+blam! test io::write::primitives::WritePartialBuf_0 ... ok
+blam! test io::write::combinators::WriteThen_0 ... ok
+blam! 
+blam! test result: ok. 33 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f e94427788c26537821c98c940e1bee2cc9bb3c24ceedfa4007a3c02f277a1c1b`
+blam! e94427788c26537821c98c940e1bee2cc9bb3c24ceedfa4007a3c02f277a1c1b

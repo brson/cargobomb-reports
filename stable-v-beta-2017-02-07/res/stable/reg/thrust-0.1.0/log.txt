@@ -1,0 +1,1043 @@
+boom! testing thrust-0.1.0 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! fdb3a3706931be7829025b52d2ad2a5f411c7014579aa21697984e608e9c4841
+boom! running `docker start -a fdb3a3706931be7829025b52d2ad2a5f411c7014579aa21697984e608e9c4841`
+kablam!    Compiling thrust v0.1.0 (file:///source)
+kablam! warning: unused import: `be_u8`, #[warn(unused_imports)] on by default
+kablam!  --> src/parser.rs:1:99
+kablam!   |
+kablam! 1 | use nom::{space, alphanumeric, ErrorKind, IterIndices, IResult, multispace, not_line_ending, Err, be_u8, digit, InputLength, is_alphanumeric};
+kablam!   |                                                                                                   ^^^^^
+kablam! 
+kablam! warning: unused import: `std::convert::From`, #[warn(unused_imports)] on by default
+kablam!  --> src/parser.rs:4:5
+kablam!   |
+kablam! 4 | use std::convert::From;
+kablam!   |     ^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused imports: `Index`, `RangeFrom`, `Range`, #[warn(unused_imports)] on by default
+kablam!  --> src/parser.rs:5:16
+kablam!   |
+kablam! 5 | use std::ops::{Index,Range,RangeFrom};
+kablam!   |                ^^^^^ ^^^^^ ^^^^^^^^^
+kablam! 
+kablam! warning: function is never used: `blanks`, #[warn(dead_code)] on by default
+kablam!   --> src/parser.rs:9:1
+kablam!    |
+kablam! 9  |   named!(blanks,
+kablam!    |  _^ starting here...
+kablam! 10 | |        chain!(
+kablam! 11 | |            many0!(alt!(multispace | comment_one_line | comment_block)),
+kablam! 12 | |            || { &b""[..] }));
+kablam!    | |_____________________________^ ...ending here
+kablam!    |
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: function is never used: `comment_one_line`, #[warn(dead_code)] on by default
+kablam!   --> src/parser.rs:15:1
+kablam!    |
+kablam! 15 |   named!(comment_one_line,
+kablam!    |  _^ starting here...
+kablam! 16 | |        chain!(
+kablam! 17 | |            alt!(tag!("//") | tag!("#")) ~
+kablam! 18 | |            not_line_ending? ~
+kablam! 19 | |            alt!(eol | eof),
+kablam! 20 | |            || { &b""[..] }));
+kablam!    | |_____________________________^ ...ending here
+kablam!    |
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: function is never used: `eol`, #[warn(dead_code)] on by default
+kablam!   --> src/parser.rs:22:1
+kablam!    |
+kablam! 22 |   named!(eol,
+kablam!    |  _^ starting here...
+kablam! 23 | |        alt!(tag!("\r\n") | tag!("\n") | tag!("\u{2028}") | tag!("\u{2029}")));
+kablam!    | |______________________________________________________________________________^ ...ending here
+kablam!    |
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: function is never used: `comment_block`, #[warn(dead_code)] on by default
+kablam!   --> src/parser.rs:26:1
+kablam!    |
+kablam! 26 |   named!(comment_block,
+kablam!    |  _^ starting here...
+kablam! 27 | |        chain!(
+kablam! 28 | |            tag!("/*") ~
+kablam! 29 | |            take_until_and_consume!(&b"*/"[..]),
+kablam! 30 | |            || { &b""[..] }));
+kablam!    | |_____________________________^ ...ending here
+kablam!    |
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: function is never used: `eof`, #[warn(dead_code)] on by default
+kablam!   --> src/parser.rs:32:1
+kablam!    |
+kablam! 32 |   fn eof(input:&[u8]) -> IResult<&[u8], &[u8]> {
+kablam!    |  _^ starting here...
+kablam! 33 | |     if input.len() == 0 {
+kablam! 34 | |         Done(input, input)
+kablam! 35 | |     } else {
+kablam! 36 | |         Error(Err::Code(ErrorKind::Eof))
+kablam! 37 | |     }
+kablam! 38 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! warning: function is never used: `namespace`, #[warn(dead_code)] on by default
+kablam!   --> src/parser.rs:60:1
+kablam!    |
+kablam! 60 | pub fn namespace<'a>(input:&'a [u8]) -> IResult<&'a [u8], &'a [u8]> {
+kablam!    | ^
+kablam! 
+kablam! warning: function is never used: `parse_service_method`, #[warn(dead_code)] on by default
+kablam!    --> src/parser.rs:125:1
+kablam!     |
+kablam! 125 | named!(pub parse_service_method<&[u8], FunctionNode>, chain!(
+kablam!     | ^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: function is never used: `parse_service`, #[warn(dead_code)] on by default
+kablam!    --> src/parser.rs:145:1
+kablam!     |
+kablam! 145 | named!(pub parse_service<&[u8], ServiceNode>, chain!(
+kablam!     | ^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: struct is never used: `Parser`, #[warn(dead_code)] on by default
+kablam!    --> src/parser.rs:214:1
+kablam!     |
+kablam! 214 |   pub struct Parser<'a> {
+kablam!     |  _^ starting here...
+kablam! 215 | |     input: &'a str
+kablam! 216 | | }
+kablam!     | |_^ ...ending here
+kablam! 
+kablam! warning: unused import: `super::*;`, #[warn(unused_imports)] on by default
+kablam!    --> src/parser.rs:219:9
+kablam!     |
+kablam! 219 |     use super::*;
+kablam!     |         ^^^^^^^^^
+kablam! 
+kablam! warning: unused import: `std::str`, #[warn(unused_imports)] on by default
+kablam!    --> src/parser.rs:220:9
+kablam!     |
+kablam! 220 |     use std::str;
+kablam!     |         ^^^^^^^^
+kablam! 
+kablam! warning: unused import: `nom::IResult::*;`, #[warn(unused_imports)] on by default
+kablam!    --> src/parser.rs:221:9
+kablam!     |
+kablam! 221 |     use nom::IResult::*;
+kablam!     |         ^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused imports: `Ast`, `FieldMetadataNode`, `FunctionNode`, `IdentNode`, `NamespaceNode`, `ServiceNode`, `StructFieldNode`, `StructNode`, `Ty`, #[warn(unused_imports)] on by default
+kablam!    --> src/parser.rs:223:15
+kablam!     |
+kablam! 223 |     use ast::{IdentNode, StructNode, FunctionNode, ServiceNode, NamespaceNode, StructFieldNode, FieldMetadataNode, Ty, Ast};
+kablam!     |               ^^^^^^^^^  ^^^^^^^^^^  ^^^^^^^^^^^^  ^^^^^^^^^^^  ^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^^  ^^  ^^^
+kablam! 
+kablam! warning: unused import: `Read`, #[warn(unused_imports)] on by default
+kablam!  --> src/ast.rs:1:15
+kablam!   |
+kablam! 1 | use std::io::{Read, Write};
+kablam!   |               ^^^^
+kablam! 
+kablam! warning: unused variable: `w`, #[warn(unused_variables)] on by default
+kablam!  --> src/ast.rs:4:19
+kablam!   |
+kablam! 4 |     fn gen(&self, w: &mut Write) {}
+kablam!   |                   ^
+kablam! 
+kablam! warning: method is never used: `new`, #[warn(dead_code)] on by default
+kablam!    --> src/ast.rs:127:5
+kablam!     |
+kablam! 127 |       pub fn new(name: IdentNode) -> ServiceNode {
+kablam!     |  _____^ starting here...
+kablam! 128 | |         ServiceNode {
+kablam! 129 | |             name: name,
+kablam! 130 | |             methods: Vec::new()
+kablam! 131 | |         }
+kablam! 132 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: unused variable: `w`, #[warn(unused_variables)] on by default
+kablam!    --> src/ast.rs:195:19
+kablam!     |
+kablam! 195 |     fn gen(&self, w: &mut Write) {}
+kablam!     |                   ^
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:214:9
+kablam!     |
+kablam! 214 |         write!(w, "pub struct {} {{\n", self.name.0);
+kablam!     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:218:13
+kablam!     |
+kablam! 218 |             write!(w, "    ");
+kablam!     |             ^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:222:9
+kablam!     |
+kablam! 222 |         write!(w, "}}\n");
+kablam!     |         ^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:229:30
+kablam!     |
+kablam! 229 |             &Ty::String => { write!(w, "String"); },
+kablam!     |                              ^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:230:28
+kablam!     |
+kablam! 230 |             &Ty::Void => { write!(w, "()"); },
+kablam!     |                            ^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:231:28
+kablam!     |
+kablam! 231 |             &Ty::Byte => { write!(w, "i8"); },
+kablam!     |                            ^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:232:30
+kablam!     |
+kablam! 232 |             &Ty::Binary => { write!(w, "Vec<i8>"); },
+kablam!     |                              ^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:233:32
+kablam!     |
+kablam! 233 |             &Ty::Signed16 => { write!(w, "i16"); },
+kablam!     |                                ^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:234:32
+kablam!     |
+kablam! 234 |             &Ty::Signed32 => { write!(w, "i32"); },
+kablam!     |                                ^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:235:32
+kablam!     |
+kablam! 235 |             &Ty::Signed64 => { write!(w, "i64"); },
+kablam!     |                                ^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:236:28
+kablam!     |
+kablam! 236 |             &Ty::Bool => { write!(w, "bool"); },
+kablam!     |                            ^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:238:17
+kablam!     |
+kablam! 238 |                 write!(w, "Vec<");
+kablam!     |                 ^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:240:17
+kablam!     |
+kablam! 240 |                 write!(w, ">");
+kablam!     |                 ^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:243:17
+kablam!     |
+kablam! 243 |                 write!(w, "HashMap<");
+kablam!     |                 ^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:245:17
+kablam!     |
+kablam! 245 |                 write!(w, ", ");
+kablam!     |                 ^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:247:17
+kablam!     |
+kablam! 247 |                 write!(w, ">");
+kablam!     |                 ^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:257:9
+kablam!     |
+kablam! 257 |         write!(w, "{}: ", self.ident.0);
+kablam!     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:260:13
+kablam!     |
+kablam! 260 |             write!(w, "Option<");
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:266:13
+kablam!     |
+kablam! 266 |             write!(w, ">");
+kablam!     |             ^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:269:9
+kablam!     |
+kablam! 269 |         write!(w, ",\n");
+kablam!     |         ^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused import: `std::path::Path`, #[warn(unused_imports)] on by default
+kablam!  --> src/generator.rs:2:5
+kablam!   |
+kablam! 2 | use std::path::Path;
+kablam!   |     ^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused imports: `Result`, `Write`, #[warn(unused_imports)] on by default
+kablam!  --> src/generator.rs:3:15
+kablam!   |
+kablam! 3 | use std::io::{Result, Read, Write};
+kablam!   |               ^^^^^^        ^^^^^
+kablam! 
+kablam! warning: unused import: `ast::Ast`, #[warn(unused_imports)] on by default
+kablam!  --> src/generator.rs:5:5
+kablam!   |
+kablam! 5 | use ast::Ast;
+kablam!   |     ^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `input`, #[warn(dead_code)] on by default
+kablam!   --> src/generator.rs:10:5
+kablam!    |
+kablam! 10 |     input: String,
+kablam!    |     ^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `output`, #[warn(dead_code)] on by default
+kablam!   --> src/generator.rs:11:5
+kablam!    |
+kablam! 11 |     output: Option<File>
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused variable: `output`, #[warn(unused_variables)] on by default
+kablam!   --> src/generator.rs:15:28
+kablam!    |
+kablam! 15 |     pub fn run(path: &str, output: &str) -> &'static str {
+kablam!    |                            ^^^^^^
+kablam! 
+kablam! warning: unused variable: `err`, #[warn(unused_variables)] on by default
+kablam!   --> src/generator.rs:18:17
+kablam!    |
+kablam! 18 |             Err(err) => return "Error opening the input .thrift file."
+kablam!    |                 ^^^
+kablam! 
+kablam! warning: unused variable: `i`, #[warn(unused_variables)] on by default
+kablam!   --> src/generator.rs:26:27
+kablam!    |
+kablam! 26 |             IResult::Done(i, o) => println!("Done parsing."),
+kablam!    |                           ^
+kablam! 
+kablam! warning: unused variable: `o`, #[warn(unused_variables)] on by default
+kablam!   --> src/generator.rs:26:30
+kablam!    |
+kablam! 26 |             IResult::Done(i, o) => println!("Done parsing."),
+kablam!    |                              ^
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!   --> src/generator.rs:23:9
+kablam!    |
+kablam! 23 |         file.read_to_string(&mut input);
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused variable: `err`, #[warn(unused_variables)] on by default
+kablam!   --> src/lib.rs:26:13
+kablam!    |
+kablam! 26 |     fn from(err: string::FromUtf8Error) -> ThriftCompilerError {
+kablam!    |             ^^^
+kablam! 
+kablam! warning: unused variable: `i`, #[warn(unused_variables)] on by default
+kablam!   --> src/lib.rs:40:27
+kablam!    |
+kablam! 40 |             IResult::Done(i, nodes) => {
+kablam!    |                           ^
+kablam! 
+kablam! warning: unused variable: `err`, #[warn(unused_variables)] on by default
+kablam!   --> src/lib.rs:62:28
+kablam!    |
+kablam! 62 |             IResult::Error(err) => {
+kablam!    |                            ^^^
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 4.3 secs
+boom! running `docker rm -f fdb3a3706931be7829025b52d2ad2a5f411c7014579aa21697984e608e9c4841`
+blam! fdb3a3706931be7829025b52d2ad2a5f411c7014579aa21697984e608e9c4841
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 603099c41acdb61d2008a5f38baf245af5290cbae34a7a2811942008462dbd39
+boom! running `docker start -a 603099c41acdb61d2008a5f38baf245af5290cbae34a7a2811942008462dbd39`
+kablam!    Compiling thrust v0.1.0 (file:///source)
+kablam! warning: constant `ns` should have an upper case name such as `NS`, #[warn(non_upper_case_globals)] on by default
+kablam!  --> tests/namespace.rs:5:1
+kablam!   |
+kablam! 5 | pub const ns: &'static [u8] = b"namespace rust foobar\n";
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: constant `ns_1` should have an upper case name such as `NS_1`, #[warn(non_upper_case_globals)] on by default
+kablam!  --> tests/namespace.rs:6:1
+kablam!   |
+kablam! 6 |   pub const ns_1: &'static [u8] = b"
+kablam!   |  _^ starting here...
+kablam! 7 | | namespace rust foobar\n
+kablam! 8 | | ";
+kablam!   | |__^ ...ending here
+kablam! 
+kablam! warning: constant `ns_2` should have an upper case name such as `NS_2`, #[warn(non_upper_case_globals)] on by default
+kablam!   --> tests/namespace.rs:9:1
+kablam!    |
+kablam! 9  |   pub const ns_2: &'static [u8] = b"
+kablam!    |  _^ starting here...
+kablam! 10 | |     namespace rust foobar\n
+kablam! 11 | | ";
+kablam!    | |__^ ...ending here
+kablam! 
+kablam! warning: constant `empty` should have an upper case name such as `EMPTY`, #[warn(non_upper_case_globals)] on by default
+kablam!   --> tests/namespace.rs:12:1
+kablam!    |
+kablam! 12 | pub const empty: &'static [u8] = b"";
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused variable: `r`, #[warn(unused_variables)] on by default
+kablam!   --> tests/namespace.rs:17:9
+kablam!    |
+kablam! 17 |     let r = ThriftCompiler::run(empty).unwrap();
+kablam!    |         ^
+kablam! 
+kablam! warning: constant `empty` should have an upper case name such as `EMPTY`, #[warn(non_upper_case_globals)] on by default
+kablam!  --> tests/struct.rs:5:1
+kablam!   |
+kablam! 5 |   pub const empty: &'static [u8] = b"
+kablam!   |  _^ starting here...
+kablam! 6 | | namespace rust ping
+kablam! 7 | | struct Ping {}
+kablam! 8 | | ";
+kablam!   | |__^ ...ending here
+kablam! 
+kablam! warning: constant `empty_gen` should have an upper case name such as `EMPTY_GEN`, #[warn(non_upper_case_globals)] on by default
+kablam!   --> tests/struct.rs:10:1
+kablam!    |
+kablam! 10 |   pub const empty_gen: &'static str = "pub struct Ping {
+kablam!    |  _^ starting here...
+kablam! 11 | | }
+kablam! 12 | | ";
+kablam!    | |__^ ...ending here
+kablam! 
+kablam! warning: constant `field` should have an upper case name such as `FIELD`, #[warn(non_upper_case_globals)] on by default
+kablam!   --> tests/struct.rs:14:1
+kablam!    |
+kablam! 14 |   pub const field: &'static [u8] = b"
+kablam!    |  _^ starting here...
+kablam! 15 | | namespace rust ping
+kablam! 16 | | struct Ping {
+kablam! 17 | |     1: required string foobar;
+kablam! 18 | | }
+kablam! 19 | | ";
+kablam!    | |__^ ...ending here
+kablam! 
+kablam! warning: constant `field_gen` should have an upper case name such as `FIELD_GEN`, #[warn(non_upper_case_globals)] on by default
+kablam!   --> tests/struct.rs:21:1
+kablam!    |
+kablam! 21 |   pub const field_gen: &'static str = "pub struct Ping {
+kablam!    |  _^ starting here...
+kablam! 22 | |     foobar: String,
+kablam! 23 | | }
+kablam! 24 | | ";
+kablam!    | |__^ ...ending here
+kablam! 
+kablam! warning: unused import: `be_u8`, #[warn(unused_imports)] on by default
+kablam!  --> src/parser.rs:1:99
+kablam!   |
+kablam! 1 | use nom::{space, alphanumeric, ErrorKind, IterIndices, IResult, multispace, not_line_ending, Err, be_u8, digit, InputLength, is_alphanumeric};
+kablam!   |                                                                                                   ^^^^^
+kablam! 
+kablam! warning: unused import: `std::convert::From`, #[warn(unused_imports)] on by default
+kablam!  --> src/parser.rs:4:5
+kablam!   |
+kablam! 4 | use std::convert::From;
+kablam!   |     ^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused imports: `Index`, `RangeFrom`, `Range`, #[warn(unused_imports)] on by default
+kablam!  --> src/parser.rs:5:16
+kablam!   |
+kablam! 5 | use std::ops::{Index,Range,RangeFrom};
+kablam!   |                ^^^^^ ^^^^^ ^^^^^^^^^
+kablam! 
+kablam! warning: function is never used: `blanks`, #[warn(dead_code)] on by default
+kablam!   --> src/parser.rs:9:1
+kablam!    |
+kablam! 9  |   named!(blanks,
+kablam!    |  _^ starting here...
+kablam! 10 | |        chain!(
+kablam! 11 | |            many0!(alt!(multispace | comment_one_line | comment_block)),
+kablam! 12 | |            || { &b""[..] }));
+kablam!    | |_____________________________^ ...ending here
+kablam!    |
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: function is never used: `comment_one_line`, #[warn(dead_code)] on by default
+kablam!   --> src/parser.rs:15:1
+kablam!    |
+kablam! 15 |   named!(comment_one_line,
+kablam!    |  _^ starting here...
+kablam! 16 | |        chain!(
+kablam! 17 | |            alt!(tag!("//") | tag!("#")) ~
+kablam! 18 | |            not_line_ending? ~
+kablam! 19 | |            alt!(eol | eof),
+kablam! 20 | |            || { &b""[..] }));
+kablam!    | |_____________________________^ ...ending here
+kablam!    |
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: function is never used: `eol`, #[warn(dead_code)] on by default
+kablam!   --> src/parser.rs:22:1
+kablam!    |
+kablam! 22 |   named!(eol,
+kablam!    |  _^ starting here...
+kablam! 23 | |        alt!(tag!("\r\n") | tag!("\n") | tag!("\u{2028}") | tag!("\u{2029}")));
+kablam!    | |______________________________________________________________________________^ ...ending here
+kablam!    |
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: function is never used: `comment_block`, #[warn(dead_code)] on by default
+kablam!   --> src/parser.rs:26:1
+kablam!    |
+kablam! 26 |   named!(comment_block,
+kablam!    |  _^ starting here...
+kablam! 27 | |        chain!(
+kablam! 28 | |            tag!("/*") ~
+kablam! 29 | |            take_until_and_consume!(&b"*/"[..]),
+kablam! 30 | |            || { &b""[..] }));
+kablam!    | |_____________________________^ ...ending here
+kablam!    |
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: function is never used: `eof`, #[warn(dead_code)] on by default
+kablam!   --> src/parser.rs:32:1
+kablam!    |
+kablam! 32 |   fn eof(input:&[u8]) -> IResult<&[u8], &[u8]> {
+kablam!    |  _^ starting here...
+kablam! 33 | |     if input.len() == 0 {
+kablam! 34 | |         Done(input, input)
+kablam! 35 | |     } else {
+kablam! 36 | |         Error(Err::Code(ErrorKind::Eof))
+kablam! 37 | |     }
+kablam! 38 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! warning: function is never used: `namespace`, #[warn(dead_code)] on by default
+kablam!   --> src/parser.rs:60:1
+kablam!    |
+kablam! 60 | pub fn namespace<'a>(input:&'a [u8]) -> IResult<&'a [u8], &'a [u8]> {
+kablam!    | ^
+kablam! 
+kablam! warning: struct is never used: `Parser`, #[warn(dead_code)] on by default
+kablam!    --> src/parser.rs:214:1
+kablam!     |
+kablam! 214 |   pub struct Parser<'a> {
+kablam!     |  _^ starting here...
+kablam! 215 | |     input: &'a str
+kablam! 216 | | }
+kablam!     | |_^ ...ending here
+kablam! 
+kablam! warning: unused import: `nom::IResult::*;`, #[warn(unused_imports)] on by default
+kablam!    --> src/parser.rs:221:9
+kablam!     |
+kablam! 221 |     use nom::IResult::*;
+kablam!     |         ^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused import: `Ast`, #[warn(unused_imports)] on by default
+kablam!    --> src/parser.rs:223:120
+kablam!     |
+kablam! 223 |     use ast::{IdentNode, StructNode, FunctionNode, ServiceNode, NamespaceNode, StructFieldNode, FieldMetadataNode, Ty, Ast};
+kablam!     |                                                                                                                        ^^^
+kablam! 
+kablam! warning: unused import: `Read`, #[warn(unused_imports)] on by default
+kablam!  --> src/ast.rs:1:15
+kablam!   |
+kablam! 1 | use std::io::{Read, Write};
+kablam!   |               ^^^^
+kablam! 
+kablam! warning: unused variable: `w`, #[warn(unused_variables)] on by default
+kablam!  --> src/ast.rs:4:19
+kablam!   |
+kablam! 4 |     fn gen(&self, w: &mut Write) {}
+kablam!   |                   ^
+kablam! 
+kablam! warning: unused variable: `w`, #[warn(unused_variables)] on by default
+kablam!    --> src/ast.rs:195:19
+kablam!     |
+kablam! 195 |     fn gen(&self, w: &mut Write) {}
+kablam!     |                   ^
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:214:9
+kablam!     |
+kablam! 214 |         write!(w, "pub struct {} {{\n", self.name.0);
+kablam!     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:218:13
+kablam!     |
+kablam! 218 |             write!(w, "    ");
+kablam!     |             ^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:222:9
+kablam!     |
+kablam! 222 |         write!(w, "}}\n");
+kablam!     |         ^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:229:30
+kablam!     |
+kablam! 229 |             &Ty::String => { write!(w, "String"); },
+kablam!     |                              ^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:230:28
+kablam!     |
+kablam! 230 |             &Ty::Void => { write!(w, "()"); },
+kablam!     |                            ^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:231:28
+kablam!     |
+kablam! 231 |             &Ty::Byte => { write!(w, "i8"); },
+kablam!     |                            ^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:232:30
+kablam!     |
+kablam! 232 |             &Ty::Binary => { write!(w, "Vec<i8>"); },
+kablam!     |                              ^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:233:32
+kablam!     |
+kablam! 233 |             &Ty::Signed16 => { write!(w, "i16"); },
+kablam!     |                                ^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:234:32
+kablam!     |
+kablam! 234 |             &Ty::Signed32 => { write!(w, "i32"); },
+kablam!     |                                ^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:235:32
+kablam!     |
+kablam! 235 |             &Ty::Signed64 => { write!(w, "i64"); },
+kablam!     |                                ^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:236:28
+kablam!     |
+kablam! 236 |             &Ty::Bool => { write!(w, "bool"); },
+kablam!     |                            ^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:238:17
+kablam!     |
+kablam! 238 |                 write!(w, "Vec<");
+kablam!     |                 ^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:240:17
+kablam!     |
+kablam! 240 |                 write!(w, ">");
+kablam!     |                 ^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:243:17
+kablam!     |
+kablam! 243 |                 write!(w, "HashMap<");
+kablam!     |                 ^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:245:17
+kablam!     |
+kablam! 245 |                 write!(w, ", ");
+kablam!     |                 ^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:247:17
+kablam!     |
+kablam! 247 |                 write!(w, ">");
+kablam!     |                 ^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:257:9
+kablam!     |
+kablam! 257 |         write!(w, "{}: ", self.ident.0);
+kablam!     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:260:13
+kablam!     |
+kablam! 260 |             write!(w, "Option<");
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:266:13
+kablam!     |
+kablam! 266 |             write!(w, ">");
+kablam!     |             ^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/ast.rs:269:9
+kablam!     |
+kablam! 269 |         write!(w, ",\n");
+kablam!     |         ^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused import: `parser::*;`, #[warn(unused_imports)] on by default
+kablam!    --> src/ast.rs:276:9
+kablam!     |
+kablam! 276 |     use parser::*;
+kablam!     |         ^^^^^^^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/ast.rs:282:13
+kablam!     |
+kablam! 282 |         let mut s = Ty::String;
+kablam!     |             ^^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/ast.rs:290:13
+kablam!     |
+kablam! 290 |         let mut s = Ty::Void;
+kablam!     |             ^^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/ast.rs:298:13
+kablam!     |
+kablam! 298 |         let mut s = Ty::Bool;
+kablam!     |             ^^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/ast.rs:306:13
+kablam!     |
+kablam! 306 |         let mut s = Ty::Signed16;
+kablam!     |             ^^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/ast.rs:314:13
+kablam!     |
+kablam! 314 |         let mut s = Ty::Signed32;
+kablam!     |             ^^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/ast.rs:322:13
+kablam!     |
+kablam! 322 |         let mut s = Ty::Signed64;
+kablam!     |             ^^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/ast.rs:330:13
+kablam!     |
+kablam! 330 |         let mut s = Ty::Byte;
+kablam!     |             ^^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/ast.rs:338:13
+kablam!     |
+kablam! 338 |         let mut s = Ty::Binary;
+kablam!     |             ^^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/ast.rs:346:13
+kablam!     |
+kablam! 346 |         let mut s = Ty::List(Box::new(Ty::String));
+kablam!     |             ^^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/ast.rs:354:13
+kablam!     |
+kablam! 354 |         let mut s = Ty::Map(Box::new(Ty::String), Box::new(Ty::String));
+kablam!     |             ^^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/ast.rs:362:13
+kablam!     |
+kablam! 362 |         let mut s = StructFieldNode {
+kablam!     |             ^^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/ast.rs:375:13
+kablam!     |
+kablam! 375 |         let mut s = StructFieldNode {
+kablam!     |             ^^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/ast.rs:388:13
+kablam!     |
+kablam! 388 |         let mut field = StructFieldNode {
+kablam!     |             ^^^^^^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/ast.rs:394:13
+kablam!     |
+kablam! 394 |         let mut s = StructNode {
+kablam!     |             ^^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/ast.rs:407:13
+kablam!     |
+kablam! 407 |         let mut field1 = StructFieldNode {
+kablam!     |             ^^^^^^^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/ast.rs:414:13
+kablam!     |
+kablam! 414 |         let mut field2 = StructFieldNode {
+kablam!     |             ^^^^^^^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/ast.rs:421:13
+kablam!     |
+kablam! 421 |         let mut s = StructNode {
+kablam!     |             ^^^^^
+kablam! 
+kablam! warning: unused import: `std::path::Path`, #[warn(unused_imports)] on by default
+kablam!  --> src/generator.rs:2:5
+kablam!   |
+kablam! 2 | use std::path::Path;
+kablam!   |     ^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused imports: `Result`, `Write`, #[warn(unused_imports)] on by default
+kablam!  --> src/generator.rs:3:15
+kablam!   |
+kablam! 3 | use std::io::{Result, Read, Write};
+kablam!   |               ^^^^^^        ^^^^^
+kablam! 
+kablam! warning: unused import: `ast::Ast`, #[warn(unused_imports)] on by default
+kablam!  --> src/generator.rs:5:5
+kablam!   |
+kablam! 5 | use ast::Ast;
+kablam!   |     ^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `input`, #[warn(dead_code)] on by default
+kablam!   --> src/generator.rs:10:5
+kablam!    |
+kablam! 10 |     input: String,
+kablam!    |     ^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `output`, #[warn(dead_code)] on by default
+kablam!   --> src/generator.rs:11:5
+kablam!    |
+kablam! 11 |     output: Option<File>
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused variable: `output`, #[warn(unused_variables)] on by default
+kablam!   --> src/generator.rs:15:28
+kablam!    |
+kablam! 15 |     pub fn run(path: &str, output: &str) -> &'static str {
+kablam!    |                            ^^^^^^
+kablam! 
+kablam! warning: unused variable: `err`, #[warn(unused_variables)] on by default
+kablam!   --> src/generator.rs:18:17
+kablam!    |
+kablam! 18 |             Err(err) => return "Error opening the input .thrift file."
+kablam!    |                 ^^^
+kablam! 
+kablam! warning: unused variable: `i`, #[warn(unused_variables)] on by default
+kablam!   --> src/generator.rs:26:27
+kablam!    |
+kablam! 26 |             IResult::Done(i, o) => println!("Done parsing."),
+kablam!    |                           ^
+kablam! 
+kablam! warning: unused variable: `o`, #[warn(unused_variables)] on by default
+kablam!   --> src/generator.rs:26:30
+kablam!    |
+kablam! 26 |             IResult::Done(i, o) => println!("Done parsing."),
+kablam!    |                              ^
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!   --> src/generator.rs:23:9
+kablam!    |
+kablam! 23 |         file.read_to_string(&mut input);
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused variable: `err`, #[warn(unused_variables)] on by default
+kablam!   --> src/lib.rs:26:13
+kablam!    |
+kablam! 26 |     fn from(err: string::FromUtf8Error) -> ThriftCompilerError {
+kablam!    |             ^^^
+kablam! 
+kablam! warning: unused variable: `i`, #[warn(unused_variables)] on by default
+kablam!   --> src/lib.rs:40:27
+kablam!    |
+kablam! 40 |             IResult::Done(i, nodes) => {
+kablam!    |                           ^
+kablam! 
+kablam! warning: unused variable: `err`, #[warn(unused_variables)] on by default
+kablam!   --> src/lib.rs:62:28
+kablam!    |
+kablam! 62 |             IResult::Error(err) => {
+kablam!    |                            ^^^
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 3.98 secs
+boom! running `docker rm -f 603099c41acdb61d2008a5f38baf245af5290cbae34a7a2811942008462dbd39`
+blam! 603099c41acdb61d2008a5f38baf245af5290cbae34a7a2811942008462dbd39
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! e15de71b1abe9d609e48d579209d167b40cd4ea53a0c8f7659bdde33d8137a3c
+boom! running `docker start -a e15de71b1abe9d609e48d579209d167b40cd4ea53a0c8f7659bdde33d8137a3c`
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/namespace-000ae656b8ab4f56
+blam! 
+blam! running 4 tests
+blam! test namespace_2 ... ok
+blam! test ns_empty ... ok
+blam! test namespace_1 ... ok
+blam! test namespace ... ok
+blam! 
+blam! test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/struct-7d57489d10e4b1c9
+blam! 
+blam! running 2 tests
+blam! test test_field_struct ... ok
+blam! test test_empty_struct ... ok
+blam! 
+blam! test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/thrust-c95243e61a2881db
+blam! 
+blam! running 29 tests
+blam! test ast::tests::gen_struct_field ... ok
+blam! test ast::tests::gen_struct ... ok
+blam! test ast::tests::gen_struct_multi_fields ... ok
+blam! test ast::tests::gen_struct_optional_field ... ok
+blam! test ast::tests::gen_ty_binary ... ok
+blam! test ast::tests::gen_ty_bool ... ok
+blam! test ast::tests::gen_ty_byte ... ok
+blam! test ast::tests::gen_ty_i16 ... ok
+blam! test ast::tests::gen_ty_i32 ... ok
+blam! test ast::tests::gen_ty_i64 ... ok
+blam! test ast::tests::gen_ty_list ... ok
+blam! test ast::tests::gen_ty_map ... ok
+blam! test ast::tests::gen_ty_string ... ok
+blam! test ast::tests::gen_ty_void ... ok
+blam! test parser::tests::define_empty_struct ... ok
+blam! test parser::tests::define_service ... ok
+blam! test parser::tests::define_service_method ... ok
+blam! test parser::tests::define_service_multi_method ... ok
+blam! test parser::tests::define_service_ws ... ok
+blam! test parser::tests::define_struct_field ... ok
+blam! test parser::tests::define_struct_with_field ... ok
+blam! test parser::tests::define_struct_with_multi_fields ... ok
+blam! test parser::tests::panic_parse_field_metadata ... ok
+blam! test parser::tests::parse_field_metadata ... ok
+blam! test parser::tests::parse_ns_test ... ok
+blam! test parser::tests::parse_simple_types ... ok
+blam! test parser::tests::parse_types ... ok
+blam! test parser::tests::should_fail_string_generic ... ok
+blam! test parser::tests::should_parse_generics ... ok
+blam! 
+blam! test result: ok. 29 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/thrust-df4c462f368bf17a
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!    Doc-tests thrust
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f e15de71b1abe9d609e48d579209d167b40cd4ea53a0c8f7659bdde33d8137a3c`
+blam! e15de71b1abe9d609e48d579209d167b40cd4ea53a0c8f7659bdde33d8137a3c

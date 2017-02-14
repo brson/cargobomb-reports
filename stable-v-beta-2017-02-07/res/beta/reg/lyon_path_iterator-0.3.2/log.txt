@@ -1,0 +1,192 @@
+boom! testing lyon_path_iterator-0.3.2 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 88c104dddd8900372ee161b6e6649b1ab91cf1cc681b0d3b6016a3d9241b404a
+boom! running `docker start -a 88c104dddd8900372ee161b6e6649b1ab91cf1cc681b0d3b6016a3d9241b404a`
+kablam!    Compiling lyon_path_iterator v0.3.2 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.39 secs
+boom! running `docker rm -f 88c104dddd8900372ee161b6e6649b1ab91cf1cc681b0d3b6016a3d9241b404a`
+blam! 88c104dddd8900372ee161b6e6649b1ab91cf1cc681b0d3b6016a3d9241b404a
+boom! running: cargo +beta test --frozen --no-run
+boom! creating container for: cargo +beta test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta test --frozen --no-run cargobomb`
+blam! 2856e12a5fbf3d44d3bcfffa84989623d227822cb5fdb86b7ce355c7e7334671
+boom! running `docker start -a 2856e12a5fbf3d44d3bcfffa84989623d227822cb5fdb86b7ce355c7e7334671`
+kablam!    Compiling lyon_path_iterator v0.3.2 (file:///source)
+kablam! error[E0277]: the trait bound `&std::slice::Iter<'_, core::SvgEvent>: std::iter::Iterator` is not satisfied
+kablam!    --> src/path_iterator.rs:303:18
+kablam!     |
+kablam! 303 |     let mut it = PathStateSvgIter::new(&[
+kablam!     |                  ^^^^^^^^^^^^^^^^^^^^^ the trait `std::iter::Iterator` is not implemented for `&std::slice::Iter<'_, core::SvgEvent>`
+kablam!     |
+kablam!     = note: `&std::slice::Iter<'_, core::SvgEvent>` is not an iterator; maybe try calling `.iter()` or a similar method
+kablam!     = note: required by `<path_iterator::PathStateSvgIter<Iter>>::new`
+kablam! 
+kablam! error: no method named `to_flattened` found for type `path_iterator::PathStateSvgIter<&std::slice::Iter<'_, core::SvgEvent>>` in the current scope
+kablam!    --> src/path_iterator.rs:311:15
+kablam!     |
+kablam! 311 |     ].iter()).to_flattened();
+kablam!     |               ^^^^^^^^^^^^
+kablam! 
+kablam! error[E0061]: this function takes 1 parameter but 2 parameters were supplied
+kablam!    --> src/path_iterator.rs:313:50
+kablam!     |
+kablam! 313 |     assert_eq!(it.next(), FlattenedEvent::MoveTo(1.0, 1.0));
+kablam!     |                                                  ^^^^^^^^ expected 1 parameter
+kablam! 
+kablam! error[E0061]: this function takes 1 parameter but 2 parameters were supplied
+kablam!    --> src/path_iterator.rs:314:50
+kablam!     |
+kablam! 314 |     assert_eq!(it.next(), FlattenedEvent::LineTo(2.0, 2.0));
+kablam!     |                                                  ^^^^^^^^ expected 1 parameter
+kablam! 
+kablam! error[E0061]: this function takes 1 parameter but 2 parameters were supplied
+kablam!    --> src/path_iterator.rs:315:50
+kablam!     |
+kablam! 315 |     assert_eq!(it.next(), FlattenedEvent::LineTo(3.0, 3.0));
+kablam!     |                                                  ^^^^^^^^ expected 1 parameter
+kablam! 
+kablam! error[E0061]: this function takes 1 parameter but 2 parameters were supplied
+kablam!    --> src/path_iterator.rs:316:50
+kablam!     |
+kablam! 316 |     assert_eq!(it.next(), FlattenedEvent::MoveTo(0.0, 0.0));
+kablam!     |                                                  ^^^^^^^^ expected 1 parameter
+kablam! 
+kablam! error[E0061]: this function takes 1 parameter but 2 parameters were supplied
+kablam!    --> src/path_iterator.rs:321:47
+kablam!     |
+kablam! 321 |         if evt == Some(FlattenedEvent::MoveTo(10.0, 10.0)) = evt {
+kablam!     |                                               ^^^^^^^^^^ expected 1 parameter
+kablam! 
+kablam! error[E0070]: invalid left-hand side expression
+kablam!    --> src/path_iterator.rs:321:12
+kablam!     |
+kablam! 321 |         if evt == Some(FlattenedEvent::MoveTo(10.0, 10.0)) = evt {
+kablam!     |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ left-hand of expression not valid
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/path_iterator.rs:321:12
+kablam!     |
+kablam! 321 |         if evt == Some(FlattenedEvent::MoveTo(10.0, 10.0)) = evt {
+kablam!     |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected bool, found ()
+kablam!     |
+kablam!     = note: expected type `bool`
+kablam!                found type `()`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/path_iterator.rs:324:16
+kablam!     |
+kablam! 324 |         if let Some(FlattenedEvent::MoveTo(to)) = evt {
+kablam!     |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected bool, found enum `std::option::Option`
+kablam!     |
+kablam!     = note: expected type `bool`
+kablam!                found type `std::option::Option<_>`
+kablam! 
+kablam! error[E0277]: the trait bound `bool: std::cmp::PartialEq<std::option::Option<core::FlattenedEvent>>` is not satisfied
+kablam!    --> src/path_iterator.rs:321:12
+kablam!     |
+kablam! 321 |         if evt == Some(FlattenedEvent::MoveTo(10.0, 10.0)) = evt {
+kablam!     |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::cmp::PartialEq<std::option::Option<core::FlattenedEvent>>` is not implemented for `bool`
+kablam!     |
+kablam!     = help: the following implementations were found:
+kablam!               <bool as std::cmp::PartialEq>
+kablam! 
+kablam! error: aborting due to 11 previous errors
+kablam! 
+kablam! error: Could not compile `lyon_path_iterator`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 2856e12a5fbf3d44d3bcfffa84989623d227822cb5fdb86b7ce355c7e7334671`
+blam! 2856e12a5fbf3d44d3bcfffa84989623d227822cb5fdb86b7ce355c7e7334671
+boom! running: cargo +beta test --frozen
+boom! creating container for: cargo +beta test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta test --frozen cargobomb`
+blam! 97ebca617a0ec52c9353026e3b6d9b4f78dc7522478d807e501a5fc48a355910
+boom! running `docker start -a 97ebca617a0ec52c9353026e3b6d9b4f78dc7522478d807e501a5fc48a355910`
+kablam!    Compiling lyon_path_iterator v0.3.2 (file:///source)
+kablam! error[E0277]: the trait bound `&std::slice::Iter<'_, core::SvgEvent>: std::iter::Iterator` is not satisfied
+kablam!    --> src/path_iterator.rs:303:18
+kablam!     |
+kablam! 303 |     let mut it = PathStateSvgIter::new(&[
+kablam!     |                  ^^^^^^^^^^^^^^^^^^^^^ the trait `std::iter::Iterator` is not implemented for `&std::slice::Iter<'_, core::SvgEvent>`
+kablam!     |
+kablam!     = note: `&std::slice::Iter<'_, core::SvgEvent>` is not an iterator; maybe try calling `.iter()` or a similar method
+kablam!     = note: required by `<path_iterator::PathStateSvgIter<Iter>>::new`
+kablam! 
+kablam! error: no method named `to_flattened` found for type `path_iterator::PathStateSvgIter<&std::slice::Iter<'_, core::SvgEvent>>` in the current scope
+kablam!    --> src/path_iterator.rs:311:15
+kablam!     |
+kablam! 311 |     ].iter()).to_flattened();
+kablam!     |               ^^^^^^^^^^^^
+kablam! 
+kablam! error[E0061]: this function takes 1 parameter but 2 parameters were supplied
+kablam!    --> src/path_iterator.rs:313:50
+kablam!     |
+kablam! 313 |     assert_eq!(it.next(), FlattenedEvent::MoveTo(1.0, 1.0));
+kablam!     |                                                  ^^^^^^^^ expected 1 parameter
+kablam! 
+kablam! error[E0061]: this function takes 1 parameter but 2 parameters were supplied
+kablam!    --> src/path_iterator.rs:314:50
+kablam!     |
+kablam! 314 |     assert_eq!(it.next(), FlattenedEvent::LineTo(2.0, 2.0));
+kablam!     |                                                  ^^^^^^^^ expected 1 parameter
+kablam! 
+kablam! error[E0061]: this function takes 1 parameter but 2 parameters were supplied
+kablam!    --> src/path_iterator.rs:315:50
+kablam!     |
+kablam! 315 |     assert_eq!(it.next(), FlattenedEvent::LineTo(3.0, 3.0));
+kablam!     |                                                  ^^^^^^^^ expected 1 parameter
+kablam! 
+kablam! error[E0061]: this function takes 1 parameter but 2 parameters were supplied
+kablam!    --> src/path_iterator.rs:316:50
+kablam!     |
+kablam! 316 |     assert_eq!(it.next(), FlattenedEvent::MoveTo(0.0, 0.0));
+kablam!     |                                                  ^^^^^^^^ expected 1 parameter
+kablam! 
+kablam! error[E0061]: this function takes 1 parameter but 2 parameters were supplied
+kablam!    --> src/path_iterator.rs:321:47
+kablam!     |
+kablam! 321 |         if evt == Some(FlattenedEvent::MoveTo(10.0, 10.0)) = evt {
+kablam!     |                                               ^^^^^^^^^^ expected 1 parameter
+kablam! 
+kablam! error[E0070]: invalid left-hand side expression
+kablam!    --> src/path_iterator.rs:321:12
+kablam!     |
+kablam! 321 |         if evt == Some(FlattenedEvent::MoveTo(10.0, 10.0)) = evt {
+kablam!     |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ left-hand of expression not valid
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/path_iterator.rs:321:12
+kablam!     |
+kablam! 321 |         if evt == Some(FlattenedEvent::MoveTo(10.0, 10.0)) = evt {
+kablam!     |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected bool, found ()
+kablam!     |
+kablam!     = note: expected type `bool`
+kablam!                found type `()`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/path_iterator.rs:324:16
+kablam!     |
+kablam! 324 |         if let Some(FlattenedEvent::MoveTo(to)) = evt {
+kablam!     |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected bool, found enum `std::option::Option`
+kablam!     |
+kablam!     = note: expected type `bool`
+kablam!                found type `std::option::Option<_>`
+kablam! 
+kablam! error[E0277]: the trait bound `bool: std::cmp::PartialEq<std::option::Option<core::FlattenedEvent>>` is not satisfied
+kablam!    --> src/path_iterator.rs:321:12
+kablam!     |
+kablam! 321 |         if evt == Some(FlattenedEvent::MoveTo(10.0, 10.0)) = evt {
+kablam!     |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::cmp::PartialEq<std::option::Option<core::FlattenedEvent>>` is not implemented for `bool`
+kablam!     |
+kablam!     = help: the following implementations were found:
+kablam!               <bool as std::cmp::PartialEq>
+kablam! 
+kablam! error: aborting due to 11 previous errors
+kablam! 
+kablam! error: Could not compile `lyon_path_iterator`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 97ebca617a0ec52c9353026e3b6d9b4f78dc7522478d807e501a5fc48a355910`
+blam! 97ebca617a0ec52c9353026e3b6d9b4f78dc7522478d807e501a5fc48a355910

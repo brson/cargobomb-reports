@@ -1,0 +1,477 @@
+boom! testing named_pipe-0.2.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 2fdf9c7978adce53467738afa42a890b5cf5d660632d2a2e4dce03ea41f0b354
+boom! running `docker start -a 2fdf9c7978adce53467738afa42a890b5cf5d660632d2a2e4dce03ea41f0b354`
+kablam! warning: unused manifest key: package.crate-type
+kablam!    Compiling named_pipe v0.2.2 (file:///source)
+kablam! error[E0432]: unresolved import `std::os::windows::io::RawHandle`
+kablam!   --> src/lib.rs:38:5
+kablam!    |
+kablam! 38 | use std::os::windows::io::RawHandle;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `windows` in `os`
+kablam! 
+kablam! error[E0432]: unresolved import `std::os::windows::ffi::OsStrExt`
+kablam!   --> src/lib.rs:39:5
+kablam!    |
+kablam! 39 | use std::os::windows::ffi::OsStrExt;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `windows` in `os`
+kablam! 
+kablam! error[E0425]: cannot find function `CloseHandle` in this scope
+kablam!   --> src/lib.rs:52:26
+kablam!    |
+kablam! 52 |         let _ = unsafe { CloseHandle(self.value) };
+kablam!    |                          ^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `CreateEventW` in this scope
+kablam!   --> src/lib.rs:67:13
+kablam!    |
+kablam! 67 |             CreateEventW(ptr::null_mut(),
+kablam!    |             ^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `SetEvent` in this scope
+kablam!   --> src/lib.rs:80:31
+kablam!    |
+kablam! 80 |         let result = unsafe { SetEvent(self.handle.value) };
+kablam!    |                               ^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `OVERLAPPED` in this scope
+kablam!   --> src/lib.rs:91:10
+kablam!    |
+kablam! 91 |     ovl: OVERLAPPED,
+kablam!    |          ^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `OVERLAPPED` in this scope
+kablam!   --> src/lib.rs:98:22
+kablam!    |
+kablam! 98 |         let mut ovl: OVERLAPPED = unsafe { mem::zeroed() };
+kablam!    |                      ^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `OVERLAPPED` in this scope
+kablam!    --> src/lib.rs:111:35
+kablam!     |
+kablam! 111 |     fn get_mut(&mut self) -> &mut OVERLAPPED {
+kablam!     |                                   ^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `PIPE_ACCESS_INBOUND` in this scope
+kablam!    --> src/lib.rs:129:32
+kablam!     |
+kablam! 129 |             &OpenMode::Read => PIPE_ACCESS_INBOUND,
+kablam!     |                                ^^^^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `PIPE_ACCESS_OUTBOUND` in this scope
+kablam!    --> src/lib.rs:130:33
+kablam!     |
+kablam! 130 |             &OpenMode::Write => PIPE_ACCESS_OUTBOUND,
+kablam!     |                                 ^^^^^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `PIPE_ACCESS_DUPLEX` in this scope
+kablam!    --> src/lib.rs:131:34
+kablam!     |
+kablam! 131 |             &OpenMode::Duplex => PIPE_ACCESS_DUPLEX,
+kablam!     |                                  ^^^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `CreateNamedPipeW` in this scope
+kablam!    --> src/lib.rs:158:13
+kablam!     |
+kablam! 158 |             CreateNamedPipeW(self.name.as_ptr(),
+kablam!     |             ^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `FILE_FLAG_OVERLAPPED` in this scope
+kablam!    --> src/lib.rs:159:54
+kablam!     |
+kablam! 159 |                              (self.open_mode.val() | FILE_FLAG_OVERLAPPED |
+kablam!     |                                                      ^^^^^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `FILE_FLAG_FIRST_PIPE_INSTANCE` in this scope
+kablam!    --> src/lib.rs:160:41
+kablam!     |
+kablam! 160 |                               if first {FILE_FLAG_FIRST_PIPE_INSTANCE} else {0}),
+kablam!     |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `PIPE_TYPE_BYTE` in this scope
+kablam!    --> src/lib.rs:161:30
+kablam!     |
+kablam! 161 |                              PIPE_TYPE_BYTE | PIPE_READMODE_BYTE | PIPE_WAIT,
+kablam!     |                              ^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `PIPE_READMODE_BYTE` in this scope
+kablam!    --> src/lib.rs:161:47
+kablam!     |
+kablam! 161 |                              PIPE_TYPE_BYTE | PIPE_READMODE_BYTE | PIPE_WAIT,
+kablam!     |                                               ^^^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `PIPE_WAIT` in this scope
+kablam!    --> src/lib.rs:161:68
+kablam!     |
+kablam! 161 |                              PIPE_TYPE_BYTE | PIPE_READMODE_BYTE | PIPE_WAIT,
+kablam!     |                                                                    ^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `PIPE_UNLIMITED_INSTANCES` in this scope
+kablam!    --> src/lib.rs:162:30
+kablam!     |
+kablam! 162 |                              PIPE_UNLIMITED_INSTANCES,
+kablam!     |                              ^^^^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `INVALID_HANDLE_VALUE` in this scope
+kablam!    --> src/lib.rs:169:22
+kablam!     |
+kablam! 169 |         if handle != INVALID_HANDLE_VALUE {
+kablam!     |                      ^^^^^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `INFINITE` in this scope
+kablam!    --> src/lib.rs:256:33
+kablam!     |
+kablam! 256 |         match try!(self.wait_ms(INFINITE)) {
+kablam!     |                                 ^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `FlushFileBuffers` in this scope
+kablam!    --> src/lib.rs:296:35
+kablam!     |
+kablam! 296 |         let mut result = unsafe { FlushFileBuffers(handle.value) };
+kablam!     |                                   ^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `DisconnectNamedPipe` in this scope
+kablam!    --> src/lib.rs:299:31
+kablam!     |
+kablam! 299 |             result = unsafe { DisconnectNamedPipe(handle.value) };
+kablam!     |                               ^^^^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `FlushFileBuffers` in this scope
+kablam!    --> src/lib.rs:403:39
+kablam!     |
+kablam! 403 |                 let result = unsafe { FlushFileBuffers(handle.value) };
+kablam!     |                                       ^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `FlushFileBuffers` in this scope
+kablam!    --> src/lib.rs:418:30
+kablam!     |
+kablam! 418 |             let _ = unsafe { FlushFileBuffers(handle.value) };
+kablam!     |                              ^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `DisconnectNamedPipe` in this scope
+kablam!    --> src/lib.rs:419:30
+kablam!     |
+kablam! 419 |             let _ = unsafe { DisconnectNamedPipe(handle.value) };
+kablam!     |                              ^^^^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in this scope
+kablam!    --> src/lib.rs:434:43
+kablam!     |
+kablam! 434 |     fn create_file(name: &Vec<u16>, mode: DWORD) -> io::Result<Handle> {
+kablam!     |                                           ^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `CreateFileW` in this scope
+kablam!    --> src/lib.rs:437:17
+kablam!     |
+kablam! 437 |                 CreateFileW(name.as_ptr(),
+kablam!     |                 ^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `OPEN_EXISTING` in this scope
+kablam!    --> src/lib.rs:441:29
+kablam!     |
+kablam! 441 |                             OPEN_EXISTING,
+kablam!     |                             ^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `FILE_FLAG_OVERLAPPED` in this scope
+kablam!    --> src/lib.rs:442:29
+kablam!     |
+kablam! 442 |                             FILE_FLAG_OVERLAPPED,
+kablam!     |                             ^^^^^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `INVALID_HANDLE_VALUE` in this scope
+kablam!    --> src/lib.rs:446:26
+kablam!     |
+kablam! 446 |             if handle != INVALID_HANDLE_VALUE {
+kablam!     |                          ^^^^^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `GetLastError` in this scope
+kablam!    --> src/lib.rs:450:28
+kablam!     |
+kablam! 450 |             match unsafe { GetLastError() } {
+kablam!     |                            ^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `WaitNamedPipeW` in this scope
+kablam!    --> src/lib.rs:452:30
+kablam!     |
+kablam! 452 |                     unsafe { WaitNamedPipeW(name.as_ptr(), 0) };
+kablam!     |                              ^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `GENERIC_READ` in this scope
+kablam!    --> src/lib.rs:455:38
+kablam!     |
+kablam! 455 |                     mode if mode == (GENERIC_READ | GENERIC_WRITE) => {
+kablam!     |                                      ^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `GENERIC_WRITE` in this scope
+kablam!    --> src/lib.rs:455:53
+kablam!     |
+kablam! 455 |                     mode if mode == (GENERIC_READ | GENERIC_WRITE) => {
+kablam!     |                                                     ^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `GENERIC_READ` in this scope
+kablam!    --> src/lib.rs:456:62
+kablam!     |
+kablam! 456 |                         return PipeClient::create_file(name, GENERIC_READ | FILE_WRITE_ATTRIBUTES);
+kablam!     |                                                              ^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `FILE_WRITE_ATTRIBUTES` in this scope
+kablam!    --> src/lib.rs:456:77
+kablam!     |
+kablam! 456 |                         return PipeClient::create_file(name, GENERIC_READ | FILE_WRITE_ATTRIBUTES);
+kablam!     |                                                                             ^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `GENERIC_READ` in this scope
+kablam!    --> src/lib.rs:458:38
+kablam!     |
+kablam! 458 |                     mode if mode == (GENERIC_READ | FILE_WRITE_ATTRIBUTES) => {
+kablam!     |                                      ^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `FILE_WRITE_ATTRIBUTES` in this scope
+kablam!    --> src/lib.rs:458:53
+kablam!     |
+kablam! 458 |                     mode if mode == (GENERIC_READ | FILE_WRITE_ATTRIBUTES) => {
+kablam!     |                                                     ^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `GENERIC_WRITE` in this scope
+kablam!    --> src/lib.rs:459:62
+kablam!     |
+kablam! 459 |                         return PipeClient::create_file(name, GENERIC_WRITE | FILE_READ_ATTRIBUTES);
+kablam!     |                                                              ^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `FILE_READ_ATTRIBUTES` in this scope
+kablam!    --> src/lib.rs:459:78
+kablam!     |
+kablam! 459 |                         return PipeClient::create_file(name, GENERIC_WRITE | FILE_READ_ATTRIBUTES);
+kablam!     |                                                                              ^^^^^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `GENERIC_READ` in this scope
+kablam!    --> src/lib.rs:484:55
+kablam!     |
+kablam! 484 |             match PipeClient::create_file(&full_name, GENERIC_READ | GENERIC_WRITE) {
+kablam!     |                                                       ^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `GENERIC_WRITE` in this scope
+kablam!    --> src/lib.rs:484:70
+kablam!     |
+kablam! 484 |             match PipeClient::create_file(&full_name, GENERIC_READ | GENERIC_WRITE) {
+kablam!     |                                                                      ^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `PIPE_TYPE_BYTE` in this scope
+kablam!    --> src/lib.rs:487:40
+kablam!     |
+kablam! 487 |                         let mut mode = PIPE_TYPE_BYTE | PIPE_READMODE_BYTE | PIPE_WAIT;
+kablam!     |                                        ^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `PIPE_READMODE_BYTE` in this scope
+kablam!    --> src/lib.rs:487:57
+kablam!     |
+kablam! 487 |                         let mut mode = PIPE_TYPE_BYTE | PIPE_READMODE_BYTE | PIPE_WAIT;
+kablam!     |                                                         ^^^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `PIPE_WAIT` in this scope
+kablam!    --> src/lib.rs:487:78
+kablam!     |
+kablam! 487 |                         let mut mode = PIPE_TYPE_BYTE | PIPE_READMODE_BYTE | PIPE_WAIT;
+kablam!     |                                                                              ^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `SetNamedPipeHandleState` in this scope
+kablam!    --> src/lib.rs:488:25
+kablam!     |
+kablam! 488 |                         SetNamedPipeHandleState(handle.value,
+kablam!     |                         ^^^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `ERROR_PIPE_BUSY` in this scope
+kablam!    --> src/lib.rs:506:55
+kablam!     |
+kablam! 506 |                     if err.raw_os_error().unwrap() == ERROR_PIPE_BUSY as i32 {
+kablam!     |                                                       ^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `WaitNamedPipeW` in this scope
+kablam!    --> src/lib.rs:509:51
+kablam!     |
+kablam! 509 |                             let result = unsafe { WaitNamedPipeW(full_name.as_ptr(), timeout) };
+kablam!     |                                                   ^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `FlushFileBuffers` in this scope
+kablam!    --> src/lib.rs:611:31
+kablam!     |
+kablam! 611 |         let result = unsafe { FlushFileBuffers(self.handle.value) };
+kablam!     |                               ^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `INFINITE` in this scope
+kablam!    --> src/lib.rs:875:61
+kablam!     |
+kablam! 875 |             let timeout = self.get_read_timeout().unwrap_or(INFINITE);
+kablam!     |                                                             ^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `INFINITE` in this scope
+kablam!    --> src/lib.rs:954:62
+kablam!     |
+kablam! 954 |             let timeout = self.get_write_timeout().unwrap_or(INFINITE);
+kablam!     |                                                              ^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `ConnectNamedPipe` in this scope
+kablam!     --> src/lib.rs:1002:27
+kablam!      |
+kablam! 1002 |     let result = unsafe { ConnectNamedPipe(handle.value, ovl.get_mut()) };
+kablam!      |                           ^^^^^^^^^^^^^^^^ did you mean `connect_named_pipe`?
+kablam! 
+kablam! error[E0425]: cannot find value `TRUE` in this scope
+kablam!     --> src/lib.rs:1003:18
+kablam!      |
+kablam! 1003 |     if result == TRUE {
+kablam!      |                  ^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `ReadFile` in this scope
+kablam!     --> src/lib.rs:1023:9
+kablam!      |
+kablam! 1023 |         ReadFile(io_obj.handle,
+kablam!      |         ^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `c_void` in this scope
+kablam!     --> src/lib.rs:1024:43
+kablam!      |
+kablam! 1024 |                  buf.as_mut_ptr() as *mut c_void,
+kablam!      |                                           ^^^^^^ not found in this scope
+kablam!      |
+kablam!      = help: possible candidate is found in another module, you can import it into scope:
+kablam!                `use std::os::raw::c_void;`
+kablam! 
+kablam! error[E0425]: cannot find value `ERROR_IO_PENDING` in this scope
+kablam!     --> src/lib.rs:1040:58
+kablam!      |
+kablam! 1040 |         if result == 0 && err.raw_os_error().unwrap() == ERROR_IO_PENDING as i32 {
+kablam!      |                                                          ^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `ReadFile` in this scope
+kablam!     --> src/lib.rs:1058:9
+kablam!      |
+kablam! 1058 |         ReadFile(io_obj.handle,
+kablam!      |         ^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `c_void` in this scope
+kablam!     --> src/lib.rs:1059:43
+kablam!      |
+kablam! 1059 |                  buf.as_mut_ptr() as *mut c_void,
+kablam!      |                                           ^^^^^^ not found in this scope
+kablam!      |
+kablam!      = help: possible candidate is found in another module, you can import it into scope:
+kablam!                `use std::os::raw::c_void;`
+kablam! 
+kablam! error[E0425]: cannot find value `ERROR_IO_PENDING` in this scope
+kablam!     --> src/lib.rs:1075:58
+kablam!      |
+kablam! 1075 |         if result == 0 && err.raw_os_error().unwrap() == ERROR_IO_PENDING as i32 {
+kablam!      |                                                          ^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `WriteFile` in this scope
+kablam!     --> src/lib.rs:1095:9
+kablam!      |
+kablam! 1095 |         WriteFile(io_obj.handle,
+kablam!      |         ^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `c_void` in this scope
+kablam!     --> src/lib.rs:1096:40
+kablam!      |
+kablam! 1096 |                   buf.as_ptr() as *mut c_void,
+kablam!      |                                        ^^^^^^ not found in this scope
+kablam!      |
+kablam!      = help: possible candidate is found in another module, you can import it into scope:
+kablam!                `use std::os::raw::c_void;`
+kablam! 
+kablam! error[E0425]: cannot find value `ERROR_IO_PENDING` in this scope
+kablam!     --> src/lib.rs:1113:58
+kablam!      |
+kablam! 1113 |         if result == 0 && err.raw_os_error().unwrap() == ERROR_IO_PENDING as i32 {
+kablam!      |                                                          ^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `WriteFile` in this scope
+kablam!     --> src/lib.rs:1134:9
+kablam!      |
+kablam! 1134 |         WriteFile(io_obj.handle,
+kablam!      |         ^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `c_void` in this scope
+kablam!     --> src/lib.rs:1135:40
+kablam!      |
+kablam! 1135 |                   buf.as_ptr() as *mut c_void,
+kablam!      |                                        ^^^^^^ not found in this scope
+kablam!      |
+kablam!      = help: possible candidate is found in another module, you can import it into scope:
+kablam!                `use std::os::raw::c_void;`
+kablam! 
+kablam! error[E0425]: cannot find value `ERROR_IO_PENDING` in this scope
+kablam!     --> src/lib.rs:1152:58
+kablam!      |
+kablam! 1152 |         if result == 0 && err.raw_os_error().unwrap() == ERROR_IO_PENDING as i32 {
+kablam!      |                                                          ^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `GetOverlappedResult` in this scope
+kablam!     --> src/lib.rs:1171:9
+kablam!      |
+kablam! 1171 |         GetOverlappedResult(io_obj.handle,
+kablam!      |         ^^^^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `TRUE` in this scope
+kablam!     --> src/lib.rs:1174:29
+kablam!      |
+kablam! 1174 |                             TRUE)
+kablam!      |                             ^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `WaitForSingleObject` in this scope
+kablam!     --> src/lib.rs:1187:9
+kablam!      |
+kablam! 1187 |         WaitForSingleObject(io_obj.ovl.event.handle.value,
+kablam!      |         ^^^^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `MAXIMUM_WAIT_OBJECTS` in this scope
+kablam!     --> src/lib.rs:1201:27
+kablam!      |
+kablam! 1201 |     assert!(list.len() <= MAXIMUM_WAIT_OBJECTS as usize);
+kablam!      |                           ^^^^^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `WaitForMultipleObjects` in this scope
+kablam!     --> src/lib.rs:1212:13
+kablam!      |
+kablam! 1212 |             WaitForMultipleObjects(events.len() as u32,
+kablam!      |             ^^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `TRUE` in this scope
+kablam!     --> src/lib.rs:1214:45
+kablam!      |
+kablam! 1214 |                                    if all { TRUE } else { FALSE },
+kablam!      |                                             ^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `FALSE` in this scope
+kablam!     --> src/lib.rs:1214:59
+kablam!      |
+kablam! 1214 |                                    if all { TRUE } else { FALSE },
+kablam!      |                                                           ^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `INFINITE` in this scope
+kablam!     --> src/lib.rs:1244:51
+kablam!      |
+kablam! 1244 |     match try!(wait_for_multiple_obj(list, false, INFINITE)) {
+kablam!      |                                                   ^^^^^^^^ not found in this scope
+kablam! 
+kablam! error: no method named `encode_wide` found for type `std::ffi::OsString` in the current scope
+kablam!    --> src/lib.rs:179:35
+kablam!     |
+kablam! 179 |         let full_name = full_name.encode_wide().collect::<Vec<u16>>();
+kablam!     |                                   ^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `encode_wide` found for type `std::ffi::OsString` in the current scope
+kablam!    --> src/lib.rs:481:35
+kablam!     |
+kablam! 481 |         let full_name = full_name.encode_wide().collect::<Vec<u16>>();
+kablam!     |                                   ^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `named_pipe`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 2fdf9c7978adce53467738afa42a890b5cf5d660632d2a2e4dce03ea41f0b354`
+blam! 2fdf9c7978adce53467738afa42a890b5cf5d660632d2a2e4dce03ea41f0b354

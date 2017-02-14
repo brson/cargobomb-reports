@@ -1,0 +1,26 @@
+boom! testing xcb-0.7.6 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 750b4d5988e17b24adef69f699f818060a0e6130d995794cb4e35691a21440be
+boom! running `docker start -a 750b4d5988e17b24adef69f699f818060a0e6130d995794cb4e35691a21440be`
+kablam!    Compiling xcb v0.7.6 (file:///source)
+kablam! error: failed to run custom build command for `xcb v0.7.6 (file:///source)`
+kablam! process didn't exit successfully: `/target/debug/build/xcb-9bdfd5ed4eaf62bd/build-script-build` (exit code: 101)
+kablam! --- stderr
+kablam! error occured in handler:  ('request: ', ('xcb', 'XF86Dri', 'AuthConnection'))
+kablam! Traceback (most recent call last):
+kablam!   File "/source/rs_client.py", line 2401, in <module>
+kablam!     module.generate()
+kablam!   File "/source/xcbgen/state.py", line 108, in generate
+kablam!     self.close()
+kablam!   File "/source/rs_client.py", line 291, in rs_close
+kablam!     _f.writeout(os.path.join(module.rs_srcdir, "ffi", "%s.rs" % _module_name(_ns.ext_name)))
+kablam!   File "/source/rs_client.py", line 115, in writeout
+kablam!     with open(path, 'w') as f:
+kablam! OSError: [Errno 30] Read-only file system: '/source/src/ffi/xf86dri.rs'
+kablam! thread 'main' panicked at 'processing of /source/xml/xf86dri.xml returned non-zero (1)', build.rs:73
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f 750b4d5988e17b24adef69f699f818060a0e6130d995794cb4e35691a21440be`
+blam! 750b4d5988e17b24adef69f699f818060a0e6130d995794cb4e35691a21440be

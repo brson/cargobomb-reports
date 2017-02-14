@@ -1,0 +1,23 @@
+boom! testing pam-0.0.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 9481a28ead305f67bbce103e07c8f80e7df3009587d0db7cf36a3547577fbe19
+boom! running `docker start -a 9481a28ead305f67bbce103e07c8f80e7df3009587d0db7cf36a3547577fbe19`
+kablam!    Compiling pam v0.0.2 (file:///source)
+kablam! error[E0277]: the trait bound `Self: std::marker::Sized` is not satisfied
+kablam!   --> src/module.rs:72:5
+kablam!    |
+kablam! 72 |     fn item_type(_: Option<Self>) -> PamItemType;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::marker::Sized` is not implemented for `Self`
+kablam!    |
+kablam!    = help: consider adding a `where Self: std::marker::Sized` bound
+kablam!    = note: required by `std::option::Option`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `pam`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 9481a28ead305f67bbce103e07c8f80e7df3009587d0db7cf36a3547577fbe19`
+blam! 9481a28ead305f67bbce103e07c8f80e7df3009587d0db7cf36a3547577fbe19

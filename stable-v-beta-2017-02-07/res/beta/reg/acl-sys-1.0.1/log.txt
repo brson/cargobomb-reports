@@ -1,0 +1,51 @@
+boom! testing acl-sys-1.0.1 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 0ced73e7f7a16f5bf18a70b82c943d4bf77885b014a22f3b4fa6918875e8fe0a
+boom! running `docker start -a 0ced73e7f7a16f5bf18a70b82c943d4bf77885b014a22f3b4fa6918875e8fe0a`
+kablam!    Compiling libc v0.1.12
+kablam!    Compiling acl-sys v1.0.1 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.11 secs
+boom! running `docker rm -f 0ced73e7f7a16f5bf18a70b82c943d4bf77885b014a22f3b4fa6918875e8fe0a`
+blam! 0ced73e7f7a16f5bf18a70b82c943d4bf77885b014a22f3b4fa6918875e8fe0a
+boom! running: cargo +beta test --frozen --no-run
+boom! creating container for: cargo +beta test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta test --frozen --no-run cargobomb`
+blam! 84f02304bba2f334810210993ae5621466a39977a27b3d1dd8c25a4ecbbf0f08
+boom! running `docker start -a 84f02304bba2f334810210993ae5621466a39977a27b3d1dd8c25a4ecbbf0f08`
+kablam!    Compiling acl-sys v1.0.1 (file:///source)
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/acl_sys-c2655c31fe6f0837.0.o" "-o" "/target/debug/deps/acl_sys-c2655c31fe6f0837" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "-l" "acl" "/target/debug/deps/liblibc-75e9a9d6ae05fbe7.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-495f7d16c61e193e.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-7fad624c8a987316.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-e268adbf4cfcbb37.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-dfc89321dbee872e.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-b9a1672c9b07eb79.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-2368fc95b0a72ca5.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-7b8c40539a92cc94.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-248c1fb3029c3b47.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-716ec913507cca23.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-73671a945a075b27.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-40657eb22c503f7a.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-86ff76aef4ef75d0.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-3f5cb0b311b4f9c5.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-a27e0b02588f3694.rlib" "-l" "c" "-l" "m" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lacl
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `acl-sys`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 84f02304bba2f334810210993ae5621466a39977a27b3d1dd8c25a4ecbbf0f08`
+blam! 84f02304bba2f334810210993ae5621466a39977a27b3d1dd8c25a4ecbbf0f08
+boom! running: cargo +beta test --frozen
+boom! creating container for: cargo +beta test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta test --frozen cargobomb`
+blam! 1d6389a8bf140112faafb92d34fd7e15ec8cabc8f997cf5c80830d10fd86db38
+boom! running `docker start -a 1d6389a8bf140112faafb92d34fd7e15ec8cabc8f997cf5c80830d10fd86db38`
+kablam!    Compiling acl-sys v1.0.1 (file:///source)
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/acl_sys-c2655c31fe6f0837.0.o" "-o" "/target/debug/deps/acl_sys-c2655c31fe6f0837" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "-l" "acl" "/target/debug/deps/liblibc-75e9a9d6ae05fbe7.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-495f7d16c61e193e.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-7fad624c8a987316.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-e268adbf4cfcbb37.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-dfc89321dbee872e.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-b9a1672c9b07eb79.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-2368fc95b0a72ca5.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-7b8c40539a92cc94.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-248c1fb3029c3b47.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-716ec913507cca23.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-73671a945a075b27.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-40657eb22c503f7a.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-86ff76aef4ef75d0.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-3f5cb0b311b4f9c5.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-a27e0b02588f3694.rlib" "-l" "c" "-l" "m" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lacl
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `acl-sys`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 1d6389a8bf140112faafb92d34fd7e15ec8cabc8f997cf5c80830d10fd86db38`
+blam! 1d6389a8bf140112faafb92d34fd7e15ec8cabc8f997cf5c80830d10fd86db38

@@ -1,0 +1,86 @@
+boom! testing redispool-0.1.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 801874d739558b2d8d9d144dce6c854f529d1db8043c9454f9359e2465b97e29
+boom! running `docker start -a 801874d739558b2d8d9d144dce6c854f529d1db8043c9454f9359e2465b97e29`
+kablam!    Compiling redis v0.3.1
+kablam! error[E0412]: type name `url::SchemeType` is undefined or not in scope
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/redis-0.3.1/src/connection.rs:17:46
+kablam!    |
+kablam! 17 | fn redis_scheme_type_mapper(scheme: &str) -> url::SchemeType {
+kablam!    |                                              ^^^^^^^^^^^^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: no candidates by the name of `SchemeType` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `SchemeType` in `url`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/redis-0.3.1/src/connection.rs:19:20
+kablam!    |
+kablam! 19 |         "redis" => url::SchemeType::Relative(DEFAULT_PORT),
+kablam!    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `SchemeType` in `url`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `SchemeType` in `url`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/redis-0.3.1/src/connection.rs:20:14
+kablam!    |
+kablam! 20 |         _ => url::SchemeType::NonRelative,
+kablam!    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `SchemeType` in `url`
+kablam! 
+kablam! error[E0412]: type name `url::ParseResult` is undefined or not in scope
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/redis-0.3.1/src/connection.rs:27:40
+kablam!    |
+kablam! 27 | pub fn parse_redis_url(input: &str) -> url::ParseResult<url::Url> {
+kablam!    |                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: no candidates by the name of `ParseResult` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `UrlParser` in `url`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/redis-0.3.1/src/connection.rs:28:22
+kablam!    |
+kablam! 28 |     let mut parser = url::UrlParser::new();
+kablam!    |                      ^^^^^^^^^^^^^^^^^^^ Could not find `UrlParser` in `url`
+kablam! 
+kablam! error: no associated item named `InvalidScheme` found for type `url::ParseError` in the current scope
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/redis-0.3.1/src/connection.rs:33:21
+kablam!    |
+kablam! 33 |                 Err(url::ParseError::InvalidScheme)
+kablam!    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: the type of this value must be known in this context
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/redis-0.3.1/src/connection.rs:67:22
+kablam!    |
+kablam! 67 |             Ok(u) => u.into_connection_info(),
+kablam!    |                      ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: attempted to take value of method `scheme` on type `url::Url`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/redis-0.3.1/src/connection.rs:75:22
+kablam!    |
+kablam! 75 |         ensure!(self.scheme == "redis",
+kablam!    |         -            ^^^^^^ in this macro invocation
+kablam!    |
+kablam!    = help: maybe a `()` to call it is missing? If not, try an anonymous function
+kablam! 
+kablam! error: no method named `serialize_host` found for type `url::Url` in the current scope
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/redis-0.3.1/src/connection.rs:79:35
+kablam!    |
+kablam! 79 |             host: unwrap_or!(self.serialize_host(),
+kablam!    |                   -               ^^^^^^^^^^^^^^ in this macro invocation
+kablam! 
+kablam! error: no method named `serialize_path` found for type `url::Url` in the current scope
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/redis-0.3.1/src/connection.rs:82:28
+kablam!    |
+kablam! 82 |             db: match self.serialize_path().unwrap_or("".to_string())
+kablam!    |                            ^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `hexdigest` found for type `sha1::Sha1` in the current scope
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/redis-0.3.1/src/script.rs:36:24
+kablam!    |
+kablam! 36 |             hash: hash.hexdigest(),
+kablam!    |                        ^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 6 previous errors
+kablam! 
+kablam! error: Could not compile `redis`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 801874d739558b2d8d9d144dce6c854f529d1db8043c9454f9359e2465b97e29`
+blam! 801874d739558b2d8d9d144dce6c854f529d1db8043c9454f9359e2465b97e29

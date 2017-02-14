@@ -1,0 +1,113 @@
+boom! testing ast_debug-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 1a698be90fedba3253b7079e5853f542509f11074d7f5306856b5f7df1764064
+boom! running `docker start -a 1a698be90fedba3253b7079e5853f542509f11074d7f5306856b5f7df1764064`
+kablam!    Compiling ast_debug v0.1.0 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::ast::TokenTree`
+kablam!   --> src/lib.rs:15:19
+kablam!    |
+kablam! 15 | use syntax::ast::{TokenTree, Item};
+kablam!    |                   ^^^^^^^^^ no `TokenTree` in `ast`
+kablam! 
+kablam! error[E0432]: unresolved import `rustc::plugin::Registry`
+kablam!   --> src/lib.rs:20:5
+kablam!    |
+kablam! 20 | use rustc::plugin::Registry;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `plugin` in `rustc`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `plugin` in `rustc`
+kablam!   --> src/lib.rs:23:28
+kablam!    |
+kablam! 23 | pub fn registrar(reg: &mut rustc::plugin::Registry) {
+kablam!    |                            ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `plugin` in `rustc`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `ItemFn` in module `ast`
+kablam!   --> src/lib.rs:75:13
+kablam!    |
+kablam! 75 |             ast::ItemFn(ref decl, _, _, _, ref block) => {
+kablam!    |             ^^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use rustc::hir::ItemFn;`
+kablam!              `use rustc::hir::Item_::ItemFn;`
+kablam!              `use rustc::hir::intravisit::FnKind::ItemFn;`
+kablam!              `use syntax::visit::FnKind::ItemFn;`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `Return` in module `ast`
+kablam!   --> src/lib.rs:87:21
+kablam!    |
+kablam! 87 |                     ast::Return(ref pty) => (*pty).clone(),
+kablam!    |                     ^^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use rustc::hir::FunctionRetTy::Return;`
+kablam!              `use rustc::hir::Return;`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `NoReturn` in module `ast`
+kablam!   --> src/lib.rs:88:21
+kablam!    |
+kablam! 88 |                     ast::NoReturn(ref span) | 
+kablam!    |                     ^^^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `DefaultReturn` in module `ast`
+kablam!   --> src/lib.rs:89:25
+kablam!    |
+kablam! 89 |                         ast::DefaultReturn(ref span) => cx.ty(*span, ast::TyTup(Vec::new()))
+kablam!    |                         ^^^^^^^^^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use rustc::hir::DefaultReturn;`
+kablam!              `use rustc::hir::FunctionRetTy::DefaultReturn;`
+kablam! 
+kablam! error[E0425]: cannot find function `TyTup` in module `ast`
+kablam!   --> src/lib.rs:89:70
+kablam!    |
+kablam! 89 |                         ast::DefaultReturn(ref span) => cx.ty(*span, ast::TyTup(Vec::new()))
+kablam!    |                                                                      ^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use rustc::hir::TyTup;`
+kablam!              `use rustc::hir::Ty_::TyTup;`
+kablam! 
+kablam! error: no associated item named `from_str` found for type `std::string::String` in the current scope
+kablam!   --> src/lib.rs:40:24
+kablam!    |
+kablam! 40 |             let ret = (String::from_str(ln.trim()), tab_level);
+kablam!    |                        ^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!    = help: candidate #1: `use core::str::FromStr;`
+kablam! 
+kablam! error: no associated item named `from_str` found for type `std::string::String` in the current scope
+kablam!   --> src/lib.rs:52:29
+kablam!    |
+kablam! 52 |             let mut strng = String::from_str("\n");
+kablam!    |                             ^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!    = help: candidate #1: `use core::str::FromStr;`
+kablam! 
+kablam! error: no associated item named `zero` found for type `rustc_data_structures::small_vec::SmallVec<[syntax::ptr::P<syntax::ast::Item>; 1]>` in the current scope
+kablam!   --> src/lib.rs:71:25
+kablam!    |
+kablam! 71 |     let mut new_items = SmallVector::<P<Item>>::zero();
+kablam!    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/lib.rs:73:12
+kablam!    |
+kablam! 73 |     if let Some(really_old_fn) = old_fn {
+kablam!    |            ^^^^^^^^^^^^^^^^^^^ expected enum `core::result::Result`, found enum `core::option::Option`
+kablam!    |
+kablam!    = note: expected type `core::result::Result<core::option::Option<syntax::ptr::P<syntax::ast::Item>>, syntax::<unnamed>::DiagnosticBuilder<'_>>`
+kablam!               found type `core::option::Option<_>`
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `ast_debug`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 1a698be90fedba3253b7079e5853f542509f11074d7f5306856b5f7df1764064`
+blam! 1a698be90fedba3253b7079e5853f542509f11074d7f5306856b5f7df1764064

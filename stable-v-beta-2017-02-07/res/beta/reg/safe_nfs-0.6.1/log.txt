@@ -1,0 +1,30 @@
+boom! testing safe_nfs-0.6.1 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 99e0e039af65c439f4f3c4e631e28a4d2a32a3b19ad33a3848cf62acaf6e5f7a
+boom! running `docker start -a 99e0e039af65c439f4f3c4e631e28a4d2a32a3b19ad33a3848cf62acaf6e5f7a`
+kablam!    Compiling get_if_addrs v0.3.1
+kablam!    Compiling socket_addr v0.0.2
+kablam!    Compiling crossbeam v0.1.6
+kablam!    Compiling libsodium-sys v0.0.14
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: failed to run custom build command for `libsodium-sys v0.0.14`
+kablam! process didn't exit successfully: `/target/debug/build/libsodium-sys-c81c2aab8a6cece2/build-script-build` (exit code: 101)
+kablam! --- stderr
+kablam! thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: "Failed to run `\"pkg-config\" \"--libs\" \"--cflags\" \"libsodium\"`: No such file or directory (os error 2)"', /buildslave/rust-buildbot/slave/beta-dist-rustc-linux/build/src/libcore/result.rs:868
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+kablam! error[E0512]: transmute called with differently sized types: [usize; 32] (2048 bits) to [std::sync::atomic::AtomicBool; 32] (256 bits)
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/crossbeam-0.1.6/src/sync/seg_queue.rs:34:29
+kablam!    |
+kablam! 34 |             ready: unsafe { mem::transmute([0usize; SEG_SIZE]) },
+kablam!    |                             ^^^^^^^^^^^^^^ transmuting between 2048 bits and 256 bits
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `crossbeam`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f 99e0e039af65c439f4f3c4e631e28a4d2a32a3b19ad33a3848cf62acaf6e5f7a`
+blam! 99e0e039af65c439f4f3c4e631e28a4d2a32a3b19ad33a3848cf62acaf6e5f7a

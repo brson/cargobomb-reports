@@ -1,0 +1,243 @@
+boom! testing teardown_tree-0.5.0 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! e8cdf77877e3f673aa4e48ecaa72e90699e1e2a6c4540e687f02b2b341d3c771
+boom! running `docker start -a e8cdf77877e3f673aa4e48ecaa72e90699e1e2a6c4540e687f02b2b341d3c771`
+kablam!    Compiling teardown_tree v0.5.0 (file:///source)
+kablam! warning: method is never used: `peek`, #[warn(dead_code)] on by default
+kablam!   --> src/base/slot_stack.rs:55:5
+kablam!    |
+kablam! 55 |       pub fn peek(&mut self) -> Slot {
+kablam!    |  _____^ starting here...
+kablam! 56 | |         debug_assert!(self.nslots > 0);
+kablam! 57 | |         *self.slot_at(self.nslots - 1)
+kablam! 58 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `nslots`, #[warn(dead_code)] on by default
+kablam!   --> src/base/slot_stack.rs:83:5
+kablam!    |
+kablam! 83 |       pub fn nslots(&self) -> usize {
+kablam!    |  _____^ starting here...
+kablam! 84 | |         self.nslots
+kablam! 85 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `new`, #[warn(dead_code)] on by default
+kablam!   --> src/base/base_repr.rs:45:5
+kablam!    |
+kablam! 45 |       pub fn new(item: T) -> Self {
+kablam!    |  _____^ starting here...
+kablam! 46 | |         Node { item: item }
+kablam! 47 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `calc_height`, #[warn(dead_code)] on by default
+kablam!   --> src/base/base_repr.rs:83:5
+kablam!    |
+kablam! 83 |       pub fn calc_height(nodes: &Vec<Option<Node<T>>>, idx: usize) -> usize {
+kablam!    |  _____^ starting here...
+kablam! 84 | |         if idx < nodes.len() && nodes[idx].is_some() {
+kablam! 85 | |             1 + max(Self::calc_height(nodes, lefti(idx)),
+kablam! 86 | |                     Self::calc_height(nodes, righti(idx)))
+kablam! 87 | |         } else {
+kablam! 88 | |             0
+kablam! 89 | |         }
+kablam! 90 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `with_nodes`, #[warn(dead_code)] on by default
+kablam!    --> src/base/base_repr.rs:130:5
+kablam!     |
+kablam! 130 |     pub fn with_nodes(mut nodes: Vec<Option<Node<T>>>) -> TreeWrapper<T> {
+kablam!     |     ^
+kablam! 
+kablam! warning: type alias is never used: `IvTree`, #[warn(dead_code)] on by default
+kablam!  --> src/applied/interval_tree.rs:7:1
+kablam!   |
+kablam! 7 | type IvTree<Iv> = TreeWrapper<IntervalNode<Iv>>;
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: struct is never used: `State`, #[warn(dead_code)] on by default
+kablam!    --> src/applied/plain_tree.rs:214:9
+kablam!     |
+kablam! 214 |           struct State {
+kablam!     |  _________^ starting here...
+kablam! 215 | |             prev: usize,
+kablam! 216 | |             stopped: bool
+kablam! 217 | |         }
+kablam!     | |_________^ ...ending here
+kablam! 
+kablam! warning: struct is never used: `NoUpdate`, #[warn(dead_code)] on by default
+kablam!    --> src/applied/plain_tree.rs:263:1
+kablam!     |
+kablam! 263 |   struct NoUpdate<Tree> {
+kablam!     |  _^ starting here...
+kablam! 264 | |     _ph: PhantomData<Tree>
+kablam! 265 | | }
+kablam!     | |_^ ...ending here
+kablam! 
+kablam! warning: method is never used: `new`, #[warn(dead_code)] on by default
+kablam!   --> src/applied/interval.rs:25:5
+kablam!    |
+kablam! 25 |       pub fn new(a: K, b: K) -> KeyInterval<K> {
+kablam!    |  _____^ starting here...
+kablam! 26 | |         KeyInterval { a:a, b:b }
+kablam! 27 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: type alias is never used: `Tree`, #[warn(dead_code)] on by default
+kablam!  --> src/applied/mod.rs:7:1
+kablam!   |
+kablam! 7 | type Tree<T> =  TreeRepr<T>;
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 1.3 secs
+boom! running `docker rm -f e8cdf77877e3f673aa4e48ecaa72e90699e1e2a6c4540e687f02b2b341d3c771`
+blam! e8cdf77877e3f673aa4e48ecaa72e90699e1e2a6c4540e687f02b2b341d3c771
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! baeaf4ceb8a44b0a7a7f7cb4f176b83d0f6dc820288fb47e1f1d8a00c4f55809
+boom! running `docker start -a baeaf4ceb8a44b0a7a7f7cb4f176b83d0f6dc820288fb47e1f1d8a00c4f55809`
+kablam!    Compiling quickcheck v0.4.1
+kablam!    Compiling teardown_tree v0.5.0 (file:///source)
+kablam! warning: method is never used: `peek`, #[warn(dead_code)] on by default
+kablam!   --> src/base/slot_stack.rs:55:5
+kablam!    |
+kablam! 55 |       pub fn peek(&mut self) -> Slot {
+kablam!    |  _____^ starting here...
+kablam! 56 | |         debug_assert!(self.nslots > 0);
+kablam! 57 | |         *self.slot_at(self.nslots - 1)
+kablam! 58 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `nslots`, #[warn(dead_code)] on by default
+kablam!   --> src/base/slot_stack.rs:83:5
+kablam!    |
+kablam! 83 |       pub fn nslots(&self) -> usize {
+kablam!    |  _____^ starting here...
+kablam! 84 | |         self.nslots
+kablam! 85 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: unused import: `Display`, #[warn(unused_imports)] on by default
+kablam!    --> src/base/mod.rs:469:20
+kablam!     |
+kablam! 469 |     use std::fmt::{Display, Debug};
+kablam!     |                    ^^^^^^^
+kablam! 
+kablam! warning: type alias is never used: `IvTree`, #[warn(dead_code)] on by default
+kablam!  --> src/applied/interval_tree.rs:7:1
+kablam!   |
+kablam! 7 | type IvTree<Iv> = TreeWrapper<IntervalNode<Iv>>;
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused import: `std::convert::AsRef`, #[warn(unused_imports)] on by default
+kablam!    --> src/applied/interval_tree.rs:355:9
+kablam!     |
+kablam! 355 |     use std::convert::AsRef;
+kablam!     |         ^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused imports: `Arbitrary`, `Testable`, #[warn(unused_imports)] on by default
+kablam!    --> src/applied/interval_tree.rs:358:22
+kablam!     |
+kablam! 358 |     use quickcheck::{Testable, Arbitrary, Gen};
+kablam!     |                      ^^^^^^^^  ^^^^^^^^^
+kablam! 
+kablam! warning: unused import: `Gen`, #[warn(unused_imports)] on by default
+kablam!    --> src/applied/interval_tree.rs:358:43
+kablam!     |
+kablam! 358 |     use quickcheck::{Testable, Arbitrary, Gen};
+kablam!     |                                           ^^^
+kablam! 
+kablam! warning: unused imports: `lefti`, `righti`, #[warn(unused_imports)] on by default
+kablam!    --> src/applied/interval_tree.rs:360:45
+kablam!     |
+kablam! 360 |     use base::{TreeWrapper, Node, TreeBase, lefti, righti, parenti};
+kablam!     |                                             ^^^^^  ^^^^^^
+kablam! 
+kablam! warning: unused imports: `IntervalDeleteRange`, `IntervalDelete`, #[warn(unused_imports)] on by default
+kablam!    --> src/applied/interval_tree.rs:363:56
+kablam!     |
+kablam! 363 |     use applied::interval_tree::{IntervalTreeInternal, IntervalDelete, IntervalDeleteRange};
+kablam!     |                                                        ^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused imports: `IntervalTeardownTree`, `IntervalTreeWrapperAccess`, #[warn(unused_imports)] on by default
+kablam!    --> src/applied/interval_tree.rs:364:24
+kablam!     |
+kablam! 364 |     use external_api::{IntervalTeardownTree, IntervalTreeWrapperAccess};
+kablam!     |                        ^^^^^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/applied/interval_tree.rs:386:13
+kablam!     |
+kablam! 386 |         let mut tree = gen_tree(intervals);
+kablam!     |             ^^^^^^^^
+kablam! 
+kablam! warning: struct is never used: `State`, #[warn(dead_code)] on by default
+kablam!    --> src/applied/plain_tree.rs:214:9
+kablam!     |
+kablam! 214 |           struct State {
+kablam!     |  _________^ starting here...
+kablam! 215 | |             prev: usize,
+kablam! 216 | |             stopped: bool
+kablam! 217 | |         }
+kablam!     | |_________^ ...ending here
+kablam! 
+kablam! warning: struct is never used: `NoUpdate`, #[warn(dead_code)] on by default
+kablam!    --> src/applied/plain_tree.rs:263:1
+kablam!     |
+kablam! 263 |   struct NoUpdate<Tree> {
+kablam!     |  _^ starting here...
+kablam! 264 | |     _ph: PhantomData<Tree>
+kablam! 265 | | }
+kablam!     | |_^ ...ending here
+kablam! 
+kablam! warning: type alias is never used: `Tree`, #[warn(dead_code)] on by default
+kablam!  --> src/applied/mod.rs:7:1
+kablam!   |
+kablam! 7 | type Tree<T> =  TreeRepr<T>;
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused import: `parenti`, #[warn(unused_imports)] on by default
+kablam!   --> src/lib.rs:24:60
+kablam!    |
+kablam! 24 |     use base::{TreeBase, TreeWrapper, Node, lefti, righti, parenti};
+kablam!    |                                                            ^^^^^^^
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 8.57 secs
+boom! running `docker rm -f baeaf4ceb8a44b0a7a7f7cb4f176b83d0f6dc820288fb47e1f1d8a00c4f55809`
+blam! baeaf4ceb8a44b0a7a7f7cb4f176b83d0f6dc820288fb47e1f1d8a00c4f55809
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! 3a00bea4e9b76d52c6654a117439cc670ca73f7de058c10595d63f2de33ee407
+boom! running `docker start -a 3a00bea4e9b76d52c6654a117439cc670ca73f7de058c10595d63f2de33ee407`
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/teardown_tree-3726eaa045aa7bb9
+blam! 
+blam! running 11 tests
+blam! test plain_tests::build ... ok
+blam! test plain_tests::delete_range1 ... ok
+blam! test plain_tests::delete_range2 ... ok
+blam! test plain_tests::delete_range3 ... ok
+blam! test plain_tests::delete_range4 ... ok
+blam! test plain_tests::delete_range_prebuilt ... ok
+blam! test applied::interval_tree::tests::prebuilt ... ok
+blam! test plain_tests::quickcheck_plain_ ... ok
+blam! test plain_tests::delete_single_exhaustive ... ok
+blam! test plain_tests::delete_range_exhaustive ... ok
+blam! test applied::interval_tree::tests::quickcheck_interval_ ... ok
+blam! 
+blam! test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!    Doc-tests teardown_tree
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f 3a00bea4e9b76d52c6654a117439cc670ca73f7de058c10595d63f2de33ee407`
+blam! 3a00bea4e9b76d52c6654a117439cc670ca73f7de058c10595d63f2de33ee407

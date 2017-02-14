@@ -1,0 +1,32 @@
+boom! testing rust-pm-0.0.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 73cd25debb55a847175401c32ff9fd4ae06a62849ed4bc5290bed3447607ab2f
+boom! running `docker start -a 73cd25debb55a847175401c32ff9fd4ae06a62849ed4bc5290bed3447607ab2f`
+kablam!    Compiling rust-pm v0.0.2 (file:///source)
+kablam! error[E0425]: cannot find function `scoped` in module `thread`
+kablam!   --> src/logger.rs:35:21
+kablam!    |
+kablam! 35 |             let _ = thread::scoped(move || {
+kablam!    |                     ^^^^^^^^^^^^^^ not found in `thread`
+kablam! 
+kablam! error[E0061]: this function takes 3 parameters but 2 parameters were supplied
+kablam!    --> src/main.rs:278:16
+kablam!     |
+kablam! 278 |     router.get("/", IndexHandler::new(&arc_pm));
+kablam!     |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 3 parameters
+kablam! 
+kablam! error[E0061]: this function takes 3 parameters but 2 parameters were supplied
+kablam!    --> src/main.rs:279:16
+kablam!     |
+kablam! 279 |     router.get("/:query", handler);
+kablam!     |                ^^^^^^^^^^^^^^^^^^ expected 3 parameters
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `rust-pm`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 73cd25debb55a847175401c32ff9fd4ae06a62849ed4bc5290bed3447607ab2f`
+blam! 73cd25debb55a847175401c32ff9fd4ae06a62849ed4bc5290bed3447607ab2f

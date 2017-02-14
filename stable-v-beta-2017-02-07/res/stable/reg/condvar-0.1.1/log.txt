@@ -1,0 +1,72 @@
+boom! testing condvar-0.1.1 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! b5f4da2d925ebf72f16b93d6104f664a6b438b9e0c11df3bb17aa65f6148cd77
+boom! running `docker start -a b5f4da2d925ebf72f16b93d6104f664a6b438b9e0c11df3bb17aa65f6148cd77`
+kablam!    Compiling condvar v0.1.1 (file:///source)
+kablam! warning: use of deprecated item: replaced by `std::sync::Condvar::wait_timeout`, #[warn(deprecated)] on by default
+kablam!   --> src/lib.rs:67:29
+kablam!    |
+kablam! 67 | 			let (new, _) = try!(cvar.wait_timeout_ms(predicate, remaining_ms as u32));
+kablam!    | 			                         ^^^^^^^^^^^^^^^
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 0.35 secs
+boom! running `docker rm -f b5f4da2d925ebf72f16b93d6104f664a6b438b9e0c11df3bb17aa65f6148cd77`
+blam! b5f4da2d925ebf72f16b93d6104f664a6b438b9e0c11df3bb17aa65f6148cd77
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 2c95ec7f4c5d487b1f1e9bae035ddd7233398b2ef2c4df40dc02ba4d25478c61
+boom! running `docker start -a 2c95ec7f4c5d487b1f1e9bae035ddd7233398b2ef2c4df40dc02ba4d25478c61`
+kablam!    Compiling condvar v0.1.1 (file:///source)
+kablam! warning: use of deprecated item: replaced by `std::sync::Condvar::wait_timeout`, #[warn(deprecated)] on by default
+kablam!   --> src/lib.rs:67:29
+kablam!    |
+kablam! 67 | 			let (new, _) = try!(cvar.wait_timeout_ms(predicate, remaining_ms as u32));
+kablam!    | 			                         ^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: use of deprecated item: replaced by `std::thread::sleep`, #[warn(deprecated)] on by default
+kablam!   --> src/lib.rs:81:20
+kablam!    |
+kablam! 81 | 	use std::thread::{sleep_ms, spawn};
+kablam!    | 	                  ^^^^^^^^
+kablam! 
+kablam! warning: use of deprecated item: replaced by `std::thread::sleep`, #[warn(deprecated)] on by default
+kablam!    --> src/lib.rs:104:4
+kablam!     |
+kablam! 104 | 			sleep_ms(500);
+kablam!     | 			^^^^^^^^
+kablam! 
+kablam! warning: use of deprecated item: replaced by `std::thread::sleep`, #[warn(deprecated)] on by default
+kablam!    --> src/lib.rs:117:4
+kablam!     |
+kablam! 117 | 			sleep_ms(1000);
+kablam!     | 			^^^^^^^^
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 0.85 secs
+boom! running `docker rm -f 2c95ec7f4c5d487b1f1e9bae035ddd7233398b2ef2c4df40dc02ba4d25478c61`
+blam! 2c95ec7f4c5d487b1f1e9bae035ddd7233398b2ef2c4df40dc02ba4d25478c61
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! 3ca34ea444b4b71777eb989c867b03494ecabc7ade1e9d255e7cc4a1b6d4c853
+boom! running `docker start -a 3ca34ea444b4b71777eb989c867b03494ecabc7ade1e9d255e7cc4a1b6d4c853`
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/condvar-2ee403f5ee8c58b2
+blam! 
+blam! running 3 tests
+blam! test tests::test_wait ... ok
+blam! test tests::test_wait_timeout_ms ... ok
+blam! test tests::test_wait_timeout_ms_fail ... ok
+blam! 
+blam! test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!    Doc-tests condvar
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f 3ca34ea444b4b71777eb989c867b03494ecabc7ade1e9d255e7cc4a1b6d4c853`
+blam! 3ca34ea444b4b71777eb989c867b03494ecabc7ade1e9d255e7cc4a1b6d4c853

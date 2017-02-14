@@ -1,0 +1,29 @@
+boom! testing plague-0.6.3 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 03d1dc6740da433ffe2bec31cbf8c34ff0a33c97c55f0a4bae72211e4094501e
+boom! running `docker start -a 03d1dc6740da433ffe2bec31cbf8c34ff0a33c97c55f0a4bae72211e4094501e`
+kablam!    Compiling plague v0.6.3 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::parse::token::keywords`
+kablam!   --> src/lib.rs:21:5
+kablam!    |
+kablam! 21 | use syntax::parse::token::keywords;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `keywords` in `parse::token`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:132:55
+kablam!     |
+kablam! 132 |         Ok(test_ident) if test_ident.name.as_str() == kw => Ok(()),
+kablam!     |                                                       ^^ expected struct `syntax::symbol::InternedString`, found &str
+kablam!     |
+kablam!     = note: expected type `syntax::symbol::InternedString`
+kablam!                found type `&str`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `plague`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 03d1dc6740da433ffe2bec31cbf8c34ff0a33c97c55f0a4bae72211e4094501e`
+blam! 03d1dc6740da433ffe2bec31cbf8c34ff0a33c97c55f0a4bae72211e4094501e

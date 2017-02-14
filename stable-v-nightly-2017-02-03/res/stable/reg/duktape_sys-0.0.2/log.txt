@@ -1,0 +1,49 @@
+boom! testing duktape_sys-0.0.2 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 5c607a5242487331c9163a74dbf2a303b0d71d687ce4ea74b59c7bc3a79f031d
+boom! running `docker start -a 5c607a5242487331c9163a74dbf2a303b0d71d687ce4ea74b59c7bc3a79f031d`
+kablam!    Compiling duktape_sys v0.0.2 (file:///source)
+kablam! error[E0432]: unresolved import `std::os::getenv`
+kablam!  --> build.rs:6:15
+kablam!   |
+kablam! 6 | use std::os::{getenv, setenv};
+kablam!   |               ^^^^^^ no `getenv` in `std::os`
+kablam! 
+kablam! error[E0432]: unresolved import `std::os::setenv`
+kablam!  --> build.rs:6:23
+kablam!   |
+kablam! 6 | use std::os::{getenv, setenv};
+kablam!   |                       ^^^^^^ no `setenv` in `std::os`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> build.rs:16:35
+kablam!    |
+kablam! 16 |         include_directories: vec!(Path::new("duktape/src")),
+kablam!    |                                   ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error[E0061]: this function takes 2 parameters but 3 parameters were supplied
+kablam!   --> build.rs:15:26
+kablam!    |
+kablam! 15 |     gcc::compile_library("libduktape.a", &gcc::Config {
+kablam!    |                          ^
+kablam!    |
+kablam!    = note: the following parameter types were expected:
+kablam!    = note: &str, &[&str]
+kablam! 
+kablam! error[E0277]: the trait bound `gcc::Config: std::default::Default` is not satisfied
+kablam!   --> build.rs:17:12
+kablam!    |
+kablam! 17 |         .. Default::default()
+kablam!    |            ^^^^^^^^^^^^^^^^ the trait `std::default::Default` is not implemented for `gcc::Config`
+kablam!    |
+kablam!    = note: required by `std::default::Default::default`
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `duktape_sys`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 5c607a5242487331c9163a74dbf2a303b0d71d687ce4ea74b59c7bc3a79f031d`
+blam! 5c607a5242487331c9163a74dbf2a303b0d71d687ce4ea74b59c7bc3a79f031d

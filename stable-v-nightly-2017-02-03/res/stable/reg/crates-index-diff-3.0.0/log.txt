@@ -1,0 +1,36 @@
+boom! testing crates-index-diff-3.0.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 2a7157907972e52f5c4bb59db9bf8477a01ddc4dbefe467e8ce54ee8e0708909
+boom! running `docker start -a 2a7157907972e52f5c4bb59db9bf8477a01ddc4dbefe467e8ce54ee8e0708909`
+kablam!    Compiling openssl-sys v0.9.6
+kablam! error: failed to run custom build command for `openssl-sys v0.9.6`
+kablam! process didn't exit successfully: `/target/debug/build/openssl-sys-72083b25a35212ee/build-script-build` (exit code: 101)
+kablam! --- stderr
+kablam! thread 'main' panicked at '
+kablam! 
+kablam! Could not find directory of OpenSSL installation, and this `-sys` crate cannot
+kablam! proceed without this knowledge. If OpenSSL is installed and this crate had
+kablam! trouble finding it,  you can set the `OPENSSL_DIR` environment variable for the
+kablam! compilation process.
+kablam! 
+kablam! If you're in a situation where you think the directory *should* be found
+kablam! automatically, please open a bug at https://github.com/sfackler/rust-openssl
+kablam! and include information about your system as well as this message.
+kablam! 
+kablam!     $HOST = x86_64-unknown-linux-gnu
+kablam!     $TARGET = x86_64-unknown-linux-gnu
+kablam!     openssl-sys = 0.9.6
+kablam! 
+kablam! 
+kablam! It looks like you're compiling on Linux and also targeting Linux. Currently this
+kablam! requires the `pkg-config` utility to find OpenSSL but unfortunately `pkg-config`
+kablam! could not be found. If you have OpenSSL installed you can likely fix this by
+kablam! installing `pkg-config`.
+kablam! 
+kablam! ', /cargo-home/registry/src/github.com-1ecc6299db9ec823/openssl-sys-0.9.6/build.rs:150
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f 2a7157907972e52f5c4bb59db9bf8477a01ddc4dbefe467e8ce54ee8e0708909`
+blam! 2a7157907972e52f5c4bb59db9bf8477a01ddc4dbefe467e8ce54ee8e0708909

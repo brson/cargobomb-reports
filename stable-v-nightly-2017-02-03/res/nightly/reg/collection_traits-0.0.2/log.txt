@@ -1,0 +1,68 @@
+boom! testing collection_traits-0.0.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! c97880ed2e58032eb121b19fd2207f7cbdc6482494057f253e2e864f0e813461
+boom! running `docker start -a c97880ed2e58032eb121b19fd2207f7cbdc6482494057f253e2e864f0e813461`
+kablam!    Compiling collection_traits v0.0.2 (file:///source)
+kablam! error[E0432]: unresolved import `std::collections::hash_state::HashState`
+kablam!  --> src/impls/hash_map.rs:3:5
+kablam!   |
+kablam! 3 | use std::collections::hash_state::HashState;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `hash_state` in `collections`
+kablam! 
+kablam! error[E0432]: unresolved import `std::collections::hash_state::HashState`
+kablam!  --> src/impls/hash_set.rs:3:5
+kablam!   |
+kablam! 3 | use std::collections::hash_state::HashState;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `hash_state` in `collections`
+kablam! 
+kablam! error[E0220]: associated type `Key` not found for `T`
+kablam!    --> src/impls/core.rs:135:62
+kablam!     |
+kablam! 135 |     where T: NewtypeDeref, T::Target: assoc::ContainsKey<Q>, T::Key: Borrow<Q>, Q: Ord
+kablam!     |                                                              ^^^^^^ associated type `Key` not found
+kablam! 
+kablam! error[E0220]: associated type `Key` not found for `T`
+kablam!    --> src/impls/core.rs:141:59
+kablam!     |
+kablam! 141 |     where T: NewtypeDerefMut, T::Target: assoc::Erase<Q>, T::Key: Borrow<Q>, Q: Ord
+kablam!     |                                                           ^^^^^^ associated type `Key` not found
+kablam! 
+kablam! error[E0220]: associated type `Key` not found for `T`
+kablam!    --> src/impls/core.rs:162:57
+kablam!     |
+kablam! 162 |     where T: NewtypeDeref, T::Target: map::_Get<'a, Q>, T::Key: Borrow<Q>, Q: Ord
+kablam!     |                                                         ^^^^^^ associated type `Key` not found
+kablam! 
+kablam! error[E0220]: associated type `Key` not found for `T`
+kablam!    --> src/impls/core.rs:168:52
+kablam!     |
+kablam! 168 |     where T: NewtypeDeref, T::Target: map::Get<Q>, T::Key: Borrow<Q>, Q: Ord
+kablam!     |                                                    ^^^^^^ associated type `Key` not found
+kablam! 
+kablam! error[E0220]: associated type `Key` not found for `T`
+kablam!    --> src/impls/core.rs:174:63
+kablam!     |
+kablam! 174 |     where T: NewtypeDerefMut, T::Target: map::_GetMut<'a, Q>, T::Key: Borrow<Q>, Q: Ord
+kablam!     |                                                               ^^^^^^ associated type `Key` not found
+kablam! 
+kablam! error[E0220]: associated type `Key` not found for `T`
+kablam!    --> src/impls/core.rs:180:58
+kablam!     |
+kablam! 180 |     where T: NewtypeDerefMut, T::Target: map::GetMut<Q>, T::Key: Borrow<Q>, Q: Ord
+kablam!     |                                                          ^^^^^^ associated type `Key` not found
+kablam! 
+kablam! error[E0220]: associated type `Key` not found for `T`
+kablam!    --> src/impls/core.rs:192:58
+kablam!     |
+kablam! 192 |     where T: NewtypeDerefMut, T::Target: map::Remove<Q>, T::Key: Borrow<Q>, Q: Ord
+kablam!     |                                                          ^^^^^^ associated type `Key` not found
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `collection_traits`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f c97880ed2e58032eb121b19fd2207f7cbdc6482494057f253e2e864f0e813461`
+blam! c97880ed2e58032eb121b19fd2207f7cbdc6482494057f253e2e864f0e813461

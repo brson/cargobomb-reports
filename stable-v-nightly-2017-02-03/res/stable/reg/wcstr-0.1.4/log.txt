@@ -1,0 +1,80 @@
+boom! testing wcstr-0.1.4 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! b63999542ab7127437464a278c0fd7644ca41a665126717c5f625adac886e263
+boom! running `docker start -a b63999542ab7127437464a278c0fd7644ca41a665126717c5f625adac886e263`
+kablam!    Compiling wcstr v0.1.4 (file:///source)
+kablam! error[E0432]: unresolved import `std::os::windows::ffi::OsStringExt`
+kablam!  --> src/wcstr.rs:4:31
+kablam!   |
+kablam! 4 | use ::std::os::windows::ffi::{OsStringExt, OsStrExt};
+kablam!   |                               ^^^^^^^^^^^ Could not find `windows` in `std::os`
+kablam! 
+kablam! error[E0432]: unresolved import `std::os::windows::ffi::OsStrExt`
+kablam!  --> src/wcstr.rs:4:44
+kablam!   |
+kablam! 4 | use ::std::os::windows::ffi::{OsStringExt, OsStrExt};
+kablam!   |                                            ^^^^^^^^ Could not find `windows` in `std::os`
+kablam! 
+kablam! error[E0432]: unresolved import `std::os::windows::ffi::OsStrExt`
+kablam!  --> src/wcstring.rs:4:5
+kablam!   |
+kablam! 4 | use ::std::os::windows::ffi::OsStrExt;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `windows` in `std::os`
+kablam! 
+kablam! error: no associated item named `from_wide` found for type `std::ffi::OsString` in the current scope
+kablam!    --> src/wcstr.rs:103:9
+kablam!     |
+kablam! 103 |         OsString::from_wide(self.to_slice())
+kablam!     |         ^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `encode_wide` found for type `&std::ffi::OsStr` in the current scope
+kablam!    --> src/wcstr.rs:146:28
+kablam!     |
+kablam! 146 |         let mut s_iter = s.encode_wide();
+kablam!     |                            ^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `encode_wide` found for type `&std::ffi::OsStr` in the current scope
+kablam!    --> src/wcstr.rs:162:51
+kablam!     |
+kablam! 162 |         self.to_slice().iter().zip(other.as_ref().encode_wide()).all(|(&a, b)| a == b)
+kablam!     |                                                   ^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `encode_wide` found for type `&std::ffi::OsStr` in the current scope
+kablam!    --> src/wcstring.rs:110:38
+kablam!     |
+kablam! 110 |         let v: Vec<u16> = s.as_ref().encode_wide().collect();
+kablam!     |                                      ^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `encode_wide` found for type `&std::ffi::OsStr` in the current scope
+kablam!    --> src/wcstring.rs:123:38
+kablam!     |
+kablam! 123 |         let v: Vec<u16> = s.as_ref().encode_wide().collect();
+kablam!     |                                      ^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `encode_wide` found for type `&std::ffi::OsStr` in the current scope
+kablam!    --> src/wcstring.rs:268:29
+kablam!     |
+kablam! 268 |         self.inner.extend(s.encode_wide().take_while(|&w| { not_nuled = w != 0; not_nuled }));
+kablam!     |                             ^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `encode_wide` found for type `&std::ffi::OsStr` in the current scope
+kablam!    --> src/wcstring.rs:289:29
+kablam!     |
+kablam! 289 |         self.inner.extend(s.encode_wide());
+kablam!     |                             ^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `encode_wide` found for type `&std::ffi::OsStr` in the current scope
+kablam!    --> src/wcstring.rs:310:29
+kablam!     |
+kablam! 310 |         self.inner.extend(s.encode_wide().take_while(|&w| { not_nuled = w != 0; not_nuled }));
+kablam!     |                             ^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 8 previous errors
+kablam! 
+kablam! error: Could not compile `wcstr`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f b63999542ab7127437464a278c0fd7644ca41a665126717c5f625adac886e263`
+blam! b63999542ab7127437464a278c0fd7644ca41a665126717c5f625adac886e263

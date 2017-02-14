@@ -1,0 +1,50 @@
+boom! testing objc-0.1.8 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 75e48c31d996f42891ded49f7ae60d5f4601863b2017b23b4fc5bdd4502d154b
+boom! running `docker start -a 75e48c31d996f42891ded49f7ae60d5f4601863b2017b23b4fc5bdd4502d154b`
+kablam!    Compiling objc v0.1.8 (file:///source)
+kablam! error: `unsafe extern "C" fn(*mut runtime::Object, runtime::Sel, ...) -> *mut runtime::Object {runtime::::objc_msgSend}` is now zero-sized and has to be cast to a pointer before transmuting to `unsafe extern "C" fn(*mut runtime::Object, runtime::Sel, ...) -> R`, #[deny(transmute_from_fn_item_types)] on by default
+kablam!   --> src/message.rs:52:18
+kablam!    |
+kablam! 52 |         unsafe { mem::transmute(runtime::objc_msgSend) }
+kablam!    |                  ^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #19925 <https://github.com/rust-lang/rust/issues/19925>
+kablam! 
+kablam! error: `unsafe extern "C" fn(*mut runtime::Object, runtime::Sel, ...) {runtime::::objc_msgSend_stret}` is now zero-sized and has to be cast to a pointer before transmuting to `unsafe extern "C" fn(*mut runtime::Object, runtime::Sel, ...) -> R`, #[deny(transmute_from_fn_item_types)] on by default
+kablam!   --> src/message.rs:54:18
+kablam!    |
+kablam! 54 |         unsafe { mem::transmute(runtime::objc_msgSend_stret) }
+kablam!    |                  ^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #19925 <https://github.com/rust-lang/rust/issues/19925>
+kablam! 
+kablam! error: `unsafe extern "C" fn(*const runtime::Super, runtime::Sel, ...) -> *mut runtime::Object {runtime::::objc_msgSendSuper}` is now zero-sized and has to be cast to a pointer before transmuting to `unsafe extern "C" fn(*const runtime::Super, runtime::Sel, ...) -> R`, #[deny(transmute_from_fn_item_types)] on by default
+kablam!   --> src/message.rs:61:18
+kablam!    |
+kablam! 61 |         unsafe { mem::transmute(runtime::objc_msgSendSuper) }
+kablam!    |                  ^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #19925 <https://github.com/rust-lang/rust/issues/19925>
+kablam! 
+kablam! error: `unsafe extern "C" fn(*const runtime::Super, runtime::Sel, ...) {runtime::::objc_msgSendSuper_stret}` is now zero-sized and has to be cast to a pointer before transmuting to `unsafe extern "C" fn(*const runtime::Super, runtime::Sel, ...) -> R`, #[deny(transmute_from_fn_item_types)] on by default
+kablam!   --> src/message.rs:63:18
+kablam!    |
+kablam! 63 |         unsafe { mem::transmute(runtime::objc_msgSendSuper_stret) }
+kablam!    |                  ^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #19925 <https://github.com/rust-lang/rust/issues/19925>
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `objc`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 75e48c31d996f42891ded49f7ae60d5f4601863b2017b23b4fc5bdd4502d154b`
+blam! 75e48c31d996f42891ded49f7ae60d5f4601863b2017b23b4fc5bdd4502d154b

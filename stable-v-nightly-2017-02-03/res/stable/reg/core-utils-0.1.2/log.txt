@@ -1,0 +1,51 @@
+boom! testing core-utils-0.1.2 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! d09d74d8e2b78f1617c3689afaefc0522bc68970ae88d77bb058dfe10285ac57
+boom! running `docker start -a d09d74d8e2b78f1617c3689afaefc0522bc68970ae88d77bb058dfe10285ac57`
+kablam!    Compiling rpf v0.1.6
+kablam!    Compiling pgetopts v0.1.2
+kablam!    Compiling core-utils v0.1.2 (file:///source)
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/cp/main.rs:7:1
+kablam!   |
+kablam! 7 | #![feature(path_ext,slice_splits)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! errorerror[E0432]: aborting due to previous error: unresolved import `rpf::Status`
+kablam! 
+kablam!   
+kablam! --> src/nproc/main.rs:15:11
+kablam!    |
+kablam! 15 | use rpf::{Status,Styled,Prog};
+kablam!    |           ^^^^^^ no `Status` in `rpf`. Did you mean to use `status`?
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/ls/main.rs:7:1
+kablam!   |
+kablam! 7 | #![feature(path_ext)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+blam! Build failed, waiting for other jobs to finish...
+kablam! error[E0308]: mismatched types
+kablam!   --> src/nproc/main.rs:48:24
+kablam!    |
+kablam! 48 |                        vec!["Alberto Corona"]);
+kablam!    |                        ^^^^^^^^^^^^^^^^^^^^^^ expected &[&str], found struct `std::vec::Vec`
+kablam!    |
+kablam!    = note: expected type `&[&str]`
+kablam!    = note:    found type `std::vec::Vec<&str>`
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `core-utils`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f d09d74d8e2b78f1617c3689afaefc0522bc68970ae88d77bb058dfe10285ac57`
+blam! d09d74d8e2b78f1617c3689afaefc0522bc68970ae88d77bb058dfe10285ac57

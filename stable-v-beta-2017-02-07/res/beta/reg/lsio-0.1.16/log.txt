@@ -1,0 +1,23 @@
+boom! testing lsio-0.1.16 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 511dc9e1c8cddc67d8fbc580092f4d57b57558bc5fe7363892d573142e59b36e
+boom! running `docker start -a 511dc9e1c8cddc67d8fbc580092f4d57b57558bc5fe7363892d573142e59b36e`
+kablam!    Compiling lsio v0.1.16 (file:///source)
+kablam! error[E0277]: the trait bound `&&[std::string::String]: std::iter::Iterator` is not satisfied
+kablam!   --> src/commands.rs:35:45
+kablam!    |
+kablam! 35 |             output = try!(Command::new(cmd).args(&args).output());
+kablam!    |                                             ^^^^ the trait `std::iter::Iterator` is not implemented for `&&[std::string::String]`
+kablam!    |
+kablam!    = note: `&&[std::string::String]` is not an iterator; maybe try calling `.iter()` or a similar method
+kablam!    = note: required because of the requirements on the impl of `std::iter::IntoIterator` for `&&[std::string::String]`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `lsio`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 511dc9e1c8cddc67d8fbc580092f4d57b57558bc5fe7363892d573142e59b36e`
+blam! 511dc9e1c8cddc67d8fbc580092f4d57b57558bc5fe7363892d573142e59b36e

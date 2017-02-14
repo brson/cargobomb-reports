@@ -1,0 +1,88 @@
+boom! testing bounded-integer-plugin-0.1.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 9c60ecb3c4a02676d091acb41e68d2681aa15852e8f21207e93f986432844301
+boom! running `docker start -a 9c60ecb3c4a02676d091acb41e68d2681aa15852e8f21207e93f986432844301`
+kablam!    Compiling bounded-integer-plugin v0.1.1 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::ast::TokenTree`
+kablam!   --> src/integer_enum.rs:10:5
+kablam!    |
+kablam! 10 |     TokenTree,
+kablam!    |     ^^^^^^^^^ no `TokenTree` in `ast`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::InternedString`
+kablam!   --> src/integer_enum.rs:18:40
+kablam!    |
+kablam! 18 | use syntax::parse::token::{DelimToken, InternedString, Token};
+kablam!    |                                        ^^^^^^^^^^^^^^ no `InternedString` in `parse::token`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::keywords`
+kablam!   --> src/integer_enum.rs:19:5
+kablam!    |
+kablam! 19 | use syntax::parse::token::keywords;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `keywords` in `parse::token`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::ast::TokenTree`
+kablam!   --> src/lib.rs:56:5
+kablam!    |
+kablam! 56 | use syntax::ast::TokenTree;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^ no `TokenTree` in `ast`
+kablam! 
+kablam! error[E0425]: cannot find value `EMPTY_CTXT` in module `ast`
+kablam!    --> src/integer_enum.rs:195:19
+kablam!     |
+kablam! 195 |             ctxt: ast::EMPTY_CTXT,
+kablam!     |                   ^^^^^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0277]: the trait bound `std::vec::Vec<syntax::codemap::Spanned<syntax::ast::NestedMetaItemKind>>: std::iter::FromIterator<syntax::ast::MetaItem>` is not satisfied
+kablam!    --> src/integer_enum.rs:140:14
+kablam!     |
+kablam! 140 |             .collect();
+kablam!     |              ^^^^^^^ the trait `std::iter::FromIterator<syntax::ast::MetaItem>` is not implemented for `std::vec::Vec<syntax::codemap::Spanned<syntax::ast::NestedMetaItemKind>>`
+kablam!     |
+kablam!     = note: a collection of type `std::vec::Vec<syntax::codemap::Spanned<syntax::ast::NestedMetaItemKind>>` cannot be built from an iterator over elements of type `syntax::ast::MetaItem`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/integer_enum.rs:147:37
+kablam!     |
+kablam! 147 |         let repr = cx.meta_word(sp, self.repr.name.as_str());
+kablam!     |                                     ^^^^^^^^^^^^^^^^^^^^^^^ expected struct `syntax::ast::Symbol`, found struct `syntax::symbol::InternedString`
+kablam!     |
+kablam!     = note: expected type `syntax::ast::Symbol`
+kablam!                found type `syntax::symbol::InternedString`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/integer_enum.rs:148:76
+kablam!     |
+kablam! 148 |         let repr_list = cx.meta_list(sp, InternedString::new("repr"), vec![repr]);
+kablam!     |                                                                            ^^^^ expected struct `syntax::codemap::Spanned`, found struct `syntax::ast::MetaItem`
+kablam!     |
+kablam!     = note: expected type `_`
+kablam!                found type `syntax::ast::MetaItem`
+kablam! 
+kablam! error[E0560]: struct `syntax::ast::Mac_` has no field named `ctxt`
+kablam!    --> src/integer_enum.rs:195:13
+kablam!     |
+kablam! 195 |             ctxt: ast::EMPTY_CTXT,
+kablam!     |             ^^^^^ `syntax::ast::Mac_` does not have this field
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/int_lit.rs:31:68
+kablam!    |
+kablam! 31 |                 LitKind::Int(i, _) => Ok(IntLit { neg: false, int: i }),
+kablam!    |                                                                    ^ expected u64, found u128
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/int_lit.rs:45:48
+kablam!    |
+kablam! 45 |         let lit = cx.expr_lit(sp, LitKind::Int(self.int, LitIntType::Unsuffixed));
+kablam!    |                                                ^^^^^^^^ expected u128, found u64
+kablam! 
+kablam! error: aborting due to 6 previous errors
+kablam! 
+kablam! error: Could not compile `bounded-integer-plugin`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 9c60ecb3c4a02676d091acb41e68d2681aa15852e8f21207e93f986432844301`
+blam! 9c60ecb3c4a02676d091acb41e68d2681aa15852e8f21207e93f986432844301

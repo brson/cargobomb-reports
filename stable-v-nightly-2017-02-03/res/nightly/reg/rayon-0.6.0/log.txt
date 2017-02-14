@@ -1,0 +1,656 @@
+boom! testing rayon-0.6.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 1f55a3aea08354476e059346a9e7a66262c7b2f6232d7f2f5a426bfb38894442
+boom! running `docker start -a 1f55a3aea08354476e059346a9e7a66262c7b2f6232d7f2f5a426bfb38894442`
+kablam!    Compiling rayon v0.6.0 (file:///source)
+kablam! warning: struct is never used: `HeapJob`, #[warn(dead_code)] on by default
+kablam!    --> src/job.rs:130:1
+kablam!     |
+kablam! 130 |   pub struct HeapJob<BODY>
+kablam!     |  _^ starting here...
+kablam! 131 | |     where BODY: FnOnce(JobMode)
+kablam! 132 | | {
+kablam! 133 | |     job: UnsafeCell<Option<BODY>>,
+kablam! 134 | | }
+kablam!     | |_^ ...ending here
+kablam! 
+kablam! warning: method is never used: `new`, #[warn(dead_code)] on by default
+kablam!    --> src/job.rs:139:5
+kablam!     |
+kablam! 139 |       pub fn new(func: BODY) -> Self {
+kablam!     |  _____^ starting here...
+kablam! 140 | |         HeapJob { job: UnsafeCell::new(Some(func)) }
+kablam! 141 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `as_job_ref`, #[warn(dead_code)] on by default
+kablam!    --> src/job.rs:146:5
+kablam!     |
+kablam! 146 |       pub unsafe fn as_job_ref(self: Box<Self>) -> JobRef {
+kablam!     |  _____^ starting here...
+kablam! 147 | |         let this: *const Self = mem::transmute(self);
+kablam! 148 | |         JobRef::new(this)
+kablam! 149 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `bump_spawn_count`, #[warn(dead_code)] on by default
+kablam!    --> src/thread_pool.rs:334:5
+kablam!     |
+kablam! 334 |       pub fn bump_spawn_count(&self) {
+kablam!     |  _____^ starting here...
+kablam! 335 | |         self.spawn_count.set(self.spawn_count.get() + 1);
+kablam! 336 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 3.94 secs
+boom! running `docker rm -f 1f55a3aea08354476e059346a9e7a66262c7b2f6232d7f2f5a426bfb38894442`
+blam! 1f55a3aea08354476e059346a9e7a66262c7b2f6232d7f2f5a426bfb38894442
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! c59addb2cba8214e763c70b44049de64754104f5a964550c2e4a4a6394b8c05b
+boom! running `docker start -a c59addb2cba8214e763c70b44049de64754104f5a964550c2e4a4a6394b8c05b`
+kablam!    Compiling rayon v0.6.0 (file:///source)
+kablam! warning: struct is never used: `HeapJob`, #[warn(dead_code)] on by default
+kablam!    --> src/job.rs:130:1
+kablam!     |
+kablam! 130 |   pub struct HeapJob<BODY>
+kablam!     |  _^ starting here...
+kablam! 131 | |     where BODY: FnOnce(JobMode)
+kablam! 132 | | {
+kablam! 133 | |     job: UnsafeCell<Option<BODY>>,
+kablam! 134 | | }
+kablam!     | |_^ ...ending here
+kablam! 
+kablam! warning: method is never used: `new`, #[warn(dead_code)] on by default
+kablam!    --> src/job.rs:139:5
+kablam!     |
+kablam! 139 |       pub fn new(func: BODY) -> Self {
+kablam!     |  _____^ starting here...
+kablam! 140 | |         HeapJob { job: UnsafeCell::new(Some(func)) }
+kablam! 141 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `as_job_ref`, #[warn(dead_code)] on by default
+kablam!    --> src/job.rs:146:5
+kablam!     |
+kablam! 146 |       pub unsafe fn as_job_ref(self: Box<Self>) -> JobRef {
+kablam!     |  _____^ starting here...
+kablam! 147 | |         let this: *const Self = mem::transmute(self);
+kablam! 148 | |         JobRef::new(this)
+kablam! 149 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `bump_spawn_count`, #[warn(dead_code)] on by default
+kablam!    --> src/thread_pool.rs:334:5
+kablam!     |
+kablam! 334 |       pub fn bump_spawn_count(&self) {
+kablam!     |  _____^ starting here...
+kablam! 335 | |         self.spawn_count.set(self.spawn_count.get() + 1);
+kablam! 336 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 49.98 secs
+boom! running `docker rm -f c59addb2cba8214e763c70b44049de64754104f5a964550c2e4a4a6394b8c05b`
+blam! c59addb2cba8214e763c70b44049de64754104f5a964550c2e4a4a6394b8c05b
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! a9e6378ed4d8d366823d5531204a8c2769c87a2c6ada4f57a6f5d55023d7c529
+boom! running `docker start -a a9e6378ed4d8d366823d5531204a8c2769c87a2c6ada4f57a6f5d55023d7c529`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/rayon-ae4ca2503e8e0827
+blam! 
+blam! running 98 tests
+blam! test par_iter::test::check_binary_heap ... ok
+blam! test par_iter::test::check_btree_set ... ok
+blam! test par_iter::test::check_btree_map ... ok
+blam! test par_iter::test::check_chain ... ok
+blam! test par_iter::test::check_chunks_mut ... ok
+blam! test par_iter::test::check_cmp_gt_direct ... ok
+blam! test par_iter::test::check_chunks ... ok
+blam! test par_iter::test::check_cmp_gt_to_seq ... ok
+blam! test par_iter::test::check_cmp_lt_direct ... ok
+blam! test par_iter::test::check_cmp_lt_to_seq ... ok
+blam! test par_iter::test::check_cmp_direct ... ok
+blam! test par_iter::test::check_cmp_to_seq ... ok
+blam! test par_iter::test::check_drops ... ok
+blam! test par_iter::test::check_empty_flat_map_sum ... ok
+blam! test par_iter::test::check_enumerate ... ok
+blam! test par_iter::test::check_eq_to_seq ... ok
+blam! test par_iter::test::check_eq_direct ... ok
+blam! test par_iter::test::check_find_is_present ... ok
+blam! test par_iter::test::check_find_not_present ... ok
+blam! test par_iter::test::check_count ... ok
+blam! test par_iter::test::check_ge_equal_direct ... ok
+blam! test par_iter::test::check_flat_map_nested_ranges ... ok
+blam! test par_iter::test::check_ge_equal_to_seq ... ok
+blam! test par_iter::test::check_gt_direct ... ok
+blam! test par_iter::test::check_ge_greater_to_seq ... ok
+blam! test par_iter::test::check_gt_to_seq ... ok
+blam! test par_iter::test::check_ge_greater_direct ... ok
+blam! test par_iter::test::check_hash_set ... ok
+blam! test par_iter::test::check_hash_map ... ok
+blam! test par_iter::test::check_indices_after_enumerate_split ... ok
+blam! test par_iter::test::check_increment ... ok
+blam! test par_iter::test::check_inspect ... ok
+blam! test par_iter::test::check_le_equal_direct ... ok
+blam! test par_iter::test::check_le_less_direct ... ok
+blam! test par_iter::test::check_map_exact_and_bounded ... ok
+blam! test par_iter::test::check_move ... ok
+blam! test par_iter::test::check_ne_direct ... ok
+blam! test par_iter::test::check_lt_direct ... ok
+blam! test par_iter::test::check_options ... ok
+blam! test par_iter::test::check_ne_to_seq ... ok
+blam! test par_iter::test::check_partial_cmp_direct ... ok
+blam! test par_iter::test::check_partial_cmp_gt_to_seq ... ok
+blam! test par_iter::test::check_partial_cmp_gt_direct ... ok
+blam! test par_iter::test::check_partial_cmp_late_nan_direct ... ok
+blam! test par_iter::test::check_partial_cmp_late_nane_to_seq ... ok
+blam! test par_iter::test::check_partial_cmp_lt_direct ... ok
+blam! test par_iter::test::check_partial_cmp_lt_to_seq ... ok
+blam! test par_iter::test::check_partial_cmp_none_direct ... ok
+blam! test par_iter::test::check_partial_cmp_none_to_seq ... ok
+blam! test par_iter::test::check_partial_cmp_to_seq ... ok
+blam! test par_iter::test::check_range_exact_and_bounded ... ok
+blam! test par_iter::test::check_linked_list ... ok
+blam! test par_iter::test::check_range_split_at_overflow ... ok
+blam! test par_iter::test::check_results ... ok
+blam! test par_iter::test::check_slice_exact_and_bounded ... ok
+blam! test par_iter::test::check_slice_mut_exact_and_bounded ... ok
+blam! test par_iter::test::check_sum_filtered_ints ... ok
+blam! test par_iter::test::check_skip ... ok
+blam! test par_iter::test::check_sum_filtermap_ints ... ok
+blam! test par_iter::test::check_vec_deque ... ok
+blam! test par_iter::test::check_vec_exact_and_bounded ... ok
+blam! test par_iter::test::check_weight_exact_and_bounded ... ok
+blam! test par_iter::test::check_zip ... ok
+blam! test par_iter::test::check_zip_into_mut_par_iter ... ok
+blam! test par_iter::test::check_take ... ok
+blam! test par_iter::test::check_zip_into_par_iter ... ok
+blam! test par_iter::test::check_zip_range ... ok
+blam! test par_iter::test::execute ... ok
+blam! test par_iter::test::execute_range ... ok
+blam! test par_iter::test::execute_cloned ... ok
+blam! test par_iter::test::execute_unindexed_range ... ok
+blam! test par_iter::test::execute_strings ... ok
+blam! test par_iter::test::fold_map_reduce ... ok
+blam! test par_iter::test::find_any ... ok
+blam! test par_iter::test::map_reduce ... ok
+blam! test par_iter::test::map_reduce_with ... ok
+blam! test par_iter::test::map_sum ... ok
+blam! test par_iter::test::check_cmp_rng_to_seq ... ok
+blam! test par_iter::test::par_iter_collect ... ok
+blam! test par_iter::test::par_iter_collect_binaryheap ... ok
+blam! test par_iter::test::check_partial_cmp_rng_to_seq ... ok
+blam! test par_iter::test::par_iter_collect_btreemap ... ok
+blam! test par_iter::test::par_iter_collect_hashmap ... ok
+blam! test par_iter::test::par_iter_collect_btreeset ... ok
+blam! test par_iter::test::par_iter_collect_hashset ... ok
+blam! test par_iter::test::par_iter_collect_linked_list ... ok
+blam! test par_iter::test::par_iter_collect_vecdeque ... ok
+blam! test test::coerce_to_box_error ... ok
+blam! test test::error_in_pool ... ok
+blam! 
+blam! running 9 tests
+blam! test [compile-fail] compile-fail/cell_par_iter.rs ... FAILED
+blam! test [compile-fail] compile-fail/cannot_collect_filtermap_data.rs ... FAILED
+blam! test [compile-fail] compile-fail/cannot_zip_filtered_data.rs ... FAILED
+blam! test [compile-fail] compile-fail/quicksort_race1.rs ... FAILED
+blam! test [compile-fail] compile-fail/quicksort_race2.rs ... FAILED
+blam! test [compile-fail] compile-fail/quicksort_race3.rs ... FAILED
+blam! test [compile-fail] compile-fail/rc_par_iter.rs ... FAILED
+blam! test [compile-fail] compile-fail/rc_return.rs ... FAILED
+blam! test [compile-fail] compile-fail/rc_upvar.rs ... FAILED
+blam! 
+blam! failures:
+blam! 
+blam! ---- [compile-fail] compile-fail/cell_par_iter.rs stdout ----
+blam! 	
+blam! error: tests/compile-fail/cell_par_iter.rs:1: unexpected "error": '1:1: 1:20: can't find crate for `rayon` [E0463]'
+blam! 
+blam! error: tests/compile-fail/cell_par_iter.rs:11: expected error not found: Sync` is not satisfied
+blam! 
+blam! error: 1 unexpected errors found, 1 expected errors not found
+blam! status: exit code: 101
+blam! command: rustc tests/compile-fail/cell_par_iter.rs -L /tmp --target=x86_64-unknown-linux-gnu --error-format json -L /tmp/cell_par_iter.stage-id.compile-fail.libaux -C prefer-dynamic -o /tmp/cell_par_iter.stage-id -L target/debug/ -L target/debug/deps/
+blam! unexpected errors (from JSON output): [
+blam!     Error {
+blam!         line_num: 1,
+blam!         kind: Some(
+blam!             Error
+blam!         ),
+blam!         msg: "1:1: 1:20: can\'t find crate for `rayon` [E0463]"
+blam!     }
+blam! ]
+blam! 
+blam! not found errors (from test file): [
+blam!     Error {
+blam!         line_num: 11,
+blam!         kind: Some(
+blam!             Error
+blam!         ),
+blam!         msg: "Sync` is not satisfied"
+blam!     }
+blam! ]
+blam! 
+blam! thread '[compile-fail] compile-fail/cell_par_iter.rs' panicked at 'explicit panic', /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.2.5/src/runtest.rs:1097
+blam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+blam! 
+blam! ---- [compile-fail] compile-fail/cannot_collect_filtermap_data.rs stdout ----
+blam! 	
+blam! error: tests/compile-fail/cannot_collect_filtermap_data.rs:1: unexpected "error": '1:1: 1:20: can't find crate for `rayon` [E0463]'
+blam! 
+blam! error: tests/compile-fail/cannot_collect_filtermap_data.rs:13: expected error not found: no method
+blam! 
+blam! error: 1 unexpected errors found, 1 expected errors not found
+blam! status: exit code: 101
+blam! command: rustc tests/compile-fail/cannot_collect_filtermap_data.rs -L /tmp --target=x86_64-unknown-linux-gnu --error-format json -L /tmp/cannot_collect_filtermap_data.stage-id.compile-fail.libaux -C prefer-dynamic -o /tmp/cannot_collect_filtermap_data.stage-id -L target/debug/ -L target/debug/deps/
+blam! unexpected errors (from JSON output): [
+blam!     Error {
+blam!         line_num: 1,
+blam!         kind: Some(
+blam!             Error
+blam!         ),
+blam!         msg: "1:1: 1:20: can\'t find crate for `rayon` [E0463]"
+blam!     }
+blam! ]
+blam! 
+blam! not found errors (from test file): [
+blam!     Error {
+blam!         line_num: 13,
+blam!         kind: Some(
+blam!             Error
+blam!         ),
+blam!         msg: "no method"
+blam!     }
+blam! ]
+blam! 
+blam! thread '[compile-fail] compile-fail/cannot_collect_filtermap_data.rs' panicked at 'explicit panic', /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.2.5/src/runtest.rs:1097
+blam! 
+blam! ---- [compile-fail] compile-fail/cannot_zip_filtered_data.rs stdout ----
+blam! 	
+blam! error: tests/compile-fail/cannot_zip_filtered_data.rs:1: unexpected "error": '1:1: 1:20: can't find crate for `rayon` [E0463]'
+blam! 
+blam! error: tests/compile-fail/cannot_zip_filtered_data.rs:13: expected error not found: E0277
+blam! 
+blam! error: 1 unexpected errors found, 1 expected errors not found
+blam! status: exit code: 101
+blam! command: rustc tests/compile-fail/cannot_zip_filtered_data.rs -L /tmp --target=x86_64-unknown-linux-gnu --error-format json -L /tmp/cannot_zip_filtered_data.stage-id.compile-fail.libaux -C prefer-dynamic -o /tmp/cannot_zip_filtered_data.stage-id -L target/debug/ -L target/debug/deps/
+blam! unexpected errors (from JSON output): [
+blam!     Error {
+blam!         line_num: 1,
+blam!         kind: Some(
+blam!             Error
+blam!         ),
+blam!         msg: "1:1: 1:20: can\'t find crate for `rayon` [E0463]"
+blam!     }
+blam! ]
+blam! 
+blam! not found errors (from test file): [
+blam!     Error {
+blam!         line_num: 13,
+blam!         kind: Some(
+blam!             Error
+blam!         ),
+blam!         msg: "E0277"
+blam!     }
+blam! ]
+blam! 
+blam! thread '[compile-fail] compile-fail/cannot_zip_filtered_data.rs' panicked at 'explicit panic', /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.2.5/src/runtest.rs:1097
+blam! 
+blam! ---- [compile-fail] compile-fail/quicksort_race1.rs stdout ----
+blam! 	
+blam! error: tests/compile-fail/quicksort_race1.rs:1: unexpected "error": '1:1: 1:20: can't find crate for `rayon` [E0463]'
+blam! 
+blam! error: tests/compile-fail/quicksort_race1.rs:10: expected error not found: E0524
+blam! 
+blam! error: 1 unexpected errors found, 1 expected errors not found
+blam! status: exit code: 101
+blam! command: rustc tests/compile-fail/quicksort_race1.rs -L /tmp --target=x86_64-unknown-linux-gnu --error-format json -L /tmp/quicksort_race1.stage-id.compile-fail.libaux -C prefer-dynamic -o /tmp/quicksort_race1.stage-id -L target/debug/ -L target/debug/deps/
+blam! unexpected errors (from JSON output): [
+blam!     Error {
+blam!         line_num: 1,
+blam!         kind: Some(
+blam!             Error
+blam!         ),
+blam!         msg: "1:1: 1:20: can\'t find crate for `rayon` [E0463]"
+blam!     }
+blam! ]
+blam! 
+blam! not found errors (from test file): [
+blam!     Error {
+blam!         line_num: 10,
+blam!         kind: Some(
+blam!             Error
+blam!         ),
+blam!         msg: "E0524"
+blam!     }
+blam! ]
+blam! 
+blam! thread '[compile-fail] compile-fail/quicksort_race1.rs' panicked at 'explicit panic', /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.2.5/src/runtest.rs:1097
+blam! 
+blam! ---- [compile-fail] compile-fail/quicksort_race2.rs stdout ----
+blam! 	
+blam! error: tests/compile-fail/quicksort_race2.rs:1: unexpected "error": '1:1: 1:20: can't find crate for `rayon` [E0463]'
+blam! 
+blam! error: tests/compile-fail/quicksort_race2.rs:10: expected error not found: E0500
+blam! 
+blam! error: 1 unexpected errors found, 1 expected errors not found
+blam! status: exit code: 101
+blam! command: rustc tests/compile-fail/quicksort_race2.rs -L /tmp --target=x86_64-unknown-linux-gnu --error-format json -L /tmp/quicksort_race2.stage-id.compile-fail.libaux -C prefer-dynamic -o /tmp/quicksort_race2.stage-id -L target/debug/ -L target/debug/deps/
+blam! unexpected errors (from JSON output): [
+blam!     Error {
+blam!         line_num: 1,
+blam!         kind: Some(
+blam!             Error
+blam!         ),
+blam!         msg: "1:1: 1:20: can\'t find crate for `rayon` [E0463]"
+blam!     }
+blam! ]
+blam! 
+blam! not found errors (from test file): [
+blam!     Error {
+blam!         line_num: 10,
+blam!         kind: Some(
+blam!             Error
+blam!         ),
+blam!         msg: "E0500"
+blam!     }
+blam! ]
+blam! 
+blam! thread '[compile-fail] compile-fail/quicksort_race2.rs' panicked at 'explicit panic', /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.2.5/src/runtest.rs:1097
+blam! 
+blam! ---- [compile-fail] compile-fail/quicksort_race3.rs stdout ----
+blam! 	
+blam! error: tests/compile-fail/quicksort_race3.rs:1: unexpected "error": '1:1: 1:20: can't find crate for `rayon` [E0463]'
+blam! 
+blam! error: tests/compile-fail/quicksort_race3.rs:10: expected error not found: E0524
+blam! 
+blam! error: 1 unexpected errors found, 1 expected errors not found
+blam! status: exit code: 101
+blam! command: rustc tests/compile-fail/quicksort_race3.rs -L /tmp --target=x86_64-unknown-linux-gnu --error-format json -L /tmp/quicksort_race3.stage-id.compile-fail.libaux -C prefer-dynamic -o /tmp/quicksort_race3.stage-id -L target/debug/ -L target/debug/deps/
+blam! unexpected errors (from JSON output): [
+blam!     Error {
+blam!         line_num: 1,
+blam!         kind: Some(
+blam!             Error
+blam!         ),
+blam!         msg: "1:1: 1:20: can\'t find crate for `rayon` [E0463]"
+blam!     }
+blam! ]
+blam! 
+blam! not found errors (from test file): [
+blam!     Error {
+blam!         line_num: 10,
+blam!         kind: Some(
+blam!             Error
+blam!         ),
+blam!         msg: "E0524"
+blam!     }
+blam! ]
+blam! 
+blam! thread '[compile-fail] compile-fail/quicksort_race3.rs' panicked at 'explicit panic', /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.2.5/src/runtest.rs:1097
+blam! 
+blam! ---- [compile-fail] compile-fail/rc_par_iter.rs stdout ----
+blam! 	
+blam! error: tests/compile-fail/rc_par_iter.rs:1: unexpected "error": '1:1: 1:20: can't find crate for `rayon` [E0463]'
+blam! 
+blam! error: tests/compile-fail/rc_par_iter.rs:12: expected error not found: no method named `into_par_iter`
+blam! 
+blam! error: 1 unexpected errors found, 1 expected errors not found
+blam! status: exit code: 101
+blam! command: rustc tests/compile-fail/rc_par_iter.rs -L /tmp --target=x86_64-unknown-linux-gnu --error-format json -L /tmp/rc_par_iter.stage-id.compile-fail.libaux -C prefer-dynamic -o /tmp/rc_par_iter.stage-id -L target/debug/ -L target/debug/deps/
+blam! unexpected errors (from JSON output): [
+blam!     Error {
+blam!         line_num: 1,
+blam!         kind: Some(
+blam!             Error
+blam!         ),
+blam!         msg: "1:1: 1:20: can\'t find crate for `rayon` [E0463]"
+blam!     }
+blam! ]
+blam! 
+blam! not found errors (from test file): [
+blam!     Error {
+blam!         line_num: 12,
+blam!         kind: Some(
+blam!             Error
+blam!         ),
+blam!         msg: "no method named `into_par_iter`"
+blam!     }
+blam! ]
+blam! 
+blam! thread '[compile-fail] compile-fail/rc_par_iter.rs' panicked at 'explicit panic', /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.2.5/src/runtest.rs:1097
+blam! 
+blam! ---- [compile-fail] compile-fail/rc_return.rs stdout ----
+blam! 	
+blam! error: tests/compile-fail/rc_return.rs:1: unexpected "error": '1:1: 1:20: can't find crate for `rayon` [E0463]'
+blam! 
+blam! error: tests/compile-fail/rc_return.rs:6: expected error not found: E0277
+blam! 
+blam! error: tests/compile-fail/rc_return.rs:6: expected error not found: E0277
+blam! 
+blam! error: 1 unexpected errors found, 2 expected errors not found
+blam! status: exit code: 101
+blam! command: rustc tests/compile-fail/rc_return.rs -L /tmp --target=x86_64-unknown-linux-gnu --error-format json -L /tmp/rc_return.stage-id.compile-fail.libaux -C prefer-dynamic -o /tmp/rc_return.stage-id -L target/debug/ -L target/debug/deps/
+blam! unexpected errors (from JSON output): [
+blam!     Error {
+blam!         line_num: 1,
+blam!         kind: Some(
+blam!             Error
+blam!         ),
+blam!         msg: "1:1: 1:20: can\'t find crate for `rayon` [E0463]"
+blam!     }
+blam! ]
+blam! 
+blam! not found errors (from test file): [
+blam!     Error {
+blam!         line_num: 6,
+blam!         kind: Some(
+blam!             Error
+blam!         ),
+blam!         msg: "E0277"
+blam!     },
+blam!     Error {
+blam!         line_num: 6,
+blam!         kind: Some(
+blam!             Error
+blam!         ),
+blam!         msg: "E0277"
+blam!     }
+blam! ]
+blam! 
+blam! thread '[compile-fail] compile-fail/rc_return.rs' panicked at 'explicit panic', /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.2.5/src/runtest.rs:1097
+blam! 
+blam! ---- [compile-fail] compile-fail/rc_upvar.rs stdout ----
+blam! 	
+blam! error: tests/compile-fail/rc_upvar.rs:1: unexpected "error": '1:1: 1:20: can't find crate for `rayon` [E0463]'
+blam! 
+blam! error: tests/compile-fail/rc_upvar.rs:7: expected error not found: E0277
+blam! 
+blam! error: 1 unexpected errors found, 1 expected errors not found
+blam! status: exit code: 101
+blam! command: rustc tests/compile-fail/rc_upvar.rs -L /tmp --target=x86_64-unknown-linux-gnu --error-format json -L /tmp/rc_upvar.stage-id.compile-fail.libaux -C prefer-dynamic -o /tmp/rc_upvar.stage-id -L target/debug/ -L target/debug/deps/
+blam! unexpected errors (from JSON output): [
+blam!     Error {
+blam!         line_num: 1,
+blam!         kind: Some(
+blam!             Error
+blam!         ),
+blam!         msg: "1:1: 1:20: can\'t find crate for `rayon` [E0463]"
+blam!     }
+blam! ]
+blam! 
+blam! not found errors (from test file): [
+blam!     Error {
+blam!         line_num: 7,
+blam!         kind: Some(
+blam!             Error
+blam!         ),
+blam!         msg: "E0277"
+blam!     }
+blam! ]
+blam! 
+blam! thread '[compile-fail] compile-fail/rc_upvar.rs' panicked at 'explicit panic', /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.2.5/src/runtest.rs:1097
+blam! 
+blam! 
+blam! failures:
+blam!     [compile-fail] compile-fail/cannot_collect_filtermap_data.rs
+blam!     [compile-fail] compile-fail/cannot_zip_filtered_data.rs
+blam!     [compile-fail] compile-fail/cell_par_iter.rs
+blam!     [compile-fail] compile-fail/quicksort_race1.rs
+blam!     [compile-fail] compile-fail/quicksort_race2.rs
+blam!     [compile-fail] compile-fail/quicksort_race3.rs
+blam!     [compile-fail] compile-fail/rc_par_iter.rs
+blam!     [compile-fail] compile-fail/rc_return.rs
+blam!     [compile-fail] compile-fail/rc_upvar.rs
+blam! 
+blam! test result: FAILED. 0 passed; 9 failed; 0 ignored; 0 measured
+blam! 
+blam! test test::negative_tests_compile_fail ... FAILED
+blam! 
+blam! running 2 tests
+blam! test par_iter::test::par_iter_collect_linked_list_flat_map_filter ... ok
+blam! test [run-fail] run-fail/simple_panic.rs ... FAILED
+blam! 
+blam! running 2 tests
+blam! test [run-fail] run-fail/iter_panic.rs ... FAILED
+blam! 
+blam! failures:
+blam! 
+blam! ---- [run-fail] run-fail/simple_panic.rs stdout ----
+blam! 	
+blam! error: compilation failed!
+blam! status: exit code: 101
+blam! command: rustc tests/run-fail/simple_panic.rs -L /tmp --target=x86_64-unknown-linux-gnu -L /tmp/simple_panic.stage-id.run-fail.libaux -C prefer-dynamic -o /tmp/simple_panic.stage-id -L target/debug/ -L target/debug/deps/
+blam! stdout:
+blam! ------------------------------------------
+blam! 
+blam! ------------------------------------------
+blam! stderr:
+blam! ------------------------------------------
+blam! error[E0463]: can't find crate for `rayon`
+blam!  --> tests/run-fail/simple_panic.rs:1:1
+blam!   |
+blam! 1 | extern crate rayon;
+blam!   | ^^^^^^^^^^^^^^^^^^^ can't find crate
+blam! 
+blam! error: aborting due to previous error
+blam! 
+blam! 
+blam! ------------------------------------------
+blam! 
+blam! thread '[run-fail] run-fail/simple_panic.rs' panicked at 'explicit panic', /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.2.5/src/runtest.rs:2374
+blam! 
+blam! ---- [run-fail] run-fail/iter_panic.rs stdout ----
+blam! 	
+blam! error: compilation failed!
+blam! status: exit code: 101
+blam! command: rustc tests/run-fail/iter_panic.rs -L /tmp --target=x86_64-unknown-linux-gnu -L /tmp/iter_panic.stage-id.run-fail.libaux -C prefer-dynamic -o /tmp/iter_panic.stage-id -L target/debug/ -L target/debug/deps/
+blam! stdout:
+blam! ------------------------------------------
+blam! 
+blam! ------------------------------------------
+blam! stderr:
+blam! ------------------------------------------
+blam! error[E0463]: can't find crate for `rayon`
+blam!  --> tests/run-fail/iter_panic.rs:1:1
+blam!   |
+blam! 1 | extern crate rayon;
+blam!   | ^^^^^^^^^^^^^^^^^^^ can't find crate
+blam! 
+blam! error: aborting due to previous error
+blam! 
+blam! 
+blam! ------------------------------------------
+blam! 
+blam! thread '[run-fail] run-fail/iter_panic.rs' panicked at 'explicit panic', /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.2.5/src/runtest.rs:2374
+blam! 
+blam! 
+blam! failures:
+blam!     [run-fail] run-fail/iter_panic.rs
+blam!     [run-fail] run-fail/simple_panic.rs
+blam! 
+blam! test result: FAILED. 0 passed; 2 failed; 0 ignored; 0 measured
+blam! 
+blam! test test::negative_tests_run_fail ... FAILED
+blam! test test::sort ... ok
+blam! test [run-pass] run-pass/init_fail_thread_number_not_equal.rs ... FAILED
+blam! test [run-pass] run-pass/init_fail_zero_threads.rs ... FAILED
+blam! 
+blam! failures:
+blam! 
+blam! ---- [run-pass] run-pass/init_fail_thread_number_not_equal.rs stdout ----
+blam! 	
+blam! error: compilation failed!
+blam! status: exit code: 101
+blam! command: rustc tests/run-pass/init_fail_thread_number_not_equal.rs -L /tmp --target=x86_64-unknown-linux-gnu --error-format json -L /tmp/init_fail_thread_number_not_equal.stage-id.run-pass.libaux -C prefer-dynamic -o /tmp/init_fail_thread_number_not_equal.stage-id -L target/debug/ -L target/debug/deps/
+blam! stdout:
+blam! ------------------------------------------
+blam! 
+blam! ------------------------------------------
+blam! stderr:
+blam! ------------------------------------------
+blam! {"message":"can't find crate for `rayon`","code":{"code":"E0463","explanation":"\nA plugin/crate was declared but cannot be found. Erroneous code example:\n\n```compile_fail,E0463\n#![feature(plugin)]\n#![plugin(cookie_monster)] // error: can't find crate for `cookie_monster`\nextern crate cake_is_a_lie; // error: can't find crate for `cake_is_a_lie`\n```\n\nYou need to link your code to the relevant crate in order to be able to use it\n(through Cargo or the `-L` option of rustc example). Plugins are crates as\nwell, and you link to them the same way.\n"},"level":"error","spans":[{"file_name":"tests/run-pass/init_fail_thread_number_not_equal.rs","byte_start":0,"byte_end":19,"line_start":1,"line_end":1,"column_start":1,"column_end":20,"is_primary":true,"text":[{"text":"extern crate rayon;","highlight_start":1,"highlight_end":20}],"label":"can't find crate","suggested_replacement":null,"expansion":null}],"children":[],"rendered":null}
+blam! {"message":"aborting due to previous error","code":null,"level":"error","spans":[],"children":[],"rendered":null}
+blam! 
+blam! ------------------------------------------
+blam! 
+blam! thread '[run-pass] run-pass/init_fail_thread_number_not_equal.rs' panicked at 'explicit panic', /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.2.5/src/runtest.rs:2374
+blam! 
+blam! ---- [run-pass] run-pass/init_fail_zero_threads.rs stdout ----
+blam! 	
+blam! error: compilation failed!
+blam! status: exit code: 101
+blam! command: rustc tests/run-pass/init_fail_zero_threads.rs -L /tmp --target=x86_64-unknown-linux-gnu --error-format json -L /tmp/init_fail_zero_threads.stage-id.run-pass.libaux -C prefer-dynamic -o /tmp/init_fail_zero_threads.stage-id -L target/debug/ -L target/debug/deps/
+blam! stdout:
+blam! ------------------------------------------
+blam! 
+blam! ------------------------------------------
+blam! stderr:
+blam! ------------------------------------------
+blam! {"message":"can't find crate for `rayon`","code":{"code":"E0463","explanation":"\nA plugin/crate was declared but cannot be found. Erroneous code example:\n\n```compile_fail,E0463\n#![feature(plugin)]\n#![plugin(cookie_monster)] // error: can't find crate for `cookie_monster`\nextern crate cake_is_a_lie; // error: can't find crate for `cake_is_a_lie`\n```\n\nYou need to link your code to the relevant crate in order to be able to use it\n(through Cargo or the `-L` option of rustc example). Plugins are crates as\nwell, and you link to them the same way.\n"},"level":"error","spans":[{"file_name":"tests/run-pass/init_fail_zero_threads.rs","byte_start":0,"byte_end":19,"line_start":1,"line_end":1,"column_start":1,"column_end":20,"is_primary":true,"text":[{"text":"extern crate rayon;","highlight_start":1,"highlight_end":20}],"label":"can't find crate","suggested_replacement":null,"expansion":null}],"children":[],"rendered":null}
+blam! {"message":"aborting due to previous error","code":null,"level":"error","spans":[],"children":[],"rendered":null}
+blam! 
+blam! ------------------------------------------
+blam! 
+blam! thread '[run-pass] run-pass/init_fail_zero_threads.rs' panicked at 'explicit panic', /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.2.5/src/runtest.rs:2374
+blam! 
+blam! 
+blam! failures:
+blam!     [run-pass] run-pass/init_fail_thread_number_not_equal.rs
+blam!     [run-pass] run-pass/init_fail_zero_threads.rs
+blam! 
+blam! test result: FAILED. 0 passed; 2 failed; 0 ignored; 0 measured
+blam! 
+blam! test test::positive_test_run_pass ... FAILED
+blam! test test::worker_thread_index ... ok
+blam! test test::sort_in_pool ... ok
+blam! test par_iter::test::min_max_by ... ok
+blam! test par_iter::test::min_max ... ok
+blam! 
+blam! failures:
+blam! 
+blam! ---- test::negative_tests_compile_fail stdout ----
+blam! 	thread 'test::negative_tests_compile_fail' panicked at 'Some tests failed', /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.2.5/src/compiletest.rs:122
+blam! 
+blam! ---- test::negative_tests_run_fail stdout ----
+blam! 	thread 'test::negative_tests_run_fail' panicked at 'Some tests failed', /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.2.5/src/compiletest.rs:122
+blam! 
+blam! ---- test::positive_test_run_pass stdout ----
+blam! 	thread 'test::positive_test_run_pass' panicked at 'Some tests failed', /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.2.5/src/compiletest.rs:122
+blam! 
+blam! 
+blam! failures:
+blam!     test::negative_tests_compile_fail
+blam!     test::negative_tests_run_fail
+blam!     test::positive_test_run_pass
+blam! 
+blam! test result: FAILED. 95 passed; 3 failed; 0 ignored; 0 measured
+blam! 
+kablam! error: test failed
+boom! running `docker rm -f a9e6378ed4d8d366823d5531204a8c2769c87a2c6ada4f57a6f5d55023d7c529`
+blam! a9e6378ed4d8d366823d5531204a8c2769c87a2c6ada4f57a6f5d55023d7c529

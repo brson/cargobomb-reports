@@ -1,0 +1,32 @@
+boom! testing libb2-sys-0.0.1 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! c3a5e211a126590d3523ec3b0a848545aee50d69eda2f27d70db5ab99e58c844
+boom! running `docker start -a c3a5e211a126590d3523ec3b0a848545aee50d69eda2f27d70db5ab99e58c844`
+kablam!    Compiling libb2-sys v0.0.1 (file:///source)
+kablam! error[E0061]: this function takes 0 parameters but 1 parameter was supplied
+kablam!   --> build.rs:20:28
+kablam!    |
+kablam! 20 |     let src = PathBuf::new(&env::var("CARGO_MANIFEST_DIR").unwrap()).join("libb2-0.96");
+kablam!    |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 0 parameters
+kablam! 
+kablam! error[E0061]: this function takes 0 parameters but 1 parameter was supplied
+kablam!   --> build.rs:21:28
+kablam!    |
+kablam! 21 |     let dst = PathBuf::new(&env::var("OUT_DIR").unwrap());
+kablam!    |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 0 parameters
+kablam! 
+kablam! error: no associated item named `FileNotFound` found for type `std::io::ErrorKind` in the current scope
+kablam!   --> build.rs:35:35
+kablam!    |
+kablam! 35 |         Err(ref e) if e.kind() == ErrorKind::FileNotFound => {
+kablam!    |                                   ^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `libb2-sys`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f c3a5e211a126590d3523ec3b0a848545aee50d69eda2f27d70db5ab99e58c844`
+blam! c3a5e211a126590d3523ec3b0a848545aee50d69eda2f27d70db5ab99e58c844

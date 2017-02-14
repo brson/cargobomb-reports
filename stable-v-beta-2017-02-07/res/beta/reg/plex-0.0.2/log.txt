@@ -1,0 +1,277 @@
+boom! testing plex-0.0.2 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! a9a4971ff88f54055d44eeaaf680614c791f606f7ca78b1086496a74490f5360
+boom! running `docker start -a a9a4971ff88f54055d44eeaaf680614c791f606f7ca78b1086496a74490f5360`
+kablam!    Compiling lalr v0.0.1
+kablam!    Compiling redfa v0.0.1
+kablam!    Compiling plex v0.0.2 (file:///source)
+kablam! error[E0425]: cannot find function `str_to_ident` in module `token`
+kablam!   --> src/lexer.rs:19:38
+kablam!    |
+kablam! 19 |     let state_arg = cx.arg(DUMMY_SP, token::str_to_ident("state"), u32_ty.clone());
+kablam!    |                                      ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `str_to_ident` in module `token`
+kablam!   --> src/lexer.rs:20:37
+kablam!    |
+kablam! 20 |     let char_arg = cx.arg(DUMMY_SP, token::str_to_ident("ch"), char_ty.clone());
+kablam!    |                                     ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!   --> src/lexer.rs:71:81
+kablam!    |
+kablam! 71 | pub fn expand_lexer<'cx>(cx: &'cx mut base::ExtCtxt, sp: codemap::Span, args: &[ast::TokenTree]) -> Box<base::MacResult+'cx> {
+kablam!    |                                                                                 ^^^^^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!   --> src/lexer.rs:75:75
+kablam!    |
+kablam! 75 | fn parse_lexer<'a>(cx: &mut base::ExtCtxt<'a>, sp: codemap::Span, args: &[ast::TokenTree]) -> PResult<'a, Box<base::MacResult+'static>>  {
+kablam!    |                                                                           ^^^^^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `keywords` in `token`
+kablam!   --> src/lexer.rs:79:44
+kablam!    |
+kablam! 79 |     let visibility = if parser.eat_keyword(token::keywords::Pub) {
+kablam!    |                                            ^^^^^^^^^^^^^^^^^^^^ Could not find `keywords` in `token`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `keywords` in `token`
+kablam!   --> src/lexer.rs:84:32
+kablam!    |
+kablam! 84 |     try!(parser.expect_keyword(token::keywords::Fn));
+kablam!    |                                ^^^^^^^^^^^^^^^^^^^ Could not find `keywords` in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `gensym` in module `token`
+kablam!   --> src/lexer.rs:91:31
+kablam!    |
+kablam! 91 |         cx.lifetime(DUMMY_SP, token::gensym("text"))
+kablam!    |                               ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `str_to_ident` in module `token`
+kablam!    --> src/lexer.rs:150:29
+kablam!     |
+kablam! 150 |     let dfa_transition_fn = token::str_to_ident(&*format!("transition"));
+kablam!     |                             ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `str_to_ident` in module `token`
+kablam!    --> src/lexer.rs:151:29
+kablam!     |
+kablam! 151 |     let dfa_acceptance_fn = token::str_to_ident(&*format!("accepting"));
+kablam!     |                             ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `str_to_ident` in module `token`
+kablam!    --> src/lexer.rs:153:17
+kablam!     |
+kablam! 153 |     let input = token::str_to_ident("input");
+kablam!     |                 ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `str_to_ident` in module `token`
+kablam!    --> src/lexer.rs:187:65
+kablam!     |
+kablam! 187 |                                           cx.ty_ident(DUMMY_SP, token::str_to_ident("str")),
+kablam!     |                                                                 ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `gensym_ident` in module `token`
+kablam!    --> src/parser.rs:125:20
+kablam!     |
+kablam! 125 |     let it_ty_id = token::gensym_ident("I");
+kablam!     |                    ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `gensym_ident` in module `token`
+kablam!    --> src/parser.rs:155:21
+kablam!     |
+kablam! 155 |     let it_arg_id = token::gensym_ident("it");
+kablam!     |                     ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `gensym_ident` in module `token`
+kablam!    --> src/parser.rs:171:27
+kablam!     |
+kablam! 171 |         .map(|(i, k)| (k, token::gensym_ident(&format!("reduce_{}", i))))
+kablam!     |                           ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `gensym_ident` in module `token`
+kablam!    --> src/parser.rs:176:31
+kablam!     |
+kablam! 176 |         .map(|(i, lhs)| (lhs, token::gensym_ident(&format!("goto_{}", i))))
+kablam!     |                               ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `gensym_ident` in module `token`
+kablam!    --> src/parser.rs:178:20
+kablam!     |
+kablam! 178 |     let stack_id = token::gensym_ident("stack");
+kablam!     |                    ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `gensym_ident` in module `token`
+kablam!    --> src/parser.rs:179:25
+kablam!     |
+kablam! 179 |     let span_stack_id = token::gensym_ident("span_stack");
+kablam!     |                         ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `gensym_ident` in module `token`
+kablam!    --> src/parser.rs:180:26
+kablam!     |
+kablam! 180 |     let state_stack_id = token::gensym_ident("state_stack");
+kablam!     |                          ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `gensym_ident` in module `token`
+kablam!    --> src/parser.rs:181:20
+kablam!     |
+kablam! 181 |     let state_id = token::gensym_ident("state");
+kablam!     |                    ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `gensym_ident` in module `token`
+kablam!    --> src/parser.rs:182:20
+kablam!     |
+kablam! 182 |     let token_id = token::gensym_ident("token");
+kablam!     |                    ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `gensym_ident` in module `token`
+kablam!    --> src/parser.rs:183:19
+kablam!     |
+kablam! 183 |     let span_id = token::gensym_ident("span");
+kablam!     |                   ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `gensym_ident` in module `token`
+kablam!    --> src/parser.rs:184:25
+kablam!     |
+kablam! 184 |     let token_span_id = token::gensym_ident("token_span");
+kablam!     |                         ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `gensym_ident` in module `token`
+kablam!    --> src/parser.rs:185:25
+kablam!     |
+kablam! 185 |     let next_state_id = token::gensym_ident("next_state");
+kablam!     |                         ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `gensym_ident` in module `token`
+kablam!    --> src/parser.rs:190:29
+kablam!     |
+kablam! 190 |     let range_array_fn_id = token::gensym_ident("range_array");
+kablam!     |                             ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `DeclKind` in `ast`
+kablam!    --> src/parser.rs:253:95
+kablam!     |
+kablam! 253 |                     codemap::respan(DUMMY_SP, ast::StmtKind::Decl(P(codemap::respan(DUMMY_SP, ast::DeclKind::Local(local))), DUMMY_NODE_ID))
+kablam!     |                                                                                               ^^^^^^^^^^^^^^^^^^^^ Could not find `DeclKind` in `ast`
+kablam! 
+kablam! error[E0425]: cannot find function `gensym_ident` in module `token`
+kablam!    --> src/parser.rs:277:23
+kablam!     |
+kablam! 277 |             let tmp = token::gensym_ident("result");
+kablam!     |                       ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `intern_and_get_ident` in module `token`
+kablam!    --> src/parser.rs:367:57
+kablam!     |
+kablam! 367 |                 let err_msg_lit = cx.expr_str(DUMMY_SP, token::intern_and_get_ident(&*expected_one_of(&*expected)));
+kablam!     |                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!    --> src/parser.rs:399:12
+kablam!     |
+kablam! 399 |     tts: &[ast::TokenTree]
+kablam!     |            ^^^^^^^^^^^^^^ not found in `ast`
+kablam!     |
+kablam!     = help: possible candidate is found in another module, you can import it into scope:
+kablam!               `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!    --> src/parser.rs:407:12
+kablam!     |
+kablam! 407 |     tts: &[ast::TokenTree]
+kablam!     |            ^^^^^^^^^^^^^^ not found in `ast`
+kablam!     |
+kablam!     = help: possible candidate is found in another module, you can import it into scope:
+kablam!               `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `keywords` in `token`
+kablam!    --> src/parser.rs:459:44
+kablam!     |
+kablam! 459 |     let visibility = if parser.eat_keyword(token::keywords::Pub) {
+kablam!     |                                            ^^^^^^^^^^^^^^^^^^^^ Could not find `keywords` in `token`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `keywords` in `token`
+kablam!    --> src/parser.rs:464:32
+kablam!     |
+kablam! 464 |     try!(parser.expect_keyword(token::keywords::Fn));
+kablam!     |                                ^^^^^^^^^^^^^^^^^^^ Could not find `keywords` in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `gensym_ident` in module `token`
+kablam!    --> src/parser.rs:473:23
+kablam!     |
+kablam! 473 |     let range_fn_id = token::gensym_ident("range");
+kablam!     |                       ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0532]: expected tuple struct/variant, found unit variant `ast::MetaItemKind::Word`
+kablam!    --> src/parser.rs:518:36
+kablam!     |
+kablam! 518 |                             if let ast::MetaItemKind::Word(ref name) = token.node {
+kablam!     |                                    ^^^^^^^^^^^^^^^^^^^^^^^ not a tuple struct/variant
+kablam! 
+kablam! error[E0532]: expected tuple struct/variant, found unit variant `ast::MetaItemKind::Word`
+kablam!    --> src/parser.rs:525:21
+kablam!     |
+kablam! 525 |                     ast::MetaItemKind::Word(ref name) if name == &"overriding" => {
+kablam!     |                     ^^^^^^^^^^^^^^^^^^^^^^^ not a tuple struct/variant
+kablam! 
+kablam! error[E0425]: cannot find function `gensym` in module `token`
+kablam!    --> src/parser.rs:608:22
+kablam!     |
+kablam! 608 |     let fake_start = token::gensym("start");
+kablam!     |                      ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `gensym_ident` in module `token`
+kablam!    --> src/parser.rs:636:34
+kablam!     |
+kablam! 636 |                         let id = token::gensym_ident(&*format!("s{}", i));
+kablam!     |                                  ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `gensym_ident` in module `token`
+kablam!    --> src/parser.rs:640:33
+kablam!     |
+kablam! 640 |                                 token::gensym_ident("error")
+kablam!     |                                 ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!    --> src/parser.rs:700:12
+kablam!     |
+kablam! 700 |     tts: &[ast::TokenTree]
+kablam!     |            ^^^^^^^^^^^^^^ not found in `ast`
+kablam!     |
+kablam!     = help: possible candidate is found in another module, you can import it into scope:
+kablam!               `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!   --> src/lib.rs:19:35
+kablam!    |
+kablam! 19 |     reg.register_syntax_extension(token::intern("parser"),
+kablam!    |                                   ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!   --> src/lib.rs:22:35
+kablam!    |
+kablam! 22 |     reg.register_syntax_extension(token::intern("lexer"),
+kablam!    |                                   ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> src/lib.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(plugin_registrar, quote, rustc_private)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `plex`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f a9a4971ff88f54055d44eeaaf680614c791f606f7ca78b1086496a74490f5360`
+blam! a9a4971ff88f54055d44eeaaf680614c791f606f7ca78b1086496a74490f5360

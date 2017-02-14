@@ -1,0 +1,149 @@
+boom! testing named-block-0.3.1 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! b248895f56716c3683c39817f7c619258a71c989c413b00862bee442ad672874
+boom! running `docker start -a b248895f56716c3683c39817f7c619258a71c989c413b00862bee442ad672874`
+kablam!    Compiling named-block v0.3.1 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.30 secs
+boom! running `docker rm -f b248895f56716c3683c39817f7c619258a71c989c413b00862bee442ad672874`
+blam! b248895f56716c3683c39817f7c619258a71c989c413b00862bee442ad672874
+boom! running: cargo +beta test --frozen --no-run
+boom! creating container for: cargo +beta test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta test --frozen --no-run cargobomb`
+blam! 5f006e92bc58e119165ad040c821424d2b5b422f5580a33d8979eb468b06ee39
+boom! running `docker start -a 5f006e92bc58e119165ad040c821424d2b5b422f5580a33d8979eb468b06ee39`
+kablam!    Compiling static-cond v0.1.1
+kablam!    Compiling named-block v0.3.1 (file:///source)
+kablam! warning: label name `'a` shadows a label name that is already in scope
+kablam!    --> src/lib.rs:392:31
+kablam!     |
+kablam! 391 |         assert_eq!(42, block!('a: loop { break 'a 42 }));
+kablam!     |                               -- first declared here
+kablam! 392 |         assert_eq!((), block!('a: {})); // make sure it works with no breaks
+kablam!     |                        -------^^-----
+kablam!     |                        |      |
+kablam!     |                        |      lifetime 'a already in scope
+kablam!     |                        in this macro invocation
+kablam! 
+kablam! warning: label name `'a` shadows a label name that is already in scope
+kablam!    --> src/lib.rs:396:16
+kablam!     |
+kablam! 391 |           assert_eq!(42, block!('a: loop { break 'a 42 }));
+kablam!     |                                 -- first declared here
+kablam! ...
+kablam! 396 |           block!('a: loop {
+kablam!     |           -      ^^ lifetime 'a already in scope
+kablam!     |  _________|
+kablam!     | |         starting here...
+kablam! 397 | |             i += 1;
+kablam! 398 | |             if i == 5 {
+kablam! 399 | |                 continue 'a;
+kablam! 400 | |             } else if i == 10 {
+kablam! 401 | |                 break 'a;
+kablam! 402 | |             }
+kablam! 403 | |             v.push(i);
+kablam! 404 | |         });
+kablam!     | |___________- ...ending here: in this macro invocation
+kablam! 
+kablam! warning: label name `'a` shadows a label name that is already in scope
+kablam!    --> src/lib.rs:396:16
+kablam!     |
+kablam! 392 |           assert_eq!((), block!('a: {})); // make sure it works with no breaks
+kablam!     |                                 -- first declared here
+kablam! ...
+kablam! 396 |           block!('a: loop {
+kablam!     |           -      ^^ lifetime 'a already in scope
+kablam!     |  _________|
+kablam!     | |         starting here...
+kablam! 397 | |             i += 1;
+kablam! 398 | |             if i == 5 {
+kablam! 399 | |                 continue 'a;
+kablam! 400 | |             } else if i == 10 {
+kablam! 401 | |                 break 'a;
+kablam! 402 | |             }
+kablam! 403 | |             v.push(i);
+kablam! 404 | |         });
+kablam!     | |___________- ...ending here: in this macro invocation
+kablam! 
+kablam! warning: label name `'b` shadows a label name that is already in scope
+kablam!    --> src/lib.rs:362:17
+kablam!     |
+kablam! 334 |         let x = block!('b: {
+kablam!     |                 - in this macro invocation
+kablam! ...
+kablam! 352 |                 block!('b: {
+kablam!     |                        -- first declared here
+kablam! ...
+kablam! 362 |                 'b: while false {
+kablam!     |                 ^^ lifetime 'b already in scope
+kablam! 
+kablam! warning: unreachable expression, #[warn(unreachable_code)] on by default
+kablam!    --> src/lib.rs:299:31
+kablam!     |
+kablam! 299 |         block!(@scan {} $life _ret ($($body)*) -> () (() () ()))
+kablam!     |                               ^
+kablam! ...
+kablam! 334 |         let x = block!('b: {
+kablam!     |                 - in this macro invocation
+kablam! 
+kablam! warning: unreachable expression, #[warn(unreachable_code)] on by default
+kablam!    --> src/lib.rs:299:31
+kablam!     |
+kablam! 299 |         block!(@scan {} $life _ret ($($body)*) -> () (() () ()))
+kablam!     |                               ^
+kablam! ...
+kablam! 334 |         let x = block!('b: {
+kablam!     |                 - in this macro invocation
+kablam! 
+kablam! warning: unreachable expression, #[warn(unreachable_code)] on by default
+kablam!    --> src/lib.rs:299:31
+kablam!     |
+kablam! 299 |         block!(@scan {} $life _ret ($($body)*) -> () (() () ()))
+kablam!     |                               ^
+kablam! ...
+kablam! 334 |         let x = block!('b: {
+kablam!     |                 - in this macro invocation
+kablam! 
+kablam! warning: unreachable expression, #[warn(unreachable_code)] on by default
+kablam!    --> src/lib.rs:299:31
+kablam!     |
+kablam! 299 |           block!(@scan {} $life _ret ($($body)*) -> () (() () ()))
+kablam!     |                                 ^
+kablam! ...
+kablam! 381 |               block!('d: {
+kablam!     |  _____________- starting here...
+kablam! 382 | |                 //continue; //~ERROR NoBareContinueInNamedBlock
+kablam! 383 | |                 //continue 'd; //~ERROR NoMatchedContinueInNamedBlock
+kablam! 384 | |                 continue 'e;
+kablam! 385 | |             });
+kablam!     | |_______________- ...ending here: in this macro invocation
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.8 secs
+boom! running `docker rm -f 5f006e92bc58e119165ad040c821424d2b5b422f5580a33d8979eb468b06ee39`
+blam! 5f006e92bc58e119165ad040c821424d2b5b422f5580a33d8979eb468b06ee39
+boom! running: cargo +beta test --frozen
+boom! creating container for: cargo +beta test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta test --frozen cargobomb`
+blam! ac71fdbbf58b131354b4f229d0b3735025d32db1792c6c6bccafb2a633e8dc47
+boom! running `docker start -a ac71fdbbf58b131354b4f229d0b3735025d32db1792c6c6bccafb2a633e8dc47`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/named_block-63e174a672fd8f24
+blam! 
+blam! running 3 tests
+blam! test tests::shadowing ... ok
+blam! test tests::loops ... ok
+blam! test tests::it_works ... ok
+blam! 
+blam! test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!    Doc-tests named-block
+blam! 
+blam! running 2 tests
+blam! test block_0 ... ok
+blam! test block_1 ... ok
+blam! 
+blam! test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f ac71fdbbf58b131354b4f229d0b3735025d32db1792c6c6bccafb2a633e8dc47`
+blam! ac71fdbbf58b131354b4f229d0b3735025d32db1792c6c6bccafb2a633e8dc47

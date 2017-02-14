@@ -1,0 +1,109 @@
+boom! testing https://github.com/Nashenas88/borrow_visualizer_prototype#97f6d6a450016f7b6733967488f2aa514cdf3b9f against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 03c4a0950f72956ae951c17c5813c022e0a955e77e302b28fbcf2ece0fa1b651
+boom! running `docker start -a 03c4a0950f72956ae951c17c5813c022e0a955e77e302b28fbcf2ece0fa1b651`
+kablam!    Compiling term_size v0.2.1
+kablam!    Compiling clap v2.16.2
+kablam!    Compiling borrow_bounds v0.1.0 (file:///source)
+kablam! error[E0531]: cannot find tuple struct/variant `FnLikeCode` in module `blocks`
+kablam!    --> src/main.rs:219:41
+kablam!     |
+kablam! 219 |                             if let Some(blocks::FnLikeCode(fn_like)) = code {
+kablam!     |                                         ^^^^^^^^^^^^^^^^^^ not found in `blocks`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/main.rs:130:42
+kablam!     |
+kablam! 130 |             let cfg = cfg::CFG::new(tcx, &fn_like.body());
+kablam!     |                                          ^^^^^^^^^^^^^^^ expected struct `rustc::hir::Expr`, found struct `rustc::hir::BodyId`
+kablam!     |
+kablam!     = note: expected type `&rustc::hir::Expr`
+kablam!                found type `&rustc::hir::BodyId`
+kablam! 
+kablam! error[E0061]: this function takes 3 parameters but 4 parameters were supplied
+kablam!    --> src/main.rs:132:17
+kablam!     |
+kablam! 132 |                 tcx,
+kablam!     |                 ^^^ expected 3 parameters
+kablam! 
+kablam! error: no field `mir_map` on type `&mut rustc_driver::driver::CompileState<'_, '_>`
+kablam!    --> src/main.rs:133:31
+kablam!     |
+kablam! 133 |                 compile_state.mir_map,
+kablam!     |                               ^^^^^^^
+kablam! 
+kablam! error: no method named `to_fn_parts` found for type `rustc::hir::map::blocks::FnLikeNode<'_>` in the current scope
+kablam!    --> src/main.rs:134:25
+kablam!     |
+kablam! 134 |                 fn_like.to_fn_parts(),
+kablam!     |                         ^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `belongs_to` found for type `std::rc::Rc<rustc_borrowck::borrowck::LoanPath<'_>>` in the current scope
+kablam!    --> src/main.rs:141:50
+kablam!     |
+kablam! 141 |                 .filter(|&loan| loan.loan_path().belongs_to(node_id))
+kablam!     |                                                  ^^^^^^^^^^
+kablam! 
+kablam! error: no method named `kind` found for type `&rustc_borrowck::borrowck::Loan<'_>` in the current scope
+kablam!    --> src/main.rs:144:47
+kablam!     |
+kablam! 144 |                     let kind_str = match loan.kind() {
+kablam!     |                                               ^^^^
+kablam!     |
+kablam! note: did you mean to write `loan.kind`?
+kablam!    --> src/main.rs:144:47
+kablam!     |
+kablam! 144 |                     let kind_str = match loan.kind() {
+kablam!     |                                               ^^^^
+kablam! 
+kablam! error: no method named `gen_scope` found for type `&rustc_borrowck::borrowck::Loan<'_>` in the current scope
+kablam!    --> src/main.rs:150:41
+kablam!     |
+kablam! 150 |                     let gen_span = loan.gen_scope().span(&tcx.region_maps, &tcx.map);
+kablam!     |                                         ^^^^^^^^^
+kablam!     |
+kablam! note: did you mean to write `loan.gen_scope`?
+kablam!    --> src/main.rs:150:41
+kablam!     |
+kablam! 150 |                     let gen_span = loan.gen_scope().span(&tcx.region_maps, &tcx.map);
+kablam!     |                                         ^^^^^^^^^
+kablam! 
+kablam! error: no method named `kill_scope` found for type `&rustc_borrowck::borrowck::Loan<'_>` in the current scope
+kablam!    --> src/main.rs:151:42
+kablam!     |
+kablam! 151 |                     let kill_span = loan.kill_scope().span(&tcx.region_maps, &tcx.map);
+kablam!     |                                          ^^^^^^^^^^
+kablam!     |
+kablam! note: did you mean to write `loan.kill_scope`?
+kablam!    --> src/main.rs:151:42
+kablam!     |
+kablam! 151 |                     let kill_span = loan.kill_scope().span(&tcx.region_maps, &tcx.map);
+kablam!     |                                          ^^^^^^^^^^
+kablam! 
+kablam! error: no method named `node_types` found for type `rustc::ty::TyCtxt<'a, 'tcx, 'tcx>` in the current scope
+kablam!    --> src/main.rs:174:25
+kablam!     |
+kablam! 174 |     for (&id, _) in tcx.node_types().iter() {
+kablam!     |                         ^^^^^^^^^^
+kablam! 
+kablam! error: no method named `opt_span` found for type `rustc::hir::map::Map<'_>` in the current scope
+kablam!    --> src/main.rs:185:35
+kablam!     |
+kablam! 185 |         if let Some(sp) = tcx.map.opt_span(id) {
+kablam!     |                                   ^^^^^^^^
+kablam! 
+kablam! error[E0061]: this function takes 2 parameters but 1 parameter was supplied
+kablam!    --> src/main.rs:218:64
+kablam!     |
+kablam! 218 |                             let code = blocks::Code::from_node(parent_node);
+kablam!     |                                                                ^^^^^^^^^^^ expected 2 parameters
+kablam! 
+kablam! error: aborting due to 11 previous errors
+kablam! 
+kablam! error: Could not compile `borrow_bounds`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 03c4a0950f72956ae951c17c5813c022e0a955e77e302b28fbcf2ece0fa1b651`
+blam! 03c4a0950f72956ae951c17c5813c022e0a955e77e302b28fbcf2ece0fa1b651

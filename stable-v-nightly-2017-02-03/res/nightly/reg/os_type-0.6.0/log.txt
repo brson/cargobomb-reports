@@ -1,0 +1,160 @@
+boom! testing os_type-0.6.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 70cf3f4574e6675cd69c07a728753b30fa284a6446e46151d4c765796428185e
+boom! running `docker start -a 70cf3f4574e6675cd69c07a728753b30fa284a6446e46151d4c765796428185e`
+kablam!    Compiling os_type v0.6.0 (file:///source)
+kablam! warning: struct is never used: `WindowsVer`, #[warn(dead_code)] on by default
+kablam!  --> src/windows_ver.rs:6:1
+kablam!   |
+kablam! 6 |   pub struct WindowsVer {
+kablam!   |  _^ starting here...
+kablam! 7 | |     pub version: Option<String>
+kablam! 8 | | }
+kablam!   | |_^ ...ending here
+kablam! 
+kablam! warning: function is never used: `retrieve`, #[warn(dead_code)] on by default
+kablam!   --> src/windows_ver.rs:10:1
+kablam!    |
+kablam! 10 |   pub fn retrieve() -> Option<WindowsVer> {
+kablam!    |  _^ starting here...
+kablam! 11 | |     let output = match Command::new("ver").output() {
+kablam! 12 | |         Ok(o) => o,
+kablam! 13 | |         Err(_) => return None
+kablam! 14 | |     };
+kablam! 15 | |     let stdout = String::from_utf8_lossy(&output.stdout);
+kablam! 16 | |     Some(parse(stdout.to_string()))
+kablam! 17 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! warning: function is never used: `parse`, #[warn(dead_code)] on by default
+kablam!   --> src/windows_ver.rs:19:1
+kablam!    |
+kablam! 19 | pub fn parse(output: String) -> WindowsVer {
+kablam!    | ^
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.56 secs
+boom! running `docker rm -f 70cf3f4574e6675cd69c07a728753b30fa284a6446e46151d4c765796428185e`
+blam! 70cf3f4574e6675cd69c07a728753b30fa284a6446e46151d4c765796428185e
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! c944fef8e84ffb01a76a123825410a0eebf6c29215dd8a4b5efa020ea73f710f
+boom! running `docker start -a c944fef8e84ffb01a76a123825410a0eebf6c29215dd8a4b5efa020ea73f710f`
+kablam!    Compiling os_type v0.6.0 (file:///source)
+kablam! warning: struct is never used: `WindowsVer`, #[warn(dead_code)] on by default
+kablam!  --> src/windows_ver.rs:6:1
+kablam!   |
+kablam! 6 |   pub struct WindowsVer {
+kablam!   |  _^ starting here...
+kablam! 7 | |     pub version: Option<String>
+kablam! 8 | | }
+kablam!   | |_^ ...ending here
+kablam! 
+kablam! warning: function is never used: `retrieve`, #[warn(dead_code)] on by default
+kablam!   --> src/windows_ver.rs:10:1
+kablam!    |
+kablam! 10 |   pub fn retrieve() -> Option<WindowsVer> {
+kablam!    |  _^ starting here...
+kablam! 11 | |     let output = match Command::new("ver").output() {
+kablam! 12 | |         Ok(o) => o,
+kablam! 13 | |         Err(_) => return None
+kablam! 14 | |     };
+kablam! 15 | |     let stdout = String::from_utf8_lossy(&output.stdout);
+kablam! 16 | |     Some(parse(stdout.to_string()))
+kablam! 17 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! warning: function is never used: `parse`, #[warn(dead_code)] on by default
+kablam!   --> src/windows_ver.rs:19:1
+kablam!    |
+kablam! 19 | pub fn parse(output: String) -> WindowsVer {
+kablam!    | ^
+kablam! 
+kablam! warning: function is never used: `retrieve`, #[warn(dead_code)] on by default
+kablam!   --> tests/../src/lsb_release.rs:10:1
+kablam!    |
+kablam! 10 |   pub fn retrieve() -> Option<LsbRelease> {
+kablam!    |  _^ starting here...
+kablam! 11 | |     let output = match Command::new("lsb_release").arg("-a").output() {
+kablam! 12 | |         Ok(o)  => o,
+kablam! 13 | |         Err(_) =>return None
+kablam! 14 | |     };
+kablam! 15 | |     let stdout = String::from_utf8_lossy(&output.stdout);
+kablam! 16 | |     Some(parse(stdout.to_string()))
+kablam! 17 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! warning: function is never used: `is_available`, #[warn(dead_code)] on by default
+kablam!   --> tests/../src/lsb_release.rs:19:1
+kablam!    |
+kablam! 19 |   pub fn is_available() -> bool {
+kablam!    |  _^ starting here...
+kablam! 20 | |     match Command::new("lsb_release").output() {
+kablam! 21 | |         Ok(_) => true,
+kablam! 22 | |         Err(_) => false
+kablam! 23 | |     }
+kablam! 24 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! warning: function is never used: `retrieve`, #[warn(dead_code)] on by default
+kablam!   --> tests/../src/windows_ver.rs:10:1
+kablam!    |
+kablam! 10 |   pub fn retrieve() -> Option<WindowsVer> {
+kablam!    |  _^ starting here...
+kablam! 11 | |     let output = match Command::new("ver").output() {
+kablam! 12 | |         Ok(o) => o,
+kablam! 13 | |         Err(_) => return None
+kablam! 14 | |     };
+kablam! 15 | |     let stdout = String::from_utf8_lossy(&output.stdout);
+kablam! 16 | |     Some(parse(stdout.to_string()))
+kablam! 17 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 2.80 secs
+boom! running `docker rm -f c944fef8e84ffb01a76a123825410a0eebf6c29215dd8a4b5efa020ea73f710f`
+blam! c944fef8e84ffb01a76a123825410a0eebf6c29215dd8a4b5efa020ea73f710f
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! fe73a9b826e63e0c364b09bf00d63d3b9431193dabfd92521209e493d27d2754
+boom! running `docker start -a fe73a9b826e63e0c364b09bf00d63d3b9431193dabfd92521209e493d27d2754`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/lsb_release_test-9849ab102c25aaa5
+blam! 
+blam! running 3 tests
+blam! test test_parses_lsb_distro ... ok
+blam! test test_parses_arch_lsb_distro ... ok
+blam! test test_parses_lsb_version ... ok
+blam! 
+blam! test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/os_type-9062b7348e29a130
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/windows_ver_test-8df2875f19f247b9
+blam! 
+blam! running 1 test
+blam! test test_parses_version ... ok
+blam! 
+blam! test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!    Doc-tests os_type
+blam! 
+blam! running 1 test
+blam! warning: unused variable: `os`, #[warn(unused_variables)] on by default
+blam!  --> <anon>:4:5
+blam!   |
+blam! 4 | let os = os_type::current_platform();
+blam!   |     ^^
+blam! 
+blam! test current_platform_0 ... ok
+blam! 
+blam! test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f fe73a9b826e63e0c364b09bf00d63d3b9431193dabfd92521209e493d27d2754`
+blam! fe73a9b826e63e0c364b09bf00d63d3b9431193dabfd92521209e493d27d2754

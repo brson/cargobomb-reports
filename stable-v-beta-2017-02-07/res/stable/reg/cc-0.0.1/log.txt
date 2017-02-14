@@ -1,0 +1,96 @@
+boom! testing cc-0.0.1 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 2845c30e742fdb375b9981e42baea7306d5ec75f55313d258582433303969a47
+boom! running `docker start -a 2845c30e742fdb375b9981e42baea7306d5ec75f55313d258582433303969a47`
+kablam!    Compiling cc v0.0.1 (file:///source)
+kablam! error[E0412]: type name `uint` is undefined or not in scope
+kablam!   --> src/lib.rs:26:32
+kablam!    |
+kablam! 26 |     fn get_id(&self) -> Option<uint>;
+kablam!    |                                ^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: no candidates by the name of `uint` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0412]: type name `uint` is undefined or not in scope
+kablam!   --> src/lib.rs:38:32
+kablam!    |
+kablam! 38 |     fn get_id(&self) -> Option<uint> { Some(&*self as *const _ as uint) }
+kablam!    |                                ^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: no candidates by the name of `uint` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0412]: type name `uint` is undefined or not in scope
+kablam!   --> src/lib.rs:38:67
+kablam!    |
+kablam! 38 |     fn get_id(&self) -> Option<uint> { Some(&*self as *const _ as uint) }
+kablam!    |                                                                   ^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: no candidates by the name of `uint` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0412]: type name `uint` is undefined or not in scope
+kablam!   --> src/lib.rs:44:32
+kablam!    |
+kablam! 44 |     fn get_id(&self) -> Option<uint> { (**self).get_id() }
+kablam!    |                                ^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: no candidates by the name of `uint` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0412]: type name `uint` is undefined or not in scope
+kablam!   --> src/lib.rs:50:32
+kablam!    |
+kablam! 50 |     fn get_id(&self) -> Option<uint> { (**self).get_id() }
+kablam!    |                                ^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: no candidates by the name of `uint` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0412]: type name `uint` is undefined or not in scope
+kablam!   --> src/lib.rs:56:32
+kablam!    |
+kablam! 56 |     fn get_id(&self) -> Option<uint> { (**self).get_id() }
+kablam!    |                                ^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: no candidates by the name of `uint` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0412]: type name `uint` is undefined or not in scope
+kablam!   --> src/lib.rs:62:32
+kablam!    |
+kablam! 62 |     fn get_id(&self) -> Option<uint> { (**self).get_id() }
+kablam!    |                                ^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: no candidates by the name of `uint` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0412]: type name `uint` is undefined or not in scope
+kablam!   --> src/lib.rs:68:32
+kablam!    |
+kablam! 68 |     fn get_id(&self) -> Option<uint> { self.as_ref().and_then(|r| r.get_id()) }
+kablam!    |                                ^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: no candidates by the name of `uint` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/lib.rs:35:49
+kablam!    |
+kablam! 35 |         self.try_borrow().as_ref().and_then(|r| r.get_references())
+kablam!    |                                                 ^^^^^^^^^^^^^^^^^^ expected enum `std::result::Result`, found enum `std::option::Option`
+kablam!    |
+kablam!    = note: expected type `std::result::Result<_, &std::cell::BorrowError>`
+kablam!    = note:    found type `std::option::Option<std::vec::Vec<Box<CyclicReference + 'static>>>`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/lib.rs:35:9
+kablam!    |
+kablam! 35 |         self.try_borrow().as_ref().and_then(|r| r.get_references())
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `std::option::Option`, found enum `std::result::Result`
+kablam!    |
+kablam!    = note: expected type `std::option::Option<std::vec::Vec<Box<CyclicReference + 'static>>>`
+kablam!    = note:    found type `std::result::Result<_, &std::cell::BorrowError>`
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `cc`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 2845c30e742fdb375b9981e42baea7306d5ec75f55313d258582433303969a47`
+blam! 2845c30e742fdb375b9981e42baea7306d5ec75f55313d258582433303969a47

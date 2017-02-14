@@ -1,0 +1,38 @@
+boom! testing extra-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 3322b1785f6b62286eb5bf3f319eb314b0c205aafc775e3ed551f42cfed7d35d
+boom! running `docker start -a 3322b1785f6b62286eb5bf3f319eb314b0c205aafc775e3ed551f42cfed7d35d`
+kablam!    Compiling extra v0.1.0 (file:///source)
+kablam! error[E0061]: this function takes 1 parameter but 0 parameters were supplied
+kablam!   --> src/io.rs:23:22
+kablam!    |
+kablam! 23 |         self.write(c.encode_utf8().as_slice())
+kablam!    |                      ^^^^^^^^^^^ expected 1 parameter
+kablam! 
+kablam! error: no method named `as_slice` found for type `&mut str` in the current scope
+kablam!   --> src/io.rs:23:36
+kablam!    |
+kablam! 23 |         self.write(c.encode_utf8().as_slice())
+kablam!    |                                    ^^^^^^^^
+kablam! 
+kablam! error: no method named `and_then` found for type `slice::collections::Bound<&T>` in the current scope
+kablam!   --> src/slice.rs:43:36
+kablam!    |
+kablam! 43 |     let start = cmp::min(a.start().and_then(|x| x.as_option()).unwrap_or(0), len);
+kablam!    |                                    ^^^^^^^^
+kablam! 
+kablam! error: no method named `and_then` found for type `slice::collections::Bound<&T>` in the current scope
+kablam!   --> src/slice.rs:44:32
+kablam!    |
+kablam! 44 |     let end = cmp::min(a.end().and_then(|x| x.as_option()).unwrap_or(len), len);
+kablam!    |                                ^^^^^^^^
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `extra`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 3322b1785f6b62286eb5bf3f319eb314b0c205aafc775e3ed551f42cfed7d35d`
+blam! 3322b1785f6b62286eb5bf3f319eb314b0c205aafc775e3ed551f42cfed7d35d

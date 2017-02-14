@@ -1,0 +1,23 @@
+boom! testing typemap-0.3.3 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 729f36f7b61d23454242b601b27378d69be7160c6a0132a5b4b416b91b846969
+boom! running `docker start -a 729f36f7b61d23454242b601b27378d69be7160c6a0132a5b4b416b91b846969`
+kablam!    Compiling typemap v0.3.3 (file:///source)
+kablam! error: defaults for type parameters are only allowed in `struct`, `enum`, `type`, or `trait` definitions., #[deny(invalid_type_param_default)] on by default
+kablam!    --> src/lib.rs:185:18
+kablam!     |
+kablam! 185 | impl<'a, K: Key, A: ?Sized + UnsafeAnyExt + 'a = UnsafeAny> Entry<'a, K, A> {
+kablam!     |                  ^
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #36887 <https://github.com/rust-lang/rust/issues/36887>
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `typemap`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 729f36f7b61d23454242b601b27378d69be7160c6a0132a5b4b416b91b846969`
+blam! 729f36f7b61d23454242b601b27378d69be7160c6a0132a5b4b416b91b846969

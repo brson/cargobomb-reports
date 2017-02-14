@@ -1,0 +1,23 @@
+boom! testing hilite-1.0.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 22c63cec6fa19a66082158ce0d896319c7d28a13938d2c76d87d93a619745144
+boom! running `docker start -a 22c63cec6fa19a66082158ce0d896319c7d28a13938d2c76d87d93a619745144`
+kablam!    Compiling hilite v1.0.0 (file:///source)
+kablam! error[E0277]: the trait bound `&&[std::string::String]: std::iter::Iterator` is not satisfied
+kablam!   --> src/main.rs:83:32
+kablam!    |
+kablam! 83 |                               .args(& program_args)
+kablam!    |                                ^^^^ the trait `std::iter::Iterator` is not implemented for `&&[std::string::String]`
+kablam!    |
+kablam!    = note: `&&[std::string::String]` is not an iterator; maybe try calling `.iter()` or a similar method
+kablam!    = note: required because of the requirements on the impl of `std::iter::IntoIterator` for `&&[std::string::String]`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `hilite`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 22c63cec6fa19a66082158ce0d896319c7d28a13938d2c76d87d93a619745144`
+blam! 22c63cec6fa19a66082158ce0d896319c7d28a13938d2c76d87d93a619745144

@@ -1,0 +1,95 @@
+boom! testing xdr-0.1.0 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 3cf363bfd6c7626b448d6bb6b8546f6f62927f08ee21a814676ab3e6b326574c
+boom! running `docker start -a 3cf363bfd6c7626b448d6bb6b8546f6f62927f08ee21a814676ab3e6b326574c`
+kablam!    Compiling xdr v0.1.0 (file:///source)
+kablam! error[E0412]: cannot find type `Error` in module `byteorder`
+kablam!   --> src/xdr.rs:16:5
+kablam!    |
+kablam! 16 | 	Io(byteorder::Error),
+kablam!    | 	   ^^^^^^^^^^^^^^^^ not found in `byteorder`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use std::error::Error;`
+kablam!              `use std::fmt::Error;`
+kablam!              `use std::io::Error;`
+kablam!              `use xdr::Error;`
+kablam! 
+kablam! error[E0412]: cannot find type `Error` in module `byteorder`
+kablam!   --> src/xdr.rs:21:11
+kablam!    |
+kablam! 21 | impl From<byteorder::Error> for Error {
+kablam!    |           ^^^^^^^^^^^^^^^^ not found in `byteorder`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use std::error::Error;`
+kablam!              `use std::fmt::Error;`
+kablam!              `use std::io::Error;`
+kablam!              `use xdr::Error;`
+kablam! 
+kablam! error[E0412]: cannot find type `Error` in module `byteorder`
+kablam!   --> src/xdr.rs:22:15
+kablam!    |
+kablam! 22 | 	fn from(err: byteorder::Error) -> Error { Error::Io(err) }
+kablam!    | 	             ^^^^^^^^^^^^^^^^ not found in `byteorder`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use std::error::Error;`
+kablam!              `use std::fmt::Error;`
+kablam!              `use std::io::Error;`
+kablam!              `use xdr::Error;`
+kablam! 
+kablam! error[E0412]: cannot find type `Error` in module `byteorder`
+kablam!   --> src/xdr.rs:25:22
+kablam!    |
+kablam! 25 | impl From<Error> for byteorder::Error {
+kablam!    |                      ^^^^^^^^^^^^^^^^ not found in `byteorder`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use std::error::Error;`
+kablam!              `use std::fmt::Error;`
+kablam!              `use std::io::Error;`
+kablam!              `use xdr::Error;`
+kablam! 
+kablam! error[E0412]: cannot find type `Error` in module `byteorder`
+kablam!   --> src/xdr.rs:26:25
+kablam!    |
+kablam! 26 | 	fn from(err: Error) -> byteorder::Error {
+kablam!    | 	                       ^^^^^^^^^^^^^^^^ not found in `byteorder`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use std::error::Error;`
+kablam!              `use std::fmt::Error;`
+kablam!              `use std::io::Error;`
+kablam!              `use xdr::Error;`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Error` in `byteorder`
+kablam!   --> src/xdr.rs:29:27
+kablam!    |
+kablam! 29 | 			Error::InvalidValue => byteorder::Error::Io(io::Error::new(io::ErrorKind::Other, "Invalid value")),
+kablam!    | 			                       ^^^^^^^^^^^^^^^^^^^^ Could not find `Error` in `byteorder`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Error` in `byteorder`
+kablam!   --> src/xdr.rs:30:26
+kablam!    |
+kablam! 30 | 			Error::InvalidType => byteorder::Error::Io(io::Error::new(io::ErrorKind::Other, "Invalid type")),
+kablam!    | 			                      ^^^^^^^^^^^^^^^^^^^^ Could not find `Error` in `byteorder`
+kablam! 
+kablam! error[E0277]: the trait bound `Self: std::marker::Sized` is not satisfied
+kablam!    --> src/xdr.rs:182:2
+kablam!     |
+kablam! 182 | 	fn read_from_xdr(x: &mut XdrReader) -> Result<Self, Error>;
+kablam!     | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::marker::Sized` is not implemented for `Self`
+kablam!     |
+kablam!     = help: consider adding a `where Self: std::marker::Sized` bound
+kablam!     = note: required by `std::result::Result`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `xdr`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 3cf363bfd6c7626b448d6bb6b8546f6f62927f08ee21a814676ab3e6b326574c`
+blam! 3cf363bfd6c7626b448d6bb6b8546f6f62927f08ee21a814676ab3e6b326574c

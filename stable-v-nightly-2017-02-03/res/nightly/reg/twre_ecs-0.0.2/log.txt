@@ -1,0 +1,94 @@
+boom! testing twre_ecs-0.0.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! e5b283f8ab113e25b0d3085e8aa1e95c55230bbf8aa05c76c0e97114973a0f31
+boom! running `docker start -a e5b283f8ab113e25b0d3085e8aa1e95c55230bbf8aa05c76c0e97114973a0f31`
+kablam!    Compiling twre_ecs v0.0.2 (file:///source)
+kablam! error[E0432]: unresolved import `std::marker::MarkerTrait`
+kablam!  --> src/core/component.rs:3:28
+kablam!   |
+kablam! 3 | use std::marker::{Reflect, MarkerTrait};
+kablam!   |                            ^^^^^^^^^^^ no `MarkerTrait` in `marker`
+kablam! 
+kablam! error[E0432]: unresolved import `std::collections::vec_map`
+kablam!  --> src/vec_map.rs:2:33
+kablam!   |
+kablam! 2 | use std::collections::vec_map::{self, VecMap};
+kablam!   |                                 ^^^^ no `vec_map` in `collections`
+kablam! 
+kablam! error[E0432]: unresolved import `std::collections::vec_map::VecMap`
+kablam!  --> src/vec_map.rs:2:39
+kablam!   |
+kablam! 2 | use std::collections::vec_map::{self, VecMap};
+kablam!   |                                       ^^^^^^ Could not find `vec_map` in `collections`
+kablam! 
+kablam! error[E0432]: unresolved import `std::collections::BitSet`
+kablam!  --> src/bit_set.rs:3:5
+kablam!   |
+kablam! 3 | use std::collections::BitSet;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^ no `BitSet` in `collections`
+kablam! 
+kablam! error: use of unstable library feature 'reflect_marker': requires RFC and more experience (see issue #27749)
+kablam!  --> src/core/component.rs:3:19
+kablam!   |
+kablam! 3 | use std::marker::{Reflect, MarkerTrait};
+kablam!   |                   ^^^^^^^
+kablam!   |
+kablam!   = help: add #![feature(reflect_marker)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'reflect_marker': requires RFC and more experience (see issue #27749)
+kablam!  --> src/core/component.rs:5:22
+kablam!   |
+kablam! 5 | pub trait Component: Reflect + Sized + Send + Sync + 'static {}
+kablam!   |                      ^^^^^^^
+kablam!   |
+kablam!   = help: add #![feature(reflect_marker)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'reflect_marker': requires RFC and more experience (see issue #27749)
+kablam!  --> src/core/component.rs:8:14
+kablam!   |
+kablam! 8 |     where T: Reflect + Sized + Send + Sync + 'static
+kablam!   |              ^^^^^^^
+kablam!   |
+kablam!   = help: add #![feature(reflect_marker)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'reflect_marker': requires RFC and more experience (see issue #27749)
+kablam!  --> src/core/store.rs:3:5
+kablam!   |
+kablam! 3 | use std::marker::Reflect;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = help: add #![feature(reflect_marker)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'reflect_marker': requires RFC and more experience (see issue #27749)
+kablam!  --> src/core/store.rs:5:30
+kablam!   |
+kablam! 5 | pub trait StoreBase<ID: Id>: Reflect + Send + Sync + 'static  {
+kablam!   |                              ^^^^^^^
+kablam!   |
+kablam!   = help: add #![feature(reflect_marker)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'raw' (see issue #27751)
+kablam!  --> src/core/store_array.rs:6:24
+kablam!   |
+kablam! 6 | use std::{iter, slice, raw, mem};
+kablam!   |                        ^^^
+kablam!   |
+kablam!   = help: add #![feature(raw)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'raw' (see issue #27751)
+kablam!   --> src/core/store_array.rs:42:56
+kablam!    |
+kablam! 42 |             let ptr = mem::transmute::<&StoreBase<ID>, raw::TraitObject>(&**store).data;
+kablam!    |                                                        ^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: add #![feature(raw)] to the crate attributes to enable
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `twre_ecs`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f e5b283f8ab113e25b0d3085e8aa1e95c55230bbf8aa05c76c0e97114973a0f31`
+blam! e5b283f8ab113e25b0d3085e8aa1e95c55230bbf8aa05c76c0e97114973a0f31

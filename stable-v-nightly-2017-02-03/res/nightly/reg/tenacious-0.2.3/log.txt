@@ -1,0 +1,38 @@
+boom! testing tenacious-0.2.3 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 4b3e05c7cdd6db15e917ae2ad697c84b225b8cbbdde56e789a87dec597ee9c2b
+boom! running `docker start -a 4b3e05c7cdd6db15e917ae2ad697c84b225b8cbbdde56e789a87dec597ee9c2b`
+kablam!    Compiling tenacious v0.2.3 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::attr::AttrMetaMethods`
+kablam!   --> src/lib.rs:25:5
+kablam!    |
+kablam! 25 | use syntax::attr::AttrMetaMethods;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `AttrMetaMethods` in `attr`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `TyStruct` in module `ty`
+kablam!    --> src/lib.rs:141:13
+kablam!     |
+kablam! 141 |             ty::TyStruct(did, _) | ty::TyEnum(did, _) => {
+kablam!     |             ^^^^^^^^^^^^ not found in `ty`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `TyEnum` in module `ty`
+kablam!    --> src/lib.rs:141:36
+kablam!     |
+kablam! 141 |             ty::TyStruct(did, _) | ty::TyEnum(did, _) => {
+kablam!     |                                    ^^^^^^^^^^ not found in `ty`
+kablam! 
+kablam! error[E0107]: wrong number of lifetime parameters: expected 2, found 0
+kablam!   --> src/lib.rs:62:6
+kablam!    |
+kablam! 62 | impl LateLintPass for TenaciousPass {
+kablam!    |      ^^^^^^^^^^^^ expected 2 lifetime parameters
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `tenacious`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 4b3e05c7cdd6db15e917ae2ad697c84b225b8cbbdde56e789a87dec597ee9c2b`
+blam! 4b3e05c7cdd6db15e917ae2ad697c84b225b8cbbdde56e789a87dec597ee9c2b

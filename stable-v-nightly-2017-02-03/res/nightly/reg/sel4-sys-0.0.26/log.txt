@@ -1,0 +1,25 @@
+boom! testing sel4-sys-0.0.26 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! a3e9cfc2ff7215528f00c2c4ca524778f7fa2788e570685fbab8a249559ee008
+boom! running `docker start -a a3e9cfc2ff7215528f00c2c4ca524778f7fa2788e570685fbab8a249559ee008`
+kablam!    Compiling sel4-sys v0.0.26 (file:///source)
+kablam! warning: unused variable: `word_size`, #[warn(unused_variables)] on by default
+kablam!   --> build.rs:35:26
+kablam!    |
+kablam! 35 |     for &(arch, archdir, word_size) in &arches {
+kablam!    |                          ^^^^^^^^^
+kablam! 
+kablam! error: failed to run custom build command for `sel4-sys v0.0.26 (file:///source)`
+kablam! process didn't exit successfully: `/target/debug/build/sel4-sys-501d1eec7d25e27b/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! Running: "/usr/bin/env" "python" "tools/syscall_stub_gen.py" "-a" "ia32" "-w" "32" "--buffer" "-o" "/target/debug/build/sel4-sys-91e369d490da25f1/out/ia32_syscall_stub.rs" "seL4/libsel4/include/interfaces/sel4.xml" "seL4/libsel4/arch_include/x86/interfaces/sel4arch.xml" "seL4/libsel4/sel4_arch_include/ia32/interfaces/sel4arch.xml"
+kablam! 
+kablam! --- stderr
+kablam! /usr/bin/env: python: No such file or directory
+kablam! thread 'main' panicked at 'assertion failed: cmd.status().unwrap().success()', build.rs:32
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f a3e9cfc2ff7215528f00c2c4ca524778f7fa2788e570685fbab8a249559ee008`
+blam! a3e9cfc2ff7215528f00c2c4ca524778f7fa2788e570685fbab8a249559ee008

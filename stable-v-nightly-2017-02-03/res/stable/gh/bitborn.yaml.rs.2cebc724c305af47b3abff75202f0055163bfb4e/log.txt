@@ -1,0 +1,60 @@
+boom! testing https://github.com/bitborn/yaml.rs#2cebc724c305af47b3abff75202f0055163bfb4e against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 10872d938944dc1a8f63ae7eb6d046623bebdeb82780267442066671422c7a1b
+boom! running `docker start -a 10872d938944dc1a8f63ae7eb6d046623bebdeb82780267442066671422c7a1b`
+kablam!    Compiling yaml v0.0.0 (file:///source)
+kablam! warning: unnecessary parentheses around `if` condition, #[warn(unused_parens)] on by default
+kablam!   --> src/lib.rs:48:11
+kablam!    |
+kablam! 48 |         if(self.stack.len() == 0) {
+kablam!    |           ^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::IoResult`
+kablam!   --> src/lib.rs:10:15
+kablam!    |
+kablam! 10 | use std::io::{IoResult, MemReader};
+kablam!    |               ^^^^^^^^ no `IoResult` in `std::io`. Did you mean to use `Result`?
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::MemReader`
+kablam!   --> src/lib.rs:10:25
+kablam!    |
+kablam! 10 | use std::io::{IoResult, MemReader};
+kablam!    |                         ^^^^^^^^^ no `MemReader` in `std::io`. Did you mean to use `BufReader`?
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::MemReader`
+kablam!    --> src/lib.rs:421:9
+kablam!     |
+kablam! 421 |     use std::io::MemReader;
+kablam!     |         ^^^^^^^^^^^^^^^^^^ no `MemReader` in `std::io`. Did you mean to use `BufReader`?
+kablam! 
+kablam! error[E0412]: type name `Reader` is undefined or not in scope
+kablam!   --> src/lib.rs:20:17
+kablam!    |
+kablam! 20 |     reader: Box<Reader + 'a>,
+kablam!    |                 ^^^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: no candidates by the name of `Reader` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0405]: trait `Reader` is not in scope
+kablam!   --> src/lib.rs:27:19
+kablam!    |
+kablam! 27 |     pub fn new<T: Reader + 'a>(reader: Box<T>) -> Tokenizer<'a> {
+kablam!    |                   ^^^^^^ `Reader` is not in scope
+kablam!    |
+kablam!    = help: no candidates by the name of `Reader` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0172]: expected a reference to a trait
+kablam!   --> src/lib.rs:20:17
+kablam!    |
+kablam! 20 |     reader: Box<Reader + 'a>,
+kablam!    |                 ^^^^^^ expected a trait
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `yaml`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 10872d938944dc1a8f63ae7eb6d046623bebdeb82780267442066671422c7a1b`
+blam! 10872d938944dc1a8f63ae7eb6d046623bebdeb82780267442066671422c7a1b

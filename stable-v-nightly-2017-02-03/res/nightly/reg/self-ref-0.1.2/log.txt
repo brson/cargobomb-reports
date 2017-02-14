@@ -1,0 +1,69 @@
+boom! testing self-ref-0.1.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! ccac9579a67ad339366d13990fbd0961ea98cb102c944c078f523a5bb5eafc77
+boom! running `docker start -a ccac9579a67ad339366d13990fbd0961ea98cb102c944c078f523a5bb5eafc77`
+kablam!    Compiling self-ref v0.1.2 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.45 secs
+boom! running `docker rm -f ccac9579a67ad339366d13990fbd0961ea98cb102c944c078f523a5bb5eafc77`
+blam! ccac9579a67ad339366d13990fbd0961ea98cb102c944c078f523a5bb5eafc77
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 749fe20c20a0234f8efda3a9dbfecb4a7966c6b5a3695f3f0e716a19ef6ead6d
+boom! running `docker start -a 749fe20c20a0234f8efda3a9dbfecb4a7966c6b5a3695f3f0e716a19ef6ead6d`
+kablam!    Compiling self-ref v0.1.2 (file:///source)
+kablam! warning: unreachable statement, #[warn(unreachable_code)] on by default
+kablam!    --> src/lib.rs:88:13
+kablam!     |
+kablam! 88  |               unsafe { ptr::write(&mut (*pointer).$field, $field); }
+kablam!     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! ...
+kablam! 136 |           self_referencing!(S1, {
+kablam!     |  _________- starting here...
+kablam! 137 | |             s2 = S2 { v: 2 };
+kablam! 138 | |             s3 = panic!("assignment for s3 panicked");
+kablam! 139 | |             s4 = S4 { v: 4, };
+kablam! 140 | |         });
+kablam!     | |___________- ...ending here: in this macro invocation
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.68 secs
+boom! running `docker rm -f 749fe20c20a0234f8efda3a9dbfecb4a7966c6b5a3695f3f0e716a19ef6ead6d`
+blam! 749fe20c20a0234f8efda3a9dbfecb4a7966c6b5a3695f3f0e716a19ef6ead6d
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 31966d2433cf8f196b5ba88489fe574bdc95729a3f7d8a4249b8c30bfb867943
+boom! running `docker start -a 31966d2433cf8f196b5ba88489fe574bdc95729a3f7d8a4249b8c30bfb867943`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/self_ref-f79315396774c11e
+blam! 
+blam! running 2 tests
+blam! test tests::struct_names ... ok
+kablam!    Doc-tests self-ref
+blam! test tests::panicking_and_dropping ... ok
+blam! 
+blam! test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+blam! 
+blam! running 1 test
+blam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+blam!   --> <anon>:27:18
+blam!    |
+blam! 27 |       let assets = self_referencing!(Assets, {
+blam!    |  __________________^ starting here...
+blam! 28 | |         galaxy = Galaxy { name: "Milky Way" };
+blam! 29 | |         system = StarSystem { galaxy: &galaxy, name: "Solar System", };
+blam! 30 | |         star = Star { system: &system, name: "Sol", };
+blam! 31 | |     });
+blam!    | |______^ ...ending here
+blam!    |
+blam!    = note: this error originates in a macro outside of the current crate
+blam! 
+blam! test self_referencing_0 ... ok
+blam! 
+blam! test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f 31966d2433cf8f196b5ba88489fe574bdc95729a3f7d8a4249b8c30bfb867943`
+blam! 31966d2433cf8f196b5ba88489fe574bdc95729a3f7d8a4249b8c30bfb867943

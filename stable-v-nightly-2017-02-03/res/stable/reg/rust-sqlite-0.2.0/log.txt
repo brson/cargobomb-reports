@@ -1,0 +1,25 @@
+boom! testing rust-sqlite-0.2.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 7cfe7c8b04461301992622ef50b44141ec8b12212b07d7744570ff3e5be7d239
+boom! running `docker start -a 7cfe7c8b04461301992622ef50b44141ec8b12212b07d7744570ff3e5be7d239`
+kablam! warning: dependency (time) specified without providing a local path, Git repository, or version to use. This will be considered an error in future versions
+kablam! warning: unused manifest key: dependencies.time.time
+kablam!    Compiling rust-sqlite v0.2.0 (file:///source)
+kablam! error[E0277]: the trait bound `Self: std::marker::Sized` is not satisfied
+kablam!   --> src/types.rs:30:5
+kablam!    |
+kablam! 30 |     fn from_sql(row: &mut ResultRow, col: ColIx) -> SqliteResult<Self>;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::marker::Sized` is not implemented for `Self`
+kablam!    |
+kablam!    = help: consider adding a `where Self: std::marker::Sized` bound
+kablam!    = note: required by `std::result::Result`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `rust-sqlite`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 7cfe7c8b04461301992622ef50b44141ec8b12212b07d7744570ff3e5be7d239`
+blam! 7cfe7c8b04461301992622ef50b44141ec8b12212b07d7744570ff3e5be7d239

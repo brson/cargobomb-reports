@@ -1,0 +1,62 @@
+boom! testing ld-0.0.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 1a16202e08838a5f5f7fd2abbcabef7e9a295cf4d1190d4bc1e227057861fa77
+boom! running `docker start -a 1a16202e08838a5f5f7fd2abbcabef7e9a295cf4d1190d4bc1e227057861fa77`
+kablam!    Compiling ld v0.0.1 (file:///source)
+kablam! error[E0432]: unresolved import `std::io::Command`
+kablam!  --> src/lib.rs:4:5
+kablam!   |
+kablam! 4 | use std::io::Command;
+kablam!   |     ^^^^^^^^^^^^^^^^ no `Command` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::process::InheritFd`
+kablam!  --> src/lib.rs:5:5
+kablam!   |
+kablam! 5 | use std::io::process::InheritFd;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `process` in `io`
+kablam! 
+kablam! error[E0425]: cannot find function `getenv` in module `os`
+kablam!   --> src/lib.rs:13:18
+kablam!    |
+kablam! 13 |     let target = os::getenv("TARGET").unwrap();
+kablam!    |                  ^^^^^^^^^^ not found in `os`
+kablam! 
+kablam! error[E0425]: cannot find function `getenv` in module `os`
+kablam!   --> src/lib.rs:15:21
+kablam!    |
+kablam! 15 |     let opt_level = os::getenv("OPT_LEVEL").unwrap();
+kablam!    |                     ^^^^^^^^^^ not found in `os`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> src/lib.rs:19:15
+kablam!    |
+kablam! 19 |     let dst = Path::new(os::getenv("OUT_DIR").unwrap());
+kablam!    |               ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error[E0425]: cannot find function `getenv` in module `os`
+kablam!   --> src/lib.rs:19:25
+kablam!    |
+kablam! 19 |     let dst = Path::new(os::getenv("OUT_DIR").unwrap());
+kablam!    |                         ^^^^^^^^^^ not found in `os`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> src/lib.rs:21:15
+kablam!    |
+kablam! 21 |     let src = Path::new(os::getenv("CARGO_MANIFEST_DIR").unwrap());
+kablam!    |               ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error[E0425]: cannot find function `getenv` in module `os`
+kablam!   --> src/lib.rs:21:25
+kablam!    |
+kablam! 21 |     let src = Path::new(os::getenv("CARGO_MANIFEST_DIR").unwrap());
+kablam!    |                         ^^^^^^^^^^ not found in `os`
+kablam! 
+kablam! error: aborting due to 8 previous errors
+kablam! 
+kablam! error: Could not compile `ld`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 1a16202e08838a5f5f7fd2abbcabef7e9a295cf4d1190d4bc1e227057861fa77`
+blam! 1a16202e08838a5f5f7fd2abbcabef7e9a295cf4d1190d4bc1e227057861fa77

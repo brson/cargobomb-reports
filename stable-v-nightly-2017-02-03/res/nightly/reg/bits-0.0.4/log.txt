@@ -1,0 +1,26 @@
+boom! testing bits-0.0.4 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 4378bbea0abbd0725fce52060110f5799923b776bc7396206acb3fc2d74c9504
+boom! running `docker start -a 4378bbea0abbd0725fce52060110f5799923b776bc7396206acb3fc2d74c9504`
+kablam!    Compiling bits v0.0.4 (file:///source)
+kablam! error[E0405]: cannot find trait `Int` in module `num`
+kablam!  --> src/generic.rs:3:19
+kablam!   |
+kablam! 3 | pub trait BitOps: num::Int {
+kablam!   |                   ^^^^^^^^ not found in `num`
+kablam! 
+kablam! error[E0405]: cannot find trait `Int` in module `num`
+kablam!    --> src/generic.rs:254:9
+kablam!     |
+kablam! 254 | impl<T: num::Int> BitOps for T {}
+kablam!     |         ^^^^^^^^ not found in `num`
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `bits`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 4378bbea0abbd0725fce52060110f5799923b776bc7396206acb3fc2d74c9504`
+blam! 4378bbea0abbd0725fce52060110f5799923b776bc7396206acb3fc2d74c9504

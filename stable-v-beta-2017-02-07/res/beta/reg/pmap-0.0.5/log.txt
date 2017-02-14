@@ -1,0 +1,32 @@
+boom! testing pmap-0.0.5 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 16fa042c6fbd9f32225f55db9c04417c77e056386d4aac5199338cdc47ebad27
+boom! running `docker start -a 16fa042c6fbd9f32225f55db9c04417c77e056386d4aac5199338cdc47ebad27`
+kablam!    Compiling pmap v0.0.5 (file:///source)
+kablam! error[E0412]: cannot find type `JoinGuard` in module `thread`
+kablam!   --> src/lib.rs:16:30
+kablam!    |
+kablam! 16 |         let mut threads: Vec<thread::JoinGuard<bool>> = Vec::new();
+kablam!    |                              ^^^^^^^^^^^^^^^^^^^^^^^ not found in `thread`
+kablam! 
+kablam! error[E0425]: cannot find function `scoped` in module `thread`
+kablam!   --> src/lib.rs:21:23
+kablam!    |
+kablam! 21 |             let trd = thread::scoped(move|| {
+kablam!    |                       ^^^^^^^^^^^^^^ not found in `thread`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> src/lib.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(scoped)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `pmap`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 16fa042c6fbd9f32225f55db9c04417c77e056386d4aac5199338cdc47ebad27`
+blam! 16fa042c6fbd9f32225f55db9c04417c77e056386d4aac5199338cdc47ebad27

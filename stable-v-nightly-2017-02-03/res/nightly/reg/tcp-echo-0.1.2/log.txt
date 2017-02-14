@@ -1,0 +1,64 @@
+boom! testing tcp-echo-0.1.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 6e66407d2a40176369e6f81ac67070486b70d7e817d4a26066d4a7cbaed18623
+boom! running `docker start -a 6e66407d2a40176369e6f81ac67070486b70d7e817d4a26066d4a7cbaed18623`
+kablam!    Compiling acto-rs v0.3.9
+kablam!    Compiling tcp-echo v0.1.2 (file:///source)
+kablam! error[E0053]: method `process` has an incompatible type for trait
+kablam!   --> src/placeholder.rs:9:3
+kablam!    |
+kablam! 9  |     fn process(&mut self, _output: &mut Sender<Message<Self::OutputType>>) -> Schedule {
+kablam!    |  ___^ starting here...
+kablam! 10 | |     Schedule::Stop
+kablam! 11 | |   }
+kablam!    | |___^ ...ending here: expected enum `std::result::Result`, found enum `actors::Schedule`
+kablam!    |
+kablam!    = note: expected type `fn(&mut placeholder::Placeholder, &mut actors::Sender<actors::Message<u64>>) -> std::result::Result<(), &'static str>`
+kablam!               found type `fn(&mut placeholder::Placeholder, &mut actors::Sender<actors::Message<u64>>) -> actors::Schedule`
+kablam! 
+kablam! error[E0053]: method `process` has an incompatible type for trait
+kablam!   --> src/read_bytes.rs:8:3
+kablam!    |
+kablam! 8  |     fn process(&mut self, _output: &mut Sender<Message<Self::OutputType>>) -> Schedule {
+kablam!    |  ___^ starting here...
+kablam! 9  | |     Schedule::OnExternalEvent
+kablam! 10 | |   }
+kablam!    | |___^ ...ending here: expected enum `std::result::Result`, found enum `actors::Schedule`
+kablam!    |
+kablam!    = note: expected type `fn(&mut read_bytes::ReadBytes, &mut actors::Sender<actors::Message<u64>>) -> std::result::Result<(), &'static str>`
+kablam!               found type `fn(&mut read_bytes::ReadBytes, &mut actors::Sender<actors::Message<u64>>) -> actors::Schedule`
+kablam! 
+kablam! error[E0053]: method `process` has an incompatible type for trait
+kablam!   --> src/parser.rs:9:3
+kablam!    |
+kablam! 9  |     fn process(
+kablam!    |  ___^ starting here...
+kablam! 10 | |     &mut self,
+kablam! 11 | |     _input:   &mut ChannelWrapper<Self::InputType>,
+kablam! 12 | |     _output:  &mut Sender<Message<Self::OutputType>>) -> Schedule
+kablam! 13 | |   {
+kablam! 14 | |     Schedule::Loop
+kablam! 15 | |   }
+kablam!    | |___^ ...ending here: expected enum `std::result::Result`, found enum `actors::Schedule`
+kablam!    |
+kablam!    = note: expected type `fn(&mut parser::Parser, &mut actors::ChannelWrapper<u64>, &mut actors::Sender<actors::Message<u64>>) -> std::result::Result<(), &'static str>`
+kablam!               found type `fn(&mut parser::Parser, &mut actors::ChannelWrapper<u64>, &mut actors::Sender<actors::Message<u64>>) -> actors::Schedule`
+kablam! 
+kablam! error[E0053]: method `process` has an incompatible type for trait
+kablam!   --> src/handle_parsed.rs:8:3
+kablam!    |
+kablam! 8  |   fn process(&mut self, input: &mut ChannelWrapper<Self::InputType>) -> Schedule {
+kablam!    |   ^ expected enum `std::result::Result`, found enum `actors::Schedule`
+kablam!    |
+kablam!    = note: expected type `fn(&mut handle_parsed::HandleParsed, &mut actors::ChannelWrapper<u64>) -> std::result::Result<(), &'static str>`
+kablam!               found type `fn(&mut handle_parsed::HandleParsed, &mut actors::ChannelWrapper<u64>) -> actors::Schedule`
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `tcp-echo`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 6e66407d2a40176369e6f81ac67070486b70d7e817d4a26066d4a7cbaed18623`
+blam! 6e66407d2a40176369e6f81ac67070486b70d7e817d4a26066d4a7cbaed18623

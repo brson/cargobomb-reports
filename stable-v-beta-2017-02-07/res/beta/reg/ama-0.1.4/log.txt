@@ -1,0 +1,44 @@
+boom! testing ama-0.1.4 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 1871f1e83e3bfd699f67b48d2ff3674eb802150a307086289ded064c616f5141
+boom! running `docker start -a 1871f1e83e3bfd699f67b48d2ff3674eb802150a307086289ded064c616f5141`
+kablam!    Compiling ama v0.1.4 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::parse::token::str_to_ident`
+kablam!   --> src/libama/rust.rs:33:9
+kablam!    |
+kablam! 33 | pub use syntax::parse::token::str_to_ident;
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `str_to_ident` in `parse::token`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::keywords::Keyword`
+kablam!   --> src/libama/rust.rs:40:9
+kablam!    |
+kablam! 40 | pub use syntax::parse::token::keywords::Keyword;
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `keywords` in `token`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::gensym_ident`
+kablam!   --> src/libama/rust.rs:43:9
+kablam!    |
+kablam! 43 | pub use syntax::parse::token::gensym_ident;
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `gensym_ident` in `parse::token`
+kablam! 
+kablam! error[E0405]: cannot find trait `Reader` in module `rust::lexer`
+kablam!   --> src/libama/code_gen.rs:60:10
+kablam!    |
+kablam! 60 | impl<'a> rust::lexer::Reader for TokenAndSpanArray<'a> {
+kablam!    |          ^^^^^^^^^^^^^^^^^^^ not found in `rust::lexer`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!   --> src/libama/lib.rs:15:1
+kablam!    |
+kablam! 15 | #![feature(rustc_private, quote)]
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `ama`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 1871f1e83e3bfd699f67b48d2ff3674eb802150a307086289ded064c616f5141`
+blam! 1871f1e83e3bfd699f67b48d2ff3674eb802150a307086289ded064c616f5141

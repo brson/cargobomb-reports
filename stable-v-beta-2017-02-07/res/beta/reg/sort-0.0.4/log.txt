@@ -1,0 +1,122 @@
+boom! testing sort-0.0.4 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 7a9660206114a4571324ee09200a7c5b6f019a60ee492e4aeb0f856ba1298e1c
+boom! running `docker start -a 7a9660206114a4571324ee09200a7c5b6f019a60ee492e4aeb0f856ba1298e1c`
+kablam!    Compiling sort v0.0.4 (file:///source)
+kablam! error: expected type, found `|`
+kablam!   --> src/lib.rs:11:48
+kablam!    |
+kablam! 11 | pub fn quick_sort_by<T>(d: &mut [T], cmp: &mut |&T, &T| -> Ordering) {
+kablam!    |                                                ^
+kablam! 
+kablam! error: expected one of `:` or `@`, found `|`
+kablam!   --> src/lib.rs:11:55
+kablam!    |
+kablam! 11 | pub fn quick_sort_by<T>(d: &mut [T], cmp: &mut |&T, &T| -> Ordering) {
+kablam!    |                                                       ^
+kablam! 
+kablam! error[E0432]: unresolved import `core::cmp::Greater`
+kablam!  --> src/lib.rs:7:27
+kablam!   |
+kablam! 7 | use core::cmp::{Ordering, Greater};
+kablam!   |                           ^^^^^^^ no `Greater` in `cmp`
+kablam! 
+kablam! error[E0432]: unresolved import `core::slice::SlicePrelude`
+kablam!  --> src/lib.rs:8:19
+kablam!   |
+kablam! 8 | use core::slice::{SlicePrelude};
+kablam!   |                   ^^^^^^^^^^^^ no `SlicePrelude` in `slice`
+kablam! 
+kablam! error[E0432]: unresolved import `core::ptr::RawPtr`
+kablam!  --> src/lib.rs:9:17
+kablam!   |
+kablam! 9 | use core::ptr::{RawPtr};
+kablam!   |                 ^^^^^^ no `RawPtr` in `ptr`
+kablam! 
+kablam! error[E0412]: cannot find type `int` in this scope
+kablam!   --> src/lib.rs:18:49
+kablam!    |
+kablam! 18 |         let mut right = pivot.offset(d.len() as int - 1);
+kablam!    |                                                 ^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `cmp` in this scope
+kablam!   --> src/lib.rs:20:37
+kablam!    |
+kablam! 20 |             while left < right && (*cmp)(&*right, &*pivot) == Greater {
+kablam!    |                                     ^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `cmp` in this scope
+kablam!   --> src/lib.rs:23:37
+kablam!    |
+kablam! 23 |             while left < right && (*cmp)(&*left, &*pivot) != Greater {
+kablam!    |                                     ^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `cmp` in this scope
+kablam!   --> src/lib.rs:30:14
+kablam!    |
+kablam! 30 |         if (*cmp)(&*left, &*pivot) != Greater {
+kablam!    |              ^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!   --> src/lib.rs:34:19
+kablam!    |
+kablam! 34 |         (pivot as uint - d.as_ptr() as uint) / mem::size_of::<T>()
+kablam!    |                   ^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!   --> src/lib.rs:34:40
+kablam!    |
+kablam! 34 |         (pivot as uint - d.as_ptr() as uint) / mem::size_of::<T>()
+kablam!    |                                        ^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `cmp` in this scope
+kablam!   --> src/lib.rs:36:48
+kablam!    |
+kablam! 36 |     quick_sort_by(d.slice_to_mut(pivot_index), cmp);
+kablam!    |                                                ^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `cmp` in this scope
+kablam!   --> src/lib.rs:37:54
+kablam!    |
+kablam! 37 |     quick_sort_by(d.slice_from_mut(pivot_index + 1), cmp);
+kablam!    |                                                      ^^^ not found in this scope
+kablam! 
+kablam! error[E0061]: this function takes 1 parameter but 2 parameters were supplied
+kablam!   --> src/lib.rs:36:19
+kablam!    |
+kablam! 11 | pub fn quick_sort_by<T>(d: &mut [T], cmp: &mut |&T, &T| -> Ordering) {
+kablam!    | - defined here
+kablam! ...
+kablam! 36 |     quick_sort_by(d.slice_to_mut(pivot_index), cmp);
+kablam!    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 1 parameter
+kablam! 
+kablam! error: no method named `slice_to_mut` found for type `&mut [T]` in the current scope
+kablam!   --> src/lib.rs:36:21
+kablam!    |
+kablam! 36 |     quick_sort_by(d.slice_to_mut(pivot_index), cmp);
+kablam!    |                     ^^^^^^^^^^^^
+kablam! 
+kablam! error[E0061]: this function takes 1 parameter but 2 parameters were supplied
+kablam!   --> src/lib.rs:37:19
+kablam!    |
+kablam! 11 | pub fn quick_sort_by<T>(d: &mut [T], cmp: &mut |&T, &T| -> Ordering) {
+kablam!    | - defined here
+kablam! ...
+kablam! 37 |     quick_sort_by(d.slice_from_mut(pivot_index + 1), cmp);
+kablam!    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 1 parameter
+kablam! 
+kablam! error: no method named `slice_from_mut` found for type `&mut [T]` in the current scope
+kablam!   --> src/lib.rs:37:21
+kablam!    |
+kablam! 37 |     quick_sort_by(d.slice_from_mut(pivot_index + 1), cmp);
+kablam!    |                     ^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `sort`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 7a9660206114a4571324ee09200a7c5b6f019a60ee492e4aeb0f856ba1298e1c`
+blam! 7a9660206114a4571324ee09200a7c5b6f019a60ee492e4aeb0f856ba1298e1c

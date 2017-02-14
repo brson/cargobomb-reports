@@ -1,0 +1,94 @@
+boom! testing metadeps-1.1.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! b8cd277cbe11e921ca042effbb3d1547af04637ccf606b27a4be03adde9c610d
+boom! running `docker start -a b8cd277cbe11e921ca042effbb3d1547af04637ccf606b27a4be03adde9c610d`
+kablam!    Compiling metadeps v1.1.1 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 2.6 secs
+boom! running `docker rm -f b8cd277cbe11e921ca042effbb3d1547af04637ccf606b27a4be03adde9c610d`
+blam! b8cd277cbe11e921ca042effbb3d1547af04637ccf606b27a4be03adde9c610d
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 950a4129ad299301765cd515f303190abb62f3f303d51a525e0fc881dcc1246f
+boom! running `docker start -a 950a4129ad299301765cd515f303190abb62f3f303d51a525e0fc881dcc1246f`
+kablam!    Compiling metadeps v1.1.1 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 2.41 secs
+boom! running `docker rm -f 950a4129ad299301765cd515f303190abb62f3f303d51a525e0fc881dcc1246f`
+blam! 950a4129ad299301765cd515f303190abb62f3f303d51a525e0fc881dcc1246f
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 099b34d02b7d8b49825bc2161430557a007601019c8d406bca3f57230b2e1127
+boom! running `docker start -a 099b34d02b7d8b49825bc2161430557a007601019c8d406bca3f57230b2e1127`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/metadeps-a6feab080b6f55b9
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/test-2e55d5d7b80154c2
+blam! 
+blam! running 9 tests
+blam! test feature_not_string ... FAILED
+blam! test good ... FAILED
+blam! test missing_file ... ok
+blam! test missing_key ... FAILED
+blam! test unexpected_key ... FAILED
+blam! test not_table ... FAILED
+blam! test version_in_table_not_string ... FAILED
+blam! test version_missing ... FAILED
+kablam! error: test failed
+blam! test version_not_string ... FAILED
+blam! 
+blam! failures:
+blam! 
+blam! ---- feature_not_string stdout ----
+blam! 	thread 'feature_not_string' panicked at 'Expected error to start with: "Unexpected key package.metadata.pkg-config.testlib.feature type integer"
+blam! Got error: Error(Msg("Error opening /source/tests/toml-feature-not-string/Cargo.toml"), State { next_error: Some(Error { repr: Os { code: 2, message: "No such file or directory" } }) })', tests/test.rs:34
+blam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+blam! 
+blam! ---- good stdout ----
+blam! 	thread 'good' panicked at 'called `Result::unwrap()` on an `Err` value: Error(Msg("Error opening /source/tests/toml-good/Cargo.toml"), State { next_error: Some(Error { repr: Os { code: 2, message: "No such file or directory" } }) })', /buildslave/rust-buildbot/slave/nightly-dist-rustc-linux/build/src/libcore/result.rs:870
+blam! 
+blam! ---- missing_key stdout ----
+blam! 	thread 'missing_key' panicked at 'Expected error to start with: "No package.metadata.pkg-config in"
+blam! Got error: Error(Msg("Error opening /source/tests/toml-missing-key/Cargo.toml"), State { next_error: Some(Error { repr: Os { code: 2, message: "No such file or directory" } }) })', tests/test.rs:34
+blam! 
+blam! ---- unexpected_key stdout ----
+blam! 	thread 'unexpected_key' panicked at 'Expected error to start with: "Unexpected key package.metadata.pkg-config.testlib.color type string"
+blam! Got error: Error(Msg("Error opening /source/tests/toml-unexpected-key/Cargo.toml"), State { next_error: Some(Error { repr: Os { code: 2, message: "No such file or directory" } }) })', tests/test.rs:34
+blam! 
+blam! ---- not_table stdout ----
+blam! 	thread 'not_table' panicked at 'Expected error to start with: "package.metadata.pkg-config not a table in"
+blam! Got error: Error(Msg("Error opening /source/tests/toml-not-table/Cargo.toml"), State { next_error: Some(Error { repr: Os { code: 2, message: "No such file or directory" } }) })', tests/test.rs:34
+blam! 
+blam! ---- version_in_table_not_string stdout ----
+blam! 	thread 'version_in_table_not_string' panicked at 'Expected error to start with: "Unexpected key package.metadata.pkg-config.testlib.version type integer"
+blam! Got error: Error(Msg("Error opening /source/tests/toml-version-in-table-not-string/Cargo.toml"), State { next_error: Some(Error { repr: Os { code: 2, message: "No such file or directory" } }) })', tests/test.rs:34
+blam! 
+blam! ---- version_missing stdout ----
+blam! 	thread 'version_missing' panicked at 'Expected error to start with: "No version in package.metadata.pkg-config.testlib"
+blam! Got error: Error(Msg("Error opening /source/tests/toml-version-missing/Cargo.toml"), State { next_error: Some(Error { repr: Os { code: 2, message: "No such file or directory" } }) })', tests/test.rs:34
+blam! 
+blam! ---- version_not_string stdout ----
+blam! 	thread 'version_not_string' panicked at 'Expected error to start with: "package.metadata.pkg-config.testlib not a string or table"
+blam! Got error: Error(Msg("Error opening /source/tests/toml-version-not-string/Cargo.toml"), State { next_error: Some(Error { repr: Os { code: 2, message: "No such file or directory" } }) })', tests/test.rs:34
+blam! 
+blam! 
+blam! failures:
+blam!     feature_not_string
+blam!     good
+blam!     missing_key
+blam!     not_table
+blam!     unexpected_key
+blam!     version_in_table_not_string
+blam!     version_missing
+blam!     version_not_string
+blam! 
+blam! test result: FAILED. 1 passed; 8 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f 099b34d02b7d8b49825bc2161430557a007601019c8d406bca3f57230b2e1127`
+blam! 099b34d02b7d8b49825bc2161430557a007601019c8d406bca3f57230b2e1127

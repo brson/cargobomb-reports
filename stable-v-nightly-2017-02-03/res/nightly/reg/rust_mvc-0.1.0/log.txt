@@ -1,0 +1,38 @@
+boom! testing rust_mvc-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 44f96a8589b7a440194ddfdf4250201e0f9d3d1051deb1054834fe4596a1710d
+boom! running `docker start -a 44f96a8589b7a440194ddfdf4250201e0f9d3d1051deb1054834fe4596a1710d`
+kablam!    Compiling rust_mvc v0.1.0 (file:///source)
+kablam! error[E0061]: this function takes 2 parameters but 3 parameters were supplied
+kablam!   --> src/build/parser.rs:23:56
+kablam!    |
+kablam! 23 | 	let mut parser: parser::Parser = new_parser_from_file(&session, vec, Path::new(file));
+kablam!    | 	                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 2 parameters
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/build/parser.rs:123:132
+kablam!     |
+kablam! 123 | 		let position = offset + match ast.into_iter().skip(offset).position(|t| match *t { Token::Ident(ident) => ident.name.as_str().eq("fn"), _ => false }){
+kablam!     | 		                                                                                                                                 ^^^^ expected struct `syntax::symbol::InternedString`, found str
+kablam!     |
+kablam!     = note: expected type `&syntax::symbol::InternedString`
+kablam!                found type `&'static str`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/build/parser.rs:135:30
+kablam!     |
+kablam! 135 | 		if !ident.name.as_str().eq("pub") { continue; }
+kablam!     | 		                           ^^^^^ expected struct `syntax::symbol::InternedString`, found str
+kablam!     |
+kablam!     = note: expected type `&syntax::symbol::InternedString`
+kablam!                found type `&'static str`
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `rust_mvc`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 44f96a8589b7a440194ddfdf4250201e0f9d3d1051deb1054834fe4596a1710d`
+blam! 44f96a8589b7a440194ddfdf4250201e0f9d3d1051deb1054834fe4596a1710d

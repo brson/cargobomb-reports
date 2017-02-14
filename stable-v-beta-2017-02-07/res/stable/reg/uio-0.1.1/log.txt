@@ -1,0 +1,96 @@
+boom! testing uio-0.1.1 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 039aca2d53b3fd7074e5799bad442e0a6137334e35b42b659b2812410ff4a10c
+boom! running `docker start -a 039aca2d53b3fd7074e5799bad442e0a6137334e35b42b659b2812410ff4a10c`
+kablam!    Compiling uio v0.1.1 (file:///source)
+kablam! warning: unused import: `std::error::Error`, #[warn(unused_imports)] on by default
+kablam!  --> src/linux.rs:7:5
+kablam!   |
+kablam! 7 | use std::error::Error;
+kablam!   |     ^^^^^^^^^^^^^^^^^
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 1.8 secs
+boom! running `docker rm -f 039aca2d53b3fd7074e5799bad442e0a6137334e35b42b659b2812410ff4a10c`
+blam! 039aca2d53b3fd7074e5799bad442e0a6137334e35b42b659b2812410ff4a10c
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 7bcc287770bf787a1cecac5e25bfef2ced08576a38ba12248fcf59eac7c7530a
+boom! running `docker start -a 7bcc287770bf787a1cecac5e25bfef2ced08576a38ba12248fcf59eac7c7530a`
+kablam!    Compiling uio v0.1.1 (file:///source)
+kablam! warning: unused import: `std::error::Error`, #[warn(unused_imports)] on by default
+kablam!  --> src/linux.rs:7:5
+kablam!   |
+kablam! 7 | use std::error::Error;
+kablam!   |     ^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused variable: `f`, #[warn(unused_variables)] on by default
+kablam!    --> src/linux.rs:193:16
+kablam!     |
+kablam! 193 |             Ok(f) => (),
+kablam!     |                ^
+kablam! 
+kablam! warning: unused variable: `f`, #[warn(unused_variables)] on by default
+kablam!    --> src/linux.rs:215:16
+kablam!     |
+kablam! 215 |             Ok(f) => (),
+kablam!     |                ^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/linux.rs:211:13
+kablam!     |
+kablam! 211 |         let mut res = ::linux::UioDevice::new(0).unwrap();
+kablam!     |             ^^^^^^^
+kablam! 
+kablam! warning: unused variable: `f`, #[warn(unused_variables)] on by default
+kablam!    --> src/linux.rs:226:16
+kablam!     |
+kablam! 226 |             Ok(f) => (),
+kablam!     |                ^
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 1.92 secs
+boom! running `docker rm -f 7bcc287770bf787a1cecac5e25bfef2ced08576a38ba12248fcf59eac7c7530a`
+blam! 7bcc287770bf787a1cecac5e25bfef2ced08576a38ba12248fcf59eac7c7530a
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! 2c6527321446b40420e2abe9b124eb4373171227e1b257170e6f5a124d417316
+boom! running `docker start -a 2c6527321446b40420e2abe9b124eb4373171227e1b257170e6f5a124d417316`
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/uio-cbe2a4451d6d9960
+blam! 
+blam! running 4 tests
+blam! test linux::tests::print_info ... FAILED
+blam! test linux::tests::open ... FAILED
+blam! test linux::tests::map ... FAILED
+blam! test linux::tests::bar_info ... FAILED
+blam! 
+blam! failures:
+blam! 
+blam! ---- linux::tests::print_info stdout ----
+blam! 	thread 'linux::tests::print_info' panicked at 'called `Result::unwrap()` on an `Err` value: Error { repr: Os { code: 2, message: "No such file or directory" } }', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:837
+blam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+blam! 
+blam! ---- linux::tests::open stdout ----
+blam! 	thread 'linux::tests::open' panicked at 'Can not open device /dev/uio0: No such file or directory (os error 2)', src/linux.rs:192
+blam! 
+blam! ---- linux::tests::map stdout ----
+blam! 	thread 'linux::tests::map' panicked at 'called `Result::unwrap()` on an `Err` value: Error { repr: Os { code: 2, message: "No such file or directory" } }', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:837
+blam! 
+blam! ---- linux::tests::bar_info stdout ----
+blam! 	thread 'linux::tests::bar_info' panicked at 'called `Result::unwrap()` on an `Err` value: Error { repr: Os { code: 2, message: "No such file or directory" } }', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:837
+blam! 
+blam! 
+blam! failures:
+blam!     linux::tests::bar_info
+blam!     linux::tests::map
+blam!     linux::tests::open
+blam!     linux::tests::print_info
+blam! 
+blam! test result: FAILED. 0 passed; 4 failed; 0 ignored; 0 measured
+blam! 
+kablam! error: test failed
+boom! running `docker rm -f 2c6527321446b40420e2abe9b124eb4373171227e1b257170e6f5a124d417316`
+blam! 2c6527321446b40420e2abe9b124eb4373171227e1b257170e6f5a124d417316

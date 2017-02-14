@@ -1,0 +1,222 @@
+boom! testing python_mixin-0.0.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 4089b66cfac8605fc01da573f568b44829b0e24c676a087aebee5a3476584273
+boom! running `docker start -a 4089b66cfac8605fc01da573f568b44829b0e24c676a087aebee5a3476584273`
+kablam!    Compiling python_mixin v0.0.2 (file:///source)
+kablam! error[E0432]: unresolved import `std::fs::TempDir`
+kablam!  --> src/lib.rs:8:21
+kablam!   |
+kablam! 8 | use std::fs::{self, TempDir, File};
+kablam!   |                     ^^^^^^^ no `TempDir` in `fs`
+kablam! 
+kablam! error[E0432]: unresolved import `rustc::plugin::Registry`
+kablam!   --> src/lib.rs:17:5
+kablam!    |
+kablam! 17 | use rustc::plugin::Registry;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `plugin` in `rustc`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::attr::ParserAttr`
+kablam!   --> src/parser_any_macro.rs:11:5
+kablam!    |
+kablam! 11 | use syntax::parse::attr::ParserAttr;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `ParserAttr` in `parse::attr`
+kablam! 
+kablam! error[E0407]: method `make_methods` is not a member of trait `MacResult`
+kablam!   --> src/parser_any_macro.rs:72:5
+kablam!    |
+kablam! 72 |     fn make_methods(self: Box<ParserAnyMacro<'a>>) -> Option<SmallVector<P<ast::Method>>> {
+kablam!    |     ^ not a member of trait `MacResult`
+kablam! 
+kablam! error[E0412]: cannot find type `Method` in module `ast`
+kablam!   --> src/parser_any_macro.rs:72:76
+kablam!    |
+kablam! 72 |     fn make_methods(self: Box<ParserAnyMacro<'a>>) -> Option<SmallVector<P<ast::Method>>> {
+kablam!    |                                                                            ^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0407]: method `make_stmt` is not a member of trait `MacResult`
+kablam!   --> src/parser_any_macro.rs:87:5
+kablam!    |
+kablam! 87 |       fn make_stmt(self: Box<ParserAnyMacro<'a>>) -> Option<P<ast::Stmt>> {
+kablam!    |  _____^ starting here...
+kablam! 88 | |         let attrs = self.parser.borrow_mut().parse_outer_attributes();
+kablam! 89 | |         let ret = self.parser.borrow_mut().parse_stmt(attrs);
+kablam! 90 | |         self.ensure_complete_parse(true);
+kablam! 91 | |         Some(ret)
+kablam! 92 | |     }
+kablam!    | |_____^ ...ending here: not a member of trait `MacResult`
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!   --> src/lib.rs:33:41
+kablam!    |
+kablam! 33 |     registrar.register_syntax_extension(token::intern("python_mixin"),
+kablam!    |                                         ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!   --> src/lib.rs:46:31
+kablam!    |
+kablam! 46 |                    raw_tts: &[ast::TokenTree])
+kablam!    |                               ^^^^^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `TtDelimited` in module `ast`
+kablam!   --> src/lib.rs:62:19
+kablam!    |
+kablam! 62 |             Some(&ast::TtDelimited(_, ref delim)) if delim.delim == token::Brace => {
+kablam!    |                   ^^^^^^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!    --> src/lib.rs:149:35
+kablam!     |
+kablam! 149 |     fn parse(cx: &ExtCtxt, tts: &[ast::TokenTree]) -> Options {
+kablam!     |                                   ^^^^^^^^^^^^^^ not found in `ast`
+kablam!     |
+kablam!     = help: possible candidate is found in another module, you can import it into scope:
+kablam!               `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/parser_any_macro.rs:49:14
+kablam!    |
+kablam! 49 |         Some(ret)
+kablam!    |              ^^^ expected struct `syntax::ptr::P`, found enum `std::result::Result`
+kablam!    |
+kablam!    = note: expected type `syntax::ptr::P<syntax::ast::Expr>`
+kablam!               found type `std::result::Result<syntax::ptr::P<syntax::ast::Expr>, syntax::<unnamed>::DiagnosticBuilder<'_>>`
+kablam!    = help: here are some functions which might fulfill your needs:
+kablam!            - .unwrap()
+kablam!            - .unwrap_err()
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/parser_any_macro.rs:54:14
+kablam!    |
+kablam! 54 |         Some(ret)
+kablam!    |              ^^^ expected struct `syntax::ptr::P`, found enum `std::result::Result`
+kablam!    |
+kablam!    = note: expected type `syntax::ptr::P<syntax::ast::Pat>`
+kablam!               found type `std::result::Result<syntax::ptr::P<syntax::ast::Pat>, syntax::<unnamed>::DiagnosticBuilder<'_>>`
+kablam!    = help: here are some functions which might fulfill your needs:
+kablam!            - .unwrap()
+kablam!            - .unwrap_err()
+kablam! 
+kablam! error: no associated item named `zero` found for type `rustc_data_structures::small_vec::SmallVec<[_; 1]>` in the current scope
+kablam!   --> src/parser_any_macro.rs:57:23
+kablam!    |
+kablam! 57 |         let mut ret = SmallVector::zero();
+kablam!    |                       ^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `parse_item_with_outer_attributes` found for type `std::cell::RefMut<'_, syntax::parse::parser::Parser<'a>>` in the current scope
+kablam!   --> src/parser_any_macro.rs:63:26
+kablam!    |
+kablam! 63 |             match parser.parse_item_with_outer_attributes() {
+kablam!    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no associated item named `zero` found for type `rustc_data_structures::small_vec::SmallVec<[_; 1]>` in the current scope
+kablam!   --> src/parser_any_macro.rs:73:23
+kablam!    |
+kablam! 73 |         let mut ret = SmallVector::zero();
+kablam!    |                       ^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `parse_method_with_outer_attributes` found for type `std::cell::RefMut<'_, syntax::parse::parser::Parser<'a>>` in the current scope
+kablam!   --> src/parser_any_macro.rs:79:37
+kablam!    |
+kablam! 79 |                     ret.push(parser.parse_method_with_outer_attributes());
+kablam!    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0061]: this function takes 0 parameters but 1 parameter was supplied
+kablam!   --> src/parser_any_macro.rs:89:55
+kablam!    |
+kablam! 89 |         let ret = self.parser.borrow_mut().parse_stmt(attrs);
+kablam!    |                                                       ^^^^^ expected 0 parameters
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/parser_any_macro.rs:91:14
+kablam!    |
+kablam! 91 |         Some(ret)
+kablam!    |              ^^^ expected struct `syntax::ptr::P`, found enum `std::result::Result`
+kablam!    |
+kablam!    = note: expected type `syntax::ptr::P<syntax::ast::Stmt>`
+kablam!               found type `std::result::Result<std::option::Option<syntax::ast::Stmt>, syntax::<unnamed>::DiagnosticBuilder<'_>>`
+kablam!    = help: here are some functions which might fulfill your needs:
+kablam!            - .unwrap()
+kablam!            - .unwrap_err()
+kablam!            - .unwrap_or_default()
+kablam! 
+kablam! error[E0061]: this function takes 3 parameters but 2 parameters were supplied
+kablam!   --> src/lib.rs:34:56
+kablam!    |
+kablam! 34 |                                         base::NormalTT(Box::new(Expander { dir: dir }),
+kablam!    |                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 3 parameters
+kablam! 
+kablam! error[E0061]: this function takes 0 parameters but 1 parameter was supplied
+kablam!   --> src/lib.rs:79:33
+kablam!    |
+kablam! 79 |         let path = PathBuf::new(&filename);
+kablam!    |                                 ^^^^^^^^^ expected 0 parameters
+kablam! 
+kablam! error: no method named `fileline_note` found for type `syntax::<unnamed>::Handler` in the current scope
+kablam!    --> src/lib.rs:120:45
+kablam!     |
+kablam! 120 |             cx.parse_sess().span_diagnostic.fileline_note(sp, &msg);
+kablam!     |                                             ^^^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `fileline_note` found for type `syntax::<unnamed>::Handler` in the current scope
+kablam!    --> src/lib.rs:126:45
+kablam!     |
+kablam! 126 |             cx.parse_sess().span_diagnostic.fileline_note(sp, &msg);
+kablam!     |                                             ^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0061]: this function takes 3 parameters but 4 parameters were supplied
+kablam!    --> src/lib.rs:133:56
+kablam!     |
+kablam! 133 |         let parser = parse::new_parser_from_source_str(cx.parse_sess(),
+kablam!     |                                                        ^^^^^^^^^^^^^^^ expected 3 parameters
+kablam! 
+kablam! error: no field `last_span` on type `syntax::parse::parser::Parser<'_>`
+kablam!    --> src/lib.rs:155:32
+kablam!     |
+kablam! 155 |             let ident_span = p.last_span;
+kablam!     |                                ^^^^^^^^^ did you mean `prev_span`?
+kablam! 
+kablam! error: no method named `as_str` found for type `std::result::Result<syntax::ast::Ident, syntax::<unnamed>::DiagnosticBuilder<'_>>` in the current scope
+kablam!    --> src/lib.rs:156:25
+kablam!     |
+kablam! 156 |             match ident.as_str() {
+kablam!     |                         ^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:159:25
+kablam!     |
+kablam! 159 |                     let (s, _) = p.parse_str();
+kablam!     |                         ^^^^^^ expected enum `std::result::Result`, found tuple
+kablam!     |
+kablam!     = note: expected type `std::result::Result<(syntax::ast::Symbol, syntax::ast::StrStyle), syntax::<unnamed>::DiagnosticBuilder<'_>>`
+kablam!                found type `(_, _)`
+kablam! 
+kablam! error: no field `last_span` on type `syntax::parse::parser::Parser<'_>`
+kablam!    --> src/lib.rs:160:64
+kablam!     |
+kablam! 160 |                     let span = codemap::mk_sp(ident_span.lo, p.last_span.hi);
+kablam!     |                                                                ^^^^^^^^^ did you mean `prev_span`?
+kablam! 
+kablam! error: no method named `span_note` found for type `&syntax::ext::base::ExtCtxt<'_>` in the current scope
+kablam!    --> src/lib.rs:165:28
+kablam!     |
+kablam! 165 |                         cx.span_note(older_span,
+kablam!     |                            ^^^^^^^^^
+kablam! 
+kablam! error: no field `last_span` on type `syntax::parse::parser::Parser<'_>`
+kablam!    --> src/lib.rs:170:35
+kablam!     |
+kablam! 170 |                     cx.span_err(p.last_span, &format!("`python_mixing!`: unknown option `{}`",
+kablam!     |                                   ^^^^^^^^^ did you mean `prev_span`?
+kablam! 
+kablam! error: aborting due to 19 previous errors
+kablam! 
+kablam! error: Could not compile `python_mixin`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 4089b66cfac8605fc01da573f568b44829b0e24c676a087aebee5a3476584273`
+blam! 4089b66cfac8605fc01da573f568b44829b0e24c676a087aebee5a3476584273

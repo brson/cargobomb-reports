@@ -1,0 +1,170 @@
+boom! testing fdringbuf-0.0.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! d123023586e6243d7ad8fb334c12930d7af197656afb973880753e1a2595dd68
+boom! running `docker start -a d123023586e6243d7ad8fb334c12930d7af197656afb973880753e1a2595dd68`
+kablam! warning: dependency (nix) specified without providing a local path, Git repository, or version to use. This will be considered an error in future versions
+kablam! warning: unused manifest key: dev_dependencies.nix.nix
+kablam!    Compiling fdringbuf v0.0.2 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.88 secs
+boom! running `docker rm -f d123023586e6243d7ad8fb334c12930d7af197656afb973880753e1a2595dd68`
+blam! d123023586e6243d7ad8fb334c12930d7af197656afb973880753e1a2595dd68
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! bdce75e67680ec5502ee2434613e5155d7e669fbd11c846129f578eb7f672533
+boom! running `docker start -a bdce75e67680ec5502ee2434613e5155d7e669fbd11c846129f578eb7f672533`
+kablam! warning: dependency (nix) specified without providing a local path, Git repository, or version to use. This will be considered an error in future versions
+kablam! warning: unused manifest key: dev_dependencies.nix.nix
+kablam!    Compiling fdringbuf v0.0.2 (file:///source)
+kablam! error[E0432]: unresolved import `self::nix::sys::eventfd::*`
+kablam!    --> src/fdbuf.rs:211:13
+kablam!     |
+kablam! 211 |         use self::nix::sys::eventfd::*;
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `eventfd` in `sys`
+kablam! 
+kablam! error[E0425]: cannot find function `eventfd` in this scope
+kablam!    --> src/fdbuf.rs:212:29
+kablam!     |
+kablam! 212 |         let (efd1, efd2) = (eventfd(0, EFD_CLOEXEC).unwrap(), eventfd(0, EFD_CLOEXEC).unwrap());
+kablam!     |                             ^^^^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use fdbuf::tests::nix::libc::eventfd;`
+kablam!               `use libc::eventfd;`
+kablam! 
+kablam! error[E0425]: cannot find value `EFD_CLOEXEC` in this scope
+kablam!    --> src/fdbuf.rs:212:40
+kablam!     |
+kablam! 212 |         let (efd1, efd2) = (eventfd(0, EFD_CLOEXEC).unwrap(), eventfd(0, EFD_CLOEXEC).unwrap());
+kablam!     |                                        ^^^^^^^^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use fdbuf::tests::nix::libc::EFD_CLOEXEC;`
+kablam!               `use libc::EFD_CLOEXEC;`
+kablam! 
+kablam! error[E0425]: cannot find function `eventfd` in this scope
+kablam!    --> src/fdbuf.rs:212:63
+kablam!     |
+kablam! 212 |         let (efd1, efd2) = (eventfd(0, EFD_CLOEXEC).unwrap(), eventfd(0, EFD_CLOEXEC).unwrap());
+kablam!     |                                                               ^^^^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use fdbuf::tests::nix::libc::eventfd;`
+kablam!               `use libc::eventfd;`
+kablam! 
+kablam! error[E0425]: cannot find value `EFD_CLOEXEC` in this scope
+kablam!    --> src/fdbuf.rs:212:74
+kablam!     |
+kablam! 212 |         let (efd1, efd2) = (eventfd(0, EFD_CLOEXEC).unwrap(), eventfd(0, EFD_CLOEXEC).unwrap());
+kablam!     |                                                                          ^^^^^^^^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use fdbuf::tests::nix::libc::EFD_CLOEXEC;`
+kablam!               `use libc::EFD_CLOEXEC;`
+kablam! 
+kablam! error[E0425]: cannot find function `scoped` in module `std::thread`
+kablam!    --> src/fdbuf.rs:226:21
+kablam!     |
+kablam! 226 |         let guard = ::std::thread::scoped(move || {
+kablam!     |                     ^^^^^^^^^^^^^^^^^^^^^ not found in `std::thread`
+kablam! 
+kablam! error: cannot apply unary operator `-` to type `u32`
+kablam!    --> src/fdbuf.rs:233:69
+kablam!     |
+kablam! 233 |                     for z in d.iter().take(300) { cc += 1; if *z == -1 { quit = true; return (cc, false); } sum += *z as u64 };
+kablam!     |                                                                     ^^
+kablam! 
+kablam! error: cannot apply unary operator `-` to type `u32`
+kablam!    --> src/fdbuf.rs:261:29
+kablam!     |
+kablam! 261 |         s.send(|d| { d[0] = -1; (1, false) }).unwrap();
+kablam!     |                             ^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `fdringbuf`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f bdce75e67680ec5502ee2434613e5155d7e669fbd11c846129f578eb7f672533`
+blam! bdce75e67680ec5502ee2434613e5155d7e669fbd11c846129f578eb7f672533
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! eba5ddda6b211736abb997b71f8119051a2cfcea9676d64c49a1c4641d08e441
+boom! running `docker start -a eba5ddda6b211736abb997b71f8119051a2cfcea9676d64c49a1c4641d08e441`
+kablam! warning: dependency (nix) specified without providing a local path, Git repository, or version to use. This will be considered an error in future versions
+kablam! warning: unused manifest key: dev_dependencies.nix.nix
+kablam!    Compiling fdringbuf v0.0.2 (file:///source)
+kablam! error[E0432]: unresolved import `self::nix::sys::eventfd::*`
+kablam!    --> src/fdbuf.rs:211:13
+kablam!     |
+kablam! 211 |         use self::nix::sys::eventfd::*;
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `eventfd` in `sys`
+kablam! 
+kablam! error[E0425]: cannot find function `eventfd` in this scope
+kablam!    --> src/fdbuf.rs:212:29
+kablam!     |
+kablam! 212 |         let (efd1, efd2) = (eventfd(0, EFD_CLOEXEC).unwrap(), eventfd(0, EFD_CLOEXEC).unwrap());
+kablam!     |                             ^^^^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use fdbuf::tests::nix::libc::eventfd;`
+kablam!               `use libc::eventfd;`
+kablam! 
+kablam! error[E0425]: cannot find value `EFD_CLOEXEC` in this scope
+kablam!    --> src/fdbuf.rs:212:40
+kablam!     |
+kablam! 212 |         let (efd1, efd2) = (eventfd(0, EFD_CLOEXEC).unwrap(), eventfd(0, EFD_CLOEXEC).unwrap());
+kablam!     |                                        ^^^^^^^^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use fdbuf::tests::nix::libc::EFD_CLOEXEC;`
+kablam!               `use libc::EFD_CLOEXEC;`
+kablam! 
+kablam! error[E0425]: cannot find function `eventfd` in this scope
+kablam!    --> src/fdbuf.rs:212:63
+kablam!     |
+kablam! 212 |         let (efd1, efd2) = (eventfd(0, EFD_CLOEXEC).unwrap(), eventfd(0, EFD_CLOEXEC).unwrap());
+kablam!     |                                                               ^^^^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use fdbuf::tests::nix::libc::eventfd;`
+kablam!               `use libc::eventfd;`
+kablam! 
+kablam! error[E0425]: cannot find value `EFD_CLOEXEC` in this scope
+kablam!    --> src/fdbuf.rs:212:74
+kablam!     |
+kablam! 212 |         let (efd1, efd2) = (eventfd(0, EFD_CLOEXEC).unwrap(), eventfd(0, EFD_CLOEXEC).unwrap());
+kablam!     |                                                                          ^^^^^^^^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use fdbuf::tests::nix::libc::EFD_CLOEXEC;`
+kablam!               `use libc::EFD_CLOEXEC;`
+kablam! 
+kablam! error[E0425]: cannot find function `scoped` in module `std::thread`
+kablam!    --> src/fdbuf.rs:226:21
+kablam!     |
+kablam! 226 |         let guard = ::std::thread::scoped(move || {
+kablam!     |                     ^^^^^^^^^^^^^^^^^^^^^ not found in `std::thread`
+kablam! 
+kablam! error: cannot apply unary operator `-` to type `u32`
+kablam!    --> src/fdbuf.rs:233:69
+kablam!     |
+kablam! 233 |                     for z in d.iter().take(300) { cc += 1; if *z == -1 { quit = true; return (cc, false); } sum += *z as u64 };
+kablam!     |                                                                     ^^
+kablam! 
+kablam! error: cannot apply unary operator `-` to type `u32`
+kablam!    --> src/fdbuf.rs:261:29
+kablam!     |
+kablam! 261 |         s.send(|d| { d[0] = -1; (1, false) }).unwrap();
+kablam!     |                             ^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `fdringbuf`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f eba5ddda6b211736abb997b71f8119051a2cfcea9676d64c49a1c4641d08e441`
+blam! eba5ddda6b211736abb997b71f8119051a2cfcea9676d64c49a1c4641d08e441

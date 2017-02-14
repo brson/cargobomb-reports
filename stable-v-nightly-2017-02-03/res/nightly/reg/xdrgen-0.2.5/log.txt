@@ -1,0 +1,56 @@
+boom! testing xdrgen-0.2.5 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 6bed69b137f5076c0f69d0c5823bbc572e74b13c3cd72e55faa328d0b7070f0c
+boom! running `docker start -a 6bed69b137f5076c0f69d0c5823bbc572e74b13c3cd72e55faa328d0b7070f0c`
+kablam!    Compiling xdrgen v0.2.5 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::parse::token::str_to_ident`
+kablam!  --> src/spec/rustast.rs:9:9
+kablam!   |
+kablam! 9 | pub use syntax::parse::token::str_to_ident;
+kablam!   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `str_to_ident` in `parse::token`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::ext::base::DummyMacroLoader`
+kablam!  --> src/spec/fake_extctxt.rs:3:35
+kablam!   |
+kablam! 3 | use syntax::ext::base::{ ExtCtxt, DummyMacroLoader };
+kablam!   |                                   ^^^^^^^^^^^^^^^^ no `DummyMacroLoader` in `ext::base`
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `syntax::parse::token`
+kablam!   --> src/spec/fake_extctxt.rs:18:42
+kablam!    |
+kablam! 18 |       format: syntax::codemap::MacroBang(syntax::parse::token::intern("")),
+kablam!    |                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `syntax::parse::token`
+kablam! 
+kablam! error[E0061]: this function takes 3 parameters but 4 parameters were supplied
+kablam!   --> src/spec/rustast.rs:21:56
+kablam!    |
+kablam! 21 | 	let mut p = syntax::parse::new_parser_from_source_str(&ctxt.parse_sess, Vec::new(), "<peg>".to_string(), e.to_string());
+kablam!    | 	                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 3 parameters
+kablam! 
+kablam! error[E0061]: this function takes 3 parameters but 4 parameters were supplied
+kablam!   --> src/spec/rustast.rs:32:56
+kablam!    |
+kablam! 32 | 	let mut p = syntax::parse::new_parser_from_source_str(&ctxt.parse_sess, Vec::new(), "<peg>".to_string(), e.to_string());
+kablam!    | 	                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 3 parameters
+kablam! 
+kablam! error[E0061]: this function takes 3 parameters but 4 parameters were supplied
+kablam!   --> src/spec/rustast.rs:39:56
+kablam!    |
+kablam! 39 | 	let mut p = syntax::parse::new_parser_from_source_str(&ctxt.parse_sess, Vec::new(), "<peg>".to_string(), e.to_string());
+kablam!    | 	                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 3 parameters
+kablam! 
+kablam! error[E0061]: this function takes 3 parameters but 4 parameters were supplied
+kablam!   --> src/spec/fake_extctxt.rs:10:48
+kablam!    |
+kablam! 10 |   let mut cx = syntax::ext::base::ExtCtxt::new(&ps, Vec::new(),
+kablam!    |                                                ^^^^^^^^^^^^^^^ expected 3 parameters
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `xdrgen`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 6bed69b137f5076c0f69d0c5823bbc572e74b13c3cd72e55faa328d0b7070f0c`
+blam! 6bed69b137f5076c0f69d0c5823bbc572e74b13c3cd72e55faa328d0b7070f0c

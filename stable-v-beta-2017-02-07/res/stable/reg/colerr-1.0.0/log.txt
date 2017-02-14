@@ -1,0 +1,34 @@
+boom! testing colerr-1.0.0 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 8cef0369c802d67bfec1c0e01c638e2390926a0fc85d8564c4c8267b9fe64438
+boom! running `docker start -a 8cef0369c802d67bfec1c0e01c638e2390926a0fc85d8564c4c8267b9fe64438`
+kablam!    Compiling owning_ref v0.1.4
+kablam!    Compiling context v1.0.0
+kablam! error[E0207]: the lifetime parameter `'a` is not constrained by the impl trait, self type, or predicates
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/owning_ref-0.1.4/src/lib.rs:445:13
+kablam!     |
+kablam! 445 | unsafe impl<'a, T: 'a> IntoErased for Box<T> {
+kablam!     |             ^^ unconstrained lifetime parameter
+kablam! 
+kablam! error[E0207]: the lifetime parameter `'a` is not constrained by the impl trait, self type, or predicates
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/owning_ref-0.1.4/src/lib.rs:449:13
+kablam!     |
+kablam! 449 | unsafe impl<'a, T: 'a> IntoErased for Rc<T> {
+kablam!     |             ^^ unconstrained lifetime parameter
+kablam! 
+kablam! error[E0207]: the lifetime parameter `'a` is not constrained by the impl trait, self type, or predicates
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/owning_ref-0.1.4/src/lib.rs:453:13
+kablam!     |
+kablam! 453 | unsafe impl<'a, T: 'a> IntoErased for Arc<T> {
+kablam!     |             ^^ unconstrained lifetime parameter
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `owning_ref`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 8cef0369c802d67bfec1c0e01c638e2390926a0fc85d8564c4c8267b9fe64438`
+blam! 8cef0369c802d67bfec1c0e01c638e2390926a0fc85d8564c4c8267b9fe64438

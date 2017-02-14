@@ -1,0 +1,168 @@
+boom! testing promise-0.0.4 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 5c546414371b074486501d8d17356725e5e3c3ed9f75755c15a7aa245160aa68
+boom! running `docker start -a 5c546414371b074486501d8d17356725e5e3c3ed9f75755c15a7aa245160aa68`
+kablam!    Compiling promise v0.0.4 (file:///source)
+kablam! error: invalid suffix `us` for numeric literal
+kablam!    --> src/lib.rs:300:41
+kablam!     |
+kablam! 300 |         let f = Future::from_fn(move || 123us);
+kablam!     |                                         ^^^^^
+kablam!     |
+kablam!     = help: the suffix must be one of the integral types (`u32`, `isize`, etc)
+kablam! 
+kablam! error: invalid suffix `us` for numeric literal
+kablam!    --> src/lib.rs:308:13
+kablam!     |
+kablam! 308 |             123us
+kablam!     |             ^^^^^
+kablam!     |
+kablam!     = help: the suffix must be one of the integral types (`u32`, `isize`, etc)
+kablam! 
+kablam! error: invalid suffix `us` for numeric literal
+kablam!    --> src/lib.rs:320:40
+kablam!     |
+kablam! 320 |         let f = Future::delay(move ||  123us, Duration::seconds(3));
+kablam!     |                                        ^^^^^
+kablam!     |
+kablam!     = help: the suffix must be one of the integral types (`u32`, `isize`, etc)
+kablam! 
+kablam! error: invalid suffix `us` for numeric literal
+kablam!    --> src/lib.rs:357:31
+kablam!     |
+kablam! 357 |         let f = Future::value(123us);
+kablam!     |                               ^^^^^
+kablam!     |
+kablam!     = help: the suffix must be one of the integral types (`u32`, `isize`, etc)
+kablam! 
+kablam! error: invalid suffix `us` for numeric literal
+kablam!    --> src/lib.rs:364:39
+kablam!     |
+kablam! 364 |         let f = Future::delay(move || 123us, Duration::seconds(1));
+kablam!     |                                       ^^^^^
+kablam!     |
+kablam!     = help: the suffix must be one of the integral types (`u32`, `isize`, etc)
+kablam! 
+kablam! error: invalid suffix `us` for numeric literal
+kablam!    --> src/lib.rs:374:39
+kablam!     |
+kablam! 374 |         let f = Future::delay(move || 123us, Duration::seconds(1));
+kablam!     |                                       ^^^^^
+kablam!     |
+kablam!     = help: the suffix must be one of the integral types (`u32`, `isize`, etc)
+kablam! 
+kablam! error: invalid suffix `us` for numeric literal
+kablam!    --> src/lib.rs:384:31
+kablam!     |
+kablam! 384 |         let f = Future::value(3us);
+kablam!     |                               ^^^
+kablam!     |
+kablam!     = help: the suffix must be one of the integral types (`u32`, `isize`, etc)
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::timer`
+kablam!  --> src/lib.rs:5:5
+kablam!   |
+kablam! 5 | use std::io::timer;
+kablam!   |     ^^^^^^^^^^^^^^ no `timer` in `io`
+kablam! 
+kablam! error[E0425]: cannot find function `range` in this scope
+kablam!    --> src/lib.rs:117:22
+kablam!     |
+kablam! 117 |             for _ in range(0, futures.len()) {
+kablam!     |                      ^^^^^ not found in this scope
+kablam! 
+kablam! error: module `duration` is private
+kablam!  --> src/lib.rs:6:5
+kablam!   |
+kablam! 6 | use std::time::duration::Duration;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'test' (see issue #27812)
+kablam!  --> src/lib.rs:2:1
+kablam!   |
+kablam! 2 | extern crate test;
+kablam!   | ^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = help: add #![feature(test)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'mpsc_select': This implementation, while likely sufficient, is unsafe and likely to be error prone. At some point in the future this module will likely be replaced, and it is currently unknown how much API breakage that will cause. The ability to select over a number of channels will remain forever, but no guarantees beyond this are being made (see issue #27800)
+kablam!  --> src/lib.rs:8:5
+kablam!   |
+kablam! 8 |     Select,
+kablam!   |     ^^^^^^
+kablam!   |
+kablam!   = help: add #![feature(mpsc_select)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'mpsc_select': This implementation, while likely sufficient, is unsafe and likely to be error prone. At some point in the future this module will likely be replaced, and it is currently unknown how much API breakage that will cause. The ability to select over a number of channels will remain forever, but no guarantees beyond this are being made (see issue #27800)
+kablam!   --> src/lib.rs:67:26
+kablam!    |
+kablam! 67 |             let select = Select::new();
+kablam!    |                          ^^^^^^^^^^^
+kablam!    |
+kablam!    = help: add #![feature(mpsc_select)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'mpsc_select': This implementation, while likely sufficient, is unsafe and likely to be error prone. At some point in the future this module will likely be replaced, and it is currently unknown how much API breakage that will cause. The ability to select over a number of channels will remain forever, but no guarantees beyond this are being made (see issue #27800)
+kablam!    --> src/lib.rs:102:26
+kablam!     |
+kablam! 102 |             let select = Select::new();
+kablam!     |                          ^^^^^^^^^^^
+kablam!     |
+kablam!     = help: add #![feature(mpsc_select)] to the crate attributes to enable
+kablam! 
+kablam! error[E0244]: wrong number of type arguments: expected 1, found 2
+kablam!    --> src/lib.rs:166:23
+kablam!     |
+kablam! 166 |     pub fn from_fn<F: FnOnce<(), T> + Send>(func: F) -> Future<T> {
+kablam!     |                       ^^^^^^^^^^^^^ expected 1 type argument
+kablam! 
+kablam! error[E0244]: wrong number of type arguments: expected 1, found 2
+kablam!    --> src/lib.rs:181:21
+kablam!     |
+kablam! 181 |     pub fn delay<F: FnOnce<(), T>+Send>(func: F, duration: Duration) -> Future<T> {
+kablam!     |                     ^^^^^^^^^^^^^ expected 1 type argument
+kablam! 
+kablam! error[E0244]: wrong number of type arguments: expected 1, found 2
+kablam!    --> src/lib.rs:190:28
+kablam!     |
+kablam! 190 |     pub fn map<B: Send, F: FnOnce<(T,), B>+Send>(self, func: F) -> Future<B> {
+kablam!     |                            ^^^^^^^^^^^^^^^ expected 1 type argument
+kablam! 
+kablam! error[E0244]: wrong number of type arguments: expected 1, found 2
+kablam!    --> src/lib.rs:219:25
+kablam!     |
+kablam! 219 |     pub fn on_result<F: FnOnce<(Result<T, FutureError>,), ()>+Send>(self, f: F) {
+kablam!     |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 1 type argument
+kablam! 
+kablam! error[E0244]: wrong number of type arguments: expected 1, found 2
+kablam!    --> src/lib.rs:228:26
+kablam!     |
+kablam! 228 |     pub fn on_success<F: FnOnce<(T,), ()>+Send>(self, f: F) {
+kablam!     |                          ^^^^^^^^^^^^^^^^ expected 1 type argument
+kablam! 
+kablam! error[E0244]: wrong number of type arguments: expected 1, found 2
+kablam!    --> src/lib.rs:239:26
+kablam!     |
+kablam! 239 |     pub fn on_failure<F: FnOnce<(FutureError,), ()>+Send>(self, f: F) {
+kablam!     |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 1 type argument
+kablam! 
+kablam! error[E0244]: wrong number of type arguments: expected 1, found 2
+kablam!    --> src/lib.rs:250:27
+kablam!     |
+kablam! 250 |     pub fn on_complete<S: FnOnce<(T,),()>+Send, F: FnOnce<(FutureError,),()>+Send>(self, success: S, failure: F) {
+kablam!     |                           ^^^^^^^^^^^^^^^ expected 1 type argument
+kablam! 
+kablam! error[E0244]: wrong number of type arguments: expected 1, found 2
+kablam!    --> src/lib.rs:250:52
+kablam!     |
+kablam! 250 |     pub fn on_complete<S: FnOnce<(T,),()>+Send, F: FnOnce<(FutureError,),()>+Send>(self, success: S, failure: F) {
+kablam!     |                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^ expected 1 type argument
+kablam! 
+kablam! error: aborting due to 8 previous errors
+kablam! 
+kablam! error: Could not compile `promise`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 5c546414371b074486501d8d17356725e5e3c3ed9f75755c15a7aa245160aa68`
+blam! 5c546414371b074486501d8d17356725e5e3c3ed9f75755c15a7aa245160aa68

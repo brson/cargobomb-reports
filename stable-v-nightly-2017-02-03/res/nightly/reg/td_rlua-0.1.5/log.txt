@@ -1,0 +1,142 @@
+boom! testing td_rlua-0.1.5 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! abe3f616fab2aa5776d080ce3ec1ce76268fe5e95bced356baec1ce9a9d0917c
+boom! running `docker start -a abe3f616fab2aa5776d080ce3ec1ce76268fe5e95bced356baec1ce9a9d0917c`
+kablam!    Compiling td_rlua v0.1.5 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.94 secs
+boom! running `docker rm -f abe3f616fab2aa5776d080ce3ec1ce76268fe5e95bced356baec1ce9a9d0917c`
+blam! abe3f616fab2aa5776d080ce3ec1ce76268fe5e95bced356baec1ce9a9d0917c
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! a5c47c1fd92a427d4d33c169b4f0cc1572973d61b713f7498b159045849b1719
+boom! running `docker start -a a5c47c1fd92a427d4d33c169b4f0cc1572973d61b713f7498b159045849b1719`
+kablam!    Compiling td_rlua v0.1.5 (file:///source)
+kablam! warning: unnecessary parentheses around assigned value, #[warn(unused_parens)] on by default
+kablam!    --> tests/functions.rs:144:80
+kablam!     |
+kablam! 144 |         lua.set("sub", td_rlua::function3(|a:i32, b:u32, _c : String| index -= (a + b as i32)));
+kablam!     |                                                                                ^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused import: `td_rlua::LuaPush`, #[warn(unused_imports)] on by default
+kablam!  --> tests/functions.rs:5:5
+kablam!   |
+kablam! 5 | use td_rlua::LuaPush;
+kablam!   |     ^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: function `testRust` should have a snake case name such as `test_rust`, #[warn(non_snake_case)] on by default
+kablam!    --> tests/functions.rs:170:5
+kablam!     |
+kablam! 170 |       extern "C" fn testRust(lua: *mut td_rlua::lua_State) -> libc::c_int {
+kablam!     |  _____^ starting here...
+kablam! 171 | |         let mut luaOb = Lua::from_existing_state(lua, false);
+kablam! 172 | |         let _: Option<()> = luaOb.exec_func("test2");
+kablam! 173 | |         1
+kablam! 174 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: variable `luaOb` should have a snake case name such as `lua_ob`, #[warn(non_snake_case)] on by default
+kablam!    --> tests/functions.rs:171:13
+kablam!     |
+kablam! 171 |         let mut luaOb = Lua::from_existing_state(lua, false);
+kablam!     |             ^^^^^^^^^
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 6.24 secs
+boom! running `docker rm -f a5c47c1fd92a427d4d33c169b4f0cc1572973d61b713f7498b159045849b1719`
+blam! a5c47c1fd92a427d4d33c169b4f0cc1572973d61b713f7498b159045849b1719
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 2d6a2ad5d34d6345761a874ebee1717b95b16120c7f6963363ff1915ecd63e43
+boom! running `docker start -a 2d6a2ad5d34d6345761a874ebee1717b95b16120c7f6963363ff1915ecd63e43`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/basic_types-93496b5ae15d69e7
+blam! 
+blam! running 7 tests
+blam! test read_i32s ... ok
+blam! test readwrite_bools ... ok
+blam! test i32_to_string ... ok
+blam! test readwrite_floats ... ok
+blam! test readwrite_strings ... ok
+blam! test string_to_i32 ... ok
+blam! test write_i32s ... ok
+blam! 
+blam! test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/functions-1cb6e4b82ee75825
+blam! 
+blam! running 13 tests
+blam! test call_and_read_table ... ok
+blam! test closures_extern_access ... ok
+blam! test closures ... ok
+blam! test basic ... ok
+blam! test closures_lifetime ... ok
+blam! test execution_error ... ok
+blam! test one_argument ... ok
+blam! test simple_function ... ok
+blam! test syntax_error ... ok
+blam! test test_exec_func ... ok
+blam! test test_exec_func_by_param ... ok
+blam! test two_arguments ... ok
+blam! test wrong_arguments_types ... ok
+blam! 
+blam! test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/hotfix-5a54cb3ce9b58bf9
+blam! 
+blam! running 3 tests
+blam! test hotfix_table ... ok
+blam! test hotfix ... ok
+blam! test hotfix_module ... ok
+blam! 
+blam! test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/lua_tables-06be53df8d28be40
+blam! 
+blam! running 6 tests
+blam! test iterable ... ok
+blam! test get_set ... ok
+blam! test empty_array ... ok
+blam! test iterable_multipletimes ... ok
+blam! test metatable ... ok
+blam! test table_over_table ... ok
+blam! 
+blam! test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/rust_tables-6a8b78d3847d94f8
+blam! 
+blam! running 3 tests
+blam! test write_map ... ok
+blam! test write_set ... ok
+blam! test write ... ok
+blam! 
+blam! test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/td_rlua-c6871c5c80728647
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/userdata-23c62d56ae8d52c7
+blam! 
+blam! running 6 tests
+blam! test destructor_called ... ok
+blam! test get_set_test ... ok
+blam! test metatables ... ok
+blam! test type_check ... ok
+blam! test custom_struct ... ok
+blam! test readwrite ... ok
+blam! 
+blam! test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!    Doc-tests td_rlua
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f 2d6a2ad5d34d6345761a874ebee1717b95b16120c7f6963363ff1915ecd63e43`
+blam! 2d6a2ad5d34d6345761a874ebee1717b95b16120c7f6963363ff1915ecd63e43

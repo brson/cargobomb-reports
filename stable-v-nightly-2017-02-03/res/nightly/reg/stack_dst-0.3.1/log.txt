@@ -1,0 +1,34 @@
+boom! testing stack_dst-0.3.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! e5c854385acab743adb53b60a51fb556bb7c9d526ebe480eec5bb3286c1f5443
+boom! running `docker start -a e5c854385acab743adb53b60a51fb556bb7c9d526ebe480eec5bb3286c1f5443`
+kablam!    Compiling stack_dst v0.3.1 (file:///source)
+kablam! error[E0557]: feature has been removed
+kablam!   --> src/lib.rs:32:12
+kablam!    |
+kablam! 32 | #![feature(unsafe_no_drop_flag,filling_drop)]	// Reduce overheads
+kablam!    |            ^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0425]: cannot find function `dropped` in module `mem`
+kablam!    --> src/lib.rs:176:59
+kablam!     |
+kablam! 176 | 			if self.data.as_ref()[ self.data.as_ref().len()-1 ] != mem::dropped::<usize>() {
+kablam!     | 			                                                       ^^^^^^^^^^^^^^^^^^^^^ not found in `mem`
+kablam! 
+kablam! error: The attribute `unsafe_no_drop_flag` is currently unknown to the compiler and may have meaning added to it in the future (see issue #29642)
+kablam!   --> src/lib.rs:64:1
+kablam!    |
+kablam! 64 | #[unsafe_no_drop_flag]
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: add #![feature(custom_attribute)] to the crate attributes to enable
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `stack_dst`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f e5c854385acab743adb53b60a51fb556bb7c9d526ebe480eec5bb3286c1f5443`
+blam! e5c854385acab743adb53b60a51fb556bb7c9d526ebe480eec5bb3286c1f5443

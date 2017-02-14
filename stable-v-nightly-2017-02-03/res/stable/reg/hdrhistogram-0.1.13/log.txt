@@ -1,0 +1,23 @@
+boom! testing hdrhistogram-0.1.13 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! b302e22a12f3845c71e21c2d973ec0268d5efbf08b9c090ba7b7d0380677ad7a
+boom! running `docker start -a b302e22a12f3845c71e21c2d973ec0268d5efbf08b9c090ba7b7d0380677ad7a`
+kablam!    Compiling hdrhistogram v0.1.13 (file:///source)
+kablam! error: failed to run custom build command for `hdrhistogram v0.1.13 (file:///source)`
+kablam! process didn't exit successfully: `/target/debug/build/hdrhistogram-d427cb04ae753751/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! cargo:warning=cpp_set_stdlib is specified, but the Gnu compiler does not support this option, ignored
+kablam! running: "cmake" "/source/HdrHistogram_c/src" "-DCMAKE_INSTALL_PREFIX=/target/debug/build/hdrhistogram-d427cb04ae753751/out" "-DCMAKE_C_FLAGS= -std=gnu99 -ffunction-sections -fdata-sections -fPIC -m64" "-DCMAKE_C_COMPILER=/usr/bin/cc" "-DCMAKE_CXX_FLAGS= -ffunction-sections -fdata-sections -fPIC -m64" "-DCMAKE_CXX_COMPILER=c++" "-DCMAKE_BUILD_TYPE=Debug"
+kablam! 
+kablam! --- stderr
+kablam! thread 'main' panicked at '
+kablam! failed to execute command: No such file or directory (os error 2)
+kablam! is `cmake` not installed?
+kablam! 
+kablam! build script failed, must exit now', /cargo-home/registry/src/github.com-1ecc6299db9ec823/cmake-0.1.20/src/lib.rs:573
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f b302e22a12f3845c71e21c2d973ec0268d5efbf08b9c090ba7b7d0380677ad7a`
+blam! b302e22a12f3845c71e21c2d973ec0268d5efbf08b9c090ba7b7d0380677ad7a

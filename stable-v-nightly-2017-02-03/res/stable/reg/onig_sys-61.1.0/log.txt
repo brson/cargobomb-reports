@@ -1,0 +1,23 @@
+boom! testing onig_sys-61.1.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 71386078c6d469732ddd33a0bb5d4869d48a284d7203e06d88041ce0eb101f05
+boom! running `docker start -a 71386078c6d469732ddd33a0bb5d4869d48a284d7203e06d88041ce0eb101f05`
+kablam!    Compiling onig_sys v61.1.0 (file:///source)
+kablam! error: failed to run custom build command for `onig_sys v61.1.0 (file:///source)`
+kablam! process didn't exit successfully: `/target/debug/build/onig_sys-00c18e13e93e1449/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! cargo:warning=cpp_set_stdlib is specified, but the Gnu compiler does not support this option, ignored
+kablam! running: "cmake" "/source/oniguruma" "-DCMAKE_MACOSX_RPATH=NO" "-DCMAKE_INSTALL_PREFIX=/target/debug/build/onig_sys-00c18e13e93e1449/out" "-DCMAKE_C_FLAGS= -ffunction-sections -fdata-sections -fPIC -m64" "-DCMAKE_C_COMPILER=/usr/bin/cc" "-DCMAKE_CXX_FLAGS= -ffunction-sections -fdata-sections -fPIC -m64" "-DCMAKE_CXX_COMPILER=c++" "-DCMAKE_BUILD_TYPE=Debug"
+kablam! 
+kablam! --- stderr
+kablam! thread 'main' panicked at '
+kablam! failed to execute command: No such file or directory (os error 2)
+kablam! is `cmake` not installed?
+kablam! 
+kablam! build script failed, must exit now', /cargo-home/registry/src/github.com-1ecc6299db9ec823/cmake-0.1.20/src/lib.rs:573
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f 71386078c6d469732ddd33a0bb5d4869d48a284d7203e06d88041ce0eb101f05`
+blam! 71386078c6d469732ddd33a0bb5d4869d48a284d7203e06d88041ce0eb101f05

@@ -1,0 +1,44 @@
+boom! testing apply_attr-0.2.2 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 95cb33c39c70e146900abb704c56b249da5cc03d3975731ca4e883b4800f0e4d
+boom! running `docker start -a 95cb33c39c70e146900abb704c56b249da5cc03d3975731ca4e883b4800f0e4d`
+kablam!    Compiling apply_attr v0.2.2 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::parse::token::intern`
+kablam!   --> src/lib.rs:18:5
+kablam!    |
+kablam! 18 | use syntax::parse::token::intern;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `intern` in `parse::token`
+kablam! 
+kablam! error[E0532]: expected tuple struct/variant, found unit variant `ast::MetaItemKind::Word`
+kablam!   --> src/lib.rs:71:13
+kablam!    |
+kablam! 71 |             ast::MetaItemKind::Word(ref name) => {
+kablam!    |             ^^^^^^^^^^^^^^^^^^^^^^^ not a tuple struct/variant
+kablam! 
+kablam! error[E0412]: cannot find type `Attribute_` in module `syntax::ast`
+kablam!   --> src/lib.rs:94:43
+kablam!    |
+kablam! 94 | type Attribute = syntax::codemap::Spanned<syntax::ast::Attribute_>;
+kablam!    |                                           ^^^^^^^^^^^^^^^^^^^^^^^ did you mean `syntax::ast::Attribute`?
+kablam! 
+kablam! error[E0532]: expected tuple struct/variant, found unit variant `ast::MetaItemKind::Word`
+kablam!    --> src/lib.rs:233:13
+kablam!     |
+kablam! 233 |             ast::MetaItemKind::Word(ref name) => map_selector_to_mask(&**name),
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^^^^ not a tuple struct/variant
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> src/lib.rs:2:1
+kablam!   |
+kablam! 2 | #![feature(plugin_registrar, rustc_private)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `apply_attr`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 95cb33c39c70e146900abb704c56b249da5cc03d3975731ca4e883b4800f0e4d`
+blam! 95cb33c39c70e146900abb704c56b249da5cc03d3975731ca4e883b4800f0e4d

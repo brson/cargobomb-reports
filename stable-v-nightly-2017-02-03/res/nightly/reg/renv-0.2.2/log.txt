@@ -1,0 +1,24 @@
+boom! testing renv-0.2.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 04f488ebbd2b0b6714fa0c3d60140b46e405e718976fef01bc46ea46e2b41c5e
+boom! running `docker start -a 04f488ebbd2b0b6714fa0c3d60140b46e405e718976fef01bc46ea46e2b41c5e`
+kablam!    Compiling java-properties v0.1.1
+kablam!    Compiling renv v0.2.2 (file:///source)
+kablam! error[E0277]: the trait bound `&&[S]: std::iter::Iterator` is not satisfied
+kablam!    --> src/fs.rs:159:13
+kablam!     |
+kablam! 159 |     command.args(&args);
+kablam!     |             ^^^^ the trait `std::iter::Iterator` is not implemented for `&&[S]`
+kablam!     |
+kablam!     = note: `&&[S]` is not an iterator; maybe try calling `.iter()` or a similar method
+kablam!     = note: required because of the requirements on the impl of `std::iter::IntoIterator` for `&&[S]`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `renv`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 04f488ebbd2b0b6714fa0c3d60140b46e405e718976fef01bc46ea46e2b41c5e`
+blam! 04f488ebbd2b0b6714fa0c3d60140b46e405e718976fef01bc46ea46e2b41c5e

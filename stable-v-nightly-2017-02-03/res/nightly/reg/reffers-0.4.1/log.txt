@@ -1,0 +1,82 @@
+boom! testing reffers-0.4.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 2401b204da1fa34a7ad7340e75e7350c2a852ce6eb701063eeadc4a66ec9a54e
+boom! running `docker start -a 2401b204da1fa34a7ad7340e75e7350c2a852ce6eb701063eeadc4a66ec9a54e`
+kablam!    Compiling reffers v0.4.1 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 2.6 secs
+boom! running `docker rm -f 2401b204da1fa34a7ad7340e75e7350c2a852ce6eb701063eeadc4a66ec9a54e`
+blam! 2401b204da1fa34a7ad7340e75e7350c2a852ce6eb701063eeadc4a66ec9a54e
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! a92e64a31fd5e26349db5bc025a4b9365c57abe123cea92b49df321eecfd8246
+boom! running `docker start -a a92e64a31fd5e26349db5bc025a4b9365c57abe123cea92b49df321eecfd8246`
+kablam!    Compiling reffers v0.4.1 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 5.29 secs
+boom! running `docker rm -f a92e64a31fd5e26349db5bc025a4b9365c57abe123cea92b49df321eecfd8246`
+blam! a92e64a31fd5e26349db5bc025a4b9365c57abe123cea92b49df321eecfd8246
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 9b197baf04e0410b19151c32c396732fd4ec16296c70000bf88dab4a8a4c767d
+boom! running `docker start -a 9b197baf04e0410b19151c32c396732fd4ec16296c70000bf88dab4a8a4c767d`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/reffers-c023deb1fa60a872
+blam! 
+blam! running 16 tests
+blam! test aref::debug_impl ... ok
+blam! test aref::verify_drop ... ok
+blam! test aref::countdown_example ... ok
+blam! test rc::bitmask ... ok
+blam! test rc::rc_basic ... ok
+blam! test aref::verify_types ... ok
+blam! test rc::rc_slice ... ok
+blam! test rc::rc_str ... ok
+blam! test rmba::rmba_arc ... ok
+blam! test rc::rc_hashmap ... ok
+blam! test rmba::rmba_box ... ok
+blam! test rmba::rmba_fat ... ok
+blam! test rmba::rmba_typical ... ok
+blam! test rmba::rmba_unaligned ... ok
+blam! test rc::rc_drop ... ok
+blam! test rmba::rmba_sizes ... ok
+blam! 
+blam! test result: ok. 16 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!    Doc-tests reffers
+blam! 
+blam! running 7 tests
+blam! test rc::BitMask_0 ... ok
+blam! test aref::ARef_0 ... ok
+blam! test aref::ARef<'a, U>::new_0 ... ok
+blam! warning: unused import: `std::rc::Rc`, #[warn(unused_imports)] on by default
+blam!  --> <anon>:3:5
+blam!   |
+blam! 3 | use std::rc::Rc;
+blam!   |     ^^^^^^^^^^^
+blam! 
+blam! test aref::ARef<'a, U>::map_0 ... ok
+blam! warning: function is never used: `make_a_few`, #[warn(dead_code)] on by default
+blam!   --> <anon>:7:1
+blam!    |
+blam! 7  |   fn make_a_few<'a, T>(t: T, count: usize) -> Vec<RMBA<'a, T>> {
+blam!    |  _^ starting here...
+blam! 8  | |     match count {
+blam! 9  | |         0 => vec![],
+blam! 10 | |         1 => vec![RMBA::new_box(t)],
+blam! 11 | |         _ => iter::repeat(sync::Arc::new(t))
+blam! 12 | |             .take(count).map(|a| RMBA::from(a)).collect()
+blam! 13 | |     }
+blam! 14 | | }
+blam!    | |_^ ...ending here
+blam! 
+blam! test rmba::RMBA_0 ... ok
+blam! test rc::Ref_0 ... ok
+blam! test rc_0 ... ok
+blam! 
+blam! test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f 9b197baf04e0410b19151c32c396732fd4ec16296c70000bf88dab4a8a4c767d`
+blam! 9b197baf04e0410b19151c32c396732fd4ec16296c70000bf88dab4a8a4c767d

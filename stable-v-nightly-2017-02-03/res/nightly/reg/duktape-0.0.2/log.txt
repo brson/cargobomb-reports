@@ -1,0 +1,53 @@
+boom! testing duktape-0.0.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 820ce937a362bb073575a1ae0526bf20ec05d5889ad9a874c29369dca98b3b70
+boom! running `docker start -a 820ce937a362bb073575a1ae0526bf20ec05d5889ad9a874c29369dca98b3b70`
+kablam!    Compiling cesu8 v1.1.0
+kablam!    Compiling abort_on_panic v1.0.0
+kablam!    Compiling duktape_sys v0.0.2
+kablam! error[E0432]: unresolved import `std::os::getenv`
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/duktape_sys-0.0.2/build.rs:6:15
+kablam!   |
+kablam! 6 | use std::os::{getenv, setenv};
+kablam!   |               ^^^^^^ no `getenv` in `os`
+kablam! 
+kablam! error[E0432]: unresolved import `std::os::setenv`
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/duktape_sys-0.0.2/build.rs:6:23
+kablam!   |
+kablam! 6 | use std::os::{getenv, setenv};
+kablam!   |                       ^^^^^^ no `setenv` in `os`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/duktape_sys-0.0.2/build.rs:16:35
+kablam!    |
+kablam! 16 |         include_directories: vec!(Path::new("duktape/src")),
+kablam!    |                                   ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error[E0061]: this function takes 2 parameters but 3 parameters were supplied
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/duktape_sys-0.0.2/build.rs:15:26
+kablam!    |
+kablam! 15 |       gcc::compile_library("libduktape.a", &gcc::Config {
+kablam!    |  __________________________^ starting here...
+kablam! 16 | |         include_directories: vec!(Path::new("duktape/src")),
+kablam! 17 | |         .. Default::default()
+kablam! 18 | |     }, &["duktape/src/duktape.c", "src/glue.c"]);
+kablam!    | |_______________________________________________^ ...ending here: expected 2 parameters
+kablam! 
+kablam! error[E0277]: the trait bound `gcc::Config: std::default::Default` is not satisfied
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/duktape_sys-0.0.2/build.rs:17:12
+kablam!    |
+kablam! 17 |         .. Default::default()
+kablam!    |            ^^^^^^^^^^^^^^^^ the trait `std::default::Default` is not implemented for `gcc::Config`
+kablam!    |
+kablam!    = note: required by `std::default::Default::default`
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `duktape_sys`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 820ce937a362bb073575a1ae0526bf20ec05d5889ad9a874c29369dca98b3b70`
+blam! 820ce937a362bb073575a1ae0526bf20ec05d5889ad9a874c29369dca98b3b70

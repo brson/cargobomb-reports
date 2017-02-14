@@ -1,0 +1,24 @@
+boom! testing actors-0.1.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 2fea469b5446a938183e59e371d8695e6a2f0d89be3d100dfa8bdb7613a9db5f
+boom! running `docker start -a 2fea469b5446a938183e59e371d8695e6a2f0d89be3d100dfa8bdb7613a9db5f`
+kablam! warning: only one of `license` or `license-file` is necessary
+kablam!    Compiling actors v0.1.0 (file:///source)
+kablam! error[E0277]: the trait bound `Message: std::marker::Send` is not satisfied
+kablam!   --> src/channel/mod.rs:18:1
+kablam!    |
+kablam! 18 | pub struct ActorCell<Message, A: Actor<Message>> {
+kablam!    | ^ the trait `std::marker::Send` is not implemented for `Message`
+kablam!    |
+kablam!    = help: consider adding a `where Message: std::marker::Send` bound
+kablam!    = note: required by `Actor`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `actors`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 2fea469b5446a938183e59e371d8695e6a2f0d89be3d100dfa8bdb7613a9db5f`
+blam! 2fea469b5446a938183e59e371d8695e6a2f0d89be3d100dfa8bdb7613a9db5f

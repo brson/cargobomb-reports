@@ -1,0 +1,40 @@
+boom! testing Memoirs-0.1.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 73cd8d7e77887f4b8a326407a5dd34755425ebec4a65df1e3370679d031dc153
+boom! running `docker start -a 73cd8d7e77887f4b8a326407a5dd34755425ebec4a65df1e3370679d031dc153`
+kablam!    Compiling memoirs v0.1.2 (file:///source)
+kablam! error[E0432]: unresolved import `std::collections::lru_cache::LruCache`
+kablam!  --> src/lib.rs:9:5
+kablam!   |
+kablam! 9 | use std::collections::lru_cache::LruCache;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `lru_cache` in `collections`
+kablam! 
+kablam! error[E0432]: unresolved import `collections::hash::Hash`
+kablam!   --> src/lib.rs:11:5
+kablam!    |
+kablam! 11 | use collections::hash::Hash;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `hash` in `collections`
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!   --> src/lib.rs:71:23
+kablam!    |
+kablam! 71 |     pub fn new(size : uint) -> LRUCacheMemoizer<Args, Result> { 
+kablam!    |                       ^^^^ not found in this scope
+kablam! 
+kablam! error: use of unstable library feature 'collections': library is unlikely to be stabilized with the current layout and name, use std::collections instead (see issue #27783)
+kablam!  --> src/lib.rs:7:1
+kablam!   |
+kablam! 7 | extern crate collections;
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = help: add #![feature(collections)] to the crate attributes to enable
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `memoirs`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 73cd8d7e77887f4b8a326407a5dd34755425ebec4a65df1e3370679d031dc153`
+blam! 73cd8d7e77887f4b8a326407a5dd34755425ebec4a65df1e3370679d031dc153

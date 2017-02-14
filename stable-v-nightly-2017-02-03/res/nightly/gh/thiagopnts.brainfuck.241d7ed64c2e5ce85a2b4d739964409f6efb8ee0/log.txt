@@ -1,0 +1,38 @@
+boom! testing https://github.com/thiagopnts/brainfuck#241d7ed64c2e5ce85a2b4d739964409f6efb8ee0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! f83ae3082c935469c9ab6c63c51e9642f19662b00c85aa34154ba070546d7a2b
+boom! running `docker start -a f83ae3082c935469c9ab6c63c51e9642f19662b00c85aa34154ba070546d7a2b`
+kablam!    Compiling brainfuck v0.0.1 (file:///source)
+kablam! error[E0432]: unresolved import `std::old_io`
+kablam!  --> src/repl.rs:1:5
+kablam!   |
+kablam! 1 | use std::old_io;
+kablam!   |     ^^^^^^^^^^^ no `old_io` in the root
+kablam! 
+kablam! error[E0432]: unresolved import `std::old_io::stdin`
+kablam!  --> src/brainfuck.rs:1:5
+kablam!   |
+kablam! 1 | use std::old_io::stdin;
+kablam!   |     ^^^^^^^^^^^^^^^^^^ Could not find `old_io` in `std`
+kablam! 
+kablam! error[E0432]: unresolved import `std::old_io::stdio::StdinReader`
+kablam!  --> src/brainfuck.rs:2:5
+kablam!   |
+kablam! 2 | use std::old_io::stdio::StdinReader;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `old_io` in `std`
+kablam! 
+kablam! error: the type of this value must be known in this context
+kablam!   --> src/brainfuck.rs:46:32
+kablam!    |
+kablam! 46 |         let program: Vec<u8> = content.read_until('\n' as u8).ok().expect("Couldn't load the entire program to memory");
+kablam!    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `brainfuck`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f83ae3082c935469c9ab6c63c51e9642f19662b00c85aa34154ba070546d7a2b`
+blam! f83ae3082c935469c9ab6c63c51e9642f19662b00c85aa34154ba070546d7a2b

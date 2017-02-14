@@ -1,0 +1,395 @@
+boom! testing error_def-0.3.11 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! ffaf16c13addfb08e5b7b30f3c8736249e080192bbc6d1360d5923f76e71d11b
+boom! running `docker start -a ffaf16c13addfb08e5b7b30f3c8736249e080192bbc6d1360d5923f76e71d11b`
+kablam!    Compiling error_def v0.3.11 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::parse::token::intern`
+kablam!   --> src/lib.rs:11:34
+kablam!    |
+kablam! 11 | use syntax::parse::token::{self, intern, Token, Lit, InternedString, DelimToken,
+kablam!    |                                  ^^^^^^ no `intern` in `parse::token`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::InternedString`
+kablam!   --> src/lib.rs:11:54
+kablam!    |
+kablam! 11 | use syntax::parse::token::{self, intern, Token, Lit, InternedString, DelimToken,
+kablam!    |                                                      ^^^^^^^^^^^^^^ no `InternedString` in `parse::token`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::keywords`
+kablam!   --> src/lib.rs:12:28
+kablam!    |
+kablam! 12 |                            keywords};
+kablam!    |                            ^^^^^^^^ no `keywords` in `parse::token`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::ast::Attribute_`
+kablam!   --> src/lib.rs:15:69
+kablam!    |
+kablam! 15 | use syntax::ast::{self, Variant_, Visibility, VariantData, Variant, Attribute_, AttrStyle,
+kablam!    |                                                                     ^^^^^^^^^^ no `Attribute_` in `ast`. Did you mean to use `Attribute`?
+kablam! 
+kablam! error[E0532]: expected tuple struct/variant, found unit variant `MetaItemKind::Word`
+kablam!   --> src/lib.rs:94:20
+kablam!    |
+kablam! 94 |             if let MetaItemKind::Word(ref attr_name) = attr.node.value.node {
+kablam!    |                    ^^^^^^^^^^^^^^^^^^ not a tuple struct/variant
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!    --> src/lib.rs:991:33
+kablam!     |
+kablam! 991 |   reg.register_syntax_extension(token::intern("error_def"), SyntaxExtension::IdentTT(Box::new(expand_error_def), None, false));
+kablam!     |                                 ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0061]: this function takes 2 parameters but 3 parameters were supplied
+kablam!   --> src/lib.rs:44:41
+kablam!    |
+kablam! 44 |   let mut parser = parse::tts_to_parser(cx.parse_sess(), tokens, cx.cfg());
+kablam!    |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 2 parameters
+kablam! 
+kablam! error: no field `node` on type `&syntax::ast::Attribute`
+kablam!   --> src/lib.rs:94:61
+kablam!    |
+kablam! 94 |             if let MetaItemKind::Word(ref attr_name) = attr.node.value.node {
+kablam!    |                                                             ^^^^
+kablam! 
+kablam! error[E0061]: this function takes 1 parameter but 2 parameters were supplied
+kablam!    --> src/lib.rs:281:7
+kablam!     |
+kablam! 281 |       InternedString::new_from_name(intern("allow")),
+kablam!     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 1 parameter
+kablam! 
+kablam! error: `MetaItemKind::Word` is being called, but it is not a function
+kablam!    --> src/lib.rs:282:28
+kablam!     |
+kablam! 282 |       vec![P(dummy_spanned(MetaItemKind::Word(InternedString::new_from_name(intern("unused_variables")))))]
+kablam!     |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: did you mean to write `MetaItemKind::Word`?
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:290:16
+kablam!     |
+kablam! 290 |     constness: Constness::NotConst,
+kablam!     |                ^^^^^^^^^^^^^^^^^^^ expected struct `syntax::codemap::Spanned`, found enum `syntax::ast::Constness`
+kablam!     |
+kablam!     = note: expected type `syntax::codemap::Spanned<syntax::ast::Constness>`
+kablam!                found type `syntax::ast::Constness`
+kablam! 
+kablam! error[E0560]: struct `syntax::ast::Path` has no field named `global`
+kablam!    --> src/lib.rs:334:11
+kablam!     |
+kablam! 334 |           global: true,
+kablam!     |           ^^^^^^^ `syntax::ast::Path` does not have this field
+kablam! 
+kablam! error: no associated item named `none` found for type `syntax::ast::PathParameters` in the current scope
+kablam!    --> src/lib.rs:338:27
+kablam!     |
+kablam! 338 |               parameters: PathParameters::none(),
+kablam!     |                           ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no associated item named `none` found for type `syntax::ast::PathParameters` in the current scope
+kablam!    --> src/lib.rs:342:27
+kablam!     |
+kablam! 342 |               parameters: PathParameters::none(),
+kablam!     |                           ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:348:28
+kablam!     |
+kablam! 348 |                 types:     P::from_vec(vec![
+kablam!     |                            ^ expected struct `std::vec::Vec`, found struct `syntax::ptr::P`
+kablam!     |
+kablam!     = note: expected type `std::vec::Vec<syntax::ptr::P<syntax::ast::Ty>>`
+kablam!                found type `syntax::ptr::P<[syntax::ptr::P<syntax::ast::Ty>]>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .into_vec()
+kablam!             - .to_vec()
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:364:28
+kablam!     |
+kablam! 364 |                 bindings:  P::new(),
+kablam!     |                            ^^^^^^^^ expected struct `std::vec::Vec`, found struct `syntax::ptr::P`
+kablam!     |
+kablam!     = note: expected type `std::vec::Vec<syntax::ast::TypeBinding>`
+kablam!                found type `syntax::ptr::P<[_]>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .into_vec()
+kablam!             - .to_vec()
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:346:27
+kablam!     |
+kablam! 346 |               parameters: PathParameters::AngleBracketed(AngleBracketedParameterData {
+kablam!     |                           ^ expected enum `std::option::Option`, found enum `syntax::ast::PathParameters`
+kablam!     |
+kablam!     = note: expected type `std::option::Option<syntax::ptr::P<syntax::ast::PathParameters>>`
+kablam!                found type `syntax::ast::PathParameters`
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `open_span`
+kablam!    --> src/lib.rs:407:23
+kablam!     |
+kablam! 407 |                       open_span:  DUMMY_SP,
+kablam!     |                       ^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `close_span`
+kablam!    --> src/lib.rs:408:23
+kablam!     |
+kablam! 408 |                       close_span: DUMMY_SP,
+kablam!     |                       ^^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `open_span`
+kablam!    --> src/lib.rs:447:23
+kablam!     |
+kablam! 447 |                       open_span:  DUMMY_SP,
+kablam!     |                       ^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `close_span`
+kablam!    --> src/lib.rs:448:23
+kablam!     |
+kablam! 448 |                       close_span: DUMMY_SP,
+kablam!     |                       ^^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:504:17
+kablam!     |
+kablam! 504 |     attrs: vec![unused_attr.clone()],
+kablam!     |                 ^^^^^^^^^^^^^^^^^^^ expected struct `syntax::ast::Attribute`, found struct `syntax::codemap::Spanned`
+kablam!     |
+kablam!     = note: expected type `_`
+kablam!                found type `syntax::codemap::Spanned<_>`
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `open_span`
+kablam!    --> src/lib.rs:528:21
+kablam!     |
+kablam! 528 |                     open_span:  DUMMY_SP,
+kablam!     |                     ^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `close_span`
+kablam!    --> src/lib.rs:529:21
+kablam!     |
+kablam! 529 |                     close_span: DUMMY_SP,
+kablam!     |                     ^^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `open_span`
+kablam!    --> src/lib.rs:554:21
+kablam!     |
+kablam! 554 |                     open_span:  DUMMY_SP,
+kablam!     |                     ^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `close_span`
+kablam!    --> src/lib.rs:555:21
+kablam!     |
+kablam! 555 |                     close_span: DUMMY_SP,
+kablam!     |                     ^^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `open_span`
+kablam!    --> src/lib.rs:582:21
+kablam!     |
+kablam! 582 |                     open_span:  DUMMY_SP,
+kablam!     |                     ^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `close_span`
+kablam!    --> src/lib.rs:583:21
+kablam!     |
+kablam! 583 |                     close_span: DUMMY_SP,
+kablam!     |                     ^^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:645:17
+kablam!     |
+kablam! 645 |     attrs: vec![unused_attr.clone()],
+kablam!     |                 ^^^^^^^^^^^^^^^^^^^ expected struct `syntax::ast::Attribute`, found struct `syntax::codemap::Spanned`
+kablam!     |
+kablam!     = note: expected type `_`
+kablam!                found type `syntax::codemap::Spanned<_>`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:652:16
+kablam!     |
+kablam! 652 |     constness: Constness::NotConst,
+kablam!     |                ^^^^^^^^^^^^^^^^^^^ expected struct `syntax::codemap::Spanned`, found enum `syntax::ast::Constness`
+kablam!     |
+kablam!     = note: expected type `syntax::codemap::Spanned<syntax::ast::Constness>`
+kablam!                found type `syntax::ast::Constness`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:686:17
+kablam!     |
+kablam! 686 |     attrs: vec![unused_attr.clone()],
+kablam!     |                 ^^^^^^^^^^^^^^^^^^^ expected struct `syntax::ast::Attribute`, found struct `syntax::codemap::Spanned`
+kablam!     |
+kablam!     = note: expected type `_`
+kablam!                found type `syntax::codemap::Spanned<_>`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:711:16
+kablam!     |
+kablam! 711 |     constness: Constness::NotConst,
+kablam!     |                ^^^^^^^^^^^^^^^^^^^ expected struct `syntax::codemap::Spanned`, found enum `syntax::ast::Constness`
+kablam!     |
+kablam!     = note: expected type `syntax::codemap::Spanned<syntax::ast::Constness>`
+kablam!                found type `syntax::ast::Constness`
+kablam! 
+kablam! error[E0560]: struct `syntax::ast::Path` has no field named `global`
+kablam!    --> src/lib.rs:729:11
+kablam!     |
+kablam! 729 |           global: true,
+kablam!     |           ^^^^^^^ `syntax::ast::Path` does not have this field
+kablam! 
+kablam! error: no associated item named `none` found for type `syntax::ast::PathParameters` in the current scope
+kablam!    --> src/lib.rs:733:27
+kablam!     |
+kablam! 733 |               parameters: PathParameters::none(),
+kablam!     |                           ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no associated item named `none` found for type `syntax::ast::PathParameters` in the current scope
+kablam!    --> src/lib.rs:737:27
+kablam!     |
+kablam! 737 |               parameters: PathParameters::none(),
+kablam!     |                           ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:743:28
+kablam!     |
+kablam! 743 |                 types:     P::from_vec(vec![ref_error_ty.clone()]),
+kablam!     |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `std::vec::Vec`, found struct `syntax::ptr::P`
+kablam!     |
+kablam!     = note: expected type `std::vec::Vec<syntax::ptr::P<syntax::ast::Ty>>`
+kablam!                found type `syntax::ptr::P<[syntax::ptr::P<syntax::ast::Ty>]>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .into_vec()
+kablam!             - .to_vec()
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:744:28
+kablam!     |
+kablam! 744 |                 bindings:  P::new(),
+kablam!     |                            ^^^^^^^^ expected struct `std::vec::Vec`, found struct `syntax::ptr::P`
+kablam!     |
+kablam!     = note: expected type `std::vec::Vec<syntax::ast::TypeBinding>`
+kablam!                found type `syntax::ptr::P<[_]>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .into_vec()
+kablam!             - .to_vec()
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:741:27
+kablam!     |
+kablam! 741 |                 parameters: PathParameters::AngleBracketed(AngleBracketedParameterData {
+kablam!     |  ___________________________^ starting here...
+kablam! 742 | |                 lifetimes: Vec::new(),
+kablam! 743 | |                 types:     P::from_vec(vec![ref_error_ty.clone()]),
+kablam! 744 | |                 bindings:  P::new(),
+kablam! 745 | |               }),
+kablam!     | |________________^ ...ending here: expected enum `std::option::Option`, found enum `syntax::ast::PathParameters`
+kablam!     |
+kablam!     = note: expected type `std::option::Option<syntax::ptr::P<syntax::ast::PathParameters>>`
+kablam!                found type `syntax::ast::PathParameters`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:804:17
+kablam!     |
+kablam! 804 |     attrs: vec![unused_attr.clone()],
+kablam!     |                 ^^^^^^^^^^^^^^^^^^^ expected struct `syntax::ast::Attribute`, found struct `syntax::codemap::Spanned`
+kablam!     |
+kablam!     = note: expected type `_`
+kablam!                found type `syntax::codemap::Spanned<_>`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:885:26
+kablam!     |
+kablam! 885 |           constness:     Constness::NotConst,
+kablam!     |                          ^^^^^^^^^^^^^^^^^^^ expected struct `syntax::codemap::Spanned`, found enum `syntax::ast::Constness`
+kablam!     |
+kablam!     = note: expected type `syntax::codemap::Spanned<syntax::ast::Constness>`
+kablam!                found type `syntax::ast::Constness`
+kablam! 
+kablam! error[E0063]: missing fields `attrs`, `is_shorthand` in initializer of `syntax::ast::Field`
+kablam!    --> src/lib.rs:915:22
+kablam!     |
+kablam! 915 |                 vec![Field {
+kablam!     |                      ^^^^^ missing `attrs`, `is_shorthand`
+kablam! 
+kablam! error[E0560]: struct `syntax::ast::Path` has no field named `global`
+kablam!    --> src/lib.rs:951:15
+kablam!     |
+kablam! 951 |               global: true,
+kablam!     |               ^^^^^^^ `syntax::ast::Path` does not have this field
+kablam! 
+kablam! error: no associated item named `none` found for type `syntax::ast::PathParameters` in the current scope
+kablam!    --> src/lib.rs:955:31
+kablam!     |
+kablam! 955 |                   parameters: PathParameters::none(),
+kablam!     |                               ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no associated item named `none` found for type `syntax::ast::PathParameters` in the current scope
+kablam!    --> src/lib.rs:959:31
+kablam!     |
+kablam! 959 |                   parameters: PathParameters::none(),
+kablam!     |                               ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:965:32
+kablam!     |
+kablam! 965 |                     types:     P::from_vec(vec![field.ty.clone()]),
+kablam!     |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `std::vec::Vec`, found struct `syntax::ptr::P`
+kablam!     |
+kablam!     = note: expected type `std::vec::Vec<syntax::ptr::P<syntax::ast::Ty>>`
+kablam!                found type `syntax::ptr::P<[syntax::ptr::P<syntax::ast::Ty>]>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .into_vec()
+kablam!             - .to_vec()
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:966:32
+kablam!     |
+kablam! 966 |                     bindings:  P::new(),
+kablam!     |                                ^^^^^^^^ expected struct `std::vec::Vec`, found struct `syntax::ptr::P`
+kablam!     |
+kablam!     = note: expected type `std::vec::Vec<syntax::ast::TypeBinding>`
+kablam!                found type `syntax::ptr::P<[_]>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .into_vec()
+kablam!             - .to_vec()
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:963:31
+kablam!     |
+kablam! 963 |                     parameters: PathParameters::AngleBracketed(AngleBracketedParameterData {
+kablam!     |  _______________________________^ starting here...
+kablam! 964 | |                     lifetimes: Vec::new(),
+kablam! 965 | |                     types:     P::from_vec(vec![field.ty.clone()]),
+kablam! 966 | |                     bindings:  P::new(),
+kablam! 967 | |                   }),
+kablam!     | |____________________^ ...ending here: expected enum `std::option::Option`, found enum `syntax::ast::PathParameters`
+kablam!     |
+kablam!     = note: expected type `std::option::Option<syntax::ptr::P<syntax::ast::PathParameters>>`
+kablam!                found type `syntax::ast::PathParameters`
+kablam! 
+kablam! error[E0560]: struct `syntax::ast::Path` has no field named `global`
+kablam!     --> src/lib.rs:1000:5
+kablam!      |
+kablam! 1000 |     global: global,
+kablam!      |     ^^^^^^^ `syntax::ast::Path` does not have this field
+kablam! 
+kablam! error: no associated item named `none` found for type `syntax::ast::PathParameters` in the current scope
+kablam!     --> src/lib.rs:1003:19
+kablam!      |
+kablam! 1003 |       parameters: PathParameters::none()
+kablam!      |                   ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0063]: missing field `attrs` in initializer of `syntax::ast::FieldPat`
+kablam!     --> src/lib.rs:1047:61
+kablam!      |
+kablam! 1047 |                               pat_fields.push(dummy_spanned(FieldPat {
+kablam!      |                                                             ^^^^^^^^ missing `attrs`
+kablam! 
+kablam! error: aborting due to 44 previous errors
+kablam! 
+kablam! error: Could not compile `error_def`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f ffaf16c13addfb08e5b7b30f3c8736249e080192bbc6d1360d5923f76e71d11b`
+blam! ffaf16c13addfb08e5b7b30f3c8736249e080192bbc6d1360d5923f76e71d11b

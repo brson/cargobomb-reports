@@ -1,0 +1,102 @@
+boom! testing fbx_direct-0.6.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 91ab634144f5d538389b1f678d62270b266e7c4347b9f47aee728fd77e27647a
+boom! running `docker start -a 91ab634144f5d538389b1f678d62270b266e7c4347b9f47aee728fd77e27647a`
+kablam!    Compiling fbx_direct v0.6.2 (file:///source)
+kablam! warning: private type `reader::parser::CommonState` in public interface (error E0446), #[warn(private_in_public)] on by default
+kablam!   --> src/reader/parser/ascii.rs:22:5
+kablam!    |
+kablam! 22 |       pub fn next<R: Read>(&mut self, _reader: &mut R, common: &mut CommonState) -> Result<FbxEvent> {
+kablam!    |  _____^ starting here...
+kablam! 23 | |         Err(Error::new(common.pos, ErrorKind::Unimplemented("Parser for ASCII FBX format is not implemented yet".to_string())))
+kablam! 24 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #34537 <https://github.com/rust-lang/rust/issues/34537>
+kablam! 
+kablam! warning: private type `reader::parser::CommonState` in public interface (error E0446), #[warn(private_in_public)] on by default
+kablam!   --> src/reader/parser/binary.rs:27:5
+kablam!    |
+kablam! 27 |     pub fn next<R: Read>(&mut self, reader: &mut R, common: &mut CommonState) -> Result<FbxEvent> {
+kablam!    |     ^
+kablam!    |
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #34537 <https://github.com/rust-lang/rust/issues/34537>
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 4.62 secs
+boom! running `docker rm -f 91ab634144f5d538389b1f678d62270b266e7c4347b9f47aee728fd77e27647a`
+blam! 91ab634144f5d538389b1f678d62270b266e7c4347b9f47aee728fd77e27647a
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! c05d8dc36eb3f33ccfd68d81f202d4677ff6695dd1bc7f3e13cda25c05a05858
+boom! running `docker start -a c05d8dc36eb3f33ccfd68d81f202d4677ff6695dd1bc7f3e13cda25c05a05858`
+kablam!    Compiling fbx_direct v0.6.2 (file:///source)
+kablam! warning: unused import: `std::io::Write`, #[warn(unused_imports)] on by default
+kablam!   --> examples/convert-to-ascii.rs:21:9
+kablam!    |
+kablam! 21 |     use std::io::Write;
+kablam!    |         ^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused import: `std::io::Write`, #[warn(unused_imports)] on by default
+kablam!   --> examples/import-export-binary.rs:20:9
+kablam!    |
+kablam! 20 |     use std::io::Write;
+kablam!    |         ^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: private type `reader::parser::CommonState` in public interface (error E0446), #[warn(private_in_public)] on by default
+kablam!   --> src/reader/parser/ascii.rs:22:5
+kablam!    |
+kablam! 22 |       pub fn next<R: Read>(&mut self, _reader: &mut R, common: &mut CommonState) -> Result<FbxEvent> {
+kablam!    |  _____^ starting here...
+kablam! 23 | |         Err(Error::new(common.pos, ErrorKind::Unimplemented("Parser for ASCII FBX format is not implemented yet".to_string())))
+kablam! 24 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #34537 <https://github.com/rust-lang/rust/issues/34537>
+kablam! 
+kablam! warning: private type `reader::parser::CommonState` in public interface (error E0446), #[warn(private_in_public)] on by default
+kablam!   --> src/reader/parser/binary.rs:27:5
+kablam!    |
+kablam! 27 |     pub fn next<R: Read>(&mut self, reader: &mut R, common: &mut CommonState) -> Result<FbxEvent> {
+kablam!    |     ^
+kablam!    |
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #34537 <https://github.com/rust-lang/rust/issues/34537>
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 11.29 secs
+boom! running `docker rm -f c05d8dc36eb3f33ccfd68d81f202d4677ff6695dd1bc7f3e13cda25c05a05858`
+blam! c05d8dc36eb3f33ccfd68d81f202d4677ff6695dd1bc7f3e13cda25c05a05858
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! af3da32c2c9fed19452666268e19c53b0e570bad1ad05b34338c742a4a96d709
+boom! running `docker start -a af3da32c2c9fed19452666268e19c53b0e570bad1ad05b34338c742a4a96d709`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/binary_export_import-c3271bd3aa1aeecc
+blam! 
+blam! running 1 test
+blam! test binary_export_import ... ok
+blam! 
+blam! test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/fbx_direct-6548cfa1bf2efd7f
+blam! 
+blam! running 2 tests
+blam! test common::property_tests::borrowed_vec_i32_to_vec_i64 ... ok
+blam! test common::property_tests::owned_vec_i32_to_vec_i64 ... ok
+blam! 
+blam! test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!    Doc-tests fbx_direct
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f af3da32c2c9fed19452666268e19c53b0e570bad1ad05b34338c742a4a96d709`
+blam! af3da32c2c9fed19452666268e19c53b0e570bad1ad05b34338c742a4a96d709

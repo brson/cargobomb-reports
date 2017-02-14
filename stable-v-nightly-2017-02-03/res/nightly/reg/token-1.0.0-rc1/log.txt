@@ -1,0 +1,32 @@
+boom! testing token-1.0.0-rc1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! ebd5859464e89c753afc70d631e11f1ed0146802bafa0d1967c889aacf3d2465
+boom! running `docker start -a ebd5859464e89c753afc70d631e11f1ed0146802bafa0d1967c889aacf3d2465`
+kablam!    Compiling token v1.0.0-rc1 (file:///source)
+kablam! error[E0432]: unresolved import `std::io::ReadExt`
+kablam!   --> src/lib.rs:50:21
+kablam!    |
+kablam! 50 | use std::io::{Read, ReadExt};
+kablam!    |                     ^^^^^^^ no `ReadExt` in `io`
+kablam! 
+kablam! error[E0207]: the lifetime parameter `'a` is not constrained by the impl trait, self type, or predicates
+kablam!   --> src/lib.rs:82:6
+kablam!    |
+kablam! 82 | impl<'a, R: Read> Iterator for Tokenizer<R> {
+kablam!    |      ^^ unconstrained lifetime parameter
+kablam! 
+kablam! error[E0207]: the lifetime parameter `'b` is not constrained by the impl trait, self type, or predicates
+kablam!    --> src/lib.rs:174:11
+kablam!     |
+kablam! 174 | impl <'a, 'b, R: Read> Iterator for SentenceSplitter<'a, R> {
+kablam!     |           ^^ unconstrained lifetime parameter
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `token`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f ebd5859464e89c753afc70d631e11f1ed0146802bafa0d1967c889aacf3d2465`
+blam! ebd5859464e89c753afc70d631e11f1ed0146802bafa0d1967c889aacf3d2465

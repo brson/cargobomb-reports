@@ -1,0 +1,162 @@
+boom! testing oak_runtime-0.4.3 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 94cf762a8063942c7f46deb2ebd8ed4601b4f5b5937c235dddc95449b1454253
+boom! running `docker start -a 94cf762a8063942c7f46deb2ebd8ed4601b4f5b5937c235dddc95449b1454253`
+kablam!    Compiling oak_runtime v0.4.3 (file:///source)
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 0.48 secs
+boom! running `docker rm -f 94cf762a8063942c7f46deb2ebd8ed4601b4f5b5937c235dddc95449b1454253`
+blam! 94cf762a8063942c7f46deb2ebd8ed4601b4f5b5937c235dddc95449b1454253
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 08be520c4c39d802698d3cd1b1ecb821ded7edba720a0c6f364b3d24fad86329
+boom! running `docker start -a 08be520c4c39d802698d3cd1b1ecb821ded7edba720a0c6f364b3d24fad86329`
+kablam!    Compiling oak_runtime v0.4.3 (file:///source)
+kablam! error: no method named `consume_prefix` found for type `str_stream::StrStream<'_>` in the current scope
+kablam!    --> src/str_stream.rs:188:19
+kablam!     |
+kablam! 188 |     assert_eq!(s2.consume_prefix(prefix), prefix_match);
+kablam!     |                   ^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use stream::ConsumePrefix`
+kablam! 
+kablam! error: no method named `stream` found for type `&'static str` in the current scope
+kablam!    --> src/str_stream.rs:194:21
+kablam!     |
+kablam! 194 |     let s1 = &"abc".stream();
+kablam!     |                     ^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use stream::Stream`
+kablam! 
+kablam! error: no method named `stream` found for type `&str` in the current scope
+kablam!    --> src/str_stream.rs:223:25
+kablam!     |
+kablam! 223 |     test_str_stream(abc.stream(), abc.chars());
+kablam!     |                         ^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use stream::Stream`
+kablam! 
+kablam! error: no method named `stream` found for type `std::string::String` in the current scope
+kablam!    --> src/str_stream.rs:229:25
+kablam!     |
+kablam! 229 |     test_str_stream(abc.stream(), abc.chars());
+kablam!     |                         ^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use stream::Stream`
+kablam! 
+kablam! error: no method named `stream` found for type `&'static str` in the current scope
+kablam!    --> src/str_stream.rs:234:24
+kablam!     |
+kablam! 234 |     let mut empty = "".stream();
+kablam!     |                        ^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use stream::Stream`
+kablam! 
+kablam! error: no method named `stream` found for type `&'static str` in the current scope
+kablam!    --> src/str_stream.rs:249:20
+kablam!     |
+kablam! 249 |     let s1 = "abc".stream();
+kablam!     |                    ^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use stream::Stream`
+kablam! 
+kablam! error: no method named `stream` found for type `&'static str` in the current scope
+kablam!    --> src/str_stream.rs:250:20
+kablam!     |
+kablam! 250 |     let s2 = "def".stream();
+kablam!     |                    ^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use stream::Stream`
+kablam! 
+kablam! error: aborting due to 7 previous errors
+kablam! 
+kablam! error: Could not compile `oak_runtime`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 08be520c4c39d802698d3cd1b1ecb821ded7edba720a0c6f364b3d24fad86329`
+blam! 08be520c4c39d802698d3cd1b1ecb821ded7edba720a0c6f364b3d24fad86329
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! 670eb5df7e16f438a15593d89801d352a421b33494c8a112d4dfeaefe9b2840a
+boom! running `docker start -a 670eb5df7e16f438a15593d89801d352a421b33494c8a112d4dfeaefe9b2840a`
+kablam!    Compiling oak_runtime v0.4.3 (file:///source)
+kablam! error: no method named `consume_prefix` found for type `str_stream::StrStream<'_>` in the current scope
+kablam!    --> src/str_stream.rs:188:19
+kablam!     |
+kablam! 188 |     assert_eq!(s2.consume_prefix(prefix), prefix_match);
+kablam!     |                   ^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use stream::ConsumePrefix`
+kablam! 
+kablam! error: no method named `stream` found for type `&'static str` in the current scope
+kablam!    --> src/str_stream.rs:194:21
+kablam!     |
+kablam! 194 |     let s1 = &"abc".stream();
+kablam!     |                     ^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use stream::Stream`
+kablam! 
+kablam! error: no method named `stream` found for type `&str` in the current scope
+kablam!    --> src/str_stream.rs:223:25
+kablam!     |
+kablam! 223 |     test_str_stream(abc.stream(), abc.chars());
+kablam!     |                         ^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use stream::Stream`
+kablam! 
+kablam! error: no method named `stream` found for type `std::string::String` in the current scope
+kablam!    --> src/str_stream.rs:229:25
+kablam!     |
+kablam! 229 |     test_str_stream(abc.stream(), abc.chars());
+kablam!     |                         ^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use stream::Stream`
+kablam! 
+kablam! error: no method named `stream` found for type `&'static str` in the current scope
+kablam!    --> src/str_stream.rs:234:24
+kablam!     |
+kablam! 234 |     let mut empty = "".stream();
+kablam!     |                        ^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use stream::Stream`
+kablam! 
+kablam! error: no method named `stream` found for type `&'static str` in the current scope
+kablam!    --> src/str_stream.rs:249:20
+kablam!     |
+kablam! 249 |     let s1 = "abc".stream();
+kablam!     |                    ^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use stream::Stream`
+kablam! 
+kablam! error: no method named `stream` found for type `&'static str` in the current scope
+kablam!    --> src/str_stream.rs:250:20
+kablam!     |
+kablam! 250 |     let s2 = "def".stream();
+kablam!     |                    ^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use stream::Stream`
+kablam! 
+kablam! error: aborting due to 7 previous errors
+kablam! 
+kablam! error: Could not compile `oak_runtime`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 670eb5df7e16f438a15593d89801d352a421b33494c8a112d4dfeaefe9b2840a`
+blam! 670eb5df7e16f438a15593d89801d352a421b33494c8a112d4dfeaefe9b2840a

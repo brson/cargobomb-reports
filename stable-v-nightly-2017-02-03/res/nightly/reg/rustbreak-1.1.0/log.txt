@@ -1,0 +1,98 @@
+boom! testing rustbreak-1.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 6f2a1f9c0e70ec0dc69179c3bd6cb80a3d8f78288c64e96a2dbffe85731c2d74
+boom! running `docker start -a 6f2a1f9c0e70ec0dc69179c3bd6cb80a3d8f78288c64e96a2dbffe85731c2d74`
+kablam!    Compiling rustbreak v1.1.0 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.22 secs
+boom! running `docker rm -f 6f2a1f9c0e70ec0dc69179c3bd6cb80a3d8f78288c64e96a2dbffe85731c2d74`
+blam! 6f2a1f9c0e70ec0dc69179c3bd6cb80a3d8f78288c64e96a2dbffe85731c2d74
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 0133e38c62da6059f497871c67cc4c19434061b7ccf5737069e2e132e3fbdb35
+boom! running `docker start -a 0133e38c62da6059f497871c67cc4c19434061b7ccf5737069e2e132e3fbdb35`
+kablam!    Compiling rustbreak v1.1.0 (file:///source)
+kablam! warning: type alias is never used: `AlbumArtist`, #[warn(dead_code)] on by default
+kablam!   --> examples/full.rs:14:1
+kablam!    |
+kablam! 14 | type AlbumArtist = (Album, Artist);
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 4.57 secs
+boom! running `docker rm -f 0133e38c62da6059f497871c67cc4c19434061b7ccf5737069e2e132e3fbdb35`
+blam! 0133e38c62da6059f497871c67cc4c19434061b7ccf5737069e2e132e3fbdb35
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 7fea9b81b55feb23a8492cb587187c01db649db018e7566187b0fd2f4adf9e04
+boom! running `docker start -a 7fea9b81b55feb23a8492cb587187c01db649db018e7566187b0fd2f4adf9e04`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/rustbreak-689c8f33a3e4756d
+blam! 
+blam! running 5 tests
+blam! test test::insert_and_delete ... ok
+blam! test test::simple_insert_and_retrieve ... ok
+blam! test test::simple_transaction ... ok
+blam! test test::multithreaded_locking ... ok
+blam! test test::test_persistence ... ok
+blam! 
+blam! test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!    Doc-tests rustbreak
+blam! 
+blam! running 5 tests
+blam! warning: function is never used: `get_data`, #[warn(dead_code)] on by default
+blam!  --> <anon>:5:1
+blam!   |
+blam! 5 |   fn get_data(key: &str) -> Result<String> {
+blam!   |  _^ starting here...
+blam! 6 | |     let db = try!(Database::<String>::open("/tmp/database"));
+blam! 7 | |     db.retrieve(key)
+blam! 8 | | }
+blam!   | |_^ ...ending here
+blam! 
+blam! test _0 ... ok
+blam! test Database<T>::open_0 ... ok
+blam! test Database<T>::retrieve_0 ... ok
+blam! test Database_0 ... ok
+blam! warning: static item is never used: `DB`, #[warn(dead_code)] on by default
+blam!  --> <anon>:5:1
+blam!   |
+blam! 5 |   lazy_static! {
+blam!   |  _^ starting here...
+blam! 6 | |     static ref DB: Database<String> = {
+blam! 7 | |         Database::open("/tmp/more_data").unwrap()
+blam! 8 | |     };
+blam! 9 | | }
+blam!   | |_^ ...ending here
+blam!   |
+blam!   = note: this error originates in a macro outside of the current crate
+blam! 
+blam! warning: function is never used: `get_data`, #[warn(dead_code)] on by default
+blam!   --> <anon>:11:1
+blam!    |
+blam! 11 |   fn get_data(key: &str) -> Result<u64> {
+blam!    |  _^ starting here...
+blam! 12 | |     DB.retrieve(key)
+blam! 13 | | }
+blam!    | |_^ ...ending here
+blam! 
+blam! warning: function is never used: `set_data`, #[warn(dead_code)] on by default
+blam!   --> <anon>:15:1
+blam!    |
+blam! 15 |   fn set_data(key: &str, d: u64) -> Result<()> {
+blam!    |  _^ starting here...
+blam! 16 | |     let mut lock = try!(DB.lock());
+blam! 17 | |     let old_data : u64 = try!(lock.retrieve(key));
+blam! 18 | |     lock.insert(key, d + old_data)
+blam! 19 | | }
+blam!    | |_^ ...ending here
+blam! 
+blam! test _1 ... ok
+blam! 
+blam! test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f 7fea9b81b55feb23a8492cb587187c01db649db018e7566187b0fd2f4adf9e04`
+blam! 7fea9b81b55feb23a8492cb587187c01db649db018e7566187b0fd2f4adf9e04

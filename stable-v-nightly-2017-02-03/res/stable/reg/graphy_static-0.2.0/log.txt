@@ -1,0 +1,106 @@
+boom! testing graphy_static-0.2.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 84618a08be25107ce59eefe28853e546f020951da7d15953748027277b7f4c64
+boom! running `docker start -a 84618a08be25107ce59eefe28853e546f020951da7d15953748027277b7f4c64`
+kablam!    Compiling graphy_dll v0.2.0
+kablam!    Compiling graphy_plugin v0.2.0
+kablam!    Compiling graphy_static v0.2.0 (file:///source)
+kablam! error[E0432]: unresolved import `graphy_plugin::util::PluginList`
+kablam!  --> src/environment.rs:5:5
+kablam!   |
+kablam! 5 | use graphy_plugin::util::PluginList;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `PluginList` in `graphy_plugin::util`
+kablam! 
+kablam! error[E0277]: the trait bound `std::rc::Rc<libloading::Library>: std::marker::Send` is not satisfied
+kablam!   --> src/lib.rs:17:1
+kablam!    |
+kablam! 17 | lazy_static! {
+kablam!    | ^ the trait `std::marker::Send` is not implemented for `std::rc::Rc<libloading::Library>`
+kablam!    |
+kablam!    = note: `std::rc::Rc<libloading::Library>` cannot be sent between threads safely
+kablam!    = note: required because it appears within the type `graphy_dll::func::NativeFuncNone`
+kablam!    = note: required because it appears within the type `graphy_dll::func::Func`
+kablam!    = note: required because of the requirements on the impl of `std::marker::Send` for `std::ptr::Unique<graphy_dll::func::Func>`
+kablam!    = note: required because it appears within the type `alloc::raw_vec::RawVec<graphy_dll::func::Func>`
+kablam!    = note: required because it appears within the type `std::vec::Vec<graphy_dll::func::Func>`
+kablam!    = note: required because it appears within the type `graphy_dll::util::FuncList`
+kablam!    = note: required because it appears within the type `environment::Environment`
+kablam!    = note: required because it appears within the type `std::option::Option<environment::Environment>`
+kablam!    = note: required because of the requirements on the impl of `std::marker::Sync` for `std::sync::RwLock<std::option::Option<environment::Environment>>`
+kablam!    = note: required because it appears within the type `graphy_static_util::SafeStatic<environment::Environment>`
+kablam!    = note: required by `<ENVIRONMENT as std::ops::Deref>::deref::require_sync`
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error[E0277]: the trait bound `std::rc::Rc<libloading::Library>: std::marker::Sync` is not satisfied
+kablam!   --> src/lib.rs:17:1
+kablam!    |
+kablam! 17 | lazy_static! {
+kablam!    | ^ the trait `std::marker::Sync` is not implemented for `std::rc::Rc<libloading::Library>`
+kablam!    |
+kablam!    = note: `std::rc::Rc<libloading::Library>` cannot be shared between threads safely
+kablam!    = note: required because it appears within the type `graphy_dll::func::NativeFuncNone`
+kablam!    = note: required because it appears within the type `graphy_dll::func::Func`
+kablam!    = note: required because of the requirements on the impl of `std::marker::Sync` for `std::ptr::Unique<graphy_dll::func::Func>`
+kablam!    = note: required because it appears within the type `alloc::raw_vec::RawVec<graphy_dll::func::Func>`
+kablam!    = note: required because it appears within the type `std::vec::Vec<graphy_dll::func::Func>`
+kablam!    = note: required because it appears within the type `graphy_dll::util::FuncList`
+kablam!    = note: required because it appears within the type `environment::Environment`
+kablam!    = note: required because it appears within the type `std::option::Option<environment::Environment>`
+kablam!    = note: required because of the requirements on the impl of `std::marker::Sync` for `std::sync::RwLock<std::option::Option<environment::Environment>>`
+kablam!    = note: required because it appears within the type `graphy_static_util::SafeStatic<environment::Environment>`
+kablam!    = note: required by `<ENVIRONMENT as std::ops::Deref>::deref::require_sync`
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error[E0277]: the trait bound `*mut std::os::raw::c_void: std::marker::Send` is not satisfied
+kablam!   --> src/lib.rs:17:1
+kablam!    |
+kablam! 17 | lazy_static! {
+kablam!    | ^ the trait `std::marker::Send` is not implemented for `*mut std::os::raw::c_void`
+kablam!    |
+kablam!    = note: `*mut std::os::raw::c_void` cannot be sent between threads safely
+kablam!    = note: required because it appears within the type `libloading::os::unix::Symbol<fn()>`
+kablam!    = note: required because it appears within the type `libloading::Symbol<'static, fn()>`
+kablam!    = note: required because it appears within the type `graphy_dll::func::NativeFuncNone`
+kablam!    = note: required because it appears within the type `graphy_dll::func::Func`
+kablam!    = note: required because of the requirements on the impl of `std::marker::Send` for `std::ptr::Unique<graphy_dll::func::Func>`
+kablam!    = note: required because it appears within the type `alloc::raw_vec::RawVec<graphy_dll::func::Func>`
+kablam!    = note: required because it appears within the type `std::vec::Vec<graphy_dll::func::Func>`
+kablam!    = note: required because it appears within the type `graphy_dll::util::FuncList`
+kablam!    = note: required because it appears within the type `environment::Environment`
+kablam!    = note: required because it appears within the type `std::option::Option<environment::Environment>`
+kablam!    = note: required because of the requirements on the impl of `std::marker::Sync` for `std::sync::RwLock<std::option::Option<environment::Environment>>`
+kablam!    = note: required because it appears within the type `graphy_static_util::SafeStatic<environment::Environment>`
+kablam!    = note: required by `<ENVIRONMENT as std::ops::Deref>::deref::require_sync`
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error[E0277]: the trait bound `*mut std::os::raw::c_void: std::marker::Sync` is not satisfied
+kablam!   --> src/lib.rs:17:1
+kablam!    |
+kablam! 17 | lazy_static! {
+kablam!    | ^ the trait `std::marker::Sync` is not implemented for `*mut std::os::raw::c_void`
+kablam!    |
+kablam!    = note: `*mut std::os::raw::c_void` cannot be shared between threads safely
+kablam!    = note: required because it appears within the type `libloading::os::unix::Symbol<fn()>`
+kablam!    = note: required because it appears within the type `libloading::Symbol<'static, fn()>`
+kablam!    = note: required because it appears within the type `graphy_dll::func::NativeFuncNone`
+kablam!    = note: required because it appears within the type `graphy_dll::func::Func`
+kablam!    = note: required because of the requirements on the impl of `std::marker::Sync` for `std::ptr::Unique<graphy_dll::func::Func>`
+kablam!    = note: required because it appears within the type `alloc::raw_vec::RawVec<graphy_dll::func::Func>`
+kablam!    = note: required because it appears within the type `std::vec::Vec<graphy_dll::func::Func>`
+kablam!    = note: required because it appears within the type `graphy_dll::util::FuncList`
+kablam!    = note: required because it appears within the type `environment::Environment`
+kablam!    = note: required because it appears within the type `std::option::Option<environment::Environment>`
+kablam!    = note: required because of the requirements on the impl of `std::marker::Sync` for `std::sync::RwLock<std::option::Option<environment::Environment>>`
+kablam!    = note: required because it appears within the type `graphy_static_util::SafeStatic<environment::Environment>`
+kablam!    = note: required by `<ENVIRONMENT as std::ops::Deref>::deref::require_sync`
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `graphy_static`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 84618a08be25107ce59eefe28853e546f020951da7d15953748027277b7f4c64`
+blam! 84618a08be25107ce59eefe28853e546f020951da7d15953748027277b7f4c64

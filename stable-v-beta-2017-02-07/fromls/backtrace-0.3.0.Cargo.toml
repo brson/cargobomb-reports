@@ -1,0 +1,57 @@
+[build-dependencies]
+[build-dependencies.serde_codegen]
+optional = true
+version = "0.8"
+
+[dependencies]
+cfg-if = "0.1"
+libc = "0.2"
+rustc-demangle = "0.1"
+
+[dependencies.backtrace-sys]
+optional = true
+version = "0.1.3"
+
+[dependencies.dbghelp-sys]
+optional = true
+version = "0.2"
+
+[dependencies.kernel32-sys]
+optional = true
+version = "0.2"
+
+[dependencies.rustc-serialize]
+optional = true
+version = "0.3"
+
+[dependencies.serde]
+optional = true
+version = "0.8"
+
+[dependencies.winapi]
+optional = true
+version = "0.2.5"
+
+[features]
+coresymbolication = []
+dbghelp = ["kernel32-sys", "winapi", "dbghelp-sys"]
+default = ["libunwind", "libbacktrace", "coresymbolication", "dladdr", "dbghelp"]
+dladdr = []
+kernel32 = []
+libbacktrace = ["backtrace-sys"]
+libunwind = []
+serialize-rustc = ["rustc-serialize"]
+serialize-serde = ["serde", "serde_codegen"]
+unix-backtrace = []
+
+[package]
+authors = ["Alex Crichton <alex@alexcrichton.com>", "The Rust Project Developers"]
+build = "build.rs"
+description = "A library to acquire a stack trace (backtrace) at runtime in a Rust program.\n"
+documentation = "http://alexcrichton.com/backtrace-rs"
+homepage = "https://github.com/alexcrichton/backtrace-rs"
+license = "MIT/Apache-2.0"
+name = "backtrace"
+readme = "README.md"
+repository = "https://github.com/alexcrichton/backtrace-rs"
+version = "0.3.0"

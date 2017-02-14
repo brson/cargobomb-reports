@@ -1,0 +1,44 @@
+boom! testing dynlib-0.1.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 4671ac608f839c0162c259ba06311a421b0963cfe79efe68343b71886ffcfe31
+boom! running `docker start -a 4671ac608f839c0162c259ba06311a421b0963cfe79efe68343b71886ffcfe31`
+kablam!    Compiling dynlib v0.1.0 (file:///source)
+kablam! error[E0432]: unresolved import `winapi::minwindef::HMODULE`
+kablam!   --> src/lib.rs:45:5
+kablam!    |
+kablam! 45 | use winapi::minwindef::HMODULE;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `minwindef` in `winapi`
+kablam! 
+kablam! error[E0432]: unresolved import `winapi::c_void`
+kablam!   --> src/lib.rs:46:5
+kablam!    |
+kablam! 46 | use winapi::c_void;
+kablam!    |     ^^^^^^^^^^^^^^ no `c_void` in `winapi`
+kablam! 
+kablam! error[E0432]: unresolved import `kernel32::LoadLibraryExA`
+kablam!   --> src/lib.rs:47:16
+kablam!    |
+kablam! 47 | use kernel32::{LoadLibraryExA,GetProcAddress, FreeLibrary};
+kablam!    |                ^^^^^^^^^^^^^^ no `LoadLibraryExA` in `kernel32`
+kablam! 
+kablam! error[E0432]: unresolved import `kernel32::GetProcAddress`
+kablam!   --> src/lib.rs:47:31
+kablam!    |
+kablam! 47 | use kernel32::{LoadLibraryExA,GetProcAddress, FreeLibrary};
+kablam!    |                               ^^^^^^^^^^^^^^ no `GetProcAddress` in `kernel32`
+kablam! 
+kablam! error[E0432]: unresolved import `kernel32::FreeLibrary`
+kablam!   --> src/lib.rs:47:47
+kablam!    |
+kablam! 47 | use kernel32::{LoadLibraryExA,GetProcAddress, FreeLibrary};
+kablam!    |                                               ^^^^^^^^^^^ no `FreeLibrary` in `kernel32`
+kablam! 
+kablam! error: aborting due to 5 previous errors
+kablam! 
+kablam! error: Could not compile `dynlib`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 4671ac608f839c0162c259ba06311a421b0963cfe79efe68343b71886ffcfe31`
+blam! 4671ac608f839c0162c259ba06311a421b0963cfe79efe68343b71886ffcfe31

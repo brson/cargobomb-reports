@@ -1,0 +1,39 @@
+boom! testing af_unix-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! a8783e004ef3486028b30a34f7bdcc136b7e75296be7c16300c5dbf05f430f0e
+boom! running `docker start -a a8783e004ef3486028b30a34f7bdcc136b7e75296be7c16300c5dbf05f430f0e`
+kablam!    Compiling errno v0.2.1
+kablam!    Compiling af_unix v0.1.0 (file:///source)
+kablam! error: use of unstable library feature 'core_intrinsics': intrinsics are unlikely to ever be stabilized, instead they should be used through stabilized interfaces in the rest of the standard library (see issue #0)
+kablam!   --> src/lib.rs:30:5
+kablam!    |
+kablam! 30 | use std::intrinsics;
+kablam!    |     ^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: add #![feature(core_intrinsics)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'core_intrinsics': intrinsics are unlikely to ever be stabilized, instead they should be used through stabilized interfaces in the rest of the standard library (see issue #0)
+kablam!   --> src/lib.rs:63:56
+kablam!    |
+kablam! 63 |     let mut storage: libc::sockaddr_storage = unsafe { intrinsics::init() };
+kablam!    |                                                        ^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: add #![feature(core_intrinsics)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'core_intrinsics': intrinsics are unlikely to ever be stabilized, instead they should be used through stabilized interfaces in the rest of the standard library (see issue #0)
+kablam!    --> src/lib.rs:176:60
+kablam!     |
+kablam! 176 |         let mut storage: libc::sockaddr_storage = unsafe { intrinsics::init() };
+kablam!     |                                                            ^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: add #![feature(core_intrinsics)] to the crate attributes to enable
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `af_unix`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f a8783e004ef3486028b30a34f7bdcc136b7e75296be7c16300c5dbf05f430f0e`
+blam! a8783e004ef3486028b30a34f7bdcc136b7e75296be7c16300c5dbf05f430f0e

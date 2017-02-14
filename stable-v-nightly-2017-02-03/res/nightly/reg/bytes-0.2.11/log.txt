@@ -1,0 +1,38 @@
+boom! testing bytes-0.2.11 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! f38a73800301ad52b700bf1b0b948274fe9182df9d3b71240515be8e6fc39c76
+boom! running `docker start -a f38a73800301ad52b700bf1b0b948274fe9182df9d3b71240515be8e6fc39c76`
+kablam!    Compiling bytes v0.2.11 (file:///source)
+kablam! error: unused import: `ByteStr`
+kablam!  --> src/buf/byte.rs:2:38
+kablam!   |
+kablam! 2 | use traits::{Buf, MutBuf, MutBufExt, ByteStr};
+kablam!   |                                      ^^^^^^^
+kablam!   |
+kablam! note: lint level defined here
+kablam!  --> src/lib.rs:2:9
+kablam!   |
+kablam! 2 | #![deny(warnings)]
+kablam!   |         ^^^^^^^^
+kablam! 
+kablam! error: unused import: `Any`
+kablam!  --> src/str/bytes.rs:4:16
+kablam!   |
+kablam! 4 | use std::any::{Any, TypeId};
+kablam!   |                ^^^
+kablam! 
+kablam! error: unused import: `MutBuf`
+kablam!  --> src/str/small.rs:2:19
+kablam!   |
+kablam! 2 | use traits::{Buf, MutBuf, ByteStr, ToBytes};
+kablam!   |                   ^^^^^^
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `bytes`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f38a73800301ad52b700bf1b0b948274fe9182df9d3b71240515be8e6fc39c76`
+blam! f38a73800301ad52b700bf1b0b948274fe9182df9d3b71240515be8e6fc39c76

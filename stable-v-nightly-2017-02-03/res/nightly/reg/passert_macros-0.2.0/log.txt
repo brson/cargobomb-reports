@@ -1,0 +1,150 @@
+boom! testing passert_macros-0.2.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 240a6ba6f0b5a44f439a9f291647d4623e975eadc02b6746cb12a4f284a5741f
+boom! running `docker start -a 240a6ba6f0b5a44f439a9f291647d4623e975eadc02b6746cb12a4f284a5741f`
+kablam!    Compiling passert_macros v0.2.0 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::parse::token::str_to_ident`
+kablam!   --> src/lib.rs:11:34
+kablam!    |
+kablam! 11 | use syntax::parse::token::{self, str_to_ident};
+kablam!    |                                  ^^^^^^^^^^^^ no `str_to_ident` in `parse::token`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::ast::TokenTree`
+kablam!   --> src/lib.rs:12:25
+kablam!    |
+kablam! 12 | use syntax::ast::{self, TokenTree, TtToken, Expr, Expr_, Stmt};
+kablam!    |                         ^^^^^^^^^ no `TokenTree` in `ast`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::ast::TtToken`
+kablam!   --> src/lib.rs:12:36
+kablam!    |
+kablam! 12 | use syntax::ast::{self, TokenTree, TtToken, Expr, Expr_, Stmt};
+kablam!    |                                    ^^^^^^^ no `TtToken` in `ast`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::ast::Expr_`
+kablam!   --> src/lib.rs:12:51
+kablam!    |
+kablam! 12 | use syntax::ast::{self, TokenTree, TtToken, Expr, Expr_, Stmt};
+kablam!    |                                                   ^^^^^ no `Expr_` in `ast`. Did you mean to use `Expr`?
+kablam! 
+kablam! error[E0432]: unresolved import `rustc::plugin::Registry`
+kablam!   --> src/lib.rs:16:5
+kablam!    |
+kablam! 16 | use rustc::plugin::Registry;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `plugin` in `rustc`
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!   --> src/lib.rs:36:53
+kablam!    |
+kablam! 36 |     let literal = token::Token::Literal(token::Str_(token::intern(&format!("Assertion failed: {}", span_string))), Option::None);
+kablam!    |                                                     ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `intern_and_get_ident` in module `token`
+kablam!   --> src/lib.rs:45:25
+kablam!    |
+kablam! 45 |         cx.expr_str(sp, token::intern_and_get_ident(&span_string)));
+kablam!    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!   --> src/lib.rs:52:57
+kablam!    |
+kablam! 52 |         let literal = token::Token::Literal(token::Str_(token::intern("{:?}")), Option::None);
+kablam!    |                                                         ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find value `Plain` in module `token`
+kablam!   --> src/lib.rs:55:83
+kablam!    |
+kablam! 55 |         let tt_arg = TtToken(sp, token::Ident(str_to_ident(&expression.var_name), token::Plain));
+kablam!    |                                                                                   ^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `MacInvocTT` in module `ast`
+kablam!   --> src/lib.rs:79:42
+kablam!    |
+kablam! 79 |     let invocation = codemap::respan(sp, ast::MacInvocTT(macro_path, args, ast::EMPTY_CTXT));
+kablam!    |                                          ^^^^^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0425]: cannot find value `EMPTY_CTXT` in module `ast`
+kablam!   --> src/lib.rs:79:76
+kablam!    |
+kablam! 79 |     let invocation = codemap::respan(sp, ast::MacInvocTT(macro_path, args, ast::EMPTY_CTXT));
+kablam!    |                                                                            ^^^^^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0425]: cannot find function `ExprMac` in module `ast`
+kablam!   --> src/lib.rs:80:17
+kablam!    |
+kablam! 80 |     cx.expr(sp, ast::ExprMac(invocation))
+kablam!    |                 ^^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0425]: cannot find function `ExprMethodCall` in module `ast`
+kablam!    --> src/lib.rs:123:51
+kablam!     |
+kablam! 123 |                 let new_expr = cx.expr(expr.span, ast::ExprMethodCall(ident.clone(), tys.clone(), new_args));
+kablam!     |                                                   ^^^^^^^^^^^^^^^^^^^ not found in `ast`
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use rustc::hir::ExprMethodCall;`
+kablam!               `use rustc::hir::Expr_::ExprMethodCall;`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/lib.rs:23:25
+kablam!    |
+kablam! 23 |     let expr: P<Expr> = parser.parse_expr();
+kablam!    |                         ^^^^^^^^^^^^^^^^^^^ expected struct `syntax::ptr::P`, found enum `std::result::Result`
+kablam!    |
+kablam!    = note: expected type `syntax::ptr::P<syntax::ast::Expr>`
+kablam!               found type `std::result::Result<syntax::ptr::P<syntax::ast::Expr>, syntax::<unnamed>::DiagnosticBuilder<'_>>`
+kablam!    = help: here are some functions which might fulfill your needs:
+kablam!            - .unwrap()
+kablam!            - .unwrap_err()
+kablam! 
+kablam! error: no associated item named `UnNot` found for type `syntax::ast::UnOp` in the current scope
+kablam!   --> src/lib.rs:33:39
+kablam!    |
+kablam! 33 |     let condition = cx.expr_unary(sp, ast::UnOp::UnNot, root_expr);
+kablam!    |                                       ^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0061]: this function takes 1 parameter but 2 parameters were supplied
+kablam!   --> src/lib.rs:55:47
+kablam!    |
+kablam! 55 |         let tt_arg = TtToken(sp, token::Ident(str_to_ident(&expression.var_name), token::Plain));
+kablam!    |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 1 parameter
+kablam! 
+kablam! error[E0061]: this function takes 2 parameters but 3 parameters were supplied
+kablam!   --> src/lib.rs:67:44
+kablam!    |
+kablam! 67 |     let then_expr = cx.expr_block(cx.block(sp, then_stmts, Option::None));
+kablam!    |                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 2 parameters
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/lib.rs:69:16
+kablam!    |
+kablam! 69 |     stmts.push(cx.stmt_expr(cx.expr_if(sp, condition, then_expr, Option::None)));
+kablam!    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `syntax::ptr::P`, found struct `syntax::ast::Stmt`
+kablam!    |
+kablam!    = note: expected type `syntax::ptr::P<syntax::ast::Stmt>`
+kablam!               found type `syntax::ast::Stmt`
+kablam! 
+kablam! error[E0061]: this function takes 2 parameters but 3 parameters were supplied
+kablam!   --> src/lib.rs:72:26
+kablam!    |
+kablam! 72 |     let block = cx.block(sp, stmts, Option::None);
+kablam!    |                          ^^^^^^^^^^^^^^^^^^^^^^^ expected 2 parameters
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:149:30
+kablam!     |
+kablam! 149 |         self.statements.push(let_stmt);
+kablam!     |                              ^^^^^^^^ expected struct `syntax::ptr::P`, found struct `syntax::ast::Stmt`
+kablam!     |
+kablam!     = note: expected type `syntax::ptr::P<syntax::ast::Stmt>`
+kablam!                found type `syntax::ast::Stmt`
+kablam! 
+kablam! error: aborting due to 7 previous errors
+kablam! 
+kablam! error: Could not compile `passert_macros`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 240a6ba6f0b5a44f439a9f291647d4623e975eadc02b6746cb12a4f284a5741f`
+blam! 240a6ba6f0b5a44f439a9f291647d4623e975eadc02b6746cb12a4f284a5741f

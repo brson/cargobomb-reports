@@ -1,0 +1,44 @@
+boom! testing message_filter-0.3.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! df0a0176ef454d7e5333adfaa106166cab9e7be1e45fdd11e56ebbe56ef3a72a
+boom! running `docker start -a df0a0176ef454d7e5333adfaa106166cab9e7be1e45fdd11e56ebbe56ef3a72a`
+kablam!    Compiling message_filter v0.3.1 (file:///source)
+kablam! error: use of deprecated item: use `std::collections::hash_map::DefaultHasher` instead
+kablam!   --> src/lib.rs:78:31
+kablam!    |
+kablam! 78 | use std::hash::{Hash, Hasher, SipHasher};
+kablam!    |                               ^^^^^^^^^
+kablam!    |
+kablam! note: lint level defined here
+kablam!   --> src/lib.rs:59:9
+kablam!    |
+kablam! 59 | #![deny(deprecated, drop_with_repr_extern, improper_ctypes, missing_docs,
+kablam!    |         ^^^^^^^^^^
+kablam! 
+kablam! error: use of deprecated item: use `std::collections::hash_map::DefaultHasher` instead
+kablam!   --> src/lib.rs:84:17
+kablam!    |
+kablam! 84 |     let mut s = SipHasher::new();
+kablam!    |                 ^^^^^^^^^^^^^^
+kablam! 
+kablam! error: lint drop_with_repr_extern has been removed: drop flags have been removed
+kablam!   --> src/lib.rs:59:21
+kablam!    |
+kablam! 59 | #![deny(deprecated, drop_with_repr_extern, improper_ctypes, missing_docs,
+kablam!    |                     ^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam! note: lint level defined here
+kablam!   --> src/lib.rs:58:32
+kablam!    |
+kablam! 58 |           unknown_crate_types, warnings)]
+kablam!    |                                ^^^^^^^^
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `message_filter`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f df0a0176ef454d7e5333adfaa106166cab9e7be1e45fdd11e56ebbe56ef3a72a`
+blam! df0a0176ef454d7e5333adfaa106166cab9e7be1e45fdd11e56ebbe56ef3a72a

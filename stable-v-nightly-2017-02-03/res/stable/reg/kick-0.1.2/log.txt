@@ -1,0 +1,63 @@
+boom! testing kick-0.1.2 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 8b4bd676e4728b32b52da36ac239fe6c9cf00c80dfc2ae61d031838f3a6c4b07
+boom! running `docker start -a 8b4bd676e4728b32b52da36ac239fe6c9cf00c80dfc2ae61d031838f3a6c4b07`
+kablam!    Compiling kick v0.1.2 (file:///source)
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!   --> src/moment.rs:17:1
+kablam!    |
+kablam! 17 | pub type MomentOnce<'a, T, Tr: Transaction<'a> + 'a> = StateOnce<Tr, Output = T> + 'a;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!   --> src/moment.rs:20:1
+kablam!    |
+kablam! 20 | pub type MomentBox<'a, T, Tr: Transaction<'a> + 'a> = StateBox<Tr, Output = T> + 'a;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!   --> src/moment.rs:23:1
+kablam!    |
+kablam! 23 | pub type MomentMut<'a, T, Tr: Transaction<'a> + 'a> = StateMut<Tr, Output = T> + 'a;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!   --> src/moment.rs:26:1
+kablam!    |
+kablam! 26 | pub type Moment<'a, T, Tr: Transaction<'a> + 'a> = State<Tr, Output = T> + 'a;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!   --> src/stream/slot.rs:13:1
+kablam!    |
+kablam! 13 | pub type SlotFn<'a, 'b: 'a, T: 'a, Tr: Transaction<'b> + 'b> = Fn(T) -> Option<Box<MomentBox<'b, (), Tr>>> + 'a;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!   --> src/stream/slot.rs:14:1
+kablam!    |
+kablam! 14 | pub type SlotFnMut<'a, 'b: 'a, T: 'a, Tr: Transaction<'b> + 'b> =
+kablam!    | ^
+kablam! 
+kablam! error[E0309]: the parameter type `T` may not live long enough
+kablam!    --> src/signal/variable.rs:114:5
+kablam!     |
+kablam! 114 |     fn listen<F>(&self, f: F) -> Self::Listen
+kablam!     |     ^
+kablam!     |
+kablam!     = help: consider adding an explicit lifetime bound `T: 'a`...
+kablam! note: ...so that the type `T` will meet its required lifetime bounds
+kablam!    --> src/signal/variable.rs:114:5
+kablam!     |
+kablam! 114 |     fn listen<F>(&self, f: F) -> Self::Listen
+kablam!     |     ^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `kick`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 8b4bd676e4728b32b52da36ac239fe6c9cf00c80dfc2ae61d031838f3a6c4b07`
+blam! 8b4bd676e4728b32b52da36ac239fe6c9cf00c80dfc2ae61d031838f3a6c4b07

@@ -1,0 +1,47 @@
+boom! testing pair_stack-0.1.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! b7231efd04bb9176d3af3ff81b660c3058f55cec32456f7b707a7d74fd7dec4c
+boom! running `docker start -a b7231efd04bb9176d3af3ff81b660c3058f55cec32456f7b707a7d74fd7dec4c`
+kablam!    Compiling r2d2_postgres v0.11.1
+kablam!    Compiling mount v0.3.0
+kablam!    Compiling pair_stack v0.1.0 (file:///source)
+kablam! error[E0432]: unresolved import `postgres::SslMode`
+kablam!   --> src/lib.rs:13:5
+kablam!    |
+kablam! 13 | use postgres::SslMode;
+kablam!    |     ^^^^^^^^^^^^^^^^^ no `SslMode` in `postgres`
+kablam! 
+kablam! error[E0277]: the trait bound `for<'r, 'r, 'r> staticfile::Static: std::ops::Fn<(&'r mut iron::Request<'r, 'r>,)>` is not satisfied
+kablam!   --> src/lib.rs:85:15
+kablam!    |
+kablam! 85 |         mount.mount("/static", Static::new(static_files));
+kablam!    |               ^^^^^ the trait `for<'r, 'r, 'r> std::ops::Fn<(&'r mut iron::Request<'r, 'r>,)>` is not implemented for `staticfile::Static`
+kablam!    |
+kablam!    = note: required because of the requirements on the impl of `iron::Handler` for `staticfile::Static`
+kablam! 
+kablam! error[E0277]: the trait bound `for<'r, 'r, 'r> staticfile::Static: std::ops::FnOnce<(&'r mut iron::Request<'r, 'r>,)>` is not satisfied
+kablam!   --> src/lib.rs:85:15
+kablam!    |
+kablam! 85 |         mount.mount("/static", Static::new(static_files));
+kablam!    |               ^^^^^ the trait `for<'r, 'r, 'r> std::ops::FnOnce<(&'r mut iron::Request<'r, 'r>,)>` is not implemented for `staticfile::Static`
+kablam!    |
+kablam!    = note: required because of the requirements on the impl of `iron::Handler` for `staticfile::Static`
+kablam! 
+kablam! error[E0061]: this function takes 4 parameters but 3 parameters were supplied
+kablam!    --> src/lib.rs:110:24
+kablam!     |
+kablam! 110 |         self.api.route(method, path, move |req: &mut Request | -> IronResult<Response> {
+kablam!     |                        ^
+kablam!     |
+kablam!     = note: the following parameter types were expected:
+kablam!     = note: hyper::method::Method, _, _, _
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `pair_stack`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f b7231efd04bb9176d3af3ff81b660c3058f55cec32456f7b707a7d74fd7dec4c`
+blam! b7231efd04bb9176d3af3ff81b660c3058f55cec32456f7b707a7d74fd7dec4c

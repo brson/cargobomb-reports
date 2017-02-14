@@ -1,0 +1,365 @@
+boom! testing abomonation_derive-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 2e119edf2d6e504af295128a38c12d726293db14908cc71be74382f3a9d03074
+boom! running `docker start -a 2e119edf2d6e504af295128a38c12d726293db14908cc71be74382f3a9d03074`
+kablam!    Compiling unicode-xid v0.0.3
+kablam!    Compiling quote v0.3.12
+kablam!    Compiling syn v0.9.2
+kablam!    Compiling synstructure v0.2.1
+kablam!    Compiling abomonation_derive v0.1.0 (file:///source)
+kablam! warning: this feature has been stable since 1.15.0. Attribute no longer needed, #[warn(stable_features)] on by default
+kablam!  --> src/lib.rs:1:24
+kablam!   |
+kablam! 1 | #![feature(proc_macro, proc_macro_lib)]
+kablam!   |                        ^^^^^^^^^^^^^^
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 17.44 secs
+boom! running `docker rm -f 2e119edf2d6e504af295128a38c12d726293db14908cc71be74382f3a9d03074`
+blam! 2e119edf2d6e504af295128a38c12d726293db14908cc71be74382f3a9d03074
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 4accddaf2f092e1877ecb851a7dc8f187c85f102f75e976fc5dc0d55c8638e01
+boom! running `docker start -a 4accddaf2f092e1877ecb851a7dc8f187c85f102f75e976fc5dc0d55c8638e01`
+kablam!    Compiling abomonation v0.4.4
+kablam!    Compiling abomonation_derive v0.1.0 (file:///source)
+kablam! error[E0428]: a type named `Struct` has already been defined in this module
+kablam!   --> tests/test.rs:12:5
+kablam!    |
+kablam! 11 |       #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |                               ----------- previous definition of `Struct` here
+kablam! 12 |       pub struct Struct {
+kablam!    |  _____^ starting here...
+kablam! 13 | |         a: String,
+kablam! 14 | |         b: u64,
+kablam! 15 | |         c: Vec<u8>,
+kablam! 16 | |     }
+kablam!    | |_____^ ...ending here: `Struct` already defined
+kablam! 
+kablam! error[E0428]: a type named `EmptyStruct` has already been defined in this module
+kablam!   --> tests/test.rs:35:5
+kablam!    |
+kablam! 34 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |                             ----------- previous definition of `EmptyStruct` here
+kablam! 35 |     pub struct EmptyStruct;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^ `EmptyStruct` already defined
+kablam! 
+kablam! error[E0428]: a type named `TupleStruct` has already been defined in this module
+kablam!   --> tests/test.rs:54:5
+kablam!    |
+kablam! 53 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |                             ----------- previous definition of `TupleStruct` here
+kablam! 54 |     pub struct TupleStruct(String, u64, Vec<u8>);
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `TupleStruct` already defined
+kablam! 
+kablam! error[E0428]: a type named `GenericStruct` has already been defined in this module
+kablam!   --> tests/test.rs:73:5
+kablam!    |
+kablam! 72 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |                             ----------- previous definition of `GenericStruct` here
+kablam! 73 |     pub struct GenericStruct<T: ::abomonation::Abomonation, U: ::abomonation::Abomonation>(T, u64, U);
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `GenericStruct` already defined
+kablam! 
+kablam! error[E0428]: a type named `BasicEnum` has already been defined in this module
+kablam!   --> tests/test.rs:93:5
+kablam!    |
+kablam! 92 |       #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |                               ----------- previous definition of `BasicEnum` here
+kablam! 93 |       pub enum BasicEnum {
+kablam!    |  _____^ starting here...
+kablam! 94 | |         Apples,
+kablam! 95 | |         Pears,
+kablam! 96 | |         Chicken
+kablam! 97 | |     }
+kablam!    | |_____^ ...ending here: `BasicEnum` already defined
+kablam! 
+kablam! error[E0428]: a type named `DataEnum` has already been defined in this module
+kablam!    --> tests/test.rs:117:5
+kablam!     |
+kablam! 116 |       #[derive(Eq, PartialEq, Abomonation)]
+kablam!     |                               ----------- previous definition of `DataEnum` here
+kablam! 117 |       pub enum DataEnum {
+kablam!     |  _____^ starting here...
+kablam! 118 | |         A(String, u64, Vec<u8>),
+kablam! 119 | |         B,
+kablam! 120 | |         C(String, String, String)
+kablam! 121 | |     }
+kablam!     | |_____^ ...ending here: `DataEnum` already defined
+kablam! 
+kablam! error[E0119]: conflicting implementations of trait `std::cmp::Eq` for type `tests::Struct`:
+kablam!   --> tests/test.rs:11:29
+kablam!    |
+kablam! 11 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |              --             ^^^^^^^^^^^ conflicting implementation for `tests::Struct`
+kablam!    |              |
+kablam!    |              first implementation here
+kablam! 
+kablam! error[E0119]: conflicting implementations of trait `std::cmp::PartialEq` for type `tests::Struct`:
+kablam!   --> tests/test.rs:11:29
+kablam!    |
+kablam! 11 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |                  ---------  ^^^^^^^^^^^ conflicting implementation for `tests::Struct`
+kablam!    |                  |
+kablam!    |                  first implementation here
+kablam! 
+kablam! error[E0119]: conflicting implementations of trait `std::cmp::Eq` for type `tests::EmptyStruct`:
+kablam!   --> tests/test.rs:34:29
+kablam!    |
+kablam! 34 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |              --             ^^^^^^^^^^^ conflicting implementation for `tests::EmptyStruct`
+kablam!    |              |
+kablam!    |              first implementation here
+kablam! 
+kablam! error[E0119]: conflicting implementations of trait `std::cmp::PartialEq` for type `tests::EmptyStruct`:
+kablam!   --> tests/test.rs:34:29
+kablam!    |
+kablam! 34 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |                  ---------  ^^^^^^^^^^^ conflicting implementation for `tests::EmptyStruct`
+kablam!    |                  |
+kablam!    |                  first implementation here
+kablam! 
+kablam! error[E0119]: conflicting implementations of trait `std::cmp::Eq` for type `tests::TupleStruct`:
+kablam!   --> tests/test.rs:53:29
+kablam!    |
+kablam! 53 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |              --             ^^^^^^^^^^^ conflicting implementation for `tests::TupleStruct`
+kablam!    |              |
+kablam!    |              first implementation here
+kablam! 
+kablam! error[E0119]: conflicting implementations of trait `std::cmp::PartialEq` for type `tests::TupleStruct`:
+kablam!   --> tests/test.rs:53:29
+kablam!    |
+kablam! 53 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |                  ---------  ^^^^^^^^^^^ conflicting implementation for `tests::TupleStruct`
+kablam!    |                  |
+kablam!    |                  first implementation here
+kablam! 
+kablam! error[E0119]: conflicting implementations of trait `std::cmp::Eq` for type `tests::GenericStruct<_, _>`:
+kablam!   --> tests/test.rs:72:29
+kablam!    |
+kablam! 72 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |              --             ^^^^^^^^^^^ conflicting implementation for `tests::GenericStruct<_, _>`
+kablam!    |              |
+kablam!    |              first implementation here
+kablam! 
+kablam! error[E0119]: conflicting implementations of trait `std::cmp::PartialEq` for type `tests::GenericStruct<_, _>`:
+kablam!   --> tests/test.rs:72:29
+kablam!    |
+kablam! 72 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |                  ---------  ^^^^^^^^^^^ conflicting implementation for `tests::GenericStruct<_, _>`
+kablam!    |                  |
+kablam!    |                  first implementation here
+kablam! 
+kablam! error[E0119]: conflicting implementations of trait `std::cmp::Eq` for type `tests::BasicEnum`:
+kablam!   --> tests/test.rs:92:29
+kablam!    |
+kablam! 92 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |              --             ^^^^^^^^^^^ conflicting implementation for `tests::BasicEnum`
+kablam!    |              |
+kablam!    |              first implementation here
+kablam! 
+kablam! error[E0119]: conflicting implementations of trait `std::cmp::PartialEq` for type `tests::BasicEnum`:
+kablam!   --> tests/test.rs:92:29
+kablam!    |
+kablam! 92 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |                  ---------  ^^^^^^^^^^^ conflicting implementation for `tests::BasicEnum`
+kablam!    |                  |
+kablam!    |                  first implementation here
+kablam! 
+kablam! error[E0119]: conflicting implementations of trait `std::cmp::Eq` for type `tests::DataEnum`:
+kablam!    --> tests/test.rs:116:29
+kablam!     |
+kablam! 116 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!     |              --             ^^^^^^^^^^^ conflicting implementation for `tests::DataEnum`
+kablam!     |              |
+kablam!     |              first implementation here
+kablam! 
+kablam! error[E0119]: conflicting implementations of trait `std::cmp::PartialEq` for type `tests::DataEnum`:
+kablam!    --> tests/test.rs:116:29
+kablam!     |
+kablam! 116 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!     |                  ---------  ^^^^^^^^^^^ conflicting implementation for `tests::DataEnum`
+kablam!     |                  |
+kablam!     |                  first implementation here
+kablam! 
+kablam! error: aborting due to 12 previous errors
+kablam! 
+kablam! error: Could not compile `abomonation_derive`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 4accddaf2f092e1877ecb851a7dc8f187c85f102f75e976fc5dc0d55c8638e01`
+blam! 4accddaf2f092e1877ecb851a7dc8f187c85f102f75e976fc5dc0d55c8638e01
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 2fe2da8193157a19f1820b57a0c19f116b96f992b74e7621867579c559185670
+boom! running `docker start -a 2fe2da8193157a19f1820b57a0c19f116b96f992b74e7621867579c559185670`
+kablam!    Compiling abomonation_derive v0.1.0 (file:///source)
+kablam! error[E0428]: a type named `Struct` has already been defined in this module
+kablam!   --> tests/test.rs:12:5
+kablam!    |
+kablam! 11 |       #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |                               ----------- previous definition of `Struct` here
+kablam! 12 |       pub struct Struct {
+kablam!    |  _____^ starting here...
+kablam! 13 | |         a: String,
+kablam! 14 | |         b: u64,
+kablam! 15 | |         c: Vec<u8>,
+kablam! 16 | |     }
+kablam!    | |_____^ ...ending here: `Struct` already defined
+kablam! 
+kablam! error[E0428]: a type named `EmptyStruct` has already been defined in this module
+kablam!   --> tests/test.rs:35:5
+kablam!    |
+kablam! 34 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |                             ----------- previous definition of `EmptyStruct` here
+kablam! 35 |     pub struct EmptyStruct;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^ `EmptyStruct` already defined
+kablam! 
+kablam! error[E0428]: a type named `TupleStruct` has already been defined in this module
+kablam!   --> tests/test.rs:54:5
+kablam!    |
+kablam! 53 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |                             ----------- previous definition of `TupleStruct` here
+kablam! 54 |     pub struct TupleStruct(String, u64, Vec<u8>);
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `TupleStruct` already defined
+kablam! 
+kablam! error[E0428]: a type named `GenericStruct` has already been defined in this module
+kablam!   --> tests/test.rs:73:5
+kablam!    |
+kablam! 72 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |                             ----------- previous definition of `GenericStruct` here
+kablam! 73 |     pub struct GenericStruct<T: ::abomonation::Abomonation, U: ::abomonation::Abomonation>(T, u64, U);
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `GenericStruct` already defined
+kablam! 
+kablam! error[E0428]: a type named `BasicEnum` has already been defined in this module
+kablam!   --> tests/test.rs:93:5
+kablam!    |
+kablam! 92 |       #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |                               ----------- previous definition of `BasicEnum` here
+kablam! 93 |       pub enum BasicEnum {
+kablam!    |  _____^ starting here...
+kablam! 94 | |         Apples,
+kablam! 95 | |         Pears,
+kablam! 96 | |         Chicken
+kablam! 97 | |     }
+kablam!    | |_____^ ...ending here: `BasicEnum` already defined
+kablam! 
+kablam! error[E0428]: a type named `DataEnum` has already been defined in this module
+kablam!    --> tests/test.rs:117:5
+kablam!     |
+kablam! 116 |       #[derive(Eq, PartialEq, Abomonation)]
+kablam!     |                               ----------- previous definition of `DataEnum` here
+kablam! 117 |       pub enum DataEnum {
+kablam!     |  _____^ starting here...
+kablam! 118 | |         A(String, u64, Vec<u8>),
+kablam! 119 | |         B,
+kablam! 120 | |         C(String, String, String)
+kablam! 121 | |     }
+kablam!     | |_____^ ...ending here: `DataEnum` already defined
+kablam! 
+kablam! error[E0119]: conflicting implementations of trait `std::cmp::Eq` for type `tests::Struct`:
+kablam!   --> tests/test.rs:11:29
+kablam!    |
+kablam! 11 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |              --             ^^^^^^^^^^^ conflicting implementation for `tests::Struct`
+kablam!    |              |
+kablam!    |              first implementation here
+kablam! 
+kablam! error[E0119]: conflicting implementations of trait `std::cmp::PartialEq` for type `tests::Struct`:
+kablam!   --> tests/test.rs:11:29
+kablam!    |
+kablam! 11 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |                  ---------  ^^^^^^^^^^^ conflicting implementation for `tests::Struct`
+kablam!    |                  |
+kablam!    |                  first implementation here
+kablam! 
+kablam! error[E0119]: conflicting implementations of trait `std::cmp::Eq` for type `tests::EmptyStruct`:
+kablam!   --> tests/test.rs:34:29
+kablam!    |
+kablam! 34 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |              --             ^^^^^^^^^^^ conflicting implementation for `tests::EmptyStruct`
+kablam!    |              |
+kablam!    |              first implementation here
+kablam! 
+kablam! error[E0119]: conflicting implementations of trait `std::cmp::PartialEq` for type `tests::EmptyStruct`:
+kablam!   --> tests/test.rs:34:29
+kablam!    |
+kablam! 34 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |                  ---------  ^^^^^^^^^^^ conflicting implementation for `tests::EmptyStruct`
+kablam!    |                  |
+kablam!    |                  first implementation here
+kablam! 
+kablam! error[E0119]: conflicting implementations of trait `std::cmp::Eq` for type `tests::TupleStruct`:
+kablam!   --> tests/test.rs:53:29
+kablam!    |
+kablam! 53 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |              --             ^^^^^^^^^^^ conflicting implementation for `tests::TupleStruct`
+kablam!    |              |
+kablam!    |              first implementation here
+kablam! 
+kablam! error[E0119]: conflicting implementations of trait `std::cmp::PartialEq` for type `tests::TupleStruct`:
+kablam!   --> tests/test.rs:53:29
+kablam!    |
+kablam! 53 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |                  ---------  ^^^^^^^^^^^ conflicting implementation for `tests::TupleStruct`
+kablam!    |                  |
+kablam!    |                  first implementation here
+kablam! 
+kablam! error[E0119]: conflicting implementations of trait `std::cmp::Eq` for type `tests::GenericStruct<_, _>`:
+kablam!   --> tests/test.rs:72:29
+kablam!    |
+kablam! 72 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |              --             ^^^^^^^^^^^ conflicting implementation for `tests::GenericStruct<_, _>`
+kablam!    |              |
+kablam!    |              first implementation here
+kablam! 
+kablam! error[E0119]: conflicting implementations of trait `std::cmp::PartialEq` for type `tests::GenericStruct<_, _>`:
+kablam!   --> tests/test.rs:72:29
+kablam!    |
+kablam! 72 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |                  ---------  ^^^^^^^^^^^ conflicting implementation for `tests::GenericStruct<_, _>`
+kablam!    |                  |
+kablam!    |                  first implementation here
+kablam! 
+kablam! error[E0119]: conflicting implementations of trait `std::cmp::Eq` for type `tests::BasicEnum`:
+kablam!   --> tests/test.rs:92:29
+kablam!    |
+kablam! 92 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |              --             ^^^^^^^^^^^ conflicting implementation for `tests::BasicEnum`
+kablam!    |              |
+kablam!    |              first implementation here
+kablam! 
+kablam! error[E0119]: conflicting implementations of trait `std::cmp::PartialEq` for type `tests::BasicEnum`:
+kablam!   --> tests/test.rs:92:29
+kablam!    |
+kablam! 92 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |                  ---------  ^^^^^^^^^^^ conflicting implementation for `tests::BasicEnum`
+kablam!    |                  |
+kablam!    |                  first implementation here
+kablam! 
+kablam! error[E0119]: conflicting implementations of trait `std::cmp::Eq` for type `tests::DataEnum`:
+kablam!    --> tests/test.rs:116:29
+kablam!     |
+kablam! 116 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!     |              --             ^^^^^^^^^^^ conflicting implementation for `tests::DataEnum`
+kablam!     |              |
+kablam!     |              first implementation here
+kablam! 
+kablam! error[E0119]: conflicting implementations of trait `std::cmp::PartialEq` for type `tests::DataEnum`:
+kablam!    --> tests/test.rs:116:29
+kablam!     |
+kablam! 116 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!     |                  ---------  ^^^^^^^^^^^ conflicting implementation for `tests::DataEnum`
+kablam!     |                  |
+kablam!     |                  first implementation here
+kablam! 
+kablam! error: aborting due to 12 previous errors
+kablam! 
+kablam! error: Could not compile `abomonation_derive`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 2fe2da8193157a19f1820b57a0c19f116b96f992b74e7621867579c559185670`
+blam! 2fe2da8193157a19f1820b57a0c19f116b96f992b74e7621867579c559185670

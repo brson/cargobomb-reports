@@ -1,0 +1,32 @@
+boom! testing nanomsg-0.5.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! e7c4901e68707e3b82e96f869e675b6746d3275bb3aba61c5c28150d000ef82c
+boom! running `docker start -a e7c4901e68707e3b82e96f869e675b6746d3275bb3aba61c5c28150d000ef82c`
+kablam!    Compiling nanomsg-sys v0.5.0
+kablam! error[E0252]: a value named `ENOTSUP` has already been imported in this module
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/nanomsg-sys-0.5.0/src/lib.rs:8:9
+kablam!   |
+kablam! 6 | pub use libc::*;
+kablam!   |         -------- previous import of `ENOTSUP` here
+kablam! 7 | 
+kablam! 8 | pub use posix_consts::*;
+kablam!   |         ^^^^^^^^^^^^^^^^ already imported
+kablam! 
+kablam! error[E0255]: a value named `ENOTSUP` has already been imported in this module
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/nanomsg-sys-0.5.0/src/lib.rs:86:5
+kablam!    |
+kablam! 73 |     use libc::*;
+kablam!    |         -------- previous import of `ENOTSUP` here
+kablam! ...
+kablam! 86 |     pub const ENOTSUP: c_int = NN_HAUSNUMERO + 1;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `ENOTSUP` was already imported
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `nanomsg-sys`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f e7c4901e68707e3b82e96f869e675b6746d3275bb3aba61c5c28150d000ef82c`
+blam! e7c4901e68707e3b82e96f869e675b6746d3275bb3aba61c5c28150d000ef82c

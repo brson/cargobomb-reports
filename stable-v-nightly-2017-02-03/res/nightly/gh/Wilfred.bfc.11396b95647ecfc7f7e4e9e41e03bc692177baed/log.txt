@@ -1,0 +1,29 @@
+boom! testing https://github.com/Wilfred/bfc#11396b95647ecfc7f7e4e9e41e03bc692177baed against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 81d53165d9396119e01502032b1a055b6556432a4102c1093fa50cfb11178a2e
+boom! running `docker start -a 81d53165d9396119e01502032b1a055b6556432a4102c1093fa50cfb11178a2e`
+kablam!    Compiling itertools v0.4.18
+kablam!    Compiling memchr v0.1.11
+kablam!    Compiling rand v0.3.14
+kablam!    Compiling thread-id v2.0.0
+kablam!    Compiling thread_local v0.2.6
+kablam!    Compiling llvm-sys v0.3.0
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/itertools-0.4.18/src/lib.rs:123:1
+kablam!     |
+kablam! 123 | pub type MapFn<I, B> where I: Iterator = iter::Map<I, fn(I::Item) -> B>;
+kablam!     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam!    Compiling aho-corasick v0.5.2
+kablam!    Compiling regex v0.1.73
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: failed to run custom build command for `llvm-sys v0.3.0`
+kablam! process didn't exit successfully: `/target/debug/build/llvm-sys-c715da06f2a3d258/build-script-build` (exit code: 101)
+kablam! --- stderr
+kablam! thread 'main' panicked at 'Couldn't execute llvm-config. Error: No such file or directory (os error 2)', /cargo-home/registry/src/github.com-1ecc6299db9ec823/llvm-sys-0.3.0/build.rs:13
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f 81d53165d9396119e01502032b1a055b6556432a4102c1093fa50cfb11178a2e`
+blam! 81d53165d9396119e01502032b1a055b6556432a4102c1093fa50cfb11178a2e

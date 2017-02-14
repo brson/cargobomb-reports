@@ -1,0 +1,32 @@
+boom! testing acorn-1.0.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 9dd089120a48675bb3b5ef935f23567e5933094278db817025f424b739c70950
+boom! running `docker start -a 9dd089120a48675bb3b5ef935f23567e5933094278db817025f424b739c70950`
+kablam!    Compiling acorn v1.0.0 (file:///source)
+kablam! error: incorrect unicode escape sequence
+kablam!    --> src/acorn.rs:992:38
+kablam!     |
+kablam! 992 |                     98 => {out.push('\u0008');;
+kablam!     |                                      ^^
+kablam!     |
+kablam! help: format of unicode escape sequences is `\u{…}`
+kablam!    --> src/acorn.rs:992:38
+kablam!     |
+kablam! 992 |                     98 => {out.push('\u0008');;
+kablam!     |                                      ^^
+kablam! 
+kablam! error: character literal may only contain one codepoint: '\u
+kablam!    --> src/acorn.rs:992:37
+kablam!     |
+kablam! 992 |                     98 => {out.push('\u0008');;
+kablam!     |                                     ^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `acorn`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 9dd089120a48675bb3b5ef935f23567e5933094278db817025f424b739c70950`
+blam! 9dd089120a48675bb3b5ef935f23567e5933094278db817025f424b739c70950

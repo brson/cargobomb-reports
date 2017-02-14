@@ -1,0 +1,40 @@
+boom! testing futures-io-0.1.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 964fd8612ddcf21fd8671f864f4da35e1a6c732ed5334842339c81544946a948
+boom! running `docker start -a 964fd8612ddcf21fd8671f864f4da35e1a6c732ed5334842339c81544946a948`
+kablam!    Compiling log v0.3.6
+kablam!    Compiling futures v0.1.10
+kablam!    Compiling futures-io v0.1.0 (file:///source)
+kablam! error: macro undefined: 'try_poll!'
+kablam!   --> src/copy.rs:52:27
+kablam!    |
+kablam! 52 |                     match try_poll!(self.reader.poll(task)) {
+kablam!    |                           ^^^^^^^^
+kablam! 
+kablam! error: macro undefined: 'try_poll!'
+kablam!   --> src/copy.rs:81:27
+kablam!    |
+kablam! 81 |                     match try_poll!(self.writer.poll(task)) {
+kablam!    |                           ^^^^^^^^
+kablam! 
+kablam! error: macro undefined: 'try_poll!'
+kablam!   --> src/read_to_end.rs:42:19
+kablam!    |
+kablam! 42 |             match try_poll!(self.a.poll(task)) {
+kablam!    |                   ^^^^^^^^
+kablam! 
+kablam! error: macro undefined: 'try_poll!'
+kablam!   --> src/task.rs:86:27
+kablam!    |
+kablam! 86 |         let found = match try_poll!(state.object.poll(self.task)) {
+kablam!    |                           ^^^^^^^^
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `futures-io`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 964fd8612ddcf21fd8671f864f4da35e1a6c732ed5334842339c81544946a948`
+blam! 964fd8612ddcf21fd8671f864f4da35e1a6c732ed5334842339c81544946a948

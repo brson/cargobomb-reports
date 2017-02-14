@@ -1,0 +1,28 @@
+boom! testing pascal_string-0.4.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! d36cd515f0b38a3e8c4866c6f3e3653cc067c934fd4d1979a6fc3a49e21c581e
+boom! running `docker start -a d36cd515f0b38a3e8c4866c6f3e3653cc067c934fd4d1979a6fc3a49e21c581e`
+kablam!    Compiling pascal_string v0.4.0 (file:///source)
+kablam! error[E0277]: the trait bound `[ascii::AsciiChar; 255]: std::cmp::Eq` is not satisfied
+kablam!   --> src/pascal_string.rs:23:5
+kablam!    |
+kablam! 23 |     chars: [AsciiChar; PASCAL_STRING_BUF_SIZE]
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::cmp::Eq` is not implemented for `[ascii::AsciiChar; 255]`
+kablam!    |
+kablam!    = help: the following implementations were found:
+kablam!    = help:   <[T] as std::cmp::Eq>
+kablam!    = help:   <[T; 0] as std::cmp::Eq>
+kablam!    = help:   <[T; 1] as std::cmp::Eq>
+kablam!    = help:   <[T; 2] as std::cmp::Eq>
+kablam!    = help: and 30 others
+kablam!    = note: required by `std::cmp::AssertParamIsEq`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `pascal_string`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f d36cd515f0b38a3e8c4866c6f3e3653cc067c934fd4d1979a6fc3a49e21c581e`
+blam! d36cd515f0b38a3e8c4866c6f3e3653cc067c934fd4d1979a6fc3a49e21c581e

@@ -1,0 +1,54 @@
+boom! testing winutil-0.1.0 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 265bdfd37bfe067a7fee023efc286850f73151144042f77d58a98f28c778ec29
+boom! running `docker start -a 265bdfd37bfe067a7fee023efc286850f73151144042f77d58a98f28c778ec29`
+kablam!    Compiling winutil v0.1.0 (file:///source)
+kablam! error[E0425]: unresolved name `kernel32::IsWow64Process`
+kablam!   --> src/lib.rs:52:15
+kablam!    |
+kablam! 52 |         match kernel32::IsWow64Process(kernel32::GetCurrentProcess(), is_wow_ptr) {
+kablam!    |               ^^^^^^^^^^^^^^^^^^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `kernel32::GetCurrentProcess`
+kablam!   --> src/lib.rs:52:40
+kablam!    |
+kablam! 52 |         match kernel32::IsWow64Process(kernel32::GetCurrentProcess(), is_wow_ptr) {
+kablam!    |                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0412]: type name `winapi::CHAR` is undefined or not in scope
+kablam!   --> src/lib.rs:70:25
+kablam!    |
+kablam! 70 |     let mut buf = [0 as winapi::CHAR; MAX_COMPUTERNAME_LENGTH + 1];
+kablam!    |                         ^^^^^^^^^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: no candidates by the name of `CHAR` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0425]: unresolved name `kernel32::GetComputerNameA`
+kablam!   --> src/lib.rs:74:12
+kablam!    |
+kablam! 74 |         if kernel32::GetComputerNameA(buf.as_mut_ptr(), &mut len) == 0 {
+kablam!    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0412]: type name `winapi::CHAR` is undefined or not in scope
+kablam!   --> src/lib.rs:95:25
+kablam!    |
+kablam! 95 |     let mut buf = [0 as winapi::CHAR; UNLEN + 1];
+kablam!    |                         ^^^^^^^^^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: no candidates by the name of `CHAR` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0425]: unresolved name `advapi32::GetUserNameA`
+kablam!   --> src/lib.rs:99:12
+kablam!    |
+kablam! 99 |         if advapi32::GetUserNameA(buf.as_mut_ptr(), &mut len) == 0 {
+kablam!    |            ^^^^^^^^^^^^^^^^^^^^^^ unresolved name
+kablam! 
+kablam! error: aborting due to 6 previous errors
+kablam! 
+kablam! error: Could not compile `winutil`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 265bdfd37bfe067a7fee023efc286850f73151144042f77d58a98f28c778ec29`
+blam! 265bdfd37bfe067a7fee023efc286850f73151144042f77d58a98f28c778ec29

@@ -1,0 +1,32 @@
+boom! testing nullable-0.0.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 6e97ff23b86a225af05831ad5ae05868f38a9d63e4a7cf7be65b5f199ca5b567
+boom! running `docker start -a 6e97ff23b86a225af05831ad5ae05868f38a9d63e4a7cf7be65b5f199ca5b567`
+kablam!    Compiling nullable v0.0.1 (file:///source)
+kablam! error[E0432]: unresolved import `std::kinds::marker`
+kablam!  --> src/lib.rs:5:5
+kablam!   |
+kablam! 5 | use std::kinds::marker;
+kablam!   |     ^^^^^^^^^^^^^^^^^^ Could not find `kinds` in `std`
+kablam! 
+kablam! error[E0110]: lifetime parameters are not allowed on this type
+kablam!  --> src/lib.rs:9:45
+kablam!   |
+kablam! 9 |     lifetime: marker::ContravariantLifetime<'a>,
+kablam!   |                                             ^^ lifetime parameter not allowed on this type
+kablam! 
+kablam! error[E0110]: lifetime parameters are not allowed on this type
+kablam!   --> src/lib.rs:34:45
+kablam!    |
+kablam! 34 |     lifetime: marker::ContravariantLifetime<'a>,
+kablam!    |                                             ^^ lifetime parameter not allowed on this type
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `nullable`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 6e97ff23b86a225af05831ad5ae05868f38a9d63e4a7cf7be65b5f199ca5b567`
+blam! 6e97ff23b86a225af05831ad5ae05868f38a9d63e4a7cf7be65b5f199ca5b567

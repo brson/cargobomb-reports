@@ -1,0 +1,82 @@
+boom! testing mutiny-0.2.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! f62c00c8a51d154442fde92c9c772170c2d043acbdf71c0776a7aea12e1aa063
+boom! running `docker start -a f62c00c8a51d154442fde92c9c772170c2d043acbdf71c0776a7aea12e1aa063`
+kablam!    Compiling psutil v0.2.0
+kablam!    Compiling log v0.2.5
+kablam!    Compiling docopt_macros v0.6.88
+kablam! error: expected pattern, found `:`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/psutil-0.2.0/src/process.rs:115:15
+kablam!     |
+kablam! 115 |             |&: c: char| c == '\0' || c == ' ');
+kablam!     |               ^
+kablam! 
+kablam! error: `#[derive]` for custom traits is not stable enough for use. It is deprecated and will be removed in v1.15 (see issue #29644)
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/psutil-0.2.0/src/process.rs:16:15
+kablam!    |
+kablam! 16 | #[derive(Copy,Show)]
+kablam!    |               ^^^^
+kablam!    |
+kablam!    = help: add #![feature(custom_derive)] to the crate attributes to enable
+kablam! 
+kablam! error[E0425]: cannot find function `at_exit` in module `rt`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/log-0.2.5/src/lib.rs:535:5
+kablam!     |
+kablam! 535 |     rt::at_exit(|| {
+kablam!     |     ^^^^^^^^^^^ not found in `rt`
+kablam! 
+kablam! error: use of unstable library feature 'rt': this public module should not exist and is highly likely to disappear (see issue #0)
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/log-0.2.5/src/lib.rs:153:5
+kablam!     |
+kablam! 153 | use std::rt;
+kablam!     |     ^^^^^^^
+kablam!     |
+kablam!     = help: add #![feature(rt)] to the crate attributes to enable
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: `#[derive]` for custom traits is not stable enough for use. It is deprecated and will be removed in v1.15 (see issue #29644)
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/psutil-0.2.0/src/process.rs:47:10
+kablam!    |
+kablam! 47 | #[derive(Show)]
+kablam!    |          ^^^^
+kablam!    |
+kablam!    = help: add #![feature(custom_derive)] to the crate attributes to enable
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/docopt_macros-0.6.88/src/macro.rs:316:16
+kablam!     |
+kablam! 316 |         types: P::from_vec(vec![cx.ty_ident(sp, ident("String"))]),
+kablam!     |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `std::vec::Vec`, found struct `syntax::ptr::P`
+kablam!     |
+kablam!     = note: expected type `std::vec::Vec<syntax::ptr::P<syntax::ast::Ty>>`
+kablam!                found type `syntax::ptr::P<[syntax::ptr::P<syntax::ast::Ty>]>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .into_vec()
+kablam!             - .to_vec()
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/docopt_macros-0.6.88/src/macro.rs:317:19
+kablam!     |
+kablam! 317 |         bindings: P::new(),
+kablam!     |                   ^^^^^^^^ expected struct `std::vec::Vec`, found struct `syntax::ptr::P`
+kablam!     |
+kablam!     = note: expected type `std::vec::Vec<syntax::ast::TypeBinding>`
+kablam!                found type `syntax::ptr::P<[_]>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .into_vec()
+kablam!             - .to_vec()
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `log`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f62c00c8a51d154442fde92c9c772170c2d043acbdf71c0776a7aea12e1aa063`
+blam! f62c00c8a51d154442fde92c9c772170c2d043acbdf71c0776a7aea12e1aa063

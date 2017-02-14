@@ -1,0 +1,225 @@
+boom! testing peel-ip-0.1.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 9aab14d8f0fc6440edd97a37002bc6208ce2013e0e20cc4868d2e9ba2ddced6e
+boom! running `docker start -a 9aab14d8f0fc6440edd97a37002bc6208ce2013e0e20cc4868d2e9ba2ddced6e`
+kablam!    Compiling peel v0.7.0
+kablam!    Compiling peel-ip v0.1.1 (file:///source)
+kablam! error[E0405]: trait `Parser` is not in scope
+kablam!  --> src/layer1/ethernet.rs:8:6
+kablam!   |
+kablam! 8 | impl Parser for EthernetParser {
+kablam!   |      ^^^^^^ `Parser` is not in scope
+kablam!   |
+kablam!   = help: no candidates by the name of `Parser` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0412]: type name `ParserState` is undefined or not in scope
+kablam!   --> src/layer1/ethernet.rs:18:54
+kablam!    |
+kablam! 18 |                  -> IResult<&'a [u8], (Self::Result, ParserState)> {
+kablam!    |                                                      ^^^^^^^^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: no candidates by the name of `ParserState` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `ParserState`
+kablam!   --> src/layer1/ethernet.rs:28:17
+kablam!    |
+kablam! 28 |             }), ParserState::ContinueWithFirstChild)
+kablam!    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Use of undeclared type or module `ParserState`
+kablam! 
+kablam! error[E0405]: trait `Parser` is not in scope
+kablam!  --> src/layer2/ipv4.rs:8:6
+kablam!   |
+kablam! 8 | impl Parser for Ipv4Parser {
+kablam!   |      ^^^^^^ `Parser` is not in scope
+kablam!   |
+kablam!   = help: no candidates by the name of `Parser` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0412]: type name `ParserState` is undefined or not in scope
+kablam!   --> src/layer2/ipv4.rs:18:54
+kablam!    |
+kablam! 18 |                  -> IResult<&'a [u8], (Self::Result, ParserState)> {
+kablam!    |                                                      ^^^^^^^^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: no candidates by the name of `ParserState` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `ParserState`
+kablam!   --> src/layer2/ipv4.rs:53:42
+kablam!    |
+kablam! 53 |                 IpProtocol::Ipv6 => Some(ParserState::ContinueWithNextSibling),
+kablam!    |                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Use of undeclared type or module `ParserState`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `ParserState`
+kablam!   --> src/layer2/ipv4.rs:56:42
+kablam!    |
+kablam! 56 |                 IpProtocol::IpIp => Some(ParserState::ContinueWithCurrent),
+kablam!    |                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Use of undeclared type or module `ParserState`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `ParserState`
+kablam!   --> src/layer2/ipv4.rs:59:27
+kablam!    |
+kablam! 59 |                 _ => Some(ParserState::ContinueWithFirstChild),
+kablam!    |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Use of undeclared type or module `ParserState`
+kablam! 
+kablam! error[E0405]: trait `Parser` is not in scope
+kablam!  --> src/layer2/ipv6.rs:8:6
+kablam!   |
+kablam! 8 | impl Parser for Ipv6Parser {
+kablam!   |      ^^^^^^ `Parser` is not in scope
+kablam!   |
+kablam!   = help: no candidates by the name of `Parser` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0412]: type name `ParserState` is undefined or not in scope
+kablam!   --> src/layer2/ipv6.rs:18:54
+kablam!    |
+kablam! 18 |                  -> IResult<&'a [u8], (Self::Result, ParserState)> {
+kablam!    |                                                      ^^^^^^^^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: no candidates by the name of `ParserState` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `ParserState`
+kablam!   --> src/layer2/ipv6.rs:52:42
+kablam!    |
+kablam! 52 |                 IpProtocol::Ipv6 => Some(ParserState::ContinueWithCurrent),
+kablam!    |                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Use of undeclared type or module `ParserState`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `ParserState`
+kablam!   --> src/layer2/ipv6.rs:55:27
+kablam!    |
+kablam! 55 |                 _ => Some(ParserState::ContinueWithFirstChild),
+kablam!    |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Use of undeclared type or module `ParserState`
+kablam! 
+kablam! error[E0405]: trait `Parser` is not in scope
+kablam!  --> src/layer3/tcp.rs:8:6
+kablam!   |
+kablam! 8 | impl Parser for TcpParser {
+kablam!   |      ^^^^^^ `Parser` is not in scope
+kablam!   |
+kablam!   = help: no candidates by the name of `Parser` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0412]: type name `ParserState` is undefined or not in scope
+kablam!   --> src/layer3/tcp.rs:18:54
+kablam!    |
+kablam! 18 |                  -> IResult<&'a [u8], (Self::Result, ParserState)> {
+kablam!    |                                                      ^^^^^^^^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: no candidates by the name of `ParserState` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `ParserState`
+kablam!   --> src/layer3/tcp.rs:65:17
+kablam!    |
+kablam! 65 |             }), ParserState::ContinueWithFirstChild)
+kablam!    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Use of undeclared type or module `ParserState`
+kablam! 
+kablam! error[E0405]: trait `Parser` is not in scope
+kablam!  --> src/layer3/tls.rs:8:6
+kablam!   |
+kablam! 8 | impl Parser for TlsParser {
+kablam!   |      ^^^^^^ `Parser` is not in scope
+kablam!   |
+kablam!   = help: no candidates by the name of `Parser` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0412]: type name `ParserState` is undefined or not in scope
+kablam!   --> src/layer3/tls.rs:18:54
+kablam!    |
+kablam! 18 |                  -> IResult<&'a [u8], (Self::Result, ParserState)> {
+kablam!    |                                                      ^^^^^^^^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: no candidates by the name of `ParserState` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `ParserState`
+kablam!   --> src/layer3/tls.rs:44:17
+kablam!    |
+kablam! 44 |             }), ParserState::ContinueWithFirstChild)
+kablam!    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Use of undeclared type or module `ParserState`
+kablam! 
+kablam! error[E0405]: trait `Parser` is not in scope
+kablam!  --> src/layer3/udp.rs:8:6
+kablam!   |
+kablam! 8 | impl Parser for UdpParser {
+kablam!   |      ^^^^^^ `Parser` is not in scope
+kablam!   |
+kablam!   = help: no candidates by the name of `Parser` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0412]: type name `ParserState` is undefined or not in scope
+kablam!   --> src/layer3/udp.rs:18:54
+kablam!    |
+kablam! 18 |                  -> IResult<&'a [u8], (Self::Result, ParserState)> {
+kablam!    |                                                      ^^^^^^^^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: no candidates by the name of `ParserState` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `ParserState`
+kablam!   --> src/layer3/udp.rs:45:17
+kablam!    |
+kablam! 45 |             }), ParserState::ContinueWithFirstChild)
+kablam!    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Use of undeclared type or module `ParserState`
+kablam! 
+kablam! error[E0405]: trait `Parser` is not in scope
+kablam!  --> src/layer4/http.rs:8:6
+kablam!   |
+kablam! 8 | impl Parser for HttpParser {
+kablam!   |      ^^^^^^ `Parser` is not in scope
+kablam!   |
+kablam!   = help: no candidates by the name of `Parser` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0412]: type name `ParserState` is undefined or not in scope
+kablam!   --> src/layer4/http.rs:18:54
+kablam!    |
+kablam! 18 |                  -> IResult<&'a [u8], (Self::Result, ParserState)> {
+kablam!    |                                                      ^^^^^^^^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: no candidates by the name of `ParserState` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `ParserState`
+kablam!   --> src/layer4/http.rs:36:22
+kablam!    |
+kablam! 36 |             (result, ParserState::ContinueWithFirstChild)
+kablam!    |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Use of undeclared type or module `ParserState`
+kablam! 
+kablam! error[E0405]: trait `Parser` is not in scope
+kablam!  --> src/layer4/ntp.rs:8:6
+kablam!   |
+kablam! 8 | impl Parser for NtpParser {
+kablam!   |      ^^^^^^ `Parser` is not in scope
+kablam!   |
+kablam!   = help: no candidates by the name of `Parser` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0412]: type name `ParserState` is undefined or not in scope
+kablam!   --> src/layer4/ntp.rs:18:54
+kablam!    |
+kablam! 18 |                  -> IResult<&'a [u8], (Self::Result, ParserState)> {
+kablam!    |                                                      ^^^^^^^^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: no candidates by the name of `ParserState` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `ParserState`
+kablam!   --> src/layer4/ntp.rs:66:17
+kablam!    |
+kablam! 66 |             }), ParserState::Stop)
+kablam!    |                 ^^^^^^^^^^^^^^^^^ Use of undeclared type or module `ParserState`
+kablam! 
+kablam! error[E0412]: type name `ParserNode` is undefined or not in scope
+kablam!   --> src/lib.rs:39:27
+kablam!    |
+kablam! 39 |     pub type PacketNode = ParserNode<Layer, ParserVariant>;
+kablam!    |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: no candidates by the name of `ParserNode` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0412]: type name `ParserArena` is undefined or not in scope
+kablam!   --> src/lib.rs:42:28
+kablam!    |
+kablam! 42 |     pub type PacketArena = ParserArena<Layer, ParserVariant>;
+kablam!    |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: no candidates by the name of `ParserArena` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `peel-ip`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 9aab14d8f0fc6440edd97a37002bc6208ce2013e0e20cc4868d2e9ba2ddced6e`
+blam! 9aab14d8f0fc6440edd97a37002bc6208ce2013e0e20cc4868d2e9ba2ddced6e

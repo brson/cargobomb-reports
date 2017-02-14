@@ -1,0 +1,335 @@
+boom! testing tempan-0.0.7 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! e20831b337dfae25864b8394861e1c3fe13fb6694dc6d52f72f969b3caf88578
+boom! running `docker start -a e20831b337dfae25864b8394861e1c3fe13fb6694dc6d52f72f969b3caf88578`
+kablam!    Compiling liblapack-sys v0.0.6
+kablam!    Compiling libblas-sys v0.0.6
+kablam!    Compiling hotspot v0.0.7
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/liblapack-sys-0.0.6/build.rs:24:16
+kablam!    |
+kablam! 24 |     let from = Path::new(get!("CARGO_MANIFEST_DIR")).join("liblapack");
+kablam!    |                ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error[E0425]: cannot find function `getenv` in module `std::os`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/liblapack-sys-0.0.6/build.rs:12:22
+kablam!    |
+kablam! 12 |     ($name:expr) => (::std::os::getenv($name).unwrap());
+kablam!    |                      ^^^^^^^^^^^^^^^^^ not found in `std::os`
+kablam! ...
+kablam! 24 |     let from = Path::new(get!("CARGO_MANIFEST_DIR")).join("liblapack");
+kablam!    |                          -------------------------- in this macro invocation
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/liblapack-sys-0.0.6/build.rs:25:16
+kablam!    |
+kablam! 25 |     let into = Path::new(get!("OUT_DIR"));
+kablam!    |                ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error[E0425]: cannot find function `getenv` in module `std::os`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/liblapack-sys-0.0.6/build.rs:12:22
+kablam!    |
+kablam! 12 |     ($name:expr) => (::std::os::getenv($name).unwrap());
+kablam!    |                      ^^^^^^^^^^^^^^^^^ not found in `std::os`
+kablam! ...
+kablam! 25 |     let into = Path::new(get!("OUT_DIR"));
+kablam!    |                          --------------- in this macro invocation
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `process` in `io`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/liblapack-sys-0.0.6/build.rs:4:22
+kablam!    |
+kablam! 4  |       ($name:expr) => (::std::io::process::Command::new($name));
+kablam!    |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `process` in `io`
+kablam! ...
+kablam! 27 |       run!(cmd!("cmake").cwd(&into).arg(&from)
+kablam!    |  _____- starting here...
+kablam! 28 | |                                  .arg("-DCMAKE_Fortran_FLAGS='-O2 -frecursive -fPIC'"));
+kablam!    | |________________________________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `process` in `io`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/liblapack-sys-0.0.6/build.rs:17:33
+kablam!    |
+kablam! 17 |           assert!($command.stdout(::std::io::process::InheritFd(1))
+kablam!    |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `process` in `io`
+kablam! ...
+kablam! 27 |       run!(cmd!("cmake").cwd(&into).arg(&from)
+kablam!    |  _____- starting here...
+kablam! 28 | |                                  .arg("-DCMAKE_Fortran_FLAGS='-O2 -frecursive -fPIC'"));
+kablam!    | |________________________________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `process` in `io`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/liblapack-sys-0.0.6/build.rs:18:33
+kablam!    |
+kablam! 18 |                           .stderr(::std::io::process::InheritFd(2))
+kablam!    |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `process` in `io`
+kablam! ...
+kablam! 27 |       run!(cmd!("cmake").cwd(&into).arg(&from)
+kablam!    |  _____- starting here...
+kablam! 28 | |                                  .arg("-DCMAKE_Fortran_FLAGS='-O2 -frecursive -fPIC'"));
+kablam!    | |________________________________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `process` in `io`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/liblapack-sys-0.0.6/build.rs:4:22
+kablam!    |
+kablam! 4  |       ($name:expr) => (::std::io::process::Command::new($name));
+kablam!    |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `process` in `io`
+kablam! ...
+kablam! 30 |       run!(cmd!("cmake").cwd(&into).arg("--build").arg(".")
+kablam!    |  _____- starting here...
+kablam! 31 | |                                  .arg("--target").arg("lapack")
+kablam! 32 | |                                  .arg("--")
+kablam! 33 | |                                  .arg(fmt!("-j{}", get!("NUM_JOBS"))));
+kablam!    | |_______________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0425]: cannot find function `getenv` in module `std::os`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/liblapack-sys-0.0.6/build.rs:12:22
+kablam!    |
+kablam! 12 |       ($name:expr) => (::std::os::getenv($name).unwrap());
+kablam!    |                        ^^^^^^^^^^^^^^^^^ not found in `std::os`
+kablam! ...
+kablam! 30 |       run!(cmd!("cmake").cwd(&into).arg("--build").arg(".")
+kablam!    |  _____- starting here...
+kablam! 31 | |                                  .arg("--target").arg("lapack")
+kablam! 32 | |                                  .arg("--")
+kablam! 33 | |                                  .arg(fmt!("-j{}", get!("NUM_JOBS"))));
+kablam!    | |_______________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `process` in `io`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/liblapack-sys-0.0.6/build.rs:17:33
+kablam!    |
+kablam! 17 |           assert!($command.stdout(::std::io::process::InheritFd(1))
+kablam!    |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `process` in `io`
+kablam! ...
+kablam! 30 |       run!(cmd!("cmake").cwd(&into).arg("--build").arg(".")
+kablam!    |  _____- starting here...
+kablam! 31 | |                                  .arg("--target").arg("lapack")
+kablam! 32 | |                                  .arg("--")
+kablam! 33 | |                                  .arg(fmt!("-j{}", get!("NUM_JOBS"))));
+kablam!    | |_______________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `process` in `io`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/liblapack-sys-0.0.6/build.rs:18:33
+kablam!    |
+kablam! 18 |                           .stderr(::std::io::process::InheritFd(2))
+kablam!    |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `process` in `io`
+kablam! ...
+kablam! 30 |       run!(cmd!("cmake").cwd(&into).arg("--build").arg(".")
+kablam!    |  _____- starting here...
+kablam! 31 | |                                  .arg("--target").arg("lapack")
+kablam! 32 | |                                  .arg("--")
+kablam! 33 | |                                  .arg(fmt!("-j{}", get!("NUM_JOBS"))));
+kablam!    | |_______________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error: no method named `as_slice` found for type `std::string::String` in the current scope
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/liblapack-sys-0.0.6/build.rs:8:41
+kablam!    |
+kablam! 8  |       ($($arg:tt)*) => (format!($($arg)*).as_slice());
+kablam!    |                                           ^^^^^^^^
+kablam! ...
+kablam! 30 |       run!(cmd!("cmake").cwd(&into).arg("--build").arg(".")
+kablam!    |  _____- starting here...
+kablam! 31 | |                                  .arg("--target").arg("lapack")
+kablam! 32 | |                                  .arg("--")
+kablam! 33 | |                                  .arg(fmt!("-j{}", get!("NUM_JOBS"))));
+kablam!    | |_______________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/hotspot-0.0.7/build.rs:20:17
+kablam!    |
+kablam! 20 |     let build = Path::new(get!("CARGO_MANIFEST_DIR")).join("build");
+kablam!    |                 ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error[E0425]: cannot find function `getenv` in module `std::os`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/hotspot-0.0.7/build.rs:8:22
+kablam!    |
+kablam! 8  |     ($name:expr) => (::std::os::getenv($name).unwrap_or("".to_string()));
+kablam!    |                      ^^^^^^^^^^^^^^^^^ not found in `std::os`
+kablam! ...
+kablam! 20 |     let build = Path::new(get!("CARGO_MANIFEST_DIR")).join("build");
+kablam!    |                           -------------------------- in this macro invocation
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/hotspot-0.0.7/build.rs:21:16
+kablam!    |
+kablam! 21 |     let into = Path::new(get!("OUT_DIR"));
+kablam!    |                ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error[E0425]: cannot find function `getenv` in module `std::os`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/hotspot-0.0.7/build.rs:8:22
+kablam!    |
+kablam! 8  |     ($name:expr) => (::std::os::getenv($name).unwrap_or("".to_string()));
+kablam!    |                      ^^^^^^^^^^^^^^^^^ not found in `std::os`
+kablam! ...
+kablam! 21 |     let into = Path::new(get!("OUT_DIR"));
+kablam!    |                          --------------- in this macro invocation
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `process` in `io`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/hotspot-0.0.7/build.rs:4:22
+kablam!    |
+kablam! 4  |     ($name:expr) => (::std::io::process::Command::new($name));
+kablam!    |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `process` in `io`
+kablam! ...
+kablam! 23 |     run!(cmd!("make").cwd(&build));
+kablam!    |     ------------------------------- in this macro invocation
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `process` in `io`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/hotspot-0.0.7/build.rs:13:33
+kablam!    |
+kablam! 13 |         assert!($command.stdout(::std::io::process::InheritFd(1))
+kablam!    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `process` in `io`
+kablam! ...
+kablam! 23 |     run!(cmd!("make").cwd(&build));
+kablam!    |     ------------------------------- in this macro invocation
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `process` in `io`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/hotspot-0.0.7/build.rs:14:33
+kablam!    |
+kablam! 14 |                         .stderr(::std::io::process::InheritFd(2))
+kablam!    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `process` in `io`
+kablam! ...
+kablam! 23 |     run!(cmd!("make").cwd(&build));
+kablam!    |     ------------------------------- in this macro invocation
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/libblas-sys-0.0.6/build.rs:24:16
+kablam!    |
+kablam! 24 |     let from = Path::new(get!("CARGO_MANIFEST_DIR")).join("libblas");
+kablam!    |                ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error: aborting due to 7 previous errors
+kablam! 
+kablam! error[E0425]: cannot find function `getenv` in module `std::os`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/libblas-sys-0.0.6/build.rs:12:22
+kablam!    |
+kablam! 12 |     ($name:expr) => (::std::os::getenv($name).unwrap());
+kablam!    |                      ^^^^^^^^^^^^^^^^^ not found in `std::os`
+kablam! ...
+kablam! 24 |     let from = Path::new(get!("CARGO_MANIFEST_DIR")).join("libblas");
+kablam!    |                          -------------------------- in this macro invocation
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/libblas-sys-0.0.6/build.rs:25:16
+kablam!    |
+kablam! 25 |     let into = Path::new(get!("OUT_DIR"));
+kablam!    |                ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error[E0425]: cannot find function `getenv` in module `std::os`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/libblas-sys-0.0.6/build.rs:12:22
+kablam!    |
+kablam! 12 |     ($name:expr) => (::std::os::getenv($name).unwrap());
+kablam!    |                      ^^^^^^^^^^^^^^^^^ not found in `std::os`
+kablam! ...
+kablam! 25 |     let into = Path::new(get!("OUT_DIR"));
+kablam!    |                          --------------- in this macro invocation
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `process` in `io`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/libblas-sys-0.0.6/build.rs:4:22
+kablam!    |
+kablam! 4  |       ($name:expr) => (::std::io::process::Command::new($name));
+kablam!    |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `process` in `io`
+kablam! ...
+kablam! 27 |       run!(cmd!("cmake").cwd(&into).arg(&from)
+kablam!    |  _____- starting here...
+kablam! 28 | |                                  .arg("-DCMAKE_Fortran_FLAGS='-O2 -frecursive -fPIC'"));
+kablam!    | |________________________________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `process` in `io`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/libblas-sys-0.0.6/build.rs:17:33
+kablam!    |
+kablam! 17 |           assert!($command.stdout(::std::io::process::InheritFd(1))
+kablam!    |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `process` in `io`
+kablam! ...
+kablam! 27 |       run!(cmd!("cmake").cwd(&into).arg(&from)
+kablam!    |  _____- starting here...
+kablam! 28 | |                                  .arg("-DCMAKE_Fortran_FLAGS='-O2 -frecursive -fPIC'"));
+kablam!    | |________________________________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `process` in `io`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/libblas-sys-0.0.6/build.rs:18:33
+kablam!    |
+kablam! 18 |                           .stderr(::std::io::process::InheritFd(2))
+kablam!    |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `process` in `io`
+kablam! ...
+kablam! 27 |       run!(cmd!("cmake").cwd(&into).arg(&from)
+kablam!    |  _____- starting here...
+kablam! 28 | |                                  .arg("-DCMAKE_Fortran_FLAGS='-O2 -frecursive -fPIC'"));
+kablam!    | |________________________________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `process` in `io`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/libblas-sys-0.0.6/build.rs:4:22
+kablam!    |
+kablam! 4  |       ($name:expr) => (::std::io::process::Command::new($name));
+kablam!    |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `process` in `io`
+kablam! ...
+kablam! 30 |       run!(cmd!("cmake").cwd(&into).arg("--build").arg(".")
+kablam!    |  _____- starting here...
+kablam! 31 | |                                  .arg("--target").arg("blas")
+kablam! 32 | |                                  .arg("--")
+kablam! 33 | |                                  .arg(fmt!("-j{}", get!("NUM_JOBS"))));
+kablam!    | |_______________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0425]: cannot find function `getenv` in module `std::os`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/libblas-sys-0.0.6/build.rs:12:22
+kablam!    |
+kablam! 12 |       ($name:expr) => (::std::os::getenv($name).unwrap());
+kablam!    |                        ^^^^^^^^^^^^^^^^^ not found in `std::os`
+kablam! ...
+kablam! 30 |       run!(cmd!("cmake").cwd(&into).arg("--build").arg(".")
+kablam!    |  _____- starting here...
+kablam! 31 | |                                  .arg("--target").arg("blas")
+kablam! 32 | |                                  .arg("--")
+kablam! 33 | |                                  .arg(fmt!("-j{}", get!("NUM_JOBS"))));
+kablam!    | |_______________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `process` in `io`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/libblas-sys-0.0.6/build.rs:17:33
+kablam!    |
+kablam! 17 |           assert!($command.stdout(::std::io::process::InheritFd(1))
+kablam!    |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `process` in `io`
+kablam! ...
+kablam! 30 |       run!(cmd!("cmake").cwd(&into).arg("--build").arg(".")
+kablam!    |  _____- starting here...
+kablam! 31 | |                                  .arg("--target").arg("blas")
+kablam! 32 | |                                  .arg("--")
+kablam! 33 | |                                  .arg(fmt!("-j{}", get!("NUM_JOBS"))));
+kablam!    | |_______________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `process` in `io`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/libblas-sys-0.0.6/build.rs:18:33
+kablam!    |
+kablam! 18 |                           .stderr(::std::io::process::InheritFd(2))
+kablam!    |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `process` in `io`
+kablam! ...
+kablam! 30 |       run!(cmd!("cmake").cwd(&into).arg("--build").arg(".")
+kablam!    |  _____- starting here...
+kablam! 31 | |                                  .arg("--target").arg("blas")
+kablam! 32 | |                                  .arg("--")
+kablam! 33 | |                                  .arg(fmt!("-j{}", get!("NUM_JOBS"))));
+kablam!    | |_______________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: no method named `as_slice` found for type `std::string::String` in the current scope
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/libblas-sys-0.0.6/build.rs:8:41
+kablam!    |
+kablam! 8  |       ($($arg:tt)*) => (format!($($arg)*).as_slice());
+kablam!    |                                           ^^^^^^^^
+kablam! ...
+kablam! 30 |       run!(cmd!("cmake").cwd(&into).arg("--build").arg(".")
+kablam!    |  _____- starting here...
+kablam! 31 | |                                  .arg("--target").arg("blas")
+kablam! 32 | |                                  .arg("--")
+kablam! 33 | |                                  .arg(fmt!("-j{}", get!("NUM_JOBS"))));
+kablam!    | |_______________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `liblapack-sys`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f e20831b337dfae25864b8394861e1c3fe13fb6694dc6d52f72f969b3caf88578`
+blam! e20831b337dfae25864b8394861e1c3fe13fb6694dc6d52f72f969b3caf88578

@@ -1,0 +1,66 @@
+boom! testing wechat-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! b53a23e5b72f8e4a8e358846ca617853c4a858a6af08ca584fdb135a36f0ca5f
+boom! running `docker start -a b53a23e5b72f8e4a8e358846ca617853c4a858a6af08ca584fdb135a36f0ca5f`
+kablam!    Compiling sxd-xpath v0.4.0
+kablam!    Compiling wechat v0.1.0 (file:///source)
+kablam! error[E0432]: unresolved import `sxd_document::parser::Parser`
+kablam!  --> src/xmlutil.rs:5:5
+kablam!   |
+kablam! 5 | use sxd_document::parser::Parser;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `Parser` in `parser`. Did you mean to use `parse`?
+kablam! 
+kablam! error[E0432]: unresolved import `sxd_xpath::Functions`
+kablam!  --> src/xmlutil.rs:6:24
+kablam!   |
+kablam! 6 | use sxd_xpath::{Value, Functions, Variables, Namespaces, Factory, EvaluationContext, Expression};
+kablam!   |                        ^^^^^^^^^ no `Functions` in the root. Did you mean to use `function`?
+kablam! 
+kablam! error[E0432]: unresolved import `sxd_xpath::Variables`
+kablam!  --> src/xmlutil.rs:6:35
+kablam!   |
+kablam! 6 | use sxd_xpath::{Value, Functions, Variables, Namespaces, Factory, EvaluationContext, Expression};
+kablam!   |                                   ^^^^^^^^^ no `Variables` in the root
+kablam! 
+kablam! error[E0432]: unresolved import `sxd_xpath::Namespaces`
+kablam!  --> src/xmlutil.rs:6:46
+kablam!   |
+kablam! 6 | use sxd_xpath::{Value, Functions, Variables, Namespaces, Factory, EvaluationContext, Expression};
+kablam!   |                                              ^^^^^^^^^^ no `Namespaces` in the root
+kablam! 
+kablam! error[E0432]: unresolved import `sxd_xpath::EvaluationContext`
+kablam!  --> src/xmlutil.rs:6:67
+kablam!   |
+kablam! 6 | use sxd_xpath::{Value, Functions, Variables, Namespaces, Factory, EvaluationContext, Expression};
+kablam!   |                                                                   ^^^^^^^^^^^^^^^^^ no `EvaluationContext` in the root
+kablam! 
+kablam! error[E0432]: unresolved import `sxd_xpath::Expression`
+kablam!  --> src/xmlutil.rs:6:86
+kablam!   |
+kablam! 6 | use sxd_xpath::{Value, Functions, Variables, Namespaces, Factory, EvaluationContext, Expression};
+kablam!   |                                                                                      ^^^^^^^^^^ no `Expression` in the root. Did you mean to use `expression`?
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/xmlutil.rs:28:61
+kablam!    |
+kablam! 28 |         super::sxd_xpath::function::register_core_functions(&mut fns);
+kablam!    |                                                             ^^^^^^^^ expected struct `sxd_xpath::Context`, found struct `std::collections::HashMap`
+kablam!    |
+kablam!    = note: expected type `&mut sxd_xpath::Context<'_>`
+kablam!               found type `&mut std::collections::HashMap<_, _>`
+kablam! 
+kablam! error[E0061]: this function takes 2 parameters but 1 parameter was supplied
+kablam!   --> src/xmlutil.rs:47:24
+kablam!    |
+kablam! 47 |         xpath.evaluate(&context).ok().unwrap()
+kablam!    |                        ^^^^^^^^ expected 2 parameters
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `wechat`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f b53a23e5b72f8e4a8e358846ca617853c4a858a6af08ca584fdb135a36f0ca5f`
+blam! b53a23e5b72f8e4a8e358846ca617853c4a858a6af08ca584fdb135a36f0ca5f

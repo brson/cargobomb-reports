@@ -1,0 +1,26 @@
+boom! testing hotswap-0.2.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 8aaefca8a265eb7630c8708136e4e11c392b257dc9a4894a87801797ea6e210a
+boom! running `docker start -a 8aaefca8a265eb7630c8708136e4e11c392b257dc9a4894a87801797ea6e210a`
+kablam!    Compiling hotswap v0.2.0 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::parse::token::intern`
+kablam!   --> src/lib.rs:15:5
+kablam!    |
+kablam! 15 | use syntax::parse::token::intern;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `intern` in `parse::token`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::intern`
+kablam!  --> src/codegen.rs:3:5
+kablam!   |
+kablam! 3 | use syntax::parse::token::intern;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `intern` in `parse::token`
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `hotswap`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 8aaefca8a265eb7630c8708136e4e11c392b257dc9a4894a87801797ea6e210a`
+blam! 8aaefca8a265eb7630c8708136e4e11c392b257dc9a4894a87801797ea6e210a

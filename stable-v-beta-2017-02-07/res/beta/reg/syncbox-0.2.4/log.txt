@@ -1,0 +1,56 @@
+boom! testing syncbox-0.2.4 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! df0026428c88a71b4bbd8852b79fe87e0dff3ecccf70720335df1b393775f32d
+boom! running `docker start -a df0026428c88a71b4bbd8852b79fe87e0dff3ecccf70720335df1b393775f32d`
+kablam!    Compiling syncbox v0.2.4 (file:///source)
+kablam! error: use of deprecated item: replaced by `std::sync::Condvar::wait_timeout`
+kablam!   --> src/delay_queue.rs:99:40
+kablam!    |
+kablam! 99 |             queue = self.inner.condvar.wait_timeout_ms(queue, timeout).unwrap().0;
+kablam!    |                                        ^^^^^^^^^^^^^^^
+kablam!    |
+kablam! note: lint level defined here
+kablam!   --> src/lib.rs:4:9
+kablam!    |
+kablam! 4  | #![deny(warnings)]
+kablam!    |         ^^^^^^^^
+kablam! 
+kablam! error: use of deprecated item: replaced by `std::sync::Condvar::wait_timeout`
+kablam!    --> src/delay_queue.rs:184:40
+kablam!     |
+kablam! 184 |                     self.inner.condvar.wait_timeout_ms(queue, timeout).unwrap().0
+kablam!     |                                        ^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: use of deprecated item: replaced by `std::sync::Condvar::wait_timeout`
+kablam!    --> src/linked_queue.rs:188:38
+kablam!     |
+kablam! 188 |                 last = self.not_full.wait_timeout_ms(last, dur)
+kablam!     |                                      ^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: use of deprecated item: replaced by `std::sync::Condvar::wait_timeout`
+kablam!    --> src/linked_queue.rs:251:39
+kablam!     |
+kablam! 251 |                 head = self.not_empty.wait_timeout_ms(head, dur)
+kablam!     |                                       ^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: unused import: `Queue`
+kablam!  --> src/thread_pool.rs:1:19
+kablam!   |
+kablam! 1 | use {LinkedQueue, Queue, SyncQueue, Run, Task, Delayed, DelayQueue};
+kablam!   |                   ^^^^^
+kablam!   |
+kablam! note: lint level defined here
+kablam!  --> src/lib.rs:4:9
+kablam!   |
+kablam! 4 | #![deny(warnings)]
+kablam!   |         ^^^^^^^^
+kablam! 
+kablam! error: aborting due to 5 previous errors
+kablam! 
+kablam! error: Could not compile `syncbox`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f df0026428c88a71b4bbd8852b79fe87e0dff3ecccf70720335df1b393775f32d`
+blam! df0026428c88a71b4bbd8852b79fe87e0dff3ecccf70720335df1b393775f32d

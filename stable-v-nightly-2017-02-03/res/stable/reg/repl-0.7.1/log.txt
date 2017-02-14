@@ -1,0 +1,19 @@
+boom! testing repl-0.7.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! c87d35a5788638424b2caf21b074da0ff8165bc4840e6549308a64bdcfbbe70b
+boom! running `docker start -a c87d35a5788638424b2caf21b074da0ff8165bc4840e6549308a64bdcfbbe70b`
+kablam!    Compiling repl v0.7.1 (file:///source)
+kablam!    Compiling rl-sys v0.5.2
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: failed to run custom build command for `rl-sys v0.5.2`
+kablam! process didn't exit successfully: `/target/debug/build/rl-sys-6a91b4375ea6e168/build-script-build` (exit code: 101)
+kablam! --- stderr
+kablam! ./configure: line 1888: config.log: Read-only file system
+kablam! ./configure: line 1898: config.log: Read-only file system
+kablam! thread 'main' panicked at 'assertion failed: cmd.stdout(Stdio::inherit()).stderr(Stdio::inherit()).status().unwrap().success()', /cargo-home/registry/src/github.com-1ecc6299db9ec823/rl-sys-0.5.2/build.rs:73
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f c87d35a5788638424b2caf21b074da0ff8165bc4840e6549308a64bdcfbbe70b`
+blam! c87d35a5788638424b2caf21b074da0ff8165bc4840e6549308a64bdcfbbe70b

@@ -1,0 +1,516 @@
+boom! testing partial-0.1.2 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! b5796c705747530394d6e84cb0e27158f66e52893d8b2a1140e8550785ef7b5a
+boom! running `docker start -a b5796c705747530394d6e84cb0e27158f66e52893d8b2a1140e8550785ef7b5a`
+kablam!    Compiling partial v0.1.2 (file:///source)
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 0.25 secs
+boom! running `docker rm -f b5796c705747530394d6e84cb0e27158f66e52893d8b2a1140e8550785ef7b5a`
+blam! b5796c705747530394d6e84cb0e27158f66e52893d8b2a1140e8550785ef7b5a
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 415a889e7bb6371eb733bd855b33fe508680f3e8c571157d18e9fc488fa0fa3c
+boom! running `docker start -a 415a889e7bb6371eb733bd855b33fe508680f3e8c571157d18e9fc488fa0fa3c`
+kablam!    Compiling partial v0.1.2 (file:///source)
+kablam! error[E0425]: unresolved name `Nothing`
+kablam!   --> src/libpartial/lib.rs:90:5
+kablam!    |
+kablam! 90 |     Nothing
+kablam!    |     ^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Value`
+kablam!   --> src/libpartial/lib.rs:95:16
+kablam!    |
+kablam! 95 |     assert_eq!(Value(9i32).unwrap(), 9i32);
+kablam!    |                ^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Fake`
+kablam!    --> src/libpartial/lib.rs:101:5
+kablam!     |
+kablam! 101 |     Fake(9i32).unwrap();
+kablam!     |     ^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Nothing`
+kablam!    --> src/libpartial/lib.rs:107:27
+kablam!     |
+kablam! 107 |     let x: Partial<i32> = Nothing;
+kablam!     |                           ^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Value`
+kablam!    --> src/libpartial/lib.rs:113:16
+kablam!     |
+kablam! 113 |     assert_eq!(Value(9i32).unwrap_or_else(|| 1i32), 9i32);
+kablam!     |                ^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Fake`
+kablam!    --> src/libpartial/lib.rs:114:16
+kablam!     |
+kablam! 114 |     assert_eq!(Fake(9i32).unwrap_or_else(|| 1i32), 1i32);
+kablam!     |                ^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Nothing`
+kablam!    --> src/libpartial/lib.rs:115:16
+kablam!     |
+kablam! 115 |     assert_eq!(Nothing.unwrap_or_else(|| 1i32), 1i32);
+kablam!     |                ^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Value`
+kablam!    --> src/libpartial/lib.rs:120:16
+kablam!     |
+kablam! 120 |     assert_eq!(Value(9i32).map(|i|i*2), Value(18i32));
+kablam!     |                ^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Value`
+kablam!    --> src/libpartial/lib.rs:120:41
+kablam!     |
+kablam! 120 |     assert_eq!(Value(9i32).map(|i|i*2), Value(18i32));
+kablam!     |                                         ^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Fake`
+kablam!    --> src/libpartial/lib.rs:121:16
+kablam!     |
+kablam! 121 |     assert_eq!(Fake(9i32).map(|i|i*2), Fake(18i32));
+kablam!     |                ^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Fake`
+kablam!    --> src/libpartial/lib.rs:121:40
+kablam!     |
+kablam! 121 |     assert_eq!(Fake(9i32).map(|i|i*2), Fake(18i32));
+kablam!     |                                        ^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Nothing`
+kablam!    --> src/libpartial/lib.rs:122:16
+kablam!     |
+kablam! 122 |     assert_eq!(Nothing.map(|i:i32|i), Nothing);
+kablam!     |                ^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Nothing`
+kablam!    --> src/libpartial/lib.rs:122:39
+kablam!     |
+kablam! 122 |     assert_eq!(Nothing.map(|i:i32|i), Nothing);
+kablam!     |                                       ^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Value`
+kablam!    --> src/libpartial/lib.rs:127:16
+kablam!     |
+kablam! 127 |     assert_eq!(Value(9i32).and_then(|i| Value(i*2)), Value(18i32));
+kablam!     |                ^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Value`
+kablam!    --> src/libpartial/lib.rs:127:41
+kablam!     |
+kablam! 127 |     assert_eq!(Value(9i32).and_then(|i| Value(i*2)), Value(18i32));
+kablam!     |                                         ^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Value`
+kablam!    --> src/libpartial/lib.rs:127:54
+kablam!     |
+kablam! 127 |     assert_eq!(Value(9i32).and_then(|i| Value(i*2)), Value(18i32));
+kablam!     |                                                      ^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Value`
+kablam!    --> src/libpartial/lib.rs:128:16
+kablam!     |
+kablam! 128 |     assert_eq!(Value(9i32).and_then(|i| Fake(i*2)), Fake(18i32));
+kablam!     |                ^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Fake`
+kablam!    --> src/libpartial/lib.rs:128:41
+kablam!     |
+kablam! 128 |     assert_eq!(Value(9i32).and_then(|i| Fake(i*2)), Fake(18i32));
+kablam!     |                                         ^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Fake`
+kablam!    --> src/libpartial/lib.rs:128:53
+kablam!     |
+kablam! 128 |     assert_eq!(Value(9i32).and_then(|i| Fake(i*2)), Fake(18i32));
+kablam!     |                                                     ^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Fake`
+kablam!    --> src/libpartial/lib.rs:129:16
+kablam!     |
+kablam! 129 |     assert_eq!(Fake(9i32).and_then(|i| Fake(i*2)), Fake(18i32));
+kablam!     |                ^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Fake`
+kablam!    --> src/libpartial/lib.rs:129:40
+kablam!     |
+kablam! 129 |     assert_eq!(Fake(9i32).and_then(|i| Fake(i*2)), Fake(18i32));
+kablam!     |                                        ^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Fake`
+kablam!    --> src/libpartial/lib.rs:129:52
+kablam!     |
+kablam! 129 |     assert_eq!(Fake(9i32).and_then(|i| Fake(i*2)), Fake(18i32));
+kablam!     |                                                    ^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Fake`
+kablam!    --> src/libpartial/lib.rs:131:16
+kablam!     |
+kablam! 131 |     assert_eq!(Fake(9i32).and_then(|i| Value(i*2)), Fake(18i32));
+kablam!     |                ^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Value`
+kablam!    --> src/libpartial/lib.rs:131:40
+kablam!     |
+kablam! 131 |     assert_eq!(Fake(9i32).and_then(|i| Value(i*2)), Fake(18i32));
+kablam!     |                                        ^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Fake`
+kablam!    --> src/libpartial/lib.rs:131:53
+kablam!     |
+kablam! 131 |     assert_eq!(Fake(9i32).and_then(|i| Value(i*2)), Fake(18i32));
+kablam!     |                                                     ^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Fake`
+kablam!    --> src/libpartial/lib.rs:132:16
+kablam!     |
+kablam! 132 |     assert_eq!(Fake(9i32).and_then(nothing_i32), Nothing);
+kablam!     |                ^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Nothing`
+kablam!    --> src/libpartial/lib.rs:132:50
+kablam!     |
+kablam! 132 |     assert_eq!(Fake(9i32).and_then(nothing_i32), Nothing);
+kablam!     |                                                  ^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Value`
+kablam!    --> src/libpartial/lib.rs:137:16
+kablam!     |
+kablam! 137 |     assert_eq!(Value(1i32).and_next(|i| Value(i*2)), Value(2));
+kablam!     |                ^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Value`
+kablam!    --> src/libpartial/lib.rs:137:41
+kablam!     |
+kablam! 137 |     assert_eq!(Value(1i32).and_next(|i| Value(i*2)), Value(2));
+kablam!     |                                         ^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Value`
+kablam!    --> src/libpartial/lib.rs:137:54
+kablam!     |
+kablam! 137 |     assert_eq!(Value(1i32).and_next(|i| Value(i*2)), Value(2));
+kablam!     |                                                      ^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Value`
+kablam!    --> src/libpartial/lib.rs:138:16
+kablam!     |
+kablam! 138 |     assert_eq!(Value(1i32).and_next(|i| Fake(i*2)), Fake(2));
+kablam!     |                ^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Fake`
+kablam!    --> src/libpartial/lib.rs:138:41
+kablam!     |
+kablam! 138 |     assert_eq!(Value(1i32).and_next(|i| Fake(i*2)), Fake(2));
+kablam!     |                                         ^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Fake`
+kablam!    --> src/libpartial/lib.rs:138:53
+kablam!     |
+kablam! 138 |     assert_eq!(Value(1i32).and_next(|i| Fake(i*2)), Fake(2));
+kablam!     |                                                     ^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Value`
+kablam!    --> src/libpartial/lib.rs:139:16
+kablam!     |
+kablam! 139 |     assert_eq!(Value(1i32).and_next(nothing_i32), Nothing);
+kablam!     |                ^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Nothing`
+kablam!    --> src/libpartial/lib.rs:139:51
+kablam!     |
+kablam! 139 |     assert_eq!(Value(1i32).and_next(nothing_i32), Nothing);
+kablam!     |                                                   ^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Fake`
+kablam!    --> src/libpartial/lib.rs:140:16
+kablam!     |
+kablam! 140 |     assert_eq!(Fake(1i32).and_next(|i| Value(i*2)), Nothing);
+kablam!     |                ^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Value`
+kablam!    --> src/libpartial/lib.rs:140:40
+kablam!     |
+kablam! 140 |     assert_eq!(Fake(1i32).and_next(|i| Value(i*2)), Nothing);
+kablam!     |                                        ^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Nothing`
+kablam!    --> src/libpartial/lib.rs:140:53
+kablam!     |
+kablam! 140 |     assert_eq!(Fake(1i32).and_next(|i| Value(i*2)), Nothing);
+kablam!     |                                                     ^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Value`
+kablam!    --> src/libpartial/lib.rs:141:44
+kablam!     |
+kablam! 141 |     assert_eq!(nothing_i32(0).and_next(|i| Value(i*2)), Nothing);
+kablam!     |                                            ^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Nothing`
+kablam!    --> src/libpartial/lib.rs:141:57
+kablam!     |
+kablam! 141 |     assert_eq!(nothing_i32(0).and_next(|i| Value(i*2)), Nothing);
+kablam!     |                                                         ^^^^^^^ unresolved name
+kablam! 
+kablam! error: aborting due to 40 previous errors
+kablam! 
+kablam! error: Could not compile `partial`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 415a889e7bb6371eb733bd855b33fe508680f3e8c571157d18e9fc488fa0fa3c`
+blam! 415a889e7bb6371eb733bd855b33fe508680f3e8c571157d18e9fc488fa0fa3c
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! 49f90943a4a4e5161daec8233a15a85960873255730262255901e8b798a8ab75
+boom! running `docker start -a 49f90943a4a4e5161daec8233a15a85960873255730262255901e8b798a8ab75`
+kablam!    Compiling partial v0.1.2 (file:///source)
+kablam! error[E0425]: unresolved name `Nothing`
+kablam!   --> src/libpartial/lib.rs:90:5
+kablam!    |
+kablam! 90 |     Nothing
+kablam!    |     ^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Value`
+kablam!   --> src/libpartial/lib.rs:95:16
+kablam!    |
+kablam! 95 |     assert_eq!(Value(9i32).unwrap(), 9i32);
+kablam!    |                ^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Fake`
+kablam!    --> src/libpartial/lib.rs:101:5
+kablam!     |
+kablam! 101 |     Fake(9i32).unwrap();
+kablam!     |     ^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Nothing`
+kablam!    --> src/libpartial/lib.rs:107:27
+kablam!     |
+kablam! 107 |     let x: Partial<i32> = Nothing;
+kablam!     |                           ^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Value`
+kablam!    --> src/libpartial/lib.rs:113:16
+kablam!     |
+kablam! 113 |     assert_eq!(Value(9i32).unwrap_or_else(|| 1i32), 9i32);
+kablam!     |                ^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Fake`
+kablam!    --> src/libpartial/lib.rs:114:16
+kablam!     |
+kablam! 114 |     assert_eq!(Fake(9i32).unwrap_or_else(|| 1i32), 1i32);
+kablam!     |                ^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Nothing`
+kablam!    --> src/libpartial/lib.rs:115:16
+kablam!     |
+kablam! 115 |     assert_eq!(Nothing.unwrap_or_else(|| 1i32), 1i32);
+kablam!     |                ^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Value`
+kablam!    --> src/libpartial/lib.rs:120:16
+kablam!     |
+kablam! 120 |     assert_eq!(Value(9i32).map(|i|i*2), Value(18i32));
+kablam!     |                ^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Value`
+kablam!    --> src/libpartial/lib.rs:120:41
+kablam!     |
+kablam! 120 |     assert_eq!(Value(9i32).map(|i|i*2), Value(18i32));
+kablam!     |                                         ^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Fake`
+kablam!    --> src/libpartial/lib.rs:121:16
+kablam!     |
+kablam! 121 |     assert_eq!(Fake(9i32).map(|i|i*2), Fake(18i32));
+kablam!     |                ^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Fake`
+kablam!    --> src/libpartial/lib.rs:121:40
+kablam!     |
+kablam! 121 |     assert_eq!(Fake(9i32).map(|i|i*2), Fake(18i32));
+kablam!     |                                        ^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Nothing`
+kablam!    --> src/libpartial/lib.rs:122:16
+kablam!     |
+kablam! 122 |     assert_eq!(Nothing.map(|i:i32|i), Nothing);
+kablam!     |                ^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Nothing`
+kablam!    --> src/libpartial/lib.rs:122:39
+kablam!     |
+kablam! 122 |     assert_eq!(Nothing.map(|i:i32|i), Nothing);
+kablam!     |                                       ^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Value`
+kablam!    --> src/libpartial/lib.rs:127:16
+kablam!     |
+kablam! 127 |     assert_eq!(Value(9i32).and_then(|i| Value(i*2)), Value(18i32));
+kablam!     |                ^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Value`
+kablam!    --> src/libpartial/lib.rs:127:41
+kablam!     |
+kablam! 127 |     assert_eq!(Value(9i32).and_then(|i| Value(i*2)), Value(18i32));
+kablam!     |                                         ^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Value`
+kablam!    --> src/libpartial/lib.rs:127:54
+kablam!     |
+kablam! 127 |     assert_eq!(Value(9i32).and_then(|i| Value(i*2)), Value(18i32));
+kablam!     |                                                      ^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Value`
+kablam!    --> src/libpartial/lib.rs:128:16
+kablam!     |
+kablam! 128 |     assert_eq!(Value(9i32).and_then(|i| Fake(i*2)), Fake(18i32));
+kablam!     |                ^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Fake`
+kablam!    --> src/libpartial/lib.rs:128:41
+kablam!     |
+kablam! 128 |     assert_eq!(Value(9i32).and_then(|i| Fake(i*2)), Fake(18i32));
+kablam!     |                                         ^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Fake`
+kablam!    --> src/libpartial/lib.rs:128:53
+kablam!     |
+kablam! 128 |     assert_eq!(Value(9i32).and_then(|i| Fake(i*2)), Fake(18i32));
+kablam!     |                                                     ^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Fake`
+kablam!    --> src/libpartial/lib.rs:129:16
+kablam!     |
+kablam! 129 |     assert_eq!(Fake(9i32).and_then(|i| Fake(i*2)), Fake(18i32));
+kablam!     |                ^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Fake`
+kablam!    --> src/libpartial/lib.rs:129:40
+kablam!     |
+kablam! 129 |     assert_eq!(Fake(9i32).and_then(|i| Fake(i*2)), Fake(18i32));
+kablam!     |                                        ^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Fake`
+kablam!    --> src/libpartial/lib.rs:129:52
+kablam!     |
+kablam! 129 |     assert_eq!(Fake(9i32).and_then(|i| Fake(i*2)), Fake(18i32));
+kablam!     |                                                    ^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Fake`
+kablam!    --> src/libpartial/lib.rs:131:16
+kablam!     |
+kablam! 131 |     assert_eq!(Fake(9i32).and_then(|i| Value(i*2)), Fake(18i32));
+kablam!     |                ^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Value`
+kablam!    --> src/libpartial/lib.rs:131:40
+kablam!     |
+kablam! 131 |     assert_eq!(Fake(9i32).and_then(|i| Value(i*2)), Fake(18i32));
+kablam!     |                                        ^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Fake`
+kablam!    --> src/libpartial/lib.rs:131:53
+kablam!     |
+kablam! 131 |     assert_eq!(Fake(9i32).and_then(|i| Value(i*2)), Fake(18i32));
+kablam!     |                                                     ^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Fake`
+kablam!    --> src/libpartial/lib.rs:132:16
+kablam!     |
+kablam! 132 |     assert_eq!(Fake(9i32).and_then(nothing_i32), Nothing);
+kablam!     |                ^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Nothing`
+kablam!    --> src/libpartial/lib.rs:132:50
+kablam!     |
+kablam! 132 |     assert_eq!(Fake(9i32).and_then(nothing_i32), Nothing);
+kablam!     |                                                  ^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Value`
+kablam!    --> src/libpartial/lib.rs:137:16
+kablam!     |
+kablam! 137 |     assert_eq!(Value(1i32).and_next(|i| Value(i*2)), Value(2));
+kablam!     |                ^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Value`
+kablam!    --> src/libpartial/lib.rs:137:41
+kablam!     |
+kablam! 137 |     assert_eq!(Value(1i32).and_next(|i| Value(i*2)), Value(2));
+kablam!     |                                         ^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Value`
+kablam!    --> src/libpartial/lib.rs:137:54
+kablam!     |
+kablam! 137 |     assert_eq!(Value(1i32).and_next(|i| Value(i*2)), Value(2));
+kablam!     |                                                      ^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Value`
+kablam!    --> src/libpartial/lib.rs:138:16
+kablam!     |
+kablam! 138 |     assert_eq!(Value(1i32).and_next(|i| Fake(i*2)), Fake(2));
+kablam!     |                ^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Fake`
+kablam!    --> src/libpartial/lib.rs:138:41
+kablam!     |
+kablam! 138 |     assert_eq!(Value(1i32).and_next(|i| Fake(i*2)), Fake(2));
+kablam!     |                                         ^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Fake`
+kablam!    --> src/libpartial/lib.rs:138:53
+kablam!     |
+kablam! 138 |     assert_eq!(Value(1i32).and_next(|i| Fake(i*2)), Fake(2));
+kablam!     |                                                     ^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Value`
+kablam!    --> src/libpartial/lib.rs:139:16
+kablam!     |
+kablam! 139 |     assert_eq!(Value(1i32).and_next(nothing_i32), Nothing);
+kablam!     |                ^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Nothing`
+kablam!    --> src/libpartial/lib.rs:139:51
+kablam!     |
+kablam! 139 |     assert_eq!(Value(1i32).and_next(nothing_i32), Nothing);
+kablam!     |                                                   ^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Fake`
+kablam!    --> src/libpartial/lib.rs:140:16
+kablam!     |
+kablam! 140 |     assert_eq!(Fake(1i32).and_next(|i| Value(i*2)), Nothing);
+kablam!     |                ^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Value`
+kablam!    --> src/libpartial/lib.rs:140:40
+kablam!     |
+kablam! 140 |     assert_eq!(Fake(1i32).and_next(|i| Value(i*2)), Nothing);
+kablam!     |                                        ^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Nothing`
+kablam!    --> src/libpartial/lib.rs:140:53
+kablam!     |
+kablam! 140 |     assert_eq!(Fake(1i32).and_next(|i| Value(i*2)), Nothing);
+kablam!     |                                                     ^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Value`
+kablam!    --> src/libpartial/lib.rs:141:44
+kablam!     |
+kablam! 141 |     assert_eq!(nothing_i32(0).and_next(|i| Value(i*2)), Nothing);
+kablam!     |                                            ^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `Nothing`
+kablam!    --> src/libpartial/lib.rs:141:57
+kablam!     |
+kablam! 141 |     assert_eq!(nothing_i32(0).and_next(|i| Value(i*2)), Nothing);
+kablam!     |                                                         ^^^^^^^ unresolved name
+kablam! 
+kablam! error: aborting due to 40 previous errors
+kablam! 
+kablam! error: Could not compile `partial`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 49f90943a4a4e5161daec8233a15a85960873255730262255901e8b798a8ab75`
+blam! 49f90943a4a4e5161daec8233a15a85960873255730262255901e8b798a8ab75

@@ -1,0 +1,77 @@
+boom! testing brainfuck_macros-0.1.5 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 69af00c96a4f5e1df3db0b38d875e16fe09e49ad75d3671a708359ae26318c59
+boom! running `docker start -a 69af00c96a4f5e1df3db0b38d875e16fe09e49ad75d3671a708359ae26318c59`
+kablam!    Compiling brainfuck_macros v0.1.5 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::ext::base::MacExpr`
+kablam!   --> src/lib.rs:14:45
+kablam!    |
+kablam! 14 | use syntax::ext::base::{ExtCtxt, MacResult, MacExpr};
+kablam!    |                                             ^^^^^^^ no `MacExpr` in `ext::base`
+kablam! 
+kablam! error[E0432]: unresolved import `rustc::plugin::Registry`
+kablam!   --> src/lib.rs:18:5
+kablam!    |
+kablam! 18 | use rustc::plugin::Registry;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `plugin` in `rustc`
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!   --> src/lib.rs:30:58
+kablam!    |
+kablam! 30 | fn brainfuck(cx: &mut ExtCtxt, sp: codemap::Span, tts: &[ast::TokenTree]) -> Box<MacResult+'static> {
+kablam!    |                                                          ^^^^^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!   --> src/lib.rs:60:53
+kablam!    |
+kablam! 60 |     fn tts_to_expr(&self, sp: codemap::Span, tts: &[ast::TokenTree]) -> P<ast::Expr> {
+kablam!    |                                                     ^^^^^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!   --> src/lib.rs:69:51
+kablam!    |
+kablam! 69 |     fn tt_to_expr(&self, _sp: codemap::Span, tt: &ast::TokenTree) -> Option<P<ast::Expr>> {
+kablam!    |                                                   ^^^^^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `TtToken` in module `ast`
+kablam!   --> src/lib.rs:71:13
+kablam!    |
+kablam! 71 |             ast::TtToken(sp, ref tok) => self.token_to_expr(sp, tok),
+kablam!    |             ^^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `TtDelimited` in module `ast`
+kablam!   --> src/lib.rs:74:13
+kablam!    |
+kablam! 74 |             ast::TtDelimited(sp, ref toks) => {
+kablam!    |             ^^^^^^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `TtSequence` in module `ast`
+kablam!   --> src/lib.rs:94:13
+kablam!    |
+kablam! 94 |             ast::TtSequence(sp, _) => {
+kablam!    |             ^^^^^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> src/lib.rs:6:1
+kablam!   |
+kablam! 6 | #![feature(quote, plugin_registrar, rustc_private, core)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `brainfuck_macros`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 69af00c96a4f5e1df3db0b38d875e16fe09e49ad75d3671a708359ae26318c59`
+blam! 69af00c96a4f5e1df3db0b38d875e16fe09e49ad75d3671a708359ae26318c59

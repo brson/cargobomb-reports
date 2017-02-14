@@ -1,0 +1,86 @@
+boom! testing dnstimeout-0.0.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 99d9473e57d8663c7b689f6945b1061f7c2802e3ed21e84801bc5eb4e3c7a927
+boom! running `docker start -a 99d9473e57d8663c7b689f6945b1061f7c2802e3ed21e84801bc5eb4e3c7a927`
+kablam!    Compiling dnstimeout v0.0.1 (file:///source)
+kablam! error[E0432]: unresolved import `std::io::net::addrinfo`
+kablam!  --> src/lib.rs:2:5
+kablam!   |
+kablam! 2 | use std::io::net::addrinfo;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^ Could not find `net` in `std::io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::net::ip`
+kablam!  --> src/lib.rs:3:5
+kablam!   |
+kablam! 3 | use std::io::net::ip;
+kablam!   |     ^^^^^^^^^^^^^^^^ Could not find `net` in `std::io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::timer`
+kablam!  --> src/lib.rs:4:5
+kablam!   |
+kablam! 4 | use std::io::timer;
+kablam!   |     ^^^^^^^^^^^^^^ no `timer` in `std::io`
+kablam! 
+kablam! error[E0412]: type name `io::IoResult` is undefined or not in scope
+kablam!   --> src/lib.rs:10:66
+kablam!    |
+kablam! 10 | pub fn lookup(host: String, timeout_duration: time::Duration) -> io::IoResult<Vec<ip::IpAddr>> {
+kablam!    |                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: no candidates by the name of `IoResult` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0412]: type name `io::IoResult` is undefined or not in scope
+kablam!   --> src/lib.rs:11:32
+kablam!    |
+kablam! 11 |     let (tx, rx):(mpsc::Sender<io::IoResult<Vec<ip::IpAddr>>>, mpsc::Receiver<io::IoResult<Vec<ip::IpAddr>>>) = channel();
+kablam!    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: no candidates by the name of `IoResult` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0412]: type name `io::IoResult` is undefined or not in scope
+kablam!   --> src/lib.rs:11:79
+kablam!    |
+kablam! 11 |     let (tx, rx):(mpsc::Sender<io::IoResult<Vec<ip::IpAddr>>>, mpsc::Receiver<io::IoResult<Vec<ip::IpAddr>>>) = channel();
+kablam!    |                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: no candidates by the name of `IoResult` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0531]: unresolved struct, variant or union type `io::IoError`
+kablam!   --> src/lib.rs:26:25
+kablam!    |
+kablam! 26 |                 let e = io::IoError{
+kablam!    |                         ^^^^^^^^^^^
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `IoErrorKind` in `std::io`
+kablam!   --> src/lib.rs:27:27
+kablam!    |
+kablam! 27 |                     kind: io::IoErrorKind::TimedOut,
+kablam!    |                           ^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `IoErrorKind` in `std::io`
+kablam! 
+kablam! error: no method named `num_milliseconds` found for type `std::time::Duration` in the current scope
+kablam!   --> src/lib.rs:16:49
+kablam!    |
+kablam! 16 |                          host, timeout_duration.num_milliseconds());
+kablam!    |                                                 ^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no associated item named `spawn` found for type `std::thread::Thread` in the current scope
+kablam!   --> src/lib.rs:17:5
+kablam!    |
+kablam! 17 |     thread::Thread::spawn(move|| {
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `as_slice` found for type `std::string::String` in the current scope
+kablam!   --> src/lib.rs:19:51
+kablam!    |
+kablam! 19 |         tx.send(addrinfo::get_host_addresses(host.as_slice()));
+kablam!    |                                                   ^^^^^^^^
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `dnstimeout`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 99d9473e57d8663c7b689f6945b1061f7c2802e3ed21e84801bc5eb4e3c7a927`
+blam! 99d9473e57d8663c7b689f6945b1061f7c2802e3ed21e84801bc5eb4e3c7a927

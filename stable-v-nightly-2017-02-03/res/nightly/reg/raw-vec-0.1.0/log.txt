@@ -1,0 +1,46 @@
+boom! testing raw-vec-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! b2847f9c8a4c995862d7fb221754f06942c60a6cb853e83e02dca974b86a0c3a
+boom! running `docker start -a b2847f9c8a4c995862d7fb221754f06942c60a6cb853e83e02dca974b86a0c3a`
+kablam!    Compiling raw-vec v0.1.0 (file:///source)
+kablam! error[E0557]: feature has been removed
+kablam!   --> src/lib.rs:11:16
+kablam!    |
+kablam! 11 | #![feature(rt, unsafe_no_drop_flag, unique, heap_api, box_raw, filling_drop)]
+kablam!    |                ^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0432]: unresolved import `std::rt::heap`
+kablam!   --> src/lib.rs:16:5
+kablam!    |
+kablam! 16 | use std::rt::heap;
+kablam!    |     ^^^^^^^^^^^^^ no `heap` in `rt`
+kablam! 
+kablam! error[E0432]: unresolved import `std::rt::util::abort`
+kablam!   --> src/lib.rs:17:5
+kablam!    |
+kablam! 17 | use std::rt::util::abort;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^ Could not find `util` in `rt`
+kablam! 
+kablam! error[E0425]: cannot find value `POST_DROP_USIZE` in module `mem`
+kablam!    --> src/lib.rs:413:21
+kablam!     |
+kablam! 413 |         self.cap != mem::POST_DROP_USIZE
+kablam!     |                     ^^^^^^^^^^^^^^^^^^^^ not found in `mem`
+kablam! 
+kablam! error: The attribute `unsafe_no_drop_flag` is currently unknown to the compiler and may have meaning added to it in the future (see issue #29642)
+kablam!   --> src/lib.rs:46:1
+kablam!    |
+kablam! 46 | #[unsafe_no_drop_flag]
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: add #![feature(custom_attribute)] to the crate attributes to enable
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `raw-vec`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f b2847f9c8a4c995862d7fb221754f06942c60a6cb853e83e02dca974b86a0c3a`
+blam! b2847f9c8a4c995862d7fb221754f06942c60a6cb853e83e02dca974b86a0c3a

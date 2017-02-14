@@ -1,0 +1,78 @@
+boom! testing exar-server-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! e8d5c27c84a6ca51758dfc7cf0d3596654b869119d79d4442c01dbc04a5dac76
+boom! running `docker start -a e8d5c27c84a6ca51758dfc7cf0d3596654b869119d79d4442c01dbc04a5dac76`
+kablam!    Compiling exar-net v0.1.0
+kablam!    Compiling exar-server v0.1.0 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 4.31 secs
+boom! running `docker rm -f e8d5c27c84a6ca51758dfc7cf0d3596654b869119d79d4442c01dbc04a5dac76`
+blam! e8d5c27c84a6ca51758dfc7cf0d3596654b869119d79d4442c01dbc04a5dac76
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 24149a667e34d35b64d0f0b0dc21984cf0a0405932a46537a40de6b186b31954
+boom! running `docker start -a 24149a667e34d35b64d0f0b0dc21984cf0a0405932a46537a40de6b186b31954`
+kablam!    Compiling exar-server v0.1.0 (file:///source)
+kablam! warning: unused `#[macro_use]` import, #[warn(unused_imports)] on by default
+kablam!   --> src/lib.rs:35:14
+kablam!    |
+kablam! 35 | #[cfg(test)] #[macro_use]
+kablam!    |              ^^^^^^^^^^^^
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 4.0 secs
+boom! running `docker rm -f 24149a667e34d35b64d0f0b0dc21984cf0a0405932a46537a40de6b186b31954`
+blam! 24149a667e34d35b64d0f0b0dc21984cf0a0405932a46537a40de6b186b31954
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! de56c7d4d1e6f41ac8a00ccecc4d7b3a1b7fa06022244561a4c3135384578d42
+boom! running `docker start -a de56c7d4d1e6f41ac8a00ccecc4d7b3a1b7fa06022244561a4c3135384578d42`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/exar_server-d213f1ded0448ab8
+blam! 
+blam! running 11 tests
+blam! test credentials::tests::test_constructors ... ok
+blam! test handler::tests::test_publish_and_subscribe ... FAILED
+blam! test server::tests::test_bind ... ok
+blam! test server::tests::test_bind_failure ... ok
+blam! test handler::tests::test_unexpected_tcp_message ... ok
+blam! test handler::tests::test_connection ... FAILED
+blam! test server::tests::test_constructor ... ok
+blam! test handler::tests::test_connection_with_credentials ... FAILED
+blam! test server::tests::test_constructor_failure ... ok
+blam! test server::tests::test_connection ... FAILED
+blam! test server::tests::test_connection_with_credentials ... FAILED
+blam! 
+blam! failures:
+blam! 
+blam! ---- handler::tests::test_publish_and_subscribe stdout ----
+blam! 	thread 'handler::tests::test_publish_and_subscribe' panicked at 'assertion failed: `(left == right)` (left: `Ok(Error(IoError(Other, "Read-only file system (os error 30)")))`, right: `Ok(Connected)`)', src/handler.rs:237
+blam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+blam! 
+blam! ---- handler::tests::test_connection stdout ----
+blam! 	thread 'handler::tests::test_connection' panicked at 'assertion failed: `(left == right)` (left: `Ok(Error(IoError(Other, "Read-only file system (os error 30)")))`, right: `Ok(Connected)`)', src/handler.rs:191
+blam! 
+blam! ---- handler::tests::test_connection_with_credentials stdout ----
+blam! 	thread 'handler::tests::test_connection_with_credentials' panicked at 'assertion failed: `(left == right)` (left: `Ok(Error(IoError(Other, "Read-only file system (os error 30)")))`, right: `Ok(Connected)`)', src/handler.rs:216
+blam! 
+blam! ---- server::tests::test_connection stdout ----
+blam! 	thread 'server::tests::test_connection' panicked at 'assertion failed: `(left == right)` (left: `Ok(Error(IoError(Other, "Read-only file system (os error 30)")))`, right: `Ok(Connected)`)', src/server.rs:182
+blam! 
+blam! ---- server::tests::test_connection_with_credentials stdout ----
+blam! 	thread 'server::tests::test_connection_with_credentials' panicked at 'assertion failed: `(left == right)` (left: `Ok(Error(IoError(Other, "Read-only file system (os error 30)")))`, right: `Ok(Connected)`)', src/server.rs:207
+blam! 
+blam! 
+blam! failures:
+blam!     handler::tests::test_connection
+blam!     handler::tests::test_connection_with_credentials
+blam!     handler::tests::test_publish_and_subscribe
+blam!     server::tests::test_connection
+blam!     server::tests::test_connection_with_credentials
+blam! 
+blam! test result: FAILED. 6 passed; 5 failed; 0 ignored; 0 measured
+blam! 
+kablam! error: test failed
+boom! running `docker rm -f de56c7d4d1e6f41ac8a00ccecc4d7b3a1b7fa06022244561a4c3135384578d42`
+blam! de56c7d4d1e6f41ac8a00ccecc4d7b3a1b7fa06022244561a4c3135384578d42

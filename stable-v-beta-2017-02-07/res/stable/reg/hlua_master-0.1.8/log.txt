@@ -1,0 +1,41 @@
+boom! testing hlua_master-0.1.8 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 35c177070c91493a880334ca7965271e0f0e9a4a56d513768762780142cac067
+boom! running `docker start -a 35c177070c91493a880334ca7965271e0f0e9a4a56d513768762780142cac067`
+kablam!    Compiling hlua_master v0.1.8 (file:///source)
+kablam! error: `extern "C" fn(*mut ffi::lua_State) -> i32 {userdata::destructor_wrapper}` is now zero-sized and has to be cast to a pointer before transmuting to `extern "C" fn(*mut ffi::lua_State) -> i32`, #[deny(transmute_from_fn_item_types)] on by default
+kablam!   --> src/userdata.rs:79:55
+kablam!    |
+kablam! 79 |             ffi::lua_pushcclosure(lua.as_mut_lua().0, mem::transmute(destructor_wrapper), 1);
+kablam!    |                                                       ^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #19925 <https://github.com/rust-lang/rust/issues/19925>
+kablam! 
+kablam! warning: lint raw_pointer_derive has been removed: using derive with raw pointers is ok, #[warn(renamed_and_removed_lints)] on by default
+kablam!   --> src/lib.rs:84:9
+kablam!    |
+kablam! 84 | #[allow(raw_pointer_derive)]
+kablam!    |         ^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: lint raw_pointer_derive has been removed: using derive with raw pointers is ok, #[warn(renamed_and_removed_lints)] on by default
+kablam!   --> src/lib.rs:84:9
+kablam!    |
+kablam! 84 | #[allow(raw_pointer_derive)]
+kablam!    |         ^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: lint raw_pointer_derive has been removed: using derive with raw pointers is ok, #[warn(renamed_and_removed_lints)] on by default
+kablam!   --> src/lib.rs:84:9
+kablam!    |
+kablam! 84 | #[allow(raw_pointer_derive)]
+kablam!    |         ^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `hlua_master`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 35c177070c91493a880334ca7965271e0f0e9a4a56d513768762780142cac067`
+blam! 35c177070c91493a880334ca7965271e0f0e9a4a56d513768762780142cac067

@@ -1,0 +1,32 @@
+boom! testing https://github.com/germanespinosa/rustafaridb#706698f3834d9d46b736795cc517f912e67ecd0e against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! f650571f83959b618434808884e96837fe6fd6091454b953f4b32a5ee0e01426
+boom! running `docker start -a f650571f83959b618434808884e96837fe6fd6091454b953f4b32a5ee0e01426`
+kablam!    Compiling rustafari v0.1.0 (file:///source)
+kablam! error[E0133]: use of mutable static requires unsafe function or block
+kablam!   --> src/log.rs:14:18
+kablam!    |
+kablam! 14 |     if log_type>=log_level
+kablam!    |                  ^^^^^^^^^ use of mutable static
+kablam! 
+kablam! error[E0133]: use of mutable static requires unsafe function or block
+kablam!   --> src/log.rs:16:26
+kablam!    |
+kablam! 16 |         if let Some(s) = log_sender
+kablam!    |                          ^^^^^^^^^^ use of mutable static
+kablam! 
+kablam! error[E0133]: use of mutable static requires unsafe function or block
+kablam!   --> src/log.rs:26:5
+kablam!    |
+kablam! 26 |     log_sender=Some(tx);
+kablam!    |     ^^^^^^^^^^ use of mutable static
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `rustafari`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f650571f83959b618434808884e96837fe6fd6091454b953f4b32a5ee0e01426`
+blam! f650571f83959b618434808884e96837fe6fd6091454b953f4b32a5ee0e01426

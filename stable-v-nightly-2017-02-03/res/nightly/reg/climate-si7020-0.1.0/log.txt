@@ -1,0 +1,117 @@
+boom! testing climate-si7020-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! ea618ba6817b753c07b3e779e8b6374fd15e5fc2191d5463367d8e9f187b3e56
+boom! running `docker start -a ea618ba6817b753c07b3e779e8b6374fd15e5fc2191d5463367d8e9f187b3e56`
+kablam!    Compiling climate-si7020 v0.1.0 (file:///source)
+kablam! warning: constant item is never used: `HUMIDITY_OFFSET`, #[warn(dead_code)] on by default
+kablam!   --> src/lib.rs:26:1
+kablam!    |
+kablam! 26 | const HUMIDITY_OFFSET: f64 = 6.0;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: constant item is never used: `HUMIDITY_SLOPE`, #[warn(dead_code)] on by default
+kablam!   --> src/lib.rs:27:1
+kablam!    |
+kablam! 27 | const HUMIDITY_SLOPE: f64 = 125.0/65536.0;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: method is never used: `write`, #[warn(dead_code)] on by default
+kablam!   --> src/lib.rs:57:5
+kablam!    |
+kablam! 57 |       fn write(&mut self, values: &[Command], value: u8) -> io::Result<()> {
+kablam!    |  _____^ starting here...
+kablam! 58 | |         let mut a: Vec<u8> = values.iter().map(|x| *x as u8).collect();
+kablam! 59 | |         a.push(value);
+kablam! 60 | |         self.i2c.send(I2C_ID, &a);
+kablam! 61 | |         Ok(())
+kablam! 62 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: unused import: `std::io::prelude::*;`, #[warn(unused_imports)] on by default
+kablam!   --> src/main.rs:11:5
+kablam!    |
+kablam! 11 | use std::io::prelude::*;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!   --> src/main.rs:15:10
+kablam!    |
+kablam! 15 |     let (mut port_a, _) = Tessel::ports().unwrap();
+kablam!    |          ^^^^^^^^^^
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 2.27 secs
+boom! running `docker rm -f ea618ba6817b753c07b3e779e8b6374fd15e5fc2191d5463367d8e9f187b3e56`
+blam! ea618ba6817b753c07b3e779e8b6374fd15e5fc2191d5463367d8e9f187b3e56
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 97c5a8a7c45a8a2a00c306ec8dee777fa3f9d2c8d8244245dd46468ac16ab748
+boom! running `docker start -a 97c5a8a7c45a8a2a00c306ec8dee777fa3f9d2c8d8244245dd46468ac16ab748`
+kablam!    Compiling climate-si7020 v0.1.0 (file:///source)
+kablam! warning: unused import: `std::io::prelude::*;`, #[warn(unused_imports)] on by default
+kablam!   --> src/main.rs:11:5
+kablam!    |
+kablam! 11 | use std::io::prelude::*;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!   --> src/main.rs:15:10
+kablam!    |
+kablam! 15 |     let (mut port_a, _) = Tessel::ports().unwrap();
+kablam!    |          ^^^^^^^^^^
+kablam! 
+kablam! warning: constant item is never used: `HUMIDITY_OFFSET`, #[warn(dead_code)] on by default
+kablam!   --> src/lib.rs:26:1
+kablam!    |
+kablam! 26 | const HUMIDITY_OFFSET: f64 = 6.0;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: constant item is never used: `HUMIDITY_SLOPE`, #[warn(dead_code)] on by default
+kablam!   --> src/lib.rs:27:1
+kablam!    |
+kablam! 27 | const HUMIDITY_SLOPE: f64 = 125.0/65536.0;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: method is never used: `write`, #[warn(dead_code)] on by default
+kablam!   --> src/lib.rs:57:5
+kablam!    |
+kablam! 57 |       fn write(&mut self, values: &[Command], value: u8) -> io::Result<()> {
+kablam!    |  _____^ starting here...
+kablam! 58 | |         let mut a: Vec<u8> = values.iter().map(|x| *x as u8).collect();
+kablam! 59 | |         a.push(value);
+kablam! 60 | |         self.i2c.send(I2C_ID, &a);
+kablam! 61 | |         Ok(())
+kablam! 62 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.87 secs
+boom! running `docker rm -f 97c5a8a7c45a8a2a00c306ec8dee777fa3f9d2c8d8244245dd46468ac16ab748`
+blam! 97c5a8a7c45a8a2a00c306ec8dee777fa3f9d2c8d8244245dd46468ac16ab748
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! db1cbaf58dcea4671599d9eebac3410ba6e4932c98a8a224126c2c206d707d68
+boom! running `docker start -a db1cbaf58dcea4671599d9eebac3410ba6e4932c98a8a224126c2c206d707d68`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/climate_si7020-bb4b642561d1d9ba
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/tessel_climate-5d48668c3085f38a
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!    Doc-tests climate-si7020
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f db1cbaf58dcea4671599d9eebac3410ba6e4932c98a8a224126c2c206d707d68`
+blam! db1cbaf58dcea4671599d9eebac3410ba6e4932c98a8a224126c2c206d707d68

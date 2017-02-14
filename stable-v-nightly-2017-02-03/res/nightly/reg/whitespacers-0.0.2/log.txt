@@ -1,0 +1,51 @@
+boom! testing whitespacers-0.0.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! c596e2aa27edca654907778d8b42b639cdb71e2ede7ed26be6e24424e42c3250
+boom! running `docker start -a c596e2aa27edca654907778d8b42b639cdb71e2ede7ed26be6e24424e42c3250`
+kablam!    Compiling dynasm v0.0.6
+kablam!    Compiling dynasmrt v0.0.6
+kablam! error[E0432]: unresolved import `syntax::parse::token::intern`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/dynasm-0.0.6/src/lib.rs:19:28
+kablam!    |
+kablam! 19 | use syntax::parse::token::{intern, str_to_ident};
+kablam!    |                            ^^^^^^ no `intern` in `parse::token`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::str_to_ident`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/dynasm-0.0.6/src/lib.rs:19:36
+kablam!    |
+kablam! 19 | use syntax::parse::token::{intern, str_to_ident};
+kablam!    |                                    ^^^^^^^^^^^^ no `str_to_ident` in `parse::token`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::intern`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/dynasm-0.0.6/src/serialize.rs:10:5
+kablam!    |
+kablam! 10 | use syntax::parse::token::intern;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `intern` in `parse::token`
+kablam! 
+kablam! error[E0277]: the trait bound `syntax::ast::Symbol: std::marker::Send` is not satisfied in `syntax::ast::Ident`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/dynasm-0.0.6/src/lib.rs:154:1
+kablam!     |
+kablam! 154 |   lazy_static! {
+kablam!     |  _^ starting here...
+kablam! 155 | |     pub static ref DYNASM_STORAGE: RwLock<DynasmStorage> = RwLock::new(HashMap::new());
+kablam! 156 | | }
+kablam!     | |_^ ...ending here: within `syntax::ast::Ident`, the trait `std::marker::Send` is not implemented for `syntax::ast::Symbol`
+kablam!     |
+kablam!     = note: `syntax::ast::Symbol` cannot be sent between threads safely
+kablam!     = note: required because it appears within the type `syntax::ast::Ident`
+kablam!     = note: required because of the requirements on the impl of `std::marker::Send` for `std::collections::hash::table::RawTable<syntax::ast::Ident, std::sync::RwLock<DynasmData>>`
+kablam!     = note: required because it appears within the type `std::collections::HashMap<syntax::ast::Ident, std::sync::RwLock<DynasmData>>`
+kablam!     = note: required because of the requirements on the impl of `std::marker::Sync` for `std::sync::RwLock<std::collections::HashMap<syntax::ast::Ident, std::sync::RwLock<DynasmData>>>`
+kablam!     = note: required by `lazy_static::lazy::Lazy`
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `dynasm`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f c596e2aa27edca654907778d8b42b639cdb71e2ede7ed26be6e24424e42c3250`
+blam! c596e2aa27edca654907778d8b42b639cdb71e2ede7ed26be6e24424e42c3250

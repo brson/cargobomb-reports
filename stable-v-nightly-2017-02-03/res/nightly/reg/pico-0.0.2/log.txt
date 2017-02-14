@@ -1,0 +1,110 @@
+boom! testing pico-0.0.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! be3aa0c6b290a1071bdbfc8e3370ed75327dfa7e2c29a04be3082d78f7f30616
+boom! running `docker start -a be3aa0c6b290a1071bdbfc8e3370ed75327dfa7e2c29a04be3082d78f7f30616`
+kablam!    Compiling pico v0.0.2 (file:///source)
+kablam! error[E0412]: cannot find type `Slice` in module `raw`
+kablam!  --> src/common.rs:4:40
+kablam!   |
+kablam! 4 |     let raw = mem::transmute::<_, &mut raw::Slice<T>>(slice);
+kablam!   |                                        ^^^^^^^^^^^^^ not found in `raw`
+kablam! 
+kablam! error: use of unstable library feature 'raw' (see issue #27751)
+kablam!  --> src/common.rs:1:16
+kablam!   |
+kablam! 1 | use std::{mem, raw};
+kablam!   |                ^^^
+kablam!   |
+kablam!   = help: add #![feature(raw)] to the crate attributes to enable
+kablam! 
+kablam! error[E0277]: the trait bound `Self: std::marker::Sized` is not satisfied
+kablam!   --> src/lib.rs:20:1
+kablam!    |
+kablam! 20 | pub trait Chunks {
+kablam!    | ^ the trait `std::marker::Sized` is not implemented for `Self`
+kablam!    |
+kablam!    = help: consider adding a `where Self: std::marker::Sized` bound
+kablam!    = note: required by `ChunkReader`
+kablam! 
+kablam! error[E0277]: the trait bound `Headers<'s, 'h>: std::clone::Clone` is not satisfied
+kablam!   --> src/lib.rs:32:10
+kablam!    |
+kablam! 32 | #[derive(Copy, Debug)]
+kablam!    |          ^^^^ the trait `std::clone::Clone` is not implemented for `Headers<'s, 'h>`
+kablam!    |
+kablam!    = note: required by `std::marker::Copy`
+kablam! 
+kablam! error[E0277]: the trait bound `Header<'s>: std::clone::Clone` is not satisfied
+kablam!   --> src/lib.rs:37:10
+kablam!    |
+kablam! 37 | #[derive(Copy, Debug)]
+kablam!    |          ^^^^ the trait `std::clone::Clone` is not implemented for `Header<'s>`
+kablam!    |
+kablam!    = note: required by `std::marker::Copy`
+kablam! 
+kablam! error[E0277]: the trait bound `Method<'s>: std::clone::Clone` is not satisfied
+kablam!   --> src/lib.rs:45:10
+kablam!    |
+kablam! 45 | #[derive(Copy, Debug)]
+kablam!    |          ^^^^ the trait `std::clone::Clone` is not implemented for `Method<'s>`
+kablam!    |
+kablam!    = note: required by `std::marker::Copy`
+kablam! 
+kablam! error[E0277]: the trait bound `Path<'s>: std::clone::Clone` is not satisfied
+kablam!   --> src/lib.rs:50:10
+kablam!    |
+kablam! 50 | #[derive(Copy, Debug)]
+kablam!    |          ^^^^ the trait `std::clone::Clone` is not implemented for `Path<'s>`
+kablam!    |
+kablam!    = note: required by `std::marker::Copy`
+kablam! 
+kablam! error[E0277]: the trait bound `Status: std::clone::Clone` is not satisfied
+kablam!   --> src/lib.rs:55:10
+kablam!    |
+kablam! 55 | #[derive(Copy, Debug)]
+kablam!    |          ^^^^ the trait `std::clone::Clone` is not implemented for `Status`
+kablam!    |
+kablam!    = note: required by `std::marker::Copy`
+kablam! 
+kablam! error[E0277]: the trait bound `Version: std::clone::Clone` is not satisfied
+kablam!   --> src/lib.rs:60:10
+kablam!    |
+kablam! 60 | #[derive(Copy, Debug, PartialEq)]
+kablam!    |          ^^^^ the trait `std::clone::Clone` is not implemented for `Version`
+kablam!    |
+kablam!    = note: required by `std::marker::Copy`
+kablam! 
+kablam! error[E0277]: the trait bound `request::RequestParserError: std::clone::Clone` is not satisfied
+kablam!   --> src/request.rs:39:28
+kablam!    |
+kablam! 39 | #[derive(Debug, PartialEq, Copy)]
+kablam!    |                            ^^^^ the trait `std::clone::Clone` is not implemented for `request::RequestParserError`
+kablam!    |
+kablam!    = note: required by `std::marker::Copy`
+kablam! 
+kablam! error[E0277]: the trait bound `response::ResponseParserError: std::clone::Clone` is not satisfied
+kablam!   --> src/response.rs:38:28
+kablam!    |
+kablam! 38 | #[derive(Debug, PartialEq, Copy)]
+kablam!    |                            ^^^^ the trait `std::clone::Clone` is not implemented for `response::ResponseParserError`
+kablam!    |
+kablam!    = note: required by `std::marker::Copy`
+kablam! 
+kablam! error[E0277]: the trait bound `Self: std::marker::Sized` is not satisfied
+kablam!   --> src/lib.rs:28:5
+kablam!    |
+kablam! 28 |     fn chunk<F>(self, F) where F: FnOnce(Self::Reader);
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::marker::Sized` is not implemented for `Self`
+kablam!    |
+kablam!    = help: consider adding a `where Self: std::marker::Sized` bound
+kablam!    = note: required by `ChunkReader`
+kablam! 
+kablam! error: aborting due to 10 previous errors
+kablam! 
+kablam! error: Could not compile `pico`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f be3aa0c6b290a1071bdbfc8e3370ed75327dfa7e2c29a04be3082d78f7f30616`
+blam! be3aa0c6b290a1071bdbfc8e3370ed75327dfa7e2c29a04be3082d78f7f30616

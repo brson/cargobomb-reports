@@ -1,0 +1,92 @@
+boom! testing rust_mixin-0.0.1 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 8d557feb28e8f93ba26a2c4d86390d3f797d0782518491164a425dec95925616
+boom! running `docker start -a 8d557feb28e8f93ba26a2c4d86390d3f797d0782518491164a425dec95925616`
+kablam!    Compiling external_mixin_umbrella v0.0.2
+kablam! error[E0432]: unresolved import `std::fs::TempDir`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/lib.rs:10:21
+kablam!    |
+kablam! 10 | use std::fs::{self, TempDir, File};
+kablam!    |                     ^^^^^^^ no `TempDir` in `fs`
+kablam! 
+kablam! error[E0432]: unresolved import `rustc::plugin::Registry`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/lib.rs:19:5
+kablam!    |
+kablam! 19 | use rustc::plugin::Registry;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `plugin` in `rustc`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::attr::ParserAttr`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/parser_any_macro.rs:11:5
+kablam!    |
+kablam! 11 | use syntax::parse::attr::ParserAttr;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `ParserAttr` in `parse::attr`
+kablam! 
+kablam! error[E0407]: method `make_methods` is not a member of trait `MacResult`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/parser_any_macro.rs:72:5
+kablam!    |
+kablam! 72 |     fn make_methods(self: Box<ParserAnyMacro<'a>>) -> Option<SmallVector<P<ast::Method>>> {
+kablam!    |     ^ not a member of trait `MacResult`
+kablam! 
+kablam! error[E0412]: cannot find type `Method` in module `ast`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/parser_any_macro.rs:72:76
+kablam!    |
+kablam! 72 |     fn make_methods(self: Box<ParserAnyMacro<'a>>) -> Option<SmallVector<P<ast::Method>>> {
+kablam!    |                                                                            ^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0407]: method `make_stmt` is not a member of trait `MacResult`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/parser_any_macro.rs:87:5
+kablam!    |
+kablam! 87 |       fn make_stmt(self: Box<ParserAnyMacro<'a>>) -> Option<P<ast::Stmt>> {
+kablam!    |  _____^ starting here...
+kablam! 88 | |         let attrs = self.parser.borrow_mut().parse_outer_attributes();
+kablam! 89 | |         let ret = self.parser.borrow_mut().parse_stmt(attrs);
+kablam! 90 | |         self.ensure_complete_parse(true);
+kablam! 91 | |         Some(ret)
+kablam! 92 | |     }
+kablam!    | |_____^ ...ending here: not a member of trait `MacResult`
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/lib.rs:157:31
+kablam!     |
+kablam! 157 |                    raw_tts: &[ast::TokenTree])
+kablam!     |                               ^^^^^^^^^^^^^^ not found in `ast`
+kablam!     |
+kablam!     = help: possible candidate is found in another module, you can import it into scope:
+kablam!               `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `TtDelimited` in module `ast`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/lib.rs:173:19
+kablam!     |
+kablam! 173 |             Some(&ast::TtDelimited(_, ref delim)) if delim.delim == token::Brace => {
+kablam!     |                   ^^^^^^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/lib.rs:241:50
+kablam!     |
+kablam! 241 | fn parse_options(cx: &mut ExtCtxt, option_tts: &[ast::TokenTree]) -> Result<Options, ()> {
+kablam!     |                                                  ^^^^^^^^^^^^^^ not found in `ast`
+kablam!     |
+kablam!     = help: possible candidate is found in another module, you can import it into scope:
+kablam!               `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/lib.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(quote, plugin_registrar, rustc_private)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/lib.rs:2:1
+kablam!   |
+kablam! 2 | #![feature(tempdir, path, io, fs, process, std_misc)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `external_mixin_umbrella`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 8d557feb28e8f93ba26a2c4d86390d3f797d0782518491164a425dec95925616`
+blam! 8d557feb28e8f93ba26a2c4d86390d3f797d0782518491164a425dec95925616

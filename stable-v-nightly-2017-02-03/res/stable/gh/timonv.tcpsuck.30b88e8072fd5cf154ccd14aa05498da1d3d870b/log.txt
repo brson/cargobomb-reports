@@ -1,0 +1,144 @@
+boom! testing https://github.com/timonv/tcpsuck#30b88e8072fd5cf154ccd14aa05498da1d3d870b against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 10d4212efdca922227df85f308d1474eb463214aa2aa9d568e06f9f85d53f771
+boom! running `docker start -a 10d4212efdca922227df85f308d1474eb463214aa2aa9d568e06f9f85d53f771`
+kablam!    Compiling tcpsuck v0.0.1 (file:///source)
+kablam! error: expected type, found `||`
+kablam!    --> src/broadcaster.rs:151:29
+kablam!     |
+kablam! 151 |     fn timeout(max: int, f: || -> bool) -> bool {
+kablam!     |                             ^^
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::TcpListener`
+kablam!  --> src/server.rs:1:15
+kablam!   |
+kablam! 1 | use std::io::{TcpListener, TcpStream, Acceptor, Listener, BufferedStream};
+kablam!   |               ^^^^^^^^^^^ no `TcpListener` in `std::io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::TcpStream`
+kablam!  --> src/server.rs:1:28
+kablam!   |
+kablam! 1 | use std::io::{TcpListener, TcpStream, Acceptor, Listener, BufferedStream};
+kablam!   |                            ^^^^^^^^^ no `TcpStream` in `std::io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::Acceptor`
+kablam!  --> src/server.rs:1:39
+kablam!   |
+kablam! 1 | use std::io::{TcpListener, TcpStream, Acceptor, Listener, BufferedStream};
+kablam!   |                                       ^^^^^^^^ no `Acceptor` in `std::io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::Listener`
+kablam!  --> src/server.rs:1:49
+kablam!   |
+kablam! 1 | use std::io::{TcpListener, TcpStream, Acceptor, Listener, BufferedStream};
+kablam!   |                                                 ^^^^^^^^ no `Listener` in `std::io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::BufferedStream`
+kablam!  --> src/server.rs:1:59
+kablam!   |
+kablam! 1 | use std::io::{TcpListener, TcpStream, Acceptor, Listener, BufferedStream};
+kablam!   |                                                           ^^^^^^^^^^^^^^ no `BufferedStream` in `std::io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::BufferedWriter`
+kablam!  --> src/broadcaster.rs:1:5
+kablam!   |
+kablam! 1 | use std::io::BufferedWriter;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^ no `BufferedWriter` in `std::io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::sync::RWLock`
+kablam!  --> src/broadcaster.rs:2:17
+kablam!   |
+kablam! 2 | use std::sync::{RWLock, Arc};
+kablam!   |                 ^^^^^^ no `RWLock` in `std::sync`. Did you mean to use `RwLock`?
+kablam! 
+kablam! error[E0425]: unresolved name `channel`
+kablam!   --> src/server.rs:16:24
+kablam!    |
+kablam! 16 |         let (tx, rx) = channel::<(String, String)>();
+kablam!    |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `spawn`
+kablam!   --> src/server.rs:29:13
+kablam!    |
+kablam! 29 |             spawn(move || {
+kablam!    |             ^^^^^ unresolved name
+kablam! 
+kablam! error[E0412]: type name `Sender` is undefined or not in scope
+kablam!   --> src/server.rs:36:77
+kablam!    |
+kablam! 36 |     fn handle_client(server: Broadcaster<TcpStream>, stream: TcpStream, tx: Sender<(String, String)>) {
+kablam!    |                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: you can import it into scope: `use std::sync::mpsc::Sender;`.
+kablam! 
+kablam! error[E0405]: trait `Reader` is not in scope
+kablam!  --> src/broadcaster.rs:5:37
+kablam!   |
+kablam! 5 | pub struct Broadcaster<T: 'static + Reader + Writer> {
+kablam!   |                                     ^^^^^^ `Reader` is not in scope
+kablam!   |
+kablam!   = help: no candidates by the name of `Reader` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0405]: trait `Writer` is not in scope
+kablam!  --> src/broadcaster.rs:5:46
+kablam!   |
+kablam! 5 | pub struct Broadcaster<T: 'static + Reader + Writer> {
+kablam!   |                                              ^^^^^^ `Writer` is not in scope
+kablam!   |
+kablam!   = help: no candidates by the name of `Writer` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0405]: trait `Reader` is not in scope
+kablam!   --> src/broadcaster.rs:10:9
+kablam!    |
+kablam! 10 | impl<T: Reader + Writer + Clone> Broadcaster<T> {
+kablam!    |         ^^^^^^ `Reader` is not in scope
+kablam!    |
+kablam!    = help: no candidates by the name of `Reader` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0405]: trait `Writer` is not in scope
+kablam!   --> src/broadcaster.rs:10:18
+kablam!    |
+kablam! 10 | impl<T: Reader + Writer + Clone> Broadcaster<T> {
+kablam!    |                  ^^^^^^ `Writer` is not in scope
+kablam!    |
+kablam!    = help: no candidates by the name of `Writer` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0412]: type name `Receiver` is undefined or not in scope
+kablam!   --> src/broadcaster.rs:27:45
+kablam!    |
+kablam! 27 |     pub fn listen_and_broadcast(&self, rec: Receiver<(String, String)>) {
+kablam!    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: you can import it into scope: `use std::sync::mpsc::Receiver;`.
+kablam! 
+kablam! error[E0425]: unresolved name `spawn`
+kablam!   --> src/broadcaster.rs:29:9
+kablam!    |
+kablam! 29 |         spawn(move || {
+kablam!    |         ^^^^^ unresolved name
+kablam! 
+kablam! error[E0405]: trait `Reader` is not in scope
+kablam!   --> src/broadcaster.rs:59:9
+kablam!    |
+kablam! 59 | impl<T: Reader + Writer>Clone for Broadcaster<T> {
+kablam!    |         ^^^^^^ `Reader` is not in scope
+kablam!    |
+kablam!    = help: no candidates by the name of `Reader` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0405]: trait `Writer` is not in scope
+kablam!   --> src/broadcaster.rs:59:18
+kablam!    |
+kablam! 59 | impl<T: Reader + Writer>Clone for Broadcaster<T> {
+kablam!    |                  ^^^^^^ `Writer` is not in scope
+kablam!    |
+kablam!    = help: no candidates by the name of `Writer` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `tcpsuck`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 10d4212efdca922227df85f308d1474eb463214aa2aa9d568e06f9f85d53f771`
+blam! 10d4212efdca922227df85f308d1474eb463214aa2aa9d568e06f9f85d53f771

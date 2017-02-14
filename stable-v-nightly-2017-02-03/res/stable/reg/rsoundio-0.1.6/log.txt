@@ -1,0 +1,33 @@
+boom! testing rsoundio-0.1.6 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 1f10487234e270056734504faf375f6b1c8cef2046396434739b5439f7407c50
+boom! running `docker start -a 1f10487234e270056734504faf375f6b1c8cef2046396434739b5439f7407c50`
+kablam!    Compiling rsoundio v0.1.6 (file:///source)
+kablam! warning: unused variable: `target`, #[warn(unused_variables)] on by default
+kablam!   --> build.rs:77:10
+kablam!    |
+kablam! 77 | fn build(target: String) {
+kablam!    |          ^^^^^^
+kablam! 
+kablam! warning: unused variable: `host`, #[warn(unused_variables)] on by default
+kablam!   --> build.rs:78:9
+kablam!    |
+kablam! 78 |     let host = env::var("HOST").unwrap();
+kablam!    |         ^^^^
+kablam! 
+kablam! error: failed to run custom build command for `rsoundio v0.1.6 (file:///source)`
+kablam! process didn't exit successfully: `/target/debug/build/rsoundio-3d42e9c03fa7f47c/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! cargo:rustc-link-lib=dylib=soundio
+kablam! cargo:rustc-link-search=native=/target/debug/build/rsoundio-3d42e9c03fa7f47c/out/lib
+kablam! cargo:include=/target/debug/build/rsoundio-3d42e9c03fa7f47c/out/include
+kablam! cargo:root=/target/debug/build/rsoundio-3d42e9c03fa7f47c/out
+kablam! 
+kablam! --- stderr
+kablam! thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: Error { repr: Os { code: 2, message: "No such file or directory" } }', ../src/libcore/result.rs:837
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f 1f10487234e270056734504faf375f6b1c8cef2046396434739b5439f7407c50`
+blam! 1f10487234e270056734504faf375f6b1c8cef2046396434739b5439f7407c50

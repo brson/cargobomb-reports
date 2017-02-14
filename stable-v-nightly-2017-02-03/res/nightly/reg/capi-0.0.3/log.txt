@@ -1,0 +1,109 @@
+boom! testing capi-0.0.3 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! f8f4add19220e906f61c2c349aee6017377e9df6532c3763816b3a3e26c1d50c
+boom! running `docker start -a f8f4add19220e906f61c2c349aee6017377e9df6532c3763816b3a3e26c1d50c`
+kablam!    Compiling capi v0.0.3 (file:///source)
+kablam! warning: patterns aren't allowed in methods without bodies, #[warn(patterns_in_fns_without_body)] on by default
+kablam!   --> src/lib.rs:31:30
+kablam!    |
+kablam! 31 |     unsafe fn to_c_owned_mut(mut self) -> *mut T;
+kablam!    |                              ^^^^^^^^
+kablam!    |
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #35203 <https://github.com/rust-lang/rust/issues/35203>
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.18 secs
+boom! running `docker rm -f f8f4add19220e906f61c2c349aee6017377e9df6532c3763816b3a3e26c1d50c`
+blam! f8f4add19220e906f61c2c349aee6017377e9df6532c3763816b3a3e26c1d50c
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 7b36c139e2b1b70d4684243bf11f0846cf84545857027944b91a0e660321e551
+boom! running `docker start -a 7b36c139e2b1b70d4684243bf11f0846cf84545857027944b91a0e660321e551`
+kablam!    Compiling capi v0.0.3 (file:///source)
+kablam! warning: patterns aren't allowed in methods without bodies, #[warn(patterns_in_fns_without_body)] on by default
+kablam!   --> src/lib.rs:31:30
+kablam!    |
+kablam! 31 |     unsafe fn to_c_owned_mut(mut self) -> *mut T;
+kablam!    |                              ^^^^^^^^
+kablam!    |
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #35203 <https://github.com/rust-lang/rust/issues/35203>
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.95 secs
+boom! running `docker rm -f 7b36c139e2b1b70d4684243bf11f0846cf84545857027944b91a0e660321e551`
+blam! 7b36c139e2b1b70d4684243bf11f0846cf84545857027944b91a0e660321e551
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 11418a9846fe200d92deb8b6afc634512fe12cfc3610ac04bae470647895af10
+boom! running `docker start -a 11418a9846fe200d92deb8b6afc634512fe12cfc3610ac04bae470647895af10`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/capi-1f5c1b5c6bd88f6a
+blam! 
+blam! running 2 tests
+blam! test pass_ownership ... ok
+blam! test pass_ownership_mut ... ok
+blam! 
+blam! test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!    Doc-tests capi
+blam! 
+blam! running 2 tests
+blam! warning: struct is never used: `Foo`, #[warn(dead_code)] on by default
+blam!  --> <anon>:4:1
+blam!   |
+blam! 4 | struct Foo;
+blam!   | ^^^^^^^^^^^
+blam! 
+blam! warning: function destroy_foo is marked #[no_mangle], but not exported, #[warn(private_no_mangle_fns)] on by default
+blam!  --> <anon>:7:1
+blam!   |
+blam! 7 |   unsafe extern "C" fn destroy_foo(ptr: *const Foo) {
+blam!   |  _^ starting here...
+blam! 8 | |     ptr.to_owned_from_c();
+blam! 9 | | }
+blam!   | |_^ ...ending here
+blam! 
+blam! warning: function is never used: `destroy_foo`, #[warn(dead_code)] on by default
+blam!  --> <anon>:7:1
+blam!   |
+blam! 7 |   unsafe extern "C" fn destroy_foo(ptr: *const Foo) {
+blam!   |  _^ starting here...
+blam! 8 | |     ptr.to_owned_from_c();
+blam! 9 | | }
+blam!   | |_^ ...ending here
+blam! 
+blam! test FromCOwned_0 ... ok
+blam! warning: struct is never used: `Foo`, #[warn(dead_code)] on by default
+blam!  --> <anon>:4:1
+blam!   |
+blam! 4 | struct Foo;
+blam!   | ^^^^^^^^^^^
+blam! 
+blam! warning: function create_foo is marked #[no_mangle], but not exported, #[warn(private_no_mangle_fns)] on by default
+blam!  --> <anon>:7:1
+blam!   |
+blam! 7 |   unsafe extern "C" fn create_foo() -> *const Foo {
+blam!   |  _^ starting here...
+blam! 8 | |     Box::new(Foo).to_c_owned()
+blam! 9 | | }
+blam!   | |_^ ...ending here
+blam! 
+blam! warning: function is never used: `create_foo`, #[warn(dead_code)] on by default
+blam!  --> <anon>:7:1
+blam!   |
+blam! 7 |   unsafe extern "C" fn create_foo() -> *const Foo {
+blam!   |  _^ starting here...
+blam! 8 | |     Box::new(Foo).to_c_owned()
+blam! 9 | | }
+blam!   | |_^ ...ending here
+blam! 
+blam! test ToCOwned_0 ... ok
+blam! 
+blam! test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f 11418a9846fe200d92deb8b6afc634512fe12cfc3610ac04bae470647895af10`
+blam! 11418a9846fe200d92deb8b6afc634512fe12cfc3610ac04bae470647895af10

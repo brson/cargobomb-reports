@@ -1,0 +1,53 @@
+boom! testing monkeys-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! f4bc8e5919f81a595ee7629ab566535325e935bafbe0dc2272878707093bec5c
+boom! running `docker start -a f4bc8e5919f81a595ee7629ab566535325e935bafbe0dc2272878707093bec5c`
+kablam!    Compiling monkeys v0.1.0 (file:///source)
+kablam! error[E0432]: unresolved import `std::panic::AssertRecoverSafe`
+kablam!   --> src/lib.rs:15:24
+kablam!    |
+kablam! 15 | use std::panic::{self, AssertRecoverSafe};
+kablam!    |                        ^^^^^^^^^^^^^^^^^ no `AssertRecoverSafe` in `panic`
+kablam! 
+kablam! error[E0425]: cannot find function `propagate` in module `panic`
+kablam!   --> src/lib.rs:90:5
+kablam!    |
+kablam! 90 |     panic::propagate(Box::new(ForceUnwind));
+kablam!    |     ^^^^^^^^^^^^^^^^ not found in `panic`
+kablam! 
+kablam! error[E0425]: cannot find function `recover` in module `panic`
+kablam!    --> src/lib.rs:124:22
+kablam!     |
+kablam! 124 |         let result = panic::recover(move || {
+kablam!     |                      ^^^^^^^^^^^^^^ not found in `panic`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/lib.rs:85:68
+kablam!    |
+kablam! 85 |   extern "C" fn unwind_stack<T: UnwindMove>(t: Transfer) -> Transfer {
+kablam!    |  ____________________________________________________________________^ starting here...
+kablam! 86 | |     let flow: T = from_mut_ptr(t.data);
+kablam! 87 | |     flow.move_into_unwind(t);
+kablam! 88 | |
+kablam! 89 | |     struct ForceUnwind;
+kablam! 90 | |     panic::propagate(Box::new(ForceUnwind));
+kablam! 91 | | }
+kablam!    | |_^ ...ending here: expected struct `context::Transfer`, found ()
+kablam!    |
+kablam!    = note: expected type `context::Transfer`
+kablam!               found type `()`
+kablam! help: consider removing this semicolon:
+kablam!   --> src/lib.rs:90:44
+kablam!    |
+kablam! 90 |     panic::propagate(Box::new(ForceUnwind));
+kablam!    |                                            ^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `monkeys`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f4bc8e5919f81a595ee7629ab566535325e935bafbe0dc2272878707093bec5c`
+blam! f4bc8e5919f81a595ee7629ab566535325e935bafbe0dc2272878707093bec5c

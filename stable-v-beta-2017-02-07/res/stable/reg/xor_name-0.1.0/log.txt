@@ -1,0 +1,28 @@
+boom! testing xor_name-0.1.0 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 9fa3de7fa959de56e646a5e2d42f487f7c2d3db3125b8216817f43bf7b363624
+boom! running `docker start -a 9fa3de7fa959de56e646a5e2d42f487f7c2d3db3125b8216817f43bf7b363624`
+kablam!    Compiling xor_name v0.1.0 (file:///source)
+kablam! error[E0277]: the trait bound `[u8; 64]: std::cmp::Eq` is not satisfied
+kablam!   --> src/lib.rs:96:20
+kablam!    |
+kablam! 96 | pub struct XorName(pub [u8; XOR_NAME_LEN]);
+kablam!    |                    ^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::cmp::Eq` is not implemented for `[u8; 64]`
+kablam!    |
+kablam!    = help: the following implementations were found:
+kablam!    = help:   <[T] as std::cmp::Eq>
+kablam!    = help:   <[T; 0] as std::cmp::Eq>
+kablam!    = help:   <[T; 1] as std::cmp::Eq>
+kablam!    = help:   <[T; 2] as std::cmp::Eq>
+kablam!    = help: and 30 others
+kablam!    = note: required by `std::cmp::AssertParamIsEq`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `xor_name`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 9fa3de7fa959de56e646a5e2d42f487f7c2d3db3125b8216817f43bf7b363624`
+blam! 9fa3de7fa959de56e646a5e2d42f487f7c2d3db3125b8216817f43bf7b363624

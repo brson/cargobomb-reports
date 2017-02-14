@@ -1,0 +1,28 @@
+boom! testing timeline-0.1.0 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! fea7b5684d7d9179c33178760893665428b2eddcec4b836b960dcfb52397da6b
+boom! running `docker start -a fea7b5684d7d9179c33178760893665428b2eddcec4b836b960dcfb52397da6b`
+kablam!    Compiling timeline v0.1.0 (file:///source)
+kablam! error[E0308]: mismatched types
+kablam!   --> build.rs:15:29
+kablam!    |
+kablam! 15 |     serde_codegen::register(&mut registry);
+kablam!    |                             ^^^^^^^^^^^^^ expected struct `syntex::Registry`, found a different struct `syntex::Registry`
+kablam!    |
+kablam!    = note: expected type `&mut syntex::Registry` (struct `syntex::Registry`)
+kablam!    = note:    found type `&mut syntex::Registry` (struct `syntex::Registry`)
+kablam! note: Perhaps two different versions of crate `syntex` are being used?
+kablam!   --> build.rs:15:29
+kablam!    |
+kablam! 15 |     serde_codegen::register(&mut registry);
+kablam!    |                             ^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `timeline`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f fea7b5684d7d9179c33178760893665428b2eddcec4b836b960dcfb52397da6b`
+blam! fea7b5684d7d9179c33178760893665428b2eddcec4b836b960dcfb52397da6b

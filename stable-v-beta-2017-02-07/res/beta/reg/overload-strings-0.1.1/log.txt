@@ -1,0 +1,32 @@
+boom! testing overload-strings-0.1.1 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! a6e7740eca648c7c2feba5d7f3459053da3a64c91d9f45276812393df5f51f29
+boom! running `docker start -a a6e7740eca648c7c2feba5d7f3459053da3a64c91d9f45276812393df5f51f29`
+kablam!    Compiling overload-strings v0.1.1 (file:///source)
+kablam! error[E0532]: expected tuple struct/variant, found unit variant `MetaItemKind::Word`
+kablam!   --> src/lib.rs:23:17
+kablam!    |
+kablam! 23 |                 MetaItemKind::Word(ref name) if name == ATTR_NAME => true,
+kablam!    |                 ^^^^^^^^^^^^^^^^^^ not a tuple struct/variant
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!   --> src/lib.rs:73:35
+kablam!    |
+kablam! 73 |     reg.register_syntax_extension(token::intern(ATTR_NAME),
+kablam!    |                                   ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> src/lib.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(plugin_registrar, quote, rustc_private)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `overload-strings`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f a6e7740eca648c7c2feba5d7f3459053da3a64c91d9f45276812393df5f51f29`
+blam! a6e7740eca648c7c2feba5d7f3459053da3a64c91d9f45276812393df5f51f29

@@ -1,0 +1,38 @@
+boom! testing shared_slice-0.0.4 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! e8608fba07cda929a8334a8d56338122d24123462a89be75819395db38df470d
+boom! running `docker start -a e8608fba07cda929a8334a8d56338122d24123462a89be75819395db38df470d`
+kablam!    Compiling shared_slice v0.0.4 (file:///source)
+kablam! error[E0259]: an extern crate named `core` has already been imported in this module
+kablam!   --> src/lib.rs:79:1
+kablam!    |
+kablam! 79 | extern crate core;
+kablam!    | ^^^^^^^^^^^^^^^^^^ `core` already imported
+kablam! 
+kablam! error: no method named `downgrade` found for type `alloc::rc::Rc<Box<[T]>>` in the current scope
+kablam!   --> src/rc.rs:73:33
+kablam!    |
+kablam! 73 |             counts: self.counts.downgrade()
+kablam!    |                                 ^^^^^^^^^
+kablam!    |
+kablam!    = note: found the following associated functions; to be used as methods, functions must have a `self` parameter
+kablam!    = note: candidate #1 is defined in an impl for the type `alloc::rc::Rc<_>`
+kablam! 
+kablam! error: no method named `downgrade` found for type `alloc::arc::Arc<Box<[T]>>` in the current scope
+kablam!   --> src/arc.rs:78:33
+kablam!    |
+kablam! 78 |             counts: self.counts.downgrade()
+kablam!    |                                 ^^^^^^^^^
+kablam!    |
+kablam!    = note: found the following associated functions; to be used as methods, functions must have a `self` parameter
+kablam!    = note: candidate #1 is defined in an impl for the type `alloc::arc::Arc<_>`
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `shared_slice`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f e8608fba07cda929a8334a8d56338122d24123462a89be75819395db38df470d`
+blam! e8608fba07cda929a8334a8d56338122d24123462a89be75819395db38df470d

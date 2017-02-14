@@ -1,0 +1,84 @@
+boom! testing cuda-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! ed93cca7325db55e2f99afc701ba107f395586ce4c73191975752246fab6641f
+boom! running `docker start -a ed93cca7325db55e2f99afc701ba107f395586ce4c73191975752246fab6641f`
+kablam!    Compiling cuda v0.1.0 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.9 secs
+boom! running `docker rm -f ed93cca7325db55e2f99afc701ba107f395586ce4c73191975752246fab6641f`
+blam! ed93cca7325db55e2f99afc701ba107f395586ce4c73191975752246fab6641f
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! b17bbcecd22d9722e43102df521ea429ea5b9a9ece726520b4b3691c8a21fc77
+boom! running `docker start -a b17bbcecd22d9722e43102df521ea429ea5b9a9ece726520b4b3691c8a21fc77`
+kablam!    Compiling cuda v0.1.0 (file:///source)
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Device`
+kablam!  --> src/tests.rs:5:15
+kablam!   |
+kablam! 5 |   let count = Device::count().ok().unwrap();
+kablam!   |               ^^^^^^^^^^^^^ Use of undeclared type or module `Device`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Device`
+kablam!  --> src/tests.rs:7:16
+kablam!   |
+kablam! 7 |   let device = Device::new(0);
+kablam!   |                ^^^^^^^^^^^ Use of undeclared type or module `Device`
+kablam! 
+kablam! error[E0425]: cannot find function `cuda_host_alloc_pinned` in this scope
+kablam!   --> src/tests.rs:13:13
+kablam!    |
+kablam! 13 |   let ptr = cuda_host_alloc_pinned(4096, 0).ok().unwrap();
+kablam!    |             ^^^^^^^^^^^^^^^^^^^^^^ did you mean `cuda_alloc_pinned`?
+kablam! 
+kablam! error[E0425]: cannot find function `cuda_host_free_pinned` in this scope
+kablam!   --> src/tests.rs:15:3
+kablam!    |
+kablam! 15 |   cuda_host_free_pinned(ptr).ok();
+kablam!    |   ^^^^^^^^^^^^^^^^^^^^^ did you mean `cuda_free_pinned`?
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `cuda`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f b17bbcecd22d9722e43102df521ea429ea5b9a9ece726520b4b3691c8a21fc77`
+blam! b17bbcecd22d9722e43102df521ea429ea5b9a9ece726520b4b3691c8a21fc77
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 00b7c408e252ee446fa1a32bcfd02f4e7b851080d6a0ec6c5afaa453f5f2dc1a
+boom! running `docker start -a 00b7c408e252ee446fa1a32bcfd02f4e7b851080d6a0ec6c5afaa453f5f2dc1a`
+kablam!    Compiling cuda v0.1.0 (file:///source)
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Device`
+kablam!  --> src/tests.rs:5:15
+kablam!   |
+kablam! 5 |   let count = Device::count().ok().unwrap();
+kablam!   |               ^^^^^^^^^^^^^ Use of undeclared type or module `Device`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Device`
+kablam!  --> src/tests.rs:7:16
+kablam!   |
+kablam! 7 |   let device = Device::new(0);
+kablam!   |                ^^^^^^^^^^^ Use of undeclared type or module `Device`
+kablam! 
+kablam! error[E0425]: cannot find function `cuda_host_alloc_pinned` in this scope
+kablam!   --> src/tests.rs:13:13
+kablam!    |
+kablam! 13 |   let ptr = cuda_host_alloc_pinned(4096, 0).ok().unwrap();
+kablam!    |             ^^^^^^^^^^^^^^^^^^^^^^ did you mean `cuda_alloc_pinned`?
+kablam! 
+kablam! error[E0425]: cannot find function `cuda_host_free_pinned` in this scope
+kablam!   --> src/tests.rs:15:3
+kablam!    |
+kablam! 15 |   cuda_host_free_pinned(ptr).ok();
+kablam!    |   ^^^^^^^^^^^^^^^^^^^^^ did you mean `cuda_free_pinned`?
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `cuda`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 00b7c408e252ee446fa1a32bcfd02f4e7b851080d6a0ec6c5afaa453f5f2dc1a`
+blam! 00b7c408e252ee446fa1a32bcfd02f4e7b851080d6a0ec6c5afaa453f5f2dc1a

@@ -1,0 +1,81 @@
+boom! testing redlock-1.0.0 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! cf8cd5a7db043431709f2210b04ecb03dae44f40e5d51207f1373090a0ee3f7f
+boom! running `docker start -a cf8cd5a7db043431709f2210b04ecb03dae44f40e5d51207f1373090a0ee3f7f`
+kablam!    Compiling redlock v1.0.0 (file:///source)
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 1.23 secs
+boom! running `docker rm -f cf8cd5a7db043431709f2210b04ecb03dae44f40e5d51207f1373090a0ee3f7f`
+blam! cf8cd5a7db043431709f2210b04ecb03dae44f40e5d51207f1373090a0ee3f7f
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 91c0655e69a264597b1bcf69a9735e0bb25ba74f6a6e721982fdc77748da8e07
+boom! running `docker start -a 91c0655e69a264597b1bcf69a9735e0bb25ba74f6a6e721982fdc77748da8e07`
+kablam!    Compiling redlock v1.0.0 (file:///source)
+kablam! warning: use of deprecated item: replaced by `std::thread::sleep`, #[warn(deprecated)] on by default
+kablam!  --> examples/basic.rs:6:5
+kablam!   |
+kablam! 6 | use std::thread::sleep_ms;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: use of deprecated item: replaced by `std::thread::sleep`, #[warn(deprecated)] on by default
+kablam!   --> examples/basic.rs:56:17
+kablam!    |
+kablam! 56 |                 sleep_ms(n);
+kablam!    |                 ^^^^^^^^
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 2.11 secs
+boom! running `docker rm -f 91c0655e69a264597b1bcf69a9735e0bb25ba74f6a6e721982fdc77748da8e07`
+blam! 91c0655e69a264597b1bcf69a9735e0bb25ba74f6a6e721982fdc77748da8e07
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! 36098aa38d9c36603023d6995ce0d61d09e9bb2b7ddba6423ea14118ddecfa68
+boom! running `docker start -a 36098aa38d9c36603023d6995ce0d61d09e9bb2b7ddba6423ea14118ddecfa68`
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 0.0 secs
+blam! 
+blam! running 9 tests
+kablam!      Running /target/debug/deps/redlock-4b3729513ed08b42
+blam! test redlock::test_redlock_get_unique_id ... ok
+blam! test redlock::test_redlock_direct_lock_succeeds ... FAILED
+blam! test redlock::test_redlock_direct_unlock_fails ... ok
+blam! test redlock::test_redlock_direct_unlock_succeeds ... FAILED
+blam! test redlock::test_redlock_get_unique_id_uniqueness ... ok
+blam! test redlock::test_redlock_valid_instance ... ok
+blam! test redlock::test_redlock_unlock ... FAILED
+blam! test redlock::test_redlock_lock ... FAILED
+blam! test redlock::test_redlock_lock_unlock ... FAILED
+blam! 
+blam! failures:
+blam! 
+blam! ---- redlock::test_redlock_direct_lock_succeeds stdout ----
+blam! 	thread 'redlock::test_redlock_direct_lock_succeeds' panicked at 'called `Result::unwrap()` on an `Err` value: Connection refused (os error 111)', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:837
+blam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+blam! 
+blam! ---- redlock::test_redlock_direct_unlock_succeeds stdout ----
+blam! 	thread 'redlock::test_redlock_direct_unlock_succeeds' panicked at 'called `Result::unwrap()` on an `Err` value: Connection refused (os error 111)', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:837
+blam! 
+blam! ---- redlock::test_redlock_unlock stdout ----
+blam! 	thread 'redlock::test_redlock_unlock' panicked at 'called `Result::unwrap()` on an `Err` value: Connection refused (os error 111)', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:837
+blam! 
+blam! ---- redlock::test_redlock_lock stdout ----
+blam! 	thread 'redlock::test_redlock_lock' panicked at 'Lock failed', src/redlock.rs:260
+blam! 
+blam! ---- redlock::test_redlock_lock_unlock stdout ----
+blam! 	thread 'redlock::test_redlock_lock_unlock' panicked at 'called `Option::unwrap()` on a `None` value', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/option.rs:323
+blam! 
+blam! 
+blam! failures:
+blam!     redlock::test_redlock_direct_lock_succeeds
+blam!     redlock::test_redlock_direct_unlock_succeeds
+blam!     redlock::test_redlock_lock
+blam!     redlock::test_redlock_lock_unlock
+blam!     redlock::test_redlock_unlock
+blam! 
+blam! test result: FAILED. 4 passed; 5 failed; 0 ignored; 0 measured
+kablam! error: test failed
+blam! 
+boom! running `docker rm -f 36098aa38d9c36603023d6995ce0d61d09e9bb2b7ddba6423ea14118ddecfa68`
+blam! 36098aa38d9c36603023d6995ce0d61d09e9bb2b7ddba6423ea14118ddecfa68

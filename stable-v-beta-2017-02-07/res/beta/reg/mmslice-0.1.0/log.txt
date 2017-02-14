@@ -1,0 +1,80 @@
+boom! testing mmslice-0.1.0 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! a5c1acc127f2367db084743c21d6d5101957269debd15c6ca965a70d686a9a0c
+boom! running `docker start -a a5c1acc127f2367db084743c21d6d5101957269debd15c6ca965a70d686a9a0c`
+kablam!    Compiling mmslice v0.1.0 (file:///source)
+kablam! error[E0432]: unresolved import `std::os::MemoryMap`
+kablam!  --> src/lib.rs:8:15
+kablam!   |
+kablam! 8 | use std::os::{MemoryMap, MapOption};
+kablam!   |               ^^^^^^^^^ no `MemoryMap` in `os`
+kablam! 
+kablam! error[E0432]: unresolved import `std::os::MapOption`
+kablam!  --> src/lib.rs:8:26
+kablam!   |
+kablam! 8 | use std::os::{MemoryMap, MapOption};
+kablam!   |                          ^^^^^^^^^ no `MapOption` in `os`
+kablam! 
+kablam! error[E0432]: unresolved import `std::os::unix::AsRawFd`
+kablam!  --> src/lib.rs:9:5
+kablam!   |
+kablam! 9 | use std::os::unix::AsRawFd;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^ no `AsRawFd` in `os::unix`
+kablam! 
+kablam! error[E0432]: unresolved import `std::num::Int`
+kablam!   --> src/lib.rs:13:5
+kablam!    |
+kablam! 13 | use std::num::Int;
+kablam!    |     ^^^^^^^^^^^^^ no `Int` in `num`
+kablam! 
+kablam! error[E0405]: cannot find trait `AsSlice` in this scope
+kablam!   --> src/lib.rs:78:15
+kablam!    |
+kablam! 78 | impl<T:Sized> AsSlice<T> for MmapSlice<T> {
+kablam!    |               ^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> src/lib.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(core)]
+kablam!   | ^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> src/lib.rs:2:1
+kablam!   |
+kablam! 2 | #![feature(os)]
+kablam!   | ^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> src/lib.rs:3:1
+kablam!   |
+kablam! 3 | #![feature(fs)]
+kablam!   | ^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> src/lib.rs:4:1
+kablam!   |
+kablam! 4 | #![feature(std_misc)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> src/lib.rs:5:1
+kablam!   |
+kablam! 5 | #![feature(unsafe_destructor)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: The attribute `unsafe_destructor` is currently unknown to the compiler and may have meaning added to it in the future (see issue #29642)
+kablam!   --> src/lib.rs:87:1
+kablam!    |
+kablam! 87 | #[unsafe_destructor]
+kablam!    | ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 6 previous errors
+kablam! 
+kablam! error: Could not compile `mmslice`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f a5c1acc127f2367db084743c21d6d5101957269debd15c6ca965a70d686a9a0c`
+blam! a5c1acc127f2367db084743c21d6d5101957269debd15c6ca965a70d686a9a0c

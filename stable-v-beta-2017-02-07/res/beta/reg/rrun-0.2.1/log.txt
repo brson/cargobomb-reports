@@ -1,0 +1,52 @@
+boom! testing rrun-0.2.1 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 1e201eb908b79f2d075b8da1fb8b6b59cd4b86e3cb994132d5253677cfa0ae4c
+boom! running `docker start -a 1e201eb908b79f2d075b8da1fb8b6b59cd4b86e3cb994132d5253677cfa0ae4c`
+kablam!    Compiling rrun v0.2.1 (file:///source)
+kablam! error[E0277]: the trait bound `itertools::GroupBy<std::string::String, std::vec::IntoIter<std::boxed::Box<externalrunner::ExternalRunner>>, [closure@src/engine.rs:65:58: 65:74]>: std::iter::Iterator` is not satisfied
+kablam!   --> src/engine.rs:65:9
+kablam!    |
+kablam! 65 |           for (key, group) in runners.into_iter().group_by(|r| r.get_type()) {
+kablam!    |  _________^ starting here...
+kablam! 66 | |             runners_by_type.insert(key, group.into_iter().collect_vec());
+kablam! 67 | |         }
+kablam!    | |_________^ ...ending here: the trait `std::iter::Iterator` is not implemented for `itertools::GroupBy<std::string::String, std::vec::IntoIter<std::boxed::Box<externalrunner::ExternalRunner>>, [closure@src/engine.rs:65:58: 65:74]>`
+kablam!    |
+kablam!    = note: `itertools::GroupBy<std::string::String, std::vec::IntoIter<std::boxed::Box<externalrunner::ExternalRunner>>, [closure@src/engine.rs:65:58: 65:74]>` is not an iterator; maybe try calling `.iter()` or a similar method
+kablam!    = note: required by `std::iter::IntoIterator::into_iter`
+kablam! 
+kablam! error: no method named `at` found for type `regex::Captures<'_>` in the current scope
+kablam!   --> src/externalautocompleter.rs:36:34
+kablam!    |
+kablam! 36 |                 trigger_match[0].at(1).unwrap()
+kablam!    |                                  ^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/externalautocompleter.rs:43:112
+kablam!    |
+kablam! 43 |                     .fold(self.command.replace("{}", sub_query), (|a, (i, e)| a.replace(&format!("{{{}}}", i), e)));
+kablam!    |                                                                                                                ^ expected &str, found struct `regex::Match`
+kablam!    |
+kablam!    = note: expected type `&str`
+kablam!               found type `regex::Match<'_>`
+kablam!    = help: here are some functions which might fulfill your needs:
+kablam!            - .as_str()
+kablam! 
+kablam! error[E0277]: the trait bound `std::iter::Iterator<Item=autocomplete::Completion>: std::marker::Sized` is not satisfied
+kablam!   --> src/externalautocompleter.rs:83:9
+kablam!    |
+kablam! 83 |         Box::new(completion_vec.into_iter())
+kablam!    |         ^^^^^^^^ the trait `std::marker::Sized` is not implemented for `std::iter::Iterator<Item=autocomplete::Completion>`
+kablam!    |
+kablam!    = note: `std::iter::Iterator<Item=autocomplete::Completion>` does not have a constant size known at compile-time
+kablam!    = note: required by `<std::boxed::Box<T>>::new`
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `rrun`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 1e201eb908b79f2d075b8da1fb8b6b59cd4b86e3cb994132d5253677cfa0ae4c`
+blam! 1e201eb908b79f2d075b8da1fb8b6b59cd4b86e3cb994132d5253677cfa0ae4c

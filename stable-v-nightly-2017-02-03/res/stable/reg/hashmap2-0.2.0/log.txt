@@ -1,0 +1,32 @@
+boom! testing hashmap2-0.2.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! f206df8ac6b76a4ed93f751cbfb4dd56e38721be909c81243904d4aa042c8240
+boom! running `docker start -a f206df8ac6b76a4ed93f751cbfb4dd56e38721be909c81243904d4aa042c8240`
+kablam!    Compiling hashmap2 v0.2.0 (file:///source)
+kablam! error[E0557]: feature has been removed
+kablam!   --> src/lib.rs:19:5
+kablam!    |
+kablam! 19 |     unsafe_no_drop_flag,
+kablam!    |     ^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!   --> src/lib.rs:10:1
+kablam!    |
+kablam! 10 | #![feature(
+kablam!    | ^
+kablam! 
+kablam! error: The attribute `unsafe_no_drop_flag` is currently unknown to the compiler and may have meaning added to it in the future (see issue #29642)
+kablam!   --> src/table.rs:63:1
+kablam!    |
+kablam! 63 | #[unsafe_no_drop_flag]
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `hashmap2`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f206df8ac6b76a4ed93f751cbfb4dd56e38721be909c81243904d4aa042c8240`
+blam! f206df8ac6b76a4ed93f751cbfb4dd56e38721be909c81243904d4aa042c8240

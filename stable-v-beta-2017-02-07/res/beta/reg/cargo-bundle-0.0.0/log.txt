@@ -1,0 +1,34 @@
+boom! testing cargo-bundle-0.0.0 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 70b7fc673e013342c4499e956d81a92f3ce37548a76fe22fcba005869e45ce28
+boom! running `docker start -a 70b7fc673e013342c4499e956d81a92f3ce37548a76fe22fcba005869e45ce28`
+kablam!    Compiling plist v0.1.0
+kablam!    Compiling cargo-bundle v0.0.0 (file:///source)
+kablam! error[E0308]: match arms have incompatible types
+kablam!   --> src/bundle/mod.rs:35:5
+kablam!    |
+kablam! 35 |     match settings.package_type {
+kablam!    |     ^ expected struct `std::vec::Vec`, found ()
+kablam!    |
+kablam!    = note: expected type `_`
+kablam!               found type `std::result::Result<(), std::boxed::Box<std::error::Error + std::marker::Sync + std::marker::Send>>`
+kablam! note: match arm with an incompatible type
+kablam!   --> src/bundle/mod.rs:36:17
+kablam!    |
+kablam! 36 |           None => deb_bundle::bundle_project(&settings)
+kablam!    |  _________________^ starting here...
+kablam! 37 | |             .and_then(|deb_path| {
+kablam! 38 | |                 let rpm_path = try!(rpm_bundle::bundle_project(&settings));
+kablam! 39 | |                 Ok(deb_path.extend(rpm_path))
+kablam! 40 | |             }),
+kablam!    | |______________^ ...ending here
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `cargo-bundle`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 70b7fc673e013342c4499e956d81a92f3ce37548a76fe22fcba005869e45ce28`
+blam! 70b7fc673e013342c4499e956d81a92f3ce37548a76fe22fcba005869e45ce28

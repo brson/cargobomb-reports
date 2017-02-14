@@ -1,0 +1,228 @@
+boom! testing vst2-0.0.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 9daa0b13371bb224b6fd7d7e5edf234237172f616e3c363619f23b2c8a42330f
+boom! running `docker start -a 9daa0b13371bb224b6fd7d7e5edf234237172f616e3c363619f23b2c8a42330f`
+kablam!    Compiling vst2 v0.0.1 (file:///source)
+kablam! warning: static variable `load_pointer` should have an upper case name such as `LOAD_POINTER`, #[warn(non_upper_case_globals)] on by default
+kablam!    --> src/host.rs:724:1
+kablam!     |
+kablam! 724 | static mut load_pointer: *mut c_void = 0 as *mut c_void;
+kablam!     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused import: `Plugin`, #[warn(unused_imports)] on by default
+kablam!   --> src/interfaces.rs:65:33
+kablam!    |
+kablam! 65 |     use plugin::{CanDo, OpCode, Plugin};
+kablam!    |                                 ^^^^^^
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 4.12 secs
+boom! running `docker rm -f 9daa0b13371bb224b6fd7d7e5edf234237172f616e3c363619f23b2c8a42330f`
+blam! 9daa0b13371bb224b6fd7d7e5edf234237172f616e3c363619f23b2c8a42330f
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! cc2d070b2fe0d72c237979d15731e22ad1526d9c46b76f12bc0e206561332d59
+boom! running `docker start -a cc2d070b2fe0d72c237979d15731e22ad1526d9c46b76f12bc0e206561332d59`
+kablam!    Compiling vst2 v0.0.1 (file:///source)
+kablam! warning: static variable `load_pointer` should have an upper case name such as `LOAD_POINTER`, #[warn(non_upper_case_globals)] on by default
+kablam!    --> src/host.rs:724:1
+kablam!     |
+kablam! 724 | static mut load_pointer: *mut c_void = 0 as *mut c_void;
+kablam!     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused import: `Plugin`, #[warn(unused_imports)] on by default
+kablam!   --> src/interfaces.rs:65:33
+kablam!    |
+kablam! 65 |     use plugin::{CanDo, OpCode, Plugin};
+kablam!    |                                 ^^^^^^
+kablam! 
+kablam! warning: static variable `drop_test` should have an upper case name such as `DROP_TEST`, #[warn(non_upper_case_globals)] on by default
+kablam!    --> src/lib.rs:319:9
+kablam!     |
+kablam! 319 |         static mut drop_test: bool = false;
+kablam!     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: `fn(*mut api::AEffect, i32, i32, isize, *mut libc::c_void, f32) -> isize {interfaces::dispatch}` is now zero-sized and has to be cast to a pointer before transmuting to `usize`, #[deny(transmute_from_fn_item_types)] on by default
+kablam!    --> src/lib.rs:363:25
+kablam!     |
+kablam! 363 |                         mem::transmute::<_, usize>($b)
+kablam!     |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! ...
+kablam! 372 |         assert_fn_eq!(aeffect.dispatcher, interfaces::dispatch);
+kablam!     |         -------------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #19925 <https://github.com/rust-lang/rust/issues/19925>
+kablam! 
+kablam! error: `fn(*mut api::AEffect, *mut *mut f32, *mut *mut f32, i32) {interfaces::process_deprecated}` is now zero-sized and has to be cast to a pointer before transmuting to `usize`, #[deny(transmute_from_fn_item_types)] on by default
+kablam!    --> src/lib.rs:363:25
+kablam!     |
+kablam! 363 |                         mem::transmute::<_, usize>($b)
+kablam!     |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! ...
+kablam! 373 |         assert_fn_eq!(aeffect._process, interfaces::process_deprecated);
+kablam!     |         ---------------------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #19925 <https://github.com/rust-lang/rust/issues/19925>
+kablam! 
+kablam! error: `fn(*mut api::AEffect, i32, f32) {interfaces::set_parameter}` is now zero-sized and has to be cast to a pointer before transmuting to `usize`, #[deny(transmute_from_fn_item_types)] on by default
+kablam!    --> src/lib.rs:363:25
+kablam!     |
+kablam! 363 |                         mem::transmute::<_, usize>($b)
+kablam!     |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! ...
+kablam! 374 |         assert_fn_eq!(aeffect.setParameter, interfaces::set_parameter);
+kablam!     |         --------------------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #19925 <https://github.com/rust-lang/rust/issues/19925>
+kablam! 
+kablam! error: `fn(*mut api::AEffect, i32) -> f32 {interfaces::get_parameter}` is now zero-sized and has to be cast to a pointer before transmuting to `usize`, #[deny(transmute_from_fn_item_types)] on by default
+kablam!    --> src/lib.rs:363:25
+kablam!     |
+kablam! 363 |                         mem::transmute::<_, usize>($b)
+kablam!     |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! ...
+kablam! 375 |         assert_fn_eq!(aeffect.getParameter, interfaces::get_parameter);
+kablam!     |         --------------------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #19925 <https://github.com/rust-lang/rust/issues/19925>
+kablam! 
+kablam! error: `fn(*mut api::AEffect, *mut *mut f32, *mut *mut f32, i32) {interfaces::process_replacing}` is now zero-sized and has to be cast to a pointer before transmuting to `usize`, #[deny(transmute_from_fn_item_types)] on by default
+kablam!    --> src/lib.rs:363:25
+kablam!     |
+kablam! 363 |                         mem::transmute::<_, usize>($b)
+kablam!     |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! ...
+kablam! 385 |         assert_fn_eq!(aeffect.processReplacing, interfaces::process_replacing);
+kablam!     |         ----------------------------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #19925 <https://github.com/rust-lang/rust/issues/19925>
+kablam! 
+kablam! error: `fn(*mut api::AEffect, *mut *mut f64, *mut *mut f64, i32) {interfaces::process_replacing_f64}` is now zero-sized and has to be cast to a pointer before transmuting to `usize`, #[deny(transmute_from_fn_item_types)] on by default
+kablam!    --> src/lib.rs:363:25
+kablam!     |
+kablam! 363 |                         mem::transmute::<_, usize>($b)
+kablam!     |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! ...
+kablam! 386 |         assert_fn_eq!(aeffect.processReplacingF64, interfaces::process_replacing_f64);
+kablam!     |         ------------------------------------------------------------------------------ in this macro invocation
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #19925 <https://github.com/rust-lang/rust/issues/19925>
+kablam! 
+kablam! error: aborting due to 6 previous errors
+kablam! 
+kablam! error: Could not compile `vst2`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f cc2d070b2fe0d72c237979d15731e22ad1526d9c46b76f12bc0e206561332d59`
+blam! cc2d070b2fe0d72c237979d15731e22ad1526d9c46b76f12bc0e206561332d59
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 6e1535afe811b23a30fe37b235f9b82b2aadff40f86da46667628e36db2b6b55
+boom! running `docker start -a 6e1535afe811b23a30fe37b235f9b82b2aadff40f86da46667628e36db2b6b55`
+kablam!    Compiling vst2 v0.0.1 (file:///source)
+kablam! warning: static variable `load_pointer` should have an upper case name such as `LOAD_POINTER`, #[warn(non_upper_case_globals)] on by default
+kablam!    --> src/host.rs:724:1
+kablam!     |
+kablam! 724 | static mut load_pointer: *mut c_void = 0 as *mut c_void;
+kablam!     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused import: `Plugin`, #[warn(unused_imports)] on by default
+kablam!   --> src/interfaces.rs:65:33
+kablam!    |
+kablam! 65 |     use plugin::{CanDo, OpCode, Plugin};
+kablam!    |                                 ^^^^^^
+kablam! 
+kablam! warning: static variable `drop_test` should have an upper case name such as `DROP_TEST`, #[warn(non_upper_case_globals)] on by default
+kablam!    --> src/lib.rs:319:9
+kablam!     |
+kablam! 319 |         static mut drop_test: bool = false;
+kablam!     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: `fn(*mut api::AEffect, i32, i32, isize, *mut libc::c_void, f32) -> isize {interfaces::dispatch}` is now zero-sized and has to be cast to a pointer before transmuting to `usize`, #[deny(transmute_from_fn_item_types)] on by default
+kablam!    --> src/lib.rs:363:25
+kablam!     |
+kablam! 363 |                         mem::transmute::<_, usize>($b)
+kablam!     |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! ...
+kablam! 372 |         assert_fn_eq!(aeffect.dispatcher, interfaces::dispatch);
+kablam!     |         -------------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #19925 <https://github.com/rust-lang/rust/issues/19925>
+kablam! 
+kablam! error: `fn(*mut api::AEffect, *mut *mut f32, *mut *mut f32, i32) {interfaces::process_deprecated}` is now zero-sized and has to be cast to a pointer before transmuting to `usize`, #[deny(transmute_from_fn_item_types)] on by default
+kablam!    --> src/lib.rs:363:25
+kablam!     |
+kablam! 363 |                         mem::transmute::<_, usize>($b)
+kablam!     |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! ...
+kablam! 373 |         assert_fn_eq!(aeffect._process, interfaces::process_deprecated);
+kablam!     |         ---------------------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #19925 <https://github.com/rust-lang/rust/issues/19925>
+kablam! 
+kablam! error: `fn(*mut api::AEffect, i32, f32) {interfaces::set_parameter}` is now zero-sized and has to be cast to a pointer before transmuting to `usize`, #[deny(transmute_from_fn_item_types)] on by default
+kablam!    --> src/lib.rs:363:25
+kablam!     |
+kablam! 363 |                         mem::transmute::<_, usize>($b)
+kablam!     |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! ...
+kablam! 374 |         assert_fn_eq!(aeffect.setParameter, interfaces::set_parameter);
+kablam!     |         --------------------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #19925 <https://github.com/rust-lang/rust/issues/19925>
+kablam! 
+kablam! error: `fn(*mut api::AEffect, i32) -> f32 {interfaces::get_parameter}` is now zero-sized and has to be cast to a pointer before transmuting to `usize`, #[deny(transmute_from_fn_item_types)] on by default
+kablam!    --> src/lib.rs:363:25
+kablam!     |
+kablam! 363 |                         mem::transmute::<_, usize>($b)
+kablam!     |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! ...
+kablam! 375 |         assert_fn_eq!(aeffect.getParameter, interfaces::get_parameter);
+kablam!     |         --------------------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #19925 <https://github.com/rust-lang/rust/issues/19925>
+kablam! 
+kablam! error: `fn(*mut api::AEffect, *mut *mut f32, *mut *mut f32, i32) {interfaces::process_replacing}` is now zero-sized and has to be cast to a pointer before transmuting to `usize`, #[deny(transmute_from_fn_item_types)] on by default
+kablam!    --> src/lib.rs:363:25
+kablam!     |
+kablam! 363 |                         mem::transmute::<_, usize>($b)
+kablam!     |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! ...
+kablam! 385 |         assert_fn_eq!(aeffect.processReplacing, interfaces::process_replacing);
+kablam!     |         ----------------------------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #19925 <https://github.com/rust-lang/rust/issues/19925>
+kablam! 
+kablam! error: `fn(*mut api::AEffect, *mut *mut f64, *mut *mut f64, i32) {interfaces::process_replacing_f64}` is now zero-sized and has to be cast to a pointer before transmuting to `usize`, #[deny(transmute_from_fn_item_types)] on by default
+kablam!    --> src/lib.rs:363:25
+kablam!     |
+kablam! 363 |                         mem::transmute::<_, usize>($b)
+kablam!     |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! ...
+kablam! 386 |         assert_fn_eq!(aeffect.processReplacingF64, interfaces::process_replacing_f64);
+kablam!     |         ------------------------------------------------------------------------------ in this macro invocation
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #19925 <https://github.com/rust-lang/rust/issues/19925>
+kablam! 
+kablam! error: aborting due to 6 previous errors
+kablam! 
+kablam! error: Could not compile `vst2`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 6e1535afe811b23a30fe37b235f9b82b2aadff40f86da46667628e36db2b6b55`
+blam! 6e1535afe811b23a30fe37b235f9b82b2aadff40f86da46667628e36db2b6b55

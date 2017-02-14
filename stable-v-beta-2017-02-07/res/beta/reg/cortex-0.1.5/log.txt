@@ -1,0 +1,23 @@
+boom! testing cortex-0.1.5 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! ecbdec6af4377f2191fc6ea589424b67e5a10a7dfa880d4709004025e1e37c5f
+boom! running `docker start -a ecbdec6af4377f2191fc6ea589424b67e5a10a7dfa880d4709004025e1e37c5f`
+kablam!    Compiling cortex v0.1.5 (file:///source)
+kablam! error[E0277]: the trait bound `Self: std::marker::Sized` is not satisfied
+kablam!   --> src/cortex/mod.rs:24:2
+kablam!    |
+kablam! 24 | 	fn register(&mut self, cortex: Box<Cortex<T, Self>>) { }
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::marker::Sized` is not implemented for `Self`
+kablam!    |
+kablam!    = help: consider adding a `where Self: std::marker::Sized` bound
+kablam!    = note: required by `cortex::Cortex`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `cortex`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f ecbdec6af4377f2191fc6ea589424b67e5a10a7dfa880d4709004025e1e37c5f`
+blam! ecbdec6af4377f2191fc6ea589424b67e5a10a7dfa880d4709004025e1e37c5f

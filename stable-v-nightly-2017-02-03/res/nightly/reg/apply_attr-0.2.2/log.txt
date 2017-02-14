@@ -1,0 +1,74 @@
+boom! testing apply_attr-0.2.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! d4f7b5250e8173483050989bde0c137f7bd3ffe9f22f7501c29930904873006c
+boom! running `docker start -a d4f7b5250e8173483050989bde0c137f7bd3ffe9f22f7501c29930904873006c`
+kablam!    Compiling apply_attr v0.2.2 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::parse::token::intern`
+kablam!   --> src/lib.rs:18:5
+kablam!    |
+kablam! 18 | use syntax::parse::token::intern;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `intern` in `parse::token`
+kablam! 
+kablam! error[E0532]: expected tuple struct/variant, found unit variant `ast::MetaItemKind::Word`
+kablam!   --> src/lib.rs:71:13
+kablam!    |
+kablam! 71 |             ast::MetaItemKind::Word(ref name) => {
+kablam!    |             ^^^^^^^^^^^^^^^^^^^^^^^ not a tuple struct/variant
+kablam! 
+kablam! error[E0412]: cannot find type `Attribute_` in module `syntax::ast`
+kablam!   --> src/lib.rs:94:43
+kablam!    |
+kablam! 94 | type Attribute = syntax::codemap::Spanned<syntax::ast::Attribute_>;
+kablam!    |                                           ^^^^^^^^^^^^^^^^^^^^^^^ did you mean `syntax::ast::Attribute`?
+kablam! 
+kablam! error[E0532]: expected tuple struct/variant, found unit variant `ast::MetaItemKind::Word`
+kablam!    --> src/lib.rs:233:13
+kablam!     |
+kablam! 233 |             ast::MetaItemKind::Word(ref name) => map_selector_to_mask(&**name),
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^^^^ not a tuple struct/variant
+kablam! 
+kablam! error[E0023]: this pattern has 2 fields, but the corresponding tuple variant has 1 field
+kablam!   --> src/lib.rs:57:13
+kablam!    |
+kablam! 57 |             ast::MetaItemKind::List(ref name, ref sub_selectors) => {
+kablam!    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 1 field, found 2
+kablam! 
+kablam! error[E0023]: this pattern has 2 fields, but the corresponding tuple variant has 1 field
+kablam!   --> src/lib.rs:84:13
+kablam!    |
+kablam! 84 |             ast::MetaItemKind::NameValue(ref name, ref _value) => {
+kablam!    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 1 field, found 2
+kablam! 
+kablam! error[E0023]: this pattern has 2 fields, but the corresponding tuple variant has 1 field
+kablam!    --> src/lib.rs:241:16
+kablam!     |
+kablam! 241 |         if let ast::MetaItemKind::List(ref name, ref vec) = (*selector).node {
+kablam!     |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 1 field, found 2
+kablam! 
+kablam! error[E0023]: this pattern has 2 fields, but the corresponding tuple variant has 1 field
+kablam!    --> src/lib.rs:253:12
+kablam!     |
+kablam! 253 |     if let ast::MetaItemKind::List(_, ref vec) = meta.node {
+kablam!     |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 1 field, found 2
+kablam! 
+kablam! error[E0023]: this pattern has 2 fields, but the corresponding tuple variant has 1 field
+kablam!    --> src/lib.rs:280:12
+kablam!     |
+kablam! 280 |     if let ast::MetaItemKind::List(ref name, ref selectors) = meta.node {
+kablam!     |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 1 field, found 2
+kablam! 
+kablam! error[E0023]: this pattern has 2 fields, but the corresponding tuple variant has 1 field
+kablam!    --> src/lib.rs:295:12
+kablam!     |
+kablam! 295 |     if let ast::MetaItemKind::List(ref name, ref vec) = meta.node {
+kablam!     |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 1 field, found 2
+kablam! 
+kablam! error: aborting due to 6 previous errors
+kablam! 
+kablam! error: Could not compile `apply_attr`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f d4f7b5250e8173483050989bde0c137f7bd3ffe9f22f7501c29930904873006c`
+blam! d4f7b5250e8173483050989bde0c137f7bd3ffe9f22f7501c29930904873006c

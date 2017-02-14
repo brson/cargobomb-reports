@@ -1,0 +1,162 @@
+boom! testing intrusive-0.0.4 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 3366b77c76df4063230e2ff7ee31d55232bc15a2caf85621987fc4dd00b5bb59
+boom! running `docker start -a 3366b77c76df4063230e2ff7ee31d55232bc15a2caf85621987fc4dd00b5bb59`
+kablam!    Compiling intrusive v0.0.4 (file:///source)
+kablam! error: expected pattern, found `:`
+kablam!   --> src/lib.rs:29:28
+kablam!    |
+kablam! 29 |         self.traverse(|&mut: t: T| { f(t); false })
+kablam!    |                            ^
+kablam! 
+kablam! error: invalid suffix `u` for numeric literal
+kablam!   --> src/impls.rs:15:41
+kablam!    |
+kablam! 15 |                     if f(mem::transmute(1u)) { break }
+kablam!    |                                         ^^
+kablam!    |
+kablam!    = help: the suffix must be one of the integral types (`u32`, `isize`, etc)
+kablam! 
+kablam! error: invalid suffix `u` for numeric literal
+kablam!   --> src/impls.rs:40:41
+kablam!    |
+kablam! 40 |                     if f(mem::transmute(1u)) { break }
+kablam!    |                                         ^^
+kablam!    |
+kablam!    = help: the suffix must be one of the integral types (`u32`, `isize`, etc)
+kablam! 
+kablam! error: expected pattern, found `:`
+kablam!   --> src/impls.rs:57:27
+kablam!    |
+kablam! 57 |         iter.iterate(|&mut: elem| vec.push(elem));
+kablam!    |                           ^
+kablam! 
+kablam! error[E0425]: cannot find value `t` in this scope
+kablam!   --> src/lib.rs:29:30
+kablam!    |
+kablam! 29 |         self.traverse(|&mut: t: T| { f(t); false })
+kablam!    |                              ^ did you mean `f`?
+kablam! 
+kablam! error[E0425]: cannot find value `t` in this scope
+kablam!   --> src/lib.rs:29:40
+kablam!    |
+kablam! 29 |         self.traverse(|&mut: t: T| { f(t); false })
+kablam!    |                                        ^ did you mean `f`?
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!   --> src/ext.rs:10:19
+kablam!    |
+kablam! 10 |     fn skip(self, uint) -> Skip<Self>;
+kablam!    |                   ^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!   --> src/ext.rs:11:19
+kablam!    |
+kablam! 11 |     fn take(self, uint) -> Take<Self>;
+kablam!    |                   ^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!   --> src/ext.rs:37:22
+kablam!    |
+kablam! 37 |     fn skip(self, n: uint) -> Skip<I> {
+kablam!    |                      ^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!   --> src/ext.rs:41:22
+kablam!    |
+kablam! 41 |     fn take(self, n: uint) -> Take<I> {
+kablam!    |                      ^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!    --> src/ext.rs:121:31
+kablam!     |
+kablam! 121 | impl<T, I> IntrusiveIterator<(uint, T)> for Enumerate<I>
+kablam!     |                               ^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!    --> src/ext.rs:123:28
+kablam!     |
+kablam! 123 |     fn traverse<F1: FnMut((uint, T)) -> bool>(self, mut f: F1) {
+kablam!     |                            ^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!    --> src/ext.rs:135:8
+kablam!     |
+kablam! 135 |     n: uint
+kablam!     |        ^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!    --> src/ext.rs:157:8
+kablam!     |
+kablam! 157 |     n: uint
+kablam!     |        ^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `Slice` in module `raw`
+kablam!  --> src/impls.rs:8:51
+kablam!   |
+kablam! 8 |             let slice = mem::transmute::<&'a [T], raw::Slice<T>>(self);
+kablam!   |                                                   ^^^^^^^^^^^^^ not found in `raw`
+kablam! 
+kablam! error[E0425]: cannot find function `range` in this scope
+kablam!   --> src/impls.rs:13:26
+kablam!    |
+kablam! 13 |                 for _ in range(0, slice.len) {
+kablam!    |                          ^^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `int` in this scope
+kablam!   --> src/impls.rs:19:58
+kablam!    |
+kablam! 19 |                 let end = slice.data.offset(slice.len as int);
+kablam!    |                                                          ^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `Slice` in module `raw`
+kablam!   --> src/impls.rs:33:55
+kablam!    |
+kablam! 33 |             let slice = mem::transmute::<&'a mut [T], raw::Slice<T>>(self);
+kablam!    |                                                       ^^^^^^^^^^^^^ not found in `raw`
+kablam! 
+kablam! error[E0425]: cannot find function `range` in this scope
+kablam!   --> src/impls.rs:38:26
+kablam!    |
+kablam! 38 |                 for _ in range(0, slice.len) {
+kablam!    |                          ^^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `int` in this scope
+kablam!   --> src/impls.rs:44:58
+kablam!    |
+kablam! 44 |                 let end = slice.data.offset(slice.len as int);
+kablam!    |                                                          ^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `elem` in this scope
+kablam!   --> src/impls.rs:57:29
+kablam!    |
+kablam! 57 |         iter.iterate(|&mut: elem| vec.push(elem));
+kablam!    |                             ^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `elem` in this scope
+kablam!   --> src/impls.rs:57:44
+kablam!    |
+kablam! 57 |         iter.iterate(|&mut: elem| vec.push(elem));
+kablam!    |                                            ^^^^ not found in this scope
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> src/lib.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(unboxed_closures, globs, phase)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: type ascription is experimental (see issue #23416)
+kablam!   --> src/lib.rs:29:30
+kablam!    |
+kablam! 29 |         self.traverse(|&mut: t: T| { f(t); false })
+kablam!    |                              ^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `intrusive`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 3366b77c76df4063230e2ff7ee31d55232bc15a2caf85621987fc4dd00b5bb59`
+blam! 3366b77c76df4063230e2ff7ee31d55232bc15a2caf85621987fc4dd00b5bb59

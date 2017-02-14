@@ -1,0 +1,86 @@
+boom! testing schedule_recv-0.0.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 30aa7f2a450e8c5a082eca7b80262d383fb98e1e16186f210345949fe2575c27
+boom! running `docker start -a 30aa7f2a450e8c5a082eca7b80262d383fb98e1e16186f210345949fe2575c27`
+kablam!    Compiling schedule_recv v0.0.1 (file:///source)
+kablam! warning: use of deprecated item: replaced by `std::sync::Condvar::wait_timeout`, #[warn(deprecated)] on by default
+kablam!    --> src/scheduler.rs:127:30
+kablam!     |
+kablam! 127 |             g = self.trigger.wait_timeout_ms(g, wait_millis).unwrap().0;
+kablam!     |                              ^^^^^^^^^^^^^^^
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 2.71 secs
+boom! running `docker rm -f 30aa7f2a450e8c5a082eca7b80262d383fb98e1e16186f210345949fe2575c27`
+blam! 30aa7f2a450e8c5a082eca7b80262d383fb98e1e16186f210345949fe2575c27
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 84fae59b08e6140fb735201cf33c226606ac8a578eb1f0617c4eaef858449e5a
+boom! running `docker start -a 84fae59b08e6140fb735201cf33c226606ac8a578eb1f0617c4eaef858449e5a`
+kablam!    Compiling schedule_recv v0.0.1 (file:///source)
+kablam! warning: unnecessary parentheses around `for` head expression, #[warn(unused_parens)] on by default
+kablam!   --> src/test.rs:72:14
+kablam!    |
+kablam! 72 |     for i in (1..10) {
+kablam!    |              ^^^^^^^
+kablam! 
+kablam! warning: use of deprecated item: replaced by `std::sync::Condvar::wait_timeout`, #[warn(deprecated)] on by default
+kablam!    --> src/scheduler.rs:127:30
+kablam!     |
+kablam! 127 |             g = self.trigger.wait_timeout_ms(g, wait_millis).unwrap().0;
+kablam!     |                              ^^^^^^^^^^^^^^^
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 3.59 secs
+boom! running `docker rm -f 84fae59b08e6140fb735201cf33c226606ac8a578eb1f0617c4eaef858449e5a`
+blam! 84fae59b08e6140fb735201cf33c226606ac8a578eb1f0617c4eaef858449e5a
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 338e8057d33552068a20f6a8ac0ce921869b2efb95956d302d3d53fc68cf807f
+boom! running `docker start -a 338e8057d33552068a20f6a8ac0ce921869b2efb95956d302d3d53fc68cf807f`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/schedule_recv-739497b5ed3c68bf
+blam! 
+blam! running 4 tests
+blam! test test::simple_wait ... ok
+blam! test test::simple_periodic ... ok
+blam! test test::several_concurrent_waits_misordered ... ok
+blam! test test::several_concurrent_waits ... ok
+blam! 
+blam! test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!    Doc-tests schedule_recv
+blam! 
+blam! running 2 tests
+blam! warning: function is never used: `sleep_equivalent`, #[warn(dead_code)] on by default
+blam!  --> <anon>:4:1
+blam!   |
+blam! 4 |   fn sleep_equivalent() {
+blam!   |  _^ starting here...
+blam! 5 | | let timer = oneshot_ms(1500);
+blam! 6 | | timer.recv().unwrap();
+blam! 7 | | println!("1.5 seconds have elapsed.");
+blam! 8 | | }
+blam!   | |_^ ...ending here
+blam! 
+blam! test _0 ... ok
+blam! warning: function is never used: `tick_tock`, #[warn(dead_code)] on by default
+blam!   --> <anon>:5:1
+blam!    |
+blam! 5  | fn tick_tock() {
+blam!    | ^
+blam! 
+blam! warning: use of deprecated item: replaced by `std::thread::sleep`, #[warn(deprecated)] on by default
+blam!  --> <anon>:7:1
+blam!   |
+blam! 7 | thread::sleep_ms(1000);
+blam!   | ^^^^^^^^^^^^^^^^
+blam! 
+blam! test _1 ... ok
+blam! 
+blam! test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f 338e8057d33552068a20f6a8ac0ce921869b2efb95956d302d3d53fc68cf807f`
+blam! 338e8057d33552068a20f6a8ac0ce921869b2efb95956d302d3d53fc68cf807f

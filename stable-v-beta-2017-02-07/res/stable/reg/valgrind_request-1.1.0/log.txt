@@ -1,0 +1,20 @@
+boom! testing valgrind_request-1.1.0 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! b74f71870c5a9a128378be09a4bb1569ffc3522cdf382e41cd46e50abee48073
+boom! running `docker start -a b74f71870c5a9a128378be09a4bb1569ffc3522cdf382e41cd46e50abee48073`
+kablam!    Compiling valgrind_request v1.1.0 (file:///source)
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/lib.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(asm)]
+kablam!   | ^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `valgrind_request`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f b74f71870c5a9a128378be09a4bb1569ffc3522cdf382e41cd46e50abee48073`
+blam! b74f71870c5a9a128378be09a4bb1569ffc3522cdf382e41cd46e50abee48073

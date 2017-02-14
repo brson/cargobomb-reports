@@ -1,0 +1,44 @@
+boom! testing cef-sys-0.0.3 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 2c367826f0a3a30bb152ccad27d9c1601a48570d81c7186eaf32e667bca9615b
+boom! running `docker start -a 2c367826f0a3a30bb152ccad27d9c1601a48570d81c7186eaf32e667bca9615b`
+kablam!    Compiling cef-sys v0.0.3 (file:///source)
+kablam! error[E0432]: unresolved import `std::old_io::fs::PathExtensions`
+kablam!  --> build.rs:4:5
+kablam!   |
+kablam! 4 | use std::old_io::fs::PathExtensions;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `old_io` in `std`
+kablam! 
+kablam! error[E0425]: cannot find function `getenv` in module `os`
+kablam!   --> build.rs:13:11
+kablam!    |
+kablam! 13 |     match os::getenv("TARGET").unwrap().split('-').nth(2).unwrap() {
+kablam!    |           ^^^^^^^^^^ not found in `os`
+kablam! 
+kablam! error[E0425]: cannot find function `dll_filename` in module `os`
+kablam!   --> build.rs:29:25
+kablam!    |
+kablam! 29 |     let dll_file_name = os::dll_filename(dll_name);
+kablam!    |                         ^^^^^^^^^^^^^^^^ not found in `os`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> build.rs:30:19
+kablam!    |
+kablam! 30 |     let cef_dir = Path::new(os::getenv("CEF_PATH")
+kablam!    |                   ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error[E0425]: cannot find function `getenv` in module `os`
+kablam!   --> build.rs:30:29
+kablam!    |
+kablam! 30 |     let cef_dir = Path::new(os::getenv("CEF_PATH")
+kablam!    |                             ^^^^^^^^^^ not found in `os`
+kablam! 
+kablam! error: aborting due to 5 previous errors
+kablam! 
+kablam! error: Could not compile `cef-sys`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 2c367826f0a3a30bb152ccad27d9c1601a48570d81c7186eaf32e667bca9615b`
+blam! 2c367826f0a3a30bb152ccad27d9c1601a48570d81c7186eaf32e667bca9615b

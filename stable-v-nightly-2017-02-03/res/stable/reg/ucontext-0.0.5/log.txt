@@ -1,0 +1,36 @@
+boom! testing ucontext-0.0.5 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 21291c17fb16a27121d14f0864b6fc0c8bfd05c4ab85b15626d19e6f272e5707
+boom! running `docker start -a 21291c17fb16a27121d14f0864b6fc0c8bfd05c4ab85b15626d19e6f272e5707`
+kablam!    Compiling ucontext v0.0.5 (file:///source)
+kablam! error: invalid suffix `us` for numeric literal
+kablam!   --> src/lib.rs:44:26
+kablam!    |
+kablam! 44 |     const NGREG: usize = 23us;
+kablam!    |                          ^^^^
+kablam!    |
+kablam!    = help: the suffix must be one of the integral types (`u32`, `isize`, etc)
+kablam! 
+kablam! error: invalid suffix `us` for numeric literal
+kablam!    --> src/lib.rs:152:26
+kablam!     |
+kablam! 152 |     const NGREG: usize = 19us;
+kablam!     |                          ^^^^
+kablam!     |
+kablam!     = help: the suffix must be one of the integral types (`u32`, `isize`, etc)
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/lib.rs:3:1
+kablam!   |
+kablam! 3 | #![feature(asm)]
+kablam!   | ^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `ucontext`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 21291c17fb16a27121d14f0864b6fc0c8bfd05c4ab85b15626d19e6f272e5707`
+blam! 21291c17fb16a27121d14f0864b6fc0c8bfd05c4ab85b15626d19e6f272e5707

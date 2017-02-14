@@ -1,0 +1,117 @@
+boom! testing smoltcp-0.2.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! c48ee3e53abd5b11ff7b3e1709cded2c6ea727194cf25f1ecfa82ff3eb507538
+boom! running `docker start -a c48ee3e53abd5b11ff7b3e1709cded2c6ea727194cf25f1ecfa82ff3eb507538`
+kablam!    Compiling managed v0.2.1
+kablam!    Compiling byteorder v1.0.0
+kablam!    Compiling libc v0.2.20
+kablam!    Compiling smoltcp v0.2.1 (file:///source)
+kablam! error[E0432]: unresolved import `socket::IpRepr`
+kablam!  --> src/socket/udp.rs:6:22
+kablam!   |
+kablam! 6 | use socket::{Socket, IpRepr, IpPayload};
+kablam!   |                      ^^^^^^ no `IpRepr` in `socket`
+kablam! 
+kablam! error[E0432]: unresolved import `socket::IpRepr`
+kablam!  --> src/socket/tcp.rs:7:22
+kablam!   |
+kablam! 7 | use socket::{Socket, IpRepr, IpPayload};
+kablam!   |                      ^^^^^^ no `IpRepr` in `socket`
+kablam! 
+kablam! error[E0412]: type name `ifreq` is undefined or not in scope
+kablam!  --> src/phy/sys/raw_socket.rs:8:12
+kablam!   |
+kablam! 8 |     ifreq: ifreq
+kablam!   |            ^^^^^ undefined or not in scope
+kablam!   |
+kablam!   = help: you can import it into scope: `use phy::sys::ifreq;`.
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `imp`
+kablam!   --> src/phy/sys/raw_socket.rs:15:38
+kablam!    |
+kablam! 15 |                                      imp::ETH_P_ALL.to_be() as i32);
+kablam!    |                                      ^^^^^^^^^^^^^^ Use of undeclared type or module `imp`
+kablam! 
+kablam! error[E0425]: unresolved name `ifreq_for`
+kablam!   --> src/phy/sys/raw_socket.rs:22:20
+kablam!    |
+kablam! 22 |             ifreq: ifreq_for(name)
+kablam!    |                    ^^^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `ifreq_ioctl`
+kablam!   --> src/phy/sys/raw_socket.rs:27:9
+kablam!    |
+kablam! 27 |         ifreq_ioctl(self.lower, &mut self.ifreq, imp::SIOCGIFMTU).map(|mtu| mtu as usize)
+kablam!    |         ^^^^^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `imp`
+kablam!   --> src/phy/sys/raw_socket.rs:27:50
+kablam!    |
+kablam! 27 |         ifreq_ioctl(self.lower, &mut self.ifreq, imp::SIOCGIFMTU).map(|mtu| mtu as usize)
+kablam!    |                                                  ^^^^^^^^^^^^^^^ Use of undeclared type or module `imp`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `imp`
+kablam!   --> src/phy/sys/raw_socket.rs:33:27
+kablam!    |
+kablam! 33 |             sll_protocol: imp::ETH_P_ALL.to_be() as u16,
+kablam!    |                           ^^^^^^^^^^^^^^ Use of undeclared type or module `imp`
+kablam! 
+kablam! error[E0425]: unresolved name `ifreq_ioctl`
+kablam!   --> src/phy/sys/raw_socket.rs:34:32
+kablam!    |
+kablam! 34 |             sll_ifindex:  try!(ifreq_ioctl(self.lower, &mut self.ifreq, imp::SIOCGIFINDEX)),
+kablam!    |                                ^^^^^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `imp`
+kablam!   --> src/phy/sys/raw_socket.rs:34:73
+kablam!    |
+kablam! 34 |             sll_ifindex:  try!(ifreq_ioctl(self.lower, &mut self.ifreq, imp::SIOCGIFINDEX)),
+kablam!    |                                                                         ^^^^^^^^^^^^^^^^^ Use of undeclared type or module `imp`
+kablam! 
+kablam! error[E0412]: type name `ifreq` is undefined or not in scope
+kablam!  --> src/phy/sys/tap_interface.rs:9:12
+kablam!   |
+kablam! 9 |     ifreq: ifreq
+kablam!   |            ^^^^^ undefined or not in scope
+kablam!   |
+kablam!   = help: you can import it into scope: `use phy::sys::ifreq;`.
+kablam! 
+kablam! error[E0425]: unresolved name `ifreq_for`
+kablam!   --> src/phy/sys/tap_interface.rs:23:20
+kablam!    |
+kablam! 23 |             ifreq: ifreq_for(name)
+kablam!    |                    ^^^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `imp`
+kablam!   --> src/phy/sys/tap_interface.rs:28:31
+kablam!    |
+kablam! 28 |         self.ifreq.ifr_data = imp::IFF_TAP | imp::IFF_NO_PI;
+kablam!    |                               ^^^^^^^^^^^^ Use of undeclared type or module `imp`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `imp`
+kablam!   --> src/phy/sys/tap_interface.rs:28:46
+kablam!    |
+kablam! 28 |         self.ifreq.ifr_data = imp::IFF_TAP | imp::IFF_NO_PI;
+kablam!    |                                              ^^^^^^^^^^^^^^ Use of undeclared type or module `imp`
+kablam! 
+kablam! error[E0425]: unresolved name `ifreq_ioctl`
+kablam!   --> src/phy/sys/tap_interface.rs:29:9
+kablam!    |
+kablam! 29 |         ifreq_ioctl(self.lower, &mut self.ifreq, imp::TUNSETIFF).map(|_| ())
+kablam!    |         ^^^^^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `imp`
+kablam!   --> src/phy/sys/tap_interface.rs:29:50
+kablam!    |
+kablam! 29 |         ifreq_ioctl(self.lower, &mut self.ifreq, imp::TUNSETIFF).map(|_| ())
+kablam!    |                                                  ^^^^^^^^^^^^^^ Use of undeclared type or module `imp`
+kablam! 
+kablam! error: aborting due to 16 previous errors
+kablam! 
+kablam! error: Could not compile `smoltcp`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f c48ee3e53abd5b11ff7b3e1709cded2c6ea727194cf25f1ecfa82ff3eb507538`
+blam! c48ee3e53abd5b11ff7b3e1709cded2c6ea727194cf25f1ecfa82ff3eb507538

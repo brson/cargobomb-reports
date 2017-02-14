@@ -1,0 +1,89 @@
+boom! testing cc-0.0.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 9a30101a3814ee719007ecbb41c2367f7609e8d0c2ff27e5ca98edc0ec59782a
+boom! running `docker start -a 9a30101a3814ee719007ecbb41c2367f7609e8d0c2ff27e5ca98edc0ec59782a`
+kablam!    Compiling cc v0.0.1 (file:///source)
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!   --> src/lib.rs:26:32
+kablam!    |
+kablam! 26 |     fn get_id(&self) -> Option<uint>;
+kablam!    |                                ^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!   --> src/lib.rs:38:32
+kablam!    |
+kablam! 38 |     fn get_id(&self) -> Option<uint> { Some(&*self as *const _ as uint) }
+kablam!    |                                ^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!   --> src/lib.rs:38:67
+kablam!    |
+kablam! 38 |     fn get_id(&self) -> Option<uint> { Some(&*self as *const _ as uint) }
+kablam!    |                                                                   ^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!   --> src/lib.rs:44:32
+kablam!    |
+kablam! 44 |     fn get_id(&self) -> Option<uint> { (**self).get_id() }
+kablam!    |                                ^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!   --> src/lib.rs:50:32
+kablam!    |
+kablam! 50 |     fn get_id(&self) -> Option<uint> { (**self).get_id() }
+kablam!    |                                ^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!   --> src/lib.rs:56:32
+kablam!    |
+kablam! 56 |     fn get_id(&self) -> Option<uint> { (**self).get_id() }
+kablam!    |                                ^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!   --> src/lib.rs:62:32
+kablam!    |
+kablam! 62 |     fn get_id(&self) -> Option<uint> { (**self).get_id() }
+kablam!    |                                ^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!   --> src/lib.rs:68:32
+kablam!    |
+kablam! 68 |     fn get_id(&self) -> Option<uint> { self.as_ref().and_then(|r| r.get_id()) }
+kablam!    |                                ^^^^ not found in this scope
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/lib.rs:35:49
+kablam!    |
+kablam! 35 |         self.try_borrow().as_ref().and_then(|r| r.get_references())
+kablam!    |                                                 ^^^^^^^^^^^^^^^^^^ expected enum `std::result::Result`, found enum `std::option::Option`
+kablam!    |
+kablam!    = note: expected type `std::result::Result<_, &std::cell::BorrowError>`
+kablam!               found type `std::option::Option<std::vec::Vec<Box<CyclicReference + 'static>>>`
+kablam!    = help: here are some functions which might fulfill your needs:
+kablam!            - .unwrap()
+kablam!            - .unwrap_or_default()
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/lib.rs:35:9
+kablam!    |
+kablam! 35 |         self.try_borrow().as_ref().and_then(|r| r.get_references())
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `std::option::Option`, found enum `std::result::Result`
+kablam!    |
+kablam!    = note: expected type `std::option::Option<std::vec::Vec<Box<CyclicReference + 'static>>>`
+kablam!               found type `std::result::Result<_, &std::cell::BorrowError>`
+kablam!    = help: here are some functions which might fulfill your needs:
+kablam!            - .err()
+kablam!            - .ok()
+kablam!            - .unwrap()
+kablam!            - .unwrap_err()
+kablam!            - .unwrap_or_default()
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `cc`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 9a30101a3814ee719007ecbb41c2367f7609e8d0c2ff27e5ca98edc0ec59782a`
+blam! 9a30101a3814ee719007ecbb41c2367f7609e8d0c2ff27e5ca98edc0ec59782a

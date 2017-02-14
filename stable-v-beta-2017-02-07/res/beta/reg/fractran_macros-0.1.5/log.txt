@@ -1,0 +1,128 @@
+boom! testing fractran_macros-0.1.5 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! cdc17c8ed187c95d84b249ba7088da186e9c9ffa76d17e2a1a41ada6afe8551c
+boom! running `docker start -a cdc17c8ed187c95d84b249ba7088da186e9c9ffa76d17e2a1a41ada6afe8551c`
+kablam!    Compiling slow_primes v0.1.14
+kablam!    Compiling fractran_macros v0.1.5 (file:///source)
+kablam! error[E0432]: unresolved import `rustc::plugin::Registry`
+kablam!   --> src/lib.rs:15:5
+kablam!    |
+kablam! 15 | use rustc::plugin::Registry;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `plugin` in `rustc`
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!   --> src/lib.rs:26:57
+kablam!    |
+kablam! 26 | fn fractran(cx: &mut ExtCtxt, sp: codemap::Span, tts: &[ast::TokenTree]) -> Box<MacResult+'static> {
+kablam!    |                                                         ^^^^^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `ExprLit` in module `ast`
+kablam!   --> src/lib.rs:84:9
+kablam!    |
+kablam! 84 |         ast::ExprLit(ref lit) => {
+kablam!    |         ^^^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use rustc::hir::ExprLit;`
+kablam!              `use rustc::hir::Expr_::ExprLit;`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `LitInt` in module `ast`
+kablam!   --> src/lib.rs:86:17
+kablam!    |
+kablam! 86 |                 ast::LitInt(x, _) => Some(Fract { numer: vec![x as usize], denom: vec![1] }),
+kablam!    |                 ^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `ExprBinary` in module `ast`
+kablam!   --> src/lib.rs:93:9
+kablam!    |
+kablam! 93 |         ast::ExprBinary(op, ref l, ref r) => match op.node {
+kablam!    |         ^^^^^^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use rustc::hir::ExprBinary;`
+kablam!              `use rustc::hir::Expr_::ExprBinary;`
+kablam! 
+kablam! error[E0531]: cannot find unit struct/variant or constant `BiAdd` in module `ast`
+kablam!   --> src/lib.rs:94:13
+kablam!    |
+kablam! 94 |             ast::BiAdd => {
+kablam!    |             ^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use rustc::hir::BiAdd;`
+kablam!              `use rustc::hir::BinOp_::BiAdd;`
+kablam! 
+kablam! error[E0531]: cannot find unit struct/variant or constant `BiMul` in module `ast`
+kablam!    --> src/lib.rs:107:13
+kablam!     |
+kablam! 107 |             ast::BiMul => {
+kablam!     |             ^^^^^^^^^^ not found in `ast`
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use rustc::hir::BiMul;`
+kablam!               `use rustc::hir::BinOp_::BiMul;`
+kablam! 
+kablam! error[E0531]: cannot find unit struct/variant or constant `BiDiv` in module `ast`
+kablam!    --> src/lib.rs:119:13
+kablam!     |
+kablam! 119 |             ast::BiDiv => {
+kablam!     |             ^^^^^^^^^^ not found in `ast`
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use rustc::hir::BiDiv;`
+kablam!               `use rustc::hir::BinOp_::BiDiv;`
+kablam! 
+kablam! error[E0531]: cannot find unit struct/variant or constant `BiBitXor` in module `ast`
+kablam!    --> src/lib.rs:132:13
+kablam!     |
+kablam! 132 |             ast::BiBitXor => {
+kablam!     |             ^^^^^^^^^^^^^ not found in `ast`
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use rustc::hir::BiBitXor;`
+kablam!               `use rustc::hir::BinOp_::BiBitXor;`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `ExprParen` in module `ast`
+kablam!    --> src/lib.rs:158:9
+kablam!     |
+kablam! 158 |         ast::ExprParen(ref e) => extract_expr(cx, &**e),
+kablam!     |         ^^^^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0425]: cannot find function `ExprIf` in module `ast`
+kablam!    --> src/lib.rs:186:30
+kablam!     |
+kablam! 186 |         states = cx.expr(sp, ast::ExprIf(cond, exec, Some(states)));
+kablam!     |                              ^^^^^^^^^^^ not found in `ast`
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use rustc::hir::ExprIf;`
+kablam!               `use rustc::hir::Expr_::ExprIf;`
+kablam! 
+kablam! error[E0425]: cannot find value `BiAnd` in module `ast`
+kablam!    --> src/lib.rs:220:52
+kablam!     |
+kablam! 220 |                 res = self.cx.expr_binary(self.sp, ast::BiAnd,
+kablam!     |                                                    ^^^^^^^^^^ not found in `ast`
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use rustc::hir::BiAnd;`
+kablam!               `use rustc::hir::BinOp_::BiAnd;`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> src/lib.rs:2:1
+kablam!   |
+kablam! 2 | #![feature(quote, plugin_registrar, rustc_private, core)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `fractran_macros`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f cdc17c8ed187c95d84b249ba7088da186e9c9ffa76d17e2a1a41ada6afe8551c`
+blam! cdc17c8ed187c95d84b249ba7088da186e9c9ffa76d17e2a1a41ada6afe8551c

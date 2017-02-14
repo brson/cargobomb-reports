@@ -1,0 +1,35 @@
+boom! testing webplatform-0.4.2 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! d77e21ba3b0c28dbe373ee29d1bd0f5f2686a19c4f84344c5892d2bd86d979c7
+boom! running `docker start -a d77e21ba3b0c28dbe373ee29d1bd0f5f2686a19c4f84344c5892d2bd86d979c7`
+kablam!    Compiling webplatform v0.4.2 (file:///source)
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/webplatform_test.0.o" "-o" "/target/debug/webplatform_test" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libwebplatform.rlib" "/target/debug/deps/liblibc-29ef97a68464c2b7.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-f5a209a9.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-f5a209a9.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-f5a209a9.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-f5a209a9.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-f5a209a9.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librustc_unicode-f5a209a9.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-f5a209a9.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-f5a209a9.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-f5a209a9.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-f5a209a9.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-f5a209a9.rlib" "-l" "util" "-l" "dl" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /target/debug/webplatform_test.0.o: In function `webplatform::{{impl}}::on<closure>':
+kablam! /source/src/lib.rs:53: undefined reference to `emscripten_asm_const_int'
+kablam! /target/debug/deps/libwebplatform.rlib(webplatform.0.o): In function `webplatform::{{impl}}::prop_set_str':
+kablam! /source/src/lib.rs:259: undefined reference to `emscripten_asm_const_int'
+kablam! /target/debug/deps/libwebplatform.rlib(webplatform.0.o): In function `webplatform::{{impl}}::prop_get_i32':
+kablam! /source/src/lib.rs:265: undefined reference to `emscripten_asm_const_int'
+kablam! /target/debug/deps/libwebplatform.rlib(webplatform.0.o): In function `webplatform::{{impl}}::prop_get_str':
+kablam! /source/src/lib.rs:271: undefined reference to `emscripten_asm_const_int'
+kablam! /target/debug/deps/libwebplatform.rlib(webplatform.0.o): In function `webplatform::{{impl}}::append':
+kablam! /source/src/lib.rs:280: undefined reference to `emscripten_asm_const_int'
+kablam! /target/debug/deps/libwebplatform.rlib(webplatform.0.o):/source/src/lib.rs:286: more undefined references to `emscripten_asm_const_int' follow
+kablam! /target/debug/deps/libwebplatform.rlib(webplatform.0.o): In function `webplatform::leavemebe':
+kablam! /source/src/lib.rs:508: undefined reference to `emscripten_pause_main_loop'
+kablam! /target/debug/deps/libwebplatform.rlib(webplatform.0.o): In function `webplatform::spin':
+kablam! /source/src/lib.rs:514: undefined reference to `emscripten_set_main_loop'
+kablam! collect2: error: ld returned 1 exit status
+kablam! 
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `webplatform`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f d77e21ba3b0c28dbe373ee29d1bd0f5f2686a19c4f84344c5892d2bd86d979c7`
+blam! d77e21ba3b0c28dbe373ee29d1bd0f5f2686a19c4f84344c5892d2bd86d979c7

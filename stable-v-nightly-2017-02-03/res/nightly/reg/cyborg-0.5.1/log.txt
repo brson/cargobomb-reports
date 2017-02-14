@@ -1,0 +1,94 @@
+boom! testing cyborg-0.5.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! c6c15bf6f27c7f5f25021ea3bdc0d70ec3427aeee8cc355c6b32a9ddcb9a831c
+boom! running `docker start -a c6c15bf6f27c7f5f25021ea3bdc0d70ec3427aeee8cc355c6b32a9ddcb9a831c`
+kablam!    Compiling log v0.2.5
+kablam!    Compiling psutil v0.5.0
+kablam!    Compiling docopt_macros v0.6.88
+kablam! error[E0425]: cannot find function `at_exit` in module `rt`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/log-0.2.5/src/lib.rs:535:5
+kablam!     |
+kablam! 535 |     rt::at_exit(|| {
+kablam!     |     ^^^^^^^^^^^ not found in `rt`
+kablam! 
+kablam! error: use of unstable library feature 'rt': this public module should not exist and is highly likely to disappear (see issue #0)
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/log-0.2.5/src/lib.rs:153:5
+kablam!     |
+kablam! 153 | use std::rt;
+kablam!     |     ^^^^^^^
+kablam!     |
+kablam!     = help: add #![feature(rt)] to the crate attributes to enable
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error[E0432]: unresolved import `std::env::page_size`
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/psutil-0.5.0/src/process.rs:3:5
+kablam!   |
+kablam! 3 | use std::env::page_size;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^ no `page_size` in `env`
+kablam! 
+kablam! error[E0432]: unresolved import `std::str::StrExt`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/psutil-0.5.0/src/process.rs:10:5
+kablam!    |
+kablam! 10 | use std::str::StrExt;
+kablam!    |     ^^^^^^^^^^^^^^^^ no `StrExt` in `str`
+kablam! 
+kablam! error[E0432]: unresolved import `std::str::StrExt`
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/psutil-0.5.0/src/system.rs:4:5
+kablam!   |
+kablam! 4 | use std::str::StrExt;
+kablam!   |     ^^^^^^^^^^^^^^^^ no `StrExt` in `str`
+kablam! 
+kablam! error: use of unstable library feature 'slice_concat_ext': trait should not have to exist (see issue #27747)
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/psutil-0.5.0/src/process.rs:8:5
+kablam!   |
+kablam! 8 | use std::slice::SliceConcatExt;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = help: add #![feature(slice_concat_ext)] to the crate attributes to enable
+kablam! 
+kablam! error[E0277]: the trait bound `process::Memory: std::clone::Clone` is not satisfied
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/psutil-0.5.0/src/process.rs:29:10
+kablam!    |
+kablam! 29 | #[derive(Copy,Debug)]
+kablam!    |          ^^^^ the trait `std::clone::Clone` is not implemented for `process::Memory`
+kablam!    |
+kablam!    = note: required by `std::marker::Copy`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/docopt_macros-0.6.88/src/macro.rs:316:16
+kablam!     |
+kablam! 316 |         types: P::from_vec(vec![cx.ty_ident(sp, ident("String"))]),
+kablam!     |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `std::vec::Vec`, found struct `syntax::ptr::P`
+kablam!     |
+kablam!     = note: expected type `std::vec::Vec<syntax::ptr::P<syntax::ast::Ty>>`
+kablam!                found type `syntax::ptr::P<[syntax::ptr::P<syntax::ast::Ty>]>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .into_vec()
+kablam!             - .to_vec()
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/docopt_macros-0.6.88/src/macro.rs:317:19
+kablam!     |
+kablam! 317 |         bindings: P::new(),
+kablam!     |                   ^^^^^^^^ expected struct `std::vec::Vec`, found struct `syntax::ptr::P`
+kablam!     |
+kablam!     = note: expected type `std::vec::Vec<syntax::ast::TypeBinding>`
+kablam!                found type `syntax::ptr::P<[_]>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .into_vec()
+kablam!             - .to_vec()
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `log`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f c6c15bf6f27c7f5f25021ea3bdc0d70ec3427aeee8cc355c6b32a9ddcb9a831c`
+blam! c6c15bf6f27c7f5f25021ea3bdc0d70ec3427aeee8cc355c6b32a9ddcb9a831c

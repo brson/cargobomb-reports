@@ -1,0 +1,217 @@
+boom! testing twoway-0.1.3 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 03cd77c85960412edf04ae176c2290775a8ba1a18160e309e5f2887a0784d36f
+boom! running `docker start -a 03cd77c85960412edf04ae176c2290775a8ba1a18160e309e5f2887a0784d36f`
+kablam!    Compiling twoway v0.1.3 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 2.27 secs
+boom! running `docker rm -f 03cd77c85960412edf04ae176c2290775a8ba1a18160e309e5f2887a0784d36f`
+blam! 03cd77c85960412edf04ae176c2290775a8ba1a18160e309e5f2887a0784d36f
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 77abe25a39ca1b32224c989b541da9289c2a280fb566226c3f4069b52fddff0e
+boom! running `docker start -a 77abe25a39ca1b32224c989b541da9289c2a280fb566226c3f4069b52fddff0e`
+kablam!    Compiling twoway v0.1.3 (file:///source)
+kablam! error: no method named `is_contained_in` found for type `twoway::Str<'_>` in the current scope
+kablam!    --> tests/quick.rs:124:12
+kablam!     |
+kablam! 124 |     Str(n).is_contained_in(hay)
+kablam!     |            ^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: the method `is_contained_in` exists but the following trait bounds were not satisfied: `twoway::Str<'_> : std::ops::FnMut<(char,)>`, `&twoway::Str<'_> : std::ops::FnMut<(char,)>`, `&mut twoway::Str<'_> : std::ops::FnMut<(char,)>`
+kablam! 
+kablam! error: no method named `into_searcher` found for type `twoway::Str<'_>` in the current scope
+kablam!    --> tests/quick.rs:128:12
+kablam!     |
+kablam! 128 |     Str(n).into_searcher(hay).next_match().map(|(a, _)| a)
+kablam!     |            ^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: the method `into_searcher` exists but the following trait bounds were not satisfied: `twoway::Str<'_> : std::ops::FnMut<(char,)>`, `&twoway::Str<'_> : std::ops::FnMut<(char,)>`, `&mut twoway::Str<'_> : std::ops::FnMut<(char,)>`
+kablam! 
+kablam! error: no method named `next_back` found for type `twoway::StrSearcher<'_, '_>` in the current scope
+kablam!    --> tests/quick.rs:134:19
+kablam!     |
+kablam! 134 |         match tws.next_back() {
+kablam!     |                   ^^^^^^^^^
+kablam! 
+kablam! error: no method named `into_searcher` found for type `twoway::Str<'_>` in the current scope
+kablam!    --> tests/quick.rs:143:12
+kablam!     |
+kablam! 143 |     Str(n).into_searcher(hay).next_match_back().map(|(a, _)| a)
+kablam!     |            ^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: the method `into_searcher` exists but the following trait bounds were not satisfied: `twoway::Str<'_> : std::ops::FnMut<(char,)>`, `&twoway::Str<'_> : std::ops::FnMut<(char,)>`, `&mut twoway::Str<'_> : std::ops::FnMut<(char,)>`
+kablam! 
+kablam! error: no method named `is_prefix_of` found for type `twoway::Str<'_>` in the current scope
+kablam!    --> tests/quick.rs:223:38
+kablam!     |
+kablam! 223 |         TestResult::from_bool(Str(b).is_prefix_of(a) == truth)
+kablam!     |                                      ^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: the method `is_prefix_of` exists but the following trait bounds were not satisfied: `twoway::Str<'_> : std::ops::FnMut<(char,)>`, `&twoway::Str<'_> : std::ops::FnMut<(char,)>`, `&mut twoway::Str<'_> : std::ops::FnMut<(char,)>`
+kablam! 
+kablam! error: no method named `is_suffix_of` found for type `twoway::Str<'_>` in the current scope
+kablam!    --> tests/quick.rs:234:38
+kablam!     |
+kablam! 234 |         TestResult::from_bool(Str(b).is_suffix_of(a) == truth)
+kablam!     |                                      ^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: the method `is_suffix_of` exists but the following trait bounds were not satisfied: `twoway::Str<'_> : std::ops::FnMut<(char,)>`, `&twoway::Str<'_> : std::ops::FnMut<(char,)>`, `&mut twoway::Str<'_> : std::ops::FnMut<(char,)>`
+kablam! 
+kablam! error: no method named `into_searcher` found for type `twoway::Str<'_>` in the current scope
+kablam!    --> tests/quick.rs:245:38
+kablam!     |
+kablam! 245 |         TestResult::from_bool(Str(b).into_searcher(a).next_reject().map(|(a, _)| a) == truth)
+kablam!     |                                      ^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: the method `into_searcher` exists but the following trait bounds were not satisfied: `twoway::Str<'_> : std::ops::FnMut<(char,)>`, `&twoway::Str<'_> : std::ops::FnMut<(char,)>`, `&mut twoway::Str<'_> : std::ops::FnMut<(char,)>`
+kablam! 
+kablam! error: no method named `into_searcher` found for type `twoway::Str<'_>` in the current scope
+kablam!    --> tests/quick.rs:256:38
+kablam!     |
+kablam! 256 |         TestResult::from_bool(Str(b).into_searcher(a).next_reject_back().map(|(_, b)| b) == truth)
+kablam!     |                                      ^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: the method `into_searcher` exists but the following trait bounds were not satisfied: `twoway::Str<'_> : std::ops::FnMut<(char,)>`, `&twoway::Str<'_> : std::ops::FnMut<(char,)>`, `&mut twoway::Str<'_> : std::ops::FnMut<(char,)>`
+kablam! 
+kablam! error: no method named `next` found for type `&mut twoway::StrSearcher<'_, '_>` in the current scope
+kablam!    --> tests/quick.rs:294:23
+kablam!     |
+kablam! 294 |             match tws.next() {
+kablam!     |                       ^^^^
+kablam!     |
+kablam!     = note: the method `next` exists but the following trait bounds were not satisfied: `twoway::StrSearcher<'_, '_> : std::iter::Iterator`
+kablam! 
+kablam! error: no method named `next_back` found for type `&mut twoway::StrSearcher<'_, '_>` in the current scope
+kablam!    --> tests/quick.rs:326:23
+kablam!     |
+kablam! 326 |             match tws.next_back() {
+kablam!     |                       ^^^^^^^^^
+kablam!     |
+kablam!     = note: the method `next_back` exists but the following trait bounds were not satisfied: `twoway::StrSearcher<'_, '_> : std::iter::DoubleEndedIterator`
+kablam! 
+kablam! error: no method named `next` found for type `twoway::StrSearcher<'_, '_>` in the current scope
+kablam!    --> tests/quick.rs:365:23
+kablam!     |
+kablam! 365 |             match tws.next() {
+kablam!     |                       ^^^^
+kablam! 
+kablam! error: no method named `next_back` found for type `twoway::StrSearcher<'_, '_>` in the current scope
+kablam!    --> tests/quick.rs:399:23
+kablam!     |
+kablam! 399 |             match tws.next_back() {
+kablam!     |                       ^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 12 previous errors
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `twoway`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 77abe25a39ca1b32224c989b541da9289c2a280fb566226c3f4069b52fddff0e`
+blam! 77abe25a39ca1b32224c989b541da9289c2a280fb566226c3f4069b52fddff0e
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 0f79868956ad8224f0c209ae58b7315666b4359f81f5af6aeaf72160f8193758
+boom! running `docker start -a 0f79868956ad8224f0c209ae58b7315666b4359f81f5af6aeaf72160f8193758`
+kablam!    Compiling twoway v0.1.3 (file:///source)
+kablam! error: no method named `is_contained_in` found for type `twoway::Str<'_>` in the current scope
+kablam!    --> tests/quick.rs:124:12
+kablam!     |
+kablam! 124 |     Str(n).is_contained_in(hay)
+kablam!     |            ^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: the method `is_contained_in` exists but the following trait bounds were not satisfied: `twoway::Str<'_> : std::ops::FnMut<(char,)>`, `&twoway::Str<'_> : std::ops::FnMut<(char,)>`, `&mut twoway::Str<'_> : std::ops::FnMut<(char,)>`
+kablam! 
+kablam! error: no method named `into_searcher` found for type `twoway::Str<'_>` in the current scope
+kablam!    --> tests/quick.rs:128:12
+kablam!     |
+kablam! 128 |     Str(n).into_searcher(hay).next_match().map(|(a, _)| a)
+kablam!     |            ^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: the method `into_searcher` exists but the following trait bounds were not satisfied: `twoway::Str<'_> : std::ops::FnMut<(char,)>`, `&twoway::Str<'_> : std::ops::FnMut<(char,)>`, `&mut twoway::Str<'_> : std::ops::FnMut<(char,)>`
+kablam! 
+kablam! error: no method named `next_back` found for type `twoway::StrSearcher<'_, '_>` in the current scope
+kablam!    --> tests/quick.rs:134:19
+kablam!     |
+kablam! 134 |         match tws.next_back() {
+kablam!     |                   ^^^^^^^^^
+kablam! 
+kablam! error: no method named `into_searcher` found for type `twoway::Str<'_>` in the current scope
+kablam!    --> tests/quick.rs:143:12
+kablam!     |
+kablam! 143 |     Str(n).into_searcher(hay).next_match_back().map(|(a, _)| a)
+kablam!     |            ^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: the method `into_searcher` exists but the following trait bounds were not satisfied: `twoway::Str<'_> : std::ops::FnMut<(char,)>`, `&twoway::Str<'_> : std::ops::FnMut<(char,)>`, `&mut twoway::Str<'_> : std::ops::FnMut<(char,)>`
+kablam! 
+kablam! error: no method named `is_prefix_of` found for type `twoway::Str<'_>` in the current scope
+kablam!    --> tests/quick.rs:223:38
+kablam!     |
+kablam! 223 |         TestResult::from_bool(Str(b).is_prefix_of(a) == truth)
+kablam!     |                                      ^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: the method `is_prefix_of` exists but the following trait bounds were not satisfied: `twoway::Str<'_> : std::ops::FnMut<(char,)>`, `&twoway::Str<'_> : std::ops::FnMut<(char,)>`, `&mut twoway::Str<'_> : std::ops::FnMut<(char,)>`
+kablam! 
+kablam! error: no method named `is_suffix_of` found for type `twoway::Str<'_>` in the current scope
+kablam!    --> tests/quick.rs:234:38
+kablam!     |
+kablam! 234 |         TestResult::from_bool(Str(b).is_suffix_of(a) == truth)
+kablam!     |                                      ^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: the method `is_suffix_of` exists but the following trait bounds were not satisfied: `twoway::Str<'_> : std::ops::FnMut<(char,)>`, `&twoway::Str<'_> : std::ops::FnMut<(char,)>`, `&mut twoway::Str<'_> : std::ops::FnMut<(char,)>`
+kablam! 
+kablam! error: no method named `into_searcher` found for type `twoway::Str<'_>` in the current scope
+kablam!    --> tests/quick.rs:245:38
+kablam!     |
+kablam! 245 |         TestResult::from_bool(Str(b).into_searcher(a).next_reject().map(|(a, _)| a) == truth)
+kablam!     |                                      ^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: the method `into_searcher` exists but the following trait bounds were not satisfied: `twoway::Str<'_> : std::ops::FnMut<(char,)>`, `&twoway::Str<'_> : std::ops::FnMut<(char,)>`, `&mut twoway::Str<'_> : std::ops::FnMut<(char,)>`
+kablam! 
+kablam! error: no method named `into_searcher` found for type `twoway::Str<'_>` in the current scope
+kablam!    --> tests/quick.rs:256:38
+kablam!     |
+kablam! 256 |         TestResult::from_bool(Str(b).into_searcher(a).next_reject_back().map(|(_, b)| b) == truth)
+kablam!     |                                      ^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: the method `into_searcher` exists but the following trait bounds were not satisfied: `twoway::Str<'_> : std::ops::FnMut<(char,)>`, `&twoway::Str<'_> : std::ops::FnMut<(char,)>`, `&mut twoway::Str<'_> : std::ops::FnMut<(char,)>`
+kablam! 
+kablam! error: no method named `next` found for type `&mut twoway::StrSearcher<'_, '_>` in the current scope
+kablam!    --> tests/quick.rs:294:23
+kablam!     |
+kablam! 294 |             match tws.next() {
+kablam!     |                       ^^^^
+kablam!     |
+kablam!     = note: the method `next` exists but the following trait bounds were not satisfied: `twoway::StrSearcher<'_, '_> : std::iter::Iterator`
+kablam! 
+kablam! error: no method named `next_back` found for type `&mut twoway::StrSearcher<'_, '_>` in the current scope
+kablam!    --> tests/quick.rs:326:23
+kablam!     |
+kablam! 326 |             match tws.next_back() {
+kablam!     |                       ^^^^^^^^^
+kablam!     |
+kablam!     = note: the method `next_back` exists but the following trait bounds were not satisfied: `twoway::StrSearcher<'_, '_> : std::iter::DoubleEndedIterator`
+kablam! 
+kablam! error: no method named `next` found for type `twoway::StrSearcher<'_, '_>` in the current scope
+kablam!    --> tests/quick.rs:365:23
+kablam!     |
+kablam! 365 |             match tws.next() {
+kablam!     |                       ^^^^
+kablam! 
+kablam! error: no method named `next_back` found for type `twoway::StrSearcher<'_, '_>` in the current scope
+kablam!    --> tests/quick.rs:399:23
+kablam!     |
+kablam! 399 |             match tws.next_back() {
+kablam!     |                       ^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 12 previous errors
+kablam! 
+kablam! error: Could not compile `twoway`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 0f79868956ad8224f0c209ae58b7315666b4359f81f5af6aeaf72160f8193758`
+blam! 0f79868956ad8224f0c209ae58b7315666b4359f81f5af6aeaf72160f8193758

@@ -1,0 +1,110 @@
+boom! testing socket-0.0.7 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 84f883a271186c675bdb3ca3b08cc62a7c0cdbc3885f7e27ce6269d96da6036c
+boom! running `docker start -a 84f883a271186c675bdb3ca3b08cc62a7c0cdbc3885f7e27ce6269d96da6036c`
+kablam!    Compiling socket v0.0.7 (file:///source)
+kablam! warning: found Rust slice type in foreign module, consider using a raw pointer instead, #[warn(improper_ctypes)] on by default
+kablam!   --> src/lib.rs:49:71
+kablam!    |
+kablam! 49 |     fn c_socketpair(domain: c_int, type_: c_int, protocol: c_int, sv: *mut [c_int]) -> c_int;
+kablam!    |                                                                       ^^^^^^^^^^^^
+kablam! 
+kablam! warning: unnecessary `unsafe` block, #[warn(unused_unsafe)] on by default
+kablam!   --> src/lib.rs:39:21
+kablam!    |
+kablam! 39 |         let value = unsafe { $fun($($x,)*) };
+kablam!    |                     ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! ...
+kablam! 83 |         _try!(c_socketpair, domain as c_int, type_ as c_int, protocol as c_int, &mut fds as *mut [c_int]);
+kablam!    |         -------------------------------------------------------------------------------------------------- in this macro invocation
+kablam! 
+kablam! warning: unnecessary `unsafe` block, #[warn(unused_unsafe)] on by default
+kablam!    --> src/lib.rs:39:21
+kablam!     |
+kablam! 39  |           let value = unsafe { $fun($($x,)*) };
+kablam!     |                       ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! ...
+kablam! 131 |               _try!(
+kablam!     |  _____________- starting here...
+kablam! 132 | |                 setsockopt,
+kablam! 133 | |                 self.fd, level, name, value, mem::size_of::<T>() as socklen_t);
+kablam!     | |_______________________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.73 secs
+boom! running `docker rm -f 84f883a271186c675bdb3ca3b08cc62a7c0cdbc3885f7e27ce6269d96da6036c`
+blam! 84f883a271186c675bdb3ca3b08cc62a7c0cdbc3885f7e27ce6269d96da6036c
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 8ad925f3ab27d46827977b4aaf70af2c7ed0eac5fbaf0b4fc87448ae68af3443
+boom! running `docker start -a 8ad925f3ab27d46827977b4aaf70af2c7ed0eac5fbaf0b4fc87448ae68af3443`
+kablam!    Compiling socket v0.0.7 (file:///source)
+kablam! warning: found Rust slice type in foreign module, consider using a raw pointer instead, #[warn(improper_ctypes)] on by default
+kablam!   --> src/lib.rs:49:71
+kablam!    |
+kablam! 49 |     fn c_socketpair(domain: c_int, type_: c_int, protocol: c_int, sv: *mut [c_int]) -> c_int;
+kablam!    |                                                                       ^^^^^^^^^^^^
+kablam! 
+kablam! warning: unnecessary `unsafe` block, #[warn(unused_unsafe)] on by default
+kablam!   --> src/lib.rs:39:21
+kablam!    |
+kablam! 39 |         let value = unsafe { $fun($($x,)*) };
+kablam!    |                     ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! ...
+kablam! 83 |         _try!(c_socketpair, domain as c_int, type_ as c_int, protocol as c_int, &mut fds as *mut [c_int]);
+kablam!    |         -------------------------------------------------------------------------------------------------- in this macro invocation
+kablam! 
+kablam! warning: unnecessary `unsafe` block, #[warn(unused_unsafe)] on by default
+kablam!    --> src/lib.rs:39:21
+kablam!     |
+kablam! 39  |           let value = unsafe { $fun($($x,)*) };
+kablam!     |                       ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! ...
+kablam! 131 |               _try!(
+kablam!     |  _____________- starting here...
+kablam! 132 | |                 setsockopt,
+kablam! 133 | |                 self.fd, level, name, value, mem::size_of::<T>() as socklen_t);
+kablam!     | |_______________________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/lib.rs:370:9
+kablam!     |
+kablam! 370 |         thread.join();
+kablam!     |         ^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/lib.rs:384:9
+kablam!     |
+kablam! 384 |         thread.join();
+kablam!     |         ^^^^^^^^^^^^^^
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 2.23 secs
+boom! running `docker rm -f 8ad925f3ab27d46827977b4aaf70af2c7ed0eac5fbaf0b4fc87448ae68af3443`
+blam! 8ad925f3ab27d46827977b4aaf70af2c7ed0eac5fbaf0b4fc87448ae68af3443
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 9c5f9c572adef62b3939c4bf5f66b85806321301429a851205ccd82cd1156e44
+boom! running `docker start -a 9c5f9c572adef62b3939c4bf5f66b85806321301429a851205ccd82cd1156e44`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/socket-a2405bed31502ec0
+blam! 
+blam! running 5 tests
+blam! test tests::some_basic_socket_stuff_works ... ok
+blam! test tests::getsockname_works ... ok
+blam! test tests::socketpair_and_unix_sockets_work ... ok
+blam! test tests::tcp_communication_works ... ok
+blam! test tests::udp_communication_works ... ok
+blam! 
+blam! test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!    Doc-tests socket
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f 9c5f9c572adef62b3939c4bf5f66b85806321301429a851205ccd82cd1156e44`
+blam! 9c5f9c572adef62b3939c4bf5f66b85806321301429a851205ccd82cd1156e44

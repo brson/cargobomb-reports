@@ -1,0 +1,32 @@
+boom! testing fleet-0.2.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 42e28b2bebe13765317e9d5bc9d0884d8c7779979fb25445bb1bd9661099e77a
+boom! running `docker start -a 42e28b2bebe13765317e9d5bc9d0884d8c7779979fb25445bb1bd9661099e77a`
+kablam!    Compiling fleet v0.2.0 (file:///source)
+kablam! error[E0432]: unresolved import `hyper::error::HttpError`
+kablam!  --> src/error.rs:5:5
+kablam!   |
+kablam! 5 | use hyper::error::HttpError;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^ no `HttpError` in `hyper::error`
+kablam! 
+kablam! error: no method named `serialize` found for type `url::Url` in the current scope
+kablam!   --> src/client.rs:22:43
+kablam!    |
+kablam! 22 |             root_url: format!("{}{}", url.serialize(), "fleet/v1"),
+kablam!    |                                           ^^^^^^^^^
+kablam! 
+kablam! error: no method named `set_query_from_pairs` found for type `url::Url` in the current scope
+kablam!    --> src/client.rs:114:13
+kablam!     |
+kablam! 114 |         url.set_query_from_pairs(query_pairs.iter().map(|(k, v)| (*k, *v)));
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `fleet`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 42e28b2bebe13765317e9d5bc9d0884d8c7779979fb25445bb1bd9661099e77a`
+blam! 42e28b2bebe13765317e9d5bc9d0884d8c7779979fb25445bb1bd9661099e77a

@@ -1,0 +1,137 @@
+boom! testing notify-2.6.3 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! d1a27fae5c2ff37840afe1903182c53b0575c6b709fd1e3c42e3885fb4c1e164
+boom! running `docker start -a d1a27fae5c2ff37840afe1903182c53b0575c6b709fd1e3c42e3885fb4c1e164`
+kablam!    Compiling notify v2.6.3 (file:///source)
+kablam! warning: unused `#[macro_use]` import, #[warn(unused_imports)] on by default
+kablam!   --> src/lib.rs:84:1
+kablam!    |
+kablam! 84 | #[macro_use]
+kablam!    | ^^^^^^^^^^^^
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 3.60 secs
+boom! running `docker rm -f d1a27fae5c2ff37840afe1903182c53b0575c6b709fd1e3c42e3885fb4c1e164`
+blam! d1a27fae5c2ff37840afe1903182c53b0575c6b709fd1e3c42e3885fb4c1e164
+boom! running: cargo +beta test --frozen --no-run
+boom! creating container for: cargo +beta test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta test --frozen --no-run cargobomb`
+blam! 257cd5d2242fbc4034e90b4d5a40c37ed421a2c6af9db313bdcf4d92f3699b2d
+boom! running `docker start -a 257cd5d2242fbc4034e90b4d5a40c37ed421a2c6af9db313bdcf4d92f3699b2d`
+kablam!    Compiling notify v2.6.3 (file:///source)
+kablam! warning: unused import: `notify`, #[warn(unused_imports)] on by default
+kablam!  --> tests/windows.rs:6:5
+kablam!   |
+kablam! 6 | use notify::*;
+kablam!   |     ^^^^^^
+kablam! 
+kablam! warning: unused import: `std::thread`, #[warn(unused_imports)] on by default
+kablam!  --> tests/windows.rs:7:5
+kablam!   |
+kablam! 7 | use std::thread;
+kablam!   |     ^^^^^^^^^^^
+kablam! 
+kablam! warning: unused import: `channel`, #[warn(unused_imports)] on by default
+kablam!  --> tests/windows.rs:8:23
+kablam!   |
+kablam! 8 | use std::sync::mpsc::{channel, Receiver};
+kablam!   |                       ^^^^^^^
+kablam! 
+kablam! warning: unused import: `tempdir::TempDir`, #[warn(unused_imports)] on by default
+kablam!  --> tests/windows.rs:9:5
+kablam!   |
+kablam! 9 | use tempdir::TempDir;
+kablam!   |     ^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: function is never used: `check_for_error`, #[warn(dead_code)] on by default
+kablam!   --> tests/windows.rs:11:1
+kablam!    |
+kablam! 11 |   fn check_for_error(rx:&Receiver<notify::Event>) {
+kablam!    |  _^ starting here...
+kablam! 12 | |     while let Ok(res) = rx.try_recv() {
+kablam! 13 | |         match res.op {
+kablam! 14 | |             Err(e) => panic!("unexpected err: {:?}: {:?}", e, res.path),
+kablam! 15 | |             _ => ()
+kablam! 16 | |         }
+kablam! 17 | |     };
+kablam! 18 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! warning: constant item is never used: `TIMEOUT_S`, #[warn(dead_code)] on by default
+kablam!   --> tests/notify.rs:21:1
+kablam!    |
+kablam! 21 | const TIMEOUT_S: f64 = 5.0;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: function is never used: `resolve_path`, #[warn(dead_code)] on by default
+kablam!   --> tests/notify.rs:53:1
+kablam!    |
+kablam! 53 |   fn resolve_path(path: &Path) -> PathBuf {
+kablam!    |  _^ starting here...
+kablam! 54 | |     let p = path.to_str().unwrap();
+kablam! 55 | |     PathBuf::from(p)
+kablam! 56 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! warning: function is never used: `validate_recv`, #[warn(dead_code)] on by default
+kablam!   --> tests/notify.rs:58:1
+kablam!    |
+kablam! 58 | fn validate_recv(rx: Receiver<Event>, evs: Vec<(&Path, Op)>) -> Vec<Event> {
+kablam!    | ^
+kablam! 
+kablam! warning: function is never used: `validate_watch_single_file`, #[warn(dead_code)] on by default
+kablam!    --> tests/notify.rs:121:1
+kablam!     |
+kablam! 121 | fn validate_watch_single_file<F, W>(ctor: F) where
+kablam!     | ^
+kablam! 
+kablam! warning: unused `#[macro_use]` import, #[warn(unused_imports)] on by default
+kablam!   --> src/lib.rs:84:1
+kablam!    |
+kablam! 84 | #[macro_use]
+kablam!    | ^^^^^^^^^^^^
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 5.52 secs
+boom! running `docker rm -f 257cd5d2242fbc4034e90b4d5a40c37ed421a2c6af9db313bdcf4d92f3699b2d`
+blam! 257cd5d2242fbc4034e90b4d5a40c37ed421a2c6af9db313bdcf4d92f3699b2d
+boom! running: cargo +beta test --frozen
+boom! creating container for: cargo +beta test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta test --frozen cargobomb`
+blam! 584cd6aab2878ef96abf13f197006a219c292329e78e412c612aedf134dc20da
+boom! running `docker start -a 584cd6aab2878ef96abf13f197006a219c292329e78e412c612aedf134dc20da`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/notify-04357b4c20c3c212
+blam! 
+blam! running 1 test
+blam! test display_formatted_errors ... ok
+blam! 
+blam! test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/notify-3422a541e4a95c41
+blam! 
+blam! running 6 tests
+blam! test new_null ... ok
+blam! test new_poll ... ok
+blam! test new_recommended ... ok
+blam! test new_inotify ... ok
+blam! test test_watcher_send ... ok
+blam! test test_watcher_sync ... ok
+blam! 
+blam! test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/windows-12c07c825d156082
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!    Doc-tests notify
+blam! 
+blam! running 1 test
+blam! test _0 ... ok
+blam! 
+blam! test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f 584cd6aab2878ef96abf13f197006a219c292329e78e412c612aedf134dc20da`
+blam! 584cd6aab2878ef96abf13f197006a219c292329e78e412c612aedf134dc20da

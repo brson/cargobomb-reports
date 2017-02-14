@@ -1,0 +1,28 @@
+boom! testing iota-rs-0.1.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 56b9cec7c77d47460d9a5b7dc32f542695a267f84a3262796422abfaa387760c
+boom! running `docker start -a 56b9cec7c77d47460d9a5b7dc32f542695a267f84a3262796422abfaa387760c`
+kablam!    Compiling iota-rs v0.1.2 (file:///source)
+kablam! error[E0407]: method `add_macro` is not a member of trait `Resolver`
+kablam!   --> src/lib.rs:73:2
+kablam!    |
+kablam! 73 | 	fn add_macro(&mut self, scope: Mark, def: MacroDef, export: bool) { self.resolver.add_macro(scope, def, export) }
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not a member of trait `Resolver`
+kablam! 
+kablam! error[E0046]: not all trait items implemented, missing: `is_whitelisted_legacy_custom_derive`
+kablam!   --> src/lib.rs:68:1
+kablam!    |
+kablam! 68 | impl<'a, F: FnOnce() -> Rc<SyntaxExtension>> Resolver for IotaResolver<'a, F> {
+kablam!    | ^ missing `is_whitelisted_legacy_custom_derive` in implementation
+kablam!    |
+kablam!    = note: `is_whitelisted_legacy_custom_derive` from trait: `fn(&Self, syntax::ast::Symbol) -> bool`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `iota-rs`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 56b9cec7c77d47460d9a5b7dc32f542695a267f84a3262796422abfaa387760c`
+blam! 56b9cec7c77d47460d9a5b7dc32f542695a267f84a3262796422abfaa387760c

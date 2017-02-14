@@ -1,0 +1,38 @@
+boom! testing floaty-0.1.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 48406f3d0860d22ed2ba2429ddacf34ff4d1032d2066961dc18ff7893ae83059
+boom! running `docker start -a 48406f3d0860d22ed2ba2429ddacf34ff4d1032d2066961dc18ff7893ae83059`
+kablam!    Compiling floaty v0.1.0 (file:///source)
+kablam! error: use of deprecated item: you probably meant `(self - other).abs()`: this operation is `(self - other).max(0.0)` (also known as `fdimf` in C). If you truly need the positive difference, consider using that expression or the C function `fdimf`, depending on how you wish to handle NaN (please consider filing an issue describing your use-case too).
+kablam!    --> src/lib.rs:30:54
+kablam!     |
+kablam! 30  |             fn $method(self, _1: Self) -> $ty { self.$method(_1) }
+kablam!     |                                                      ^
+kablam! ...
+kablam! 234 |     self_self_self! {
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam! note: lint level defined here
+kablam!    --> src/lib.rs:6:9
+kablam!     |
+kablam! 6   | #![deny(warnings)]
+kablam!     |         ^^^^^^^^
+kablam! 
+kablam! error: use of deprecated item: you probably meant `(self - other).abs()`: this operation is `(self - other).max(0.0)` (also known as `fdim` in C). If you truly need the positive difference, consider using that expression or the C function `fdim`, depending on how you wish to handle NaN (please consider filing an issue describing your use-case too).
+kablam!    --> src/lib.rs:30:54
+kablam!     |
+kablam! 30  |             fn $method(self, _1: Self) -> $ty { self.$method(_1) }
+kablam!     |                                                      ^
+kablam! ...
+kablam! 266 |     self_self_self! {
+kablam!     |     - in this macro invocation
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `floaty`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 48406f3d0860d22ed2ba2429ddacf34ff4d1032d2066961dc18ff7893ae83059`
+blam! 48406f3d0860d22ed2ba2429ddacf34ff4d1032d2066961dc18ff7893ae83059

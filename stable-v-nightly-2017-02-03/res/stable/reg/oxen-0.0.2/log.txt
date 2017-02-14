@@ -1,0 +1,70 @@
+boom! testing oxen-0.0.2 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! ddd5caaaee6ece624beb05964f150a6b1e13c2922813524b5f62920811040762
+boom! running `docker start -a ddd5caaaee6ece624beb05964f150a6b1e13c2922813524b5f62920811040762`
+kablam!    Compiling oxen v0.0.2 (file:///source)
+kablam! error[E0308]: mismatched types
+kablam!   --> src/models.rs:32:9
+kablam!    |
+kablam! 32 |         vec![
+kablam!    |         ^ expected &[_], found struct `std::vec::Vec`
+kablam!    |
+kablam!    = note: expected type `&[_]`
+kablam!    = note:    found type `std::vec::Vec<models::square_vertices::Vertex>`
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error: no method named `into_vertex_buffer_any` found for type `std::result::Result<glium::VertexBuffer<_>, glium::vertex::CreationError>` in the current scope
+kablam!   --> src/models.rs:38:7
+kablam!    |
+kablam! 38 |     ).into_vertex_buffer_any()
+kablam!    |       ^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/models.rs:42:46
+kablam!    |
+kablam! 42 |     IndexBuffer::new(display, TrianglesList, vec![0, 1, 2, 0, 2, 3])
+kablam!    |                                              ^^^^^^^^^^^^^^^^^^^^^^ expected &[_], found struct `std::vec::Vec`
+kablam!    |
+kablam!    = note: expected type `&[_]`
+kablam!    = note:    found type `std::vec::Vec<{integer}>`
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/models.rs:42:5
+kablam!    |
+kablam! 42 |     IndexBuffer::new(display, TrianglesList, vec![0, 1, 2, 0, 2, 3])
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `glium::IndexBuffer`, found enum `std::result::Result`
+kablam!    |
+kablam!    = note: expected type `glium::IndexBuffer<u16>`
+kablam!    = note:    found type `std::result::Result<glium::IndexBuffer<_>, glium::index::CreationError>`
+kablam! 
+kablam! error: no method named `per_instance_if_supported` found for type `glium::vertex::VertexBufferAny` in the current scope
+kablam!   --> src/lib.rs:99:57
+kablam!    |
+kablam! 99 |                     (&render_object.vertices, instances.per_instance_if_supported().unwrap()),
+kablam!    |                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:173:42
+kablam!     |
+kablam! 173 |         VertexBuffer::new(&self.display, data).into_vertex_buffer_any()
+kablam!     |                                          ^^^^ expected &[_], found struct `std::vec::Vec`
+kablam!     |
+kablam!     = note: expected type `&[_]`
+kablam!     = note:    found type `std::vec::Vec<Oxen::instances::ModelTransform>`
+kablam! 
+kablam! error: no method named `into_vertex_buffer_any` found for type `std::result::Result<glium::VertexBuffer<_>, glium::vertex::CreationError>` in the current scope
+kablam!    --> src/lib.rs:173:48
+kablam!     |
+kablam! 173 |         VertexBuffer::new(&self.display, data).into_vertex_buffer_any()
+kablam!     |                                                ^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 7 previous errors
+kablam! 
+kablam! error: Could not compile `oxen`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f ddd5caaaee6ece624beb05964f150a6b1e13c2922813524b5f62920811040762`
+blam! ddd5caaaee6ece624beb05964f150a6b1e13c2922813524b5f62920811040762

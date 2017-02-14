@@ -1,0 +1,50 @@
+boom! testing cef-sys-0.0.3 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 5968549f1540ee31434122e865b4bb1e5baa099808a04046d06e61700887984a
+boom! running `docker start -a 5968549f1540ee31434122e865b4bb1e5baa099808a04046d06e61700887984a`
+kablam!    Compiling cef-sys v0.0.3 (file:///source)
+kablam! error[E0432]: unresolved import `std::old_io::fs::PathExtensions`
+kablam!  --> build.rs:4:5
+kablam!   |
+kablam! 4 | use std::old_io::fs::PathExtensions;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `old_io` in `std`
+kablam! 
+kablam! error[E0425]: cannot find function `getenv` in module `os`
+kablam!   --> build.rs:13:11
+kablam!    |
+kablam! 13 |     match os::getenv("TARGET").unwrap().split('-').nth(2).unwrap() {
+kablam!    |           ^^^^^^^^^^ not found in `os`
+kablam! 
+kablam! error[E0425]: cannot find function `dll_filename` in module `os`
+kablam!   --> build.rs:29:25
+kablam!    |
+kablam! 29 |     let dll_file_name = os::dll_filename(dll_name);
+kablam!    |                         ^^^^^^^^^^^^^^^^ not found in `os`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> build.rs:30:19
+kablam!    |
+kablam! 30 |     let cef_dir = Path::new(os::getenv("CEF_PATH")
+kablam!    |                   ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error[E0425]: cannot find function `getenv` in module `os`
+kablam!   --> build.rs:30:29
+kablam!    |
+kablam! 30 |     let cef_dir = Path::new(os::getenv("CEF_PATH")
+kablam!    |                             ^^^^^^^^^^ not found in `os`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> build.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(os, io, path)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `cef-sys`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 5968549f1540ee31434122e865b4bb1e5baa099808a04046d06e61700887984a`
+blam! 5968549f1540ee31434122e865b4bb1e5baa099808a04046d06e61700887984a

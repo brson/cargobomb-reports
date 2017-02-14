@@ -1,0 +1,35 @@
+boom! testing mod_path-0.1.6 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 06100f529ad6be7192a6e7e59a047b578ba24a4c3a4db27600da5d84f8237971
+boom! running `docker start -a 06100f529ad6be7192a6e7e59a047b578ba24a4c3a4db27600da5d84f8237971`
+kablam!    Compiling mod_path v0.1.6 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::ast::TokenTree`
+kablam!  --> lib.rs:9:19
+kablam!   |
+kablam! 9 | use syntax::ast::{TokenTree, Ident};
+kablam!   |                   ^^^^^^^^^ no `TokenTree` in `ast`
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!   --> lib.rs:32:35
+kablam!    |
+kablam! 32 |     reg.register_syntax_extension(token::intern("mod_path"), IdentTT(Box::new(expand_mod_path), None, false));
+kablam!    |                                   ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0277]: the trait bound `syntax::ext::base::IdentMacroExpander: std::marker::Sized` is not satisfied
+kablam!   --> lib.rs:32:70
+kablam!    |
+kablam! 32 |     reg.register_syntax_extension(token::intern("mod_path"), IdentTT(Box::new(expand_mod_path), None, false));
+kablam!    |                                                                      ^^^^^^^^ the trait `std::marker::Sized` is not implemented for `syntax::ext::base::IdentMacroExpander`
+kablam!    |
+kablam!    = note: `syntax::ext::base::IdentMacroExpander` does not have a constant size known at compile-time
+kablam!    = note: required by `std::boxed::<impl Box<T>>::new`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `mod_path`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 06100f529ad6be7192a6e7e59a047b578ba24a4c3a4db27600da5d84f8237971`
+blam! 06100f529ad6be7192a6e7e59a047b578ba24a4c3a4db27600da5d84f8237971

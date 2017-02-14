@@ -1,0 +1,38 @@
+boom! testing bear-0.1.1 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! d5566f7197517a0f605e3f1866754809ac19c34e0b844c5c3f4fa278f907ca12
+boom! running `docker start -a d5566f7197517a0f605e3f1866754809ac19c34e0b844c5c3f4fa278f907ca12`
+kablam!    Compiling bear v0.1.1 (file:///source)
+kablam! error[E0432]: unresolved import `std::io::File`
+kablam!  --> src/lib.rs:9:15
+kablam!   |
+kablam! 9 | use std::io::{File, BufferedReader};
+kablam!   |               ^^^^ no `File` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::BufferedReader`
+kablam!  --> src/lib.rs:9:21
+kablam!   |
+kablam! 9 | use std::io::{File, BufferedReader};
+kablam!   |                     ^^^^^^^^^^^^^^ no `BufferedReader` in `io`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> src/lib.rs:28:16
+kablam!    |
+kablam! 28 |     let path = Path::new("tests").join("fixtures").join(filename);
+kablam!    |                ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error: stability attributes may not be used outside of the standard library
+kablam!  --> src/lib.rs:3:4
+kablam!   |
+kablam! 3 | #![unstable]
+kablam!   |    ^^^^^^^^
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `bear`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f d5566f7197517a0f605e3f1866754809ac19c34e0b844c5c3f4fa278f907ca12`
+blam! d5566f7197517a0f605e3f1866754809ac19c34e0b844c5c3f4fa278f907ca12

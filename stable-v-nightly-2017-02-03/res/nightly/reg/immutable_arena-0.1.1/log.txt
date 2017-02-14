@@ -1,0 +1,77 @@
+boom! testing immutable_arena-0.1.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 5fc45343a32db63bd455338b91b8fa738f2d4291ac27cf48786b16ffa985d764
+boom! running `docker start -a 5fc45343a32db63bd455338b91b8fa738f2d4291ac27cf48786b16ffa985d764`
+kablam!    Compiling immutable_arena v0.1.1 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.70 secs
+boom! running `docker rm -f 5fc45343a32db63bd455338b91b8fa738f2d4291ac27cf48786b16ffa985d764`
+blam! 5fc45343a32db63bd455338b91b8fa738f2d4291ac27cf48786b16ffa985d764
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 7895ed332e140579a02ff238645d85793474394f60dcf551d7d7a3ce5df9b428
+boom! running `docker start -a 7895ed332e140579a02ff238645d85793474394f60dcf551d7d7a3ce5df9b428`
+kablam!    Compiling immutable_arena v0.1.1 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.33 secs
+boom! running `docker rm -f 7895ed332e140579a02ff238645d85793474394f60dcf551d7d7a3ce5df9b428`
+blam! 7895ed332e140579a02ff238645d85793474394f60dcf551d7d7a3ce5df9b428
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 147adfc4ec6fcc45d3b415221b483c63d3173999c19e3b3860edc05ca9b0d30c
+boom! running `docker start -a 147adfc4ec6fcc45d3b415221b483c63d3173999c19e3b3860edc05ca9b0d30c`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/immutable_arena-6084bdc5799a1afe
+blam! 
+blam! running 2 tests
+blam! test test::basic_test ... ok
+blam! test test::ref_from_borrow_test ... ok
+blam! 
+blam! test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!    Doc-tests immutable_arena
+blam! 
+blam! running 1 test
+blam! warning: struct is never used: `S`, #[warn(dead_code)] on by default
+blam!  --> <anon>:5:1
+blam!   |
+blam! 5 |   struct S<'arena> {
+blam!   |  _^ starting here...
+blam! 6 | |     id: u32,
+blam! 7 | |     next: Ref<'arena, S<'arena>>,
+blam! 8 | | }
+blam!   | |_^ ...ending here
+blam! 
+blam! warning: function is never used: `alloc_cycle`, #[warn(dead_code)] on by default
+blam!   --> <anon>:10:1
+blam!    |
+blam! 10 |   fn alloc_cycle<'arena>(arena: &'arena Arena<S<'arena>>)
+blam!    |  _^ starting here...
+blam! 11 | |     -> &'arena S<'arena> {
+blam! 12 | |     let s1 = arena.alloc(S { id: 1, next: Ref::empty() });
+blam! 13 | |     let s2 = arena.alloc(S { id: 2, next: Ref::empty() });
+blam! 14 | |     s1.next.set(s2);
+blam! 15 | |     s2.next.set(s1);
+blam! 16 | |     s1
+blam! 17 | | }
+blam!    | |_^ ...ending here
+blam! 
+blam! warning: function is never used: `test_cycle`, #[warn(dead_code)] on by default
+blam!   --> <anon>:19:1
+blam!    |
+blam! 19 |   fn test_cycle() {
+blam!    |  _^ starting here...
+blam! 20 | |     let arena = Arena::new();
+blam! 21 | |     let s1 = alloc_cycle(&arena);
+blam! 22 | |     assert!(s1.next.next.id == s1.id);
+blam! 23 | | }
+blam!    | |_^ ...ending here
+blam! 
+blam! test _0 ... ok
+blam! 
+blam! test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f 147adfc4ec6fcc45d3b415221b483c63d3173999c19e3b3860edc05ca9b0d30c`
+blam! 147adfc4ec6fcc45d3b415221b483c63d3173999c19e3b3860edc05ca9b0d30c

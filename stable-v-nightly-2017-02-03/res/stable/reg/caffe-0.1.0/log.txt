@@ -1,0 +1,25 @@
+boom! testing caffe-0.1.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 1a6d3392ed96e05c1c995b974c2c334841cede637864ee3151e406224584ab5f
+boom! running `docker start -a 1a6d3392ed96e05c1c995b974c2c334841cede637864ee3151e406224584ab5f`
+kablam!    Compiling caffe v0.1.0 (file:///source)
+kablam!    Compiling bindgen_plugin v0.15.0
+blam! Build failed, waiting for other jobs to finish...
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/bindgen_plugin-0.15.0/src/lib.rs:3:1
+kablam!   |
+kablam! 3 | #![feature(plugin_registrar, rustc_private)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: failed to run custom build command for `caffe v0.1.0 (file:///source)`
+kablam! process didn't exit successfully: `/target/debug/build/caffe-7f3967dbc4716d56/build-script-build` (exit code: 101)
+kablam! --- stderr
+kablam! thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: NotPresent', ../src/libcore/result.rs:837
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f 1a6d3392ed96e05c1c995b974c2c334841cede637864ee3151e406224584ab5f`
+blam! 1a6d3392ed96e05c1c995b974c2c334841cede637864ee3151e406224584ab5f
