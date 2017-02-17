@@ -1,0 +1,189 @@
+boom! testing riff-wave-0.1.2 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! ddd3835b0290d963f4869c654cab233947137fddf633db2f11c8be22ed4f2e60
+boom! running `docker start -a ddd3835b0290d963f4869c654cab233947137fddf633db2f11c8be22ed4f2e60`
+kablam!    Compiling riff-wave v0.1.2 (file:///source)
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 0.54 secs
+boom! running `docker rm -f ddd3835b0290d963f4869c654cab233947137fddf633db2f11c8be22ed4f2e60`
+blam! ddd3835b0290d963f4869c654cab233947137fddf633db2f11c8be22ed4f2e60
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! a73a8ab224e9ac09d90f28fc95c01b0925c55e03ea38cc06a895c322d00e9e23
+boom! running `docker start -a a73a8ab224e9ac09d90f28fc95c01b0925c55e03ea38cc06a895c322d00e9e23`
+kablam!    Compiling decibel v0.1.2
+kablam!    Compiling riff-wave v0.1.2 (file:///source)
+kablam! warning: unused import: `Read`, #[warn(unused_imports)] on by default
+kablam!   --> examples/playback.rs:23:37
+kablam!    |
+kablam! 23 | use std::io::{BufReader, BufWriter, Read, Seek, Write};
+kablam!    |                                     ^^^^
+kablam! 
+kablam! warning: unused import: `WaveReader`, #[warn(unused_imports)] on by default
+kablam!   --> examples/playback.rs:28:17
+kablam!    |
+kablam! 28 | use riff_wave::{WaveReader, WaveWriter};
+kablam!    |                 ^^^^^^^^^^
+kablam! 
+kablam! warning: function is never used: `get_temporary_file_path`, #[warn(dead_code)] on by default
+kablam!   --> examples/playback.rs:80:1
+kablam!    |
+kablam! 80 |   fn get_temporary_file_path(name: &str) -> PathBuf {
+kablam!    |  _^ starting here...
+kablam! 81 | | 	let mut path = env::temp_dir();
+kablam! 82 | | 	path.push(name);
+kablam! 83 | | 	path
+kablam! 84 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! warning: function is never used: `get_buffered_reader_for_path`, #[warn(dead_code)] on by default
+kablam!   --> examples/playback.rs:86:1
+kablam!    |
+kablam! 86 |   fn get_buffered_reader_for_path(path: &Path) -> io::Result<BufReader<File>> {
+kablam!    |  _^ starting here...
+kablam! 87 | | 	let file = try!(File::open(path));
+kablam! 88 | | 	let output_reader = BufReader::new(file);	
+kablam! 89 | | 	Ok(output_reader)
+kablam! 90 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! warning: function is never used: `get_buffered_writer_for_path`, #[warn(dead_code)] on by default
+kablam!   --> examples/playback.rs:92:1
+kablam!    |
+kablam! 92 |   fn get_buffered_writer_for_path(path: &Path) -> io::Result<BufWriter<File>> {	
+kablam!    |  _^ starting here...
+kablam! 93 | | 	let file = try!(File::create(path));
+kablam! 94 | | 	let output_writer = BufWriter::new(file);	
+kablam! 95 | | 	Ok(output_writer)
+kablam! 96 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! warning: function is never used: `write_test_sine_wave`, #[warn(dead_code)] on by default
+kablam!    --> examples/playback.rs:98:1
+kablam!     |
+kablam! 98  |   fn write_test_sine_wave<T>(writer: T, hz: u32, scale: DecibelRatio<f32>) where T: Write + Seek {	
+kablam!     |  _^ starting here...
+kablam! 99  | | 	let mut wave_writer = WaveWriter::new(1, 44100, 16, writer).unwrap();
+kablam! 100 | |
+kablam! 101 | | 	for n in 0..44100 * 3 {
+kablam! 102 | | 		let x = sine_wave(n, hz, scale, 44100);
+kablam! 103 | | 		let x = (x * 32767.0) as i16;
+kablam! 104 | | 		wave_writer.write_sample_i16(x).unwrap();
+kablam! 105 | | 	}	
+kablam! 106 | | }
+kablam!     | |_^ ...ending here
+kablam! 
+kablam! warning: function is never used: `sine_wave`, #[warn(dead_code)] on by default
+kablam!    --> examples/playback.rs:108:1
+kablam!     |
+kablam! 108 |   fn sine_wave(n: u32, hz: u32, scale: DecibelRatio<f32>, sample_rate: u32) -> f32 {
+kablam!     |  _^ starting here...
+kablam! 109 | | 	// 2 PI = one cycle
+kablam! 110 | | 	let ratio_per_second = 2.0 * f32::consts::PI * hz as f32;
+kablam! 111 | | 	let ratio = n as f32 / sample_rate as f32;
+kablam! 112 | | 	let x = ratio * ratio_per_second;
+kablam! 113 | | 	let amplitude_ratio: AmplitudeRatio<_> = scale.into();
+kablam! 114 | | 	x.sin() * amplitude_ratio.amplitude_value()
+kablam! 115 | | }
+kablam!     | |_^ ...ending here
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 5.43 secs
+boom! running `docker rm -f a73a8ab224e9ac09d90f28fc95c01b0925c55e03ea38cc06a895c322d00e9e23`
+blam! a73a8ab224e9ac09d90f28fc95c01b0925c55e03ea38cc06a895c322d00e9e23
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! f032b156bf611f34ab9ada19a25c44349e81e5532edd9420928d1f43eadb3c39
+boom! running `docker start -a f032b156bf611f34ab9ada19a25c44349e81e5532edd9420928d1f43eadb3c39`
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 0.0 secs
+blam! 
+blam! running 6 tests
+blam! test test_header_for_extended_file_32bit_stereo_44100 ... ok
+blam! test test_header_for_standard_file_16bit_mono_44100 ... ok
+blam! test test_header_for_standard_file_16bit_stereo_44100_with_cb ... ok
+blam! test test_header_for_standard_file_16bit_stereo_44100 ... ok
+blam! test test_header_for_standard_file_8bit_mono_16000_with_data ... ok
+blam! test test_header_for_standard_file_8bit_mono_16000 ... ok
+blam! 
+blam! test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+blam! 
+blam! running 63 tests
+blam! test reader::tests::test_reading_data_from_data_chunk_i16 ... ok
+blam! test reader::tests::test_reading_data_from_data_chunk_i24 ... ok
+blam! test reader::tests::test_reading_data_from_data_chunk_i32 ... ok
+blam! test reader::tests::test_cant_read_first_subchunk_after_second ... ok
+blam! test reader::tests::test_reading_data_from_data_chunk_u8 ... ok
+blam! test reader::tests::test_skip_over_remainder ... ok
+blam! test reader::tests::test_skip_until_second_subchunk ... ok
+blam! test reader::tests::test_validate_extended_format_sample_rate_doesnt_match ... ok
+blam! test reader::tests::test_skip_until_subchunk ... ok
+blam! test reader::tests::test_validate_extended_format_not_pcm ... ok
+blam! test reader::tests::test_validate_extended_format_sample_rate_ok ... ok
+blam! test reader::tests::test_validate_fmt_header_is_large_enough_matches ... ok
+blam! test reader::tests::test_validate_extended_format_too_short ... ok
+blam! test reader::tests::test_validate_is_riff_file_err_incomplete ... ok
+blam! test reader::tests::test_validate_fmt_header_is_large_enough_more_than_we_need ... ok
+blam! test reader::tests::test_validate_fmt_header_is_large_enough_too_small ... ok
+blam! test reader::tests::test_validate_is_wave_file_err_incomplete ... ok
+blam! test reader::tests::test_validate_is_riff_file_err_something_else ... ok
+blam! test reader::tests::test_validate_is_wave_file_ok ... ok
+blam! test reader::tests::test_validate_is_riff_file_ok ... ok
+blam! test reader::tests::test_validate_pcm_format_ok_extended ... ok
+blam! test reader::tests::test_validate_is_wave_file_err_something_else ... ok
+blam! test reader::tests::test_validate_pcm_format_err_not_uncompressed ... ok
+blam! test reader::tests::test_validate_pcm_header_8bit_mono_example_extended ... ok
+blam! test reader::tests::test_validate_pcm_format_ok_uncompressed ... ok
+blam! test reader::tests::test_validate_pcm_header_dont_accept_zero_channels ... ok
+blam! test reader::tests::test_validate_pcm_header_8bit_mono_example_standard ... ok
+blam! test reader::tests::test_validate_pcm_header_8bit_mono_example_standard_with_extra_cb_data ... ok
+blam! test reader::tests::test_validate_pcm_header_extended_format_sample_rates_dont_match ... ok
+blam! test reader::tests::test_validate_pcm_header_dont_accept_zero_sample_rate ... ok
+blam! test reader::tests::test_validate_pcm_header_extended_format_too_small ... ok
+blam! test reader::tests::test_validate_pcm_header_extended_format_not_pcm_format ... ok
+blam! test reader::tests::test_validate_pcm_header_missing_fmt_chunk ... ok
+blam! test reader::tests::test_validate_pcm_header_extended_format_sample_rates_ok ... ok
+blam! test reader::tests::test_validate_pcm_header_fmt_chunk_too_small ... ok
+blam! test reader::tests::test_validate_pcm_header_not_pcm_format ... ok
+blam! test reader::tests::test_validate_pcm_subformat_err_extended_format_value_not_valid_for_subformat ... ok
+blam! test reader::tests::test_validate_pcm_header_fmt_chunk_too_small_pcm ... ok
+blam! test reader::tests::test_validate_pcm_header_validate_bits_per_sample_standard ... ok
+blam! test reader::tests::test_validate_pcm_subformat_ok_uncompressed ... ok
+blam! test reader::tests::test_validate_pcm_subformat_err_not_uncompressed ... ok
+blam! test writer::tests::test_24_bit_doesnt_panic_when_out_of_range ... ok
+blam! test writer::tests::test_24_bit_accepts_range ... ok
+blam! test writer::tests::test_header_is_acceptable ... ok
+blam! test writer::tests::test_clamp ... ok
+blam! test writer::tests::test_header_sync_via_drop_when_no_data_written ... ok
+blam! test writer::tests::test_header_sync_when_no_data_written ... ok
+blam! test writer::tests::test_overflow_16bit ... ok
+blam! test writer::tests::test_header_sync_via_drop_when_ten_samples_written ... ok
+blam! test writer::tests::test_header_sync_when_ten_samples_written ... ok
+blam! test writer::tests::test_overflow_32bit ... ok
+blam! test writer::tests::test_overflow_24bit ... ok
+blam! test writer::tests::test_overflow_8bit ... ok
+blam! test writer::tests::test_validate_accepts_valid_combination ... ok
+blam! test writer::tests::test_overflow_doesnt_let_us_start_an_incomplete_frame_16bit ... ok
+blam! test writer::tests::test_overflow_doesnt_let_us_start_an_incomplete_frame_8bit ... ok
+blam! test writer::tests::test_validate_doesnt_accept_invalid_bitrate ... ok
+blam! test writer::tests::test_validate_doesnt_accept_zero_sample_rate ... ok
+blam! test writer::tests::test_validate_doesnt_accept_zero_channels ... ok
+blam! test writer::tests::test_writing_32bit ... ok
+blam! test writer::tests::test_writing_8bit ... ok
+blam! test writer::tests::test_writing_16bit ... ok
+blam! test writer::tests::test_writing_24bit ... ok
+blam! 
+blam! test result: ok. 63 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/lib-b1b773b4e8a99c3b
+kablam!      Running /target/debug/deps/riff_wave-8e6134f0f9717d3a
+kablam!    Doc-tests riff-wave
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f f032b156bf611f34ab9ada19a25c44349e81e5532edd9420928d1f43eadb3c39`
+blam! f032b156bf611f34ab9ada19a25c44349e81e5532edd9420928d1f43eadb3c39

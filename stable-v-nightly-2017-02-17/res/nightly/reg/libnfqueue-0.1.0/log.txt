@@ -1,0 +1,28 @@
+boom! testing libnfqueue-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! b9ac73d45ecea8c3b30e3c3a353b6b5c93d92a5802cb262c8fd0bf0b747e78b4
+boom! running `docker start -a b9ac73d45ecea8c3b30e3c3a353b6b5c93d92a5802cb262c8fd0bf0b747e78b4`
+kablam!    Compiling libnfqueue v0.1.0 (file:///source)
+kablam! error[E0432]: unresolved import `std::num::Int`
+kablam!  --> src/ffi.rs:3:5
+kablam!   |
+kablam! 3 | use std::num::Int;
+kablam!   |     ^^^^^^^^^^^^^ no `Int` in `num`
+kablam! 
+kablam! error: The attribute `packed` is currently unknown to the compiler and may have meaning added to it in the future (see issue #29642)
+kablam!   --> src/ffi.rs:26:1
+kablam!    |
+kablam! 26 | #[packed]
+kablam!    | ^^^^^^^^^
+kablam!    |
+kablam!    = help: add #![feature(custom_attribute)] to the crate attributes to enable
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `libnfqueue`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f b9ac73d45ecea8c3b30e3c3a353b6b5c93d92a5802cb262c8fd0bf0b747e78b4`
+blam! b9ac73d45ecea8c3b30e3c3a353b6b5c93d92a5802cb262c8fd0bf0b747e78b4

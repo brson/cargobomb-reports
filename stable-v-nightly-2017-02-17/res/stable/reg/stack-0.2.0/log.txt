@@ -1,0 +1,292 @@
+boom! testing stack-0.2.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 8721e569c28fab223fa5a307550d230529862b051ee0d80506a3ed52402a3e66
+boom! running `docker start -a 8721e569c28fab223fa5a307550d230529862b051ee0d80506a3ed52402a3e66`
+kablam!    Compiling coalesce v0.1.1
+kablam!    Compiling stack v0.2.0 (file:///source)
+kablam! warning: unused import: `uninitialized`, #[warn(unused_imports)] on by default
+kablam!  --> src/array_vec.rs:3:25
+kablam!   |
+kablam! 3 | use std::mem::{size_of, uninitialized};
+kablam!   |                         ^^^^^^^^^^^^^
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 2.11 secs
+boom! running `docker rm -f 8721e569c28fab223fa5a307550d230529862b051ee0d80506a3ed52402a3e66`
+blam! 8721e569c28fab223fa5a307550d230529862b051ee0d80506a3ed52402a3e66
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 03c4ca9370b09930a97f65ca4394d94c6acb428741302f46b6582a176cb83d18
+boom! running `docker start -a 03c4ca9370b09930a97f65ca4394d94c6acb428741302f46b6582a176cb83d18`
+kablam!    Compiling stack v0.2.0 (file:///source)
+kablam! warning: broken MIR (Terminator { source_info: SourceInfo { span: tests/small_vec.rs:105:41: 105:54, scope: scope0 }, kind: _1 = <stack::SmallVec<[Box<u8>; 8]> as stack::Vector>::new() -> [return: bb3, unwind: bb2] }): call dest mismatch (stack::SmallVec<[Box<u8>; 8]> <- stack::SmallVec<[Box<u8>; 8], std::vec::Vec<_>>): Sorts(ExpectedFound { expected: <[Box<u8>; 8] as stack::Array>::Item, found: Box<u8> })
+kablam!    --> tests/small_vec.rs:105:9
+kablam!     |
+kablam! 105 |     let mut v: SmallVec<[Box<u8>; 8]> = Vector::new();
+kablam!     |         ^^^^^
+kablam! 
+kablam! warning: broken MIR (_19 = &mut _1): bad assignment (&mut stack::SmallVec<[Box<u8>; 8], std::vec::Vec<Box<u8>>> = &mut stack::SmallVec<[Box<u8>; 8]>): Sorts(ExpectedFound { expected: Box<u8>, found: <[Box<u8>; 8] as stack::Array>::Item })
+kablam!    --> tests/small_vec.rs:110:5
+kablam!     |
+kablam! 110 |     v.truncate(4);
+kablam!     |     ^
+kablam! 
+kablam! warning: broken MIR (_13 = &mut _1): bad assignment (&mut stack::SmallVec<[Box<u8>; 8], std::vec::Vec<Box<u8>>> = &mut stack::SmallVec<[Box<u8>; 8]>): Sorts(ExpectedFound { expected: Box<u8>, found: <[Box<u8>; 8] as stack::Array>::Item })
+kablam!    --> tests/small_vec.rs:108:9
+kablam!     |
+kablam! 108 |         v.push(Box::new(x));
+kablam!     |         ^
+kablam! 
+kablam! warning: broken MIR (_24 = &_1): bad assignment (&stack::SmallVec<[Box<u8>; 8], std::vec::Vec<Box<u8>>> = &stack::SmallVec<[Box<u8>; 8]>): Sorts(ExpectedFound { expected: Box<u8>, found: <[Box<u8>; 8] as stack::Array>::Item })
+kablam!    --> tests/small_vec.rs:112:16
+kablam!     |
+kablam! 112 |     assert_eq!(v.len(), 4);
+kablam!     |                ^
+kablam! 
+kablam! warning: broken MIR (_59 = &_1): bad assignment (&stack::SmallVec<[Box<u8>; 8], std::vec::Vec<Box<u8>>> = &stack::SmallVec<[Box<u8>; 8]>): Sorts(ExpectedFound { expected: Box<u8>, found: <[Box<u8>; 8] as stack::Array>::Item })
+kablam!    --> tests/small_vec.rs:113:14
+kablam!     |
+kablam! 113 |     assert!(!v.is_spilled());
+kablam!     |              ^
+kablam! 
+kablam! warning: broken MIR (_67 = &mut _1): bad assignment (&mut stack::SmallVec<[Box<u8>; 8], std::vec::Vec<Box<u8>>> = &mut stack::SmallVec<[Box<u8>; 8]>): Sorts(ExpectedFound { expected: Box<u8>, found: <[Box<u8>; 8] as stack::Array>::Item })
+kablam!    --> tests/small_vec.rs:115:17
+kablam!     |
+kablam! 115 |     assert_eq!(*v.swap_remove(1), 1);
+kablam!     |                 ^
+kablam! 
+kablam! warning: broken MIR (_102 = &mut _1): bad assignment (&mut stack::SmallVec<[Box<u8>; 8], std::vec::Vec<Box<u8>>> = &mut stack::SmallVec<[Box<u8>; 8]>): Sorts(ExpectedFound { expected: Box<u8>, found: <[Box<u8>; 8] as stack::Array>::Item })
+kablam!    --> tests/small_vec.rs:116:17
+kablam!     |
+kablam! 116 |     assert_eq!(*v.remove(1), 3);
+kablam!     |                 ^
+kablam! 
+kablam! warning: broken MIR (_134 = &mut _1): bad assignment (&mut stack::SmallVec<[Box<u8>; 8], std::vec::Vec<Box<u8>>> = &mut stack::SmallVec<[Box<u8>; 8]>): Sorts(ExpectedFound { expected: Box<u8>, found: <[Box<u8>; 8] as stack::Array>::Item })
+kablam!    --> tests/small_vec.rs:117:5
+kablam!     |
+kablam! 117 |     v.insert(1, Box::new(3));
+kablam!     |     ^
+kablam! 
+kablam! warning: broken MIR (_145 = &_1): bad assignment (&stack::SmallVec<[Box<u8>; 8], std::vec::Vec<Box<u8>>> = &stack::SmallVec<[Box<u8>; 8]>): Sorts(ExpectedFound { expected: Box<u8>, found: <[Box<u8>; 8] as stack::Array>::Item })
+kablam!    --> tests/small_vec.rs:119:17
+kablam!     |
+kablam! 119 |     assert_eq!(&v.iter().map(|v| **v).collect::<Vec<_>>(), &[0, 3, 2]);
+kablam!     |                 ^
+kablam! 
+kablam! warning: broken MIR (Terminator { source_info: SourceInfo { span: tests/small_vec.rs:86:36: 86:49, scope: scope0 }, kind: _1 = <stack::SmallVec<[u8; 2]> as stack::Vector>::new() -> [return: bb3, unwind: bb2] }): call dest mismatch (stack::SmallVec<[u8; 2]> <- stack::SmallVec<[u8; 2], std::vec::Vec<_>>): Sorts(ExpectedFound { expected: <[u8; 2] as stack::Array>::Item, found: u8 })
+kablam!   --> tests/small_vec.rs:86:9
+kablam!    |
+kablam! 86 |     let mut v: SmallVec<[u8; 2]> = Vector::new();
+kablam!    |         ^^^^^
+kablam! 
+kablam! warning: broken MIR (_4 = &mut _1): bad assignment (&mut stack::SmallVec<[u8; 2], std::vec::Vec<u8>> = &mut stack::SmallVec<[u8; 2]>): Sorts(ExpectedFound { expected: u8, found: <[u8; 2] as stack::Array>::Item })
+kablam!   --> tests/small_vec.rs:87:5
+kablam!    |
+kablam! 87 |     v.reserve(1);
+kablam!    |     ^
+kablam! 
+kablam! warning: broken MIR (_9 = &_1): bad assignment (&stack::SmallVec<[u8; 2], std::vec::Vec<u8>> = &stack::SmallVec<[u8; 2]>): Sorts(ExpectedFound { expected: u8, found: <[u8; 2] as stack::Array>::Item })
+kablam!   --> tests/small_vec.rs:88:16
+kablam!    |
+kablam! 88 |     assert_eq!(v.capacity(), 2);
+kablam!    |                ^
+kablam! 
+kablam! warning: broken MIR (_44 = &_1): bad assignment (&stack::SmallVec<[u8; 2], std::vec::Vec<u8>> = &stack::SmallVec<[u8; 2]>): Sorts(ExpectedFound { expected: u8, found: <[u8; 2] as stack::Array>::Item })
+kablam!   --> tests/small_vec.rs:89:14
+kablam!    |
+kablam! 89 |     assert!(!v.is_spilled());
+kablam!    |              ^
+kablam! 
+kablam! warning: broken MIR (_49 = &mut _1): bad assignment (&mut stack::SmallVec<[u8; 2], std::vec::Vec<u8>> = &mut stack::SmallVec<[u8; 2]>): Sorts(ExpectedFound { expected: u8, found: <[u8; 2] as stack::Array>::Item })
+kablam!   --> tests/small_vec.rs:91:5
+kablam!    |
+kablam! 91 |     v.reserve_exact(0x100);
+kablam!    |     ^
+kablam! 
+kablam! warning: broken MIR (_54 = &_1): bad assignment (&stack::SmallVec<[u8; 2], std::vec::Vec<u8>> = &stack::SmallVec<[u8; 2]>): Sorts(ExpectedFound { expected: u8, found: <[u8; 2] as stack::Array>::Item })
+kablam!   --> tests/small_vec.rs:92:13
+kablam!    |
+kablam! 92 |     assert!(v.capacity() >= 0x100);
+kablam!    |             ^
+kablam! 
+kablam! warning: broken MIR (_59 = &mut _1): bad assignment (&mut stack::SmallVec<[u8; 2], std::vec::Vec<u8>> = &mut stack::SmallVec<[u8; 2]>): Sorts(ExpectedFound { expected: u8, found: <[u8; 2] as stack::Array>::Item })
+kablam!   --> tests/small_vec.rs:94:5
+kablam!    |
+kablam! 94 |     v.push(0);
+kablam!    |     ^
+kablam! 
+kablam! warning: broken MIR (_61 = &mut _1): bad assignment (&mut stack::SmallVec<[u8; 2], std::vec::Vec<u8>> = &mut stack::SmallVec<[u8; 2]>): Sorts(ExpectedFound { expected: u8, found: <[u8; 2] as stack::Array>::Item })
+kablam!   --> tests/small_vec.rs:95:5
+kablam!    |
+kablam! 95 |     v.push(1);
+kablam!    |     ^
+kablam! 
+kablam! warning: broken MIR (_63 = &mut _1): bad assignment (&mut stack::SmallVec<[u8; 2], std::vec::Vec<u8>> = &mut stack::SmallVec<[u8; 2]>): Sorts(ExpectedFound { expected: u8, found: <[u8; 2] as stack::Array>::Item })
+kablam!   --> tests/small_vec.rs:96:5
+kablam!    |
+kablam! 96 |     v.push(2);
+kablam!    |     ^
+kablam! 
+kablam! warning: broken MIR (_65 = &mut _1): bad assignment (&mut stack::SmallVec<[u8; 2], std::vec::Vec<u8>> = &mut stack::SmallVec<[u8; 2]>): Sorts(ExpectedFound { expected: u8, found: <[u8; 2] as stack::Array>::Item })
+kablam!   --> tests/small_vec.rs:97:5
+kablam!    |
+kablam! 97 |     v.push(3);
+kablam!    |     ^
+kablam! 
+kablam! warning: broken MIR (_67 = &mut _1): bad assignment (&mut stack::SmallVec<[u8; 2], std::vec::Vec<u8>> = &mut stack::SmallVec<[u8; 2]>): Sorts(ExpectedFound { expected: u8, found: <[u8; 2] as stack::Array>::Item })
+kablam!   --> tests/small_vec.rs:99:5
+kablam!    |
+kablam! 99 |     v.shrink_to_fit();
+kablam!    |     ^
+kablam! 
+kablam! warning: broken MIR (_72 = &_1): bad assignment (&stack::SmallVec<[u8; 2], std::vec::Vec<u8>> = &stack::SmallVec<[u8; 2]>): Sorts(ExpectedFound { expected: u8, found: <[u8; 2] as stack::Array>::Item })
+kablam!    --> tests/small_vec.rs:100:13
+kablam!     |
+kablam! 100 |     assert!(v.capacity() < 0x100);
+kablam!     |             ^
+kablam! 
+kablam! warning: broken MIR (Terminator { source_info: SourceInfo { span: tests/small_vec.rs:73:36: 73:49, scope: scope0 }, kind: _1 = <stack::SmallVec<[u8; 2]> as stack::Vector>::new() -> [return: bb3, unwind: bb2] }): call dest mismatch (stack::SmallVec<[u8; 2]> <- stack::SmallVec<[u8; 2], std::vec::Vec<_>>): Sorts(ExpectedFound { expected: <[u8; 2] as stack::Array>::Item, found: u8 })
+kablam!   --> tests/small_vec.rs:73:9
+kablam!    |
+kablam! 73 |     let mut v: SmallVec<[u8; 2]> = Vector::new();
+kablam!    |         ^^^^^
+kablam! 
+kablam! warning: broken MIR (_4 = &mut _1): bad assignment (&mut stack::SmallVec<[u8; 2], std::vec::Vec<u8>> = &mut stack::SmallVec<[u8; 2]>): Sorts(ExpectedFound { expected: u8, found: <[u8; 2] as stack::Array>::Item })
+kablam!   --> tests/small_vec.rs:74:5
+kablam!    |
+kablam! 74 |     v.push(3);
+kablam!    |     ^
+kablam! 
+kablam! warning: broken MIR (_13 = &_1): bad assignment (&stack::SmallVec<[u8; 2], std::vec::Vec<u8>> = &stack::SmallVec<[u8; 2]>): Sorts(ExpectedFound { expected: u8, found: <[u8; 2] as stack::Array>::Item })
+kablam!   --> tests/small_vec.rs:75:16
+kablam!    |
+kablam! 75 |     assert_eq!(v.iter().cloned().collect::<Vec<_>>(), &[3]);
+kablam!    |                ^
+kablam! 
+kablam! warning: broken MIR (_46 = &mut _1): bad assignment (&mut stack::SmallVec<[u8; 2], std::vec::Vec<u8>> = &mut stack::SmallVec<[u8; 2]>): Sorts(ExpectedFound { expected: u8, found: <[u8; 2] as stack::Array>::Item })
+kablam!   --> tests/small_vec.rs:77:5
+kablam!    |
+kablam! 77 |     v.clear();
+kablam!    |     ^
+kablam! 
+kablam! warning: broken MIR (_48 = &mut _1): bad assignment (&mut stack::SmallVec<[u8; 2], std::vec::Vec<u8>> = &mut stack::SmallVec<[u8; 2]>): Sorts(ExpectedFound { expected: u8, found: <[u8; 2] as stack::Array>::Item })
+kablam!   --> tests/small_vec.rs:78:5
+kablam!    |
+kablam! 78 |     v.push(3);
+kablam!    |     ^
+kablam! 
+kablam! warning: broken MIR (_50 = &mut _1): bad assignment (&mut stack::SmallVec<[u8; 2], std::vec::Vec<u8>> = &mut stack::SmallVec<[u8; 2]>): Sorts(ExpectedFound { expected: u8, found: <[u8; 2] as stack::Array>::Item })
+kablam!   --> tests/small_vec.rs:79:5
+kablam!    |
+kablam! 79 |     v.push(4);
+kablam!    |     ^
+kablam! 
+kablam! warning: broken MIR (_52 = &mut _1): bad assignment (&mut stack::SmallVec<[u8; 2], std::vec::Vec<u8>> = &mut stack::SmallVec<[u8; 2]>): Sorts(ExpectedFound { expected: u8, found: <[u8; 2] as stack::Array>::Item })
+kablam!   --> tests/small_vec.rs:80:5
+kablam!    |
+kablam! 80 |     v.push(5);
+kablam!    |     ^
+kablam! 
+kablam! warning: broken MIR (_58 = _1): bad assignment (stack::SmallVec<[u8; 2], std::vec::Vec<u8>> = stack::SmallVec<[u8; 2]>): Sorts(ExpectedFound { expected: u8, found: <[u8; 2] as stack::Array>::Item })
+kablam!   --> tests/small_vec.rs:81:16
+kablam!    |
+kablam! 81 |     assert_eq!(v.into_iter().collect::<Vec<_>>(), &[3, 4, 5]);
+kablam!    |                ^
+kablam! 
+kablam! warning: unused import: `uninitialized`, #[warn(unused_imports)] on by default
+kablam!  --> src/array_vec.rs:3:25
+kablam!   |
+kablam! 3 | use std::mem::{size_of, uninitialized};
+kablam!   |                         ^^^^^^^^^^^^^
+kablam! 
+kablam! warning: broken MIR (Terminator { source_info: SourceInfo { span: <small_dst macros>:4:1: 4:52, scope: scope2 }, kind: _4 = <stack::SmallDST<T, A>><std::any::Any + 'static, stack::SmallVec<[usize; 8]>>::new_ref::<[usize; 8]>(_5, _10) -> [return: bb4, unwind: bb3] }): call dest mismatch (stack::SmallDST<std::any::Any + 'static, stack::SmallVec<[usize; 8]>> <- stack::SmallDST<std::any::Any + 'static, stack::SmallVec<[usize; 8], std::vec::Vec<_>>>): Sorts(ExpectedFound { expected: <[usize; 8] as stack::Array>::Item, found: usize })
+kablam!   --> tests/small_dst.rs:89:52
+kablam!    |
+kablam! 89 |     let dst: SmallDST<Any, SmallVec<[usize; 8]>> = small_dst!([0usize; 8]);
+kablam!    |                                                    ^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: broken MIR (_20 = &_1): bad assignment (&stack::SmallDST<std::any::Any + 'static, stack::SmallVec<[usize; 8], std::vec::Vec<usize>>> = &stack::SmallDST<std::any::Any + 'static, stack::SmallVec<[usize; 8]>>): Sorts(ExpectedFound { expected: usize, found: <[usize; 8] as stack::Array>::Item })
+kablam!   --> tests/small_dst.rs:91:17
+kablam!    |
+kablam! 91 |         assert!(dst.data().is_spilled());
+kablam!    |                 ^^^
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 3.21 secs
+boom! running `docker rm -f 03c4ca9370b09930a97f65ca4394d94c6acb428741302f46b6582a176cb83d18`
+blam! 03c4ca9370b09930a97f65ca4394d94c6acb428741302f46b6582a176cb83d18
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! d77c28ca7ec2a327c533ebf9a49c17280269a906871af001dacdd3ed44dedc54
+boom! running `docker start -a d77c28ca7ec2a327c533ebf9a49c17280269a906871af001dacdd3ed44dedc54`
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/addressable-bb747b605fbaa359
+blam! 
+blam! running 1 test
+blam! test addressable ... ok
+blam! 
+blam! test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/array_vec-72a68d060f561378
+blam! 
+blam! running 11 tests
+blam! test test_extend ... ok
+blam! test test_in_option ... ok
+blam! test test_drop ... ok
+blam! test test_insert ... ok
+blam! test test_into_inner_2 ... ok
+blam! test test_is_send_sync ... ok
+blam! test test_simple ... ok
+blam! test test_iter ... ok
+blam! test test_into_inner_1 ... ok
+blam! test test_into_inner_3 ... ok
+blam! test test_u16_index ... ok
+blam! 
+blam! test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/small_dst-9622b3ffafff1720
+blam! 
+blam! running 8 tests
+blam! test closure ... ok
+blam! test many_instances ... ok
+blam! test sized ... ok
+blam! test ensure_drop ... ok
+blam! test oversize ... ok
+blam! test spill ... ok
+blam! test trivial_type ... ok
+blam! test undersize ... ok
+blam! 
+blam! test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/small_vec-c352dd21d9e3b0d6
+blam! 
+blam! running 8 tests
+blam! test drop_soundness ... ok
+blam! test into_iter ... ok
+blam! test null_optimization ... ok
+blam! test test_double_spill ... ok
+blam! test test_capacity ... ok
+blam! test test_spill ... ok
+blam! test test_truncate ... ok
+blam! test test_inline ... ok
+blam! 
+blam! test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/stack-317c82b478ffa8f1
+kablam!    Doc-tests stack
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f d77c28ca7ec2a327c533ebf9a49c17280269a906871af001dacdd3ed44dedc54`
+blam! d77c28ca7ec2a327c533ebf9a49c17280269a906871af001dacdd3ed44dedc54

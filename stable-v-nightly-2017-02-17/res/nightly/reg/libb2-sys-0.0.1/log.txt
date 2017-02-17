@@ -1,0 +1,32 @@
+boom! testing libb2-sys-0.0.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 9572276b752a4e2e00e6c0f16aab6528d5c7677688cfe27f74b838f3ee801105
+boom! running `docker start -a 9572276b752a4e2e00e6c0f16aab6528d5c7677688cfe27f74b838f3ee801105`
+kablam!    Compiling libb2-sys v0.0.1 (file:///source)
+kablam! error[E0061]: this function takes 0 parameters but 1 parameter was supplied
+kablam!   --> build.rs:20:28
+kablam!    |
+kablam! 20 |     let src = PathBuf::new(&env::var("CARGO_MANIFEST_DIR").unwrap()).join("libb2-0.96");
+kablam!    |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 0 parameters
+kablam! 
+kablam! error[E0061]: this function takes 0 parameters but 1 parameter was supplied
+kablam!   --> build.rs:21:28
+kablam!    |
+kablam! 21 |     let dst = PathBuf::new(&env::var("OUT_DIR").unwrap());
+kablam!    |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 0 parameters
+kablam! 
+kablam! error: no associated item named `FileNotFound` found for type `std::io::ErrorKind` in the current scope
+kablam!   --> build.rs:35:35
+kablam!    |
+kablam! 35 |         Err(ref e) if e.kind() == ErrorKind::FileNotFound => {
+kablam!    |                                   ^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `libb2-sys`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 9572276b752a4e2e00e6c0f16aab6528d5c7677688cfe27f74b838f3ee801105`
+blam! 9572276b752a4e2e00e6c0f16aab6528d5c7677688cfe27f74b838f3ee801105

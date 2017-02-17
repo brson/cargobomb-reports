@@ -1,0 +1,98 @@
+boom! testing mach-0.0.6 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! f6f164ad1cf4ee108bebe1a6c517d2183ceb97fa107df14365f9982d6edcda4c
+boom! running `docker start -a f6f164ad1cf4ee108bebe1a6c517d2183ceb97fa107df14365f9982d6edcda4c`
+kablam!    Compiling mach v0.0.6 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.25 secs
+boom! running `docker rm -f f6f164ad1cf4ee108bebe1a6c517d2183ceb97fa107df14365f9982d6edcda4c`
+blam! f6f164ad1cf4ee108bebe1a6c517d2183ceb97fa107df14365f9982d6edcda4c
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 1954d2c4b280b84568e66ff6c8bd5a111cb7b575af9e935ae05b881e640e383b
+boom! running `docker start -a 1954d2c4b280b84568e66ff6c8bd5a111cb7b575af9e935ae05b881e640e383b`
+kablam!    Compiling mach v0.0.6 (file:///source)
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/examples/dump_process_registers-80a887564d52af74.0.o" "-o" "/target/debug/examples/dump_process_registers-80a887564d52af74" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libmach-7e0aabef40c39b7a.rlib" "/target/debug/deps/liblibc-2a4507ee5e52ea3e.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-4ee93fe948eb9f83.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-8fe8e03da90d4fd4.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-91e6e43d741825a3.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-e19b6c0e5bf50406.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-277781e5e83f4ddf.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-9fb0680200b1f1d7.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-91c6f0edecc68d05.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-3e3384d4e8c6562d.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-552ce29795ce9c9d.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-c1ab5423a7223378.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-5d4fca8590bb0079.rlib" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /target/debug/examples/dump_process_registers-80a887564d52af74.0.o: In function `dump_process_registers::resume':
+kablam!           /source/examples/dump_process_registers.rs:42: undefined reference to `task_resume'
+kablam!           /target/debug/examples/dump_process_registers-80a887564d52af74.0.o: In function `dump_process_registers::main':
+kablam!           /source/examples/dump_process_registers.rs:67: undefined reference to `mach_task_self'
+kablam!           /source/examples/dump_process_registers.rs:67: undefined reference to `task_for_pid'
+kablam!           /source/examples/dump_process_registers.rs:83: undefined reference to `task_suspend'
+kablam!           /source/examples/dump_process_registers.rs:94: undefined reference to `task_threads'
+kablam!           /source/examples/dump_process_registers.rs:113: undefined reference to `thread_get_state'
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `mach`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/mach-35e23100854c2185.0.o" "-o" "/target/debug/deps/mach-35e23100854c2185" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/liblibc-2a4507ee5e52ea3e.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-c268df46a455da2e.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-3b032f1a18504e83.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-9f0027fbffa38971.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-4ee93fe948eb9f83.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-277781e5e83f4ddf.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-9fb0680200b1f1d7.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-8fe8e03da90d4fd4.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-91e6e43d741825a3.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-91c6f0edecc68d05.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-3e3384d4e8c6562d.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-552ce29795ce9c9d.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-e19b6c0e5bf50406.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-c1ab5423a7223378.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-5d4fca8590bb0079.rlib" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /target/debug/deps/mach-35e23100854c2185.0.o: In function `mach::traps::mach_task_self_sanity_test':
+kablam!           /source/src/traps.rs:16: undefined reference to `mach_task_self'
+kablam!           /target/debug/deps/mach-35e23100854c2185.0.o: In function `mach::vm::mach_vm_allocate_sanity_test':
+kablam!           /source/src/vm.rs:152: undefined reference to `mach_task_self'
+kablam!           /source/src/vm.rs:155: undefined reference to `mach_vm_allocate'
+kablam!           /source/src/vm.rs:157: undefined reference to `mach_vm_deallocate'
+kablam!           /target/debug/deps/mach-35e23100854c2185.0.o: In function `mach::vm::mach_vm_region_sanity_test':
+kablam!           /source/src/vm.rs:174: undefined reference to `mach_task_self'
+kablam!           /source/src/vm.rs:174: undefined reference to `mach_vm_region'
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f 1954d2c4b280b84568e66ff6c8bd5a111cb7b575af9e935ae05b881e640e383b`
+blam! 1954d2c4b280b84568e66ff6c8bd5a111cb7b575af9e935ae05b881e640e383b
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! d24ca384631b2b695c674cd565b87c0a880675952163755e629cb62e609d5245
+boom! running `docker start -a d24ca384631b2b695c674cd565b87c0a880675952163755e629cb62e609d5245`
+kablam!    Compiling mach v0.0.6 (file:///source)
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/examples/dump_process_registers-80a887564d52af74.0.o" "-o" "/target/debug/examples/dump_process_registers-80a887564d52af74" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libmach-7e0aabef40c39b7a.rlib" "/target/debug/deps/liblibc-2a4507ee5e52ea3e.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-4ee93fe948eb9f83.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-8fe8e03da90d4fd4.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-91e6e43d741825a3.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-e19b6c0e5bf50406.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-277781e5e83f4ddf.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-9fb0680200b1f1d7.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-91c6f0edecc68d05.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-3e3384d4e8c6562d.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-552ce29795ce9c9d.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-c1ab5423a7223378.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-5d4fca8590bb0079.rlib" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /target/debug/examples/dump_process_registers-80a887564d52af74.0.o: In function `dump_process_registers::resume':
+kablam!           /source/examples/dump_process_registers.rs:42: undefined reference to `task_resume'
+kablam!           /target/debug/examples/dump_process_registers-80a887564d52af74.0.o: In function `dump_process_registers::main':
+kablam!           /source/examples/dump_process_registers.rs:67: undefined reference to `mach_task_self'
+kablam!           /source/examples/dump_process_registers.rs:67: undefined reference to `task_for_pid'
+kablam!           /source/examples/dump_process_registers.rs:83: undefined reference to `task_suspend'
+kablam!           /source/examples/dump_process_registers.rs:94: undefined reference to `task_threads'
+kablam!           /source/examples/dump_process_registers.rs:113: undefined reference to `thread_get_state'
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `mach`.
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/mach-35e23100854c2185.0.o" "-o" "/target/debug/deps/mach-35e23100854c2185" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/liblibc-2a4507ee5e52ea3e.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-c268df46a455da2e.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-3b032f1a18504e83.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-9f0027fbffa38971.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-4ee93fe948eb9f83.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-277781e5e83f4ddf.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-9fb0680200b1f1d7.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-8fe8e03da90d4fd4.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-91e6e43d741825a3.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-91c6f0edecc68d05.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-3e3384d4e8c6562d.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-552ce29795ce9c9d.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-e19b6c0e5bf50406.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-c1ab5423a7223378.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-5d4fca8590bb0079.rlib" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /target/debug/deps/mach-35e23100854c2185.0.o: In function `mach::traps::mach_task_self_sanity_test':
+kablam!           /source/src/traps.rs:16: undefined reference to `mach_task_self'
+kablam!           /target/debug/deps/mach-35e23100854c2185.0.o: In function `mach::vm::mach_vm_allocate_sanity_test':
+kablam!           /source/src/vm.rs:152: undefined reference to `mach_task_self'
+kablam!           /source/src/vm.rs:155: undefined reference to `mach_vm_allocate'
+kablam!           /source/src/vm.rs:157: undefined reference to `mach_vm_deallocate'
+kablam!           /target/debug/deps/mach-35e23100854c2185.0.o: In function `mach::vm::mach_vm_region_sanity_test':
+kablam!           /source/src/vm.rs:174: undefined reference to `mach_task_self'
+kablam!           /source/src/vm.rs:174: undefined reference to `mach_vm_region'
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f d24ca384631b2b695c674cd565b87c0a880675952163755e629cb62e609d5245`
+blam! d24ca384631b2b695c674cd565b87c0a880675952163755e629cb62e609d5245

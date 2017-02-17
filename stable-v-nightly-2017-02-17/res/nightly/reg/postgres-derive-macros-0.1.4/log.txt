@@ -1,0 +1,116 @@
+boom! testing postgres-derive-macros-0.1.4 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 4979698468a84d5c7e1fbab670d7a50bca9d92fa869af311fb3dbad839953d6f
+boom! running `docker start -a 4979698468a84d5c7e1fbab670d7a50bca9d92fa869af311fb3dbad839953d6f`
+kablam!    Compiling postgres-derive-codegen v0.1.4
+kablam! error[E0432]: unresolved import `syntax::parse::token::InternedString`
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/postgres-derive-codegen-0.1.4/src/accepts.rs:4:5
+kablam!   |
+kablam! 4 | use syntax::parse::token::InternedString;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `InternedString` in `parse::token`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::InternedString`
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/postgres-derive-codegen-0.1.4/src/enums.rs:3:5
+kablam!   |
+kablam! 3 | use syntax::parse::token::InternedString;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `InternedString` in `parse::token`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::InternedString`
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/postgres-derive-codegen-0.1.4/src/fromsql.rs:6:34
+kablam!   |
+kablam! 6 | use syntax::parse::token::{self, InternedString};
+kablam!   |                                  ^^^^^^^^^^^^^^ no `InternedString` in `parse::token`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::InternedString`
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/postgres-derive-codegen-0.1.4/src/overrides.rs:3:5
+kablam!   |
+kablam! 3 | use syntax::parse::token::InternedString;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `InternedString` in `parse::token`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::InternedString`
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/postgres-derive-codegen-0.1.4/src/tosql.rs:6:5
+kablam!   |
+kablam! 6 | use syntax::parse::token::InternedString;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `InternedString` in `parse::token`
+kablam! 
+kablam! error[E0425]: cannot find function `str_to_ident` in module `token`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/postgres-derive-codegen-0.1.4/src/fromsql.rs:107:15
+kablam!     |
+kablam! 107 |     let buf = token::str_to_ident("buf");
+kablam!     |               ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `str_to_ident` in module `token`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/postgres-derive-codegen-0.1.4/src/fromsql.rs:135:24
+kablam!     |
+kablam! 135 |         let var_name = token::str_to_ident(&format!("__{}", ident));
+kablam!     |                        ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/postgres-derive-codegen-0.1.4/src/lib.rs:68:40
+kablam!    |
+kablam! 68 |     registry.register_syntax_extension(token::intern("derive_ToSql"),
+kablam!    |                                        ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/postgres-derive-codegen-0.1.4/src/lib.rs:70:40
+kablam!    |
+kablam! 70 |     registry.register_syntax_extension(token::intern("derive_FromSql"),
+kablam!    |                                        ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error: the type of this value must be known in this context
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/postgres-derive-codegen-0.1.4/src/accepts.rs:13:65
+kablam!    |
+kablam! 13 |                        .map(|&(_, ref variant)| quote_arm!(ctx, $variant => true,))
+kablam!    |                                                                 ^^^^^^^^
+kablam! 
+kablam! error: the type of this value must be known in this context
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/postgres-derive-codegen-0.1.4/src/accepts.rs:48:42
+kablam!    |
+kablam! 48 |                          quote_arm!(ctx, $name => <$ty as $trait_>::accepts(field.type_()),)
+kablam!    |                                          ^^^^^
+kablam! 
+kablam! error: the type of this value must be known in this context
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/postgres-derive-codegen-0.1.4/src/fromsql.rs:70:17
+kablam!    |
+kablam! 70 |                 $accepts_body
+kablam!    |                 ^^^^^^^^^^^^^
+kablam! 
+kablam! error: the type of this value must be known in this context
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/postgres-derive-codegen-0.1.4/src/fromsql.rs:99:30
+kablam!    |
+kablam! 99 |                              $name => ::std::result::Result::Ok($type_name :: $variant_name),));
+kablam!    |                              ^^^^^
+kablam! 
+kablam! error[E0023]: this pattern has 2 fields, but the corresponding tuple variant has 1 field
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/postgres-derive-codegen-0.1.4/src/overrides.rs:31:21
+kablam!    |
+kablam! 31 |                     MetaItemKind::NameValue(ref key, ref value) => {
+kablam!    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 1 field, found 2
+kablam! 
+kablam! error: the type of this value must be known in this context
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/postgres-derive-codegen-0.1.4/src/tosql.rs:72:17
+kablam!    |
+kablam! 72 |                 $accepts_body
+kablam!    |                 ^^^^^^^^^^^^^
+kablam! 
+kablam! error: the type of this value must be known in this context
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/postgres-derive-codegen-0.1.4/src/tosql.rs:109:49
+kablam!     |
+kablam! 109 |         arms.push(quote_arm!(ctx, $type_name :: $variant_name => $name,));
+kablam!     |                                                 ^^^^^^^^^^^^^
+kablam! 
+kablam! error: the type of this value must be known in this context
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/postgres-derive-codegen-0.1.4/src/tosql.rs:138:46
+kablam!     |
+kablam! 138 |                              quote_arm!(ctx, $name => {
+kablam!     |                                              ^^^^^
+kablam! 
+kablam! error: aborting due to 8 previous errors
+kablam! 
+kablam! error: Could not compile `postgres-derive-codegen`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 4979698468a84d5c7e1fbab670d7a50bca9d92fa869af311fb3dbad839953d6f`
+blam! 4979698468a84d5c7e1fbab670d7a50bca9d92fa869af311fb3dbad839953d6f

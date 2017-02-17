@@ -1,0 +1,30 @@
+boom! testing temperature-0.10.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! b9b0514fa352017b5218e13081e03424f99fa669f99fc67c653af1e683b8e10d
+boom! running `docker start -a b9b0514fa352017b5218e13081e03424f99fa669f99fc67c653af1e683b8e10d`
+kablam!    Compiling hotspot v0.6.0
+kablam!    Compiling threed-ice-sys v0.3.0
+kablam!    Compiling superlu-sys v0.3.1
+kablam!    Compiling openblas-src v0.5.2
+kablam! error: failed to run custom build command for `openblas-src v0.5.2`
+kablam! process didn't exit successfully: `/target/debug/build/openblas-src-968cd159e6595312/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! Running: "make" "libs" "netlib" "shared" "BINARY=64" "YES_CBLAS=1" "YES_LAPACKE=1" "-j4"
+kablam! 
+kablam! --- stderr
+kablam! thread 'main' panicked at 'failed to execute `"make" "libs" "netlib" "shared" "BINARY=64" "YES_CBLAS=1" "YES_LAPACKE=1" "-j4"`: No such file or directory (os error 2)', /cargo-home/registry/src/github.com-1ecc6299db9ec823/openblas-src-0.5.2/build.rs:50
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: failed to run custom build command for `superlu-sys v0.3.1`
+kablam! process didn't exit successfully: `/target/debug/build/superlu-sys-27d1eb57455f354e/build-script-build` (exit code: 101)
+kablam! --- stderr
+kablam! thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: Error { repr: Os { code: 2, message: "No such file or directory" } }', /buildslave/rust-buildbot/slave/nightly-dist-rustc-linux/build/src/libcore/result.rs:860
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f b9b0514fa352017b5218e13081e03424f99fa669f99fc67c653af1e683b8e10d`
+blam! b9b0514fa352017b5218e13081e03424f99fa669f99fc67c653af1e683b8e10d

@@ -1,0 +1,38 @@
+boom! testing ama-0.1.4 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! f356995729a32b77516dcbb90c3a7930311934f02067eb788c29e249fa90f823
+boom! running `docker start -a f356995729a32b77516dcbb90c3a7930311934f02067eb788c29e249fa90f823`
+kablam!    Compiling ama v0.1.4 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::parse::token::str_to_ident`
+kablam!   --> src/libama/rust.rs:33:9
+kablam!    |
+kablam! 33 | pub use syntax::parse::token::str_to_ident;
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `str_to_ident` in `parse::token`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::keywords::Keyword`
+kablam!   --> src/libama/rust.rs:40:9
+kablam!    |
+kablam! 40 | pub use syntax::parse::token::keywords::Keyword;
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `keywords` in `token`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::gensym_ident`
+kablam!   --> src/libama/rust.rs:43:9
+kablam!    |
+kablam! 43 | pub use syntax::parse::token::gensym_ident;
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `gensym_ident` in `parse::token`
+kablam! 
+kablam! error[E0405]: cannot find trait `Reader` in module `rust::lexer`
+kablam!   --> src/libama/code_gen.rs:60:10
+kablam!    |
+kablam! 60 | impl<'a> rust::lexer::Reader for TokenAndSpanArray<'a> {
+kablam!    |          ^^^^^^^^^^^^^^^^^^^ not found in `rust::lexer`
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `ama`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f356995729a32b77516dcbb90c3a7930311934f02067eb788c29e249fa90f823`
+blam! f356995729a32b77516dcbb90c3a7930311934f02067eb788c29e249fa90f823

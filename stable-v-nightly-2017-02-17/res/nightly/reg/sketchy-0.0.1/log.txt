@@ -1,0 +1,62 @@
+boom! testing sketchy-0.0.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 485b1ecda20e6f59adae5502a20125210d85145a9a84ac3f45a0d19162facd1a
+boom! running `docker start -a 485b1ecda20e6f59adae5502a20125210d85145a9a84ac3f45a0d19162facd1a`
+kablam!    Compiling sketchy v0.0.1 (file:///source)
+kablam! error[E0432]: unresolved import `std::collections::Bitv`
+kablam!  --> src/bloomfilter.rs:1:5
+kablam!   |
+kablam! 1 | use std::collections::Bitv;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^ no `Bitv` in `collections`
+kablam! 
+kablam! error[E0432]: unresolved import `std::num::Float`
+kablam!  --> src/countmin.rs:4:16
+kablam!   |
+kablam! 4 | use std::num::{Float, Int};
+kablam!   |                ^^^^^ no `Float` in `num`
+kablam! 
+kablam! error[E0432]: unresolved import `std::num::Int`
+kablam!  --> src/countmin.rs:4:23
+kablam!   |
+kablam! 4 | use std::num::{Float, Int};
+kablam!   |                       ^^^ no `Int` in `num`
+kablam! 
+kablam! error[E0432]: unresolved import `std::rand::Rng`
+kablam!  --> src/reservoir.rs:2:17
+kablam!   |
+kablam! 2 | use std::rand::{Rng, thread_rng};
+kablam!   |                 ^^^ no `Rng` in `rand`
+kablam! 
+kablam! error: module `rand` is private
+kablam!  --> src/reservoir.rs:2:17
+kablam!   |
+kablam! 2 | use std::rand::{Rng, thread_rng};
+kablam!   |                 ^^^
+kablam! 
+kablam! error: module `rand` is private
+kablam!  --> src/reservoir.rs:2:22
+kablam!   |
+kablam! 2 | use std::rand::{Rng, thread_rng};
+kablam!   |                      ^^^^^^^^^^
+kablam! 
+kablam! error[E0244]: wrong number of type arguments: expected 0, found 1
+kablam!   --> src/bloomfilter.rs:29:9
+kablam!    |
+kablam! 29 | impl<E: Hash<SipHasher>> BloomFilter<E> {
+kablam!    |         ^^^^^^^^^^^^^^^ expected no type arguments
+kablam! 
+kablam! error[E0244]: wrong number of type arguments: expected 0, found 1
+kablam!   --> src/countmin.rs:27:9
+kablam!    |
+kablam! 27 | impl<E: Hash<SipHasher>, C: Copy + Int> CountMinSketch<E, C> {
+kablam!    |         ^^^^^^^^^^^^^^^ expected no type arguments
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `sketchy`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 485b1ecda20e6f59adae5502a20125210d85145a9a84ac3f45a0d19162facd1a`
+blam! 485b1ecda20e6f59adae5502a20125210d85145a9a84ac3f45a0d19162facd1a

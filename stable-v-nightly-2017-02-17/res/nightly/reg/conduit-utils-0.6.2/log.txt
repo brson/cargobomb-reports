@@ -1,0 +1,38 @@
+boom! testing conduit-utils-0.6.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! c7ba5a996afef95270bd38eab506a90fdaf8741a22fe546d4e09b3acec5dc56d
+boom! running `docker start -a c7ba5a996afef95270bd38eab506a90fdaf8741a22fe546d4e09b3acec5dc56d`
+kablam!    Compiling conduit v0.6.6
+kablam! error[E0432]: unresolved import `std::old_io::net::ip::IpAddr`
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/conduit-0.6.6/src/lib.rs:7:5
+kablam!   |
+kablam! 7 | use std::old_io::net::ip::IpAddr;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `old_io` in `std`
+kablam! 
+kablam! error[E0432]: unresolved import `std::boxed::BoxAny`
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/conduit-0.6.6/src/typemap.rs:2:5
+kablam!   |
+kablam! 2 | use std::boxed::BoxAny;
+kablam!   |     ^^^^^^^^^^^^^^^^^^ no `BoxAny` in `boxed`
+kablam! 
+kablam! error[E0412]: cannot find type `Reader` in this scope
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/conduit-0.6.6/src/lib.rs:84:42
+kablam!    |
+kablam! 84 |     fn body<'a>(&'a mut self) -> &'a mut Reader;
+kablam!    |                                          ^^^^^^ did you mean `Headers`?
+kablam! 
+kablam! error[E0405]: cannot find trait `Reader` in this scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/conduit-0.6.6/src/lib.rs:113:19
+kablam!     |
+kablam! 113 |     pub body: Box<Reader + Send>
+kablam!     |                   ^^^^^^ did you mean `Headers`?
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `conduit`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f c7ba5a996afef95270bd38eab506a90fdaf8741a22fe546d4e09b3acec5dc56d`
+blam! c7ba5a996afef95270bd38eab506a90fdaf8741a22fe546d4e09b3acec5dc56d

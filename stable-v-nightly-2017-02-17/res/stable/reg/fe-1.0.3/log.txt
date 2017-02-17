@@ -1,0 +1,33 @@
+boom! testing fe-1.0.3 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! dc3ce51cc2346461aacb740cb73d894ebf3793dc305171232d8a9725fba4344e
+boom! running `docker start -a dc3ce51cc2346461aacb740cb73d894ebf3793dc305171232d8a9725fba4344e`
+kablam!    Compiling term-painter v0.2.3
+kablam!    Compiling clap v2.19.3
+kablam!    Compiling fe v1.0.3 (file:///source)
+kablam! error[E0201]: duplicate definitions with name `mode`:
+kablam!   --> src/fileinfo.rs:82:5
+kablam!    |
+kablam! 76 |       fn mode(metadata: &fs::Metadata) -> mode_t {
+kablam!    |  _____- starting here...
+kablam! 77 | |         use std::os::linux::fs::MetadataExt;
+kablam! 78 | |         metadata.st_mode()
+kablam! 79 | |     }
+kablam!    | |_____- ...ending here: previous definition of `mode` here
+kablam! ...
+kablam! 82 |       fn mode(metadata: &fs::Metadata) -> mode_t {
+kablam!    |  _____^ starting here...
+kablam! 83 | |         use std::os::unix::fs::MetadataExt;
+kablam! 84 | |         metadata.mode()
+kablam! 85 | |     }
+kablam!    | |_____^ ...ending here: duplicate definition
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `fe`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f dc3ce51cc2346461aacb740cb73d894ebf3793dc305171232d8a9725fba4344e`
+blam! dc3ce51cc2346461aacb740cb73d894ebf3793dc305171232d8a9725fba4344e

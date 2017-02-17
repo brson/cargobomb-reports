@@ -1,0 +1,32 @@
+boom! testing https://github.com/ckolek/FIXEngine-rs#9dd83c9a96e832824db68e5182369d4db3b52c47 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 5cfc6ad82ec27047c6792331917ee93839ac7354e798053c068b9bdecf91626e
+boom! running `docker start -a 5cfc6ad82ec27047c6792331917ee93839ac7354e798053c068b9bdecf91626e`
+kablam!    Compiling fix v0.1.0 (file:///source)
+kablam! error[E0038]: the trait `messages::FIXMessage` cannot be made into an object
+kablam!  --> src/engine/mod.rs:7:5
+kablam!   |
+kablam! 7 |     fn on_receive(&mut self, session_id : &SessionId, message : &FIXMessage);
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `messages::FIXMessage` cannot be made into an object
+kablam!   |
+kablam!   = note: method `get_value` has generic type parameters
+kablam!   = note: method `get_value_at` has generic type parameters
+kablam! 
+kablam! error[E0038]: the trait `messages::FIXMessage` cannot be made into an object
+kablam!  --> src/engine/mod.rs:8:5
+kablam!   |
+kablam! 8 |     fn on_send(&mut self, session_id : &SessionId, message : &FIXMessage);
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `messages::FIXMessage` cannot be made into an object
+kablam!   |
+kablam!   = note: method `get_value` has generic type parameters
+kablam!   = note: method `get_value_at` has generic type parameters
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `fix`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 5cfc6ad82ec27047c6792331917ee93839ac7354e798053c068b9bdecf91626e`
+blam! 5cfc6ad82ec27047c6792331917ee93839ac7354e798053c068b9bdecf91626e

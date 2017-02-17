@@ -1,0 +1,65 @@
+boom! testing https://github.com/Nashenas88/borrow_visualizer_prototype#18aa3b09dd608e0023ee968f0bf40769d43e9c20 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! c713aa1194a6c803d43ad263cf1859732f7a496ea63f436bdc2a2910f4b9a728
+boom! running `docker start -a c713aa1194a6c803d43ad263cf1859732f7a496ea63f436bdc2a2910f4b9a728`
+kablam!    Compiling unicode-segmentation v1.0.1
+kablam!    Compiling term_size v0.2.1
+kablam!    Compiling clap v2.20.0
+kablam!    Compiling borrow_bounds v0.1.0 (file:///source)
+kablam! error: no method named `belongs_to` found for type `std::rc::Rc<borrowck::borrowck::LoanPath<'_>>` in the current scope
+kablam!    --> src/main.rs:163:86
+kablam!     |
+kablam! 163 |                 .filter(|m| analysis_data.move_data.move_data.path_loan_path(m.path).belongs_to(node_id))
+kablam!     |                                                                                      ^^^^^^^^^^
+kablam! 
+kablam! error: no method named `belongs_to` found for type `borrowck::borrowck::LoanPath<'_>` in the current scope
+kablam!    --> src/main.rs:171:53
+kablam!     |
+kablam! 171 |                 .filter(|&loan| (*loan.loan_path()).belongs_to(node_id))
+kablam!     |                                                     ^^^^^^^^^^
+kablam! 
+kablam! error: no method named `kind` found for type `&borrowck::borrowck::Loan<'_>` in the current scope
+kablam!    --> src/main.rs:174:47
+kablam!     |
+kablam! 174 |                     let kind_str = match loan.kind() {
+kablam!     |                                               ^^^^
+kablam!     |
+kablam! note: did you mean to write `loan.kind`?
+kablam!    --> src/main.rs:174:47
+kablam!     |
+kablam! 174 |                     let kind_str = match loan.kind() {
+kablam!     |                                               ^^^^
+kablam! 
+kablam! error: no method named `gen_scope` found for type `&borrowck::borrowck::Loan<'_>` in the current scope
+kablam!    --> src/main.rs:186:41
+kablam!     |
+kablam! 186 |                     let gen_span = loan.gen_scope()
+kablam!     |                                         ^^^^^^^^^
+kablam!     |
+kablam! note: did you mean to write `loan.gen_scope`?
+kablam!    --> src/main.rs:186:41
+kablam!     |
+kablam! 186 |                     let gen_span = loan.gen_scope()
+kablam!     |                                         ^^^^^^^^^
+kablam! 
+kablam! error: no method named `kill_scope` found for type `&borrowck::borrowck::Loan<'_>` in the current scope
+kablam!    --> src/main.rs:189:42
+kablam!     |
+kablam! 189 |                     let kill_span = loan.kill_scope()
+kablam!     |                                          ^^^^^^^^^^
+kablam!     |
+kablam! note: did you mean to write `loan.kill_scope`?
+kablam!    --> src/main.rs:189:42
+kablam!     |
+kablam! 189 |                     let kill_span = loan.kill_scope()
+kablam!     |                                          ^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 5 previous errors
+kablam! 
+kablam! error: Could not compile `borrow_bounds`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f c713aa1194a6c803d43ad263cf1859732f7a496ea63f436bdc2a2910f4b9a728`
+blam! c713aa1194a6c803d43ad263cf1859732f7a496ea63f436bdc2a2910f4b9a728

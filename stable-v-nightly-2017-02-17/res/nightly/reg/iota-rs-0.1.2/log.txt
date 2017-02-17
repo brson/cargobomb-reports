@@ -1,0 +1,42 @@
+boom! testing iota-rs-0.1.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! cac9b6cccfdde172af863f66f6338a65ff6fe56c86ee5819d9cd5d555b5d3665
+boom! running `docker start -a cac9b6cccfdde172af863f66f6338a65ff6fe56c86ee5819d9cd5d555b5d3665`
+kablam!    Compiling iota-rs v0.1.2 (file:///source)
+kablam! error[E0407]: method `add_macro` is not a member of trait `Resolver`
+kablam!   --> src/lib.rs:73:2
+kablam!    |
+kablam! 73 | 	fn add_macro(&mut self, scope: Mark, def: MacroDef, export: bool) { self.resolver.add_macro(scope, def, export) }
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not a member of trait `Resolver`
+kablam! 
+kablam! error[E0407]: method `find_attr_invoc` is not a member of trait `Resolver`
+kablam!   --> src/lib.rs:77:2
+kablam!    |
+kablam! 77 | 	fn find_attr_invoc(&mut self, attrs: &mut Vec<Attribute>) -> Option<Attribute> { self.resolver.find_attr_invoc(attrs) }
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not a member of trait `Resolver`
+kablam! 
+kablam! error[E0050]: method `visit_expansion` has 3 parameters but the declaration in trait `syntax::ext::base::Resolver::visit_expansion` has 4
+kablam!   --> src/lib.rs:72:55
+kablam!    |
+kablam! 72 | 	fn visit_expansion(&mut self, mark: Mark, expansion: &Expansion) { self.resolver.visit_expansion(mark, expansion) }
+kablam!    | 	                                                     ^^^^^^^^^^ expected 4 parameters, found 3
+kablam! 
+kablam! error[E0046]: not all trait items implemented, missing: `is_whitelisted_legacy_custom_derive`, `find_legacy_attr_invoc`, `resolve_derive_macro`
+kablam!   --> src/lib.rs:68:1
+kablam!    |
+kablam! 68 | impl<'a, F: FnOnce() -> Rc<SyntaxExtension>> Resolver for IotaResolver<'a, F> {
+kablam!    | ^ missing `is_whitelisted_legacy_custom_derive`, `find_legacy_attr_invoc`, `resolve_derive_macro` in implementation
+kablam!    |
+kablam!    = note: `is_whitelisted_legacy_custom_derive` from trait: `fn(&Self, syntax::ast::Symbol) -> bool`
+kablam!    = note: `find_legacy_attr_invoc` from trait: `fn(&mut Self, &mut std::vec::Vec<syntax::ast::Attribute>) -> std::option::Option<syntax::ast::Attribute>`
+kablam!    = note: `resolve_derive_macro` from trait: `fn(&mut Self, syntax::ext::hygiene::Mark, &syntax::ast::Path, bool) -> std::result::Result<alloc::rc::Rc<syntax::ext::base::SyntaxExtension>, syntax::ext::base::Determinacy>`
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `iota-rs`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f cac9b6cccfdde172af863f66f6338a65ff6fe56c86ee5819d9cd5d555b5d3665`
+blam! cac9b6cccfdde172af863f66f6338a65ff6fe56c86ee5819d9cd5d555b5d3665

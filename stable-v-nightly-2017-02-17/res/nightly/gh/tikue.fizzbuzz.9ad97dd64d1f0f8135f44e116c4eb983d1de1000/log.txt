@@ -1,0 +1,58 @@
+boom! testing https://github.com/tikue/fizzbuzz#9ad97dd64d1f0f8135f44e116c4eb983d1de1000 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 1230bb705e99ca799d1dc254a11c7456c23e9dd7e7335536d4403f6f465d8634
+boom! running `docker start -a 1230bb705e99ca799d1dc254a11c7456c23e9dd7e7335536d4403f6f465d8634`
+kablam!    Compiling fizzbuzz v0.0.1 (file:///source)
+kablam! error[E0412]: cannot find type `int` in this scope
+kablam!   --> src/main.rs:34:16
+kablam!    |
+kablam! 34 | fn fizzbuzz(n: int) -> String {
+kablam!    |                ^^^ not found in this scope
+kablam! 
+kablam! error: rust-call ABI is subject to change (see issue #29625)
+kablam!  --> src/main.rs:7:5
+kablam!   |
+kablam! 7 |       extern "rust-call" fn call(&self, (_,): (B,)) -> A {
+kablam!   |  _____^ starting here...
+kablam! 8 | |         self.x.clone()
+kablam! 9 | |     }
+kablam!   | |_____^ ...ending here
+kablam!   |
+kablam!   = help: add #![feature(unboxed_closures)] to the crate attributes to enable
+kablam! 
+kablam! error: box expression syntax is experimental; you can call `Box::new` instead. (see issue #27779)
+kablam!   --> src/main.rs:16:5
+kablam!    |
+kablam! 16 |     box Const { x: a }
+kablam!    |     ^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: add #![feature(box_syntax)] to the crate attributes to enable
+kablam! 
+kablam! error: rust-call ABI is subject to change (see issue #29625)
+kablam!   --> src/main.rs:23:5
+kablam!    |
+kablam! 23 |       extern "rust-call" fn call(&self, (a,): (A,)) -> A {
+kablam!    |  _____^ starting here...
+kablam! 24 | |         a
+kablam! 25 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = help: add #![feature(unboxed_closures)] to the crate attributes to enable
+kablam! 
+kablam! error: box expression syntax is experimental; you can call `Box::new` instead. (see issue #27779)
+kablam!   --> src/main.rs:42:29
+kablam!    |
+kablam! 42 |     let x = test(5, "buzz", box Id);
+kablam!    |                             ^^^^^^
+kablam!    |
+kablam!    = help: add #![feature(box_syntax)] to the crate attributes to enable
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `fizzbuzz`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 1230bb705e99ca799d1dc254a11c7456c23e9dd7e7335536d4403f6f465d8634`
+blam! 1230bb705e99ca799d1dc254a11c7456c23e9dd7e7335536d4403f6f465d8634

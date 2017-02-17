@@ -1,0 +1,59 @@
+boom! testing forkjoin-2.3.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 8350a7765c30f35aead666fe73fd216a1d43da5f45cc005d356aa972aea3a270
+boom! running `docker start -a 8350a7765c30f35aead666fe73fd216a1d43da5f45cc005d356aa972aea3a270`
+kablam!    Compiling deque v0.2.3
+kablam!    Compiling forkjoin v2.3.0 (file:///source)
+kablam! error[E0432]: unresolved import `libc::funcs::posix88::unistd::usleep`
+kablam!   --> src/workerthread.rs:21:5
+kablam!    |
+kablam! 21 | use libc::funcs::posix88::unistd::usleep;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `funcs` in `libc`
+kablam! 
+kablam! error[E0412]: cannot find type `JoinGuard` in module `thread`
+kablam!   --> src/workerthread.rs:81:31
+kablam!    |
+kablam! 81 |     pub fn spawn(mut self) -> thread::JoinGuard<'a, ()> {
+kablam!    |                               ^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `thread`
+kablam! 
+kablam! error[E0412]: cannot find type `JoinGuard` in module `thread`
+kablam!   --> src/poolsupervisor.rs:42:16
+kablam!    |
+kablam! 42 |     joinguard: thread::JoinGuard<'thread, ()>,
+kablam!    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `thread`
+kablam! 
+kablam! error[E0412]: cannot find type `JoinGuard` in module `thread`
+kablam!   --> src/poolsupervisor.rs:54:71
+kablam!    |
+kablam! 54 |     pub fn spawn(nthreads: usize) -> (Sender<SupervisorMsg<Arg,Ret>>, thread::JoinGuard<'t, ()>) {
+kablam!    |                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `thread`
+kablam! 
+kablam! error[E0412]: cannot find type `JoinGuard` in module `thread`
+kablam!    --> src/poolsupervisor.rs:122:30
+kablam!     |
+kablam! 122 |     fn start_thread(self) -> thread::JoinGuard<'t, ()> {
+kablam!     |                              ^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `thread`
+kablam! 
+kablam! error[E0412]: cannot find type `JoinGuard` in module `thread`
+kablam!    --> src/lib.rs:449:16
+kablam!     |
+kablam! 449 |     joinguard: thread::JoinGuard<'a, ()>,
+kablam!     |                ^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `thread`
+kablam! 
+kablam! error[E0392]: parameter `'thread` is never used
+kablam!   --> src/poolsupervisor.rs:45:33
+kablam!    |
+kablam! 45 | pub struct PoolSupervisorThread<'thread, Arg: Send, Ret: Send + Sync> {
+kablam!    |                                 ^^^^^^^ unused type parameter
+kablam!    |
+kablam!    = help: consider removing `'thread` or using a marker such as `std::marker::PhantomData`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `forkjoin`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 8350a7765c30f35aead666fe73fd216a1d43da5f45cc005d356aa972aea3a270`
+blam! 8350a7765c30f35aead666fe73fd216a1d43da5f45cc005d356aa972aea3a270

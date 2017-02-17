@@ -1,0 +1,713 @@
+boom! testing unjson-0.0.3 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 619e9d283090cc1a3d32797a660f1f6e99c02a3de0e10e3d50cfe4bd257ca07e
+boom! running `docker start -a 619e9d283090cc1a3d32797a660f1f6e99c02a3de0e10e3d50cfe4bd257ca07e`
+kablam!    Compiling serde_json v0.5.1
+kablam! error[E0407]: method `visit` is not a member of trait `de::Deserializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/de.rs:521:5
+kablam!     |
+kablam! 521 |       fn visit<V>(&mut self, visitor: V) -> Result<V::Value>
+kablam!     |  _____^ starting here...
+kablam! 522 | |         where V: de::Visitor,
+kablam! 523 | |     {
+kablam! 524 | |         self.parse_value(visitor)
+kablam! 525 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `de::Deserializer`
+kablam! 
+kablam! error[E0407]: method `visit_option` is not a member of trait `de::Deserializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/de.rs:529:5
+kablam!     |
+kablam! 529 |     fn visit_option<V>(&mut self, mut visitor: V) -> Result<V::Value>
+kablam!     |     ^ not a member of trait `de::Deserializer`
+kablam! 
+kablam! error[E0407]: method `visit_newtype_struct` is not a member of trait `de::Deserializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/de.rs:548:5
+kablam!     |
+kablam! 548 |       fn visit_newtype_struct<V>(&mut self,
+kablam!     |  _____^ starting here...
+kablam! 549 | |                                _name: &str,
+kablam! 550 | |                                mut visitor: V) -> Result<V::Value>
+kablam! 551 | |         where V: de::Visitor,
+kablam! 552 | |     {
+kablam! 553 | |         visitor.visit_newtype_struct(self)
+kablam! 554 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `de::Deserializer`
+kablam! 
+kablam! error[E0407]: method `visit_enum` is not a member of trait `de::Deserializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/de.rs:559:5
+kablam!     |
+kablam! 559 |     fn visit_enum<V>(&mut self,
+kablam!     |     ^ not a member of trait `de::Deserializer`
+kablam! 
+kablam! error[E0407]: method `format` is not a member of trait `de::Deserializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/de.rs:593:5
+kablam!     |
+kablam! 593 |       fn format() -> &'static str {
+kablam!     |  _____^ starting here...
+kablam! 594 | |         "json"
+kablam! 595 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `de::Deserializer`
+kablam! 
+kablam! error[E0407]: method `end` is not a member of trait `de::SeqVisitor`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/de.rs:645:5
+kablam!     |
+kablam! 645 |     fn end(&mut self) -> Result<()> {
+kablam!     |     ^ not a member of trait `de::SeqVisitor`
+kablam! 
+kablam! error[E0407]: method `end` is not a member of trait `de::MapVisitor`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/de.rs:725:5
+kablam!     |
+kablam! 725 |     fn end(&mut self) -> Result<()> {
+kablam!     |     ^ not a member of trait `de::MapVisitor`
+kablam! 
+kablam! error[E0407]: method `missing_field` is not a member of trait `de::MapVisitor`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/de.rs:739:5
+kablam!     |
+kablam! 739 |       fn missing_field<V>(&mut self, _field: &'static str) -> Result<V>
+kablam!     |  _____^ starting here...
+kablam! 740 | |         where V: de::Deserialize,
+kablam! 741 | |     {
+kablam! 742 | |         let mut de = de::value::ValueDeserializer::into_deserializer(());
+kablam! 743 | |         Ok(try!(de::Deserialize::deserialize(&mut de)))
+kablam! 744 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `de::MapVisitor`
+kablam! 
+kablam! error[E0407]: method `visit_variant` is not a member of trait `de::VariantVisitor`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/de.rs:752:5
+kablam!     |
+kablam! 752 |       fn visit_variant<V>(&mut self) -> Result<V>
+kablam!     |  _____^ starting here...
+kablam! 753 | |         where V: de::Deserialize
+kablam! 754 | |     {
+kablam! 755 | |         let val = try!(de::Deserialize::deserialize(self));
+kablam! 756 | |         try!(self.parse_object_colon());
+kablam! 757 | |         Ok(val)
+kablam! 758 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `de::VariantVisitor`
+kablam! 
+kablam! error[E0407]: method `syntax` is not a member of trait `de::Error`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/error.rs:171:5
+kablam!     |
+kablam! 171 |       fn syntax(_: &str) -> Error {
+kablam!     |  _____^ starting here...
+kablam! 172 | |         Error::SyntaxError(ErrorCode::ExpectedSomeValue, 0, 0)
+kablam! 173 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `de::Error`
+kablam! 
+kablam! error[E0407]: method `end_of_stream` is not a member of trait `de::Error`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/error.rs:175:5
+kablam!     |
+kablam! 175 |       fn end_of_stream() -> Error {
+kablam!     |  _____^ starting here...
+kablam! 176 | |         Error::SyntaxError(ErrorCode::EOFWhileParsingValue, 0, 0)
+kablam! 177 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `de::Error`
+kablam! 
+kablam! error[E0407]: method `visit_bool` is not a member of trait `ser::Serializer`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/ser.rs:66:5
+kablam!    |
+kablam! 66 |       fn visit_bool(&mut self, value: bool) -> io::Result<()> {
+kablam!    |  _____^ starting here...
+kablam! 67 | |         if value {
+kablam! 68 | |             self.writer.write_all(b"true")
+kablam! 69 | |         } else {
+kablam! 70 | |             self.writer.write_all(b"false")
+kablam! 71 | |         }
+kablam! 72 | |     }
+kablam!    | |_____^ ...ending here: not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_isize` is not a member of trait `ser::Serializer`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/ser.rs:75:5
+kablam!    |
+kablam! 75 |       fn visit_isize(&mut self, value: isize) -> io::Result<()> {
+kablam!    |  _____^ starting here...
+kablam! 76 | |         write!(&mut self.writer, "{}", value)
+kablam! 77 | |     }
+kablam!    | |_____^ ...ending here: not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_i8` is not a member of trait `ser::Serializer`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/ser.rs:80:5
+kablam!    |
+kablam! 80 |       fn visit_i8(&mut self, value: i8) -> io::Result<()> {
+kablam!    |  _____^ starting here...
+kablam! 81 | |         write!(&mut self.writer, "{}", value)
+kablam! 82 | |     }
+kablam!    | |_____^ ...ending here: not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_i16` is not a member of trait `ser::Serializer`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/ser.rs:85:5
+kablam!    |
+kablam! 85 |       fn visit_i16(&mut self, value: i16) -> io::Result<()> {
+kablam!    |  _____^ starting here...
+kablam! 86 | |         write!(&mut self.writer, "{}", value)
+kablam! 87 | |     }
+kablam!    | |_____^ ...ending here: not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_i32` is not a member of trait `ser::Serializer`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/ser.rs:90:5
+kablam!    |
+kablam! 90 |       fn visit_i32(&mut self, value: i32) -> io::Result<()> {
+kablam!    |  _____^ starting here...
+kablam! 91 | |         write!(&mut self.writer, "{}", value)
+kablam! 92 | |     }
+kablam!    | |_____^ ...ending here: not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_i64` is not a member of trait `ser::Serializer`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/ser.rs:95:5
+kablam!    |
+kablam! 95 |       fn visit_i64(&mut self, value: i64) -> io::Result<()> {
+kablam!    |  _____^ starting here...
+kablam! 96 | |         write!(&mut self.writer, "{}", value)
+kablam! 97 | |     }
+kablam!    | |_____^ ...ending here: not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_usize` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/ser.rs:100:5
+kablam!     |
+kablam! 100 |       fn visit_usize(&mut self, value: usize) -> io::Result<()> {
+kablam!     |  _____^ starting here...
+kablam! 101 | |         write!(&mut self.writer, "{}", value)
+kablam! 102 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_u8` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/ser.rs:105:5
+kablam!     |
+kablam! 105 |       fn visit_u8(&mut self, value: u8) -> io::Result<()> {
+kablam!     |  _____^ starting here...
+kablam! 106 | |         write!(&mut self.writer, "{}", value)
+kablam! 107 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_u16` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/ser.rs:110:5
+kablam!     |
+kablam! 110 |       fn visit_u16(&mut self, value: u16) -> io::Result<()> {
+kablam!     |  _____^ starting here...
+kablam! 111 | |         write!(&mut self.writer, "{}", value)
+kablam! 112 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_u32` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/ser.rs:115:5
+kablam!     |
+kablam! 115 |       fn visit_u32(&mut self, value: u32) -> io::Result<()> {
+kablam!     |  _____^ starting here...
+kablam! 116 | |         write!(&mut self.writer, "{}", value)
+kablam! 117 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_u64` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/ser.rs:120:5
+kablam!     |
+kablam! 120 |       fn visit_u64(&mut self, value: u64) -> io::Result<()> {
+kablam!     |  _____^ starting here...
+kablam! 121 | |         write!(&mut self.writer, "{}", value)
+kablam! 122 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_f32` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/ser.rs:125:5
+kablam!     |
+kablam! 125 |       fn visit_f32(&mut self, value: f32) -> io::Result<()> {
+kablam!     |  _____^ starting here...
+kablam! 126 | |         fmt_f32_or_null(&mut self.writer, value)
+kablam! 127 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_f64` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/ser.rs:130:5
+kablam!     |
+kablam! 130 |       fn visit_f64(&mut self, value: f64) -> io::Result<()> {
+kablam!     |  _____^ starting here...
+kablam! 131 | |         fmt_f64_or_null(&mut self.writer, value)
+kablam! 132 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_char` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/ser.rs:135:5
+kablam!     |
+kablam! 135 |       fn visit_char(&mut self, value: char) -> io::Result<()> {
+kablam!     |  _____^ starting here...
+kablam! 136 | |         escape_char(&mut self.writer, value)
+kablam! 137 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_str` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/ser.rs:140:5
+kablam!     |
+kablam! 140 |       fn visit_str(&mut self, value: &str) -> io::Result<()> {
+kablam!     |  _____^ starting here...
+kablam! 141 | |         escape_str(&mut self.writer, value)
+kablam! 142 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_none` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/ser.rs:145:5
+kablam!     |
+kablam! 145 |       fn visit_none(&mut self) -> io::Result<()> {
+kablam!     |  _____^ starting here...
+kablam! 146 | |         self.visit_unit()
+kablam! 147 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_some` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/ser.rs:150:5
+kablam!     |
+kablam! 150 |       fn visit_some<V>(&mut self, value: V) -> io::Result<()>
+kablam!     |  _____^ starting here...
+kablam! 151 | |         where V: ser::Serialize
+kablam! 152 | |     {
+kablam! 153 | |         value.serialize(self)
+kablam! 154 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_unit` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/ser.rs:157:5
+kablam!     |
+kablam! 157 |       fn visit_unit(&mut self) -> io::Result<()> {
+kablam!     |  _____^ starting here...
+kablam! 158 | |         self.writer.write_all(b"null")
+kablam! 159 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_newtype_struct` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/ser.rs:163:5
+kablam!     |
+kablam! 163 |       fn visit_newtype_struct<T>(&mut self,
+kablam!     |  _____^ starting here...
+kablam! 164 | |                                _name: &'static str,
+kablam! 165 | |                                value: T) -> Result<(), Self::Error>
+kablam! 166 | |         where T: ser::Serialize,
+kablam! 167 | |     {
+kablam! 168 | |         value.serialize(self)
+kablam! 169 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_unit_variant` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/ser.rs:172:5
+kablam!     |
+kablam! 172 |     fn visit_unit_variant(&mut self,
+kablam!     |     ^ not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_newtype_variant` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/ser.rs:185:5
+kablam!     |
+kablam! 185 |     fn visit_newtype_variant<T>(&mut self,
+kablam!     |     ^ not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_seq` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/ser.rs:201:5
+kablam!     |
+kablam! 201 |     fn visit_seq<V>(&mut self, mut visitor: V) -> io::Result<()>
+kablam!     |     ^ not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0405]: trait `ser::SeqVisitor` is not in scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/ser.rs:202:18
+kablam!     |
+kablam! 202 |         where V: ser::SeqVisitor,
+kablam!     |                  ^^^^^^^^^^^^^^^ `ser::SeqVisitor` is not in scope
+kablam!     |
+kablam!     = help: you can import it into scope: `use serde::de::SeqVisitor;`.
+kablam! 
+kablam! error[E0407]: method `visit_tuple_variant` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/ser.rs:222:5
+kablam!     |
+kablam! 222 |     fn visit_tuple_variant<V>(&mut self,
+kablam!     |     ^ not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0405]: trait `ser::SeqVisitor` is not in scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/ser.rs:227:18
+kablam!     |
+kablam! 227 |         where V: ser::SeqVisitor,
+kablam!     |                  ^^^^^^^^^^^^^^^ `ser::SeqVisitor` is not in scope
+kablam!     |
+kablam!     = help: you can import it into scope: `use serde::de::SeqVisitor;`.
+kablam! 
+kablam! error[E0407]: method `visit_seq_elt` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/ser.rs:238:5
+kablam!     |
+kablam! 238 |     fn visit_seq_elt<T>(&mut self, value: T) -> io::Result<()>
+kablam!     |     ^ not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_map` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/ser.rs:250:5
+kablam!     |
+kablam! 250 |     fn visit_map<V>(&mut self, mut visitor: V) -> io::Result<()>
+kablam!     |     ^ not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0405]: trait `ser::MapVisitor` is not in scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/ser.rs:251:18
+kablam!     |
+kablam! 251 |         where V: ser::MapVisitor,
+kablam!     |                  ^^^^^^^^^^^^^^^ `ser::MapVisitor` is not in scope
+kablam!     |
+kablam!     = help: you can import it into scope: `use serde::de::MapVisitor;`.
+kablam! 
+kablam! error[E0407]: method `visit_struct_variant` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/ser.rs:270:5
+kablam!     |
+kablam! 270 |     fn visit_struct_variant<V>(&mut self,
+kablam!     |     ^ not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0405]: trait `ser::MapVisitor` is not in scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/ser.rs:275:18
+kablam!     |
+kablam! 275 |         where V: ser::MapVisitor,
+kablam!     |                  ^^^^^^^^^^^^^^^ `ser::MapVisitor` is not in scope
+kablam!     |
+kablam!     = help: you can import it into scope: `use serde::de::MapVisitor;`.
+kablam! 
+kablam! error[E0407]: method `visit_map_elt` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/ser.rs:287:5
+kablam!     |
+kablam! 287 |     fn visit_map_elt<K, V>(&mut self, key: K, value: V) -> io::Result<()>
+kablam!     |     ^ not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `format` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/ser.rs:303:5
+kablam!     |
+kablam! 303 |       fn format() -> &'static str {
+kablam!     |  _____^ starting here...
+kablam! 304 | |         "json"
+kablam! 305 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_bool` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:404:5
+kablam!     |
+kablam! 404 |       fn visit_bool(&mut self, value: bool) -> Result<(), ()> {
+kablam!     |  _____^ starting here...
+kablam! 405 | |         self.state.push(State::Value(Value::Bool(value)));
+kablam! 406 | |         Ok(())
+kablam! 407 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_i64` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:410:5
+kablam!     |
+kablam! 410 |       fn visit_i64(&mut self, value: i64) -> Result<(), ()> {
+kablam!     |  _____^ starting here...
+kablam! 411 | |         if value < 0 {
+kablam! 412 | |             self.state.push(State::Value(Value::I64(value)));
+kablam! 413 | |         } else {
+kablam! 414 | |             self.state.push(State::Value(Value::U64(value as u64)));
+kablam! 415 | |         }
+kablam! 416 | |         Ok(())
+kablam! 417 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_u64` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:420:5
+kablam!     |
+kablam! 420 |       fn visit_u64(&mut self, value: u64) -> Result<(), ()> {
+kablam!     |  _____^ starting here...
+kablam! 421 | |         self.state.push(State::Value(Value::U64(value)));
+kablam! 422 | |         Ok(())
+kablam! 423 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_f64` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:426:5
+kablam!     |
+kablam! 426 |       fn visit_f64(&mut self, value: f64) -> Result<(), ()> {
+kablam!     |  _____^ starting here...
+kablam! 427 | |         self.state.push(State::Value(Value::F64(value as f64)));
+kablam! 428 | |         Ok(())
+kablam! 429 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_char` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:432:5
+kablam!     |
+kablam! 432 |       fn visit_char(&mut self, value: char) -> Result<(), ()> {
+kablam!     |  _____^ starting here...
+kablam! 433 | |         self.state.push(State::Value(Value::String(value.to_string())));
+kablam! 434 | |         Ok(())
+kablam! 435 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_str` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:438:5
+kablam!     |
+kablam! 438 |       fn visit_str(&mut self, value: &str) -> Result<(), ()> {
+kablam!     |  _____^ starting here...
+kablam! 439 | |         self.state.push(State::Value(Value::String(value.to_string())));
+kablam! 440 | |         Ok(())
+kablam! 441 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_none` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:444:5
+kablam!     |
+kablam! 444 |       fn visit_none(&mut self) -> Result<(), ()> {
+kablam!     |  _____^ starting here...
+kablam! 445 | |         self.visit_unit()
+kablam! 446 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_some` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:449:5
+kablam!     |
+kablam! 449 |       fn visit_some<V>(&mut self, value: V) -> Result<(), ()>
+kablam!     |  _____^ starting here...
+kablam! 450 | |         where V: ser::Serialize,
+kablam! 451 | |     {
+kablam! 452 | |         value.serialize(self)
+kablam! 453 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_unit` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:456:5
+kablam!     |
+kablam! 456 |       fn visit_unit(&mut self) -> Result<(), ()> {
+kablam!     |  _____^ starting here...
+kablam! 457 | |         self.state.push(State::Value(Value::Null));
+kablam! 458 | |         Ok(())
+kablam! 459 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_unit_variant` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:462:5
+kablam!     |
+kablam! 462 |     fn visit_unit_variant(&mut self,
+kablam!     |     ^ not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_newtype_variant` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:475:5
+kablam!     |
+kablam! 475 |     fn visit_newtype_variant<T>(&mut self,
+kablam!     |     ^ not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_seq` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:491:5
+kablam!     |
+kablam! 491 |     fn visit_seq<V>(&mut self, mut visitor: V) -> Result<(), ()>
+kablam!     |     ^ not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0405]: trait `ser::SeqVisitor` is not in scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:492:18
+kablam!     |
+kablam! 492 |         where V: ser::SeqVisitor,
+kablam!     |                  ^^^^^^^^^^^^^^^ `ser::SeqVisitor` is not in scope
+kablam!     |
+kablam!     = help: you can import it into scope: `use serde::de::SeqVisitor;`.
+kablam! 
+kablam! error[E0407]: method `visit_tuple_variant` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:512:5
+kablam!     |
+kablam! 512 |     fn visit_tuple_variant<V>(&mut self,
+kablam!     |     ^ not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0405]: trait `ser::SeqVisitor` is not in scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:517:18
+kablam!     |
+kablam! 517 |         where V: ser::SeqVisitor,
+kablam!     |                  ^^^^^^^^^^^^^^^ `ser::SeqVisitor` is not in scope
+kablam!     |
+kablam!     = help: you can import it into scope: `use serde::de::SeqVisitor;`.
+kablam! 
+kablam! error[E0407]: method `visit_seq_elt` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:536:5
+kablam!     |
+kablam! 536 |     fn visit_seq_elt<T>(&mut self, value: T) -> Result<(), ()>
+kablam!     |     ^ not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit_map` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:555:5
+kablam!     |
+kablam! 555 |     fn visit_map<V>(&mut self, mut visitor: V) -> Result<(), ()>
+kablam!     |     ^ not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0405]: trait `ser::MapVisitor` is not in scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:556:18
+kablam!     |
+kablam! 556 |         where V: ser::MapVisitor,
+kablam!     |                  ^^^^^^^^^^^^^^^ `ser::MapVisitor` is not in scope
+kablam!     |
+kablam!     = help: you can import it into scope: `use serde::de::MapVisitor;`.
+kablam! 
+kablam! error[E0407]: method `visit_struct_variant` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:575:5
+kablam!     |
+kablam! 575 |     fn visit_struct_variant<V>(&mut self,
+kablam!     |     ^ not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0405]: trait `ser::MapVisitor` is not in scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:580:18
+kablam!     |
+kablam! 580 |         where V: ser::MapVisitor,
+kablam!     |                  ^^^^^^^^^^^^^^^ `ser::MapVisitor` is not in scope
+kablam!     |
+kablam!     = help: you can import it into scope: `use serde::de::MapVisitor;`.
+kablam! 
+kablam! error[E0407]: method `visit_map_elt` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:599:5
+kablam!     |
+kablam! 599 |     fn visit_map_elt<K, V>(&mut self, key: K, value: V) -> Result<(), ()>
+kablam!     |     ^ not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `format` is not a member of trait `ser::Serializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:626:5
+kablam!     |
+kablam! 626 |       fn format() -> &'static str {
+kablam!     |  _____^ starting here...
+kablam! 627 | |         "json"
+kablam! 628 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `ser::Serializer`
+kablam! 
+kablam! error[E0407]: method `visit` is not a member of trait `de::Deserializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:648:5
+kablam!     |
+kablam! 648 |     fn visit<V>(&mut self, mut visitor: V) -> Result<V::Value, Error>
+kablam!     |     ^ not a member of trait `de::Deserializer`
+kablam! 
+kablam! error[E0407]: method `visit_option` is not a member of trait `de::Deserializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:684:5
+kablam!     |
+kablam! 684 |       fn visit_option<V>(&mut self, mut visitor: V) -> Result<V::Value, Error>
+kablam!     |  _____^ starting here...
+kablam! 685 | |         where V: de::Visitor,
+kablam! 686 | |     {
+kablam! 687 | |         match self.value {
+kablam! 688 | |             Some(Value::Null) => visitor.visit_none(),
+kablam! 689 | |             Some(_) => visitor.visit_some(self),
+kablam! 690 | |             None => Err(de::Error::end_of_stream()),
+kablam! 691 | |         }
+kablam! 692 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `de::Deserializer`
+kablam! 
+kablam! error[E0407]: method `visit_enum` is not a member of trait `de::Deserializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:695:5
+kablam!     |
+kablam! 695 |     fn visit_enum<V>(&mut self,
+kablam!     |     ^ not a member of trait `de::Deserializer`
+kablam! 
+kablam! error[E0407]: method `visit_newtype_struct` is not a member of trait `de::Deserializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:726:5
+kablam!     |
+kablam! 726 |       fn visit_newtype_struct<V>(&mut self,
+kablam!     |  _____^ starting here...
+kablam! 727 | |                                _name: &'static str,
+kablam! 728 | |                                mut visitor: V) -> Result<V::Value, Self::Error>
+kablam! 729 | |         where V: de::Visitor,
+kablam! 730 | |     {
+kablam! 731 | |         visitor.visit_newtype_struct(self)
+kablam! 732 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `de::Deserializer`
+kablam! 
+kablam! error[E0407]: method `format` is not a member of trait `de::Deserializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:735:5
+kablam!     |
+kablam! 735 |       fn format() -> &'static str {
+kablam!     |  _____^ starting here...
+kablam! 736 | |         "json"
+kablam! 737 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `de::Deserializer`
+kablam! 
+kablam! error[E0407]: method `visit_variant` is not a member of trait `de::VariantVisitor`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:749:5
+kablam!     |
+kablam! 749 |       fn visit_variant<V>(&mut self) -> Result<V, Error>
+kablam!     |  _____^ starting here...
+kablam! 750 | |         where V: de::Deserialize,
+kablam! 751 | |     {
+kablam! 752 | |         de::Deserialize::deserialize(&mut Deserializer::new(self.variant.take().unwrap()))
+kablam! 753 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `de::VariantVisitor`
+kablam! 
+kablam! error[E0407]: method `visit` is not a member of trait `de::Deserializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:815:5
+kablam!     |
+kablam! 815 |       fn visit<V>(&mut self, mut visitor: V) -> Result<V::Value, Error>
+kablam!     |  _____^ starting here...
+kablam! 816 | |         where V: de::Visitor,
+kablam! 817 | |     {
+kablam! 818 | |         if self.len == 0 {
+kablam! 819 | |             visitor.visit_unit()
+kablam! 820 | |         } else {
+kablam! 821 | |             visitor.visit_seq(self)
+kablam! 822 | |         }
+kablam! 823 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `de::Deserializer`
+kablam! 
+kablam! error[E0407]: method `end` is not a member of trait `de::SeqVisitor`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:842:5
+kablam!     |
+kablam! 842 |       fn end(&mut self) -> Result<(), Error> {
+kablam!     |  _____^ starting here...
+kablam! 843 | |         if self.len == 0 {
+kablam! 844 | |             Ok(())
+kablam! 845 | |         } else {
+kablam! 846 | |             Err(de::Error::length_mismatch(self.len))
+kablam! 847 | |         }
+kablam! 848 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `de::SeqVisitor`
+kablam! 
+kablam! error[E0407]: method `end` is not a member of trait `de::MapVisitor`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:887:5
+kablam!     |
+kablam! 887 |       fn end(&mut self) -> Result<(), Error> {
+kablam!     |  _____^ starting here...
+kablam! 888 | |         if self.len == 0 {
+kablam! 889 | |             Ok(())
+kablam! 890 | |         } else {
+kablam! 891 | |             Err(de::Error::length_mismatch(self.len))
+kablam! 892 | |         }
+kablam! 893 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `de::MapVisitor`
+kablam! 
+kablam! error[E0407]: method `missing_field` is not a member of trait `de::MapVisitor`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:895:5
+kablam!     |
+kablam! 895 |     fn missing_field<V>(&mut self, _field: &'static str) -> Result<V, Error>
+kablam!     |     ^ not a member of trait `de::MapVisitor`
+kablam! 
+kablam! error[E0407]: method `visit` is not a member of trait `de::Deserializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:904:13
+kablam!     |
+kablam! 904 |               fn visit<V>(&mut self, mut visitor: V) -> Result<V::Value, Error>
+kablam!     |  _____________^ starting here...
+kablam! 905 | |                 where V: de::Visitor,
+kablam! 906 | |             {
+kablam! 907 | |                 visitor.visit_unit()
+kablam! 908 | |             }
+kablam!     | |_____________^ ...ending here: not a member of trait `de::Deserializer`
+kablam! 
+kablam! error[E0407]: method `visit_option` is not a member of trait `de::Deserializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:910:13
+kablam!     |
+kablam! 910 |               fn visit_option<V>(&mut self, mut visitor: V) -> Result<V::Value, Error>
+kablam!     |  _____________^ starting here...
+kablam! 911 | |                 where V: de::Visitor,
+kablam! 912 | |             {
+kablam! 913 | |                 visitor.visit_none()
+kablam! 914 | |             }
+kablam!     | |_____________^ ...ending here: not a member of trait `de::Deserializer`
+kablam! 
+kablam! error[E0407]: method `visit` is not a member of trait `de::Deserializer`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/value.rs:929:5
+kablam!     |
+kablam! 929 |       fn visit<V>(&mut self, mut visitor: V) -> Result<V::Value, Error>
+kablam!     |  _____^ starting here...
+kablam! 930 | |         where V: de::Visitor,
+kablam! 931 | |     {
+kablam! 932 | |         visitor.visit_map(self)
+kablam! 933 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `de::Deserializer`
+kablam! 
+kablam! error[E0220]: associated type `Value` not found for `V`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_json-0.5.1/src/de.rs:562:48
+kablam!     |
+kablam! 562 |                      mut visitor: V) -> Result<V::Value>
+kablam!     |                                                ^^^^^^^^ associated type `Value` not found
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `serde_json`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 619e9d283090cc1a3d32797a660f1f6e99c02a3de0e10e3d50cfe4bd257ca07e`
+blam! 619e9d283090cc1a3d32797a660f1f6e99c02a3de0e10e3d50cfe4bd257ca07e

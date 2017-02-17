@@ -1,0 +1,156 @@
+boom! testing dsl_macros-0.1.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 122dca731132387600270ca6a1d5b96101a38053a423740888cba77758216b4c
+boom! running `docker start -a 122dca731132387600270ca6a1d5b96101a38053a423740888cba77758216b4c`
+kablam!    Compiling dsl_macros v0.1.2 (file:///source)
+kablam! error[E0432]: unresolved import `rustc::plugin`
+kablam!  --> src/lib.rs:8:5
+kablam!   |
+kablam! 8 | use rustc::plugin;
+kablam!   |     ^^^^^^^^^^^^^ no `plugin` in the root
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Expr_` in `ast`
+kablam!   --> src/dsl/parser.rs:11:14
+kablam!    |
+kablam! 11 |             &ast::Expr_::ExprClosure(..) => (),
+kablam!    |              ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `Expr_` in `ast`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Expr_` in `ast`
+kablam!  --> src/dsl/generator.rs:9:9
+kablam!   |
+kablam! 9 |         ast::Expr_::ExprCall(path, mut args) => {
+kablam!   |         ^^^^^^^^^^^^^^^^^^^^ Could not find `Expr_` in `ast`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Expr_` in `ast`
+kablam!   --> src/dsl/generator.rs:11:17
+kablam!    |
+kablam! 11 |                 ast::Expr_::ExprPath(_, path) => {
+kablam!    |                 ^^^^^^^^^^^^^^^^^^^^ Could not find `Expr_` in `ast`
+kablam! 
+kablam! error[E0425]: cannot find function `ExprMethodCall` in module `ast`
+kablam!   --> src/dsl/generator.rs:25:27
+kablam!    |
+kablam! 25 |             cx.expr(span, ast::ExprMethodCall(codemap::Spanned{node: ident, span: span}, types, args))
+kablam!    |                           ^^^^^^^^^^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use rustc::hir::ExprMethodCall;`
+kablam!              `use rustc::hir::Expr_::ExprMethodCall;`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Expr_` in `ast`
+kablam!   --> src/dsl/generator.rs:33:10
+kablam!    |
+kablam! 33 |         &ast::Expr_::ExprCall(ref path, _) => {
+kablam!    |          ^^^^^^^^^^^^^^^^^^^^ Could not find `Expr_` in `ast`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Expr_` in `ast`
+kablam!   --> src/dsl/generator.rs:35:17
+kablam!    |
+kablam! 35 |                 ast::Expr_::ExprPath(_, ref path) if path.segments.len() == 1 => true,
+kablam!    |                 ^^^^^^^^^^^^^^^^^^^^ Could not find `Expr_` in `ast`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Pat_` in `ast`
+kablam!   --> src/dsl/generator.rs:48:9
+kablam!    |
+kablam! 48 |         ast::Pat_::PatIdent(_, ident, _) => {
+kablam!    |         ^^^^^^^^^^^^^^^^^^^ Could not find `Pat_` in `ast`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Expr_` in `ast`
+kablam!   --> src/dsl/generator.rs:59:22
+kablam!    |
+kablam! 59 |                 &mut ast::Expr_::ExprClosure(ref _clause, ref decl, ref mut block) => {
+kablam!    |                      ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `Expr_` in `ast`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Expr_` in `ast`
+kablam!   --> src/dsl/generator.rs:69:38
+kablam!    |
+kablam! 69 |                                 &mut ast::Expr_::ExprBlock(ref mut block) => {
+kablam!    |                                      ^^^^^^^^^^^^^^^^^^^^^ Could not find `Expr_` in `ast`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Stmt_` in `ast`
+kablam!   --> src/dsl/generator.rs:77:58
+kablam!    |
+kablam! 77 |                                                     &mut ast::Stmt_::StmtDecl(ref _decl, ref _id) => (),
+kablam!    |                                                          ^^^^^^^^^^^^^^^^^^^^ Could not find `Stmt_` in `ast`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Stmt_` in `ast`
+kablam!   --> src/dsl/generator.rs:78:58
+kablam!    |
+kablam! 78 |                                                     &mut ast::Stmt_::StmtMac(ref _mac, ref _style) => (),
+kablam!    |                                                          ^^^^^^^^^^^^^^^^^^^ Could not find `Stmt_` in `ast`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Stmt_` in `ast`
+kablam!   --> src/dsl/generator.rs:79:58
+kablam!    |
+kablam! 79 |                                                     &mut ast::Stmt_::StmtExpr(ref mut expr, ref _id) => {
+kablam!    |                                                          ^^^^^^^^^^^^^^^^^^^^ Could not find `Stmt_` in `ast`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Stmt_` in `ast`
+kablam!   --> src/dsl/generator.rs:82:58
+kablam!    |
+kablam! 82 |                                                     &mut ast::Stmt_::StmtSemi(ref mut expr, ref _id) => {
+kablam!    |                                                          ^^^^^^^^^^^^^^^^^^^^ Could not find `Stmt_` in `ast`
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!   --> src/dsl/mod.rs:14:74
+kablam!    |
+kablam! 14 | pub fn dsl<'cx>(cx: &'cx mut base::ExtCtxt, sp: codemap::Span, tokens: &[ast::TokenTree])
+kablam!    |                                                                          ^^^^^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!   --> src/lib.rs:20:35
+kablam!    |
+kablam! 20 |     reg.register_syntax_extension(token::intern("dsl"),
+kablam!    |                                   ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error: no associated item named `AngleBracketedParameters` found for type `syntax::ast::PathParameters` in the current scope
+kablam!   --> src/dsl/generator.rs:14:25
+kablam!    |
+kablam! 14 |                         ast::PathParameters::AngleBracketedParameters(data) => {
+kablam!    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0061]: this function takes 2 parameters but 3 parameters were supplied
+kablam!   --> src/dsl/mod.rs:18:43
+kablam!    |
+kablam! 18 |     let mut parser = parse::tts_to_parser(cx.parse_sess(), tokens.to_vec(), cx.cfg());
+kablam!    |                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 2 parameters
+kablam! 
+kablam! error[E0277]: the trait bound `syntax::ext::base::TTMacroExpander: std::marker::Sized` is not satisfied
+kablam!   --> src/lib.rs:21:37
+kablam!    |
+kablam! 21 |         syntax::ext::base::NormalTT(Box::new(dsl::dsl), None, false));
+kablam!    |                                     ^^^^^^^^ the trait `std::marker::Sized` is not implemented for `syntax::ext::base::TTMacroExpander`
+kablam!    |
+kablam!    = note: `syntax::ext::base::TTMacroExpander` does not have a constant size known at compile-time
+kablam!    = note: required by `<std::boxed::Box<T>>::new`
+kablam! 
+kablam! error: no field `node` on type `std::result::Result<syntax::ptr::P<syntax::ast::Expr>, syntax::<unnamed>::DiagnosticBuilder<'_>>`
+kablam!   --> src/dsl/parser.rs:10:21
+kablam!    |
+kablam! 10 |         match &expr.node {
+kablam!    |                     ^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/dsl/parser.rs:16:19
+kablam!    |
+kablam! 16 |             expr: expr,
+kablam!    |                   ^^^^ expected struct `syntax::ptr::P`, found enum `std::result::Result`
+kablam!    |
+kablam!    = note: expected type `syntax::ptr::P<syntax::ast::Expr>`
+kablam!               found type `std::result::Result<syntax::ptr::P<syntax::ast::Expr>, syntax::<unnamed>::DiagnosticBuilder<'_>>`
+kablam!    = help: here are some functions which might fulfill your needs:
+kablam!            - .unwrap()
+kablam!            - .unwrap_err()
+kablam! 
+kablam! error: aborting due to 5 previous errors
+kablam! 
+kablam! error: Could not compile `dsl_macros`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 122dca731132387600270ca6a1d5b96101a38053a423740888cba77758216b4c`
+blam! 122dca731132387600270ca6a1d5b96101a38053a423740888cba77758216b4c

@@ -1,0 +1,137 @@
+boom! testing proj-0.1.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 08ae5d9f03193f20d23b8214ae55e72cfde503089638260a01e3bb1340a5ea62
+boom! running `docker start -a 08ae5d9f03193f20d23b8214ae55e72cfde503089638260a01e3bb1340a5ea62`
+kablam!    Compiling geo v0.0.4
+kablam!    Compiling proj v0.1.1 (file:///source)
+kablam! warning: found Rust tuple type in foreign module; consider using a struct instead
+kablam!   --> src/proj.rs:19:51
+kablam!    |
+kablam! 19 |     fn pj_init_plus(definition: *const c_char) -> *const ();
+kablam!    |                                                   ^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(improper_ctypes)] on by default
+kablam! 
+kablam! warning: found Rust tuple type in foreign module; consider using a struct instead
+kablam!   --> src/proj.rs:20:20
+kablam!    |
+kablam! 20 |     fn pj_free(pj: *const ());
+kablam!    |                    ^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(improper_ctypes)] on by default
+kablam! 
+kablam! warning: found Rust tuple type in foreign module; consider using a struct instead
+kablam!   --> src/proj.rs:21:23
+kablam!    |
+kablam! 21 |     fn pj_get_def(pj: *const ()) -> *const c_char;
+kablam!    |                       ^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(improper_ctypes)] on by default
+kablam! 
+kablam! warning: found Rust tuple type in foreign module; consider using a struct instead
+kablam!   --> src/proj.rs:23:18
+kablam!    |
+kablam! 23 |         srcdefn: *const (),
+kablam!    |                  ^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(improper_ctypes)] on by default
+kablam! 
+kablam! warning: found Rust tuple type in foreign module; consider using a struct instead
+kablam!   --> src/proj.rs:24:18
+kablam!    |
+kablam! 24 |         dstdefn: *const (),
+kablam!    |                  ^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(improper_ctypes)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 2.89 secs
+boom! running `docker rm -f 08ae5d9f03193f20d23b8214ae55e72cfde503089638260a01e3bb1340a5ea62`
+blam! 08ae5d9f03193f20d23b8214ae55e72cfde503089638260a01e3bb1340a5ea62
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 794e03c1ca2afd64ce38098cd1ad9a55a77ca8401c372703db5337d64f350708
+boom! running `docker start -a 794e03c1ca2afd64ce38098cd1ad9a55a77ca8401c372703db5337d64f350708`
+kablam!    Compiling proj v0.1.1 (file:///source)
+kablam! error[E0432]: unresolved import `super::super::geom::Point`
+kablam!   --> src/proj.rs:89:9
+kablam!    |
+kablam! 89 |     use super::super::geom::Point;
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^^ Maybe a missing `extern crate geom;`?
+kablam! 
+kablam! error: no field `x` on type `geo::Point`
+kablam!    --> src/proj.rs:117:29
+kablam!     |
+kablam! 117 |         assert_almost_eq(rv.x, 0.436332);
+kablam!     |                             ^ did you mean `0`?
+kablam! 
+kablam! error: no field `y` on type `geo::Point`
+kablam!    --> src/proj.rs:118:29
+kablam!     |
+kablam! 118 |         assert_almost_eq(rv.y, 0.802851);
+kablam!     |                             ^ did you mean `0`?
+kablam! 
+kablam! error: no field `x` on type `geo::Point`
+kablam!    --> src/proj.rs:121:29
+kablam!     |
+kablam! 121 |         assert_almost_eq(rv.x, 500000.);
+kablam!     |                             ^ did you mean `0`?
+kablam! 
+kablam! error: no field `y` on type `geo::Point`
+kablam!    --> src/proj.rs:122:29
+kablam!     |
+kablam! 122 |         assert_almost_eq(rv.y, 500000.);
+kablam!     |                             ^ did you mean `0`?
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `proj`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 794e03c1ca2afd64ce38098cd1ad9a55a77ca8401c372703db5337d64f350708`
+blam! 794e03c1ca2afd64ce38098cd1ad9a55a77ca8401c372703db5337d64f350708
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! e4870c6d48cb2a1ff9c11c04a854d520c03c8ac9fa84536350bb7a1d6e87e721
+boom! running `docker start -a e4870c6d48cb2a1ff9c11c04a854d520c03c8ac9fa84536350bb7a1d6e87e721`
+kablam!    Compiling proj v0.1.1 (file:///source)
+kablam! error[E0432]: unresolved import `super::super::geom::Point`
+kablam!   --> src/proj.rs:89:9
+kablam!    |
+kablam! 89 |     use super::super::geom::Point;
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^^ Maybe a missing `extern crate geom;`?
+kablam! 
+kablam! error: no field `x` on type `geo::Point`
+kablam!    --> src/proj.rs:117:29
+kablam!     |
+kablam! 117 |         assert_almost_eq(rv.x, 0.436332);
+kablam!     |                             ^ did you mean `0`?
+kablam! 
+kablam! error: no field `y` on type `geo::Point`
+kablam!    --> src/proj.rs:118:29
+kablam!     |
+kablam! 118 |         assert_almost_eq(rv.y, 0.802851);
+kablam!     |                             ^ did you mean `0`?
+kablam! 
+kablam! error: no field `x` on type `geo::Point`
+kablam!    --> src/proj.rs:121:29
+kablam!     |
+kablam! 121 |         assert_almost_eq(rv.x, 500000.);
+kablam!     |                             ^ did you mean `0`?
+kablam! 
+kablam! error: no field `y` on type `geo::Point`
+kablam!    --> src/proj.rs:122:29
+kablam!     |
+kablam! 122 |         assert_almost_eq(rv.y, 500000.);
+kablam!     |                             ^ did you mean `0`?
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `proj`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f e4870c6d48cb2a1ff9c11c04a854d520c03c8ac9fa84536350bb7a1d6e87e721`
+blam! e4870c6d48cb2a1ff9c11c04a854d520c03c8ac9fa84536350bb7a1d6e87e721

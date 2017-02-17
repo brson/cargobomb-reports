@@ -1,0 +1,34 @@
+boom! testing cargo-bundle-0.0.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! b975867bb9f8364a3b5b064c30903641dff35e5bcf1c4941a2190ada1c8c5d70
+boom! running `docker start -a b975867bb9f8364a3b5b064c30903641dff35e5bcf1c4941a2190ada1c8c5d70`
+kablam!    Compiling plist v0.1.0
+kablam!    Compiling cargo-bundle v0.0.0 (file:///source)
+kablam! error[E0308]: match arms have incompatible types
+kablam!   --> src/bundle/mod.rs:35:5
+kablam!    |
+kablam! 35 |     match settings.package_type {
+kablam!    |     ^ expected struct `std::vec::Vec`, found ()
+kablam!    |
+kablam!    = note: expected type `_`
+kablam!    = note:    found type `std::result::Result<(), Box<std::error::Error + std::marker::Send + std::marker::Sync>>`
+kablam! note: match arm with an incompatible type
+kablam!   --> src/bundle/mod.rs:36:17
+kablam!    |
+kablam! 36 |           None => deb_bundle::bundle_project(&settings)
+kablam!    |  _________________^ starting here...
+kablam! 37 | |             .and_then(|deb_path| {
+kablam! 38 | |                 let rpm_path = try!(rpm_bundle::bundle_project(&settings));
+kablam! 39 | |                 Ok(deb_path.extend(rpm_path))
+kablam! 40 | |             }),
+kablam!    | |______________^ ...ending here
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `cargo-bundle`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f b975867bb9f8364a3b5b064c30903641dff35e5bcf1c4941a2190ada1c8c5d70`
+blam! b975867bb9f8364a3b5b064c30903641dff35e5bcf1c4941a2190ada1c8c5d70

@@ -1,0 +1,34 @@
+boom! testing metafactory-0.4.4 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 3f33b7cd80259c10fc3c49a9a937987f4c4b89ea1c4739248688d825e0a25f33
+boom! running `docker start -a 3f33b7cd80259c10fc3c49a9a937987f4c4b89ea1c4739248688d825e0a25f33`
+kablam!    Compiling metafactory v0.4.4 (file:///source)
+kablam! error: expected pattern, found `:`
+kablam!    --> src/aggregate/mod.rs:109:27
+kablam!     |
+kablam! 109 |             do_new: box |&: items: Vec<Box<Any>>| {
+kablam!     |                           ^
+kablam! 
+kablam! error: invalid suffix `i` for numeric literal
+kablam!    --> src/from_clone/mod.rs:122:30
+kablam!     |
+kablam! 122 |         let factory = create(24i).new(Vec::new()).ok().unwrap().as_factory_of::<int>().unwrap();
+kablam!     |                              ^^^
+kablam!     |
+kablam!     = help: the suffix must be one of the integral types (`u32`, `isize`, etc)
+kablam! 
+kablam! error: expected type, found `||`
+kablam!   --> src/from_closure/zeroarg.rs:38:36
+kablam!    |
+kablam! 38 | impl<T:'static> ToMetaFactory for (||:'static -> T) {
+kablam!    |                                    ^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `metafactory`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 3f33b7cd80259c10fc3c49a9a937987f4c4b89ea1c4739248688d825e0a25f33`
+blam! 3f33b7cd80259c10fc3c49a9a937987f4c4b89ea1c4739248688d825e0a25f33

@@ -1,0 +1,32 @@
+boom! testing fleet-0.2.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 95d08c4562081b7c083d888fb3e44573dea933fcebe15f1d0de296832b22e230
+boom! running `docker start -a 95d08c4562081b7c083d888fb3e44573dea933fcebe15f1d0de296832b22e230`
+kablam!    Compiling fleet v0.2.0 (file:///source)
+kablam! error[E0432]: unresolved import `hyper::error::HttpError`
+kablam!  --> src/error.rs:5:5
+kablam!   |
+kablam! 5 | use hyper::error::HttpError;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^ no `HttpError` in `error`
+kablam! 
+kablam! error: no method named `serialize` found for type `url::Url` in the current scope
+kablam!   --> src/client.rs:22:43
+kablam!    |
+kablam! 22 |             root_url: format!("{}{}", url.serialize(), "fleet/v1"),
+kablam!    |                                           ^^^^^^^^^
+kablam! 
+kablam! error: no method named `set_query_from_pairs` found for type `url::Url` in the current scope
+kablam!    --> src/client.rs:114:13
+kablam!     |
+kablam! 114 |         url.set_query_from_pairs(query_pairs.iter().map(|(k, v)| (*k, *v)));
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `fleet`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 95d08c4562081b7c083d888fb3e44573dea933fcebe15f1d0de296832b22e230`
+blam! 95d08c4562081b7c083d888fb3e44573dea933fcebe15f1d0de296832b22e230

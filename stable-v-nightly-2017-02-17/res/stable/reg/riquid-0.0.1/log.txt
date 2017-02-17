@@ -1,0 +1,163 @@
+boom! testing riquid-0.0.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! f380709a790d067bcffa005b4c9e5e06d853c7fda8d3114c8e5280b2ed7fca4b
+boom! running `docker start -a f380709a790d067bcffa005b4c9e5e06d853c7fda8d3114c8e5280b2ed7fca4b`
+kablam!    Compiling riquid v0.0.1 (file:///source)
+kablam! warning: struct is never used: `Scanner`, #[warn(dead_code)] on by default
+kablam!  --> src/scanner.rs:4:1
+kablam!   |
+kablam! 4 |   pub struct Scanner<'t> {
+kablam!   |  _^ starting here...
+kablam! 5 | |     source: &'t str,
+kablam! 6 | |     index: Cell<usize>,
+kablam! 7 | |     length: usize
+kablam! 8 | | }
+kablam!   | |_^ ...ending here
+kablam! 
+kablam! warning: method is never used: `new`, #[warn(dead_code)] on by default
+kablam!   --> src/scanner.rs:11:5
+kablam!    |
+kablam! 11 |       pub fn new<'a>(source: &'a str) -> Scanner<'a> {
+kablam!    |  _____^ starting here...
+kablam! 12 | |         Scanner {
+kablam! 13 | |             source: source,
+kablam! 14 | |             index: Cell::new(0),
+kablam! 15 | |             length: source.len()
+kablam! 16 | |         }
+kablam! 17 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `position`, #[warn(dead_code)] on by default
+kablam!   --> src/scanner.rs:19:5
+kablam!    |
+kablam! 19 |       pub fn position(&self) -> usize {
+kablam!    |  _____^ starting here...
+kablam! 20 | |         cmp::min(self.index.get(), self.length)
+kablam! 21 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `is_eos`, #[warn(dead_code)] on by default
+kablam!   --> src/scanner.rs:23:5
+kablam!    |
+kablam! 23 |       pub fn is_eos(&self) -> bool {
+kablam!    |  _____^ starting here...
+kablam! 24 | |         self.position() == self.length
+kablam! 25 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `skip`, #[warn(dead_code)] on by default
+kablam!   --> src/scanner.rs:27:5
+kablam!    |
+kablam! 27 |       pub fn skip(&self, n: usize) {
+kablam!    |  _____^ starting here...
+kablam! 28 | |         let pos = cmp::min(self.position() + n, self.length);
+kablam! 29 | |         self.index.set(pos);
+kablam! 30 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `rest`, #[warn(dead_code)] on by default
+kablam!   --> src/scanner.rs:32:5
+kablam!    |
+kablam! 32 |       pub fn rest(&self) -> Option<&str> {
+kablam!    |  _____^ starting here...
+kablam! 33 | |         if self.is_eos() { return None; }
+kablam! 34 | |         Some(self.raw())
+kablam! 35 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `get_char`, #[warn(dead_code)] on by default
+kablam!   --> src/scanner.rs:37:5
+kablam!    |
+kablam! 37 |       pub fn get_char(&self) -> Option<&str> {
+kablam!    |  _____^ starting here...
+kablam! 38 | |         if self.is_eos() { return None; }
+kablam! 39 | |
+kablam! 40 | |         let rest = self.raw();
+kablam! 41 | |         let chr  = &rest[0..1];
+kablam! 42 | |         self.skip(chr.len());
+kablam! 43 | |
+kablam! 44 | |         Some(chr)
+kablam! 45 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `scan`, #[warn(dead_code)] on by default
+kablam!   --> src/scanner.rs:47:5
+kablam!    |
+kablam! 47 |       pub fn scan(&self, pattern: &::regex::Regex) -> Option<&str> {
+kablam!    |  _____^ starting here...
+kablam! 48 | |         let rest = self.raw();
+kablam! 49 | |
+kablam! 50 | |         match pattern.captures(rest) {
+kablam! 51 | |             None => None,
+kablam! 52 | |             Some(captures) => { self.get_match(rest, &captures) }
+kablam! 53 | |         }
+kablam! 54 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `get_match`, #[warn(dead_code)] on by default
+kablam!   --> src/scanner.rs:56:5
+kablam!    |
+kablam! 56 |     fn get_match<'a>(&'a self, source: &'a str, captures: &::regex::Captures) -> Option<&str> {
+kablam!    |     ^
+kablam! 
+kablam! warning: method is never used: `leading_chars`, #[warn(dead_code)] on by default
+kablam!   --> src/scanner.rs:69:5
+kablam!    |
+kablam! 69 |       fn leading_chars(&self, string: &str) -> usize {
+kablam!    |  _____^ starting here...
+kablam! 70 | |         string.len() - string.trim_left().len()
+kablam! 71 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `raw`, #[warn(dead_code)] on by default
+kablam!   --> src/scanner.rs:73:5
+kablam!    |
+kablam! 73 |       fn raw(&self) -> &str {
+kablam!    |  _____^ starting here...
+kablam! 74 | |         &self.source[self.position()..]
+kablam! 75 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 0.64 secs
+boom! running `docker rm -f f380709a790d067bcffa005b4c9e5e06d853c7fda8d3114c8e5280b2ed7fca4b`
+blam! f380709a790d067bcffa005b4c9e5e06d853c7fda8d3114c8e5280b2ed7fca4b
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 3ca4f053f9d76774aa93bc123f678d3a508c3ce64ee8d617be324817a8f6ba19
+boom! running `docker start -a 3ca4f053f9d76774aa93bc123f678d3a508c3ce64ee8d617be324817a8f6ba19`
+kablam!    Compiling riquid v0.0.1 (file:///source)
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 1.77 secs
+boom! running `docker rm -f 3ca4f053f9d76774aa93bc123f678d3a508c3ce64ee8d617be324817a8f6ba19`
+blam! 3ca4f053f9d76774aa93bc123f678d3a508c3ce64ee8d617be324817a8f6ba19
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! a51a11aa934b5543852c2ddfa4c98f4791c00a1ec11a494a8eb205a2a6ea5a49
+boom! running `docker start -a a51a11aa934b5543852c2ddfa4c98f4791c00a1ec11a494a8eb205a2a6ea5a49`
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/riquid-5c0e3c7d14e3e250
+blam! 
+blam! running 9 tests
+blam! test scanner::tests::get_char_when_eos_returns_none ... ok
+blam! test scanner::tests::get_char_returns_the_current_character_and_pushes_the_index ... ok
+blam! test scanner::tests::is_eos_is_true_when_at_the_end_of_a_string ... ok
+blam! test scanner::tests::rest_returns_all_characters_from_the_current_position ... ok
+blam! test scanner::tests::is_eos_when_not_at_the_end_of_a_string ... ok
+blam! test scanner::tests::new_returns_a_new_scanner ... ok
+blam! test scanner::tests::scan_returns_none_when_not_found ... ok
+blam! test scanner::tests::skip_moves_n_characters_ahead ... ok
+blam! test scanner::tests::scan_retrieves_tokens_from_the_current_position_until_the_end ... ok
+blam! 
+blam! test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!    Doc-tests riquid
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f a51a11aa934b5543852c2ddfa4c98f4791c00a1ec11a494a8eb205a2a6ea5a49`
+blam! a51a11aa934b5543852c2ddfa4c98f4791c00a1ec11a494a8eb205a2a6ea5a49

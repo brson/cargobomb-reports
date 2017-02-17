@@ -1,0 +1,26 @@
+boom! testing libaio-0.0.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 43cabc080171fa0ccd20cb9cb51b8c38ccdd8083ebddf056ad7ca1846281980c
+boom! running `docker start -a 43cabc080171fa0ccd20cb9cb51b8c38ccdd8083ebddf056ad7ca1846281980c`
+kablam!    Compiling eventfd v0.1.0
+kablam! error[E0308]: mismatched types
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/eventfd-0.1.0/src/lib.rs:57:62
+kablam!    |
+kablam! 57 |             libc::read(self.fd as c_int, ptr as *mut c_void, std::mem::size_of_val(&ret) as u64)
+kablam!    |                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected usize, found u64
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/eventfd-0.1.0/src/lib.rs:71:65
+kablam!    |
+kablam! 71 |             libc::write(self.fd as c_int, ptr as *const c_void, std::mem::size_of_val(&val) as u64)
+kablam!    |                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected usize, found u64
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `eventfd`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 43cabc080171fa0ccd20cb9cb51b8c38ccdd8083ebddf056ad7ca1846281980c`
+blam! 43cabc080171fa0ccd20cb9cb51b8c38ccdd8083ebddf056ad7ca1846281980c

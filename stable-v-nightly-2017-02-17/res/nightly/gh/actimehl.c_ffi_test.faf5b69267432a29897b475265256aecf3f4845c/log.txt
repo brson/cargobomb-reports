@@ -1,0 +1,32 @@
+boom! testing https://github.com/actimehl/c_ffi_test#faf5b69267432a29897b475265256aecf3f4845c against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 141ef1e3cdbb3e0593f4ec054befc019b3c9ad7a7702270bf49647066c93452c
+boom! running `docker start -a 141ef1e3cdbb3e0593f4ec054befc019b3c9ad7a7702270bf49647066c93452c`
+kablam!    Compiling c_ffi_test v0.0.1 (file:///source)
+kablam! error[E0432]: unresolved import `std::old_io::Command`
+kablam!  --> build.rs:2:5
+kablam!   |
+kablam! 2 | use std::old_io::Command;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^ Could not find `old_io` in `std`
+kablam! 
+kablam! error[E0425]: cannot find function `getenv` in module `os`
+kablam!  --> build.rs:6:19
+kablam!   |
+kablam! 6 |     let out_dir = os::getenv("OUT_DIR").unwrap();
+kablam!   |                   ^^^^^^^^^^ not found in `os`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> build.rs:12:29
+kablam!    |
+kablam! 12 |                       .cwd(&Path::new(&out_dir))
+kablam!    |                             ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `c_ffi_test`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 141ef1e3cdbb3e0593f4ec054befc019b3c9ad7a7702270bf49647066c93452c`
+blam! 141ef1e3cdbb3e0593f4ec054befc019b3c9ad7a7702270bf49647066c93452c

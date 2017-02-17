@@ -1,0 +1,46 @@
+boom! testing string_cache_plugin-0.1.10 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 14753d31c227e22cbcd1fca5b4816d5729648afd89e89f27ed1bb2482db30b57
+boom! running `docker start -a 14753d31c227e22cbcd1fca5b4816d5729648afd89e89f27ed1bb2482db30b57`
+kablam!    Compiling debug_unreachable v0.0.6
+kablam!    Compiling string_cache_shared v0.1.12
+kablam!    Compiling string_cache_plugin v0.1.10 (file:///source)
+kablam! error[E0432]: unresolved import `rustc::plugin::Registry`
+kablam!   --> src/lib.rs:29:5
+kablam!    |
+kablam! 29 | use rustc::plugin::Registry;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `plugin` in `rustc`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::ast::TokenTree`
+kablam!   --> src/atom/mod.rs:12:5
+kablam!    |
+kablam! 12 | use syntax::ast::TokenTree;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^ no `TokenTree` in `ast`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::InternedString`
+kablam!   --> src/atom/mod.rs:15:28
+kablam!    |
+kablam! 15 | use syntax::parse::token::{InternedString, Ident, Literal, Lit};
+kablam!    |                            ^^^^^^^^^^^^^^ no `InternedString` in `parse::token`
+kablam! 
+kablam! error[E0023]: this pattern has 2 fields, but the corresponding tuple variant has 1 field
+kablam!   --> src/atom/mod.rs:24:29
+kablam!    |
+kablam! 24 |         TokenTree::Token(_, Ident(s, _)) => s.name.as_str(),
+kablam!    |                             ^^^^^^^^^^^ expected 1 field, found 2
+kablam! 
+kablam! error: the type of this value must be known in this context
+kablam!   --> src/atom/mod.rs:67:51
+kablam!    |
+kablam! 67 |     box ext_expect!(cx, sp, make_atom_result(cx, &*name),
+kablam!    |                                                   ^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `string_cache_plugin`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 14753d31c227e22cbcd1fca5b4816d5729648afd89e89f27ed1bb2482db30b57`
+blam! 14753d31c227e22cbcd1fca5b4816d5729648afd89e89f27ed1bb2482db30b57

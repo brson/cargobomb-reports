@@ -1,0 +1,70 @@
+boom! testing rsync-0.1.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! c9fb8d418af11761bc9731c031b43103c99c1b133099a165d400ccc9806aa922
+boom! running `docker start -a c9fb8d418af11761bc9731c031b43103c99c1b133099a165d400ccc9806aa922`
+kablam!    Compiling rsync v0.1.2 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.8 secs
+boom! running `docker rm -f c9fb8d418af11761bc9731c031b43103c99c1b133099a165d400ccc9806aa922`
+blam! c9fb8d418af11761bc9731c031b43103c99c1b133099a165d400ccc9806aa922
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 7ce2f12683bc9a2c39e017f0c33035663045b1ea011196676b8c0273e300b27b
+boom! running `docker start -a 7ce2f12683bc9a2c39e017f0c33035663045b1ea011196676b8c0273e300b27b`
+kablam!    Compiling rsync v0.1.2 (file:///source)
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/rsync-86658f9d1ec8b048.0.o" "-o" "/target/debug/deps/rsync-86658f9d1ec8b048" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/librand-c9d9fbdab2355ee4.rlib" "/target/debug/deps/liblibc-2a4507ee5e52ea3e.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-c268df46a455da2e.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-3b032f1a18504e83.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-9f0027fbffa38971.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-4ee93fe948eb9f83.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-277781e5e83f4ddf.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-9fb0680200b1f1d7.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-8fe8e03da90d4fd4.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-91e6e43d741825a3.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-91c6f0edecc68d05.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-3e3384d4e8c6562d.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-552ce29795ce9c9d.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-e19b6c0e5bf50406.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-c1ab5423a7223378.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-5d4fca8590bb0079.rlib" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /target/debug/deps/rsync-86658f9d1ec8b048.0.o: In function `rsync::{{impl}}::drop':
+kablam!           /source/src/lib.rs:100: undefined reference to `rs_free_sumset'
+kablam!           /target/debug/deps/rsync-86658f9d1ec8b048.0.o: In function `rsync::sig_file<&str>':
+kablam!           /source/src/lib.rs:118: undefined reference to `rs_sig_file'
+kablam!           /target/debug/deps/rsync-86658f9d1ec8b048.0.o: In function `rsync::loadsig_file<&str>':
+kablam!           /source/src/lib.rs:148: undefined reference to `rs_loadsig_file'
+kablam!           /target/debug/deps/rsync-86658f9d1ec8b048.0.o: In function `rsync::delta_file<&str>':
+kablam!           /source/src/lib.rs:177: undefined reference to `rs_build_hash_table'
+kablam!           /source/src/lib.rs:178: undefined reference to `rs_delta_file'
+kablam!           /target/debug/deps/rsync-86658f9d1ec8b048.0.o: In function `rsync::patch_file<&str>':
+kablam!           /source/src/lib.rs:212: undefined reference to `rs_patch_file'
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `rsync`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 7ce2f12683bc9a2c39e017f0c33035663045b1ea011196676b8c0273e300b27b`
+blam! 7ce2f12683bc9a2c39e017f0c33035663045b1ea011196676b8c0273e300b27b
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 3fdd94471bd012540cab77daf3e91e5ef993ae32dd5dd5164441556d0095dd52
+boom! running `docker start -a 3fdd94471bd012540cab77daf3e91e5ef993ae32dd5dd5164441556d0095dd52`
+kablam!    Compiling rsync v0.1.2 (file:///source)
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/rsync-86658f9d1ec8b048.0.o" "-o" "/target/debug/deps/rsync-86658f9d1ec8b048" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/librand-c9d9fbdab2355ee4.rlib" "/target/debug/deps/liblibc-2a4507ee5e52ea3e.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-c268df46a455da2e.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-3b032f1a18504e83.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-9f0027fbffa38971.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-4ee93fe948eb9f83.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-277781e5e83f4ddf.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-9fb0680200b1f1d7.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-8fe8e03da90d4fd4.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-91e6e43d741825a3.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-91c6f0edecc68d05.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-3e3384d4e8c6562d.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-552ce29795ce9c9d.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-e19b6c0e5bf50406.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-c1ab5423a7223378.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-5d4fca8590bb0079.rlib" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /target/debug/deps/rsync-86658f9d1ec8b048.0.o: In function `rsync::{{impl}}::drop':
+kablam!           /source/src/lib.rs:100: undefined reference to `rs_free_sumset'
+kablam!           /target/debug/deps/rsync-86658f9d1ec8b048.0.o: In function `rsync::sig_file<&str>':
+kablam!           /source/src/lib.rs:118: undefined reference to `rs_sig_file'
+kablam!           /target/debug/deps/rsync-86658f9d1ec8b048.0.o: In function `rsync::loadsig_file<&str>':
+kablam!           /source/src/lib.rs:148: undefined reference to `rs_loadsig_file'
+kablam!           /target/debug/deps/rsync-86658f9d1ec8b048.0.o: In function `rsync::delta_file<&str>':
+kablam!           /source/src/lib.rs:177: undefined reference to `rs_build_hash_table'
+kablam!           /source/src/lib.rs:178: undefined reference to `rs_delta_file'
+kablam!           /target/debug/deps/rsync-86658f9d1ec8b048.0.o: In function `rsync::patch_file<&str>':
+kablam!           /source/src/lib.rs:212: undefined reference to `rs_patch_file'
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `rsync`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 3fdd94471bd012540cab77daf3e91e5ef993ae32dd5dd5164441556d0095dd52`
+blam! 3fdd94471bd012540cab77daf3e91e5ef993ae32dd5dd5164441556d0095dd52

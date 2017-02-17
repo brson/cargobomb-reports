@@ -1,0 +1,71 @@
+boom! testing small-logger-0.2.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 646585faf8a73b03daabb94e28b90705fd6a0261edc645171ca97f04e8c8b360
+boom! running `docker start -a 646585faf8a73b03daabb94e28b90705fd6a0261edc645171ca97f04e8c8b360`
+kablam!    Compiling small-logger v0.2.1 (file:///source)
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 7.38 secs
+boom! running `docker rm -f 646585faf8a73b03daabb94e28b90705fd6a0261edc645171ca97f04e8c8b360`
+blam! 646585faf8a73b03daabb94e28b90705fd6a0261edc645171ca97f04e8c8b360
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! f68b59f3d3371f2a7bb33e429f232c63e6828fb69862911abbd6e26546304c53
+boom! running `docker start -a f68b59f3d3371f2a7bb33e429f232c63e6828fb69862911abbd6e26546304c53`
+kablam!    Compiling small-logger v0.2.1 (file:///source)
+kablam! warning: function `encodeDecodeJsonTime` should have a snake case name such as `encode_decode_json_time`, #[warn(non_snake_case)] on by default
+kablam!   --> src/data_format.rs:78:1
+kablam!    |
+kablam! 78 |   fn encodeDecodeJsonTime() {
+kablam!    |  _^ starting here...
+kablam! 79 | |   let t = time::at(time::Timespec::new(236928791, 113000000));
+kablam! 80 | |   let jt = JsonTime{time: t};
+kablam! 81 | |   let witness = "1977-07-05 07:33:11.113";
+kablam! 82 | |   assert_eq!(jt.to_string(), witness);
+kablam! 83 | |   assert_eq!(JsonTime::from_string(witness.to_string()).unwrap().time, jt.time);
+kablam! 84 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! warning: function `encodeDecodeJsonTime` should have a snake case name such as `encode_decode_json_time`, #[warn(non_snake_case)] on by default
+kablam!   --> src/data_format.rs:78:1
+kablam!    |
+kablam! 78 |   fn encodeDecodeJsonTime() {
+kablam!    |  _^ starting here...
+kablam! 79 | |   let t = time::at(time::Timespec::new(236928791, 113000000));
+kablam! 80 | |   let jt = JsonTime{time: t};
+kablam! 81 | |   let witness = "1977-07-05 07:33:11.113";
+kablam! 82 | |   assert_eq!(jt.to_string(), witness);
+kablam! 83 | |   assert_eq!(JsonTime::from_string(witness.to_string()).unwrap().time, jt.time);
+kablam! 84 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 4.67 secs
+boom! running `docker rm -f f68b59f3d3371f2a7bb33e429f232c63e6828fb69862911abbd6e26546304c53`
+blam! f68b59f3d3371f2a7bb33e429f232c63e6828fb69862911abbd6e26546304c53
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! 3639ac83397a3923e7ec11ea7a6c0b167aa05d260134a564b6de217f73a93811
+boom! running `docker start -a 3639ac83397a3923e7ec11ea7a6c0b167aa05d260134a564b6de217f73a93811`
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/small_logger-d351945ccd212f77
+blam! 
+blam! running 1 test
+blam! test data_format::encodeDecodeJsonTime ... FAILED
+blam! 
+blam! failures:
+blam! 
+blam! ---- data_format::encodeDecodeJsonTime stdout ----
+blam! 	thread 'data_format::encodeDecodeJsonTime' panicked at 'assertion failed: `(left == right)` (left: `"1977-07-05 05:33:11.113"`, right: `"1977-07-05 07:33:11.113"`)', src/data_format.rs:82
+blam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+blam! 
+blam! 
+blam! failures:
+blam!     data_format::encodeDecodeJsonTime
+blam! 
+blam! test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured
+blam! 
+kablam! error: test failed
+boom! running `docker rm -f 3639ac83397a3923e7ec11ea7a6c0b167aa05d260134a564b6de217f73a93811`
+blam! 3639ac83397a3923e7ec11ea7a6c0b167aa05d260134a564b6de217f73a93811

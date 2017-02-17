@@ -1,0 +1,79 @@
+boom! testing mac-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! a1f6641384afd321e4ef70f2d333e306f0381d45896a367830a578d608fafa7a
+boom! running `docker start -a a1f6641384afd321e4ef70f2d333e306f0381d45896a367830a578d608fafa7a`
+kablam!    Compiling mac v0.1.0 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.61 secs
+boom! running `docker rm -f a1f6641384afd321e4ef70f2d333e306f0381d45896a367830a578d608fafa7a`
+blam! a1f6641384afd321e4ef70f2d333e306f0381d45896a367830a578d608fafa7a
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 982d83c6a35ec3175be36fd67a15e70d7096bdc026fdc924f4988d7b1b904c52
+boom! running `docker start -a 982d83c6a35ec3175be36fd67a15e70d7096bdc026fdc924f4988d7b1b904c52`
+kablam!    Compiling mac v0.1.0 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.27 secs
+boom! running `docker rm -f 982d83c6a35ec3175be36fd67a15e70d7096bdc026fdc924f4988d7b1b904c52`
+blam! 982d83c6a35ec3175be36fd67a15e70d7096bdc026fdc924f4988d7b1b904c52
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 0e889b2b530c223e3f1cd9bd0fa5c4133125a8f08ab4ea76e50fda42f0c11472
+boom! running `docker start -a 0e889b2b530c223e3f1cd9bd0fa5c4133125a8f08ab4ea76e50fda42f0c11472`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/mac-f334fd2f59581eb2
+blam! 
+blam! running 2 tests
+blam! test inspect::test_inspect ... ok
+blam! test matches::test_matches ... ok
+blam! 
+blam! test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!    Doc-tests mac
+blam! 
+blam! running 12 tests
+blam! test /source/src/cfg.rs - if_cfg (line 54) ... ok
+blam! test /source/src/inspect.rs - inspect (line 28) ... ignored
+blam! test /source/src/format.rs - format_if (line 19) ... FAILED
+blam! test /source/src/cfg.rs - if_cfg (line 66) ... ok
+blam! test /source/src/cfg.rs - match_cfg (line 9) ... ok
+blam! test /source/src/inspect.rs - inspect (line 8) ... ok
+blam! test /source/src/lib.rs - do_while (line 59) ... ok
+blam! test /source/src/lib.rs - do_while (line 41) ... ok
+blam! test /source/src/lib.rs - unwrap_or_return (line 24) ... ok
+blam! test /source/src/test.rs - test_eq (line 8) ... ok
+blam! test /source/src/mem.rs - addrs_of (line 12) ... ok
+blam! test /source/src/matches.rs - matches (line 7) ... ok
+blam! 
+blam! failures:
+blam! 
+blam! ---- /source/src/format.rs - format_if (line 19) stdout ----
+blam! 	error[E0283]: type annotations required: cannot resolve `_: std::borrow::ToOwned`
+blam!   --> <anon>:11:21
+blam!    |
+blam! 11 |   let not_formatted = format_if!(false, "Vague error", "Error code {:?}", {
+blam!    |  _____________________^ starting here...
+blam! 12 | |     // Note that the argument is not evaluated.
+blam! 13 | |     panic!("oops");
+blam! 14 | | });
+blam!    | |__^ ...ending here
+blam!    |
+blam!    = note: required by `std::borrow::Cow::Owned`
+blam!    = note: this error originates in a macro outside of the current crate
+blam! 
+blam! error: aborting due to previous error(s)
+blam! 
+blam! thread 'rustc' panicked at 'Box<Any>', /buildslave/rust-buildbot/slave/nightly-dist-rustc-linux/build/src/librustc/session/mod.rs:203
+blam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+blam! 
+blam! 
+blam! failures:
+blam!     /source/src/format.rs - format_if (line 19)
+blam! 
+blam! test result: FAILED. 10 passed; 1 failed; 1 ignored; 0 measured
+blam! 
+kablam! error: test failed
+boom! running `docker rm -f 0e889b2b530c223e3f1cd9bd0fa5c4133125a8f08ab4ea76e50fda42f0c11472`
+blam! 0e889b2b530c223e3f1cd9bd0fa5c4133125a8f08ab4ea76e50fda42f0c11472

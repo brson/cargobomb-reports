@@ -1,0 +1,47 @@
+boom! testing maud_macros-0.13.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 5c1b45cda6927b0b674c8543a7899b64efcb74c2886713033096f4523da1476e
+boom! running `docker start -a 5c1b45cda6927b0b674c8543a7899b64efcb74c2886713033096f4523da1476e`
+kablam!    Compiling maud_macros v0.13.0 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::parse::token::keywords`
+kablam!   --> src/parse.rs:11:5
+kablam!    |
+kablam! 11 | use syntax::parse::token::keywords;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `keywords` in `parse::token`
+kablam! 
+kablam! error[E0425]: cannot find function `gensym_ident` in module `token`
+kablam!   --> src/render.rs:19:22
+kablam!    |
+kablam! 19 |         let writer = token::gensym_ident("__maud_writer");
+kablam!    |                      ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/parse.rs:198:32
+kablam!     |
+kablam! 198 |             self.render.string(&s);
+kablam!     |                                ^^ expected str, found struct `syntax::ast::Symbol`
+kablam!     |
+kablam!     = note: expected type `&str`
+kablam!                found type `&syntax::ast::Symbol`
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `open_span`
+kablam!    --> src/parse.rs:398:13
+kablam!     |
+kablam! 398 |             open_span: sp,
+kablam!     |             ^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `close_span`
+kablam!    --> src/parse.rs:400:13
+kablam!     |
+kablam! 400 |             close_span: sp,
+kablam!     |             ^^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `maud_macros`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 5c1b45cda6927b0b674c8543a7899b64efcb74c2886713033096f4523da1476e`
+blam! 5c1b45cda6927b0b674c8543a7899b64efcb74c2886713033096f4523da1476e

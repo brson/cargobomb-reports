@@ -1,0 +1,38 @@
+boom! testing mousemove-0.0.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! a3649820930a9049c8a27cd068de083b83b395544d091b3bc488fa12bbb84424
+boom! running `docker start -a a3649820930a9049c8a27cd068de083b83b395544d091b3bc488fa12bbb84424`
+kablam!    Compiling mousemove v0.0.2 (file:///source)
+kablam! error[E0432]: unresolved import `platform::move_mouse`
+kablam!  --> src/lib.rs:3:20
+kablam!   |
+kablam! 3 | pub use platform::{move_mouse, press_mouse, release_mouse, move_click};
+kablam!   |                    ^^^^^^^^^^ Maybe a missing `extern crate platform;`?
+kablam! 
+kablam! error[E0432]: unresolved import `platform::press_mouse`
+kablam!  --> src/lib.rs:3:32
+kablam!   |
+kablam! 3 | pub use platform::{move_mouse, press_mouse, release_mouse, move_click};
+kablam!   |                                ^^^^^^^^^^^ Maybe a missing `extern crate platform;`?
+kablam! 
+kablam! error[E0432]: unresolved import `platform::release_mouse`
+kablam!  --> src/lib.rs:3:45
+kablam!   |
+kablam! 3 | pub use platform::{move_mouse, press_mouse, release_mouse, move_click};
+kablam!   |                                             ^^^^^^^^^^^^^ Maybe a missing `extern crate platform;`?
+kablam! 
+kablam! error[E0432]: unresolved import `platform::move_click`
+kablam!  --> src/lib.rs:3:60
+kablam!   |
+kablam! 3 | pub use platform::{move_mouse, press_mouse, release_mouse, move_click};
+kablam!   |                                                            ^^^^^^^^^^ Maybe a missing `extern crate platform;`?
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `mousemove`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f a3649820930a9049c8a27cd068de083b83b395544d091b3bc488fa12bbb84424`
+blam! a3649820930a9049c8a27cd068de083b83b395544d091b3bc488fa12bbb84424

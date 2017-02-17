@@ -1,0 +1,39 @@
+boom! testing hackrf-hal-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 5993021b4d33e22c6dbb2cf4cce678319ce2411dfeb7006915c027c643bd0b0f
+boom! running `docker start -a 5993021b4d33e22c6dbb2cf4cce678319ce2411dfeb7006915c027c643bd0b0f`
+kablam!    Compiling lpc43xx v0.0.0
+kablam!    Compiling hackrf-hal v0.1.0 (file:///source)
+kablam! error: no method named `write_word` found for type `lpc43xx::peripheral::gpio_port::Set` in the current scope
+kablam!   --> src/gpio.rs:12:30
+kablam!    |
+kablam! 12 | 		gpio_port().set[self.port].write_word(1 << self.pin);
+kablam!    | 		                           ^^^^^^^^^^
+kablam! 
+kablam! error: no method named `write_word` found for type `lpc43xx::peripheral::gpio_port::Clr` in the current scope
+kablam!   --> src/gpio.rs:16:30
+kablam!    |
+kablam! 16 | 		gpio_port().clr[self.port].write_word(1 << self.pin);
+kablam!    | 		                           ^^^^^^^^^^
+kablam! 
+kablam! error: no method named `write_word` found for type `lpc43xx::peripheral::gpio_port::Not` in the current scope
+kablam!   --> src/gpio.rs:20:30
+kablam!    |
+kablam! 20 | 		gpio_port().not[self.port].write_word(1 << self.pin);
+kablam!    | 		                           ^^^^^^^^^^
+kablam! 
+kablam! error: no method named `write_word` found for type `lpc43xx::peripheral::gpio_port::W` in the current scope
+kablam!   --> src/gpio.rs:24:44
+kablam!    |
+kablam! 24 | 		gpio_port().w[self.port * 32 + self.pin].write_word(value);
+kablam!    | 		                                         ^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `hackrf-hal`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 5993021b4d33e22c6dbb2cf4cce678319ce2411dfeb7006915c027c643bd0b0f`
+blam! 5993021b4d33e22c6dbb2cf4cce678319ce2411dfeb7006915c027c643bd0b0f

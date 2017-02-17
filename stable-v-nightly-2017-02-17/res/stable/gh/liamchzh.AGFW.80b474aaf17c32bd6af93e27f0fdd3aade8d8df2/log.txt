@@ -1,0 +1,74 @@
+boom! testing https://github.com/liamchzh/AGFW#80b474aaf17c32bd6af93e27f0fdd3aade8d8df2 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 8776677b1cfb1418b13d2b2580523f3889a02e3ee874402193db1202b4f64d10
+boom! running `docker start -a 8776677b1cfb1418b13d2b2580523f3889a02e3ee874402193db1202b4f64d10`
+kablam!    Compiling AGFW v0.0.1 (file:///source)
+kablam! error[E0432]: unresolved import `std::old_io::TcpStream`
+kablam!  --> src/client.rs:1:5
+kablam!   |
+kablam! 1 | use std::old_io::TcpStream;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^ Could not find `old_io` in `std`
+kablam! 
+kablam! error[E0432]: unresolved import `std::old_io::TcpListener`
+kablam!  --> src/server.rs:1:19
+kablam!   |
+kablam! 1 | use std::old_io::{TcpListener, TcpStream};
+kablam!   |                   ^^^^^^^^^^^ Could not find `old_io` in `std`
+kablam! 
+kablam! error[E0432]: unresolved import `std::old_io::TcpStream`
+kablam!  --> src/server.rs:1:32
+kablam!   |
+kablam! 1 | use std::old_io::{TcpListener, TcpStream};
+kablam!   |                                ^^^^^^^^^ Could not find `old_io` in `std`
+kablam! 
+kablam! error[E0432]: unresolved import `std::old_io::Acceptor`
+kablam!  --> src/server.rs:2:19
+kablam!   |
+kablam! 2 | use std::old_io::{Acceptor, Listener};
+kablam!   |                   ^^^^^^^^ Could not find `old_io` in `std`
+kablam! 
+kablam! error[E0432]: unresolved import `std::old_io::Listener`
+kablam!  --> src/server.rs:2:29
+kablam!   |
+kablam! 2 | use std::old_io::{Acceptor, Listener};
+kablam!   |                             ^^^^^^^^ Could not find `old_io` in `std`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/client.rs:12:8
+kablam!    |
+kablam! 12 | 			    None => { println!("response error!") },
+kablam!    | 			    ^^^^ expected enum `std::result::Result`, found enum `std::option::Option`
+kablam!    |
+kablam!    = note: expected type `std::result::Result<&str, std::str::Utf8Error>`
+kablam!    = note:    found type `std::option::Option<_>`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/client.rs:13:8
+kablam!    |
+kablam! 13 | 			    Some(s) => { println!("response get! {}", s) }
+kablam!    | 			    ^^^^^^^ expected enum `std::result::Result`, found enum `std::option::Option`
+kablam!    |
+kablam!    = note: expected type `std::result::Result<&str, std::str::Utf8Error>`
+kablam!    = note:    found type `std::option::Option<_>`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/server.rs:14:17
+kablam!    |
+kablam! 14 |                   thread::spawn(move|| {
+kablam!    |  _________________^ starting here...
+kablam! 15 | |                     handler_client(stream)
+kablam! 16 | |                 })
+kablam!    | |__________________^ ...ending here: expected (), found struct `std::thread::JoinHandle`
+kablam!    |
+kablam!    = note: expected type `()`
+kablam!    = note:    found type `std::thread::JoinHandle<()>`
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `AGFW`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 8776677b1cfb1418b13d2b2580523f3889a02e3ee874402193db1202b4f64d10`
+blam! 8776677b1cfb1418b13d2b2580523f3889a02e3ee874402193db1202b4f64d10

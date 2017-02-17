@@ -1,0 +1,122 @@
+boom! testing html5ever_macros-0.2.7 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 72e0f962afe30e73f88ab96f26e8447e539e1ce09c6e1258c50595bdbb950849
+boom! running `docker start -a 72e0f962afe30e73f88ab96f26e8447e539e1ce09c6e1258c50595bdbb950849`
+kablam!    Compiling html5ever_macros v0.2.7 (file:///source)
+kablam! error[E0433]: failed to resolve. Could not find `keywords` in `token`
+kablam!    --> src/match_token.rs:234:41
+kablam!     |
+kablam! 234 |         let rhs = if parser.eat_keyword(token::keywords::Else) {
+kablam!     |                                         ^^^^^^^^^^^^^^^^^^^^^ Could not find `keywords` in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `gensym_ident` in module `token`
+kablam!    --> src/match_token.rs:432:26
+kablam!     |
+kablam! 432 |     let last_arm_token = token::gensym_ident("last_arm_token");
+kablam!     |                          ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `gensym_ident` in module `token`
+kablam!    --> src/match_token.rs:433:28
+kablam!     |
+kablam! 433 |     let enable_wildcards = token::gensym_ident("enable_wildcards");
+kablam!     |                            ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!   --> src/pre_expand.rs:94:52
+kablam!    |
+kablam! 94 |             format: codemap::ExpnFormat::MacroBang(token::intern("match_token")),
+kablam!    |                                                    ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error: no field `last_span` on type `&mut syntax::parse::parser::Parser<'a>`
+kablam!    --> src/match_token.rs:177:21
+kablam!     |
+kablam! 177 |     let hi = parser.last_span.hi;
+kablam!     |                     ^^^^^^^^^
+kablam! 
+kablam! error: no field `last_span` on type `&mut syntax::parse::parser::Parser<'a>`
+kablam!    --> src/match_token.rs:195:27
+kablam!     |
+kablam! 195 |     Ok(spanned(lo, parser.last_span.hi, Tag {
+kablam!     |                           ^^^^^^^^^
+kablam! 
+kablam! error[E0061]: this function takes 2 parameters but 3 parameters were supplied
+kablam!    --> src/match_token.rs:203:49
+kablam!     |
+kablam! 203 |     let mut parser = parse::new_parser_from_tts(cx.parse_sess(), cx.cfg(), toks.to_vec());
+kablam!     |                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 2 parameters
+kablam! 
+kablam! error: no field `last_span` on type `syntax::parse::parser::Parser<'_>`
+kablam!    --> src/match_token.rs:228:29
+kablam!     |
+kablam! 228 |         let lhs_hi = parser.last_span.hi;
+kablam!     |                             ^^^^^^^^^ did you mean `prev_span`?
+kablam! 
+kablam! error: no field `last_span` on type `syntax::parse::parser::Parser<'_>`
+kablam!    --> src/match_token.rs:239:29
+kablam!     |
+kablam! 239 |             rhs_hi = parser.last_span.hi;
+kablam!     |                             ^^^^^^^^^ did you mean `prev_span`?
+kablam! 
+kablam! error[E0061]: this function takes 3 parameters but 4 parameters were supplied
+kablam!   --> src/pre_expand.rs:31:42
+kablam!    |
+kablam! 31 |     let mut cx = ext::base::ExtCtxt::new(&sess, vec![],
+kablam!    |                                          ^^^^^ expected 3 parameters
+kablam! 
+kablam! error[E0061]: this function takes 3 parameters but 4 parameters were supplied
+kablam!   --> src/pre_expand.rs:36:58
+kablam!    |
+kablam! 36 |     let tts = panictry!(parse::parse_tts_from_source_str(from, source, vec![], &sess));
+kablam!    |               -------------------------------------------^^^^^^^^^^^^-----------------
+kablam!    |               |                                          |
+kablam!    |               |                                          expected 3 parameters
+kablam!    |               in this macro invocation
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/pre_expand.rs:51:39
+kablam!    |
+kablam! 51 |             if ident.name.as_str() == "match_token"
+kablam!    |                                       ^^^^^^^^^^^^^ expected struct `syntax::symbol::InternedString`, found reference
+kablam!    |
+kablam!    = note: expected type `syntax::symbol::InternedString`
+kablam!               found type `&'static str`
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `open_span`
+kablam!   --> src/pre_expand.rs:79:21
+kablam!    |
+kablam! 79 |                     open_span: block.open_span,
+kablam!    |                     ^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error: no field `open_span` on type `syntax::tokenstream::Delimited`
+kablam!   --> src/pre_expand.rs:79:38
+kablam!    |
+kablam! 79 |                     open_span: block.open_span,
+kablam!    |                                      ^^^^^^^^^ did you mean `delim`?
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `close_span`
+kablam!   --> src/pre_expand.rs:81:21
+kablam!    |
+kablam! 81 |                     close_span: block.close_span,
+kablam!    |                     ^^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error: no field `close_span` on type `syntax::tokenstream::Delimited`
+kablam!   --> src/pre_expand.rs:81:39
+kablam!    |
+kablam! 81 |                     close_span: block.close_span,
+kablam!    |                                       ^^^^^^^^^^ did you mean `delim`?
+kablam! 
+kablam! error[E0061]: this function takes 2 parameters but 3 parameters were supplied
+kablam!    --> src/pre_expand.rs:103:49
+kablam!     |
+kablam! 103 |     let mut parser = parse::new_parser_from_tts(cx.parse_sess(), cx.cfg(), tts);
+kablam!     |                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 2 parameters
+kablam! 
+kablam! error: aborting due to 13 previous errors
+kablam! 
+kablam! error: Could not compile `html5ever_macros`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 72e0f962afe30e73f88ab96f26e8447e539e1ce09c6e1258c50595bdbb950849`
+blam! 72e0f962afe30e73f88ab96f26e8447e539e1ce09c6e1258c50595bdbb950849

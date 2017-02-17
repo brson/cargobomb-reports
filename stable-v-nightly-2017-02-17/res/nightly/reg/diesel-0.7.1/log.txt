@@ -1,0 +1,56 @@
+boom! testing diesel-0.7.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! faa29ce5229e245a0839992fb2affe692af8c306e113581f0fbc8cef655d986a
+boom! running `docker start -a faa29ce5229e245a0839992fb2affe692af8c306e113581f0fbc8cef655d986a`
+kablam!    Compiling pq-sys v0.2.7
+kablam!    Compiling diesel v0.7.1 (file:///source)
+kablam! error: type alias is never used: `BoxedQuery`
+kablam!    --> src/macros/mod.rs:210:13
+kablam!     |
+kablam! 210 |               pub type BoxedQuery<'a, DB, ST = SqlType> = BoxedSelectStatement<'a, ST, table, DB>;
+kablam!     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     | 
+kablam!    ::: src/macros/identifiable.rs
+kablam!     |
+kablam! 136 |   table! {
+kablam!     |  _- starting here...
+kablam! 137 | |     foos {
+kablam! 138 | |         id -> Integer,
+kablam! 139 | |     }
+kablam! 140 | | }
+kablam!     | |_- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: #[deny(dead_code)] implied by #[deny(warnings)]
+kablam! note: lint level defined here
+kablam!    --> src/lib.rs:4:9
+kablam!     |
+kablam! 4   | #![deny(warnings, missing_debug_implementations, missing_copy_implementations)]
+kablam!     |         ^^^^^^^^
+kablam! 
+kablam! error: type alias is never used: `BoxedQuery`
+kablam!    --> src/macros/mod.rs:210:13
+kablam!     |
+kablam! 210 |               pub type BoxedQuery<'a, DB, ST = SqlType> = BoxedSelectStatement<'a, ST, table, DB>;
+kablam!     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     | 
+kablam!    ::: src/macros/identifiable.rs
+kablam!     |
+kablam! 142 |   table! {
+kablam!     |  _- starting here...
+kablam! 143 | |     bars {
+kablam! 144 | |         id -> VarChar,
+kablam! 145 | |     }
+kablam! 146 | | }
+kablam!     | |_- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: #[deny(dead_code)] implied by #[deny(warnings)]
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `diesel`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f faa29ce5229e245a0839992fb2affe692af8c306e113581f0fbc8cef655d986a`
+blam! faa29ce5229e245a0839992fb2affe692af8c306e113581f0fbc8cef655d986a

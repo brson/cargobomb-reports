@@ -1,0 +1,166 @@
+boom! testing cgroup-0.0.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 4cefa10818ca80109661a4b3b9c2e0165fdc977249fde14c32641dccd927de31
+boom! running `docker start -a 4cefa10818ca80109661a4b3b9c2e0165fdc977249fde14c32641dccd927de31`
+kablam!    Compiling cgroup v0.0.1 (file:///source)
+kablam! error[E0432]: unresolved import `std::io::File`
+kablam!   --> src/lib.rs:19:15
+kablam!    |
+kablam! 19 | use std::io::{File, IoResult};
+kablam!    |               ^^^^ no `File` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::IoResult`
+kablam!   --> src/lib.rs:19:21
+kablam!    |
+kablam! 19 | use std::io::{File, IoResult};
+kablam!    |                     ^^^^^^^^ no `IoResult` in `io`. Did you mean to use `Result`?
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::fs::PathExtensions`
+kablam!   --> src/lib.rs:20:5
+kablam!    |
+kablam! 20 | use std::io::fs::PathExtensions;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `fs` in `io`
+kablam! 
+kablam! error[E0412]: cannot find type `Path` in this scope
+kablam!   --> src/lib.rs:24:15
+kablam!    |
+kablam! 24 |     basepath: Path,
+kablam!    |               ^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::path::Path;`
+kablam! 
+kablam! error[E0412]: cannot find type `Path` in this scope
+kablam!   --> src/lib.rs:27:35
+kablam!    |
+kablam! 27 |     controllers: HashMap<Vec<u8>, Path>,
+kablam!    |                                   ^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::path::Path;`
+kablam! 
+kablam! error[E0412]: cannot find type `Path` in this scope
+kablam!   --> src/lib.rs:31:11
+kablam!    |
+kablam! 31 |     path: Path,
+kablam!    |           ^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::path::Path;`
+kablam! 
+kablam! error[E0412]: cannot find type `Path` in this scope
+kablam!   --> src/lib.rs:32:37
+kablam!    |
+kablam! 32 |     cache: RefCell<HashMap<Vec<u8>, Path>>,
+kablam!    |                                     ^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::path::Path;`
+kablam! 
+kablam! error[E0412]: cannot find type `Path` in this scope
+kablam!   --> src/lib.rs:36:71
+kablam!    |
+kablam! 36 | pub fn get_controllers(pid: libc::pid_t) -> IoResult<HashMap<Vec<u8>, Path>> {
+kablam!    |                                                                       ^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::path::Path;`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> src/lib.rs:37:37
+kablam!    |
+kablam! 37 |     let contents = try!(File::open(&Path::new(format!("/proc/{}/cgroup", pid))).read_to_string());
+kablam!    |                                     ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> src/lib.rs:46:20
+kablam!    |
+kablam! 46 |         let path = Path::new(columns.next().expect("No controller path!"));
+kablam!    |                    ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error[E0412]: cannot find type `Path` in this scope
+kablam!   --> src/lib.rs:52:22
+kablam!    |
+kablam! 52 | fn path_cache(path: &Path) -> IoResult<HashMap<Vec<u8>, Path>> {
+kablam!    |                      ^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::path::Path;`
+kablam! 
+kablam! error[E0412]: cannot find type `Path` in this scope
+kablam!   --> src/lib.rs:52:57
+kablam!    |
+kablam! 52 | fn path_cache(path: &Path) -> IoResult<HashMap<Vec<u8>, Path>> {
+kablam!    |                                                         ^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::path::Path;`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `fs` in `io`
+kablam!   --> src/lib.rs:54:22
+kablam!    |
+kablam! 54 |     for path in try!(std::io::fs::readdir(path)).into_iter() {
+kablam!    |                      ^^^^^^^^^^^^^^^^^^^^ Could not find `fs` in `io`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> src/lib.rs:65:35
+kablam!    |
+kablam! 65 |         CGroup::from_base_and_pid(Path::new("/sys/fs/cgroup"), unsafe { libc::getpid() })
+kablam!    |                                   ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error[E0412]: cannot find type `Path` in this scope
+kablam!   --> src/lib.rs:69:36
+kablam!    |
+kablam! 69 |     pub fn from_base_and_pid(base: Path, pid: libc::pid_t) -> IoResult<CGroup> {
+kablam!    |                                    ^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::path::Path;`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> src/lib.rs:83:53
+kablam!    |
+kablam! 83 |             Some(c) => p.push(c.path_relative_from(&Path::new("/")).expect("path_relative_from is bork?")),
+kablam!    |                                                     ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/lib.rs:15:1
+kablam!    |
+kablam! 15 | extern crate libc;
+kablam!    | ^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: add #![feature(libc)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/lib.rs:36:29
+kablam!    |
+kablam! 36 | pub fn get_controllers(pid: libc::pid_t) -> IoResult<HashMap<Vec<u8>, Path>> {
+kablam!    |                             ^^^^^^^^^^^
+kablam!    |
+kablam!    = help: add #![feature(libc)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/lib.rs:65:73
+kablam!    |
+kablam! 65 |         CGroup::from_base_and_pid(Path::new("/sys/fs/cgroup"), unsafe { libc::getpid() })
+kablam!    |                                                                         ^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: add #![feature(libc)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/lib.rs:69:47
+kablam!    |
+kablam! 69 |     pub fn from_base_and_pid(base: Path, pid: libc::pid_t) -> IoResult<CGroup> {
+kablam!    |                                               ^^^^^^^^^^^
+kablam!    |
+kablam!    = help: add #![feature(libc)] to the crate attributes to enable
+kablam! 
+kablam! error: aborting due to 20 previous errors
+kablam! 
+kablam! error: Could not compile `cgroup`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 4cefa10818ca80109661a4b3b9c2e0165fdc977249fde14c32641dccd927de31`
+blam! 4cefa10818ca80109661a4b3b9c2e0165fdc977249fde14c32641dccd927de31

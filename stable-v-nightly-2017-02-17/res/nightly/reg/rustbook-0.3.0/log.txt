@@ -1,0 +1,32 @@
+boom! testing rustbook-0.3.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 9dda2545026cc458599ac4afdcd1ca430ec342d02e31530f92ab595332d7ce24
+boom! running `docker start -a 9dda2545026cc458599ac4afdcd1ca430ec342d02e31530f92ab595332d7ce24`
+kablam!    Compiling rustbook v0.3.0 (file:///source)
+kablam! error[E0432]: unresolved import `std::iter::AdditiveIterator`
+kablam!   --> src/book.rs:16:5
+kablam!    |
+kablam! 16 | use std::iter::AdditiveIterator;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `AdditiveIterator` in `iter`
+kablam! 
+kablam! error[E0425]: cannot find function `set_exit_status` in module `env`
+kablam!   --> src/term.rs:32:9
+kablam!    |
+kablam! 32 |         env::set_exit_status(101);
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^ not found in `env`
+kablam! 
+kablam! error: no method named `relative_from` found for type `std::path::PathBuf` in the current scope
+kablam!    --> src/book.rs:130:57
+kablam!     |
+kablam! 130 |         let path_from_root = match src.join(given_path).relative_from(src) {
+kablam!     |                                                         ^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `rustbook`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 9dda2545026cc458599ac4afdcd1ca430ec342d02e31530f92ab595332d7ce24`
+blam! 9dda2545026cc458599ac4afdcd1ca430ec342d02e31530f92ab595332d7ce24

@@ -1,0 +1,51 @@
+boom! testing pty-shell-0.2.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! ccc126d2b92f027da9696eb72d195416bac5535decb7cb0b97d579ccf6ee0e0f
+boom! running `docker start -a ccc126d2b92f027da9696eb72d195416bac5535decb7cb0b97d579ccf6ee0e0f`
+kablam!    Compiling pty v0.2.1
+kablam!    Compiling pty-shell v0.2.0 (file:///source)
+kablam! warning: static variable `termios_to_restore` should have an upper case name such as `TERMIOS_TO_RESTORE`
+kablam!  --> src/terminal.rs:9:1
+kablam!   |
+kablam! 9 | static mut termios_to_restore: Option<Termios> = None;
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(non_upper_case_globals)] on by default
+kablam! 
+kablam! warning: static variable `sigwinch_count` should have an upper case name such as `SIGWINCH_COUNT`
+kablam!   --> src/raw_handler.rs:14:1
+kablam!    |
+kablam! 14 | static mut sigwinch_count: i32 = 0;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(non_upper_case_globals)] on by default
+kablam! 
+kablam! error[E0276]: impl has stricter requirements than trait
+kablam!   --> src/lib.rs:51:5
+kablam!    |
+kablam! 39 |       fn proxy<H: PtyHandler>(&self, handler: H) -> Result<()>;
+kablam!    |       --------------------------------------------------------- definition of `proxy` from trait
+kablam! ...
+kablam! 51 |       fn proxy<H: PtyHandler + 'static>(&self, handler: H) -> Result<()> {
+kablam!    |  _____^ starting here...
+kablam! 52 | |         if let Some(master) = self.is_parent().ok() {
+kablam! 53 | |             try!(setup_terminal(master));
+kablam! 54 | |             try!(do_proxy(master, handler));
+kablam! 55 | |         }
+kablam! 56 | |         Ok(())
+kablam! 57 | |     }
+kablam!    | |_____^ ...ending here: impl has extra requirement `H: 'static`
+kablam!    |
+kablam!    = note: #[deny(extra_requirement_in_impl)] on by default
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #37166 <https://github.com/rust-lang/rust/issues/37166>
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `pty-shell`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f ccc126d2b92f027da9696eb72d195416bac5535decb7cb0b97d579ccf6ee0e0f`
+blam! ccc126d2b92f027da9696eb72d195416bac5535decb7cb0b97d579ccf6ee0e0f

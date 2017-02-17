@@ -1,0 +1,38 @@
+boom! testing pseudotcp-0.2.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 7b4b1b1fa84f0731871bed226f23434f402517f59029bf503ddfb80e53b56e4c
+boom! running `docker start -a 7b4b1b1fa84f0731871bed226f23434f402517f59029bf503ddfb80e53b56e4c`
+kablam!    Compiling pseudotcp v0.2.0 (file:///source)
+kablam! error: struct `PseudoTcpDebugLevel` is private
+kablam!    --> src/api.rs:250:32
+kablam!     |
+kablam! 250 | 	pub fn set_debug_level(level: ffi::PseudoTcpDebugLevel) {
+kablam!     | 	                              ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: struct `PseudoTcpState` is private
+kablam!    --> src/api.rs:292:29
+kablam!     |
+kablam! 292 | 	pub fn get_state(&self) -> ffi::PseudoTcpState {
+kablam!     | 	                           ^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: struct `PseudoTcpState` is private
+kablam!    --> src/api.rs:301:3
+kablam!     |
+kablam! 301 | 		ffi::PseudoTcpState::from_bits(value as u32).unwrap()
+kablam!     | 		^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: struct `PseudoTcpState` is private
+kablam!    --> src/pseudo_tcp_stream.rs:269:29
+kablam!     |
+kablam! 269 | 	pub fn get_state(&self) -> ffi::PseudoTcpState {
+kablam!     | 	                           ^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `pseudotcp`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 7b4b1b1fa84f0731871bed226f23434f402517f59029bf503ddfb80e53b56e4c`
+blam! 7b4b1b1fa84f0731871bed226f23434f402517f59029bf503ddfb80e53b56e4c

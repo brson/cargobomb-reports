@@ -1,0 +1,144 @@
+boom! testing pty-shell-0.2.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! ca07e0552a96f0fe37a43a89612118f0340e7788abc653b4dc0953ce29426d21
+boom! running `docker start -a ca07e0552a96f0fe37a43a89612118f0340e7788abc653b4dc0953ce29426d21`
+kablam!    Compiling pty v0.2.1
+kablam!    Compiling pty-shell v0.2.0 (file:///source)
+kablam! warning: static variable `termios_to_restore` should have an upper case name such as `TERMIOS_TO_RESTORE`, #[warn(non_upper_case_globals)] on by default
+kablam!  --> src/terminal.rs:9:1
+kablam!   |
+kablam! 9 | static mut termios_to_restore: Option<Termios> = None;
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: static variable `sigwinch_count` should have an upper case name such as `SIGWINCH_COUNT`, #[warn(non_upper_case_globals)] on by default
+kablam!   --> src/raw_handler.rs:14:1
+kablam!    |
+kablam! 14 | static mut sigwinch_count: i32 = 0;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning[E0276]: impl has stricter requirements than trait, #[warn(extra_requirement_in_impl)] on by default
+kablam!   --> src/lib.rs:51:5
+kablam!    |
+kablam! 39 |       fn proxy<H: PtyHandler>(&self, handler: H) -> Result<()>;
+kablam!    |       --------------------------------------------------------- definition of `proxy` from trait
+kablam! ...
+kablam! 51 |       fn proxy<H: PtyHandler + 'static>(&self, handler: H) -> Result<()> {
+kablam!    |  _____^ starting here...
+kablam! 52 | |         if let Some(master) = self.is_parent().ok() {
+kablam! 53 | |             try!(setup_terminal(master));
+kablam! 54 | |             try!(do_proxy(master, handler));
+kablam! 55 | |         }
+kablam! 56 | |         Ok(())
+kablam! 57 | |     }
+kablam!    | |_____^ ...ending here: impl has extra requirement `H: 'static`
+kablam!    |
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #37166 <https://github.com/rust-lang/rust/issues/37166>
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 1.58 secs
+boom! running `docker rm -f ca07e0552a96f0fe37a43a89612118f0340e7788abc653b4dc0953ce29426d21`
+blam! ca07e0552a96f0fe37a43a89612118f0340e7788abc653b4dc0953ce29426d21
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 04bda5204c591b302882634cccdd755272d0feb51ce9d15bd3b70ffef5d74702
+boom! running `docker start -a 04bda5204c591b302882634cccdd755272d0feb51ce9d15bd3b70ffef5d74702`
+kablam!    Compiling pty-shell v0.2.0 (file:///source)
+kablam! warning: unused variable: `input`, #[warn(unused_variables)] on by default
+kablam!  --> examples/main.rs:7:25
+kablam!   |
+kablam! 7 |     fn input(&mut self, input: &[u8]) {
+kablam!   |                         ^^^^^
+kablam! 
+kablam! warning: unused variable: `output`, #[warn(unused_variables)] on by default
+kablam!   --> examples/main.rs:11:26
+kablam!    |
+kablam! 11 |     fn output(&mut self, output: &[u8]) {
+kablam!    |                          ^^^^^^
+kablam! 
+kablam! warning: unused variable: `winsize`, #[warn(unused_variables)] on by default
+kablam!   --> examples/main.rs:15:26
+kablam!    |
+kablam! 15 |     fn resize(&mut self, winsize: &winsize::Winsize) {
+kablam!    |                          ^^^^^^^
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!   --> examples/main.rs:27:5
+kablam!    |
+kablam! 27 |     child.exec("bash");
+kablam!    |     ^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!   --> examples/main.rs:28:5
+kablam!    |
+kablam! 28 |     child.proxy(Shell);
+kablam!    |     ^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!   --> examples/main.rs:29:5
+kablam!    |
+kablam! 29 |     child.wait();
+kablam!    |     ^^^^^^^^^^^^^
+kablam! 
+kablam! warning: static variable `termios_to_restore` should have an upper case name such as `TERMIOS_TO_RESTORE`, #[warn(non_upper_case_globals)] on by default
+kablam!  --> src/terminal.rs:9:1
+kablam!   |
+kablam! 9 | static mut termios_to_restore: Option<Termios> = None;
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: static variable `sigwinch_count` should have an upper case name such as `SIGWINCH_COUNT`, #[warn(non_upper_case_globals)] on by default
+kablam!   --> src/raw_handler.rs:14:1
+kablam!    |
+kablam! 14 | static mut sigwinch_count: i32 = 0;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning[E0276]: impl has stricter requirements than trait, #[warn(extra_requirement_in_impl)] on by default
+kablam!   --> src/lib.rs:51:5
+kablam!    |
+kablam! 39 |       fn proxy<H: PtyHandler>(&self, handler: H) -> Result<()>;
+kablam!    |       --------------------------------------------------------- definition of `proxy` from trait
+kablam! ...
+kablam! 51 |       fn proxy<H: PtyHandler + 'static>(&self, handler: H) -> Result<()> {
+kablam!    |  _____^ starting here...
+kablam! 52 | |         if let Some(master) = self.is_parent().ok() {
+kablam! 53 | |             try!(setup_terminal(master));
+kablam! 54 | |             try!(do_proxy(master, handler));
+kablam! 55 | |         }
+kablam! 56 | |         Ok(())
+kablam! 57 | |     }
+kablam!    | |_____^ ...ending here: impl has extra requirement `H: 'static`
+kablam!    |
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #37166 <https://github.com/rust-lang/rust/issues/37166>
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 5.3 secs
+boom! running `docker rm -f 04bda5204c591b302882634cccdd755272d0feb51ce9d15bd3b70ffef5d74702`
+blam! 04bda5204c591b302882634cccdd755272d0feb51ce9d15bd3b70ffef5d74702
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! 8e0dcce717e81917356ea1eea277c030ff42746401d67f0273d6dc90ffe01958
+boom! running `docker start -a 8e0dcce717e81917356ea1eea277c030ff42746401d67f0273d6dc90ffe01958`
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/it_can_hook_stdout_with_callback-7f55fe3b61a8551c
+blam! 
+blam! running 1 test
+blam! test it_can_hook_stdout_with_callback ... FAILED
+blam! 
+blam! failures:
+blam! 
+blam! ---- it_can_hook_stdout_with_callback stdout ----
+blam! 	thread 'it_can_hook_stdout_with_callback' panicked at 'called `Result::unwrap()` on an `Err` value: Io(Error { repr: Os { code: 25, message: "Inappropriate ioctl for device" } })', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:837
+blam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+blam! 
+blam! 
+blam! failures:
+blam!     it_can_hook_stdout_with_callback
+blam! 
+blam! test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured
+blam! 
+kablam! error: test failed
+boom! running `docker rm -f 8e0dcce717e81917356ea1eea277c030ff42746401d67f0273d6dc90ffe01958`
+blam! 8e0dcce717e81917356ea1eea277c030ff42746401d67f0273d6dc90ffe01958

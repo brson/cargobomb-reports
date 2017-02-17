@@ -1,0 +1,28 @@
+boom! testing alpaca-0.1.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 7f049589436ba1522393d8ca961540517a3c58a4ef4e1a5abd3e4ef766621b66
+boom! running `docker start -a 7f049589436ba1522393d8ca961540517a3c58a4ef4e1a5abd3e4ef766621b66`
+kablam!    Compiling itertools v0.4.19
+kablam!    Compiling custom_derive v0.1.7
+kablam!    Compiling bit-set v0.3.0
+kablam!    Compiling peg v0.5.1
+kablam!    Compiling ieee754 v0.1.1
+kablam!    Compiling ordered-float v0.2.3
+kablam!    Compiling crossbeam v0.1.6
+kablam!    Compiling newtype_derive v0.1.6
+kablam! error[E0512]: transmute called with differently sized types: [usize; 32] (2048 bits) to [std::sync::atomic::AtomicBool; 32] (256 bits)
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/crossbeam-0.1.6/src/sync/seg_queue.rs:34:29
+kablam!    |
+kablam! 34 |             ready: unsafe { mem::transmute([0usize; SEG_SIZE]) },
+kablam!    |                             ^^^^^^^^^^^^^^ transmuting between 2048 bits and 256 bits
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `crossbeam`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 7f049589436ba1522393d8ca961540517a3c58a4ef4e1a5abd3e4ef766621b66`
+blam! 7f049589436ba1522393d8ca961540517a3c58a4ef4e1a5abd3e4ef766621b66

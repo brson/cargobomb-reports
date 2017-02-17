@@ -1,0 +1,48 @@
+boom! testing poglgame-0.4.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! a3d38207e70f78275dccb29be4d0737081b8ee41e0c4811231a24ed4146a2e17
+boom! running `docker start -a a3d38207e70f78275dccb29be4d0737081b8ee41e0c4811231a24ed4146a2e17`
+kablam!    Compiling shader_version v0.1.0
+kablam!    Compiling sdl2-sys v0.4.0
+kablam!    Compiling gl v0.0.12
+kablam!    Compiling freetype-rs v0.1.3
+kablam! error[E0277]: the trait bound `Self: std::marker::Sized` is not satisfied
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/shader_version-0.1.0/src/lib.rs:37:5
+kablam!    |
+kablam! 37 |     fn pick_shader<'a, S: ?Sized>(self, shaders: &Shaders<'a, Self, S>) -> Option<&'a S>;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::marker::Sized` is not implemented for `Self`
+kablam!    |
+kablam!    = help: consider adding a `where Self: std::marker::Sized` bound
+kablam!    = note: required by `Shaders`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `shader_version`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error[E0425]: cannot find function `generate_bindings` in module `gl_generator`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/gl-0.0.12/build.rs:14:5
+kablam!    |
+kablam! 14 |     gl_generator::generate_bindings(gl_generator::GlobalGenerator,
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `gl_generator`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Ns` in `registry`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/gl-0.0.12/build.rs:15:37
+kablam!    |
+kablam! 15 |                                     gl_generator::registry::Ns::Gl,
+kablam!    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `Ns` in `registry`
+kablam! 
+kablam! error: module `registry` is private
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/gl-0.0.12/build.rs:15:37
+kablam!    |
+kablam! 15 |                                     gl_generator::registry::Ns::Gl,
+kablam!    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `gl`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f a3d38207e70f78275dccb29be4d0737081b8ee41e0c4811231a24ed4146a2e17`
+blam! a3d38207e70f78275dccb29be4d0737081b8ee41e0c4811231a24ed4146a2e17

@@ -1,0 +1,98 @@
+boom! testing curtain-0.2.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 3208673036bda56f1585c4d3ca234a27fafa29c89bc34f14749b169ec9c21448
+boom! running `docker start -a 3208673036bda56f1585c4d3ca234a27fafa29c89bc34f14749b169ec9c21448`
+kablam!    Compiling peg v0.3.18
+kablam!    Compiling phf v0.7.15
+kablam!    Compiling uuid v0.3.1
+kablam!    Compiling sequence_trie v0.0.13
+kablam!    Compiling chrono v0.2.25
+kablam!    Compiling openssl v0.7.14
+kablam! error[E0432]: unresolved import `syntax::parse::token::str_to_ident`
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/peg-0.3.18/src/rustast.rs:9:9
+kablam!   |
+kablam! 9 | pub use syntax::parse::token::str_to_ident;
+kablam!   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `str_to_ident` in `parse::token`
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/peg-0.3.18/src/peg_syntax_ext.rs:29:13
+kablam!    |
+kablam! 29 |             token::intern("peg"),
+kablam!    |             ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/peg-0.3.18/src/peg_syntax_ext.rs:33:13
+kablam!    |
+kablam! 33 |             token::intern("peg_file"),
+kablam!    |             ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `InternedString` in `token`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/peg-0.3.18/src/peg_syntax_ext.rs:79:63
+kablam!    |
+kablam! 79 |     let allow = cx.attribute(DUMMY_SP, cx.meta_list(DUMMY_SP, token::InternedString::new("allow"), vec![
+kablam!    |                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `InternedString` in `token`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `InternedString` in `token`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/peg-0.3.18/src/peg_syntax_ext.rs:80:42
+kablam!    |
+kablam! 80 |         cx.meta_list_item_word(DUMMY_SP, token::InternedString::new("non_snake_case")),
+kablam!    |                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `InternedString` in `token`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `InternedString` in `token`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/peg-0.3.18/src/peg_syntax_ext.rs:81:42
+kablam!    |
+kablam! 81 |         cx.meta_list_item_word(DUMMY_SP, token::InternedString::new("unused")),
+kablam!    |                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `InternedString` in `token`
+kablam! 
+kablam! error: failed to run custom build command for `openssl v0.7.14`
+kablam! process didn't exit successfully: `/target/debug/build/openssl-f2d87cfdc2e2aa2f/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! TARGET = Some("x86_64-unknown-linux-gnu")
+kablam! OPT_LEVEL = Some("0")
+kablam! TARGET = Some("x86_64-unknown-linux-gnu")
+kablam! HOST = Some("x86_64-unknown-linux-gnu")
+kablam! TARGET = Some("x86_64-unknown-linux-gnu")
+kablam! TARGET = Some("x86_64-unknown-linux-gnu")
+kablam! HOST = Some("x86_64-unknown-linux-gnu")
+kablam! CC_x86_64-unknown-linux-gnu = None
+kablam! CC_x86_64_unknown_linux_gnu = None
+kablam! HOST_CC = None
+kablam! CC = None
+kablam! HOST = Some("x86_64-unknown-linux-gnu")
+kablam! TARGET = Some("x86_64-unknown-linux-gnu")
+kablam! HOST = Some("x86_64-unknown-linux-gnu")
+kablam! CFLAGS_x86_64-unknown-linux-gnu = None
+kablam! CFLAGS_x86_64_unknown_linux_gnu = None
+kablam! HOST_CFLAGS = None
+kablam! CFLAGS = None
+kablam! PROFILE = Some("debug")
+kablam! running: "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-o" "/target/debug/build/openssl-1d3ea894fa03cc5a/out/src/c_helpers.o" "-c" "src/c_helpers.c"
+kablam! cargo:warning=src/c_helpers.c:1:25: fatal error: openssl/ssl.h: No such file or directory
+kablam! cargo:warning=compilation terminated.
+kablam! ExitStatus(ExitStatus(256))
+kablam! 
+kablam! 
+kablam! command did not execute successfully, got: exit code: 1
+kablam! 
+kablam! 
+kablam! 
+kablam! --- stderr
+kablam! thread 'main' panicked at 'explicit panic', /cargo-home/registry/src/github.com-1ecc6299db9ec823/gcc-0.3.43/src/lib.rs:1127
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error[E0061]: this function takes 3 parameters but 2 parameters were supplied
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/peg-0.3.18/src/translate.rs:427:8
+kablam!     |
+kablam! 427 | 							ctxt.expr_lit(DUMMY_SP, rustast::ast::LitKind::Char(case.start)),
+kablam!     | 							^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 3 parameters
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `peg`.
+kablam! error: build failed
+boom! running `docker rm -f 3208673036bda56f1585c4d3ca234a27fafa29c89bc34f14749b169ec9c21448`
+blam! 3208673036bda56f1585c4d3ca234a27fafa29c89bc34f14749b169ec9c21448

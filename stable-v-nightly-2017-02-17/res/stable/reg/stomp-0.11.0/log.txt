@@ -1,0 +1,100 @@
+boom! testing stomp-0.11.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 43c7ae615dea436c335ccdcc518f596504d5c78a33d8204cd7af98989f59e22a
+boom! running `docker start -a 43c7ae615dea436c335ccdcc518f596504d5c78a33d8204cd7af98989f59e22a`
+kablam!    Compiling lifeguard v0.3.0
+kablam!    Compiling mio v0.3.7
+kablam! error[E0277]: the trait bound `Self: std::marker::Sized` is not satisfied
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/mio-0.3.7/src/handler.rs:8:5
+kablam!   |
+kablam! 8 |       fn readable(&mut self, event_loop: &mut EventLoop<Self>, token: Token, hint: ReadHint) {
+kablam!   |  _____^ starting here...
+kablam! 9 | |     }
+kablam!   | |_____^ ...ending here: the trait `std::marker::Sized` is not implemented for `Self`
+kablam!   |
+kablam!   = help: consider adding a `where Self: std::marker::Sized` bound
+kablam!   = note: required by `event_loop::EventLoop`
+kablam! 
+kablam! error[E0277]: the trait bound `Self: std::marker::Sized` is not satisfied
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/mio-0.3.7/src/handler.rs:11:5
+kablam!    |
+kablam! 11 |       fn writable(&mut self, event_loop: &mut EventLoop<Self>, token: Token) {
+kablam!    |  _____^ starting here...
+kablam! 12 | |     }
+kablam!    | |_____^ ...ending here: the trait `std::marker::Sized` is not implemented for `Self`
+kablam!    |
+kablam!    = help: consider adding a `where Self: std::marker::Sized` bound
+kablam!    = note: required by `event_loop::EventLoop`
+kablam! 
+kablam! error[E0277]: the trait bound `Self: std::marker::Sized` is not satisfied
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/mio-0.3.7/src/handler.rs:14:5
+kablam!    |
+kablam! 14 |       fn notify(&mut self, event_loop: &mut EventLoop<Self>, msg: Self::Message) {
+kablam!    |  _____^ starting here...
+kablam! 15 | |     }
+kablam!    | |_____^ ...ending here: the trait `std::marker::Sized` is not implemented for `Self`
+kablam!    |
+kablam!    = help: consider adding a `where Self: std::marker::Sized` bound
+kablam!    = note: required by `event_loop::EventLoop`
+kablam! 
+kablam! error[E0277]: the trait bound `Self: std::marker::Sized` is not satisfied
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/mio-0.3.7/src/handler.rs:17:5
+kablam!    |
+kablam! 17 |       fn timeout(&mut self, event_loop: &mut EventLoop<Self>, timeout: Self::Timeout) {
+kablam!    |  _____^ starting here...
+kablam! 18 | |     }
+kablam!    | |_____^ ...ending here: the trait `std::marker::Sized` is not implemented for `Self`
+kablam!    |
+kablam!    = help: consider adding a `where Self: std::marker::Sized` bound
+kablam!    = note: required by `event_loop::EventLoop`
+kablam! 
+kablam! error[E0277]: the trait bound `Self: std::marker::Sized` is not satisfied
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/mio-0.3.7/src/handler.rs:20:5
+kablam!    |
+kablam! 20 |       fn interrupted(&mut self, event_loop: &mut EventLoop<Self>) {
+kablam!    |  _____^ starting here...
+kablam! 21 | |     }
+kablam!    | |_____^ ...ending here: the trait `std::marker::Sized` is not implemented for `Self`
+kablam!    |
+kablam!    = help: consider adding a `where Self: std::marker::Sized` bound
+kablam!    = note: required by `event_loop::EventLoop`
+kablam! 
+kablam! error[E0277]: the trait bound `Self: std::marker::Sized` is not satisfied
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/mio-0.3.7/src/nonblock.rs:67:5
+kablam!    |
+kablam! 67 |     fn into_non_block(self) -> Result<NonBlock<Self>>;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::marker::Sized` is not implemented for `Self`
+kablam!    |
+kablam!    = help: consider adding a `where Self: std::marker::Sized` bound
+kablam!    = note: required by `nonblock::NonBlock`
+kablam! 
+kablam! error[E0277]: the trait bound `M: std::marker::Send` is not satisfied
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/mio-0.3.7/src/notify.rs:57:9
+kablam!    |
+kablam! 57 | impl<M> fmt::Debug for Notify<M> {
+kablam!    |         ^^^^^^^^^^ the trait `std::marker::Send` is not implemented for `M`
+kablam!    |
+kablam!    = help: consider adding a `where M: std::marker::Send` bound
+kablam!    = note: required by `notify::Notify`
+kablam! 
+kablam! error[E0277]: the trait bound `M: std::marker::Send` is not satisfied
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/mio-0.3.7/src/notify.rs:58:5
+kablam!    |
+kablam! 58 |       fn fmt(&self, fmt: &mut fmt::Formatter) -> fmt::Result {
+kablam!    |  _____^ starting here...
+kablam! 59 | |         write!(fmt, "Notify<?>")
+kablam! 60 | |     }
+kablam!    | |_____^ ...ending here: the trait `std::marker::Send` is not implemented for `M`
+kablam!    |
+kablam!    = help: consider adding a `where M: std::marker::Send` bound
+kablam!    = note: required by `notify::Notify`
+kablam! 
+kablam! error: aborting due to 8 previous errors
+kablam! 
+kablam! error: Could not compile `mio`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 43c7ae615dea436c335ccdcc518f596504d5c78a33d8204cd7af98989f59e22a`
+blam! 43c7ae615dea436c335ccdcc518f596504d5c78a33d8204cd7af98989f59e22a

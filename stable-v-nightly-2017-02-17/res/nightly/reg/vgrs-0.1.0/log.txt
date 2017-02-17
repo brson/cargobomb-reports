@@ -1,0 +1,90 @@
+boom! testing vgrs-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 5029ac144454c14aebb30affa6ad472f010daeb5d7195d6c90ac07a59455985a
+boom! running `docker start -a 5029ac144454c14aebb30affa6ad472f010daeb5d7195d6c90ac07a59455985a`
+kablam!    Compiling vgrs v0.1.0 (file:///source)
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/lib.rs:37:1
+kablam!    |
+kablam! 37 | extern crate libc;
+kablam!    | ^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: add #![feature(libc)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/lib.rs:39:5
+kablam!    |
+kablam! 39 | use libc::c_uint;
+kablam!    |     ^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: add #![feature(libc)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/lib.rs:84:20
+kablam!    |
+kablam! 84 | impl FromUsize for c_uint {
+kablam!    |                    ^^^^^^
+kablam!    |
+kablam!    = help: add #![feature(libc)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/lib.rs:363:9
+kablam!     |
+kablam! 363 |     use libc::c_uint;
+kablam!     |         ^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: add #![feature(libc)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/lib.rs:374:42
+kablam!     |
+kablam! 373 |       wrap!(VG_USERREQ__DRD_GET_VALGRIND_THREAD_ID
+kablam!     |  _____- starting here...
+kablam! 374 | |         => fn get_valgrind_threadid() -> c_uint);
+kablam!     | |__________________________________________^^^^^^_- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = help: add #![feature(libc)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/lib.rs:377:37
+kablam!     |
+kablam! 376 |       wrap!(VG_USERREQ__DRD_GET_DRD_THREAD_ID
+kablam!     |  _____- starting here...
+kablam! 377 | |         => fn get_drd_threadid() -> c_uint);
+kablam!     | |_____________________________________^^^^^^_- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = help: add #![feature(libc)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/lib.rs:85:32
+kablam!    |
+kablam! 85 |     fn from_usize(x: usize) -> c_uint { x as c_uint }
+kablam!    |                                ^^^^^^
+kablam!    |
+kablam!    = help: add #![feature(libc)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/lib.rs:85:46
+kablam!    |
+kablam! 85 |     fn from_usize(x: usize) -> c_uint { x as c_uint }
+kablam!    |                                              ^^^^^^
+kablam!    |
+kablam!    = help: add #![feature(libc)] to the crate attributes to enable
+kablam! 
+kablam! error[E0277]: the trait bound `memcheck::LeakCount: std::clone::Clone` is not satisfied
+kablam!    --> src/lib.rs:273:14
+kablam!     |
+kablam! 273 |     #[derive(Copy)]
+kablam!     |              ^^^^ the trait `std::clone::Clone` is not implemented for `memcheck::LeakCount`
+kablam!     |
+kablam!     = note: required by `std::marker::Copy`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `vgrs`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 5029ac144454c14aebb30affa6ad472f010daeb5d7195d6c90ac07a59455985a`
+blam! 5029ac144454c14aebb30affa6ad472f010daeb5d7195d6c90ac07a59455985a

@@ -1,0 +1,27 @@
+boom! testing sel4-sys-0.0.27 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 675acc4c360734f1df670916539e10335dada28b941f6fd0ba90355416af2a7f
+boom! running `docker start -a 675acc4c360734f1df670916539e10335dada28b941f6fd0ba90355416af2a7f`
+kablam!    Compiling sel4-sys v0.0.27 (file:///source)
+kablam! warning: unused variable: `word_size`
+kablam!   --> build.rs:35:26
+kablam!    |
+kablam! 35 |     for &(arch, archdir, word_size) in &arches {
+kablam!    |                          ^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! error: failed to run custom build command for `sel4-sys v0.0.27 (file:///source)`
+kablam! process didn't exit successfully: `/target/debug/build/sel4-sys-a80e86c9b2db33e2/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! Running: "/usr/bin/env" "python" "tools/syscall_stub_gen.py" "-a" "ia32" "-w" "32" "--buffer" "-o" "/target/debug/build/sel4-sys-813fb1c12f4928cc/out/ia32_syscall_stub.rs" "seL4/libsel4/include/interfaces/sel4.xml" "seL4/libsel4/arch_include/x86/interfaces/sel4arch.xml" "seL4/libsel4/sel4_arch_include/ia32/interfaces/sel4arch.xml"
+kablam! 
+kablam! --- stderr
+kablam! /usr/bin/env: python: No such file or directory
+kablam! thread 'main' panicked at 'assertion failed: cmd.status().unwrap().success()', build.rs:32
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f 675acc4c360734f1df670916539e10335dada28b941f6fd0ba90355416af2a7f`
+blam! 675acc4c360734f1df670916539e10335dada28b941f6fd0ba90355416af2a7f

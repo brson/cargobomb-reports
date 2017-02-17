@@ -1,0 +1,442 @@
+boom! testing https://github.com/aleics/pathtracer#15d5c2a5a706bd337d2178170d5071471ff19efc against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! b88d7f3c7a393c06ebac9db64bb244459d041ed0643b904a7989859c3074ff78
+boom! running `docker start -a b88d7f3c7a393c06ebac9db64bb244459d041ed0643b904a7989859c3074ff78`
+kablam!    Compiling rand v0.3.14
+kablam!    Compiling num-integer v0.1.32
+kablam!    Compiling num-complex v0.1.35
+kablam!    Compiling time v0.1.35
+kablam!    Compiling num-iter v0.1.32
+kablam!    Compiling num-bigint v0.1.35
+kablam!    Compiling num-rational v0.1.35
+kablam!    Compiling num v0.1.35
+kablam!    Compiling rsmath v0.1.3
+kablam!    Compiling pathtracer v0.1.0 (file:///source)
+kablam! warning: struct is never used: `Camera`
+kablam!   --> src/camera.rs:7:1
+kablam!    |
+kablam! 7  |   pub struct Camera {
+kablam!    |  _^ starting here...
+kablam! 8  | |     pub position: Vector3D<f32>,
+kablam! 9  | |     pub fov: f32,
+kablam! 10 | |     pub fdist: f32,
+kablam! 11 | |     pub dof: f32,
+kablam! 12 | |     //pub orientation: Quat
+kablam! 13 | | }
+kablam!    | |_^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `get_ray`
+kablam!   --> src/camera.rs:16:5
+kablam!    |
+kablam! 16 |       pub fn get_ray() -> Ray {
+kablam!    |  _____^ starting here...
+kablam! 17 | |         unimplemented!()
+kablam! 18 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: enum is never used: `IntersectErr`
+kablam!  --> src/errors.rs:1:1
+kablam!   |
+kablam! 1 |   pub enum IntersectErr {
+kablam!   |  _^ starting here...
+kablam! 2 | |     NoHit,
+kablam! 3 | |     OutOfRange
+kablam! 4 | | }
+kablam!   | |_^ ...ending here
+kablam!   |
+kablam!   = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: variant is never used: `SPEC`
+kablam!  --> src/material.rs:3:5
+kablam!   |
+kablam! 3 |     SPEC,
+kablam!   |     ^^^^
+kablam!   |
+kablam!   = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: variant is never used: `REFR`
+kablam!  --> src/material.rs:4:5
+kablam!   |
+kablam! 4 |     REFR
+kablam!   |     ^^^^
+kablam!   |
+kablam!   = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: struct is never used: `Plane`
+kablam!   --> src/object.rs:25:1
+kablam!    |
+kablam! 25 |   pub struct Plane {
+kablam!    |  _^ starting here...
+kablam! 26 | |     pub normal: Vector3D<f64>,
+kablam! 27 | |     pub distance: f64
+kablam! 28 | | }
+kablam!    | |_^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `new`
+kablam!   --> src/object.rs:31:5
+kablam!    |
+kablam! 31 |       pub fn new(new_normal: Vector3D<f64>, new_distance: f64) -> Plane {
+kablam!    |  _____^ starting here...
+kablam! 32 | |         Plane { normal: new_normal, distance: new_distance }
+kablam! 33 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: value assigned to `t` is never read
+kablam!   --> src/object.rs:65:13
+kablam!    |
+kablam! 65 |         let mut t: f64 = 1e-4f64;
+kablam!    |             ^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_assignments)] on by default
+kablam! 
+kablam! warning: method is never used: `new`
+kablam!   --> src/object.rs:89:5
+kablam!    |
+kablam! 89 |       pub fn new(v1: Vector3D<f64>, v2: Vector3D<f64>, v3: Vector3D<f64>) -> Triangle {
+kablam!    |  _____^ starting here...
+kablam! 90 | |         Triangle { vertices: [v1, v2, v3], normal: Triangle::calc_norm(&[v1, v2, v3])}
+kablam! 91 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `calc_norm`
+kablam!    --> src/object.rs:93:5
+kablam!     |
+kablam! 93  |     fn calc_norm(vertices: &[Vector3D<f64>; 3]) -> Vector3D<f64> {
+kablam!     |     ^
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/object.rs:117:43
+kablam!     |
+kablam! 117 |         let (mut t, mut det, mut inv_det, mut u, mut v): (f64, f64, f64, f64, f64);
+kablam!     |                                           ^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/object.rs:117:14
+kablam!     |
+kablam! 117 |         let (mut t, mut det, mut inv_det, mut u, mut v): (f64, f64, f64, f64, f64);
+kablam!     |              ^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/object.rs:117:30
+kablam!     |
+kablam! 117 |         let (mut t, mut det, mut inv_det, mut u, mut v): (f64, f64, f64, f64, f64);
+kablam!     |                              ^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/object.rs:117:21
+kablam!     |
+kablam! 117 |         let (mut t, mut det, mut inv_det, mut u, mut v): (f64, f64, f64, f64, f64);
+kablam!     |                     ^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/object.rs:117:50
+kablam!     |
+kablam! 117 |         let (mut t, mut det, mut inv_det, mut u, mut v): (f64, f64, f64, f64, f64);
+kablam!     |                                                  ^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: unused variable: `t`
+kablam!    --> src/object.rs:117:14
+kablam!     |
+kablam! 117 |         let (mut t, mut det, mut inv_det, mut u, mut v): (f64, f64, f64, f64, f64);
+kablam!     |              ^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: method is never used: `intersect`
+kablam!   --> src/scene.rs:17:5
+kablam!    |
+kablam! 17 |     pub fn intersect(&self, ray: &Ray) -> Result<(f64, usize), IntersectErr> {
+kablam!    |     ^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused variable: `inf`
+kablam!   --> src/scene.rs:20:13
+kablam!    |
+kablam! 20 |         let inf: f64 = 1e20f64;
+kablam!    |             ^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `width`
+kablam!   --> src/main.rs:17:10
+kablam!    |
+kablam! 17 |     let (width, height): (i32, i32) = (512, 384);
+kablam!    |          ^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `height`
+kablam!   --> src/main.rs:17:17
+kablam!    |
+kablam! 17 |     let (width, height): (i32, i32) = (512, 384);
+kablam!    |                 ^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `samples`
+kablam!   --> src/main.rs:18:9
+kablam!    |
+kablam! 18 |     let samples: i32 = 10;
+kablam!    |         ^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `cam`
+kablam!   --> src/main.rs:23:9
+kablam!    |
+kablam! 23 |     let cam: Ray = Ray::new( Vector3D::<f64>::init_with_values(50f64, 52f64, 295.6f64),
+kablam!    |         ^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 13.61 secs
+boom! running `docker rm -f b88d7f3c7a393c06ebac9db64bb244459d041ed0643b904a7989859c3074ff78`
+blam! b88d7f3c7a393c06ebac9db64bb244459d041ed0643b904a7989859c3074ff78
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 286852f212e29f7aaa8057093456bb1ffba9dd4953926c39d24560f2272d491e
+boom! running `docker start -a 286852f212e29f7aaa8057093456bb1ffba9dd4953926c39d24560f2272d491e`
+kablam!    Compiling pathtracer v0.1.0 (file:///source)
+kablam! warning: struct is never used: `Camera`
+kablam!   --> src/camera.rs:7:1
+kablam!    |
+kablam! 7  |   pub struct Camera {
+kablam!    |  _^ starting here...
+kablam! 8  | |     pub position: Vector3D<f32>,
+kablam! 9  | |     pub fov: f32,
+kablam! 10 | |     pub fdist: f32,
+kablam! 11 | |     pub dof: f32,
+kablam! 12 | |     //pub orientation: Quat
+kablam! 13 | | }
+kablam!    | |_^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `get_ray`
+kablam!   --> src/camera.rs:16:5
+kablam!    |
+kablam! 16 |       pub fn get_ray() -> Ray {
+kablam!    |  _____^ starting here...
+kablam! 17 | |         unimplemented!()
+kablam! 18 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: enum is never used: `IntersectErr`
+kablam!  --> src/errors.rs:1:1
+kablam!   |
+kablam! 1 |   pub enum IntersectErr {
+kablam!   |  _^ starting here...
+kablam! 2 | |     NoHit,
+kablam! 3 | |     OutOfRange
+kablam! 4 | | }
+kablam!   | |_^ ...ending here
+kablam!   |
+kablam!   = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: variant is never used: `SPEC`
+kablam!  --> src/material.rs:3:5
+kablam!   |
+kablam! 3 |     SPEC,
+kablam!   |     ^^^^
+kablam!   |
+kablam!   = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: variant is never used: `REFR`
+kablam!  --> src/material.rs:4:5
+kablam!   |
+kablam! 4 |     REFR
+kablam!   |     ^^^^
+kablam!   |
+kablam!   = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: struct is never used: `Plane`
+kablam!   --> src/object.rs:25:1
+kablam!    |
+kablam! 25 |   pub struct Plane {
+kablam!    |  _^ starting here...
+kablam! 26 | |     pub normal: Vector3D<f64>,
+kablam! 27 | |     pub distance: f64
+kablam! 28 | | }
+kablam!    | |_^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `new`
+kablam!   --> src/object.rs:31:5
+kablam!    |
+kablam! 31 |       pub fn new(new_normal: Vector3D<f64>, new_distance: f64) -> Plane {
+kablam!    |  _____^ starting here...
+kablam! 32 | |         Plane { normal: new_normal, distance: new_distance }
+kablam! 33 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: value assigned to `t` is never read
+kablam!   --> src/object.rs:65:13
+kablam!    |
+kablam! 65 |         let mut t: f64 = 1e-4f64;
+kablam!    |             ^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_assignments)] on by default
+kablam! 
+kablam! warning: method is never used: `new`
+kablam!   --> src/object.rs:89:5
+kablam!    |
+kablam! 89 |       pub fn new(v1: Vector3D<f64>, v2: Vector3D<f64>, v3: Vector3D<f64>) -> Triangle {
+kablam!    |  _____^ starting here...
+kablam! 90 | |         Triangle { vertices: [v1, v2, v3], normal: Triangle::calc_norm(&[v1, v2, v3])}
+kablam! 91 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `calc_norm`
+kablam!    --> src/object.rs:93:5
+kablam!     |
+kablam! 93  |     fn calc_norm(vertices: &[Vector3D<f64>; 3]) -> Vector3D<f64> {
+kablam!     |     ^
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/object.rs:117:14
+kablam!     |
+kablam! 117 |         let (mut t, mut det, mut inv_det, mut u, mut v): (f64, f64, f64, f64, f64);
+kablam!     |              ^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/object.rs:117:30
+kablam!     |
+kablam! 117 |         let (mut t, mut det, mut inv_det, mut u, mut v): (f64, f64, f64, f64, f64);
+kablam!     |                              ^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/object.rs:117:21
+kablam!     |
+kablam! 117 |         let (mut t, mut det, mut inv_det, mut u, mut v): (f64, f64, f64, f64, f64);
+kablam!     |                     ^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/object.rs:117:50
+kablam!     |
+kablam! 117 |         let (mut t, mut det, mut inv_det, mut u, mut v): (f64, f64, f64, f64, f64);
+kablam!     |                                                  ^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/object.rs:117:43
+kablam!     |
+kablam! 117 |         let (mut t, mut det, mut inv_det, mut u, mut v): (f64, f64, f64, f64, f64);
+kablam!     |                                           ^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: unused variable: `t`
+kablam!    --> src/object.rs:117:14
+kablam!     |
+kablam! 117 |         let (mut t, mut det, mut inv_det, mut u, mut v): (f64, f64, f64, f64, f64);
+kablam!     |              ^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: method is never used: `intersect`
+kablam!   --> src/scene.rs:17:5
+kablam!    |
+kablam! 17 |     pub fn intersect(&self, ray: &Ray) -> Result<(f64, usize), IntersectErr> {
+kablam!    |     ^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused variable: `inf`
+kablam!   --> src/scene.rs:20:13
+kablam!    |
+kablam! 20 |         let inf: f64 = 1e20f64;
+kablam!    |             ^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `width`
+kablam!   --> src/main.rs:17:10
+kablam!    |
+kablam! 17 |     let (width, height): (i32, i32) = (512, 384);
+kablam!    |          ^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `height`
+kablam!   --> src/main.rs:17:17
+kablam!    |
+kablam! 17 |     let (width, height): (i32, i32) = (512, 384);
+kablam!    |                 ^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `samples`
+kablam!   --> src/main.rs:18:9
+kablam!    |
+kablam! 18 |     let samples: i32 = 10;
+kablam!    |         ^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `cam`
+kablam!   --> src/main.rs:23:9
+kablam!    |
+kablam! 23 |     let cam: Ray = Ray::new( Vector3D::<f64>::init_with_values(50f64, 52f64, 295.6f64),
+kablam!    |         ^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.63 secs
+boom! running `docker rm -f 286852f212e29f7aaa8057093456bb1ffba9dd4953926c39d24560f2272d491e`
+blam! 286852f212e29f7aaa8057093456bb1ffba9dd4953926c39d24560f2272d491e
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 158bbcf61add3d79b7a0a7f6aa91ed68b96fd1f2439a714d0b095d56c00de77e
+boom! running `docker start -a 158bbcf61add3d79b7a0a7f6aa91ed68b96fd1f2439a714d0b095d56c00de77e`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/pathtracer-526b6f66e80a176d
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f 158bbcf61add3d79b7a0a7f6aa91ed68b96fd1f2439a714d0b095d56c00de77e`
+blam! 158bbcf61add3d79b7a0a7f6aa91ed68b96fd1f2439a714d0b095d56c00de77e

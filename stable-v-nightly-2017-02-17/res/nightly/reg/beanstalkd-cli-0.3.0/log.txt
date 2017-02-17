@@ -1,0 +1,34 @@
+boom! testing beanstalkd-cli-0.3.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! e7f5ef0e2f64813bdfd8200fe332a7c8a767647a487b6faf0e2cb712e3b378ae
+boom! running `docker start -a e7f5ef0e2f64813bdfd8200fe332a7c8a767647a487b6faf0e2cb712e3b378ae`
+kablam!    Compiling beanstalkd v0.3.2
+kablam! error[E0432]: unresolved import `std::io::BufStream`
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/beanstalkd-0.3.2/src/beanstalkd.rs:3:5
+kablam!   |
+kablam! 3 | use std::io::BufStream;
+kablam!   |     ^^^^^^^^^^^^^^^^^^ no `BufStream` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::BufStream`
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/beanstalkd-0.3.2/src/request.rs:2:5
+kablam!   |
+kablam! 2 | use std::io::BufStream;
+kablam!   |     ^^^^^^^^^^^^^^^^^^ no `BufStream` in `io`
+kablam! 
+kablam! error[E0277]: the trait bound `error::BeanstalkdError: std::clone::Clone` is not satisfied
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/beanstalkd-0.3.2/src/error.rs:4:17
+kablam!   |
+kablam! 4 | #[derive(Debug, Copy)]
+kablam!   |                 ^^^^ the trait `std::clone::Clone` is not implemented for `error::BeanstalkdError`
+kablam!   |
+kablam!   = note: required by `std::marker::Copy`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `beanstalkd`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f e7f5ef0e2f64813bdfd8200fe332a7c8a767647a487b6faf0e2cb712e3b378ae`
+blam! e7f5ef0e2f64813bdfd8200fe332a7c8a767647a487b6faf0e2cb712e3b378ae

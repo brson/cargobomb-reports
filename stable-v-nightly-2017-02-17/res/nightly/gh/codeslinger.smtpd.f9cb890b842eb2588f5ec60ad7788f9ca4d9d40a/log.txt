@@ -1,0 +1,46 @@
+boom! testing https://github.com/codeslinger/smtpd#f9cb890b842eb2588f5ec60ad7788f9ca4d9d40a against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 9d9bc499877e7918e34387344794037d77fcad96e3d0c641c5e266c6cae58229
+boom! running `docker start -a 9d9bc499877e7918e34387344794037d77fcad96e3d0c641c5e266c6cae58229`
+kablam!    Compiling smtpd v0.0.1 (file:///source)
+kablam! error: invalid suffix `u` for numeric literal
+kablam!   --> src/smtpd/config.rs:37:21
+kablam!    |
+kablam! 37 |     let mut count = 0u;
+kablam!    |                     ^^
+kablam!    |
+kablam!    = help: the suffix must be one of the integral types (`u32`, `isize`, etc)
+kablam! 
+kablam! error: macro undefined: `error`
+kablam!  --> src/smtpd/net.rs:8:21
+kablam!   |
+kablam! 8 |         Err(e) => { error!("failed to start TCP listener on {}: {}", config.listen_address, e); return }
+kablam!   |                     ^^^^^
+kablam! 
+kablam! error: macro undefined: `error`
+kablam!   --> src/smtpd/net.rs:12:21
+kablam!    |
+kablam! 12 |         Err(e) => { error!("failed to bind to {}: {}", config.listen_address, e); return }
+kablam!    |                     ^^^^^
+kablam! 
+kablam! error: macro undefined: `error`
+kablam!   --> src/smtpd/net.rs:17:25
+kablam!    |
+kablam! 17 |             Err(e) => { error!("failed to accept connection: {}", e) }
+kablam!    |                         ^^^^^
+kablam! 
+kablam! error: macro undefined: `info`
+kablam!   --> src/smtpd/net.rs:24:5
+kablam!    |
+kablam! 24 |     info!("client connect from {}", stream.peer_name().unwrap());
+kablam!    |     ^^^^
+kablam! 
+kablam! error: aborting due to 5 previous errors
+kablam! 
+kablam! error: Could not compile `smtpd`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 9d9bc499877e7918e34387344794037d77fcad96e3d0c641c5e266c6cae58229`
+blam! 9d9bc499877e7918e34387344794037d77fcad96e3d0c641c5e266c6cae58229

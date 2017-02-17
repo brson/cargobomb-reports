@@ -1,0 +1,43 @@
+boom! testing https://github.com/emk/rust-slow-iteration-demo#f2ea535c506de87273be0529ef77b4ce8c19681b against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! c615f1360ab5fe0face4ed955e487f3c61833d6f1f0272054107bceeb5fba625
+boom! running `docker start -a c615f1360ab5fe0face4ed955e487f3c61833d6f1f0272054107bceeb5fba625`
+kablam!    Compiling rust-slow-iteration-demo v0.0.1 (file:///source)
+kablam! error: invalid suffix `u` for numeric literal
+kablam!   --> src/lib.rs:35:20
+kablam!    |
+kablam! 35 |     for _ in range(0u, 200) { result.push_str(LINE); }
+kablam!    |                    ^^
+kablam!    |
+kablam!    = help: the suffix must be one of the integral types (`u32`, `isize`, etc)
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!   --> src/lib.rs:54:13
+kablam!    |
+kablam! 54 |     offset: uint,
+kablam!    |             ^^^^ not found in this scope
+kablam! 
+kablam! error: module `range` is private
+kablam!   --> src/lib.rs:23:5
+kablam!    |
+kablam! 23 | use std::iter::range;
+kablam!    |     ^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0496]: lifetime name `'a` shadows a lifetime name that is already in scope
+kablam!   --> src/lib.rs:74:18
+kablam!    |
+kablam! 68 | impl<'a> Buffer for BufferedReader<'a> {
+kablam!    |      -- first declared here
+kablam! ...
+kablam! 74 |     fn next_line<'a>(&'a mut self) -> Option<&'a str> {
+kablam!    |                  ^^ lifetime 'a already in scope
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `rust-slow-iteration-demo`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f c615f1360ab5fe0face4ed955e487f3c61833d6f1f0272054107bceeb5fba625`
+blam! c615f1360ab5fe0face4ed955e487f3c61833d6f1f0272054107bceeb5fba625

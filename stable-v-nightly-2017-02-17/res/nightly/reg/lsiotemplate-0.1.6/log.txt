@@ -1,0 +1,24 @@
+boom! testing lsiotemplate-0.1.6 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 8c84574da1d02a3c4c0401e86100754332b42b3b7034eb423bba9ec716142267
+boom! running `docker start -a 8c84574da1d02a3c4c0401e86100754332b42b3b7034eb423bba9ec716142267`
+kablam!    Compiling rust-ini v0.10.0
+kablam!    Compiling lsio v0.1.16
+kablam! error[E0277]: the trait bound `&&[std::string::String]: std::iter::Iterator` is not satisfied
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/lsio-0.1.16/src/commands.rs:35:45
+kablam!    |
+kablam! 35 |             output = try!(Command::new(cmd).args(&args).output());
+kablam!    |                                             ^^^^ the trait `std::iter::Iterator` is not implemented for `&&[std::string::String]`
+kablam!    |
+kablam!    = note: `&&[std::string::String]` is not an iterator; maybe try calling `.iter()` or a similar method
+kablam!    = note: required because of the requirements on the impl of `std::iter::IntoIterator` for `&&[std::string::String]`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `lsio`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f 8c84574da1d02a3c4c0401e86100754332b42b3b7034eb423bba9ec716142267`
+blam! 8c84574da1d02a3c4c0401e86100754332b42b3b7034eb423bba9ec716142267

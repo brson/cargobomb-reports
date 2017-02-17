@@ -1,0 +1,36 @@
+boom! testing https://github.com/guillaumebort/glue#2cc739fd971e58138e96a36663a77bc2b342efaf against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! a996bc0ef4f3955a7af738fa6d64bf65d55f6cd3401ac6097897fa1d3ccf047e
+boom! running `docker start -a a996bc0ef4f3955a7af738fa6d64bf65d55f6cd3401ac6097897fa1d3ccf047e`
+kablam!    Compiling glue v0.0.1 (file:///source)
+kablam! error: invalid suffix `u` for numeric literal
+kablam!    --> src/assembler/x86_64.rs:118:66
+kablam!     |
+kablam! 118 |             bytes.extend(extensions::u64_to_le_bytes(imm as u64, 4u, |v| v.to_vec()).into_iter());
+kablam!     |                                                                  ^^
+kablam!     |
+kablam!     = help: the suffix must be one of the integral types (`u32`, `isize`, etc)
+kablam! 
+kablam! error: invalid suffix `u` for numeric literal
+kablam!    --> src/assembler/x86_64.rs:134:66
+kablam!     |
+kablam! 134 |             bytes.extend(extensions::u64_to_le_bytes(imm as u64, 8u, |v| v.to_vec()).into_iter());
+kablam!     |                                                                  ^^
+kablam!     |
+kablam!     = help: the suffix must be one of the integral types (`u32`, `isize`, etc)
+kablam! 
+kablam! error: expected one of `!`, `(`, `+`, `::`, `;`, `<`, or `]`, found `,`
+kablam!    --> src/assembler/x86_64.rs:228:29
+kablam!     |
+kablam! 228 | impl Parameter for [Register, ..1] {
+kablam!     |                             ^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `glue`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f a996bc0ef4f3955a7af738fa6d64bf65d55f6cd3401ac6097897fa1d3ccf047e`
+blam! a996bc0ef4f3955a7af738fa6d64bf65d55f6cd3401ac6097897fa1d3ccf047e

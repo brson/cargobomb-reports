@@ -1,0 +1,78 @@
+boom! testing extensible-0.0.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 9a7c63712aa84e7fce08588ff648202aac99398e1178c271cb333fd0b4d66945
+boom! running `docker start -a 9a7c63712aa84e7fce08588ff648202aac99398e1178c271cb333fd0b4d66945`
+kablam!    Compiling extensible v0.0.1 (file:///source)
+kablam! error[E0432]: unresolved import `rustc::plugin::Registry`
+kablam!   --> src/lib.rs:10:5
+kablam!    |
+kablam! 10 | use rustc::plugin::Registry;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `plugin` in `rustc`
+kablam! 
+kablam! error[E0432]: unresolved import `rustc::lint::LintPassObject`
+kablam!   --> src/lib.rs:11:5
+kablam!    |
+kablam! 11 | use rustc::lint::LintPassObject;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `LintPassObject` in `lint`. Did you mean to use `LateLintPassObject`?
+kablam! 
+kablam! error[E0432]: unresolved import `rustc::lint::Context`
+kablam!   --> src/lib.rs:14:19
+kablam!    |
+kablam! 14 | use rustc::lint::{Context, LintPass, LintArray};
+kablam!    |                   ^^^^^^^ no `Context` in `lint`. Did you mean to use `context`?
+kablam! 
+kablam! error[E0432]: unresolved import `rustc::middle::ty`
+kablam!   --> src/lib.rs:15:5
+kablam!    |
+kablam! 15 | use rustc::middle::ty;
+kablam!    |     ^^^^^^^^^^^^^^^^^ no `ty` in `middle`
+kablam! 
+kablam! error[E0432]: unresolved import `rustc::util::ppaux::Repr`
+kablam!   --> src/lib.rs:16:5
+kablam!    |
+kablam! 16 | use rustc::util::ppaux::Repr;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^ no `Repr` in `util::ppaux`
+kablam! 
+kablam! error[E0407]: method `check_expr` is not a member of trait `LintPass`
+kablam!   --> src/lib.rs:36:5
+kablam!    |
+kablam! 36 |     fn check_expr(&mut self, cx: &Context, expr: &ast::Expr) {
+kablam!    |     ^ not a member of trait `LintPass`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `ExprMatch` in module `ast`
+kablam!   --> src/lib.rs:38:16
+kablam!    |
+kablam! 38 |         if let ast::ExprMatch(ref ex, ref arms, ast::MatchSource::Normal) = expr.node {
+kablam!    |                ^^^^^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use rustc::hir::ExprMatch;`
+kablam!              `use rustc::hir::Expr_::ExprMatch;`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `MatchSource` in `ast`
+kablam!   --> src/lib.rs:38:49
+kablam!    |
+kablam! 38 |         if let ast::ExprMatch(ref ex, ref arms, ast::MatchSource::Normal) = expr.node {
+kablam!    |                                                 ^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `MatchSource` in `ast`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `PatWild` in module `ast`
+kablam!   --> src/lib.rs:55:25
+kablam!    |
+kablam! 55 |                         ast::PatWild(_) | ast::PatLit(_) => return,
+kablam!    |                         ^^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `PatLit` in module `ast`
+kablam!   --> src/lib.rs:55:43
+kablam!    |
+kablam! 55 |                         ast::PatWild(_) | ast::PatLit(_) => return,
+kablam!    |                                           ^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error: aborting due to 10 previous errors
+kablam! 
+kablam! error: Could not compile `extensible`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 9a7c63712aa84e7fce08588ff648202aac99398e1178c271cb333fd0b4d66945`
+blam! 9a7c63712aa84e7fce08588ff648202aac99398e1178c271cb333fd0b4d66945

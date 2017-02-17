@@ -1,0 +1,264 @@
+boom! testing zero_sum-1.1.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 6bee9bc79b6d7627b3ca08b9c1f5255201124611b612637e5220fca6f1b92373
+boom! running `docker start -a 6bee9bc79b6d7627b3ca08b9c1f5255201124611b612637e5220fca6f1b92373`
+kablam!    Compiling zero_sum v1.1.2 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 3.15 secs
+boom! running `docker rm -f 6bee9bc79b6d7627b3ca08b9c1f5255201124611b612637e5220fca6f1b92373`
+blam! 6bee9bc79b6d7627b3ca08b9c1f5255201124611b612637e5220fca6f1b92373
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 5300c4723e47f02e58d9acd0e0ec1520124778b5f287370de9b9e14ee3524b58
+boom! running `docker start -a 5300c4723e47f02e58d9acd0e0ec1520124778b5f287370de9b9e14ee3524b58`
+kablam!    Compiling zero_sum v1.1.2 (file:///source)
+kablam! error[E0432]: unresolved import `zero_sum::impls::tic_tac_toe::*`
+kablam!   --> examples/tic_tac_toe.rs:25:5
+kablam!    |
+kablam! 25 | use zero_sum::impls::tic_tac_toe::*;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `impls` in `zero_sum`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Board`
+kablam!   --> examples/tic_tac_toe.rs:32:25
+kablam!    |
+kablam! 32 |         let mut board = Board::new();
+kablam!    |                         ^^^^^^^^^^ Use of undeclared type or module `Board`
+kablam! 
+kablam! error[E0432]: unresolved import `zero_sum::impls::tak::*`
+kablam!   --> examples/tak_opening.rs:23:5
+kablam!    |
+kablam! 23 | use zero_sum::impls::tak::*;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `impls` in `zero_sum`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `State`
+kablam!   --> examples/tak_opening.rs:26:17
+kablam!    |
+kablam! 26 |     let state = State::new(5);
+kablam!    |                 ^^^^^^^^^^ Use of undeclared type or module `State`
+kablam! 
+kablam! error[E0412]: cannot find type `Evaluation` in this scope
+kablam!   --> examples/tic_tac_toe.rs:33:61
+kablam!    |
+kablam! 33 |         let mut ai = zero_sum::analysis::search::PvSearch::<Evaluation, Board, Ply, Resolution>::new();
+kablam! error[E0412]: cannot find type `Evaluation` in this scope
+kablam!   --> examples/tak_opening.rs:27:61
+kablam!    |
+kablam! 27 |     let mut search = zero_sum::analysis::search::PvSearch::<Evaluation, State, Ply, Resolution>::with_goal(60, 12.0);
+kablam!    |                                                             ^^^^^^^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use zero_sum::analysis::Evaluation;`
+kablam! 
+kablam!    |                                                             ^^^^^^^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use zero_sum::analysis::Evaluation;`
+kablam! 
+kablam! error[E0412]: cannot find type `State` in this scope
+kablam!   --> examples/tak_opening.rs:27:73
+kablam!    |
+kablam! 27 |     let mut search = zero_sum::analysis::search::PvSearch::<Evaluation, State, Ply, Resolution>::with_goal(60, 12.0);
+kablam!    |                                                                         ^^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use zero_sum::State;`
+kablam! 
+kablam! error[E0412]: cannot find type `Board` in this scope
+kablam!   --> examples/tic_tac_toe.rs:33:73
+kablam!    |
+kablam! 33 |         let mut ai = zero_sum::analysis::search::PvSearch::<Evaluation, Board, Ply, Resolution>::new();
+kablam!    |                                                                         ^^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `Ply` in this scope
+kablam!   --> examples/tak_opening.rs:27:80
+kablam!    |
+kablam! 27 |     let mut search = zero_sum::analysis::search::PvSearch::<Evaluation, State, Ply, Resolution>::with_goal(60, 12.0);
+kablam!    |                                                                                ^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:error[E0412]: cannot find type `Ply` in this scope
+kablam!   --> examples/tic_tac_toe.rs:33:80
+kablam!    |
+kablam! 33 |         let mut ai = zero_sum::analysis::search::PvSearch::<Evaluation, Board, Ply, Resolution>::new();
+kablam!    |                                                                                ^^^ not found in this scope
+kablam!    
+kablam!              `use zero_sum::Ply;`
+kablam! 
+kablam! |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use zero_sum::Ply;`
+kablam! 
+kablam! error[E0412]: cannot find type `Resolution` in this scope
+kablam!   --> examples/tak_opening.rs:27:85
+kablam!    |
+kablam! 27 |     let mut search = zero_sum::analysis::search::PvSearch::<Evaluation, State, Ply, Resolution>::with_goal(60, 12.0);
+kablam!    error[E0412]: cannot find type `Resolution` in this scope
+kablam!   --> examples/tic_tac_toe.rs:33:85
+kablam!    |
+kablam! 33 |         let mut ai = zero_sum::analysis::search::PvSearch::<Evaluation, Board, Ply, Resolution>::new();
+kablam!    |                                                                                     ^^^^^^^^^^ not found in this scope
+kablam!    |                                                                                     ^^^^^^^^^^ not found in this scope
+kablam!    |
+kablam! |   
+kablam! =    help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use zero_sum::Resolution;`
+kablam! 
+kablam! = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use zero_sum::Resolution;`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Resolution`
+kablam!   --> examples/tic_tac_toe.rs:47:22
+kablam!    |
+kablam! 47 |                 Some(Resolution::Win(mark)) => {
+kablam!    |                      ^^^^^^^^^^^^^^^ Use of undeclared type or module `Resolution`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Resolution`
+kablam!   --> examples/tic_tac_toe.rs:51:22
+kablam!    |
+kablam! 51 |                 Some(Resolution::CatsGame) => {
+kablam!    |                      ^^^^^^^^^^^^^^^^^^^^ Use of undeclared type or module `Resolution`
+kablam! 
+kablam! error[E0422]: cannot find struct, variant or union type `Ply` in this scope
+kablam!   --> examples/tic_tac_toe.rs:79:17
+kablam!    |
+kablam! 79 |                 Ply {
+kablam!    |                 ^^^ not found in this scope
+kablam! 
+kablam! error: aborting due to 6 previous errors
+kablam! 
+kablam! error: Could not compile `zero_sum`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: aborting due to 9 previous errors
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `zero_sum`.
+kablam! error: build failed
+boom! running `docker rm -f 5300c4723e47f02e58d9acd0e0ec1520124778b5f287370de9b9e14ee3524b58`
+blam! 5300c4723e47f02e58d9acd0e0ec1520124778b5f287370de9b9e14ee3524b58
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! e3c6dcd7c12cd5390c854e7cf3ccd2497d9dfa82235a50762303993f41a36a01
+boom! running `docker start -a e3c6dcd7c12cd5390c854e7cf3ccd2497d9dfa82235a50762303993f41a36a01`
+kablam!    Compiling zero_sum v1.1.2 (file:///source)
+kablam! error[E0432]: unresolved import `zero_sum::impls::tak::*`
+kablam!   --> examples/tak_opening.rs:23:5
+kablam!    |
+kablam! 23 | use zero_sum::impls::tak::*;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `impls` in `zero_sum`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `State`
+kablam!   --> examples/tak_opening.rs:26:17
+kablam!    |
+kablam! 26 |     let state = State::new(5);
+kablam!    |                 ^^^^^^^^^^ Use of undeclared type or module `State`
+kablam! 
+kablam! error[E0432]: unresolved import `zero_sum::impls::tic_tac_toe::*`
+kablam!   --> examples/tic_tac_toe.rs:25:5
+kablam!    |
+kablam! 25 | use zero_sum::impls::tic_tac_toe::*;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `impls` in `zero_sum`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Board`
+kablam!   --> examples/tic_tac_toe.rs:32:25
+kablam!    |
+kablam! 32 |         let mut board = Board::new();
+kablam!    |                         ^^^^^^^^^^ Use of undeclared type or module `Board`
+kablam! 
+kablam! error[E0412]: cannot find type `Evaluation` in this scope
+kablam!   --> examples/tak_opening.rs:27:61
+kablam!    |
+kablam! 27 |     let mut search = zero_sum::analysis::search::PvSearch::<Evaluation, State, Ply, Resolution>::with_goal(60, 12.0);
+kablam!    |                                                             ^^^^^^^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use zero_sum::analysis::Evaluation;`
+kablam! 
+kablam! error[E0412]: cannot find type `State` in this scope
+kablam!   --> examples/tak_opening.rs:27:73
+kablam!    |
+kablam! 27 |     let mut search = zero_sum::analysis::search::PvSearch::<Evaluation, State, Ply, Resolution>::with_goal(60, 12.0);
+kablam!    |                                                                         ^^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use zero_sum::State;`
+kablam! 
+kablam! error[E0412]: cannot find type `Ply` in this scope
+kablam!   --> examples/tak_opening.rs:27:80
+kablam!    |
+kablam! 27 |     let mut search = zero_sum::analysis::search::PvSearch::<Evaluation, State, Ply, Resolution>::with_goal(60, 12.0);
+kablam!    |                                                                                ^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use zero_sum::Ply;`
+kablam! 
+kablam! error[E0412]: cannot find type `Resolution` in this scope
+kablam!   --> examples/tak_opening.rs:27:85
+kablam!    |
+kablam! 27 |     let mut search = zero_sum::analysis::search::PvSearch::<Evaluation, State, Ply, Resolution>::with_goal(60, 12.0);
+kablam!    |                                                                                     ^^^^^^^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use zero_sum::Resolution;`
+kablam! 
+kablam! error[E0412]: cannot find type `Evaluation` in this scope
+kablam!   --> examples/tic_tac_toe.rs:33:61
+kablam!    |
+kablam! 33 |         let mut ai = zero_sum::analysis::search::PvSearch::<Evaluation, Board, Ply, Resolution>::new();
+kablam!    |                                                             ^^^^^^^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use zero_sum::analysis::Evaluation;`
+kablam! 
+kablam! error[E0412]: cannot find type `Board` in this scope
+kablam!   --> examples/tic_tac_toe.rs:33:73
+kablam!    |
+kablam! 33 |         let mut ai = zero_sum::analysis::search::PvSearch::<Evaluation, Board, Ply, Resolution>::new();
+kablam!    |                                                                         ^^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `Ply` in this scope
+kablam!   --> examples/tic_tac_toe.rs:33:80
+kablam!    |
+kablam! 33 |         let mut ai = zero_sum::analysis::search::PvSearch::<Evaluation, Board, Ply, Resolution>::new();
+kablam!    |                                                                                ^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use zero_sum::Ply;`
+kablam! 
+kablam! error[E0412]: cannot find type `Resolution` in this scope
+kablam!   --> examples/tic_tac_toe.rs:33:85
+kablam!    |
+kablam! 33 |         let mut ai = zero_sum::analysis::search::PvSearch::<Evaluation, Board, Ply, Resolution>::new();
+kablam!    |                                                                                     ^^^^^^^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use zero_sum::Resolution;`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Resolution`
+kablam!   --> examples/tic_tac_toe.rs:47:22
+kablam!    |
+kablam! 47 |                 Some(Resolution::Win(mark)) => {
+kablam!    |                      ^^^^^^^^^^^^^^^ Use of undeclared type or module `Resolution`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Resolution`
+kablam!   --> examples/tic_tac_toe.rs:51:22
+kablam!    |
+kablam! 51 |                 Some(Resolution::CatsGame) => {
+kablam!    |                      ^^^^^^^^^^^^^^^^^^^^ Use of undeclared type or module `Resolution`
+kablam! 
+kablam! error[E0422]: cannot find struct, variant or union type `Ply` in this scope
+kablam!   --> examples/tic_tac_toe.rs:79:17
+kablam!    |
+kablam! 79 |                 Ply {
+kablam!    |                 ^^^ not found in this scope
+kablam! 
+kablam! error: aborting due to 6 previous errors
+kablam! 
+kablam! error: Could not compile `zero_sum`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: aborting due to 9 previous errors
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f e3c6dcd7c12cd5390c854e7cf3ccd2497d9dfa82235a50762303993f41a36a01`
+blam! e3c6dcd7c12cd5390c854e7cf3ccd2497d9dfa82235a50762303993f41a36a01

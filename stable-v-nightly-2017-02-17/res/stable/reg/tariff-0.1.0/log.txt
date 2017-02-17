@@ -1,0 +1,67 @@
+boom! testing tariff-0.1.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! cc59cd302c7cac447837e49c3dcd4852049d9da490e43a72cd754deba9c5bf63
+boom! running `docker start -a cc59cd302c7cac447837e49c3dcd4852049d9da490e43a72cd754deba9c5bf63`
+kablam!    Compiling serde v0.6.15
+kablam!    Compiling bson v0.1.5
+kablam!    Compiling tariff v0.1.0 (file:///source)
+kablam! error[E0308]: mismatched types
+kablam!   --> src/client.rs:73:39
+kablam!    |
+kablam! 73 |             let json = Bson::Document(doc).to_json();
+kablam!    |                                       ^^^ expected struct `bson::ordered::OrderedDocument`, found a different struct `bson::ordered::OrderedDocument`
+kablam!    |
+kablam!    = note: expected type `bson::ordered::OrderedDocument` (struct `bson::ordered::OrderedDocument`)
+kablam!    = note:    found type `bson::ordered::OrderedDocument` (struct `bson::ordered::OrderedDocument`)
+kablam! note: Perhaps two different versions of crate `bson` are being used?
+kablam!   --> src/client.rs:73:39
+kablam!    |
+kablam! 73 |             let json = Bson::Document(doc).to_json();
+kablam!    |                                       ^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/client.rs:108:43
+kablam!     |
+kablam! 108 |                 jsons.push(Bson::Document(doc).to_json());
+kablam!     |                                           ^^^ expected struct `bson::ordered::OrderedDocument`, found a different struct `bson::ordered::OrderedDocument`
+kablam!     |
+kablam!     = note: expected type `bson::ordered::OrderedDocument` (struct `bson::ordered::OrderedDocument`)
+kablam!     = note:    found type `bson::ordered::OrderedDocument` (struct `bson::ordered::OrderedDocument`)
+kablam! note: Perhaps two different versions of crate `bson` are being used?
+kablam!    --> src/client.rs:108:43
+kablam!     |
+kablam! 108 |                 jsons.push(Bson::Document(doc).to_json());
+kablam!     |                                           ^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/client.rs:142:23
+kablam!     |
+kablam! 142 |                 Some(&Bson::String(ref s)) => collections.push(s.to_owned()),
+kablam!     |                       ^^^^^^^^^^^^^^^^^^^ expected enum `bson::bson::Bson`, found enum `bson::Bson`
+kablam!     |
+kablam!     = note: expected type `bson::bson::Bson`
+kablam!     = note:    found type `bson::Bson`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/client.rs:264:36
+kablam!     |
+kablam! 264 |             match coll.insert_many(chunk.to_owned(), None) {
+kablam!     |                                    ^^^^^^^^^^^^^^^^ expected struct `bson::ordered::OrderedDocument`, found a different struct `bson::ordered::OrderedDocument`
+kablam!     |
+kablam!     = note: expected type `std::vec::Vec<bson::ordered::OrderedDocument>` (struct `bson::ordered::OrderedDocument`)
+kablam!     = note:    found type `std::vec::Vec<bson::ordered::OrderedDocument>` (struct `bson::ordered::OrderedDocument`)
+kablam! note: Perhaps two different versions of crate `bson` are being used?
+kablam!    --> src/client.rs:264:36
+kablam!     |
+kablam! 264 |             match coll.insert_many(chunk.to_owned(), None) {
+kablam!     |                                    ^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `tariff`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f cc59cd302c7cac447837e49c3dcd4852049d9da490e43a72cd754deba9c5bf63`
+blam! cc59cd302c7cac447837e49c3dcd4852049d9da490e43a72cd754deba9c5bf63

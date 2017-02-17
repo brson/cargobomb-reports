@@ -1,0 +1,23 @@
+boom! testing rendarray-0.2.0-alpha.8 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! dac2e6c3164f46175d7ac63a62c7ca1455aa51b68714105fd1d99e5eb9b94265
+boom! running `docker start -a dac2e6c3164f46175d7ac63a62c7ca1455aa51b68714105fd1d99e5eb9b94265`
+kablam!    Compiling rendarray v0.2.0-alpha.8 (file:///source)
+kablam! error[E0277]: the trait bound `Self: std::marker::Sized` is not satisfied
+kablam!    --> src/lib.rs:329:5
+kablam!     |
+kablam! 329 |     unsafe fn clone_with_ptr(&self, ptr: *mut Self::Elem) -> (Self, *mut Self::Elem);
+kablam!     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::marker::Sized` is not implemented for `Self`
+kablam!     |
+kablam!     = help: consider adding a `where Self: std::marker::Sized` bound
+kablam!     = note: tuple elements must have `Sized` type
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `rendarray`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f dac2e6c3164f46175d7ac63a62c7ca1455aa51b68714105fd1d99e5eb9b94265`
+blam! dac2e6c3164f46175d7ac63a62c7ca1455aa51b68714105fd1d99e5eb9b94265

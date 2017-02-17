@@ -1,0 +1,127 @@
+boom! testing findup-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 19e853c7cfdc89278b18ad192dd42169e1e9bac3f0917377485471a34d1b9f18
+boom! running `docker start -a 19e853c7cfdc89278b18ad192dd42169e1e9bac3f0917377485471a34d1b9f18`
+kablam!    Compiling findup v0.1.0 (file:///source)
+kablam! error[E0432]: unresolved import `std::io::fs::PathExtensions`
+kablam!   --> src/lib.rs:11:5
+kablam!    |
+kablam! 11 | use std::io::fs::PathExtensions;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `fs` in `io`
+kablam! 
+kablam! error[E0412]: cannot find type `Path` in this scope
+kablam!   --> src/lib.rs:13:28
+kablam!    |
+kablam! 13 | fn abs_path(path: &str) -> Path {
+kablam!    |                            ^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::path::Path;`
+kablam! 
+kablam! error[E0425]: cannot find function `getcwd` in module `os`
+kablam!   --> src/lib.rs:14:3
+kablam!    |
+kablam! 14 |   os::getcwd().unwrap().join(&Path::new(path))
+kablam!    |   ^^^^^^^^^^ not found in `os`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> src/lib.rs:14:31
+kablam!    |
+kablam! 14 |   os::getcwd().unwrap().join(&Path::new(path))
+kablam!    |                               ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error[E0412]: cannot find type `Path` in this scope
+kablam!   --> src/lib.rs:17:20
+kablam!    |
+kablam! 17 | fn full_path(base: Path, path: &str) -> Path {
+kablam!    |                    ^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::path::Path;`
+kablam! 
+kablam! error[E0412]: cannot find type `Path` in this scope
+kablam!   --> src/lib.rs:17:41
+kablam!    |
+kablam! 17 | fn full_path(base: Path, path: &str) -> Path {
+kablam!    |                                         ^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::path::Path;`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> src/lib.rs:18:14
+kablam!    |
+kablam! 18 |   base.join(&Path::new(path))
+kablam!    |              ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error[E0412]: cannot find type `Path` in this scope
+kablam!   --> src/lib.rs:21:32
+kablam!    |
+kablam! 21 | fn base_path(partial: &str) -> Path {
+kablam!    |                                ^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::path::Path;`
+kablam! 
+kablam! error[E0425]: cannot find function `getcwd` in module `os`
+kablam!   --> src/lib.rs:22:13
+kablam!    |
+kablam! 22 |   let cwd = os::getcwd().unwrap();
+kablam!    |             ^^^^^^^^^^ not found in `os`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> src/lib.rs:25:20
+kablam!    |
+kablam! 25 |     _ => cwd.join(&Path::new(partial))
+kablam!    |                    ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error[E0412]: cannot find type `Path` in this scope
+kablam!   --> src/lib.rs:29:41
+kablam!    |
+kablam! 29 | fn lookup(base: &str, pattern: &str) -> Path {
+kablam!    |                                         ^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::path::Path;`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> src/lib.rs:34:12
+kablam!    |
+kablam! 34 |     return Path::new("");
+kablam!    |            ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error[E0412]: cannot find type `Path` in this scope
+kablam!   --> src/lib.rs:37:16
+kablam!    |
+kablam! 37 |   let buf: Vec<Path> = glob(pattern).collect();
+kablam!    |                ^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::path::Path;`
+kablam! 
+kablam! error[E0412]: cannot find type `Path` in this scope
+kablam!   --> src/lib.rs:46:33
+kablam!    |
+kablam! 46 | pub fn findup(pattern: &str) -> Path {
+kablam!    |                                 ^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::path::Path;`
+kablam! 
+kablam! error: The attribute `warm` is currently unknown to the compiler and may have meaning added to it in the future (see issue #29642)
+kablam!  --> src/lib.rs:4:1
+kablam!   |
+kablam! 4 | #[warm(unstable)]
+kablam!   | ^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = help: add #![feature(custom_attribute)] to the crate attributes to enable
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `findup`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 19e853c7cfdc89278b18ad192dd42169e1e9bac3f0917377485471a34d1b9f18`
+blam! 19e853c7cfdc89278b18ad192dd42169e1e9bac3f0917377485471a34d1b9f18

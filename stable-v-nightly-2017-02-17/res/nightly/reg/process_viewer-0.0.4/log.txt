@@ -1,0 +1,96 @@
+boom! testing process_viewer-0.0.4 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! beaa222142be4d411a7b0fd56eeb74378fb445e58db89b2a6e3b7cf615cd261c
+boom! running `docker start -a beaa222142be4d411a7b0fd56eeb74378fb445e58db89b2a6e3b7cf615cd261c`
+kablam!    Compiling sysinfo v0.2.5
+kablam!    Compiling process_viewer v0.0.4 (file:///source)
+kablam! error[E0277]: the trait bound `std::vec::Vec<std::string::String>: std::fmt::Display` is not satisfied
+kablam!   --> src/process_dialog.rs:68:29
+kablam!    |
+kablam! 68 |                             process.cmd,
+kablam!    |                             ^^^^^^^^^^^ the trait `std::fmt::Display` is not implemented for `std::vec::Vec<std::string::String>`
+kablam!    |
+kablam!    = note: `std::vec::Vec<std::string::String>` cannot be formatted with the default formatter; try using `:?` instead if you are using a format string
+kablam!    = note: required by `std::fmt::Display::fmt`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/process_viewer.rs:43:45
+kablam!    |
+kablam! 43 |     let entries: &HashMap<usize, Process> = system.get_process_list();
+kablam!    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^ expected usize, found i32
+kablam!    |
+kablam!    = help: here are some functions which might fulfill your needs:
+kablam!            - .hasher()
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/process_viewer.rs:64:41
+kablam!    |
+kablam! 64 |             create_and_fill_model(list, pro.pid, &pro.cmd, &pro.name, pro.cpu_usage, pro.memory);
+kablam!    |                                         ^^^^^^^ expected i64, found i32
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/process_viewer.rs:64:50
+kablam!    |
+kablam! 64 |             create_and_fill_model(list, pro.pid, &pro.cmd, &pro.name, pro.cpu_usage, pro.memory);
+kablam!    |                                                  ^^^^^^^^ expected str, found struct `std::vec::Vec`
+kablam!    |
+kablam!    = note: expected type `&str`
+kablam!               found type `&std::vec::Vec<std::string::String>`
+kablam!    = help: here are some functions which might fulfill your needs:
+kablam!            - .remove(...)
+kablam!            - .swap_remove(...)
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/process_viewer.rs:156:47
+kablam!     |
+kablam! 156 |     let start_time = unsafe { sys.get_process(libc::getpid() as i64).unwrap().start_time };
+kablam!     |                                               ^^^^^^^^^^^^^^^^^^^^^ expected i32, found i64
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/process_viewer.rs:160:28
+kablam!     |
+kablam! 160 |     let procs = Procs::new(sys.borrow().get_process_list(), &mut note);
+kablam!     |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected usize, found i32
+kablam!     |
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .hasher()
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/process_viewer.rs:179:81
+kablam!     |
+kablam! 179 |         if let Some(process) = current_pid.get().and_then(|pid| sys.get_process(pid)) {
+kablam!     |                                                                                 ^^^ expected i32, found i64
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/process_viewer.rs:251:82
+kablam!     |
+kablam! 251 |         if let Some(process) = current_pid2.get().and_then(|pid| sys.get_process(pid)) {
+kablam!     |                                                                                  ^^^ expected i32, found i64
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/procs.rs:66:48
+kablam!    |
+kablam! 66 |             create_and_fill_model(&list_store, pro.pid, &pro.cmd, &pro.name, pro.cpu_usage,
+kablam!    |                                                ^^^^^^^ expected i64, found i32
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/procs.rs:66:57
+kablam!    |
+kablam! 66 |             create_and_fill_model(&list_store, pro.pid, &pro.cmd, &pro.name, pro.cpu_usage,
+kablam!    |                                                         ^^^^^^^^ expected str, found struct `std::vec::Vec`
+kablam!    |
+kablam!    = note: expected type `&str`
+kablam!               found type `&std::vec::Vec<std::string::String>`
+kablam!    = help: here are some functions which might fulfill your needs:
+kablam!            - .remove(...)
+kablam!            - .swap_remove(...)
+kablam! 
+kablam! error: aborting due to 10 previous errors
+kablam! 
+kablam! error: Could not compile `process_viewer`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f beaa222142be4d411a7b0fd56eeb74378fb445e58db89b2a6e3b7cf615cd261c`
+blam! beaa222142be4d411a7b0fd56eeb74378fb445e58db89b2a6e3b7cf615cd261c

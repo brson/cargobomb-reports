@@ -1,0 +1,184 @@
+boom! testing gfx_pipeline-0.3.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 7b5c4c38e60f13707cbc9e1eb2c14f08b97f0c5160fa7b78fbae73b35c78bc3e
+boom! running `docker start -a 7b5c4c38e60f13707cbc9e1eb2c14f08b97f0c5160fa7b78fbae73b35c78bc3e`
+kablam!    Compiling gfx v0.6.5
+kablam! error: use of unstable library feature 'core_intrinsics': intrinsics are unlikely to ever be stabilized, instead they should be used through stabilized interfaces in the rest of the standard library (see issue #0)
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/gfx-0.6.5/src/device/draw.rs:58:19
+kablam!    |
+kablam! 58 |         use std::{intrinsics, mem};
+kablam!    |                   ^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'core_intrinsics': intrinsics are unlikely to ever be stabilized, instead they should be used through stabilized interfaces in the rest of the standard library (see issue #0)
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/gfx-0.6.5/src/device/draw.rs:73:19
+kablam!    |
+kablam! 73 |         use std::{intrinsics, mem};
+kablam!    |                   ^^^^^^^^^^
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/gfx-0.6.5/src/device/mod.rs:261:1
+kablam!     |
+kablam! 261 |   pub type SubmitInfo<'a, D: Device> = (
+kablam!     |  _^ starting here...
+kablam! 262 | |     &'a D::CommandBuffer,
+kablam! 263 | |     &'a draw::DataBuffer,
+kablam! 264 | |     &'a handle::Manager<D::Resources>
+kablam! 265 | | );
+kablam!     | |__^ ...ending here
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/gfx-0.6.5/src/render/batch.rs:40:1
+kablam!    |
+kablam! 40 |   pub type BatchData<'a, R: Resources> = (&'a mesh::Mesh<R>, mesh::AttributeIter,
+kablam!    |  _^ starting here...
+kablam! 41 | |                                         &'a mesh::Slice<R>, &'a DrawState);
+kablam!    | |___________________________________________________________________________^ ...ending here
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/gfx-0.6.5/src/render/batch.rs:53:1
+kablam!    |
+kablam! 53 |   pub type Implicit<'a, T: ShaderParam> = (
+kablam!    |  _^ starting here...
+kablam! 54 | |     &'a mesh::Mesh<T::Resources>,
+kablam! 55 | |     mesh::Slice<T::Resources>,
+kablam! 56 | |     &'a ProgramHandle<T::Resources>,
+kablam! 57 | |     &'a T,
+kablam! 58 | |     &'a DrawState
+kablam! 59 | | );
+kablam!    | |__^ ...ending here
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/gfx-0.6.5/src/render/batch.rs:160:1
+kablam!     |
+kablam! 160 |   pub type Complete<'a, T: ShaderParam> = (
+kablam!     |  _^ starting here...
+kablam! 161 | |     &'a Core<T>,
+kablam! 162 | |     &'a mesh::Slice<T::Resources>,
+kablam! 163 | |     &'a T,
+kablam! 164 | |     &'a DrawState
+kablam! 165 | | );
+kablam!     | |__^ ...ending here
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/gfx-0.6.5/src/render/shade.rs:54:1
+kablam!    |
+kablam! 54 | pub type TextureParam<R: Resources> = (handle::Texture<R>, Option<handle::Sampler<R>>);
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/gfx-0.6.5/src/render/mod.rs:71:1
+kablam!    |
+kablam! 71 | type CachedAttribute<R: Resources> = (handle::RawBuffer<R>, attrib::Format);
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0277]: the trait bound `Self: std::marker::Sized` is not satisfied
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/gfx-0.6.5/src/device/mapping.rs:133:5
+kablam!     |
+kablam! 133 |       fn map_readable<T: Copy>(&'a mut self, Self::RawMapping, usize)
+kablam!     |  _____^ starting here...
+kablam! 134 | |                     -> Readable<T, R, Self>;
+kablam!     | |____________________________________________^ ...ending here: the trait `std::marker::Sized` is not implemented for `Self`
+kablam!     |
+kablam!     = help: consider adding a `where Self: std::marker::Sized` bound
+kablam!     = note: required by `device::mapping::Readable`
+kablam! 
+kablam! error[E0277]: the trait bound `Self: device::Factory<R>` is not satisfied
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/gfx-0.6.5/src/device/mapping.rs:133:5
+kablam!     |
+kablam! 133 |       fn map_readable<T: Copy>(&'a mut self, Self::RawMapping, usize)
+kablam!     |  _____^ starting here...
+kablam! 134 | |                     -> Readable<T, R, Self>;
+kablam!     | |____________________________________________^ ...ending here: the trait `device::Factory<R>` is not implemented for `Self`
+kablam!     |
+kablam!     = help: consider adding a `where Self: device::Factory<R>` bound
+kablam!     = note: required by `device::mapping::Readable`
+kablam! 
+kablam! error[E0277]: the trait bound `Self: std::marker::Sized` is not satisfied
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/gfx-0.6.5/src/device/mapping.rs:135:5
+kablam!     |
+kablam! 135 |       fn map_writable<T: Copy>(&'a mut self, Self::RawMapping, usize)
+kablam!     |  _____^ starting here...
+kablam! 136 | |                     -> Writable<T, R, Self>;
+kablam!     | |____________________________________________^ ...ending here: the trait `std::marker::Sized` is not implemented for `Self`
+kablam!     |
+kablam!     = help: consider adding a `where Self: std::marker::Sized` bound
+kablam!     = note: required by `device::mapping::Writable`
+kablam! 
+kablam! error[E0277]: the trait bound `Self: device::Factory<R>` is not satisfied
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/gfx-0.6.5/src/device/mapping.rs:135:5
+kablam!     |
+kablam! 135 |       fn map_writable<T: Copy>(&'a mut self, Self::RawMapping, usize)
+kablam!     |  _____^ starting here...
+kablam! 136 | |                     -> Writable<T, R, Self>;
+kablam!     | |____________________________________________^ ...ending here: the trait `device::Factory<R>` is not implemented for `Self`
+kablam!     |
+kablam!     = help: consider adding a `where Self: device::Factory<R>` bound
+kablam!     = note: required by `device::mapping::Writable`
+kablam! 
+kablam! error[E0277]: the trait bound `Self: std::marker::Sized` is not satisfied
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/gfx-0.6.5/src/device/mapping.rs:137:5
+kablam!     |
+kablam! 137 |       fn map_read_write<T: Copy>(&'a mut self, Self::RawMapping, usize)
+kablam!     |  _____^ starting here...
+kablam! 138 | |                       -> RW<T, R, Self>;
+kablam!     | |________________________________________^ ...ending here: the trait `std::marker::Sized` is not implemented for `Self`
+kablam!     |
+kablam!     = help: consider adding a `where Self: std::marker::Sized` bound
+kablam!     = note: required by `device::mapping::RW`
+kablam! 
+kablam! error[E0277]: the trait bound `Self: device::Factory<R>` is not satisfied
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/gfx-0.6.5/src/device/mapping.rs:137:5
+kablam!     |
+kablam! 137 |       fn map_read_write<T: Copy>(&'a mut self, Self::RawMapping, usize)
+kablam!     |  _____^ starting here...
+kablam! 138 | |                       -> RW<T, R, Self>;
+kablam!     | |________________________________________^ ...ending here: the trait `device::Factory<R>` is not implemented for `Self`
+kablam!     |
+kablam!     = help: consider adding a `where Self: device::Factory<R>` bound
+kablam!     = note: required by `device::mapping::RW`
+kablam! 
+kablam! error[E0277]: the trait bound `Self: std::marker::Sized` is not satisfied
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/gfx-0.6.5/src/device/mod.rs:230:5
+kablam!     |
+kablam! 230 |     fn map_buffer_readable<T: Copy>(&mut self, &handle::Buffer<R, T>) -> mapping::Readable<T, R, Self>;
+kablam!     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::marker::Sized` is not implemented for `Self`
+kablam!     |
+kablam!     = help: consider adding a `where Self: std::marker::Sized` bound
+kablam!     = note: required by `device::mapping::Readable`
+kablam! 
+kablam! error[E0277]: the trait bound `Self: std::marker::Sized` is not satisfied
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/gfx-0.6.5/src/device/mod.rs:231:5
+kablam!     |
+kablam! 231 |     fn map_buffer_writable<T: Copy>(&mut self, &handle::Buffer<R, T>) -> mapping::Writable<T, R, Self>;
+kablam!     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::marker::Sized` is not implemented for `Self`
+kablam!     |
+kablam!     = help: consider adding a `where Self: std::marker::Sized` bound
+kablam!     = note: required by `device::mapping::Writable`
+kablam! 
+kablam! error[E0277]: the trait bound `Self: std::marker::Sized` is not satisfied
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/gfx-0.6.5/src/device/mod.rs:232:5
+kablam!     |
+kablam! 232 |     fn map_buffer_rw<T: Copy>(&mut self, &handle::Buffer<R, T>) -> mapping::RW<T, R, Self>;
+kablam!     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::marker::Sized` is not implemented for `Self`
+kablam!     |
+kablam!     = help: consider adding a `where Self: std::marker::Sized` bound
+kablam!     = note: required by `device::mapping::RW`
+kablam! 
+kablam! error[E0277]: the trait bound `Self: std::marker::Sized` is not satisfied
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/gfx-0.6.5/src/render/mesh.rs:42:5
+kablam!    |
+kablam! 42 |     fn generate<R: Resources>(buffer: &handle::Buffer<R, Self>) -> Vec<Attribute<R>>;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::marker::Sized` is not implemented for `Self`
+kablam!    |
+kablam!    = help: consider adding a `where Self: std::marker::Sized` bound
+kablam!    = note: required by `device::handle::Buffer`
+kablam! 
+kablam! error: aborting due to 10 previous errors
+kablam! 
+kablam! error: Could not compile `gfx`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 7b5c4c38e60f13707cbc9e1eb2c14f08b97f0c5160fa7b78fbae73b35c78bc3e`
+blam! 7b5c4c38e60f13707cbc9e1eb2c14f08b97f0c5160fa7b78fbae73b35c78bc3e

@@ -1,0 +1,50 @@
+boom! testing https://github.com/michaelsbradleyjr/shen.rs#34b69eca76c708d6bbf4f1059d5de94ad75953b5 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! a9ecf6295697d5732e328d850fbec658c20e10a58515232e8842e7361652775b
+boom! running `docker start -a a9ecf6295697d5732e328d850fbec658c20e10a58515232e8842e7361652775b`
+kablam!    Compiling shen v0.0.1 (file:///source)
+kablam! error: expected pattern, found `:`
+kablam!   --> src/main.rs:65:16
+kablam!    |
+kablam! 65 |     box move |&: n1: f64, n2: f64| -> f64 {
+kablam!    |                ^
+kablam! 
+kablam! error: expected one of `!`, `(`, `.`, `::`, `;`, `<`, `?`, `}`, or an operator, found `,`
+kablam!   --> src/main.rs:65:25
+kablam!    |
+kablam! 65 |     box move |&: n1: f64, n2: f64| -> f64 {
+kablam!    |                         ^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/main.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(unboxed_closures)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: box expression syntax is experimental; you can call `Box::new` instead. (see issue #27779)
+kablam!   --> src/main.rs:52:42
+kablam!    |
+kablam! 52 |             _     => { OptionalFn::Thunk(box move || -> OptionalFn { _a3(acc + n, n - 1_f64) }) }
+kablam!    |                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: box expression syntax is experimental; you can call `Box::new` instead. (see issue #27779)
+kablam!   --> src/main.rs:65:5
+kablam!    |
+kablam! 65 |     box move |&: n1: f64, n2: f64| -> f64 {
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: type ascription is experimental (see issue #23416)
+kablam!   --> src/main.rs:65:18
+kablam!    |
+kablam! 65 |     box move |&: n1: f64, n2: f64| -> f64 {
+kablam!    |                  ^^^^^^^
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `shen`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f a9ecf6295697d5732e328d850fbec658c20e10a58515232e8842e7361652775b`
+blam! a9ecf6295697d5732e328d850fbec658c20e10a58515232e8842e7361652775b

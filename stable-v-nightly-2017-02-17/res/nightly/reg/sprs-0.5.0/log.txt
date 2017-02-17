@@ -1,0 +1,27 @@
+boom! testing sprs-0.5.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! f955541299a2ac388bffc03d500236060c0136ad8535276b73406b7e2a0ff76b
+boom! running `docker start -a f955541299a2ac388bffc03d500236060c0136ad8535276b73406b7e2a0ff76b`
+kablam!    Compiling sprs v0.5.0 (file:///source)
+kablam! error: type alias is never used: `CsMatViewMut`
+kablam!   --> src/sparse/mod.rs:21:1
+kablam!    |
+kablam! 21 | pub type CsMatViewMut<'a, N> = CsMat<N, &'a [usize], &'a [usize], &'a mut [N]>;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[deny(dead_code)] implied by #[deny(warnings)]
+kablam! note: lint level defined here
+kablam!   --> src/lib.rs:50:9
+kablam!    |
+kablam! 50 | #![deny(warnings)]
+kablam!    |         ^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `sprs`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f955541299a2ac388bffc03d500236060c0136ad8535276b73406b7e2a0ff76b`
+blam! f955541299a2ac388bffc03d500236060c0136ad8535276b73406b7e2a0ff76b

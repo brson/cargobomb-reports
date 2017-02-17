@@ -1,0 +1,37 @@
+boom! testing https://github.com/intermezzOS/kernel#11278a268c2641f1eed365ee30753e8640a95d69 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 867f0743ea08c10f1f5eb2292d98103626a4378914fb6448332cc9b774fb7d40
+boom! running `docker start -a 867f0743ea08c10f1f5eb2292d98103626a4378914fb6448332cc9b774fb7d40`
+kablam!    Compiling rustc-serialize v0.3.19
+kablam!    Compiling phf_shared v0.7.16
+kablam!    Compiling keyboard v0.1.0 (file:///source/keyboard)
+kablam!    Compiling num-integer v0.1.32
+kablam!    Compiling spin v0.4.4
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/spin-0.4.4/src/lib.rs:6:30
+kablam!   |
+kablam! 6 | #![cfg_attr(feature = "asm", feature(asm))]
+kablam!   |                              ^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/spin-0.4.4/src/lib.rs:7:42
+kablam!   |
+kablam! 7 | #![cfg_attr(feature = "core_intrinsics", feature(core_intrinsics))]
+kablam!   |                                          ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/spin-0.4.4/src/lib.rs:8:35
+kablam!   |
+kablam! 8 | #![cfg_attr(feature = "const_fn", feature(const_fn))]
+kablam!   |                                   ^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `spin`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 867f0743ea08c10f1f5eb2292d98103626a4378914fb6448332cc9b774fb7d40`
+blam! 867f0743ea08c10f1f5eb2292d98103626a4378914fb6448332cc9b774fb7d40

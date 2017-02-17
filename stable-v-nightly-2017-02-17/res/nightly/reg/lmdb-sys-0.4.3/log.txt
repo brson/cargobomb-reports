@@ -1,0 +1,38 @@
+boom! testing lmdb-sys-0.4.3 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! e35d003f88db394f0c623b6e7296962aa66b0cd91459de0990712abf013e4f50
+boom! running `docker start -a e35d003f88db394f0c623b6e7296962aa66b0cd91459de0990712abf013e4f50`
+kablam!    Compiling lmdb-sys v0.4.3 (file:///source)
+kablam! error[E0277]: the trait bound `ffi::MDB_val: std::clone::Clone` is not satisfied
+kablam!  --> src/ffi.rs:9:10
+kablam!   |
+kablam! 9 | #[derive(Copy)]
+kablam!   |          ^^^^ the trait `std::clone::Clone` is not implemented for `ffi::MDB_val`
+kablam!   |
+kablam!   = note: required by `std::marker::Copy`
+kablam! 
+kablam! error[E0277]: the trait bound `ffi::MDB_stat: std::clone::Clone` is not satisfied
+kablam!   --> src/ffi.rs:39:10
+kablam!    |
+kablam! 39 | #[derive(Copy)]
+kablam!    |          ^^^^ the trait `std::clone::Clone` is not implemented for `ffi::MDB_stat`
+kablam!    |
+kablam!    = note: required by `std::marker::Copy`
+kablam! 
+kablam! error[E0277]: the trait bound `ffi::MDB_envinfo: std::clone::Clone` is not satisfied
+kablam!   --> src/ffi.rs:50:10
+kablam!    |
+kablam! 50 | #[derive(Copy)]
+kablam!    |          ^^^^ the trait `std::clone::Clone` is not implemented for `ffi::MDB_envinfo`
+kablam!    |
+kablam!    = note: required by `std::marker::Copy`
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `lmdb-sys`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f e35d003f88db394f0c623b6e7296962aa66b0cd91459de0990712abf013e4f50`
+blam! e35d003f88db394f0c623b6e7296962aa66b0cd91459de0990712abf013e4f50

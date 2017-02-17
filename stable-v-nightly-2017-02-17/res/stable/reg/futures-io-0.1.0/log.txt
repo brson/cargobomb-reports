@@ -1,0 +1,39 @@
+boom! testing futures-io-0.1.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! ceed47b7990f1a6231f1d2e7408bc20b80a200e26a920836f8f210af3761ac41
+boom! running `docker start -a ceed47b7990f1a6231f1d2e7408bc20b80a200e26a920836f8f210af3761ac41`
+kablam!    Compiling futures v0.1.10
+kablam!    Compiling futures-io v0.1.0 (file:///source)
+kablam! error: macro undefined: 'try_poll!'
+kablam!   --> src/copy.rs:52:27
+kablam!    |
+kablam! 52 |                     match try_poll!(self.reader.poll(task)) {
+kablam!    |                           ^^^^^^^^
+kablam! 
+kablam! error: macro undefined: 'try_poll!'
+kablam!   --> src/copy.rs:81:27
+kablam!    |
+kablam! 81 |                     match try_poll!(self.writer.poll(task)) {
+kablam!    |                           ^^^^^^^^
+kablam! 
+kablam! error: macro undefined: 'try_poll!'
+kablam!   --> src/read_to_end.rs:42:19
+kablam!    |
+kablam! 42 |             match try_poll!(self.a.poll(task)) {
+kablam!    |                   ^^^^^^^^
+kablam! 
+kablam! error: macro undefined: 'try_poll!'
+kablam!   --> src/task.rs:86:27
+kablam!    |
+kablam! 86 |         let found = match try_poll!(state.object.poll(self.task)) {
+kablam!    |                           ^^^^^^^^
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `futures-io`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f ceed47b7990f1a6231f1d2e7408bc20b80a200e26a920836f8f210af3761ac41`
+blam! ceed47b7990f1a6231f1d2e7408bc20b80a200e26a920836f8f210af3761ac41

@@ -1,0 +1,89 @@
+boom! testing shoggoth_macros-0.0.19 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 9e6609944e015e75c6e4be8271db916da0597f7f529485339a7dc2b4dc33ad16
+boom! running `docker start -a 9e6609944e015e75c6e4be8271db916da0597f7f529485339a7dc2b4dc33ad16`
+kablam!    Compiling shoggoth_macros v0.0.19 (file:///source)
+kablam! error[E0432]: unresolved import `rustc::plugin`
+kablam!   --> src/lib.rs:10:5
+kablam!    |
+kablam! 10 | use rustc::plugin;
+kablam!    |     ^^^^^^^^^^^^^ no `plugin` in the root
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!   --> src/lib.rs:53:13
+kablam!    |
+kablam! 53 |     args: &[ast::TokenTree],
+kablam!    |             ^^^^^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Lit_` in `ast`
+kablam!   --> src/lib.rs:65:9
+kablam!    |
+kablam! 65 |         ast::Lit_::LitInt(i, _) => i,
+kablam!    |         ^^^^^^^^^^^^^^^^^ Could not find `Lit_` in `ast`
+kablam! 
+kablam! error[E0425]: cannot find function `range` in this scope
+kablam!   --> src/lib.rs:72:14
+kablam!    |
+kablam! 72 |     let xs = range(0, iterations)
+kablam!    |              ^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `str_to_ident` in module `token`
+kablam!   --> src/lib.rs:73:18
+kablam!    |
+kablam! 73 |         .map(|x| token::str_to_ident(format!("A{}", x).as_slice()))
+kablam!    |                  ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `range` in this scope
+kablam!   --> src/lib.rs:77:19
+kablam!    |
+kablam! 77 |     let mut ctx = range(0, xs.len() * 2 - 1).map(|k| {
+kablam!    |                   ^^^^^ not found in this scope
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `TokenTree` in `ast`
+kablam!   --> src/lib.rs:83:13
+kablam!    |
+kablam! 83 |             ast::TokenTree::TtToken(span, token)
+kablam!    |             ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `TokenTree` in `ast`
+kablam! 
+kablam! error[E0425]: cannot find function `range` in this scope
+kablam!   --> src/lib.rs:89:14
+kablam!    |
+kablam! 89 |     for _ in range(0, iterations) {
+kablam!    |              ^^^^^ not found in this scope
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `MacItems` in `base`
+kablam!   --> src/lib.rs:95:5
+kablam!    |
+kablam! 95 |     base::MacItems::new(items.into_iter())
+kablam!    |     ^^^^^^^^^^^^^^^^^^^ Could not find `MacItems` in `base`
+kablam! 
+kablam! error: no field `node` on type `std::result::Result<syntax::codemap::Spanned<syntax::ast::LitKind>, syntax::<unnamed>::DiagnosticBuilder<'_>>`
+kablam!   --> src/lib.rs:64:47
+kablam!    |
+kablam! 64 |     let iterations = match parser.parse_lit().node {
+kablam!    |                                               ^^^^
+kablam! 
+kablam! error: no method named `as_slice` found for type `std::string::String` in the current scope
+kablam!   --> src/lib.rs:73:56
+kablam!    |
+kablam! 73 |         .map(|x| token::str_to_ident(format!("A{}", x).as_slice()))
+kablam!    |                                                        ^^^^^^^^
+kablam! 
+kablam! error: no method named `to_tokens` found for type `std::result::Result<syntax::ast::Ident, syntax::<unnamed>::DiagnosticBuilder<'_>>` in the current scope
+kablam!   --> src/lib.rs:90:37
+kablam!    |
+kablam! 90 |         items.push(quote_item!(ecx, $mac!{ $ctx };).unwrap());
+kablam!    |                                     ^^^^
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `shoggoth_macros`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 9e6609944e015e75c6e4be8271db916da0597f7f529485339a7dc2b4dc33ad16`
+blam! 9e6609944e015e75c6e4be8271db916da0597f7f529485339a7dc2b4dc33ad16

@@ -1,0 +1,151 @@
+boom! testing fsuipc-0.3.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 8f4d6160eb951502d07d7f3a41ba027cb83dfd5a5c539264d1cf57c4ac7dd22c
+boom! running `docker start -a 8f4d6160eb951502d07d7f3a41ba027cb83dfd5a5c539264d1cf57c4ac7dd22c`
+kablam!    Compiling fsuipc v0.3.0 (file:///source)
+kablam! warning: variant is never used: `ReadStateData`, #[warn(dead_code)] on by default
+kablam!   --> src/ipc.rs:22:5
+kablam!    |
+kablam! 22 |       ReadStateData {
+kablam!    |  _____^ starting here...
+kablam! 23 | |         offset: u16,
+kablam! 24 | |         len: usize,
+kablam! 25 | |         target: *mut u8,
+kablam! 26 | |     },
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: variant is never used: `WriteStateData`, #[warn(dead_code)] on by default
+kablam!   --> src/ipc.rs:29:5
+kablam!    |
+kablam! 29 |       WriteStateData {
+kablam!    |  _____^ starting here...
+kablam! 30 | |         offset: u16,
+kablam! 31 | |         len: usize,
+kablam! 32 | |     },
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: variant is never used: `TerminationMark`, #[warn(dead_code)] on by default
+kablam!   --> src/ipc.rs:33:5
+kablam!    |
+kablam! 33 |     TerminationMark
+kablam!    |     ^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: constant item is never used: `FS6IPC_TERMINATIONMARK_ID`, #[warn(dead_code)] on by default
+kablam!    --> src/ipc.rs:143:1
+kablam!     |
+kablam! 143 | const FS6IPC_TERMINATIONMARK_ID: u32 = 0;
+kablam!     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: constant item is never used: `FS6IPC_READSTATEDATA_ID`, #[warn(dead_code)] on by default
+kablam!    --> src/ipc.rs:144:1
+kablam!     |
+kablam! 144 | const FS6IPC_READSTATEDATA_ID: u32 = 1;
+kablam!     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: constant item is never used: `FS6IPC_WRITESTATEDATA_ID`, #[warn(dead_code)] on by default
+kablam!    --> src/ipc.rs:145:1
+kablam!     |
+kablam! 145 | const FS6IPC_WRITESTATEDATA_ID: u32 = 2;
+kablam!     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: struct is never used: `RawBytes`, #[warn(dead_code)] on by default
+kablam!   --> src/raw.rs:13:1
+kablam!    |
+kablam! 13 |   pub struct RawBytes {
+kablam!    |  _^ starting here...
+kablam! 14 | |     data: *const u8,
+kablam! 15 | |     len: usize,
+kablam! 16 | |     read: usize,
+kablam! 17 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! warning: method is never used: `new`, #[warn(dead_code)] on by default
+kablam!   --> src/raw.rs:20:5
+kablam!    |
+kablam! 20 |       pub fn new(data: *const u8, len: usize) -> Self {
+kablam!    |  _____^ starting here...
+kablam! 21 | |         RawBytes { data: data, len: len, read: 0 }
+kablam! 22 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `consumed`, #[warn(dead_code)] on by default
+kablam!   --> src/raw.rs:24:5
+kablam!    |
+kablam! 24 |     pub fn consumed(&self) -> usize { self.read }
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: struct is never used: `MutRawBytes`, #[warn(dead_code)] on by default
+kablam!   --> src/raw.rs:42:1
+kablam!    |
+kablam! 42 |   pub struct MutRawBytes {
+kablam!    |  _^ starting here...
+kablam! 43 | |     data: *mut u8,
+kablam! 44 | |     len: usize,
+kablam! 45 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! warning: method is never used: `new`, #[warn(dead_code)] on by default
+kablam!   --> src/raw.rs:48:5
+kablam!    |
+kablam! 48 |       pub fn new(data: *mut u8, len: usize) -> Self {
+kablam!    |  _____^ starting here...
+kablam! 49 | |         MutRawBytes { data: data, len: len }
+kablam! 50 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 0.39 secs
+boom! running `docker rm -f 8f4d6160eb951502d07d7f3a41ba027cb83dfd5a5c539264d1cf57c4ac7dd22c`
+blam! 8f4d6160eb951502d07d7f3a41ba027cb83dfd5a5c539264d1cf57c4ac7dd22c
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! b194326277efc55110c052040677ce6fa05ec50e3c567203e24268d12433f04f
+boom! running `docker start -a b194326277efc55110c052040677ce6fa05ec50e3c567203e24268d12433f04f`
+kablam!    Compiling fsuipc v0.3.0 (file:///source)
+kablam! error[E0432]: unresolved import `fsuipc::user::*`
+kablam!   --> examples/hello.rs:15:5
+kablam!    |
+kablam! 15 | use fsuipc::user::*;
+kablam!    |     ^^^^^^^^^^^^^^^^ Could not find `user` in `fsuipc`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `UserHandle`
+kablam!   --> examples/hello.rs:28:27
+kablam!    |
+kablam! 28 |     let mut handle = try!(UserHandle::new());
+kablam!    |                           ^^^^^^^^^^^^^^^ Use of undeclared type or module `UserHandle`
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `fsuipc`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f b194326277efc55110c052040677ce6fa05ec50e3c567203e24268d12433f04f`
+blam! b194326277efc55110c052040677ce6fa05ec50e3c567203e24268d12433f04f
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! a258b742d8307842c3463b14ddf1790549adea27f210a20a8a409090b14f0574
+boom! running `docker start -a a258b742d8307842c3463b14ddf1790549adea27f210a20a8a409090b14f0574`
+kablam!    Compiling fsuipc v0.3.0 (file:///source)
+kablam! error[E0432]: unresolved import `fsuipc::user::*`
+kablam!   --> examples/hello.rs:15:5
+kablam!    |
+kablam! 15 | use fsuipc::user::*;
+kablam!    |     ^^^^^^^^^^^^^^^^ Could not find `user` in `fsuipc`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `UserHandle`
+kablam!   --> examples/hello.rs:28:27
+kablam!    |
+kablam! 28 |     let mut handle = try!(UserHandle::new());
+kablam!    |                           ^^^^^^^^^^^^^^^ Use of undeclared type or module `UserHandle`
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `fsuipc`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f a258b742d8307842c3463b14ddf1790549adea27f210a20a8a409090b14f0574`
+blam! a258b742d8307842c3463b14ddf1790549adea27f210a20a8a409090b14f0574

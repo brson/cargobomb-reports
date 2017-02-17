@@ -1,0 +1,224 @@
+boom! testing jungle-0.1.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 338ee2f437b0594a8c92166546239a5ea38bc52e961c4967a31360406a5e9e11
+boom! running `docker start -a 338ee2f437b0594a8c92166546239a5ea38bc52e961c4967a31360406a5e9e11`
+kablam!    Compiling jungle v0.1.1 (file:///source)
+kablam! warning: field is never used: `value`
+kablam!   --> src/tree.rs:26:2
+kablam!    |
+kablam! 26 | 	value: T,
+kablam!    | 	^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: field is never used: `parent`
+kablam!   --> src/tree.rs:27:2
+kablam!    |
+kablam! 27 | 	parent: NodePointer<T,N>,
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: field is never used: `children`
+kablam!   --> src/tree.rs:28:2
+kablam!    |
+kablam! 28 | 	children: GenericArray<NodePointer<T,N>,N>
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `new`
+kablam!   --> src/tree.rs:33:5
+kablam!    |
+kablam! 33 |       fn new(value: T) -> Self{
+kablam!    |  _____^ starting here...
+kablam! 34 | |     	Node {
+kablam! 35 | |     		value: value,
+kablam! 36 | |     		parent: NodePointer::default(),
+kablam! 37 | |     		children: GenericArray::new()
+kablam! 38 | |     	}
+kablam! 39 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: struct is never used: `Tree`
+kablam!   --> src/tree.rs:42:1
+kablam!    |
+kablam! 42 | struct Tree<T,N: ArrayLength<NodePointer<T,N>>>(NodePointer<T,N>);
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `new`
+kablam!   --> src/tree.rs:47:2
+kablam!    |
+kablam! 47 |   	fn new(value: T) -> Self {
+kablam!    |  __^ starting here...
+kablam! 48 | | 	    Tree(NodePointer(Box::into_raw(Box::new(Node::new(value)))))
+kablam! 49 | | 	}
+kablam!    | |__^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `parent`
+kablam!   --> src/tree.rs:51:2
+kablam!    |
+kablam! 51 |   	fn parent(&mut self) -> bool{
+kablam!    |  __^ starting here...
+kablam! 52 | | 		let parent = self.0.parent;
+kablam! 53 | | 		if parent.0 == ptr::null_mut() {
+kablam! 54 | | 			false
+kablam! 55 | | 		} else {
+kablam! 56 | | 		    self.0 = parent;
+kablam! 57 | | 		    true
+kablam! 58 | | 		}
+kablam! 59 | | 	}
+kablam!    | |__^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `child`
+kablam!   --> src/tree.rs:61:2
+kablam!    |
+kablam! 61 |   	fn child(&mut self, child: usize) -> bool {
+kablam!    |  __^ starting here...
+kablam! 62 | | 		let child = self.0.children[child];
+kablam! 63 | | 		if child.0 == ptr::null_mut() {
+kablam! 64 | | 			false
+kablam! 65 | | 		} else {
+kablam! 66 | | 			self.0 = child;
+kablam! 67 | | 			true
+kablam! 68 | | 		}
+kablam! 69 | | 	}
+kablam!    | |__^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.72 secs
+boom! running `docker rm -f 338ee2f437b0594a8c92166546239a5ea38bc52e961c4967a31360406a5e9e11`
+blam! 338ee2f437b0594a8c92166546239a5ea38bc52e961c4967a31360406a5e9e11
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! bf4ff4295335b418b099f1f4800d0a7c35845891f3724626707956b6f673b526
+boom! running `docker start -a bf4ff4295335b418b099f1f4800d0a7c35845891f3724626707956b6f673b526`
+kablam!    Compiling jungle v0.1.1 (file:///source)
+kablam! warning: field is never used: `value`
+kablam!   --> src/tree.rs:26:2
+kablam!    |
+kablam! 26 | 	value: T,
+kablam!    | 	^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: field is never used: `parent`
+kablam!   --> src/tree.rs:27:2
+kablam!    |
+kablam! 27 | 	parent: NodePointer<T,N>,
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: field is never used: `children`
+kablam!   --> src/tree.rs:28:2
+kablam!    |
+kablam! 28 | 	children: GenericArray<NodePointer<T,N>,N>
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `new`
+kablam!   --> src/tree.rs:33:5
+kablam!    |
+kablam! 33 |       fn new(value: T) -> Self{
+kablam!    |  _____^ starting here...
+kablam! 34 | |     	Node {
+kablam! 35 | |     		value: value,
+kablam! 36 | |     		parent: NodePointer::default(),
+kablam! 37 | |     		children: GenericArray::new()
+kablam! 38 | |     	}
+kablam! 39 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: struct is never used: `Tree`
+kablam!   --> src/tree.rs:42:1
+kablam!    |
+kablam! 42 | struct Tree<T,N: ArrayLength<NodePointer<T,N>>>(NodePointer<T,N>);
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `new`
+kablam!   --> src/tree.rs:47:2
+kablam!    |
+kablam! 47 |   	fn new(value: T) -> Self {
+kablam!    |  __^ starting here...
+kablam! 48 | | 	    Tree(NodePointer(Box::into_raw(Box::new(Node::new(value)))))
+kablam! 49 | | 	}
+kablam!    | |__^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `parent`
+kablam!   --> src/tree.rs:51:2
+kablam!    |
+kablam! 51 |   	fn parent(&mut self) -> bool{
+kablam!    |  __^ starting here...
+kablam! 52 | | 		let parent = self.0.parent;
+kablam! 53 | | 		if parent.0 == ptr::null_mut() {
+kablam! 54 | | 			false
+kablam! 55 | | 		} else {
+kablam! 56 | | 		    self.0 = parent;
+kablam! 57 | | 		    true
+kablam! 58 | | 		}
+kablam! 59 | | 	}
+kablam!    | |__^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `child`
+kablam!   --> src/tree.rs:61:2
+kablam!    |
+kablam! 61 |   	fn child(&mut self, child: usize) -> bool {
+kablam!    |  __^ starting here...
+kablam! 62 | | 		let child = self.0.children[child];
+kablam! 63 | | 		if child.0 == ptr::null_mut() {
+kablam! 64 | | 			false
+kablam! 65 | | 		} else {
+kablam! 66 | | 			self.0 = child;
+kablam! 67 | | 			true
+kablam! 68 | | 		}
+kablam! 69 | | 	}
+kablam!    | |__^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.69 secs
+boom! running `docker rm -f bf4ff4295335b418b099f1f4800d0a7c35845891f3724626707956b6f673b526`
+blam! bf4ff4295335b418b099f1f4800d0a7c35845891f3724626707956b6f673b526
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 39b35c023ed21755a13dd15381a8233fe97b9f4bba11845b93e8625322298769
+boom! running `docker start -a 39b35c023ed21755a13dd15381a8233fe97b9f4bba11845b93e8625322298769`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/jungle-9bdef7d50b8c3a6f
+blam! 
+blam! running 1 test
+blam! test tests::it_works ... ok
+blam! 
+blam! test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!    Doc-tests jungle
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f 39b35c023ed21755a13dd15381a8233fe97b9f4bba11845b93e8625322298769`
+blam! 39b35c023ed21755a13dd15381a8233fe97b9f4bba11845b93e8625322298769

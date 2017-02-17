@@ -1,0 +1,90 @@
+boom! testing kwarg_macros-0.0.6 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! fc82f5a5a4d124046090c9dd313cba30254572dd98e2667037e0e61f8734c55f
+boom! running `docker start -a fc82f5a5a4d124046090c9dd313cba30254572dd98e2667037e0e61f8734c55f`
+kablam!    Compiling kwarg_macros v0.0.6 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::ast::TokenTree`
+kablam!   --> src/lib.rs:14:25
+kablam!    |
+kablam! 14 | use syntax::ast::{self, TokenTree};
+kablam!    |                         ^^^^^^^^^ no `TokenTree` in `ast`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::intern`
+kablam!   --> src/lib.rs:19:5
+kablam!    |
+kablam! 19 | use syntax::parse::token::intern;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `intern` in `parse::token`
+kablam! 
+kablam! error[E0412]: cannot find type `Delimited` in module `ast`
+kablam!   --> src/lib.rs:50:81
+kablam!    |
+kablam! 50 | fn new_delimited(sp: Span, delim: token::DelimToken, tts: Vec<TokenTree>) -> Rc<ast::Delimited>
+kablam!    |                                                                                 ^^^^^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use syntax::tokenstream::Delimited;`
+kablam! 
+kablam! error[E0422]: cannot find struct, variant or union type `Delimited` in module `ast`
+kablam!   --> src/lib.rs:52:10
+kablam!    |
+kablam! 52 | 	Rc::new(ast::Delimited{ delim: delim, open_span: sp, close_span: sp, tts: tts })
+kablam!    | 	        ^^^^^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use syntax::tokenstream::Delimited;`
+kablam!              `use syntax::tokenstream::TokenTree::Delimited;`
+kablam! 
+kablam! error[E0425]: cannot find value `Plain` in module `token`
+kablam!    --> src/lib.rs:203:70
+kablam!     |
+kablam! 203 | 		call_tts.push(TokenTree::Token(sp, token::Ident(self.name.clone(), token::Plain)));
+kablam!     | 		                                                                   ^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0277]: the trait bound `syntax::ext::base::IdentMacroExpander: std::marker::Sized` is not satisfied
+kablam!   --> src/lib.rs:29:68
+kablam!    |
+kablam! 29 | 	registrar.register_syntax_extension(intern("kwarg_decl"), IdentTT(Box::new(kwarg_decl), None, true))
+kablam!    | 	                                                                  ^^^^^^^^ the trait `std::marker::Sized` is not implemented for `syntax::ext::base::IdentMacroExpander`
+kablam!    |
+kablam!    = note: `syntax::ext::base::IdentMacroExpander` does not have a constant size known at compile-time
+kablam!    = note: required by `<std::boxed::Box<T>>::new`
+kablam! 
+kablam! error: the type of this value must be known in this context
+kablam!    --> src/lib.rs:218:24
+kablam!     |
+kablam! 218 | 		let arg_name = match tts.next()
+kablam!     | 		                     ^^^^^^^^^^
+kablam! 
+kablam! error[E0023]: this pattern has 2 fields, but the corresponding tuple variant has 1 field
+kablam!    --> src/lib.rs:224:6
+kablam!     |
+kablam! 224 | 					token::Ident(ref ident, _) => ident.name.as_str().to_string(),
+kablam!     | 					^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 1 field, found 2
+kablam! 
+kablam! error: no field `syntax_env` on type `&'l mut syntax::ext::base::ExtCtxt<'_>`
+kablam!    --> src/lib.rs:283:5
+kablam!     |
+kablam! 283 | 	cx.syntax_env.insert(name.name,
+kablam!     | 	   ^^^^^^^^^^
+kablam! 
+kablam! error[E0023]: this pattern has 2 fields, but the corresponding tuple variant has 1 field
+kablam!    --> src/lib.rs:100:34
+kablam!     |
+kablam! 100 | 				(Some(&TokenTree::Token(sp1, token::Ident(ref ident, _))), Some(&TokenTree::Token(sp2, token::Eq))) =>
+kablam!     | 				                             ^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 1 field, found 2
+kablam! 
+kablam! error[E0061]: this function takes 1 parameter but 2 parameters were supplied
+kablam!    --> src/lib.rs:203:51
+kablam!     |
+kablam! 203 | 		call_tts.push(TokenTree::Token(sp, token::Ident(self.name.clone(), token::Plain)));
+kablam!     | 		                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 1 parameter
+kablam! 
+kablam! error: aborting due to 6 previous errors
+kablam! 
+kablam! error: Could not compile `kwarg_macros`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f fc82f5a5a4d124046090c9dd313cba30254572dd98e2667037e0e61f8734c55f`
+blam! fc82f5a5a4d124046090c9dd313cba30254572dd98e2667037e0e61f8734c55f

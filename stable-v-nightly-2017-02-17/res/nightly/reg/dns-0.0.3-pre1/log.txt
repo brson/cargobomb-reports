@@ -1,0 +1,333 @@
+boom! testing dns-0.0.3-pre1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 8e9befe79fd44a1306000bac385ac05cad9aeebdd787723df9c9560cedfdce4e
+boom! running `docker start -a 8e9befe79fd44a1306000bac385ac05cad9aeebdd787723df9c9560cedfdce4e`
+kablam!    Compiling dns v0.0.3-pre1 (file:///source)
+kablam! warning: unused or unknown feature
+kablam!  --> src/lib.rs:3:12
+kablam!   |
+kablam! 3 | #![feature(convert)]
+kablam!   |            ^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_features)] on by default
+kablam! 
+kablam! warning: unused import: `super::RCode`
+kablam!  --> src/parser/message.rs:3:5
+kablam!   |
+kablam! 3 | use super::RCode;
+kablam!   |     ^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `super::OpCode`
+kablam!  --> src/parser/message.rs:4:5
+kablam!   |
+kablam! 4 | use super::OpCode;
+kablam!   |     ^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: method is never used: `from_str`
+kablam!   --> src/parser/message.rs:64:5
+kablam!    |
+kablam! 64 |       fn from_str(s: &'n str) -> Result<Name, errors::ReadError> {
+kablam!    |  _____^ starting here...
+kablam! 65 | |         let mut n = Name { labels: Vec::new() };
+kablam! 66 | |         for x in s.split('.') {
+kablam! 67 | |             if x.len() == 0 { continue; }
+kablam! 68 | |             n.labels.push(try!(Label::from_slice(x.as_bytes())));
+kablam! 69 | |         }
+kablam! 70 | |         Ok(n)
+kablam! 71 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused variable: `n`
+kablam!    --> src/parser/message.rs:252:9
+kablam!     |
+kablam! 252 |     for n in 0..qdcount {
+kablam!     |         ^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `n`
+kablam!    --> src/parser/message.rs:255:9
+kablam!     |
+kablam! 255 |     for n in 0..ancount {
+kablam!     |         ^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `n`
+kablam!    --> src/parser/message.rs:258:9
+kablam!     |
+kablam! 258 |     for n in 0..nscount {
+kablam!     |         ^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `n`
+kablam!    --> src/parser/message.rs:261:9
+kablam!     |
+kablam! 261 |     for n in 0..adcount {
+kablam!     |         ^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused imports: `Label`, `Name`
+kablam!  --> src/parser/tests.rs:1:21
+kablam!   |
+kablam! 1 | use super::{Message,Name,Label};
+kablam!   |                     ^^^^ ^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused imports: `read_dns_message`, `read_dns_name`, `read_dns_question`, `read_dns_resource_record`
+kablam!  --> src/parser/tests.rs:2:13
+kablam!   |
+kablam! 2 | use super::{read_dns_message,read_dns_question,read_dns_resource_record,read_dns_name};
+kablam!   |             ^^^^^^^^^^^^^^^^ ^^^^^^^^^^^^^^^^^ ^^^^^^^^^^^^^^^^^^^^^^^^ ^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: static item is never used: `NET1_RS`
+kablam!  --> src/parser/tests.rs:5:1
+kablam!   |
+kablam! 5 | static NET1_RS: &'static [u8] = include_bytes!("../../tests/packets/net1-rs.bin");
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: function is never used: `check_std_response_norecurse`
+kablam!   --> src/parser/tests.rs:7:1
+kablam!    |
+kablam! 7  |   fn check_std_response_norecurse(m: &Message, q: usize, a: usize, n: usize, x: usize) {
+kablam!    |  _^ starting here...
+kablam! 8  | |     assert_eq!(m.flags, 0x8000);
+kablam! 9  | |     assert_eq!(m.questions.len(), q);
+kablam! 10 | |     assert_eq!(m.answers.len(), a);
+kablam! 11 | |     assert_eq!(m.nameservers.len(), n);
+kablam! 12 | |     assert_eq!(m.additionals.len(), x);
+kablam! 13 | | }
+kablam!    | |_^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.95 secs
+boom! running `docker rm -f 8e9befe79fd44a1306000bac385ac05cad9aeebdd787723df9c9560cedfdce4e`
+blam! 8e9befe79fd44a1306000bac385ac05cad9aeebdd787723df9c9560cedfdce4e
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 59b7f9c182505f3f67f3b6f5980bd33e6ac0100fc081e86bf8a646094a660524
+boom! running `docker start -a 59b7f9c182505f3f67f3b6f5980bd33e6ac0100fc081e86bf8a646094a660524`
+kablam!    Compiling dns v0.0.3-pre1 (file:///source)
+kablam! warning: unused or unknown feature
+kablam!  --> src/lib.rs:3:12
+kablam!   |
+kablam! 3 | #![feature(convert)]
+kablam!   |            ^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_features)] on by default
+kablam! 
+kablam! warning: unused import: `super::RCode`
+kablam!  --> src/parser/message.rs:3:5
+kablam!   |
+kablam! 3 | use super::RCode;
+kablam!   |     ^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `super::OpCode`
+kablam!  --> src/parser/message.rs:4:5
+kablam!   |
+kablam! 4 | use super::OpCode;
+kablam!   |     ^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: method is never used: `from_str`
+kablam!   --> src/parser/message.rs:64:5
+kablam!    |
+kablam! 64 |       fn from_str(s: &'n str) -> Result<Name, errors::ReadError> {
+kablam!    |  _____^ starting here...
+kablam! 65 | |         let mut n = Name { labels: Vec::new() };
+kablam! 66 | |         for x in s.split('.') {
+kablam! 67 | |             if x.len() == 0 { continue; }
+kablam! 68 | |             n.labels.push(try!(Label::from_slice(x.as_bytes())));
+kablam! 69 | |         }
+kablam! 70 | |         Ok(n)
+kablam! 71 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused variable: `n`
+kablam!    --> src/parser/message.rs:252:9
+kablam!     |
+kablam! 252 |     for n in 0..qdcount {
+kablam!     |         ^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `n`
+kablam!    --> src/parser/message.rs:255:9
+kablam!     |
+kablam! 255 |     for n in 0..ancount {
+kablam!     |         ^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `n`
+kablam!    --> src/parser/message.rs:258:9
+kablam!     |
+kablam! 258 |     for n in 0..nscount {
+kablam!     |         ^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `n`
+kablam!    --> src/parser/message.rs:261:9
+kablam!     |
+kablam! 261 |     for n in 0..adcount {
+kablam!     |         ^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused imports: `read_dns_question`, `read_dns_resource_record`
+kablam!  --> src/parser/tests.rs:2:30
+kablam!   |
+kablam! 2 | use super::{read_dns_message,read_dns_question,read_dns_resource_record,read_dns_name};
+kablam!   |                              ^^^^^^^^^^^^^^^^^ ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused variable: `l0`
+kablam!   --> src/parser/tests.rs:20:9
+kablam!    |
+kablam! 20 |     let l0 = "".as_bytes();
+kablam!    |         ^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!   --> src/parser/tests.rs:71:9
+kablam!    |
+kablam! 71 |     let mut b1 = [0x63u8, 0x61, 0x74, 0x00];
+kablam!    |         ^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!   --> src/parser/tests.rs:72:9
+kablam!    |
+kablam! 72 |     let mut b2 = [0x63u8, 0x61, 0x74, 0x01];
+kablam!    |         ^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!   --> src/parser/tests.rs:73:9
+kablam!    |
+kablam! 73 |     let mut b3 = [0x63u8, 0x61, 0x74, 0x02];
+kablam!    |         ^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: value assigned to `this` is never read
+kablam!    --> src/parser/tests.rs:101:9
+kablam!     |
+kablam! 101 |     let mut this = v2.next().unwrap();
+kablam!     |         ^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_assignments)] on by default
+kablam! 
+kablam! warning: value assigned to `this` is never read
+kablam!    --> src/parser/tests.rs:122:9
+kablam!     |
+kablam! 122 |     let mut this = v2.next().unwrap();
+kablam!     |         ^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_assignments)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/parser/tests.rs:131:9
+kablam!     |
+kablam! 131 |     let mut v3 = vec!(
+kablam!     |         ^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/parser/tests.rs:161:9
+kablam!     |
+kablam! 161 |     let mut v5 = vec!(
+kablam!     |         ^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: unused variable: `m`
+kablam!    --> src/parser/tests.rs:232:9
+kablam!     |
+kablam! 232 |     let m = read_dns_message(&NET1_RS[0..NET1_RS.len()-2]).err();
+kablam!     |         ^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 3.57 secs
+boom! running `docker rm -f 59b7f9c182505f3f67f3b6f5980bd33e6ac0100fc081e86bf8a646094a660524`
+blam! 59b7f9c182505f3f67f3b6f5980bd33e6ac0100fc081e86bf8a646094a660524
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! a146340df0ca8e545d31cfa1e6cf3a7747b8b88a11421306fb4ee6181b42b05b
+boom! running `docker start -a a146340df0ca8e545d31cfa1e6cf3a7747b8b88a11421306fb4ee6181b42b05b`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/dns-30f5a88635b7d244
+blam! 
+blam! running 25 tests
+blam! test iana::classes::test_class::test_range_privateuse_identity ... ok
+blam! test iana::classes::test_class::test_range_reserved_identity ... ok
+blam! test iana::edns0codes::test_edns0optioncode::test_range_reserved_identity ... ok
+blam! test iana::edns0codes::test_edns0optioncode::test_variant_identity ... ok
+blam! test iana::classes::test_class::test_variant_identity ... ok
+blam! test iana::opcodes::test_opcode::test_range_unassigned_identity ... ok
+blam! test iana::rcodes::test_rcode::test_range_privateuse_identity ... ok
+blam! test iana::opcodes::test_opcode::test_variant_identity ... ok
+blam! test iana::rcodes::test_rcode::test_range_reserved_identity ... ok
+blam! test iana::edns0codes::test_edns0optioncode::test_range_unassigned_identity ... ok
+blam! test iana::rcodes::test_rcode::test_variant_identity ... ok
+blam! test iana::types::test_type::test_range_reserved_identity ... ok
+blam! test iana::types::test_type::test_range_privateuse_identity ... ok
+blam! test iana::classes::test_class::test_range_unassigned_identity ... ok
+blam! test parser::tests::test_bounds_checks ... ok
+blam! test parser::tests::test_label_create ... ok
+blam! test iana::rcodes::test_rcode::test_range_unassigned_identity ... ok
+blam! test parser::tests::test_label_ord ... ok
+blam! test parser::tests::test_label_eq ... ok
+blam! test iana::types::test_type::test_variant_identity ... ok
+blam! test parser::tests::test_read_dns_message ... ok
+blam! test parser::tests::test_name_ord ... ok
+blam! test parser::util::test_hp_support_functions::test_read_be_i32 ... ok
+blam! test parser::util::test_hp_support_functions::test_read_be_u16 ... ok
+blam! test iana::types::test_type::test_range_unassigned_identity ... ok
+blam! 
+blam! test result: ok. 25 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/lib-e60354dbee59a4c9
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!    Doc-tests dns
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f a146340df0ca8e545d31cfa1e6cf3a7747b8b88a11421306fb4ee6181b42b05b`
+blam! a146340df0ca8e545d31cfa1e6cf3a7747b8b88a11421306fb4ee6181b42b05b

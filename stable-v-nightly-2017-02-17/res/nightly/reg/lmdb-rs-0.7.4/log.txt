@@ -1,0 +1,26 @@
+boom! testing lmdb-rs-0.7.4 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! a9ad6ce5c0216443dd46ce97ca951005e3349328fb40e1525d0d96f4edb6e679
+boom! running `docker start -a a9ad6ce5c0216443dd46ce97ca951005e3349328fb40e1525d0d96f4edb6e679`
+kablam!    Compiling lmdb-rs v0.7.4 (file:///source)
+kablam! error[E0195]: lifetime parameters or bounds on method `to_mdb_value` do not match the trait declaration
+kablam!   --> src/traits.rs:55:5
+kablam!    |
+kablam! 55 |       fn to_mdb_value<'b, 's>(&'s self) -> MdbValue<'b> {
+kablam!    |  _____^ starting here...
+kablam! 56 | |         unsafe {
+kablam! 57 | |             MdbValue::new(mem::transmute(self.as_ptr()),
+kablam! 58 | |                           self.len())
+kablam! 59 | |         }
+kablam! 60 | |     }
+kablam!    | |_____^ ...ending here: lifetimes do not match trait
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `lmdb-rs`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f a9ad6ce5c0216443dd46ce97ca951005e3349328fb40e1525d0d96f4edb6e679`
+blam! a9ad6ce5c0216443dd46ce97ca951005e3349328fb40e1525d0d96f4edb6e679

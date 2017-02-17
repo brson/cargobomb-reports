@@ -1,0 +1,26 @@
+boom! testing chrono_utils-0.1.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! f88c0a2148a28565b6b7f5291fe428546de3531484b76c1049a414eb347a2c10
+boom! running `docker start -a f88c0a2148a28565b6b7f5291fe428546de3531484b76c1049a414eb347a2c10`
+kablam!    Compiling chrono_utils v0.1.1 (file:///source)
+kablam! error: no method named `checked_sub` found for type `chrono::NaiveDateTime` in the current scope
+kablam!   --> src/parser/parse_w3c_datetime.rs:75:60
+kablam!    |
+kablam! 75 |             if let Some(naive_date_time) = naive_date_time.checked_sub(offset.local_minus_utc()) {
+kablam!    |                                                            ^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `num_seconds` found for type `i32` in the current scope
+kablam!  --> src/formatter/format_w3c.rs:8:56
+kablam!   |
+kablam! 8 |     let offset = datetime.timezone().local_minus_utc().num_seconds();
+kablam!   |                                                        ^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `chrono_utils`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f88c0a2148a28565b6b7f5291fe428546de3531484b76c1049a414eb347a2c10`
+blam! f88c0a2148a28565b6b7f5291fe428546de3531484b76c1049a414eb347a2c10

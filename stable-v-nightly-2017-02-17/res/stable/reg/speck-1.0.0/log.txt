@@ -1,0 +1,28 @@
+boom! testing speck-1.0.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 8fce1a2b7b47712e7549d9211f91a2737a8f27285b87dc6ad04aef67f0d3f168
+boom! running `docker start -a 8fce1a2b7b47712e7549d9211f91a2737a8f27285b87dc6ad04aef67f0d3f168`
+kablam!    Compiling speck v1.0.0 (file:///source)
+kablam! error: invalid width `128` for integer literal
+kablam!    --> src/lib.rs:132:22
+kablam!     |
+kablam! 132 |         for mut x in 0u128..90000 {
+kablam!     |                      ^^^^^
+kablam!     |
+kablam!     = help: valid widths are 8, 16, 32 and 64
+kablam! 
+kablam! error: int literal is too large
+kablam!    --> src/lib.rs:134:32
+kablam!     |
+kablam! 134 |             x = x.wrapping_mul(0x6eed0e9da4d94a4f6eed0e9da4d94a4f);
+kablam!     |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `speck`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 8fce1a2b7b47712e7549d9211f91a2737a8f27285b87dc6ad04aef67f0d3f168`
+blam! 8fce1a2b7b47712e7549d9211f91a2737a8f27285b87dc6ad04aef67f0d3f168
