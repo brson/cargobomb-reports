@@ -1,0 +1,25 @@
+boom! testing sel4-sys-0.0.26 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 4af22f90d2303236b4f228c497124d42e95345406654cddcc98db8cd14d62f5f
+boom! running `docker start -a 4af22f90d2303236b4f228c497124d42e95345406654cddcc98db8cd14d62f5f`
+kablam!    Compiling sel4-sys v0.0.26 (file:///source)
+kablam! warning: unused variable: `word_size`, #[warn(unused_variables)] on by default
+kablam!   --> build.rs:35:26
+kablam!    |
+kablam! 35 |     for &(arch, archdir, word_size) in &arches {
+kablam!    |                          ^^^^^^^^^
+kablam! 
+kablam! error: failed to run custom build command for `sel4-sys v0.0.26 (file:///source)`
+kablam! process didn't exit successfully: `/target/debug/build/sel4-sys-501d1eec7d25e27b/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! Running: "/usr/bin/env" "python" "tools/syscall_stub_gen.py" "-a" "ia32" "-w" "32" "--buffer" "-o" "/target/debug/build/sel4-sys-91e369d490da25f1/out/ia32_syscall_stub.rs" "seL4/libsel4/include/interfaces/sel4.xml" "seL4/libsel4/arch_include/x86/interfaces/sel4arch.xml" "seL4/libsel4/sel4_arch_include/ia32/interfaces/sel4arch.xml"
+kablam! 
+kablam! --- stderr
+kablam! /usr/bin/env: python: No such file or directory
+kablam! thread 'main' panicked at 'assertion failed: cmd.status().unwrap().success()', build.rs:32
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f 4af22f90d2303236b4f228c497124d42e95345406654cddcc98db8cd14d62f5f`
+blam! 4af22f90d2303236b4f228c497124d42e95345406654cddcc98db8cd14d62f5f

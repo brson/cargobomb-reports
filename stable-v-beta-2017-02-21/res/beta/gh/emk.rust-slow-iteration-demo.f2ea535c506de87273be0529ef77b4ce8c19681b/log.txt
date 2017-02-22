@@ -1,0 +1,40 @@
+boom! testing https://github.com/emk/rust-slow-iteration-demo#f2ea535c506de87273be0529ef77b4ce8c19681b against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! f226c61b920cbf07d14ac3468b34582cc9f06fe267b4f57002b40fb5fada0f42
+boom! running `docker start -a f226c61b920cbf07d14ac3468b34582cc9f06fe267b4f57002b40fb5fada0f42`
+kablam!    Compiling rust-slow-iteration-demo v0.0.1 (file:///source)
+kablam! error: invalid suffix `u` for numeric literal
+kablam!   --> src/lib.rs:35:20
+kablam!    |
+kablam! 35 |     for _ in range(0u, 200) { result.push_str(LINE); }
+kablam!    |                    ^^
+kablam!    |
+kablam!    = help: the suffix must be one of the integral types (`u32`, `isize`, etc)
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!   --> src/lib.rs:54:13
+kablam!    |
+kablam! 54 |     offset: uint,
+kablam!    |             ^^^^ not found in this scope
+kablam! 
+kablam! error: module `range` is private
+kablam!   --> src/lib.rs:23:5
+kablam!    |
+kablam! 23 | use std::iter::range;
+kablam!    |     ^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!   --> src/lib.rs:20:1
+kablam!    |
+kablam! 20 | #![feature(macro_rules, trace_macros)]
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `rust-slow-iteration-demo`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f226c61b920cbf07d14ac3468b34582cc9f06fe267b4f57002b40fb5fada0f42`
+blam! f226c61b920cbf07d14ac3468b34582cc9f06fe267b4f57002b40fb5fada0f42

@@ -1,0 +1,77 @@
+boom! testing spade-0.3.0 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 94b94b8a13d866275519948633b7f65ee0f846945458910bcfe11d73b85b6b72
+boom! running `docker start -a 94b94b8a13d866275519948633b7f65ee0f846945458910bcfe11d73b85b6b72`
+kablam!    Compiling clamp v0.1.0
+kablam!    Compiling spade v0.3.0 (file:///source)
+kablam! error[E0432]: unresolved import `nalgebra::Repeat`
+kablam!   --> src/vector_traits.rs:19:16
+kablam!    |
+kablam! 19 | use nalgebra::{Repeat};
+kablam!    |                ^^^^^^ no `Repeat` in the root
+kablam! 
+kablam! error[E0405]: trait `na::BaseFloat` is not in scope
+kablam!   --> src/traits.rs:33:50
+kablam!    |
+kablam! 33 | pub trait SpadeFloat: SpadeNum + cg::BaseFloat + na::BaseFloat { }
+kablam!    |                                                  ^^^^^^^^^^^^^ `na::BaseFloat` is not in scope
+kablam!    |
+kablam!    = help: you can import it into scope: `use cgmath::BaseFloat;`.
+kablam! 
+kablam! error[E0405]: trait `na::BaseNum` is not in scope
+kablam!    --> src/vector_traits.rs:149:21
+kablam!     |
+kablam! 149 | impl <S: SpadeNum + na::BaseNum> TwoDimensional for na::Vector2<S> { }
+kablam!     |                     ^^^^^^^^^^^ `na::BaseNum` is not in scope
+kablam!     |
+kablam!     = help: you can import it into scope: `use cgmath::BaseNum;`.
+kablam! 
+kablam! error[E0405]: trait `na::BaseNum` is not in scope
+kablam!    --> src/vector_traits.rs:171:21
+kablam!     |
+kablam! 171 | impl <S: SpadeNum + na::BaseNum> ThreeDimensional for na::Vector3<S> { }
+kablam!     |                     ^^^^^^^^^^^ `na::BaseNum` is not in scope
+kablam!     |
+kablam!     = help: you can import it into scope: `use cgmath::BaseNum;`.
+kablam! 
+kablam! error[E0405]: trait `na::BaseNum` is not in scope
+kablam!    --> src/vector_traits.rs:251:20
+kablam!     |
+kablam! 251 | impl<S: SpadeNum + na::BaseNum> VectorN for na::Vector2<S> {
+kablam!     |                    ^^^^^^^^^^^ `na::BaseNum` is not in scope
+kablam!     |
+kablam!     = help: you can import it into scope: `use cgmath::BaseNum;`.
+kablam! 
+kablam! error[E0405]: trait `na::BaseNum` is not in scope
+kablam!    --> src/vector_traits.rs:264:20
+kablam!     |
+kablam! 264 | impl<S: SpadeNum + na::BaseNum> VectorN for na::Vector3<S> {
+kablam!     |                    ^^^^^^^^^^^ `na::BaseNum` is not in scope
+kablam!     |
+kablam!     = help: you can import it into scope: `use cgmath::BaseNum;`.
+kablam! 
+kablam! error[E0405]: trait `na::BaseNum` is not in scope
+kablam!    --> src/vector_traits.rs:277:20
+kablam!     |
+kablam! 277 | impl<S: SpadeNum + na::BaseNum> VectorN for na::Vector4<S> {
+kablam!     |                    ^^^^^^^^^^^ `na::BaseNum` is not in scope
+kablam!     |
+kablam!     = help: you can import it into scope: `use cgmath::BaseNum;`.
+kablam! 
+kablam! error[E0405]: trait `na::BaseNum` is not in scope
+kablam!    --> src/bigvec.rs:111:60
+kablam!     |
+kablam! 111 | impl <I> From<na::Vector2<I>> for BigVec2<BigInt> where I: na::BaseNum + ToBigInt {
+kablam!     |                                                            ^^^^^^^^^^^ `na::BaseNum` is not in scope
+kablam!     |
+kablam!     = help: you can import it into scope: `use cgmath::BaseNum;`.
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `spade`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 94b94b8a13d866275519948633b7f65ee0f846945458910bcfe11d73b85b6b72`
+blam! 94b94b8a13d866275519948633b7f65ee0f846945458910bcfe11d73b85b6b72

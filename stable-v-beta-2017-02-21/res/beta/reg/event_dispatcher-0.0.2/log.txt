@@ -1,0 +1,36 @@
+boom! testing event_dispatcher-0.0.2 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 8bdb1bfadf5bca7beb5eceba109c8b3f99617a1aabd5ba36b72e2a200dbc0331
+boom! running `docker start -a 8bdb1bfadf5bca7beb5eceba109c8b3f99617a1aabd5ba36b72e2a200dbc0331`
+kablam!    Compiling event_dispatcher v0.0.2 (file:///source)
+kablam! error[E0432]: unresolved import `std::intrinsics::TypeId`
+kablam!  --> src/dispatcher.rs:5:5
+kablam!   |
+kablam! 5 | use std::intrinsics::TypeId;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^ no `TypeId` in `intrinsics`
+kablam! 
+kablam! error[E0392]: parameter `T` is never used
+kablam!    --> src/dispatcher.rs:107:36
+kablam!     |
+kablam! 107 | pub struct Dispatcher<E: Event<T>, T: ?Sized> {
+kablam!     |                                    ^ unused type parameter
+kablam!     |
+kablam!     = help: consider removing `T` or using a marker such as `std::marker::PhantomData`
+kablam! 
+kablam! error[E0392]: parameter `T` is never used
+kablam!  --> src/listener.rs:3:34
+kablam!   |
+kablam! 3 | pub struct Listener<E: Event<T>, T: ?Sized>{
+kablam!   |                                  ^ unused type parameter
+kablam!   |
+kablam!   = help: consider removing `T` or using a marker such as `std::marker::PhantomData`
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `event_dispatcher`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 8bdb1bfadf5bca7beb5eceba109c8b3f99617a1aabd5ba36b72e2a200dbc0331`
+blam! 8bdb1bfadf5bca7beb5eceba109c8b3f99617a1aabd5ba36b72e2a200dbc0331

@@ -1,0 +1,53 @@
+boom! testing rusty_ally-0.2.2 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 48022b5f6aee9c68e448921c3db92d067fe5416eafe7ae3ca9bdec21e03ade4a
+boom! running `docker start -a 48022b5f6aee9c68e448921c3db92d067fe5416eafe7ae3ca9bdec21e03ade4a`
+kablam!    Compiling diesel_codegen v0.5.4
+kablam!    Compiling chrono v0.2.25
+kablam!    Compiling diesel v0.5.3
+kablam!    Compiling dotenv_codegen v0.8.1
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/dotenv_codegen-0.8.1/src/dotenv_macro.rs:13:66
+kablam!    |
+kablam! 13 | pub fn expand_dotenv<'cx>(cx: &'cx mut ExtCtxt, sp: Span, tts: &[ast::TokenTree])
+kablam!    |                                                                  ^^^^^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/dotenv_codegen-0.8.1/src/dotenv_macro.rs:25:50
+kablam!    |
+kablam! 25 | fn expand_env(cx: &mut ExtCtxt, sp: Span, tts: &[ast::TokenTree])
+kablam!    |                                                  ^^^^^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0425]: cannot find function `intern_and_get_ident` in module `token`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/dotenv_codegen-0.8.1/src/dotenv_macro.rs:45:13
+kablam!    |
+kablam! 45 |             token::intern_and_get_ident(&format!("environment variable `{}` \
+kablam!    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `intern_and_get_ident` in module `token`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/dotenv_codegen-0.8.1/src/dotenv_macro.rs:70:34
+kablam!    |
+kablam! 70 |         Ok(s) => cx.expr_str(sp, token::intern_and_get_ident(&s))
+kablam!    |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/dotenv_codegen-0.8.1/src/lib.rs:1:43
+kablam!   |
+kablam! 1 | #![cfg_attr(not(feature = "with-syntex"), feature(rustc_private))]
+kablam!   |                                           ^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `dotenv_codegen`.
+kablam! error: build failed
+boom! running `docker rm -f 48022b5f6aee9c68e448921c3db92d067fe5416eafe7ae3ca9bdec21e03ade4a`
+blam! 48022b5f6aee9c68e448921c3db92d067fe5416eafe7ae3ca9bdec21e03ade4a

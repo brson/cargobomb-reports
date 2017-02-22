@@ -1,0 +1,533 @@
+boom! testing tick-0.0.1 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! f1bf8b0340691a4d1bc4717e957d606f787a8e466f1fd311342ddd50af85ee69
+boom! running `docker start -a f1bf8b0340691a4d1bc4717e957d606f787a8e466f1fd311342ddd50af85ee69`
+kablam!    Compiling tick v0.0.1 (file:///source)
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!   --> src/handler.rs:82:25
+kablam!    |
+kablam! 82 |                           event_loop.reregister(
+kablam!    |  _________________________^ starting here...
+kablam! 83 | |                             stream.transport(),
+kablam! 84 | |                             token,
+kablam! 85 | |                             events,
+kablam! 86 | |                             PollOpt::level() | PollOpt::oneshot()
+kablam! 87 | |                         );
+kablam!    | |__________________________^ ...ending here
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/handler.rs:185:17
+kablam!     |
+kablam! 185 |                 event_loop.timeout_ms(cb, when);
+kablam!     |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: type alias is never used: `Action_`, #[warn(dead_code)] on by default
+kablam!  --> src/protocol.rs:7:1
+kablam!   |
+kablam! 7 | pub type Action_ = Action;
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!   --> src/tick.rs:76:9
+kablam!    |
+kablam! 76 |           self.sender.send(Message::Timeout(Box::new(move || {
+kablam!    |  _________^ starting here...
+kablam! 77 | |             env.take().map(|f| f());
+kablam! 78 | |         }), ms));
+kablam!    | |_________________^ ...ending here
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!   --> src/transfer.rs:24:9
+kablam!    |
+kablam! 24 |         self.notify.send(Message::Interest(self.token, interest));
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: private type `Action` in public interface (error E0446), #[warn(private_in_public)] on by default
+kablam!  --> src/protocol.rs:7:1
+kablam!   |
+kablam! 7 | pub type Action_ = Action;
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!   = note: for more information, see issue #34537 <https://github.com/rust-lang/rust/issues/34537>
+kablam! 
+kablam! warning: private type `Message` in public interface (error E0446), #[warn(private_in_public)] on by default
+kablam!  --> src/handler.rs:7:1
+kablam!   |
+kablam! 7 | pub type Message_ = Message;
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!   = note: for more information, see issue #34537 <https://github.com/rust-lang/rust/issues/34537>
+kablam! 
+kablam! warning: private type `Message` in public interface (error E0446), #[warn(private_in_public)] on by default
+kablam!    --> src/handler.rs:122:5
+kablam!     |
+kablam! 122 |     type Message = Message_;
+kablam!     |     ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #34537 <https://github.com/rust-lang/rust/issues/34537>
+kablam! 
+kablam! warning: private type `Message` in public interface (error E0446), #[warn(private_in_public)] on by default
+kablam!    --> src/handler.rs:159:5
+kablam!     |
+kablam! 159 |     fn notify(&mut self, event_loop: &mut EventLoop<Self>, msg: Message) {
+kablam!     |     ^
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #34537 <https://github.com/rust-lang/rust/issues/34537>
+kablam! 
+kablam! warning: private type `Message` in public interface (error E0446), #[warn(private_in_public)] on by default
+kablam!  --> src/transfer.rs:5:1
+kablam!   |
+kablam! 5 | pub type Message_ = Message;
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!   = note: for more information, see issue #34537 <https://github.com/rust-lang/rust/issues/34537>
+kablam! 
+kablam! warning: private type `Message` in public interface (error E0446), #[warn(private_in_public)] on by default
+kablam!   --> src/transfer.rs:14:1
+kablam!    |
+kablam! 14 |   pub fn new(token: mio::Token, notify: mio::Sender<Message_>) -> Transfer {
+kablam!    |  _^ starting here...
+kablam! 15 | |     Transfer {
+kablam! 16 | |         token: token,
+kablam! 17 | |         notify: notify,
+kablam! 18 | |     }
+kablam! 19 | | }
+kablam!    | |_^ ...ending here
+kablam!    |
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #34537 <https://github.com/rust-lang/rust/issues/34537>
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.11 secs
+boom! running `docker rm -f f1bf8b0340691a4d1bc4717e957d606f787a8e466f1fd311342ddd50af85ee69`
+blam! f1bf8b0340691a4d1bc4717e957d606f787a8e466f1fd311342ddd50af85ee69
+boom! running: cargo +beta test --frozen --no-run
+boom! creating container for: cargo +beta test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta test --frozen --no-run cargobomb`
+blam! 651f4156b3d6b56ba3b06492e63b3a60103c2d910345a5531332ee5781a0261a
+boom! running `docker start -a 651f4156b3d6b56ba3b06492e63b3a60103c2d910345a5531332ee5781a0261a`
+kablam!    Compiling tick v0.0.1 (file:///source)
+kablam! error[E0407]: method `interest` is not a member of trait `tick::Protocol`
+kablam!   --> examples/client.rs:26:5
+kablam!    |
+kablam! 26 |       fn interest(&self) -> tick::Interest {
+kablam!    |  _____^ starting here...
+kablam! 27 | |         if self.eof {
+kablam! 28 | |             tick::Interest::Remove
+kablam! 29 | |         } else if self.pos < self.msg.len() {
+kablam! 30 | |             tick::Interest::ReadWrite
+kablam! 31 | |         } else {
+kablam! 32 | |             tick::Interest::Read
+kablam! 33 | |         }
+kablam! 34 | |     }
+kablam!    | |_____^ ...ending here: not a member of trait `tick::Protocol`
+kablam! 
+kablam! error[E0277]: the trait bound `mio::tcp::TcpStream: mio::TryAccept` is not satisfied
+kablam!   --> examples/client.rs:69:20
+kablam!    |
+kablam! 69 |     let mut tick = tick::Tick::<Tcp, _>::new(|_, _| Client::new());
+kablam!    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `mio::TryAccept` is not implemented for `mio::tcp::TcpStream`
+kablam!    |
+kablam!    = note: required by `tick::Tick`
+kablam! 
+kablam! error: no associated item named `new` found for type `tick::Tick<mio::tcp::TcpStream, _>` in the current scope
+kablam!   --> examples/client.rs:69:20
+kablam!    |
+kablam! 69 |     let mut tick = tick::Tick::<Tcp, _>::new(|_, _| Client::new());
+kablam!    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: the method `new` exists but the following trait bounds were not satisfied: `mio::tcp::TcpStream : mio::TryAccept`, `mio::tcp::TcpStream : mio::TryAccept`, `mio::tcp::TcpStream : mio::TryAccept`
+kablam! 
+kablam! error: no method named `interest` found for type `&mut Client` in the current scope
+kablam!   --> examples/client.rs:51:17
+kablam!    |
+kablam! 51 |         Ok(self.interest())
+kablam!    |                 ^^^^^^^^
+kablam! 
+kablam! error: no method named `interest` found for type `&mut Client` in the current scope
+kablam!   --> examples/client.rs:58:17
+kablam!    |
+kablam! 58 |         Ok(self.interest())
+kablam!    |                 ^^^^^^^^
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error[E0407]: method `interest` is not a member of trait `tick::Protocol`
+kablam!   --> examples/echo.rs:18:5
+kablam!    |
+kablam! 18 |       fn interest(&self) -> tick::Interest {
+kablam!    |  _____^ starting here...
+kablam! 19 | |         match (self.eof, self.read_pos, self.write_pos) {
+kablam! 20 | |             (false, 0, 0) => tick::Interest::Read,
+kablam! 21 | |             (true, 0, 0) => tick::Interest::Remove,
+kablam! 22 | |             (false, r, w) if r > w => tick::Interest::ReadWrite,
+kablam! 23 | |             (true, r, w) if r > w => tick::Interest::Write,
+kablam! 24 | |             _ => tick::Interest::Remove
+kablam! 25 | |         }
+kablam! 26 | |     }
+kablam!    | |_____^ ...ending here: not a member of trait `tick::Protocol`
+kablam! 
+kablam! error: Could not compile `tick`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error[E0053]: method `on_readable` has an incompatible type for trait
+kablam!   --> examples/echo.rs:27:5
+kablam!    |
+kablam! 27 |     fn on_readable(&mut self, transport: &mut Tcp) -> io::Result<()> {
+kablam!    |     ^ expected enum `tick::Interest`, found ()
+kablam!    |
+kablam!    = note: expected type `fn(&mut Echo, &mut mio::tcp::TcpStream) -> std::result::Result<tick::Interest, std::io::Error>`
+kablam!               found type `fn(&mut Echo, &mut mio::tcp::TcpStream) -> std::result::Result<(), std::io::Error>`
+kablam! 
+kablam! error[E0053]: method `on_writable` has an incompatible type for trait
+kablam!   --> examples/echo.rs:40:5
+kablam!    |
+kablam! 40 |     fn on_writable(&mut self, transport: &mut Tcp) -> io::Result<()> {
+kablam!    |     ^ expected enum `tick::Interest`, found ()
+kablam!    |
+kablam!    = note: expected type `fn(&mut Echo, &mut mio::tcp::TcpStream) -> std::result::Result<tick::Interest, std::io::Error>`
+kablam!               found type `fn(&mut Echo, &mut mio::tcp::TcpStream) -> std::result::Result<(), std::io::Error>`
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `tick`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: unused result which must be used
+kablam!   --> src/handler.rs:82:25
+kablam!    |
+kablam! 82 |                           event_loop.reregister(
+kablam!    |  _________________________^ starting here...
+kablam! 83 | |                             stream.transport(),
+kablam! 84 | |                             token,
+kablam! 85 | |                             events,
+kablam! 86 | |                             PollOpt::level() | PollOpt::oneshot()
+kablam! 87 | |                         );
+kablam!    | |__________________________^ ...ending here
+kablam!    |
+kablam! note: lint level defined here
+kablam!   --> src/lib.rs:23:24
+kablam!    |
+kablam! 23 | #![cfg_attr(test, deny(warnings))]
+kablam!    |                        ^^^^^^^^
+kablam! 
+kablam! error: unused result which must be used
+kablam!    --> src/handler.rs:185:17
+kablam!     |
+kablam! 185 |                 event_loop.timeout_ms(cb, when);
+kablam!     |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: type alias is never used: `Action_`
+kablam!  --> src/protocol.rs:7:1
+kablam!   |
+kablam! 7 | pub type Action_ = Action;
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam! note: lint level defined here
+kablam!  --> src/lib.rs:23:24
+kablam!   |
+kablam! 23| #![cfg_attr(test, deny(warnings))]
+kablam!   |                        ^^^^^^^^
+kablam! 
+kablam! error: unused result which must be used
+kablam!   --> src/tick.rs:76:9
+kablam!    |
+kablam! 76 |           self.sender.send(Message::Timeout(Box::new(move || {
+kablam!    |  _________^ starting here...
+kablam! 77 | |             env.take().map(|f| f());
+kablam! 78 | |         }), ms));
+kablam!    | |_________________^ ...ending here
+kablam! 
+kablam! error: unused result which must be used
+kablam!   --> src/transfer.rs:24:9
+kablam!    |
+kablam! 24 |         self.notify.send(Message::Interest(self.token, interest));
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: private type `Action` in public interface (error E0446)
+kablam!  --> src/protocol.rs:7:1
+kablam!   |
+kablam! 7 | pub type Action_ = Action;
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!   = note: for more information, see issue #34537 <https://github.com/rust-lang/rust/issues/34537>
+kablam! note: lint level defined here
+kablam!  --> src/lib.rs:23:24
+kablam!   |
+kablam! 23| #![cfg_attr(test, deny(warnings))]
+kablam!   |                        ^^^^^^^^
+kablam! 
+kablam! error: private type `Message` in public interface (error E0446)
+kablam!  --> src/handler.rs:7:1
+kablam!   |
+kablam! 7 | pub type Message_ = Message;
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!   = note: for more information, see issue #34537 <https://github.com/rust-lang/rust/issues/34537>
+kablam! 
+kablam! error: private type `Message` in public interface (error E0446)
+kablam!    --> src/handler.rs:122:5
+kablam!     |
+kablam! 122 |     type Message = Message_;
+kablam!     |     ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #34537 <https://github.com/rust-lang/rust/issues/34537>
+kablam! 
+kablam! error: private type `Message` in public interface (error E0446)
+kablam!    --> src/handler.rs:159:5
+kablam!     |
+kablam! 159 |     fn notify(&mut self, event_loop: &mut EventLoop<Self>, msg: Message) {
+kablam!     |     ^
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #34537 <https://github.com/rust-lang/rust/issues/34537>
+kablam! 
+kablam! error: private type `Message` in public interface (error E0446)
+kablam!  --> src/transfer.rs:5:1
+kablam!   |
+kablam! 5 | pub type Message_ = Message;
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!   = note: for more information, see issue #34537 <https://github.com/rust-lang/rust/issues/34537>
+kablam! 
+kablam! error: private type `Message` in public interface (error E0446)
+kablam!   --> src/transfer.rs:14:1
+kablam!    |
+kablam! 14 |   pub fn new(token: mio::Token, notify: mio::Sender<Message_>) -> Transfer {
+kablam!    |  _^ starting here...
+kablam! 15 | |     Transfer {
+kablam! 16 | |         token: token,
+kablam! 17 | |         notify: notify,
+kablam! 18 | |     }
+kablam! 19 | | }
+kablam!    | |_^ ...ending here
+kablam!    |
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #34537 <https://github.com/rust-lang/rust/issues/34537>
+kablam! 
+kablam! error: aborting due to 11 previous errors
+kablam! 
+kablam! error: Could not compile `tick`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f 651f4156b3d6b56ba3b06492e63b3a60103c2d910345a5531332ee5781a0261a`
+blam! 651f4156b3d6b56ba3b06492e63b3a60103c2d910345a5531332ee5781a0261a
+boom! running: cargo +beta test --frozen
+boom! creating container for: cargo +beta test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta test --frozen cargobomb`
+blam! 3b5e8718da62ba6b99ae88f064b85405871ab10f2e54ec35f56b4d3ceefd8c49
+boom! running `docker start -a 3b5e8718da62ba6b99ae88f064b85405871ab10f2e54ec35f56b4d3ceefd8c49`
+kablam!    Compiling tick v0.0.1 (file:///source)
+kablam! error[E0407]: method `interest` is not a member of trait `tick::Protocol`
+kablam!   --> examples/client.rs:26:5
+kablam!    |
+kablam! 26 |       fn interest(&self) -> tick::Interest {
+kablam!    |  _____^ starting here...
+kablam! 27 | |         if self.eof {
+kablam! 28 | |             tick::Interest::Remove
+kablam! 29 | |         } else if self.pos < self.msg.len() {
+kablam! 30 | |             tick::Interest::ReadWrite
+kablam! 31 | |         } else {
+kablam! 32 | |             tick::Interest::Read
+kablam! 33 | |         }
+kablam! 34 | |     }
+kablam!    | |_____^ ...ending here: not a member of trait `tick::Protocol`
+kablam! 
+kablam! error[E0277]: the trait bound `mio::tcp::TcpStream: mio::TryAccept` is not satisfied
+kablam!   --> examples/client.rs:69:20
+kablam!    |
+kablam! 69 |     let mut tick = tick::Tick::<Tcp, _>::new(|_, _| Client::new());
+kablam!    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `mio::TryAccept` is not implemented for `mio::tcp::TcpStream`
+kablam!    |
+kablam!    = note: required by `tick::Tick`
+kablam! 
+kablam! error: no associated item named `new` found for type `tick::Tick<mio::tcp::TcpStream, _>` in the current scope
+kablam!   --> examples/client.rs:69:20
+kablam!    |
+kablam! 69 |     let mut tick = tick::Tick::<Tcp, _>::new(|_, _| Client::new());
+kablam!    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: the method `new` exists but the following trait bounds were not satisfied: `mio::tcp::TcpStream : mio::TryAccept`, `mio::tcp::TcpStream : mio::TryAccept`, `mio::tcp::TcpStream : mio::TryAccept`
+kablam! 
+kablam! error: no method named `interest` found for type `&mut Client` in the current scope
+kablam!   --> examples/client.rs:51:17
+kablam!    |
+kablam! 51 |         Ok(self.interest())
+kablam!    |                 ^^^^^^^^
+kablam! 
+kablam! error: no method named `interest` found for type `&mut Client` in the current scope
+kablam!   --> examples/client.rs:58:17
+kablam!    |
+kablam! 58 |         Ok(self.interest())
+kablam!    |                 ^^^^^^^^
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `tick`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error[E0407]: method `interest` is not a member of trait `tick::Protocol`
+kablam!   --> examples/echo.rs:18:5
+kablam!    |
+kablam! 18 |       fn interest(&self) -> tick::Interest {
+kablam!    |  _____^ starting here...
+kablam! 19 | |         match (self.eof, self.read_pos, self.write_pos) {
+kablam! 20 | |             (false, 0, 0) => tick::Interest::Read,
+kablam! 21 | |             (true, 0, 0) => tick::Interest::Remove,
+kablam! 22 | |             (false, r, w) if r > w => tick::Interest::ReadWrite,
+kablam! 23 | |             (true, r, w) if r > w => tick::Interest::Write,
+kablam! 24 | |             _ => tick::Interest::Remove
+kablam! 25 | |         }
+kablam! 26 | |     }
+kablam!    | |_____^ ...ending here: not a member of trait `tick::Protocol`
+kablam! 
+kablam! error[E0053]: method `on_readable` has an incompatible type for trait
+kablam!   --> examples/echo.rs:27:5
+kablam!    |
+kablam! 27 |     fn on_readable(&mut self, transport: &mut Tcp) -> io::Result<()> {
+kablam!    |     ^ expected enum `tick::Interest`, found ()
+kablam!    |
+kablam!    = note: expected type `fn(&mut Echo, &mut mio::tcp::TcpStream) -> std::result::Result<tick::Interest, std::io::Error>`
+kablam!               found type `fn(&mut Echo, &mut mio::tcp::TcpStream) -> std::result::Result<(), std::io::Error>`
+kablam! 
+kablam! error[E0053]: method `on_writable` has an incompatible type for trait
+kablam!   --> examples/echo.rs:40:5
+kablam!    |
+kablam! 40 |     fn on_writable(&mut self, transport: &mut Tcp) -> io::Result<()> {
+kablam!    |     ^ expected enum `tick::Interest`, found ()
+kablam!    |
+kablam!    = note: expected type `fn(&mut Echo, &mut mio::tcp::TcpStream) -> std::result::Result<tick::Interest, std::io::Error>`
+kablam!               found type `fn(&mut Echo, &mut mio::tcp::TcpStream) -> std::result::Result<(), std::io::Error>`
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `tick`.
+kablam! error: unused result which must be used
+kablam!   --> src/handler.rs:82:25
+kablam!    |
+kablam! 82 |                           event_loop.reregister(
+kablam!    |  _________________________^ starting here...
+kablam! 83 | |                             stream.transport(),
+kablam! 84 | |                             token,
+kablam! 85 | |                             events,
+kablam! 86 | |                             PollOpt::level() | PollOpt::oneshot()
+kablam! 87 | |                         );
+kablam!    | |__________________________^ ...ending here
+kablam!    |
+kablam! note: lint level defined here
+kablam!   --> src/lib.rs:23:24
+kablam!    |
+kablam! 23 | #![cfg_attr(test, deny(warnings))]
+kablam!    |                        ^^^^^^^^
+kablam! 
+kablam! error: unused result which must be used
+kablam!    --> src/handler.rs:185:17
+kablam!     |
+kablam! 185 |                 event_loop.timeout_ms(cb, when);
+kablam!     |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: type alias is never used: `Action_`
+kablam!  --> src/protocol.rs:7:1
+kablam!   |
+kablam! 7 | pub type Action_ = Action;
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam! note: lint level defined here
+kablam!  --> src/lib.rs:23:24
+kablam!   |
+kablam! 23| #![cfg_attr(test, deny(warnings))]
+kablam!   |                        ^^^^^^^^
+kablam! 
+kablam! error: unused result which must be used
+kablam!   --> src/tick.rs:76:9
+kablam!    |
+kablam! 76 |           self.sender.send(Message::Timeout(Box::new(move || {
+kablam!    |  _________^ starting here...
+kablam! 77 | |             env.take().map(|f| f());
+kablam! 78 | |         }), ms));
+kablam!    | |_________________^ ...ending here
+kablam! 
+kablam! error: unused result which must be used
+kablam!   --> src/transfer.rs:24:9
+kablam!    |
+kablam! 24 |         self.notify.send(Message::Interest(self.token, interest));
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: private type `Action` in public interface (error E0446)
+kablam!  --> src/protocol.rs:7:1
+kablam!   |
+kablam! 7 | pub type Action_ = Action;
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!   = note: for more information, see issue #34537 <https://github.com/rust-lang/rust/issues/34537>
+kablam! note: lint level defined here
+kablam!  --> src/lib.rs:23:24
+kablam!   |
+kablam! 23| #![cfg_attr(test, deny(warnings))]
+kablam!   |                        ^^^^^^^^
+kablam! 
+kablam! error: private type `Message` in public interface (error E0446)
+kablam!  --> src/handler.rs:7:1
+kablam!   |
+kablam! 7 | pub type Message_ = Message;
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!   = note: for more information, see issue #34537 <https://github.com/rust-lang/rust/issues/34537>
+kablam! 
+kablam! error: private type `Message` in public interface (error E0446)
+kablam!    --> src/handler.rs:122:5
+kablam!     |
+kablam! 122 |     type Message = Message_;
+kablam!     |     ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #34537 <https://github.com/rust-lang/rust/issues/34537>
+kablam! 
+kablam! error: private type `Message` in public interface (error E0446)
+kablam!    --> src/handler.rs:159:5
+kablam!     |
+kablam! 159 |     fn notify(&mut self, event_loop: &mut EventLoop<Self>, msg: Message) {
+kablam!     |     ^
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #34537 <https://github.com/rust-lang/rust/issues/34537>
+kablam! 
+kablam! error: private type `Message` in public interface (error E0446)
+kablam!  --> src/transfer.rs:5:1
+kablam!   |
+kablam! 5 | pub type Message_ = Message;
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!   = note: for more information, see issue #34537 <https://github.com/rust-lang/rust/issues/34537>
+kablam! 
+kablam! error: private type `Message` in public interface (error E0446)
+kablam!   --> src/transfer.rs:14:1
+kablam!    |
+kablam! 14 |   pub fn new(token: mio::Token, notify: mio::Sender<Message_>) -> Transfer {
+kablam!    |  _^ starting here...
+kablam! 15 | |     Transfer {
+kablam! 16 | |         token: token,
+kablam! 17 | |         notify: notify,
+kablam! 18 | |     }
+kablam! 19 | | }
+kablam!    | |_^ ...ending here
+kablam!    |
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #34537 <https://github.com/rust-lang/rust/issues/34537>
+kablam! 
+kablam! error: aborting due to 11 previous errors
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f 3b5e8718da62ba6b99ae88f064b85405871ab10f2e54ec35f56b4d3ceefd8c49`
+blam! 3b5e8718da62ba6b99ae88f064b85405871ab10f2e54ec35f56b4d3ceefd8c49

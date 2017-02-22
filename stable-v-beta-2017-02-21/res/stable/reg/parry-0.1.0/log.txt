@@ -1,0 +1,22 @@
+boom! testing parry-0.1.0 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 8d0f907f625e7205a5c4f733fb9f077973604876f219967e65b71c4a03b21e0d
+boom! running `docker start -a 8d0f907f625e7205a5c4f733fb9f077973604876f219967e65b71c4a03b21e0d`
+kablam!    Compiling crossbeam v0.1.6
+kablam!    Compiling rayon v0.0.1
+kablam! error[E0512]: transmute called with differently sized types: [usize; 32] (2048 bits) to [std::sync::atomic::AtomicBool; 32] (256 bits)
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/crossbeam-0.1.6/src/sync/seg_queue.rs:34:29
+kablam!    |
+kablam! 34 |             ready: unsafe { mem::transmute([0usize; SEG_SIZE]) },
+kablam!    |                             ^^^^^^^^^^^^^^ transmuting between 2048 bits and 256 bits
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `crossbeam`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 8d0f907f625e7205a5c4f733fb9f077973604876f219967e65b71c4a03b21e0d`
+blam! 8d0f907f625e7205a5c4f733fb9f077973604876f219967e65b71c4a03b21e0d

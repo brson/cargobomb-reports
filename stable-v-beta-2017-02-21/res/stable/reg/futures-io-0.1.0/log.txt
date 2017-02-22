@@ -1,0 +1,39 @@
+boom! testing futures-io-0.1.0 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! c01ed8078e8903192bc4190806f9fb618e35841ef1e3336a337b69101e8dc833
+boom! running `docker start -a c01ed8078e8903192bc4190806f9fb618e35841ef1e3336a337b69101e8dc833`
+kablam!    Compiling futures v0.1.10
+kablam!    Compiling futures-io v0.1.0 (file:///source)
+kablam! error: macro undefined: 'try_poll!'
+kablam!   --> src/copy.rs:52:27
+kablam!    |
+kablam! 52 |                     match try_poll!(self.reader.poll(task)) {
+kablam!    |                           ^^^^^^^^
+kablam! 
+kablam! error: macro undefined: 'try_poll!'
+kablam!   --> src/copy.rs:81:27
+kablam!    |
+kablam! 81 |                     match try_poll!(self.writer.poll(task)) {
+kablam!    |                           ^^^^^^^^
+kablam! 
+kablam! error: macro undefined: 'try_poll!'
+kablam!   --> src/read_to_end.rs:42:19
+kablam!    |
+kablam! 42 |             match try_poll!(self.a.poll(task)) {
+kablam!    |                   ^^^^^^^^
+kablam! 
+kablam! error: macro undefined: 'try_poll!'
+kablam!   --> src/task.rs:86:27
+kablam!    |
+kablam! 86 |         let found = match try_poll!(state.object.poll(self.task)) {
+kablam!    |                           ^^^^^^^^
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `futures-io`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f c01ed8078e8903192bc4190806f9fb618e35841ef1e3336a337b69101e8dc833`
+blam! c01ed8078e8903192bc4190806f9fb618e35841ef1e3336a337b69101e8dc833

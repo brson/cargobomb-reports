@@ -1,0 +1,101 @@
+boom! testing https://github.com/retep998/mlpccg-rs#41cdddc60d7104ea8f85f961140891e8d4924193 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! eafe8eae8b2a230da1b16edc9505c545784dfd235304c161a9237191e3720227
+boom! running `docker start -a eafe8eae8b2a230da1b16edc9505c545784dfd235304c161a9237191e3720227`
+kablam!    Compiling mlpccg v0.1.0 (file:///source)
+kablam! error: expected expression, found reserved keyword `proc`
+kablam!   --> src/bin/client.rs:14:52
+kablam!    |
+kablam! 14 |         TaskBuilder::new().stack_size(32768).spawn(proc() {
+kablam!    |                                                    ^^^^
+kablam! 
+kablam! error: expected one of `)`, `.`, `;`, `<`, `?`, `break`, `continue`, `false`, `for`, `if`, `loop`, `match`, `move`, `return`, `true`, `unsafe`, `while`, `}`, or an operator, found `proc`
+kablam!   --> src/bin/client.rs:14:52
+kablam!    |
+kablam! 14 |         TaskBuilder::new().stack_size(32768).spawn(proc() {
+kablam!    |                                                    ^^^^
+kablam! 
+kablam! error: expected expression, found reserved keyword `proc`
+kablam!    --> src/main.rs:126:53
+kablam!     |
+kablam! 126 |         TaskBuilder::new().stack_size(0x8000).spawn(proc() Player::sender(send_rx, tcp_tx));
+kablam!     |                                                     ^^^^
+kablam! 
+kablam! error: expected one of `)`, `.`, `;`, `<`, `?`, `break`, `continue`, `false`, `for`, `if`, `loop`, `match`, `move`, `return`, `true`, `unsafe`, `while`, `}`, or an operator, found `proc`
+kablam!    --> src/main.rs:126:53
+kablam!     |
+kablam! 126 |         TaskBuilder::new().stack_size(0x8000).spawn(proc() Player::sender(send_rx, tcp_tx));
+kablam!     |                                                     ^^^^
+kablam! 
+kablam! error: expected expression, found reserved keyword `proc`
+kablam!    --> src/main.rs:196:15
+kablam!     |
+kablam! 196 |         spawn(proc() Server::listener(listen_tx));
+kablam!     |               ^^^^
+kablam! 
+kablam! error: expected one of `)`, `.`, `;`, `<`, `?`, `break`, `continue`, `false`, `for`, `if`, `loop`, `match`, `move`, `return`, `true`, `unsafe`, `while`, `}`, or an operator, found `proc`
+kablam!    --> src/main.rs:196:15
+kablam!     |
+kablam! 196 |         spawn(proc() Server::listener(listen_tx));
+kablam!     |               ^^^^
+kablam! 
+kablam! error: expected type, found `|`
+kablam!    --> src/main.rs:206:36
+kablam!     |
+kablam! 206 |     fn player(&self, id: Id, func: |&Player|) {
+kablam!     |                                    ^
+kablam! 
+kablam! error: expected one of `!`, `&`, `(`, `)`, `*`, `<`, `[`, `_`, `extern`, `fn`, `for`, `impl`, or `unsafe`, found `|`
+kablam!    --> src/main.rs:206:36
+kablam!     |
+kablam! 206 |     fn player(&self, id: Id, func: |&Player|) {
+kablam!     |                                    ^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error[E0432]: unresolved import `std::io::timer::sleep`
+kablam!  --> src/bin/client.rs:3:5
+kablam!   |
+kablam! 3 | use std::io::timer::sleep;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^ Could not find `timer` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::TcpStream`
+kablam!  --> src/bin/client.rs:4:15
+kablam!   |
+kablam! 4 | use std::io::{TcpStream};
+kablam!   |               ^^^^^^^^^ no `TcpStream` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::sync::atomics::AtomicUint`
+kablam!  --> src/bin/client.rs:6:26
+kablam!   |
+kablam! 6 | use std::sync::atomics::{AtomicUint, SeqCst};
+kablam!   |                          ^^^^^^^^^^ Could not find `atomics` in `sync`
+kablam! 
+kablam! error[E0432]: unresolved import `std::sync::atomics::SeqCst`
+kablam!  --> src/bin/client.rs:6:38
+kablam!   |
+kablam! 6 | use std::sync::atomics::{AtomicUint, SeqCst};
+kablam!   |                                      ^^^^^^ Could not find `atomics` in `sync`
+kablam! 
+kablam! error[E0432]: unresolved import `std::task::TaskBuilder`
+kablam!  --> src/bin/client.rs:7:5
+kablam!   |
+kablam! 7 | use std::task::TaskBuilder;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^ Could not find `task` in `std`
+kablam! 
+kablam! error: module `duration` is private
+kablam!  --> src/bin/client.rs:8:5
+kablam!   |
+kablam! 8 | use std::time::duration::Duration;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 8 previous errors
+kablam! 
+kablam! error: Could not compile `mlpccg`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f eafe8eae8b2a230da1b16edc9505c545784dfd235304c161a9237191e3720227`
+blam! eafe8eae8b2a230da1b16edc9505c545784dfd235304c161a9237191e3720227

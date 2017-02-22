@@ -1,0 +1,132 @@
+boom! testing mkv-0.0.5 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 72093fb44459f0509e3199464fe32c2485c5036e8122317cf93a663ce2506076
+boom! running `docker start -a 72093fb44459f0509e3199464fe32c2485c5036e8122317cf93a663ce2506076`
+kablam!    Compiling mkv v0.0.5 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.67 secs
+boom! running `docker rm -f 72093fb44459f0509e3199464fe32c2485c5036e8122317cf93a663ce2506076`
+blam! 72093fb44459f0509e3199464fe32c2485c5036e8122317cf93a663ce2506076
+boom! running: cargo +beta test --frozen --no-run
+boom! creating container for: cargo +beta test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta test --frozen --no-run cargobomb`
+blam! af8f2a9edc70e57b513e51c029641f5ee1cfb074b2cda14bfb93f3eca4b3567a
+boom! running `docker start -a af8f2a9edc70e57b513e51c029641f5ee1cfb074b2cda14bfb93f3eca4b3567a`
+kablam!    Compiling mkv v0.0.5 (file:///source)
+kablam! error[E0433]: failed to resolve. Maybe a missing `extern crate log;`?
+kablam!  --> examples/simplelogger.rs:2:6
+kablam!   |
+kablam! 2 | impl ::log::Log for SimpleLogger {
+kablam!   |      ^^^^^^^^^^ Maybe a missing `extern crate log;`?
+kablam! 
+kablam! error[E0433]: failed to resolve. Maybe a missing `extern crate log;`?
+kablam!  --> examples/simplelogger.rs:3:27
+kablam!   |
+kablam! 3 |     fn enabled(&self, _: &::log::LogMetadata) -> bool { true     }
+kablam!   |                           ^^^^^^^^^^^^^^^^^^ Maybe a missing `extern crate log;`?
+kablam! 
+kablam! error[E0433]: failed to resolve. Maybe a missing `extern crate log;`?
+kablam!  --> examples/simplelogger.rs:4:28
+kablam!   |
+kablam! 4 |     fn log(&self, record: &::log::LogRecord) { println!("{}", record.args());  }
+kablam!   |                            ^^^^^^^^^^^^^^^^ Maybe a missing `extern crate log;`?
+kablam! 
+kablam! error: main function not found
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `mkv`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!   --> examples/event_dumper.rs:22:9
+kablam!    |
+kablam! 22 |     let mut reader : Box<Read> = match args().len() {
+kablam!    |         ^^^^^^^^^^
+kablam! 
+kablam! warning: function `eldb_test__id_to_class` should have a snake case name such as `eldb_test_id_to_class`, #[warn(non_snake_case)] on by default
+kablam!    --> src/elements/database.rs:266:1
+kablam!     |
+kablam! 266 |   fn eldb_test__id_to_class() {
+kablam!     |  _^ starting here...
+kablam! 267 | |     assert_eq!(id_to_class(0x1A45DFA3), Class::EBML);
+kablam! 268 | |     assert_eq!(id_to_class(0x002EB524), Class::ColourSpace);
+kablam! 269 | |     assert_eq!(id_to_class(0x000000EC), Class::Void);
+kablam! 270 | |     assert_eq!(id_to_class(0x00004285), Class::DocTypeReadVersion);
+kablam! 271 | |     assert_eq!(id_to_class(0x1A45DBBBB), Class::Unknown);
+kablam! 272 | | }
+kablam!     | |_^ ...ending here
+kablam! 
+kablam! warning: function `eldb_test__class_to_id` should have a snake case name such as `eldb_test_class_to_id`, #[warn(non_snake_case)] on by default
+kablam!    --> src/elements/database.rs:275:1
+kablam!     |
+kablam! 275 |   fn eldb_test__class_to_id() {
+kablam!     |  _^ starting here...
+kablam! 276 | |     assert_eq!(class_to_id(Class::EBML              ), 0x1A45DFA3);
+kablam! 277 | |     assert_eq!(class_to_id(Class::ColourSpace       ), 0x002EB524);
+kablam! 278 | |     assert_eq!(class_to_id(Class::Void              ), 0x000000EC);
+kablam! 279 | |     assert_eq!(class_to_id(Class::DocTypeReadVersion), 0x00004285);
+kablam! 280 | | }
+kablam!     | |_^ ...ending here
+kablam! 
+kablam! warning: function `eldb_test__class_to_type` should have a snake case name such as `eldb_test_class_to_type`, #[warn(non_snake_case)] on by default
+kablam!    --> src/elements/database.rs:283:1
+kablam!     |
+kablam! 283 |   fn eldb_test__class_to_type() {
+kablam!     |  _^ starting here...
+kablam! 284 | |     use super::Type::*;
+kablam! 285 | |     assert_eq!(class_to_type(Class::EBML              ), Master);
+kablam! 286 | |     assert_eq!(class_to_type(Class::ColourSpace       ), Binary);
+kablam! 287 | |     assert_eq!(class_to_type(Class::Void              ), Binary);
+kablam! 288 | |     assert_eq!(class_to_type(Class::DocTypeReadVersion), Unsigned);
+kablam! 289 | | }
+kablam!     | |_^ ...ending here
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f af8f2a9edc70e57b513e51c029641f5ee1cfb074b2cda14bfb93f3eca4b3567a`
+blam! af8f2a9edc70e57b513e51c029641f5ee1cfb074b2cda14bfb93f3eca4b3567a
+boom! running: cargo +beta test --frozen
+boom! creating container for: cargo +beta test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta test --frozen cargobomb`
+blam! 8796be7f17b15e5516f560b0907865422e85cc3cdd81bc7b2334916f444d224a
+boom! running `docker start -a 8796be7f17b15e5516f560b0907865422e85cc3cdd81bc7b2334916f444d224a`
+kablam!    Compiling mkv v0.0.5 (file:///source)
+kablam! error[E0433]: failed to resolve. Maybe a missing `extern crate log;`?
+kablam!  --> examples/simplelogger.rs:2:6
+kablam!   |
+kablam! 2 | impl ::log::Log for SimpleLogger {
+kablam!   |      ^^^^^^^^^^ Maybe a missing `extern crate log;`?
+kablam! 
+kablam! error[E0433]: failed to resolve. Maybe a missing `extern crate log;`?
+kablam!  --> examples/simplelogger.rs:3:27
+kablam!   |
+kablam! 3 |     fn enabled(&self, _: &::log::LogMetadata) -> bool { true     }
+kablam!   |                           ^^^^^^^^^^^^^^^^^^ Maybe a missing `extern crate log;`?
+kablam! 
+kablam! error[E0433]: failed to resolve. Maybe a missing `extern crate log;`?
+kablam!  --> examples/simplelogger.rs:4:28
+kablam!   |
+kablam! 4 |     fn log(&self, record: &::log::LogRecord) { println!("{}", record.args());  }
+kablam!   |                            ^^^^^^^^^^^^^^^^ Maybe a missing `extern crate log;`?
+kablam! 
+kablam! error: main function not found
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `mkv`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!   --> examples/dom_dumper.rs:23:9
+kablam!    |
+kablam! 23 |     let mut reader : Box<Read> = match args().len() {
+kablam!    |         ^^^^^^^^^^
+kablam! 
+kablam! warning: unused variable: `element_logger`, #[warn(unused_variables)] on by default
+kablam!   --> examples/dom_dumper.rs:32:9
+kablam!    |
+kablam! 32 |     let element_logger = mkv::elements::parser::debug::DebugPrint::new(log::LogLevel::Info);
+kablam!    |         ^^^^^^^^^^^^^^
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f 8796be7f17b15e5516f560b0907865422e85cc3cdd81bc7b2334916f444d224a`
+blam! 8796be7f17b15e5516f560b0907865422e85cc3cdd81bc7b2334916f444d224a

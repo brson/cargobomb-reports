@@ -1,0 +1,176 @@
+boom! testing dnstimeout-0.0.1 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 4238f68c9cd5eb2730c407e30783870600543c3651774a2ce8dc16151c8f937c
+boom! running `docker start -a 4238f68c9cd5eb2730c407e30783870600543c3651774a2ce8dc16151c8f937c`
+kablam!    Compiling dnstimeout v0.0.1 (file:///source)
+kablam! error[E0432]: unresolved import `std::io::net::addrinfo`
+kablam!  --> src/lib.rs:2:5
+kablam!   |
+kablam! 2 | use std::io::net::addrinfo;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^ Could not find `net` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::net::ip`
+kablam!  --> src/lib.rs:3:5
+kablam!   |
+kablam! 3 | use std::io::net::ip;
+kablam!   |     ^^^^^^^^^^^^^^^^ Could not find `net` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::timer`
+kablam!  --> src/lib.rs:4:5
+kablam!   |
+kablam! 4 | use std::io::timer;
+kablam!   |     ^^^^^^^^^^^^^^ no `timer` in `io`
+kablam! 
+kablam! error[E0412]: cannot find type `IoResult` in module `io`
+kablam!   --> src/lib.rs:10:66
+kablam!    |
+kablam! 10 | pub fn lookup(host: String, timeout_duration: time::Duration) -> io::IoResult<Vec<ip::IpAddr>> {
+kablam!    |                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ did you mean `io::Result`?
+kablam! 
+kablam! error[E0412]: cannot find type `IoResult` in module `io`
+kablam!   --> src/lib.rs:11:32
+kablam!    |
+kablam! 11 |     let (tx, rx):(mpsc::Sender<io::IoResult<Vec<ip::IpAddr>>>, mpsc::Receiver<io::IoResult<Vec<ip::IpAddr>>>) = channel();
+kablam!    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ did you mean `io::Result`?
+kablam! 
+kablam! error[E0412]: cannot find type `IoResult` in module `io`
+kablam!   --> src/lib.rs:11:79
+kablam!    |
+kablam! 11 |     let (tx, rx):(mpsc::Sender<io::IoResult<Vec<ip::IpAddr>>>, mpsc::Receiver<io::IoResult<Vec<ip::IpAddr>>>) = channel();
+kablam!    |                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ did you mean `io::Result`?
+kablam! 
+kablam! error[E0422]: cannot find struct, variant or union type `IoError` in module `io`
+kablam!   --> src/lib.rs:26:25
+kablam!    |
+kablam! 26 |                 let e = io::IoError{
+kablam!    |                         ^^^^^^^^^^^ did you mean `io::Error`?
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `IoErrorKind` in `io`
+kablam!   --> src/lib.rs:27:27
+kablam!    |
+kablam! 27 |                     kind: io::IoErrorKind::TimedOut,
+kablam!    |                           ^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `IoErrorKind` in `io`
+kablam! 
+kablam! error: use of unstable library feature 'mpsc_select': This implementation, while likely sufficient, is unsafe and likely to be error prone. At some point in the future this module will likely be replaced, and it is currently unknown how much API breakage that will cause. The ability to select over a number of channels will remain forever, but no guarantees beyond this are being made (see issue #27800)
+kablam!   --> src/lib.rs:23:9
+kablam!    |
+kablam! 23 |         select! {
+kablam!    |         ^
+kablam!    |
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error: use of unstable library feature 'mpsc_select': This implementation, while likely sufficient, is unsafe and likely to be error prone. At some point in the future this module will likely be replaced, and it is currently unknown how much API breakage that will cause. The ability to select over a number of channels will remain forever, but no guarantees beyond this are being made (see issue #27800)
+kablam!   --> src/lib.rs:23:9
+kablam!    |
+kablam! 23 |         select! {
+kablam!    |         ^
+kablam!    |
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error: no method named `num_milliseconds` found for type `std::time::Duration` in the current scope
+kablam!   --> src/lib.rs:16:49
+kablam!    |
+kablam! 16 |                          host, timeout_duration.num_milliseconds());
+kablam!    |                                                 ^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no associated item named `spawn` found for type `std::thread::Thread` in the current scope
+kablam!   --> src/lib.rs:17:5
+kablam!    |
+kablam! 17 |     thread::Thread::spawn(move|| {
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `as_slice` found for type `std::string::String` in the current scope
+kablam!   --> src/lib.rs:19:51
+kablam!    |
+kablam! 19 |         tx.send(addrinfo::get_host_addresses(host.as_slice()));
+kablam!    |                                                   ^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'mpsc_select': This implementation, while likely sufficient, is unsafe and likely to be error prone. At some point in the future this module will likely be replaced, and it is currently unknown how much API breakage that will cause. The ability to select over a number of channels will remain forever, but no guarantees beyond this are being made (see issue #27800)
+kablam!   --> src/lib.rs:23:9
+kablam!    |
+kablam! 23 |         select! {
+kablam!    |         ^
+kablam!    |
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error: use of unstable library feature 'mpsc_select': This implementation, while likely sufficient, is unsafe and likely to be error prone. At some point in the future this module will likely be replaced, and it is currently unknown how much API breakage that will cause. The ability to select over a number of channels will remain forever, but no guarantees beyond this are being made (see issue #27800)
+kablam!   --> src/lib.rs:23:9
+kablam!    |
+kablam! 23 |         select! {
+kablam!    |         ^
+kablam!    |
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error: use of unstable library feature 'mpsc_select': This implementation, while likely sufficient, is unsafe and likely to be error prone. At some point in the future this module will likely be replaced, and it is currently unknown how much API breakage that will cause. The ability to select over a number of channels will remain forever, but no guarantees beyond this are being made (see issue #27800)
+kablam!   --> src/lib.rs:23:9
+kablam!    |
+kablam! 23 |         select! {
+kablam!    |         ^
+kablam!    |
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error: use of unstable library feature 'mpsc_select': This implementation, while likely sufficient, is unsafe and likely to be error prone. At some point in the future this module will likely be replaced, and it is currently unknown how much API breakage that will cause. The ability to select over a number of channels will remain forever, but no guarantees beyond this are being made (see issue #27800)
+kablam!   --> src/lib.rs:23:9
+kablam!    |
+kablam! 23 |         select! {
+kablam!    |         ^
+kablam!    |
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error: use of unstable library feature 'mpsc_select': This implementation, while likely sufficient, is unsafe and likely to be error prone. At some point in the future this module will likely be replaced, and it is currently unknown how much API breakage that will cause. The ability to select over a number of channels will remain forever, but no guarantees beyond this are being made (see issue #27800)
+kablam!   --> src/lib.rs:23:9
+kablam!    |
+kablam! 23 |         select! {
+kablam!    |         ^
+kablam!    |
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error: use of unstable library feature 'mpsc_select': This implementation, while likely sufficient, is unsafe and likely to be error prone. At some point in the future this module will likely be replaced, and it is currently unknown how much API breakage that will cause. The ability to select over a number of channels will remain forever, but no guarantees beyond this are being made (see issue #27800)
+kablam!   --> src/lib.rs:23:9
+kablam!    |
+kablam! 23 |         select! {
+kablam!    |         ^
+kablam!    |
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error: use of unstable library feature 'mpsc_select': This implementation, while likely sufficient, is unsafe and likely to be error prone. At some point in the future this module will likely be replaced, and it is currently unknown how much API breakage that will cause. The ability to select over a number of channels will remain forever, but no guarantees beyond this are being made (see issue #27800)
+kablam!   --> src/lib.rs:23:9
+kablam!    |
+kablam! 23 |         select! {
+kablam!    |         ^
+kablam!    |
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error: use of unstable library feature 'mpsc_select': This implementation, while likely sufficient, is unsafe and likely to be error prone. At some point in the future this module will likely be replaced, and it is currently unknown how much API breakage that will cause. The ability to select over a number of channels will remain forever, but no guarantees beyond this are being made (see issue #27800)
+kablam!   --> src/lib.rs:23:9
+kablam!    |
+kablam! 23 |         select! {
+kablam!    |         ^
+kablam!    |
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error: use of unstable library feature 'mpsc_select': This implementation, while likely sufficient, is unsafe and likely to be error prone. At some point in the future this module will likely be replaced, and it is currently unknown how much API breakage that will cause. The ability to select over a number of channels will remain forever, but no guarantees beyond this are being made (see issue #27800)
+kablam!   --> src/lib.rs:23:9
+kablam!    |
+kablam! 23 |         select! {
+kablam!    |         ^
+kablam!    |
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error: use of unstable library feature 'mpsc_select': This implementation, while likely sufficient, is unsafe and likely to be error prone. At some point in the future this module will likely be replaced, and it is currently unknown how much API breakage that will cause. The ability to select over a number of channels will remain forever, but no guarantees beyond this are being made (see issue #27800)
+kablam!   --> src/lib.rs:23:9
+kablam!    |
+kablam! 23 |         select! {
+kablam!    |         ^
+kablam!    |
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error: aborting due to 13 previous errors
+kablam! 
+kablam! error: Could not compile `dnstimeout`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 4238f68c9cd5eb2730c407e30783870600543c3651774a2ce8dc16151c8f937c`
+blam! 4238f68c9cd5eb2730c407e30783870600543c3651774a2ce8dc16151c8f937c

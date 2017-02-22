@@ -1,0 +1,71 @@
+boom! testing https://github.com/avraamisvi/pool#9b381692f3b11f221aad9134e2961d10fa37ecf6 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! b56c930a2ba93a068912d9cb9db27f7431eb7f3c0472c370a948ad32bbd1b95f
+boom! running `docker start -a b56c930a2ba93a068912d9cb9db27f7431eb7f3c0472c370a948ad32bbd1b95f`
+kablam!    Compiling pool v0.1.0 (file:///source)
+kablam! warning: unnecessary parentheses around `if` condition, #[warn(unused_parens)] on by default
+kablam!   --> src/main.rs:49:11
+kablam!    |
+kablam! 49 |         if(self.count == 0) {
+kablam!    |           ^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: cannot borrow immutable borrowed content `*self` as mutable
+kablam!   --> src/main.rs:50:37
+kablam!    |
+kablam! 47 |     pub fn get(&self) -> Option<&Arc<Entry<T>>> {
+kablam!    |                ----- use `&mut self` here to make mutable
+kablam! ...
+kablam! 50 |             let entry = Entry{data: self.call_closure(&self.factory)};
+kablam!    |                                     ^^^^ cannot borrow as mutable
+kablam! 
+kablam! error: cannot borrow immutable field `self.in_use` as mutable
+kablam!   --> src/main.rs:51:13
+kablam!    |
+kablam! 51 |             self.in_use.push(Arc::new(entry));
+kablam!    |             ^^^^^^^^^^^
+kablam! 
+kablam! error: cannot borrow immutable field `self.available` as mutable
+kablam!   --> src/main.rs:55:26
+kablam!    |
+kablam! 55 |             return match self.available.pop() {
+kablam!    |                          ^^^^^^^^^^^^^^
+kablam! 
+kablam! error: cannot borrow immutable borrowed content `*self` as mutable
+kablam!   --> src/main.rs:59:52
+kablam!    |
+kablam! 47 |     pub fn get(&self) -> Option<&Arc<Entry<T>>> {
+kablam!    |                ----- use `&mut self` here to make mutable
+kablam! ...
+kablam! 59 |                             let entry = Entry{data:self.call_closure(&self.factory)};
+kablam!    |                                                    ^^^^ cannot borrow as mutable
+kablam! 
+kablam! error: cannot borrow immutable field `self.in_use` as mutable
+kablam!   --> src/main.rs:61:29
+kablam!    |
+kablam! 61 |                             self.in_use.push(Arc::new(entry));
+kablam!    |                             ^^^^^^^^^^^
+kablam! 
+kablam! error: cannot borrow immutable borrowed content `*self` as mutable
+kablam!   --> src/main.rs:63:29
+kablam!    |
+kablam! 47 |     pub fn get(&self) -> Option<&Arc<Entry<T>>> {
+kablam!    |                ----- use `&mut self` here to make mutable
+kablam! ...
+kablam! 63 |                             self.increase();
+kablam!    |                             ^^^^ cannot borrow as mutable
+kablam! 
+kablam! error: cannot borrow immutable field `self.in_use` as mutable
+kablam!   --> src/main.rs:71:25
+kablam!    |
+kablam! 71 |                         self.in_use.push(arc_entry);
+kablam!    |                         ^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 7 previous errors
+kablam! 
+kablam! error: Could not compile `pool`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f b56c930a2ba93a068912d9cb9db27f7431eb7f3c0472c370a948ad32bbd1b95f`
+blam! b56c930a2ba93a068912d9cb9db27f7431eb7f3c0472c370a948ad32bbd1b95f

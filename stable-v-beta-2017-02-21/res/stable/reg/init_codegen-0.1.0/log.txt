@@ -1,0 +1,32 @@
+boom! testing init_codegen-0.1.0 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! df5782f6022bcf68d074cf760e61e27679e857ffad20f511e98a5c4bd8d0c108
+boom! running `docker start -a df5782f6022bcf68d074cf760e61e27679e857ffad20f511e98a5c4bd8d0c108`
+kablam!    Compiling init_codegen v0.1.0 (file:///source)
+kablam! error: `proc-macro` crate types cannot export any items other than functions tagged with `#[proc_macro_derive]` currently
+kablam!   --> src/lib.rs:14:1
+kablam!    |
+kablam! 14 | pub fn init(_: TokenStream, target: TokenStream) -> TokenStream {
+kablam!    | ^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/lib.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(proc_macro)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: The attribute `proc_macro_attribute` is currently unknown to the compiler and may have meaning added to it in the future (see issue #29642)
+kablam!   --> src/lib.rs:13:1
+kablam!    |
+kablam! 13 | #[proc_macro_attribute]
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `init_codegen`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f df5782f6022bcf68d074cf760e61e27679e857ffad20f511e98a5c4bd8d0c108`
+blam! df5782f6022bcf68d074cf760e61e27679e857ffad20f511e98a5c4bd8d0c108

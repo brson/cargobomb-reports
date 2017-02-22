@@ -1,0 +1,52 @@
+boom! testing pluto-0.0.2 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 2e315f8d7258a041eb9e010232989f615bfbededd7f6f45fe3cfdad39d3efc38
+boom! running `docker start -a 2e315f8d7258a041eb9e010232989f615bfbededd7f6f45fe3cfdad39d3efc38`
+kablam!    Compiling handlebars v0.18.2
+kablam!    Compiling logger v0.0.3
+kablam!    Compiling router v0.1.1
+kablam!    Compiling mount v0.1.0
+kablam!    Compiling staticfile v0.2.0
+kablam!    Compiling handlebars-iron v0.15.3
+kablam!    Compiling pluto v0.0.2 (file:///source)
+kablam! error[E0277]: the trait bound `for<'r, 'r, 'r> logger::Logger: std::ops::Fn<(&'r mut iron::Request<'r, 'r>,)>` is not satisfied
+kablam!   --> src/main.rs:86:11
+kablam!    |
+kablam! 86 |     chain.link_before(logger_before);
+kablam!    |           ^^^^^^^^^^^ the trait `for<'r, 'r, 'r> std::ops::Fn<(&'r mut iron::Request<'r, 'r>,)>` is not implemented for `logger::Logger`
+kablam!    |
+kablam!    = note: required because of the requirements on the impl of `iron::BeforeMiddleware` for `logger::Logger`
+kablam! 
+kablam! error[E0277]: the trait bound `for<'r, 'r, 'r> logger::Logger: std::ops::FnOnce<(&'r mut iron::Request<'r, 'r>,)>` is not satisfied
+kablam!   --> src/main.rs:86:11
+kablam!    |
+kablam! 86 |     chain.link_before(logger_before);
+kablam!    |           ^^^^^^^^^^^ the trait `for<'r, 'r, 'r> std::ops::FnOnce<(&'r mut iron::Request<'r, 'r>,)>` is not implemented for `logger::Logger`
+kablam!    |
+kablam!    = note: required because of the requirements on the impl of `iron::BeforeMiddleware` for `logger::Logger`
+kablam! 
+kablam! error[E0277]: the trait bound `for<'r, 'r, 'r> logger::Logger: std::ops::Fn<(&'r mut iron::Request<'r, 'r>, iron::Response)>` is not satisfied
+kablam!   --> src/main.rs:87:11
+kablam!    |
+kablam! 87 |     chain.link_after(logger_after);
+kablam!    |           ^^^^^^^^^^ the trait `for<'r, 'r, 'r> std::ops::Fn<(&'r mut iron::Request<'r, 'r>, iron::Response)>` is not implemented for `logger::Logger`
+kablam!    |
+kablam!    = note: required because of the requirements on the impl of `iron::AfterMiddleware` for `logger::Logger`
+kablam! 
+kablam! error[E0277]: the trait bound `for<'r, 'r, 'r> logger::Logger: std::ops::FnOnce<(&'r mut iron::Request<'r, 'r>, iron::Response)>` is not satisfied
+kablam!   --> src/main.rs:87:11
+kablam!    |
+kablam! 87 |     chain.link_after(logger_after);
+kablam!    |           ^^^^^^^^^^ the trait `for<'r, 'r, 'r> std::ops::FnOnce<(&'r mut iron::Request<'r, 'r>, iron::Response)>` is not implemented for `logger::Logger`
+kablam!    |
+kablam!    = note: required because of the requirements on the impl of `iron::AfterMiddleware` for `logger::Logger`
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `pluto`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 2e315f8d7258a041eb9e010232989f615bfbededd7f6f45fe3cfdad39d3efc38`
+blam! 2e315f8d7258a041eb9e010232989f615bfbededd7f6f45fe3cfdad39d3efc38

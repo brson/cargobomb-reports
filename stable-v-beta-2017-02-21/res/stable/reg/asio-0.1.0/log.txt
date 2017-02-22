@@ -1,0 +1,121 @@
+boom! testing asio-0.1.0 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 0b23d2e35e92ab20f77f1b693deec77fd510e194bb671d216a1d99f1bc4f6737
+boom! running `docker start -a 0b23d2e35e92ab20f77f1b693deec77fd510e194bb671d216a1d99f1bc4f6737`
+kablam!    Compiling slab v0.1.3
+kablam!    Compiling ws2_32-sys v0.2.1
+kablam!    Compiling nix v0.5.1
+kablam!    Compiling net2 v0.2.26
+kablam!    Compiling bytes v0.3.0
+kablam!    Compiling miow v0.1.5
+kablam!    Compiling mio v0.5.1
+kablam!    Compiling asio v0.1.0 (file:///source)
+kablam! warning[E0276]: impl has stricter requirements than trait, #[warn(extra_requirement_in_impl)] on by default
+kablam!   --> src/loop_scheduler.rs:38:5
+kablam!    |
+kablam! 38 |       fn post<F : FnOnce() + 'static>(&self, f: F) {
+kablam!    |  _____^ starting here...
+kablam! 39 | |         self.pending_jobs.borrow_mut().push_back(Closure::new(f));
+kablam! 40 | |     }
+kablam!    | |_____^ ...ending here: impl has extra requirement `F: 'static`
+kablam!    | 
+kablam!   ::: src/executor.rs
+kablam!    |
+kablam! 9  |       fn post<F : FnOnce()>(&self, f: F);
+kablam!    |       ----------------------------------- definition of `post` from trait
+kablam!    |
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #37166 <https://github.com/rust-lang/rust/issues/37166>
+kablam! 
+kablam! warning[E0276]: impl has stricter requirements than trait, #[warn(extra_requirement_in_impl)] on by default
+kablam!    --> src/io_service.rs:118:5
+kablam!     |
+kablam! 118 |       fn post<F : FnOnce() + 'static>(&self, f: F) {
+kablam!     |  _____^ starting here...
+kablam! 119 | |         let cur = self.next_msg();
+kablam! 120 | |         *self.pending_jobs.borrow_mut() += 1;
+kablam! 121 | |         self.pending_msgs.borrow_mut().insert(cur, Closure::new(f));
+kablam! 122 | |         self.msg_sender.send(Message::UserClosure(cur)).unwrap();
+kablam! 123 | |     }
+kablam!     | |_____^ ...ending here: impl has extra requirement `F: 'static`
+kablam!     | 
+kablam!    ::: src/executor.rs
+kablam!     |
+kablam! 9   |       fn post<F : FnOnce()>(&self, f: F);
+kablam!     |       ----------------------------------- definition of `post` from trait
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #37166 <https://github.com/rust-lang/rust/issues/37166>
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 11.94 secs
+boom! running `docker rm -f 0b23d2e35e92ab20f77f1b693deec77fd510e194bb671d216a1d99f1bc4f6737`
+blam! 0b23d2e35e92ab20f77f1b693deec77fd510e194bb671d216a1d99f1bc4f6737
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 5d5a07480832d227ff426fc205596648928cac928c4c5528c615ce4cdbb5f834
+boom! running `docker start -a 5d5a07480832d227ff426fc205596648928cac928c4c5528c615ce4cdbb5f834`
+kablam!    Compiling asio v0.1.0 (file:///source)
+kablam! warning[E0276]: impl has stricter requirements than trait, #[warn(extra_requirement_in_impl)] on by default
+kablam!   --> src/loop_scheduler.rs:38:5
+kablam!    |
+kablam! 38 |       fn post<F : FnOnce() + 'static>(&self, f: F) {
+kablam!    |  _____^ starting here...
+kablam! 39 | |         self.pending_jobs.borrow_mut().push_back(Closure::new(f));
+kablam! 40 | |     }
+kablam!    | |_____^ ...ending here: impl has extra requirement `F: 'static`
+kablam!    | 
+kablam!   ::: src/executor.rs
+kablam!    |
+kablam! 9  |       fn post<F : FnOnce()>(&self, f: F);
+kablam!    |       ----------------------------------- definition of `post` from trait
+kablam!    |
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #37166 <https://github.com/rust-lang/rust/issues/37166>
+kablam! 
+kablam! warning[E0276]: impl has stricter requirements than trait, #[warn(extra_requirement_in_impl)] on by default
+kablam!    --> src/io_service.rs:118:5
+kablam!     |
+kablam! 118 |       fn post<F : FnOnce() + 'static>(&self, f: F) {
+kablam!     |  _____^ starting here...
+kablam! 119 | |         let cur = self.next_msg();
+kablam! 120 | |         *self.pending_jobs.borrow_mut() += 1;
+kablam! 121 | |         self.pending_msgs.borrow_mut().insert(cur, Closure::new(f));
+kablam! 122 | |         self.msg_sender.send(Message::UserClosure(cur)).unwrap();
+kablam! 123 | |     }
+kablam!     | |_____^ ...ending here: impl has extra requirement `F: 'static`
+kablam!     | 
+kablam!    ::: src/executor.rs
+kablam!     |
+kablam! 9   |       fn post<F : FnOnce()>(&self, f: F);
+kablam!     |       ----------------------------------- definition of `post` from trait
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #37166 <https://github.com/rust-lang/rust/issues/37166>
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 1.96 secs
+boom! running `docker rm -f 5d5a07480832d227ff426fc205596648928cac928c4c5528c615ce4cdbb5f834`
+blam! 5d5a07480832d227ff426fc205596648928cac928c4c5528c615ce4cdbb5f834
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! c118f339fb19e3471ebeb8574bac156bff1bf473bf0e1e6436709fe96de4e939
+boom! running `docker start -a c118f339fb19e3471ebeb8574bac156bff1bf473bf0e1e6436709fe96de4e939`
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/asio-04f181dff5382ffa
+blam! 
+blam! running 1 test
+kablam!    Doc-tests asio
+blam! test tests::it_works ... ok
+blam! 
+blam! test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f c118f339fb19e3471ebeb8574bac156bff1bf473bf0e1e6436709fe96de4e939`
+blam! c118f339fb19e3471ebeb8574bac156bff1bf473bf0e1e6436709fe96de4e939

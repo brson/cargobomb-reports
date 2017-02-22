@@ -1,0 +1,55 @@
+boom! testing forever-1.0.0 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 8209eb7735ff8d6125251c53e953312e2440f4a17f34866f22c7adf25ade093c
+boom! running `docker start -a 8209eb7735ff8d6125251c53e953312e2440f4a17f34866f22c7adf25ade093c`
+kablam!    Compiling forever v1.0.0 (file:///source)
+kablam! error: invalid suffix `u` for numeric literal
+kablam!   --> src/lib.rs:55:26
+kablam!    |
+kablam! 55 |     let a = Forever::new(7u); let b = a;
+kablam!    |                          ^^
+kablam!    |
+kablam!    = help: the suffix must be one of the integral types (`u32`, `isize`, etc)
+kablam! 
+kablam! error: expected expression, found reserved keyword `proc`
+kablam!   --> src/lib.rs:57:11
+kablam!    |
+kablam! 57 |     spawn(proc() {
+kablam!    |           ^^^^
+kablam! 
+kablam! error: expected one of `)`, `.`, `;`, `<`, `?`, `break`, `continue`, `false`, `for`, `if`, `loop`, `match`, `move`, `return`, `true`, `unsafe`, `while`, `}`, or an operator, found `proc`
+kablam!   --> src/lib.rs:57:11
+kablam!    |
+kablam! 57 |     spawn(proc() {
+kablam!    |           ^^^^
+kablam! 
+kablam! error[E0405]: cannot find trait `Deref` in this scope
+kablam!   --> src/lib.rs:47:22
+kablam!    |
+kablam! 47 | impl<T: Send + Sync> Deref<T> for Forever<T> {
+kablam!    |                      ^^^^^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::ops::Deref;`
+kablam! 
+kablam! error: box expression syntax is experimental; you can call `Box::new` instead. (see issue #27779)
+kablam!   --> src/lib.rs:25:45
+kablam!    |
+kablam! 25 |             __data: unsafe { mem::transmute(box val) },
+kablam!    |                                             ^^^^^^^
+kablam! 
+kablam! error: The attribute `license` is currently unknown to the compiler and may have meaning added to it in the future (see issue #29642)
+kablam!  --> src/lib.rs:1:1
+kablam!   |
+kablam! 1 | #![license = "MIT"]
+kablam!   | ^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `forever`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 8209eb7735ff8d6125251c53e953312e2440f4a17f34866f22c7adf25ade093c`
+blam! 8209eb7735ff8d6125251c53e953312e2440f4a17f34866f22c7adf25ade093c

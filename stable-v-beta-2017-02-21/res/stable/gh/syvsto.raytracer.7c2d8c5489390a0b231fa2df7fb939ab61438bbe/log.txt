@@ -1,0 +1,208 @@
+boom! testing https://github.com/syvsto/raytracer#7c2d8c5489390a0b231fa2df7fb939ab61438bbe against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! f59328c5a5171b3000d101eb5957b874a98921ea0653ac6071682e826c1d2e60
+boom! running `docker start -a f59328c5a5171b3000d101eb5957b874a98921ea0653ac6071682e826c1d2e60`
+kablam!    Compiling itertools v0.5.1
+kablam!    Compiling toml v0.2.1
+kablam!    Compiling num_cpus v0.2.13
+kablam!    Compiling term_size v0.2.1
+kablam!    Compiling rand v0.3.14
+kablam!    Compiling clap v2.13.0
+kablam!    Compiling num-integer v0.1.32
+kablam!    Compiling num-iter v0.1.32
+kablam!    Compiling num-complex v0.1.35
+kablam!    Compiling deque v0.3.1
+kablam!    Compiling num-bigint v0.1.35
+kablam!    Compiling rayon v0.4.2
+kablam!    Compiling num-rational v0.1.35
+kablam!    Compiling num v0.1.35
+kablam!    Compiling stopwatch v0.0.7
+kablam!    Compiling raytracer v0.1.0 (file:///source)
+kablam! warning: method is never used: `object_to_world`, #[warn(dead_code)] on by default
+kablam!    --> src/primitives/objects.rs:205:5
+kablam!     |
+kablam! 205 |     pub fn object_to_world(&mut self, m: Matrix4<f32>) {
+kablam!     |     ^
+kablam! 
+kablam! warning: variant is never used: `PointLight`, #[warn(dead_code)] on by default
+kablam!   --> src/primitives/light.rs:9:5
+kablam!    |
+kablam! 9  |       PointLight {
+kablam!    |  _____^ starting here...
+kablam! 10 | |         color: V3f,
+kablam! 11 | |         intensity: f32,
+kablam! 12 | |         position: V3f,
+kablam! 13 | |     },
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: value assigned to `light_clr` is never read, #[warn(unused_assignments)] on by default
+kablam!   --> src/primitives/light.rs:29:9
+kablam!    |
+kablam! 29 |     let mut light_clr = [0.0, 0.0, 0.0];
+kablam!    |         ^^^^^^^^^^^^^
+kablam! 
+kablam! warning: value assigned to `light_intensity` is never read, #[warn(unused_assignments)] on by default
+kablam!   --> src/primitives/light.rs:30:9
+kablam!    |
+kablam! 30 |     let mut light_intensity = 0.0;
+kablam!    |         ^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: value assigned to `light_dir` is never read, #[warn(unused_assignments)] on by default
+kablam!   --> src/primitives/light.rs:32:9
+kablam!    |
+kablam! 32 |     let mut light_dir = [0.0, 0.0, 0.0];
+kablam!    |         ^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused import: `rustc_serialize`, #[warn(unused_imports)] on by default
+kablam!  --> src/primitives/settings.rs:2:5
+kablam!   |
+kablam! 2 | use rustc_serialize;
+kablam!   |     ^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: function is never used: `to_vec4`, #[warn(dead_code)] on by default
+kablam!   --> src/stdlib/mod.rs:16:1
+kablam!    |
+kablam! 16 |   pub fn to_vec4(v: Vector3<f32>) -> Vector4<f32> {
+kablam!    |  _^ starting here...
+kablam! 17 | |     [v[0], v[1], v[2], 1.0]
+kablam! 18 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! warning: function is never used: `load_geo_file`, #[warn(dead_code)] on by default
+kablam!   --> src/file.rs:34:1
+kablam!    |
+kablam! 34 | pub fn load_geo_file(file_name: String) -> (Vec<V3f>, i32) {
+kablam!    | ^
+kablam! 
+kablam! warning: type alias is never used: `V2f`, #[warn(dead_code)] on by default
+kablam!   --> src/main.rs:28:1
+kablam!    |
+kablam! 28 | type V2f = Vector2<f32>;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/main.rs:109:5
+kablam!     |
+kablam! 109 |     file::write_to_ppm(&framebuffer, cam_opts, file_name);
+kablam!     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused variable: `uv`, #[warn(unused_variables)] on by default
+kablam!    --> src/main.rs:218:13
+kablam!     |
+kablam! 218 |         let uv = surface.get_tex_coords();
+kablam!     |             ^^
+kablam! 
+kablam! warning: unused variable: `cam_opts`, #[warn(unused_variables)] on by default
+kablam!    --> src/main.rs:250:36
+kablam!     |
+kablam! 250 | fn trace<T: Intersectable + Clone>(cam_opts: &CameraOptions,
+kablam!     |                                    ^^^^^^^^
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 25.96 secs
+boom! running `docker rm -f f59328c5a5171b3000d101eb5957b874a98921ea0653ac6071682e826c1d2e60`
+blam! f59328c5a5171b3000d101eb5957b874a98921ea0653ac6071682e826c1d2e60
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 02326b37e5254a5fa2cb7ec392e7173045e2d32dcf41d107c0cc4a358ac82c38
+boom! running `docker start -a 02326b37e5254a5fa2cb7ec392e7173045e2d32dcf41d107c0cc4a358ac82c38`
+kablam!    Compiling raytracer v0.1.0 (file:///source)
+kablam! warning: method is never used: `object_to_world`, #[warn(dead_code)] on by default
+kablam!    --> src/primitives/objects.rs:205:5
+kablam!     |
+kablam! 205 |     pub fn object_to_world(&mut self, m: Matrix4<f32>) {
+kablam!     |     ^
+kablam! 
+kablam! warning: variant is never used: `PointLight`, #[warn(dead_code)] on by default
+kablam!   --> src/primitives/light.rs:9:5
+kablam!    |
+kablam! 9  |       PointLight {
+kablam!    |  _____^ starting here...
+kablam! 10 | |         color: V3f,
+kablam! 11 | |         intensity: f32,
+kablam! 12 | |         position: V3f,
+kablam! 13 | |     },
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: value assigned to `light_clr` is never read, #[warn(unused_assignments)] on by default
+kablam!   --> src/primitives/light.rs:29:9
+kablam!    |
+kablam! 29 |     let mut light_clr = [0.0, 0.0, 0.0];
+kablam!    |         ^^^^^^^^^^^^^
+kablam! 
+kablam! warning: value assigned to `light_intensity` is never read, #[warn(unused_assignments)] on by default
+kablam!   --> src/primitives/light.rs:30:9
+kablam!    |
+kablam! 30 |     let mut light_intensity = 0.0;
+kablam!    |         ^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: value assigned to `light_dir` is never read, #[warn(unused_assignments)] on by default
+kablam!   --> src/primitives/light.rs:32:9
+kablam!    |
+kablam! 32 |     let mut light_dir = [0.0, 0.0, 0.0];
+kablam!    |         ^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused import: `rustc_serialize`, #[warn(unused_imports)] on by default
+kablam!  --> src/primitives/settings.rs:2:5
+kablam!   |
+kablam! 2 | use rustc_serialize;
+kablam!   |     ^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: function is never used: `to_vec4`, #[warn(dead_code)] on by default
+kablam!   --> src/stdlib/mod.rs:16:1
+kablam!    |
+kablam! 16 |   pub fn to_vec4(v: Vector3<f32>) -> Vector4<f32> {
+kablam!    |  _^ starting here...
+kablam! 17 | |     [v[0], v[1], v[2], 1.0]
+kablam! 18 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! warning: function is never used: `load_geo_file`, #[warn(dead_code)] on by default
+kablam!   --> src/file.rs:34:1
+kablam!    |
+kablam! 34 | pub fn load_geo_file(file_name: String) -> (Vec<V3f>, i32) {
+kablam!    | ^
+kablam! 
+kablam! warning: type alias is never used: `V2f`, #[warn(dead_code)] on by default
+kablam!   --> src/main.rs:28:1
+kablam!    |
+kablam! 28 | type V2f = Vector2<f32>;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!    --> src/main.rs:109:5
+kablam!     |
+kablam! 109 |     file::write_to_ppm(&framebuffer, cam_opts, file_name);
+kablam!     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused variable: `uv`, #[warn(unused_variables)] on by default
+kablam!    --> src/main.rs:218:13
+kablam!     |
+kablam! 218 |         let uv = surface.get_tex_coords();
+kablam!     |             ^^
+kablam! 
+kablam! warning: unused variable: `cam_opts`, #[warn(unused_variables)] on by default
+kablam!    --> src/main.rs:250:36
+kablam!     |
+kablam! 250 | fn trace<T: Intersectable + Clone>(cam_opts: &CameraOptions,
+kablam!     |                                    ^^^^^^^^
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 4.88 secs
+boom! running `docker rm -f 02326b37e5254a5fa2cb7ec392e7173045e2d32dcf41d107c0cc4a358ac82c38`
+blam! 02326b37e5254a5fa2cb7ec392e7173045e2d32dcf41d107c0cc4a358ac82c38
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! 729a7354b1798e766c1e3c438d03c954b20fd35d74b17a65f2151ec8f4de0577
+boom! running `docker start -a 729a7354b1798e766c1e3c438d03c954b20fd35d74b17a65f2151ec8f4de0577`
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/raytracer-4fb7a3feffc4f27e
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f 729a7354b1798e766c1e3c438d03c954b20fd35d74b17a65f2151ec8f4de0577`
+blam! 729a7354b1798e766c1e3c438d03c954b20fd35d74b17a65f2151ec8f4de0577

@@ -1,0 +1,32 @@
+boom! testing redlock-rs-0.2.1 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 83b8860aef1e553a43b6597237553c6370687768a9c8e97011c685ef6a750628
+boom! running `docker start -a 83b8860aef1e553a43b6597237553c6370687768a9c8e97011c685ef6a750628`
+kablam!    Compiling redlock-rs v0.2.1 (file:///source)
+kablam! warning: use of deprecated item: replaced by `std::thread::sleep`, #[warn(deprecated)] on by default
+kablam!  --> src/redlock.rs:7:5
+kablam!   |
+kablam! 7 | use std::thread::sleep_ms;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: use of deprecated item: replaced by `std::thread::sleep`, #[warn(deprecated)] on by default
+kablam!    --> src/redlock.rs:142:13
+kablam!     |
+kablam! 142 |             sleep_ms(n);
+kablam!     |             ^^^^^^^^
+kablam! 
+kablam! error[E0425]: unresolved name `thread::scoped`
+kablam!   --> src/main.rs:38:17
+kablam!    |
+kablam! 38 |         let _ = thread::scoped(move|| {
+kablam!    |                 ^^^^^^^^^^^^^^ unresolved name
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `redlock-rs`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 83b8860aef1e553a43b6597237553c6370687768a9c8e97011c685ef6a750628`
+blam! 83b8860aef1e553a43b6597237553c6370687768a9c8e97011c685ef6a750628

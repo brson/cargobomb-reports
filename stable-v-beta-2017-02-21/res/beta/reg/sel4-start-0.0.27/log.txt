@@ -1,0 +1,22 @@
+boom! testing sel4-start-0.0.27 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! d15553b3946e0c47121865411e856604a57dab6242657a618288678a451b3b16
+boom! running `docker start -a d15553b3946e0c47121865411e856604a57dab6242657a618288678a451b3b16`
+kablam!    Compiling sel4-start v0.0.27 (file:///source)
+kablam!    Compiling sel4-sys v0.0.27
+kablam! error: failed to run custom build command for `sel4-sys v0.0.27`
+kablam! process didn't exit successfully: `/target/debug/build/sel4-sys-870b3f697eebfd68/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! Running: "/usr/bin/env" "python" "tools/syscall_stub_gen.py" "-a" "ia32" "-w" "32" "--buffer" "-o" "/target/debug/build/sel4-sys-4dff2b1e92dd6c57/out/ia32_syscall_stub.rs" "seL4/libsel4/include/interfaces/sel4.xml" "seL4/libsel4/arch_include/x86/interfaces/sel4arch.xml" "seL4/libsel4/sel4_arch_include/ia32/interfaces/sel4arch.xml"
+kablam! 
+kablam! --- stderr
+kablam! /usr/bin/env: python: No such file or directory
+kablam! thread 'main' panicked at 'assertion failed: cmd.status().unwrap().success()', /cargo-home/registry/src/github.com-1ecc6299db9ec823/sel4-sys-0.0.27/build.rs:32
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f d15553b3946e0c47121865411e856604a57dab6242657a618288678a451b3b16`
+blam! d15553b3946e0c47121865411e856604a57dab6242657a618288678a451b3b16

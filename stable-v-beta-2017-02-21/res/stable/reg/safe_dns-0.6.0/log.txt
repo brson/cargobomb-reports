@@ -1,0 +1,25 @@
+boom! testing safe_dns-0.6.0 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! b94f0c40763e167da9ca680c8eb47c40a9d6c83da8e05b670f8949db5130a214
+boom! running `docker start -a b94f0c40763e167da9ca680c8eb47c40a9d6c83da8e05b670f8949db5130a214`
+kablam!    Compiling crossbeam v0.1.6
+kablam!    Compiling message_filter v0.3.1
+kablam!    Compiling c_linked_list v0.1.0
+kablam!    Compiling config_file_handler v0.0.1
+kablam!    Compiling get_if_addrs v0.3.1
+kablam! error[E0512]: transmute called with differently sized types: [usize; 32] (2048 bits) to [std::sync::atomic::AtomicBool; 32] (256 bits)
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/crossbeam-0.1.6/src/sync/seg_queue.rs:34:29
+kablam!    |
+kablam! 34 |             ready: unsafe { mem::transmute([0usize; SEG_SIZE]) },
+kablam!    |                             ^^^^^^^^^^^^^^ transmuting between 2048 bits and 256 bits
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `crossbeam`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f b94f0c40763e167da9ca680c8eb47c40a9d6c83da8e05b670f8949db5130a214`
+blam! b94f0c40763e167da9ca680c8eb47c40a9d6c83da8e05b670f8949db5130a214

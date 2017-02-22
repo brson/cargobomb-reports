@@ -1,0 +1,44 @@
+boom! testing peekable_reader-0.0.2 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! b5b53f1a2334e14ae28ad2b9da221c0a65b9ba7bce329b3131dea34a27d7814c
+boom! running `docker start -a b5b53f1a2334e14ae28ad2b9da221c0a65b9ba7bce329b3131dea34a27d7814c`
+kablam!    Compiling peekable_reader v0.0.2 (file:///source)
+kablam! error[E0432]: unresolved import `std::old_io::IoResult`
+kablam!  --> src/lib.rs:1:5
+kablam!   |
+kablam! 1 | use std::old_io::IoResult;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^ Could not find `old_io` in `std`
+kablam! 
+kablam! error[E0405]: trait `Reader` is not in scope
+kablam!   --> src/lib.rs:20:9
+kablam!    |
+kablam! 20 | impl<R: Reader> PeekableReader<R> {
+kablam!    |         ^^^^^^ `Reader` is not in scope
+kablam!    |
+kablam!    = help: no candidates by the name of `Reader` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0405]: trait `Reader` is not in scope
+kablam!   --> src/lib.rs:51:9
+kablam!    |
+kablam! 51 | impl<R: Reader> Reader for PeekableReader<R> {
+kablam!    |         ^^^^^^ `Reader` is not in scope
+kablam!    |
+kablam!    = help: no candidates by the name of `Reader` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0405]: trait `Reader` is not in scope
+kablam!   --> src/lib.rs:51:17
+kablam!    |
+kablam! 51 | impl<R: Reader> Reader for PeekableReader<R> {
+kablam!    |                 ^^^^^^ `Reader` is not in scope
+kablam!    |
+kablam!    = help: no candidates by the name of `Reader` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `peekable_reader`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f b5b53f1a2334e14ae28ad2b9da221c0a65b9ba7bce329b3131dea34a27d7814c`
+blam! b5b53f1a2334e14ae28ad2b9da221c0a65b9ba7bce329b3131dea34a27d7814c

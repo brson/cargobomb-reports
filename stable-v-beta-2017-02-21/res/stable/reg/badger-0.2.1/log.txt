@@ -1,0 +1,3193 @@
+boom! testing badger-0.2.1 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! c065d61e87dfe36faafbcedd1ed828516b062ad1f2af5a2f01b1571dd735ea5b
+boom! running `docker start -a c065d61e87dfe36faafbcedd1ed828516b062ad1f2af5a2f01b1571dd735ea5b`
+kablam!    Compiling badger v0.2.1 (file:///source)
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 6.0 secs
+boom! running `docker rm -f c065d61e87dfe36faafbcedd1ed828516b062ad1f2af5a2f01b1571dd735ea5b`
+blam! c065d61e87dfe36faafbcedd1ed828516b062ad1f2af5a2f01b1571dd735ea5b
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 96379d22649162090767b53592f2e4b822a10d66f7bc6a4a7dd37e6d63ed4581
+boom! running `docker start -a 96379d22649162090767b53592f2e4b822a10d66f7bc6a4a7dd37e6d63ed4581`
+kablam!    Compiling badger v0.2.1 (file:///source)
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `MemberKey`
+kablam!    --> tests/lib.rs:729:28
+kablam!     |
+kablam! 727 |     assert_expression!("foo[1, 2, 3]", Expression::Member {
+kablam!     |     - in this macro invocation
+kablam! 728 |         object: Box::new(ident!("foo")),
+kablam! 729 |         property: Box::new(MemberKey::Computed(
+kablam!     |                            ^^^^^^^^^^^^^^^^^^^ Use of undeclared type or module `MemberKey`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> tests/lib.rs:55:16
+kablam!    |
+kablam! 54 |       assert_statement!("foo: {}", Statement::Labeled {
+kablam!    |  _____- starting here...
+kablam! 55 | |         label: "foo".to_string(),
+kablam!    | |                ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! 56 | |         body: Box::new(Statement::Block {
+kablam! 57 | |             body: Vec::new(),
+kablam! 58 | |         }),
+kablam! 59 | |     });
+kablam!    | |_______- ...ending here: in this macro invocation
+kablam!    |
+kablam!    = note: expected type `badger::grammar::OwnedSlice`
+kablam!    = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> tests/lib.rs:72:21
+kablam!    |
+kablam! 71 |       assert_statement!("break foo;", Statement::Break {
+kablam!    |  _____- starting here...
+kablam! 72 | |         label: Some("foo".to_string())
+kablam!    | |                     ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! 73 | |     });
+kablam!    | |_______- ...ending here: in this macro invocation
+kablam!    |
+kablam!    = note: expected type `badger::grammar::OwnedSlice`
+kablam!    = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> tests/lib.rs:36:45
+kablam!    |
+kablam! 36 |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!    |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 78 |     assert_parse!("
+kablam!    |     - in this macro invocation
+kablam!    |
+kablam!    = note: expected type `badger::grammar::OwnedSlice`
+kablam!    = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |       ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 100 |       assert_statement!("return foo;", Statement::Return {
+kablam!     |  _____- starting here...
+kablam! 101 | |         value: Some(ident!("foo")),
+kablam! 102 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:109:18
+kablam!     |
+kablam! 107 |       assert_statement!("return 1, 2, 3;", Statement::Return {
+kablam!     |  _____- starting here...
+kablam! 108 | |         value: Some(Expression::Sequence(vec![
+kablam! 109 | |             num!(1.0),
+kablam!     | |                  ^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam! 110 | |             num!(2.0),
+kablam! 111 | |             num!(3.0),
+kablam! 112 | |         ])),
+kablam! 113 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:110:18
+kablam!     |
+kablam! 107 |       assert_statement!("return 1, 2, 3;", Statement::Return {
+kablam!     |  _____- starting here...
+kablam! 108 | |         value: Some(Expression::Sequence(vec![
+kablam! 109 | |             num!(1.0),
+kablam! 110 | |             num!(2.0),
+kablam!     | |                  ^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam! 111 | |             num!(3.0),
+kablam! 112 | |         ])),
+kablam! 113 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:111:18
+kablam!     |
+kablam! 107 |       assert_statement!("return 1, 2, 3;", Statement::Return {
+kablam!     |  _____- starting here...
+kablam! 108 | |         value: Some(Expression::Sequence(vec![
+kablam! 109 | |             num!(1.0),
+kablam! 110 | |             num!(2.0),
+kablam! 111 | |             num!(3.0),
+kablam!     | |                  ^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam! 112 | |         ])),
+kablam! 113 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 118 |     assert_parse!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:136:19
+kablam!     |
+kablam! 133 |       assert_statement!("var foo;", Statement::VariableDeclaration {
+kablam!     |  _____- starting here...
+kablam! 134 | |         kind: VariableDeclarationKind::Var,
+kablam! 135 | |         declarators: vec![VariableDeclarator {
+kablam! 136 | |             name: "foo".to_string(),
+kablam!     | |                   ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! 137 | |             value: None,
+kablam! 138 | |         }]
+kablam! 139 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:147:19
+kablam!     |
+kablam! 144 |       assert_statement!("var foo = 100;", Statement::VariableDeclaration {
+kablam!     |  _____- starting here...
+kablam! 145 | |         kind: VariableDeclarationKind::Var,
+kablam! 146 | |         declarators: vec![VariableDeclarator {
+kablam! 147 | |             name: "foo".to_string(),
+kablam!     | |                   ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! 148 | |             value: Some(num!(100.0)),
+kablam! 149 | |         }]
+kablam! 150 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:148:30
+kablam!     |
+kablam! 144 |       assert_statement!("var foo = 100;", Statement::VariableDeclaration {
+kablam!     |  _____- starting here...
+kablam! 145 | |         kind: VariableDeclarationKind::Var,
+kablam! 146 | |         declarators: vec![VariableDeclarator {
+kablam! 147 | |             name: "foo".to_string(),
+kablam! 148 | |             value: Some(num!(100.0)),
+kablam!     | |                              ^^^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam! 149 | |         }]
+kablam! 150 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:158:19
+kablam!     |
+kablam! 155 |       assert_statement!("let foo;", Statement::VariableDeclaration {
+kablam!     |  _____- starting here...
+kablam! 156 | |         kind: VariableDeclarationKind::Let,
+kablam! 157 | |         declarators: vec![VariableDeclarator {
+kablam! 158 | |             name: "foo".to_string(),
+kablam!     | |                   ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! 159 | |             value: None,
+kablam! 160 | |         }]
+kablam! 161 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:169:19
+kablam!     |
+kablam! 166 |       assert_statement!("let foo = 100;", Statement::VariableDeclaration {
+kablam!     |  _____- starting here...
+kablam! 167 | |         kind: VariableDeclarationKind::Let,
+kablam! 168 | |         declarators: vec![VariableDeclarator {
+kablam! 169 | |             name: "foo".to_string(),
+kablam!     | |                   ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! 170 | |             value: Some(num!(100.0)),
+kablam! 171 | |         }]
+kablam! 172 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:170:30
+kablam!     |
+kablam! 166 |       assert_statement!("let foo = 100;", Statement::VariableDeclaration {
+kablam!     |  _____- starting here...
+kablam! 167 | |         kind: VariableDeclarationKind::Let,
+kablam! 168 | |         declarators: vec![VariableDeclarator {
+kablam! 169 | |             name: "foo".to_string(),
+kablam! 170 | |             value: Some(num!(100.0)),
+kablam!     | |                              ^^^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam! 171 | |         }]
+kablam! 172 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:180:19
+kablam!     |
+kablam! 177 |       assert_statement!("const foo;", Statement::VariableDeclaration {
+kablam!     |  _____- starting here...
+kablam! 178 | |         kind: VariableDeclarationKind::Const,
+kablam! 179 | |         declarators: vec![VariableDeclarator {
+kablam! 180 | |             name: "foo".to_string(),
+kablam!     | |                   ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! 181 | |             value: None,
+kablam! 182 | |         }]
+kablam! 183 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:191:19
+kablam!     |
+kablam! 188 |       assert_statement!("const foo = 100;", Statement::VariableDeclaration {
+kablam!     |  _____- starting here...
+kablam! 189 | |         kind: VariableDeclarationKind::Const,
+kablam! 190 | |         declarators: vec![VariableDeclarator {
+kablam! 191 | |             name: "foo".to_string(),
+kablam!     | |                   ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! 192 | |             value: Some(num!(100.0)),
+kablam! 193 | |         }]
+kablam! 194 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:192:30
+kablam!     |
+kablam! 188 |       assert_statement!("const foo = 100;", Statement::VariableDeclaration {
+kablam!     |  _____- starting here...
+kablam! 189 | |         kind: VariableDeclarationKind::Const,
+kablam! 190 | |         declarators: vec![VariableDeclarator {
+kablam! 191 | |             name: "foo".to_string(),
+kablam! 192 | |             value: Some(num!(100.0)),
+kablam!     | |                              ^^^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam! 193 | |         }]
+kablam! 194 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:202:19
+kablam!     |
+kablam! 199 |     assert_statement!("var foo, bar;", Statement::VariableDeclaration {
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 202 |             name: "foo".to_string(),
+kablam!     |                   ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:205:19
+kablam!     |
+kablam! 199 |     assert_statement!("var foo, bar;", Statement::VariableDeclaration {
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 205 |             name: "bar".to_string(),
+kablam!     |                   ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:217:19
+kablam!     |
+kablam! 214 |     assert_statement!("var foo = 100, bar = 200;", Statement::VariableDeclaration {
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 217 |             name: "foo".to_string(),
+kablam!     |                   ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:218:30
+kablam!     |
+kablam! 214 |     assert_statement!("var foo = 100, bar = 200;", Statement::VariableDeclaration {
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 218 |             value: Some(num!(100.0)),
+kablam!     |                              ^^^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:220:19
+kablam!     |
+kablam! 214 |     assert_statement!("var foo = 100, bar = 200;", Statement::VariableDeclaration {
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 220 |             name: "bar".to_string(),
+kablam!     |                   ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:221:30
+kablam!     |
+kablam! 214 |     assert_statement!("var foo = 100, bar = 200;", Statement::VariableDeclaration {
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 221 |             value: Some(num!(200.0)),
+kablam!     |                              ^^^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 228 |     assert_expression!("foobar", ident!("foobar"))
+kablam!     |     ---------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:253:36
+kablam!     |
+kablam! 253 |     assert_expression!("100", num!(100.0));
+kablam!     |     -------------------------------^^^^^---
+kablam!     |     |                              |
+kablam!     |     |                              expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam!     |     in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:273:37
+kablam!     |
+kablam! 273 |     assert_expression!("3.14", num!(3.14));
+kablam!     |     --------------------------------^^^^---
+kablam!     |     |                               |
+kablam!     |     |                               expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam!     |     in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:281:24
+kablam!     |
+kablam! 278 |       assert_expression!("true == 1", Expression::Binary {
+kablam!     |  _____- starting here...
+kablam! 279 | |         left: Box::new(Expression::Literal(LiteralTrue)),
+kablam! 280 | |         operator: Equality,
+kablam! 281 | |         right: boxnum!(1.0)
+kablam!     | |                        ^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam! 282 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:288:23
+kablam!     |
+kablam! 287 |       assert_expression!("1 + 2 * 3", Expression::Binary {
+kablam!     |  _____- starting here...
+kablam! 288 | |         left: boxnum!(1.0),
+kablam!     | |                       ^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam! 289 | |         operator: Addition,
+kablam! 290 | |         right: Box::new(Expression::Binary {
+kablam! 291 | |             left: boxnum!(2.0),
+kablam! 292 | |             operator: Multiplication,
+kablam! 293 | |             right: boxnum!(3.0),
+kablam! 294 | |         }),
+kablam! 295 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:291:27
+kablam!     |
+kablam! 287 |       assert_expression!("1 + 2 * 3", Expression::Binary {
+kablam!     |  _____- starting here...
+kablam! 288 | |         left: boxnum!(1.0),
+kablam! 289 | |         operator: Addition,
+kablam! 290 | |         right: Box::new(Expression::Binary {
+kablam! 291 | |             left: boxnum!(2.0),
+kablam!     | |                           ^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam! 292 | |             operator: Multiplication,
+kablam! 293 | |             right: boxnum!(3.0),
+kablam! 294 | |         }),
+kablam! 295 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:293:28
+kablam!     |
+kablam! 287 |       assert_expression!("1 + 2 * 3", Expression::Binary {
+kablam!     |  _____- starting here...
+kablam! 288 | |         left: boxnum!(1.0),
+kablam! 289 | |         operator: Addition,
+kablam! 290 | |         right: Box::new(Expression::Binary {
+kablam! 291 | |             left: boxnum!(2.0),
+kablam! 292 | |             operator: Multiplication,
+kablam! 293 | |             right: boxnum!(3.0),
+kablam!     | |                            ^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam! 294 | |         }),
+kablam! 295 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:302:27
+kablam!     |
+kablam! 300 |       assert_expression!("1 * 2 + 3", Expression::Binary {
+kablam!     |  _____- starting here...
+kablam! 301 | |         left: Box::new(Expression::Binary {
+kablam! 302 | |             left: boxnum!(1.0),
+kablam!     | |                           ^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam! 303 | |             operator: Multiplication,
+kablam! 304 | |             right: boxnum!(2.0),
+kablam! 305 | |         }),
+kablam! 306 | |         operator: Addition,
+kablam! 307 | |         right: boxnum!(3.0),
+kablam! 308 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:304:28
+kablam!     |
+kablam! 300 |       assert_expression!("1 * 2 + 3", Expression::Binary {
+kablam!     |  _____- starting here...
+kablam! 301 | |         left: Box::new(Expression::Binary {
+kablam! 302 | |             left: boxnum!(1.0),
+kablam! 303 | |             operator: Multiplication,
+kablam! 304 | |             right: boxnum!(2.0),
+kablam!     | |                            ^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam! 305 | |         }),
+kablam! 306 | |         operator: Addition,
+kablam! 307 | |         right: boxnum!(3.0),
+kablam! 308 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:307:24
+kablam!     |
+kablam! 300 |       assert_expression!("1 * 2 + 3", Expression::Binary {
+kablam!     |  _____- starting here...
+kablam! 301 | |         left: Box::new(Expression::Binary {
+kablam! 302 | |             left: boxnum!(1.0),
+kablam! 303 | |             operator: Multiplication,
+kablam! 304 | |             right: boxnum!(2.0),
+kablam! 305 | |         }),
+kablam! 306 | |         operator: Addition,
+kablam! 307 | |         right: boxnum!(3.0),
+kablam!     | |                        ^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam! 308 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:320:15
+kablam!     |
+kablam! 313 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 320 |         name: "foo".to_string(),
+kablam!     |               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 313 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:339:15
+kablam!     |
+kablam! 332 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 339 |         name: "foo".to_string(),
+kablam!     |               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:41:15
+kablam!     |
+kablam! 41  |         name: $name.to_string()
+kablam!     |               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 332 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:41:15
+kablam!     |
+kablam! 41  |         name: $name.to_string()
+kablam!     |               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 332 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:41:15
+kablam!     |
+kablam! 41  |         name: $name.to_string()
+kablam!     |               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 332 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 332 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 355 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 374 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 374 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 399 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 399 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 399 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |       ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 434 |       assert_statement!("if (true) foo;", Statement::If {
+kablam!     |  _____- starting here...
+kablam! 435 | |         test: Expression::Literal(LiteralTrue),
+kablam! 436 | |         consequent: Box::new(Statement::Expression {
+kablam! 437 | |             value: ident!("foo")
+kablam! 438 | |         }),
+kablam! 439 | |         alternate: None,
+kablam! 440 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |       ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 445 |       assert_statement!("if (true) foo; else bar;", Statement::If {
+kablam!     |  _____- starting here...
+kablam! 446 | |         test: Expression::Literal(LiteralTrue),
+kablam! 447 | |         consequent: Box::new(Statement::Expression {
+kablam! 448 | |             value: ident!("foo")
+kablam! 449 | |         }),
+kablam! 450 | |         alternate: Some(Box::new(Statement::Expression {
+kablam! 451 | |             value: ident!("bar")
+kablam! 452 | |         })),
+kablam! 453 | |     })
+kablam!     | |______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |       ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 445 |       assert_statement!("if (true) foo; else bar;", Statement::If {
+kablam!     |  _____- starting here...
+kablam! 446 | |         test: Expression::Literal(LiteralTrue),
+kablam! 447 | |         consequent: Box::new(Statement::Expression {
+kablam! 448 | |             value: ident!("foo")
+kablam! 449 | |         }),
+kablam! 450 | |         alternate: Some(Box::new(Statement::Expression {
+kablam! 451 | |             value: ident!("bar")
+kablam! 452 | |         })),
+kablam! 453 | |     })
+kablam!     | |______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 458 |     assert_statement!("for (i = 0; i < 10; i++) {}", Statement::For {
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:463:38
+kablam!     |
+kablam! 458 |     assert_statement!("for (i = 0; i < 10; i++) {}", Statement::For {
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 463 |                 right: Box::new(num!(0.0)),
+kablam!     |                                      ^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 458 |     assert_statement!("for (i = 0; i < 10; i++) {}", Statement::For {
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:469:34
+kablam!     |
+kablam! 458 |     assert_statement!("for (i = 0; i < 10; i++) {}", Statement::For {
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 469 |             right: Box::new(num!(10.0)),
+kablam!     |                                  ^^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 458 |     assert_statement!("for (i = 0; i < 10; i++) {}", Statement::For {
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:488:27
+kablam!     |
+kablam! 483 |     assert_statement!("for (let i = 0; i < 10; i++) {}", Statement::For {
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 488 |                     name: "i".to_string(),
+kablam!     |                           ^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:489:38
+kablam!     |
+kablam! 483 |     assert_statement!("for (let i = 0; i < 10; i++) {}", Statement::For {
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 489 |                     value: Some(num!(0.0)),
+kablam!     |                                      ^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 483 |     assert_statement!("for (let i = 0; i < 10; i++) {}", Statement::For {
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:496:34
+kablam!     |
+kablam! 483 |     assert_statement!("for (let i = 0; i < 10; i++) {}", Statement::For {
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 496 |             right: Box::new(num!(10.0)),
+kablam!     |                                  ^^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 483 |     assert_statement!("for (let i = 0; i < 10; i++) {}", Statement::For {
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |       ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 522 |       assert_statement!("for (item in object) {}", Statement::ForIn {
+kablam!     |  _____- starting here...
+kablam! 523 | |         left: Box::new(Statement::Expression {
+kablam! 524 | |             value: ident!("item")
+kablam! 525 | |         }),
+kablam! 526 | |         right: ident!("object"),
+kablam! 527 | |         body: Box::new(Statement::Block {
+kablam! 528 | |             body: Vec::new(),
+kablam! 529 | |         }),
+kablam! 530 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |       ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 522 |       assert_statement!("for (item in object) {}", Statement::ForIn {
+kablam!     |  _____- starting here...
+kablam! 523 | |         left: Box::new(Statement::Expression {
+kablam! 524 | |             value: ident!("item")
+kablam! 525 | |         }),
+kablam! 526 | |         right: ident!("object"),
+kablam! 527 | |         body: Box::new(Statement::Block {
+kablam! 528 | |             body: Vec::new(),
+kablam! 529 | |         }),
+kablam! 530 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:541:27
+kablam!     |
+kablam! 536 |     assert_statement!("for (let item in object) {}", Statement::ForIn {
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 541 |                     name: "item".to_string(),
+kablam!     |                           ^^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 536 |     assert_statement!("for (let item in object) {}", Statement::ForIn {
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |       ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 555 |       assert_statement!("for (item of array) {}", Statement::ForOf {
+kablam!     |  _____- starting here...
+kablam! 556 | |         left: Box::new(Statement::Expression {
+kablam! 557 | |             value: ident!("item")
+kablam! 558 | |         }),
+kablam! 559 | |         right: ident!("array"),
+kablam! 560 | |         body: Box::new(Statement::Block {
+kablam! 561 | |             body: Vec::new(),
+kablam! 562 | |         }),
+kablam! 563 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |       ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 555 |       assert_statement!("for (item of array) {}", Statement::ForOf {
+kablam!     |  _____- starting here...
+kablam! 556 | |         left: Box::new(Statement::Expression {
+kablam! 557 | |             value: ident!("item")
+kablam! 558 | |         }),
+kablam! 559 | |         right: ident!("array"),
+kablam! 560 | |         body: Box::new(Statement::Block {
+kablam! 561 | |             body: Vec::new(),
+kablam! 562 | |         }),
+kablam! 563 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:573:27
+kablam!     |
+kablam! 568 |     assert_statement!("for (let item of array) {}", Statement::ForOf {
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 573 |                     name: "item".to_string(),
+kablam!     |                           ^^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 568 |     assert_statement!("for (let item of array) {}", Statement::ForOf {
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 587 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |       ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 605 |       assert_statement!("while (true) foo;", Statement::While {
+kablam!     |  _____- starting here...
+kablam! 606 | |         test: Expression::Literal(LiteralTrue),
+kablam! 607 | |         body: Box::new(Statement::Expression {
+kablam! 608 | |             value: ident!("foo")
+kablam! 609 | |         }),
+kablam! 610 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 615 |     assert_expression!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:41:15
+kablam!     |
+kablam! 41  |         name: $name.to_string()
+kablam!     |               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 633 |     assert_expression!("n => n * n", Expression::ArrowFunction {
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 633 |     assert_expression!("n => n * n", Expression::ArrowFunction {
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 633 |     assert_expression!("n => n * n", Expression::ArrowFunction {
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:41:15
+kablam!     |
+kablam! 41  |         name: $name.to_string()
+kablam!     |               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 649 |     assert_expression!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:41:15
+kablam!     |
+kablam! 41  |         name: $name.to_string()
+kablam!     |               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 649 |     assert_expression!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:41:15
+kablam!     |
+kablam! 41  |         name: $name.to_string()
+kablam!     |               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 649 |     assert_expression!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 649 |     assert_expression!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 671 |     assert_expression!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:697:20
+kablam!     |
+kablam! 690 |     assert_expression!("
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 697 |         name: Some("foo".to_string()),
+kablam!     |                    ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 690 |     assert_expression!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |       ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 709 |       assert_statement!("foo", Statement::Expression {
+kablam!     |  _____- starting here...
+kablam! 710 | |         value: ident!("foo")
+kablam! 711 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |       ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 716 |       assert_statement!("foo, bar, baz", Statement::Expression {
+kablam!     |  _____- starting here...
+kablam! 717 | |         value: Expression::Sequence(vec![
+kablam! 718 | |             ident!("foo"),
+kablam! 719 | |             ident!("bar"),
+kablam! 720 | |             ident!("baz"),
+kablam! 721 | |         ])
+kablam! 722 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |       ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 716 |       assert_statement!("foo, bar, baz", Statement::Expression {
+kablam!     |  _____- starting here...
+kablam! 717 | |         value: Expression::Sequence(vec![
+kablam! 718 | |             ident!("foo"),
+kablam! 719 | |             ident!("bar"),
+kablam! 720 | |             ident!("baz"),
+kablam! 721 | |         ])
+kablam! 722 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |       ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 716 |       assert_statement!("foo, bar, baz", Statement::Expression {
+kablam!     |  _____- starting here...
+kablam! 717 | |         value: Expression::Sequence(vec![
+kablam! 718 | |             ident!("foo"),
+kablam! 719 | |             ident!("bar"),
+kablam! 720 | |             ident!("baz"),
+kablam! 721 | |         ])
+kablam! 722 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 727 |     assert_expression!("foo[1, 2, 3]", Expression::Member {
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:731:22
+kablam!     |
+kablam! 727 |     assert_expression!("foo[1, 2, 3]", Expression::Member {
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 731 |                 num!(1.0),
+kablam!     |                      ^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:732:22
+kablam!     |
+kablam! 727 |     assert_expression!("foo[1, 2, 3]", Expression::Member {
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 732 |                 num!(2.0),
+kablam!     |                      ^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:733:22
+kablam!     |
+kablam! 727 |     assert_expression!("foo[1, 2, 3]", Expression::Member {
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 733 |                 num!(3.0),
+kablam!     |                      ^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:729:19
+kablam!     |
+kablam! 727 |       assert_expression!("foo[1, 2, 3]", Expression::Member {
+kablam!     |       - in this macro invocation
+kablam! 728 |         object: Box::new(ident!("foo")),
+kablam! 729 |           property: Box::new(MemberKey::Computed(
+kablam!     |  ___________________^ starting here...
+kablam! 730 | |             Expression::Sequence(vec![
+kablam! 731 | |                 num!(1.0),
+kablam! 732 | |                 num!(2.0),
+kablam! 733 | |                 num!(3.0),
+kablam! 734 | |             ])
+kablam! 735 | |         ))
+kablam!     | |__________^ ...ending here: expected struct `badger::grammar::OwnedSlice`, found box
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `Box<_>`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:743:18
+kablam!     |
+kablam! 741 |       assert_expression!("({foo:100})", Expression::Object(vec![
+kablam!     |  _____- starting here...
+kablam! 742 | |         ObjectMember::Literal {
+kablam! 743 | |             key: "foo".to_string(),
+kablam!     | |                  ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! 744 | |             value: num!(100.0),
+kablam! 745 | |         }
+kablam! 746 | |     ]));
+kablam!     | |________- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:744:25
+kablam!     |
+kablam! 741 |       assert_expression!("({foo:100})", Expression::Object(vec![
+kablam!     |  _____- starting here...
+kablam! 742 | |         ObjectMember::Literal {
+kablam! 743 | |             key: "foo".to_string(),
+kablam! 744 | |             value: num!(100.0),
+kablam!     | |                         ^^^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam! 745 | |         }
+kablam! 746 | |     ]));
+kablam!     | |________- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:753:23
+kablam!     |
+kablam! 751 |       assert_expression!("({[100]:100})", Expression::Object(vec![
+kablam!     |  _____- starting here...
+kablam! 752 | |         ObjectMember::Computed {
+kablam! 753 | |             key: num!(100.0),
+kablam!     | |                       ^^^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam! 754 | |             value: num!(100.0),
+kablam! 755 | |         }
+kablam! 756 | |     ]));
+kablam!     | |________- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:754:25
+kablam!     |
+kablam! 751 |       assert_expression!("({[100]:100})", Expression::Object(vec![
+kablam!     |  _____- starting here...
+kablam! 752 | |         ObjectMember::Computed {
+kablam! 753 | |             key: num!(100.0),
+kablam! 754 | |             value: num!(100.0),
+kablam!     | |                         ^^^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam! 755 | |         }
+kablam! 756 | |     ]));
+kablam!     | |________- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:763:18
+kablam!     |
+kablam! 761 |       assert_expression!("({foo})", Expression::Object(vec![
+kablam!     |  _____- starting here...
+kablam! 762 | |         ObjectMember::Shorthand {
+kablam! 763 | |             key: "foo".to_string(),
+kablam!     | |                  ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! 764 | |         }
+kablam! 765 | |     ]));
+kablam!     | |________- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:772:19
+kablam!     |
+kablam! 770 |       assert_expression!("({foo() {} })", Expression::Object(vec![
+kablam!     |  _____- starting here...
+kablam! 771 | |         ObjectMember::Method {
+kablam! 772 | |             name: "foo".to_string(),
+kablam!     | |                   ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! 773 | |             params: vec![],
+kablam! 774 | |             body: vec![],
+kablam! 775 | |         }
+kablam! 776 | |     ]));
+kablam!     | |________- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:783:24
+kablam!     |
+kablam! 781 |       assert_expression!("({[100]() {} })", Expression::Object(vec![
+kablam!     |  _____- starting here...
+kablam! 782 | |         ObjectMember::ComputedMethod {
+kablam! 783 | |             name: num!(100.0),
+kablam!     | |                        ^^^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam! 784 | |             params: vec![],
+kablam! 785 | |             body: vec![],
+kablam! 786 | |         }
+kablam! 787 | |     ]));
+kablam!     | |________- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:793:15
+kablam!     |
+kablam! 792 |       assert_statement!("class Foo {}", Statement::Class {
+kablam!     |  _____- starting here...
+kablam! 793 | |         name: "Foo".to_string(),
+kablam!     | |               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! 794 | |         extends: None,
+kablam! 795 | |         body: Vec::new(),
+kablam! 796 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:802:15
+kablam!     |
+kablam! 801 |       assert_statement!("class Foo extends Bar {}", Statement::Class {
+kablam!     |  _____- starting here...
+kablam! 802 | |         name: "Foo".to_string(),
+kablam!     | |               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! 803 | |         extends: Some("Bar".to_string()),
+kablam! 804 | |         body: Vec::new(),
+kablam! 805 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:803:23
+kablam!     |
+kablam! 801 |       assert_statement!("class Foo extends Bar {}", Statement::Class {
+kablam!     |  _____- starting here...
+kablam! 802 | |         name: "Foo".to_string(),
+kablam! 803 | |         extends: Some("Bar".to_string()),
+kablam!     | |                       ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! 804 | |         body: Vec::new(),
+kablam! 805 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:817:15
+kablam!     |
+kablam! 810 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 817 |         name: "Foo".to_string(),
+kablam!     |               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:837:15
+kablam!     |
+kablam! 830 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 837 |         name: "Foo".to_string(),
+kablam!     |               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:842:23
+kablam!     |
+kablam! 830 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 842 |                 name: "bar".to_string(),
+kablam!     |                       ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:859:15
+kablam!     |
+kablam! 852 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 859 |         name: "Foo".to_string(),
+kablam!     |               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:864:23
+kablam!     |
+kablam! 852 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 864 |                 name: "bar".to_string(),
+kablam!     |                       ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:881:15
+kablam!     |
+kablam! 874 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 881 |         name: "Foo".to_string(),
+kablam!     |               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:886:23
+kablam!     |
+kablam! 874 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 886 |                 name: "bar".to_string(),
+kablam!     |                       ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:887:29
+kablam!     |
+kablam! 874 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 887 |                 value: num!(100.0),
+kablam!     |                             ^^^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:902:15
+kablam!     |
+kablam! 895 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 902 |         name: "Foo".to_string(),
+kablam!     |               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:907:23
+kablam!     |
+kablam! 895 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 907 |                 name: "bar".to_string(),
+kablam!     |                       ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:908:29
+kablam!     |
+kablam! 895 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 908 |                 value: num!(100.0),
+kablam!     |                             ^^^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error: aborting due to 110 previous errors
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `badger`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 96379d22649162090767b53592f2e4b822a10d66f7bc6a4a7dd37e6d63ed4581`
+blam! 96379d22649162090767b53592f2e4b822a10d66f7bc6a4a7dd37e6d63ed4581
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! 43b82929e878535696a51c2d5ec4931cec7d36d196b56615d12f857f0307a907
+boom! running `docker start -a 43b82929e878535696a51c2d5ec4931cec7d36d196b56615d12f857f0307a907`
+kablam!    Compiling badger v0.2.1 (file:///source)
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `MemberKey`
+kablam!    --> tests/lib.rs:729:28
+kablam!     |
+kablam! 727 |     assert_expression!("foo[1, 2, 3]", Expression::Member {
+kablam!     |     - in this macro invocation
+kablam! 728 |         object: Box::new(ident!("foo")),
+kablam! 729 |         property: Box::new(MemberKey::Computed(
+kablam!     |                            ^^^^^^^^^^^^^^^^^^^ Use of undeclared type or module `MemberKey`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> tests/lib.rs:55:16
+kablam!    |
+kablam! 54 |       assert_statement!("foo: {}", Statement::Labeled {
+kablam!    |  _____- starting here...
+kablam! 55 | |         label: "foo".to_string(),
+kablam!    | |                ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! 56 | |         body: Box::new(Statement::Block {
+kablam! 57 | |             body: Vec::new(),
+kablam! 58 | |         }),
+kablam! 59 | |     });
+kablam!    | |_______- ...ending here: in this macro invocation
+kablam!    |
+kablam!    = note: expected type `badger::grammar::OwnedSlice`
+kablam!    = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> tests/lib.rs:72:21
+kablam!    |
+kablam! 71 |       assert_statement!("break foo;", Statement::Break {
+kablam!    |  _____- starting here...
+kablam! 72 | |         label: Some("foo".to_string())
+kablam!    | |                     ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! 73 | |     });
+kablam!    | |_______- ...ending here: in this macro invocation
+kablam!    |
+kablam!    = note: expected type `badger::grammar::OwnedSlice`
+kablam!    = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> tests/lib.rs:36:45
+kablam!    |
+kablam! 36 |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!    |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 78 |     assert_parse!("
+kablam!    |     - in this macro invocation
+kablam!    |
+kablam!    = note: expected type `badger::grammar::OwnedSlice`
+kablam!    = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |       ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 100 |       assert_statement!("return foo;", Statement::Return {
+kablam!     |  _____- starting here...
+kablam! 101 | |         value: Some(ident!("foo")),
+kablam! 102 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:109:18
+kablam!     |
+kablam! 107 |       assert_statement!("return 1, 2, 3;", Statement::Return {
+kablam!     |  _____- starting here...
+kablam! 108 | |         value: Some(Expression::Sequence(vec![
+kablam! 109 | |             num!(1.0),
+kablam!     | |                  ^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam! 110 | |             num!(2.0),
+kablam! 111 | |             num!(3.0),
+kablam! 112 | |         ])),
+kablam! 113 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:110:18
+kablam!     |
+kablam! 107 |       assert_statement!("return 1, 2, 3;", Statement::Return {
+kablam!     |  _____- starting here...
+kablam! 108 | |         value: Some(Expression::Sequence(vec![
+kablam! 109 | |             num!(1.0),
+kablam! 110 | |             num!(2.0),
+kablam!     | |                  ^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam! 111 | |             num!(3.0),
+kablam! 112 | |         ])),
+kablam! 113 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:111:18
+kablam!     |
+kablam! 107 |       assert_statement!("return 1, 2, 3;", Statement::Return {
+kablam!     |  _____- starting here...
+kablam! 108 | |         value: Some(Expression::Sequence(vec![
+kablam! 109 | |             num!(1.0),
+kablam! 110 | |             num!(2.0),
+kablam! 111 | |             num!(3.0),
+kablam!     | |                  ^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam! 112 | |         ])),
+kablam! 113 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 118 |     assert_parse!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:136:19
+kablam!     |
+kablam! 133 |       assert_statement!("var foo;", Statement::VariableDeclaration {
+kablam!     |  _____- starting here...
+kablam! 134 | |         kind: VariableDeclarationKind::Var,
+kablam! 135 | |         declarators: vec![VariableDeclarator {
+kablam! 136 | |             name: "foo".to_string(),
+kablam!     | |                   ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! 137 | |             value: None,
+kablam! 138 | |         }]
+kablam! 139 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:147:19
+kablam!     |
+kablam! 144 |       assert_statement!("var foo = 100;", Statement::VariableDeclaration {
+kablam!     |  _____- starting here...
+kablam! 145 | |         kind: VariableDeclarationKind::Var,
+kablam! 146 | |         declarators: vec![VariableDeclarator {
+kablam! 147 | |             name: "foo".to_string(),
+kablam!     | |                   ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! 148 | |             value: Some(num!(100.0)),
+kablam! 149 | |         }]
+kablam! 150 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:148:30
+kablam!     |
+kablam! 144 |       assert_statement!("var foo = 100;", Statement::VariableDeclaration {
+kablam!     |  _____- starting here...
+kablam! 145 | |         kind: VariableDeclarationKind::Var,
+kablam! 146 | |         declarators: vec![VariableDeclarator {
+kablam! 147 | |             name: "foo".to_string(),
+kablam! 148 | |             value: Some(num!(100.0)),
+kablam!     | |                              ^^^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam! 149 | |         }]
+kablam! 150 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:158:19
+kablam!     |
+kablam! 155 |       assert_statement!("let foo;", Statement::VariableDeclaration {
+kablam!     |  _____- starting here...
+kablam! 156 | |         kind: VariableDeclarationKind::Let,
+kablam! 157 | |         declarators: vec![VariableDeclarator {
+kablam! 158 | |             name: "foo".to_string(),
+kablam!     | |                   ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! 159 | |             value: None,
+kablam! 160 | |         }]
+kablam! 161 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:169:19
+kablam!     |
+kablam! 166 |       assert_statement!("let foo = 100;", Statement::VariableDeclaration {
+kablam!     |  _____- starting here...
+kablam! 167 | |         kind: VariableDeclarationKind::Let,
+kablam! 168 | |         declarators: vec![VariableDeclarator {
+kablam! 169 | |             name: "foo".to_string(),
+kablam!     | |                   ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! 170 | |             value: Some(num!(100.0)),
+kablam! 171 | |         }]
+kablam! 172 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:170:30
+kablam!     |
+kablam! 166 |       assert_statement!("let foo = 100;", Statement::VariableDeclaration {
+kablam!     |  _____- starting here...
+kablam! 167 | |         kind: VariableDeclarationKind::Let,
+kablam! 168 | |         declarators: vec![VariableDeclarator {
+kablam! 169 | |             name: "foo".to_string(),
+kablam! 170 | |             value: Some(num!(100.0)),
+kablam!     | |                              ^^^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam! 171 | |         }]
+kablam! 172 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:180:19
+kablam!     |
+kablam! 177 |       assert_statement!("const foo;", Statement::VariableDeclaration {
+kablam!     |  _____- starting here...
+kablam! 178 | |         kind: VariableDeclarationKind::Const,
+kablam! 179 | |         declarators: vec![VariableDeclarator {
+kablam! 180 | |             name: "foo".to_string(),
+kablam!     | |                   ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! 181 | |             value: None,
+kablam! 182 | |         }]
+kablam! 183 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:191:19
+kablam!     |
+kablam! 188 |       assert_statement!("const foo = 100;", Statement::VariableDeclaration {
+kablam!     |  _____- starting here...
+kablam! 189 | |         kind: VariableDeclarationKind::Const,
+kablam! 190 | |         declarators: vec![VariableDeclarator {
+kablam! 191 | |             name: "foo".to_string(),
+kablam!     | |                   ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! 192 | |             value: Some(num!(100.0)),
+kablam! 193 | |         }]
+kablam! 194 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:192:30
+kablam!     |
+kablam! 188 |       assert_statement!("const foo = 100;", Statement::VariableDeclaration {
+kablam!     |  _____- starting here...
+kablam! 189 | |         kind: VariableDeclarationKind::Const,
+kablam! 190 | |         declarators: vec![VariableDeclarator {
+kablam! 191 | |             name: "foo".to_string(),
+kablam! 192 | |             value: Some(num!(100.0)),
+kablam!     | |                              ^^^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam! 193 | |         }]
+kablam! 194 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:202:19
+kablam!     |
+kablam! 199 |     assert_statement!("var foo, bar;", Statement::VariableDeclaration {
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 202 |             name: "foo".to_string(),
+kablam!     |                   ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:205:19
+kablam!     |
+kablam! 199 |     assert_statement!("var foo, bar;", Statement::VariableDeclaration {
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 205 |             name: "bar".to_string(),
+kablam!     |                   ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:217:19
+kablam!     |
+kablam! 214 |     assert_statement!("var foo = 100, bar = 200;", Statement::VariableDeclaration {
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 217 |             name: "foo".to_string(),
+kablam!     |                   ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:218:30
+kablam!     |
+kablam! 214 |     assert_statement!("var foo = 100, bar = 200;", Statement::VariableDeclaration {
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 218 |             value: Some(num!(100.0)),
+kablam!     |                              ^^^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:220:19
+kablam!     |
+kablam! 214 |     assert_statement!("var foo = 100, bar = 200;", Statement::VariableDeclaration {
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 220 |             name: "bar".to_string(),
+kablam!     |                   ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:221:30
+kablam!     |
+kablam! 214 |     assert_statement!("var foo = 100, bar = 200;", Statement::VariableDeclaration {
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 221 |             value: Some(num!(200.0)),
+kablam!     |                              ^^^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 228 |     assert_expression!("foobar", ident!("foobar"))
+kablam!     |     ---------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:253:36
+kablam!     |
+kablam! 253 |     assert_expression!("100", num!(100.0));
+kablam!     |     -------------------------------^^^^^---
+kablam!     |     |                              |
+kablam!     |     |                              expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam!     |     in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:273:37
+kablam!     |
+kablam! 273 |     assert_expression!("3.14", num!(3.14));
+kablam!     |     --------------------------------^^^^---
+kablam!     |     |                               |
+kablam!     |     |                               expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam!     |     in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:281:24
+kablam!     |
+kablam! 278 |       assert_expression!("true == 1", Expression::Binary {
+kablam!     |  _____- starting here...
+kablam! 279 | |         left: Box::new(Expression::Literal(LiteralTrue)),
+kablam! 280 | |         operator: Equality,
+kablam! 281 | |         right: boxnum!(1.0)
+kablam!     | |                        ^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam! 282 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:288:23
+kablam!     |
+kablam! 287 |       assert_expression!("1 + 2 * 3", Expression::Binary {
+kablam!     |  _____- starting here...
+kablam! 288 | |         left: boxnum!(1.0),
+kablam!     | |                       ^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam! 289 | |         operator: Addition,
+kablam! 290 | |         right: Box::new(Expression::Binary {
+kablam! 291 | |             left: boxnum!(2.0),
+kablam! 292 | |             operator: Multiplication,
+kablam! 293 | |             right: boxnum!(3.0),
+kablam! 294 | |         }),
+kablam! 295 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:291:27
+kablam!     |
+kablam! 287 |       assert_expression!("1 + 2 * 3", Expression::Binary {
+kablam!     |  _____- starting here...
+kablam! 288 | |         left: boxnum!(1.0),
+kablam! 289 | |         operator: Addition,
+kablam! 290 | |         right: Box::new(Expression::Binary {
+kablam! 291 | |             left: boxnum!(2.0),
+kablam!     | |                           ^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam! 292 | |             operator: Multiplication,
+kablam! 293 | |             right: boxnum!(3.0),
+kablam! 294 | |         }),
+kablam! 295 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:293:28
+kablam!     |
+kablam! 287 |       assert_expression!("1 + 2 * 3", Expression::Binary {
+kablam!     |  _____- starting here...
+kablam! 288 | |         left: boxnum!(1.0),
+kablam! 289 | |         operator: Addition,
+kablam! 290 | |         right: Box::new(Expression::Binary {
+kablam! 291 | |             left: boxnum!(2.0),
+kablam! 292 | |             operator: Multiplication,
+kablam! 293 | |             right: boxnum!(3.0),
+kablam!     | |                            ^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam! 294 | |         }),
+kablam! 295 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:302:27
+kablam!     |
+kablam! 300 |       assert_expression!("1 * 2 + 3", Expression::Binary {
+kablam!     |  _____- starting here...
+kablam! 301 | |         left: Box::new(Expression::Binary {
+kablam! 302 | |             left: boxnum!(1.0),
+kablam!     | |                           ^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam! 303 | |             operator: Multiplication,
+kablam! 304 | |             right: boxnum!(2.0),
+kablam! 305 | |         }),
+kablam! 306 | |         operator: Addition,
+kablam! 307 | |         right: boxnum!(3.0),
+kablam! 308 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:304:28
+kablam!     |
+kablam! 300 |       assert_expression!("1 * 2 + 3", Expression::Binary {
+kablam!     |  _____- starting here...
+kablam! 301 | |         left: Box::new(Expression::Binary {
+kablam! 302 | |             left: boxnum!(1.0),
+kablam! 303 | |             operator: Multiplication,
+kablam! 304 | |             right: boxnum!(2.0),
+kablam!     | |                            ^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam! 305 | |         }),
+kablam! 306 | |         operator: Addition,
+kablam! 307 | |         right: boxnum!(3.0),
+kablam! 308 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:307:24
+kablam!     |
+kablam! 300 |       assert_expression!("1 * 2 + 3", Expression::Binary {
+kablam!     |  _____- starting here...
+kablam! 301 | |         left: Box::new(Expression::Binary {
+kablam! 302 | |             left: boxnum!(1.0),
+kablam! 303 | |             operator: Multiplication,
+kablam! 304 | |             right: boxnum!(2.0),
+kablam! 305 | |         }),
+kablam! 306 | |         operator: Addition,
+kablam! 307 | |         right: boxnum!(3.0),
+kablam!     | |                        ^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam! 308 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:320:15
+kablam!     |
+kablam! 313 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 320 |         name: "foo".to_string(),
+kablam!     |               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 313 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:339:15
+kablam!     |
+kablam! 332 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 339 |         name: "foo".to_string(),
+kablam!     |               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:41:15
+kablam!     |
+kablam! 41  |         name: $name.to_string()
+kablam!     |               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 332 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:41:15
+kablam!     |
+kablam! 41  |         name: $name.to_string()
+kablam!     |               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 332 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:41:15
+kablam!     |
+kablam! 41  |         name: $name.to_string()
+kablam!     |               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 332 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 332 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 355 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 374 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 374 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 399 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 399 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 399 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |       ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 434 |       assert_statement!("if (true) foo;", Statement::If {
+kablam!     |  _____- starting here...
+kablam! 435 | |         test: Expression::Literal(LiteralTrue),
+kablam! 436 | |         consequent: Box::new(Statement::Expression {
+kablam! 437 | |             value: ident!("foo")
+kablam! 438 | |         }),
+kablam! 439 | |         alternate: None,
+kablam! 440 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |       ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 445 |       assert_statement!("if (true) foo; else bar;", Statement::If {
+kablam!     |  _____- starting here...
+kablam! 446 | |         test: Expression::Literal(LiteralTrue),
+kablam! 447 | |         consequent: Box::new(Statement::Expression {
+kablam! 448 | |             value: ident!("foo")
+kablam! 449 | |         }),
+kablam! 450 | |         alternate: Some(Box::new(Statement::Expression {
+kablam! 451 | |             value: ident!("bar")
+kablam! 452 | |         })),
+kablam! 453 | |     })
+kablam!     | |______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |       ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 445 |       assert_statement!("if (true) foo; else bar;", Statement::If {
+kablam!     |  _____- starting here...
+kablam! 446 | |         test: Expression::Literal(LiteralTrue),
+kablam! 447 | |         consequent: Box::new(Statement::Expression {
+kablam! 448 | |             value: ident!("foo")
+kablam! 449 | |         }),
+kablam! 450 | |         alternate: Some(Box::new(Statement::Expression {
+kablam! 451 | |             value: ident!("bar")
+kablam! 452 | |         })),
+kablam! 453 | |     })
+kablam!     | |______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 458 |     assert_statement!("for (i = 0; i < 10; i++) {}", Statement::For {
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:463:38
+kablam!     |
+kablam! 458 |     assert_statement!("for (i = 0; i < 10; i++) {}", Statement::For {
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 463 |                 right: Box::new(num!(0.0)),
+kablam!     |                                      ^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 458 |     assert_statement!("for (i = 0; i < 10; i++) {}", Statement::For {
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:469:34
+kablam!     |
+kablam! 458 |     assert_statement!("for (i = 0; i < 10; i++) {}", Statement::For {
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 469 |             right: Box::new(num!(10.0)),
+kablam!     |                                  ^^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 458 |     assert_statement!("for (i = 0; i < 10; i++) {}", Statement::For {
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:488:27
+kablam!     |
+kablam! 483 |     assert_statement!("for (let i = 0; i < 10; i++) {}", Statement::For {
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 488 |                     name: "i".to_string(),
+kablam!     |                           ^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:489:38
+kablam!     |
+kablam! 483 |     assert_statement!("for (let i = 0; i < 10; i++) {}", Statement::For {
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 489 |                     value: Some(num!(0.0)),
+kablam!     |                                      ^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 483 |     assert_statement!("for (let i = 0; i < 10; i++) {}", Statement::For {
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:496:34
+kablam!     |
+kablam! 483 |     assert_statement!("for (let i = 0; i < 10; i++) {}", Statement::For {
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 496 |             right: Box::new(num!(10.0)),
+kablam!     |                                  ^^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 483 |     assert_statement!("for (let i = 0; i < 10; i++) {}", Statement::For {
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |       ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 522 |       assert_statement!("for (item in object) {}", Statement::ForIn {
+kablam!     |  _____- starting here...
+kablam! 523 | |         left: Box::new(Statement::Expression {
+kablam! 524 | |             value: ident!("item")
+kablam! 525 | |         }),
+kablam! 526 | |         right: ident!("object"),
+kablam! 527 | |         body: Box::new(Statement::Block {
+kablam! 528 | |             body: Vec::new(),
+kablam! 529 | |         }),
+kablam! 530 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |       ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 522 |       assert_statement!("for (item in object) {}", Statement::ForIn {
+kablam!     |  _____- starting here...
+kablam! 523 | |         left: Box::new(Statement::Expression {
+kablam! 524 | |             value: ident!("item")
+kablam! 525 | |         }),
+kablam! 526 | |         right: ident!("object"),
+kablam! 527 | |         body: Box::new(Statement::Block {
+kablam! 528 | |             body: Vec::new(),
+kablam! 529 | |         }),
+kablam! 530 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:541:27
+kablam!     |
+kablam! 536 |     assert_statement!("for (let item in object) {}", Statement::ForIn {
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 541 |                     name: "item".to_string(),
+kablam!     |                           ^^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 536 |     assert_statement!("for (let item in object) {}", Statement::ForIn {
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |       ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 555 |       assert_statement!("for (item of array) {}", Statement::ForOf {
+kablam!     |  _____- starting here...
+kablam! 556 | |         left: Box::new(Statement::Expression {
+kablam! 557 | |             value: ident!("item")
+kablam! 558 | |         }),
+kablam! 559 | |         right: ident!("array"),
+kablam! 560 | |         body: Box::new(Statement::Block {
+kablam! 561 | |             body: Vec::new(),
+kablam! 562 | |         }),
+kablam! 563 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |       ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 555 |       assert_statement!("for (item of array) {}", Statement::ForOf {
+kablam!     |  _____- starting here...
+kablam! 556 | |         left: Box::new(Statement::Expression {
+kablam! 557 | |             value: ident!("item")
+kablam! 558 | |         }),
+kablam! 559 | |         right: ident!("array"),
+kablam! 560 | |         body: Box::new(Statement::Block {
+kablam! 561 | |             body: Vec::new(),
+kablam! 562 | |         }),
+kablam! 563 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:573:27
+kablam!     |
+kablam! 568 |     assert_statement!("for (let item of array) {}", Statement::ForOf {
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 573 |                     name: "item".to_string(),
+kablam!     |                           ^^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 568 |     assert_statement!("for (let item of array) {}", Statement::ForOf {
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 587 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |       ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 605 |       assert_statement!("while (true) foo;", Statement::While {
+kablam!     |  _____- starting here...
+kablam! 606 | |         test: Expression::Literal(LiteralTrue),
+kablam! 607 | |         body: Box::new(Statement::Expression {
+kablam! 608 | |             value: ident!("foo")
+kablam! 609 | |         }),
+kablam! 610 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 615 |     assert_expression!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:41:15
+kablam!     |
+kablam! 41  |         name: $name.to_string()
+kablam!     |               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 633 |     assert_expression!("n => n * n", Expression::ArrowFunction {
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 633 |     assert_expression!("n => n * n", Expression::ArrowFunction {
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 633 |     assert_expression!("n => n * n", Expression::ArrowFunction {
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:41:15
+kablam!     |
+kablam! 41  |         name: $name.to_string()
+kablam!     |               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 649 |     assert_expression!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:41:15
+kablam!     |
+kablam! 41  |         name: $name.to_string()
+kablam!     |               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 649 |     assert_expression!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:41:15
+kablam!     |
+kablam! 41  |         name: $name.to_string()
+kablam!     |               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 649 |     assert_expression!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 649 |     assert_expression!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 671 |     assert_expression!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:697:20
+kablam!     |
+kablam! 690 |     assert_expression!("
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 697 |         name: Some("foo".to_string()),
+kablam!     |                    ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 690 |     assert_expression!("
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |       ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 709 |       assert_statement!("foo", Statement::Expression {
+kablam!     |  _____- starting here...
+kablam! 710 | |         value: ident!("foo")
+kablam! 711 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |       ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 716 |       assert_statement!("foo, bar, baz", Statement::Expression {
+kablam!     |  _____- starting here...
+kablam! 717 | |         value: Expression::Sequence(vec![
+kablam! 718 | |             ident!("foo"),
+kablam! 719 | |             ident!("bar"),
+kablam! 720 | |             ident!("baz"),
+kablam! 721 | |         ])
+kablam! 722 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |       ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 716 |       assert_statement!("foo, bar, baz", Statement::Expression {
+kablam!     |  _____- starting here...
+kablam! 717 | |         value: Expression::Sequence(vec![
+kablam! 718 | |             ident!("foo"),
+kablam! 719 | |             ident!("bar"),
+kablam! 720 | |             ident!("baz"),
+kablam! 721 | |         ])
+kablam! 722 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |       ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 716 |       assert_statement!("foo, bar, baz", Statement::Expression {
+kablam!     |  _____- starting here...
+kablam! 717 | |         value: Expression::Sequence(vec![
+kablam! 718 | |             ident!("foo"),
+kablam! 719 | |             ident!("bar"),
+kablam! 720 | |             ident!("baz"),
+kablam! 721 | |         ])
+kablam! 722 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:36:45
+kablam!     |
+kablam! 36  |     ($name:expr) => (Expression::Identifier($name.to_string()))
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! ...
+kablam! 727 |     assert_expression!("foo[1, 2, 3]", Expression::Member {
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:731:22
+kablam!     |
+kablam! 727 |     assert_expression!("foo[1, 2, 3]", Expression::Member {
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 731 |                 num!(1.0),
+kablam!     |                      ^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:732:22
+kablam!     |
+kablam! 727 |     assert_expression!("foo[1, 2, 3]", Expression::Member {
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 732 |                 num!(2.0),
+kablam!     |                      ^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:733:22
+kablam!     |
+kablam! 727 |     assert_expression!("foo[1, 2, 3]", Expression::Member {
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 733 |                 num!(3.0),
+kablam!     |                      ^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:729:19
+kablam!     |
+kablam! 727 |       assert_expression!("foo[1, 2, 3]", Expression::Member {
+kablam!     |       - in this macro invocation
+kablam! 728 |         object: Box::new(ident!("foo")),
+kablam! 729 |           property: Box::new(MemberKey::Computed(
+kablam!     |  ___________________^ starting here...
+kablam! 730 | |             Expression::Sequence(vec![
+kablam! 731 | |                 num!(1.0),
+kablam! 732 | |                 num!(2.0),
+kablam! 733 | |                 num!(3.0),
+kablam! 734 | |             ])
+kablam! 735 | |         ))
+kablam!     | |__________^ ...ending here: expected struct `badger::grammar::OwnedSlice`, found box
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `Box<_>`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:743:18
+kablam!     |
+kablam! 741 |       assert_expression!("({foo:100})", Expression::Object(vec![
+kablam!     |  _____- starting here...
+kablam! 742 | |         ObjectMember::Literal {
+kablam! 743 | |             key: "foo".to_string(),
+kablam!     | |                  ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! 744 | |             value: num!(100.0),
+kablam! 745 | |         }
+kablam! 746 | |     ]));
+kablam!     | |________- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:744:25
+kablam!     |
+kablam! 741 |       assert_expression!("({foo:100})", Expression::Object(vec![
+kablam!     |  _____- starting here...
+kablam! 742 | |         ObjectMember::Literal {
+kablam! 743 | |             key: "foo".to_string(),
+kablam! 744 | |             value: num!(100.0),
+kablam!     | |                         ^^^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam! 745 | |         }
+kablam! 746 | |     ]));
+kablam!     | |________- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:753:23
+kablam!     |
+kablam! 751 |       assert_expression!("({[100]:100})", Expression::Object(vec![
+kablam!     |  _____- starting here...
+kablam! 752 | |         ObjectMember::Computed {
+kablam! 753 | |             key: num!(100.0),
+kablam!     | |                       ^^^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam! 754 | |             value: num!(100.0),
+kablam! 755 | |         }
+kablam! 756 | |     ]));
+kablam!     | |________- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:754:25
+kablam!     |
+kablam! 751 |       assert_expression!("({[100]:100})", Expression::Object(vec![
+kablam!     |  _____- starting here...
+kablam! 752 | |         ObjectMember::Computed {
+kablam! 753 | |             key: num!(100.0),
+kablam! 754 | |             value: num!(100.0),
+kablam!     | |                         ^^^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam! 755 | |         }
+kablam! 756 | |     ]));
+kablam!     | |________- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:763:18
+kablam!     |
+kablam! 761 |       assert_expression!("({foo})", Expression::Object(vec![
+kablam!     |  _____- starting here...
+kablam! 762 | |         ObjectMember::Shorthand {
+kablam! 763 | |             key: "foo".to_string(),
+kablam!     | |                  ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! 764 | |         }
+kablam! 765 | |     ]));
+kablam!     | |________- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:772:19
+kablam!     |
+kablam! 770 |       assert_expression!("({foo() {} })", Expression::Object(vec![
+kablam!     |  _____- starting here...
+kablam! 771 | |         ObjectMember::Method {
+kablam! 772 | |             name: "foo".to_string(),
+kablam!     | |                   ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! 773 | |             params: vec![],
+kablam! 774 | |             body: vec![],
+kablam! 775 | |         }
+kablam! 776 | |     ]));
+kablam!     | |________- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:783:24
+kablam!     |
+kablam! 781 |       assert_expression!("({[100]() {} })", Expression::Object(vec![
+kablam!     |  _____- starting here...
+kablam! 782 | |         ObjectMember::ComputedMethod {
+kablam! 783 | |             name: num!(100.0),
+kablam!     | |                        ^^^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam! 784 | |             params: vec![],
+kablam! 785 | |             body: vec![],
+kablam! 786 | |         }
+kablam! 787 | |     ]));
+kablam!     | |________- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:793:15
+kablam!     |
+kablam! 792 |       assert_statement!("class Foo {}", Statement::Class {
+kablam!     |  _____- starting here...
+kablam! 793 | |         name: "Foo".to_string(),
+kablam!     | |               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! 794 | |         extends: None,
+kablam! 795 | |         body: Vec::new(),
+kablam! 796 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:802:15
+kablam!     |
+kablam! 801 |       assert_statement!("class Foo extends Bar {}", Statement::Class {
+kablam!     |  _____- starting here...
+kablam! 802 | |         name: "Foo".to_string(),
+kablam!     | |               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! 803 | |         extends: Some("Bar".to_string()),
+kablam! 804 | |         body: Vec::new(),
+kablam! 805 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:803:23
+kablam!     |
+kablam! 801 |       assert_statement!("class Foo extends Bar {}", Statement::Class {
+kablam!     |  _____- starting here...
+kablam! 802 | |         name: "Foo".to_string(),
+kablam! 803 | |         extends: Some("Bar".to_string()),
+kablam!     | |                       ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam! 804 | |         body: Vec::new(),
+kablam! 805 | |     });
+kablam!     | |_______- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:817:15
+kablam!     |
+kablam! 810 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 817 |         name: "Foo".to_string(),
+kablam!     |               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:837:15
+kablam!     |
+kablam! 830 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 837 |         name: "Foo".to_string(),
+kablam!     |               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:842:23
+kablam!     |
+kablam! 830 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 842 |                 name: "bar".to_string(),
+kablam!     |                       ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:859:15
+kablam!     |
+kablam! 852 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 859 |         name: "Foo".to_string(),
+kablam!     |               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:864:23
+kablam!     |
+kablam! 852 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 864 |                 name: "bar".to_string(),
+kablam!     |                       ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:881:15
+kablam!     |
+kablam! 874 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 881 |         name: "Foo".to_string(),
+kablam!     |               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:886:23
+kablam!     |
+kablam! 874 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 886 |                 name: "bar".to_string(),
+kablam!     |                       ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:887:29
+kablam!     |
+kablam! 874 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 887 |                 value: num!(100.0),
+kablam!     |                             ^^^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:902:15
+kablam!     |
+kablam! 895 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 902 |         name: "Foo".to_string(),
+kablam!     |               ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:907:23
+kablam!     |
+kablam! 895 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 907 |                 name: "bar".to_string(),
+kablam!     |                       ^^^^^^^^^^^^^^^^^ expected struct `badger::grammar::OwnedSlice`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `std::string::String`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> tests/lib.rs:908:29
+kablam!     |
+kablam! 895 |     assert_statement!("
+kablam!     |     - in this macro invocation
+kablam! ...
+kablam! 908 |                 value: num!(100.0),
+kablam!     |                             ^^^^^ expected struct `badger::grammar::OwnedSlice`, found floating-point variable
+kablam!     |
+kablam!     = note: expected type `badger::grammar::OwnedSlice`
+kablam!     = note:    found type `{float}`
+kablam! 
+kablam! error: aborting due to 110 previous errors
+kablam! 
+kablam! error: Could not compile `badger`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 43b82929e878535696a51c2d5ec4931cec7d36d196b56615d12f857f0307a907`
+blam! 43b82929e878535696a51c2d5ec4931cec7d36d196b56615d12f857f0307a907

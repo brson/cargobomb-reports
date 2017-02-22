@@ -1,0 +1,32 @@
+boom! testing mod_path-0.1.6 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 2fe992b0f4d51818e5341cb439f62a385025ea1c301c8b3903f848816c30c703
+boom! running `docker start -a 2fe992b0f4d51818e5341cb439f62a385025ea1c301c8b3903f848816c30c703`
+kablam!    Compiling mod_path v0.1.6 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::ast::TokenTree`
+kablam!  --> lib.rs:9:19
+kablam!   |
+kablam! 9 | use syntax::ast::{TokenTree, Ident};
+kablam!   |                   ^^^^^^^^^ no `TokenTree` in `ast`
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!   --> lib.rs:32:35
+kablam!    |
+kablam! 32 |     reg.register_syntax_extension(token::intern("mod_path"), IdentTT(Box::new(expand_mod_path), None, false));
+kablam!    |                                   ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> lib.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(plugin_registrar, quote, rustc_private)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `mod_path`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 2fe992b0f4d51818e5341cb439f62a385025ea1c301c8b3903f848816c30c703`
+blam! 2fe992b0f4d51818e5341cb439f62a385025ea1c301c8b3903f848816c30c703

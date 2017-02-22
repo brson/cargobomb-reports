@@ -1,0 +1,24 @@
+boom! testing bfc-1.7.0 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 35133c40a3e6c07f10bad1d535861701af3a2474b0275e4db4ae887c82a3a76f
+boom! running `docker start -a 35133c40a3e6c07f10bad1d535861701af3a2474b0275e4db4ae887c82a3a76f`
+kablam!    Compiling itertools v0.4.19
+kablam!    Compiling llvm-sys v0.3.0
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/itertools-0.4.19/src/lib.rs:123:1
+kablam!     |
+kablam! 123 | pub type MapFn<I, B> where I: Iterator = iter::Map<I, fn(I::Item) -> B>;
+kablam!     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: failed to run custom build command for `llvm-sys v0.3.0`
+kablam! process didn't exit successfully: `/target/debug/build/llvm-sys-c715da06f2a3d258/build-script-build` (exit code: 101)
+kablam! --- stderr
+kablam! thread 'main' panicked at 'Couldn't execute llvm-config. Error: No such file or directory (os error 2)', /cargo-home/registry/src/github.com-1ecc6299db9ec823/llvm-sys-0.3.0/build.rs:13
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f 35133c40a3e6c07f10bad1d535861701af3a2474b0275e4db4ae887c82a3a76f`
+blam! 35133c40a3e6c07f10bad1d535861701af3a2474b0275e4db4ae887c82a3a76f

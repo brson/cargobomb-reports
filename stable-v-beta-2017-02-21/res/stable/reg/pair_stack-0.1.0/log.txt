@@ -1,0 +1,34 @@
+boom! testing pair_stack-0.1.0 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 381c252353fb3c6588b03967951e8b5965b6221c84761f47bfa3f04c31811569
+boom! running `docker start -a 381c252353fb3c6588b03967951e8b5965b6221c84761f47bfa3f04c31811569`
+kablam!    Compiling r2d2_postgres v0.11.1
+kablam!    Compiling mount v0.3.0
+kablam!    Compiling staticfile v0.4.0
+kablam!    Compiling pair_stack v0.1.0 (file:///source)
+kablam! error[E0432]: unresolved import `postgres::SslMode`
+kablam!   --> src/lib.rs:13:5
+kablam!    |
+kablam! 13 | use postgres::SslMode;
+kablam!    |     ^^^^^^^^^^^^^^^^^ no `SslMode` in the root
+kablam! 
+kablam! error[E0061]: this function takes 4 parameters but 3 parameters were supplied
+kablam!    --> src/lib.rs:110:24
+kablam!     |
+kablam! 110 |           self.api.route(method, path, move |req: &mut Request | -> IronResult<Response> {
+kablam!     |  ________________________^ starting here...
+kablam! 111 | |             let pool = req.get::<PRead<AppDb>>().unwrap();
+kablam! 112 | |             let conn = pool.get().unwrap();
+kablam! 113 | |             api(req, &conn)
+kablam! 114 | |         });
+kablam!     | |_________^ ...ending here: expected 4 parameters
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `pair_stack`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 381c252353fb3c6588b03967951e8b5965b6221c84761f47bfa3f04c31811569`
+blam! 381c252353fb3c6588b03967951e8b5965b6221c84761f47bfa3f04c31811569

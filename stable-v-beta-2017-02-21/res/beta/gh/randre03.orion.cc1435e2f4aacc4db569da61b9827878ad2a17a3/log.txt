@@ -1,0 +1,163 @@
+boom! testing https://github.com/randre03/orion#cc1435e2f4aacc4db569da61b9827878ad2a17a3 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! a4114047b3271a769d4eedfcba40b743e7e545d239ab204ba3c8899732d2d44d
+boom! running `docker start -a a4114047b3271a769d4eedfcba40b743e7e545d239ab204ba3c8899732d2d44d`
+kablam!    Compiling memchr v0.1.11
+kablam!    Compiling thread-id v2.0.0
+kablam!    Compiling thread_local v0.2.7
+kablam!    Compiling aho-corasick v0.5.3
+kablam!    Compiling regex v0.1.77
+kablam!    Compiling orion v0.1.0 (file:///source)
+kablam! error: an inner attribute is not permitted in this context
+kablam!  --> src/parser.rs:8:3
+kablam!   |
+kablam! 8 | #![feature(box_syntax, box_pattern)]
+kablam!   |   ^
+kablam!   |
+kablam!   = note: inner attributes and doc comments, like `#![no_std]` or `//! My crate`, annotate the item enclosing them, and are usually found at the beginning of source files. Outer attributes and doc comments, like `#[test]` and
+kablam!                                              `/// My function`, annotate the item following them.
+kablam! 
+kablam! warning: `#[derive]` for custom traits is deprecated and will be removed in v1.15. Prefer using procedural macro custom derive
+kablam!  --> src/abs.rs:3:10
+kablam!   |
+kablam! 3 | #[derive(Show, Clone)]
+kablam!   |          ^^^^
+kablam! 
+kablam! warning: `#[derive]` for custom traits is deprecated and will be removed in v1.15. Prefer using procedural macro custom derive
+kablam!  --> src/abs.rs:6:10
+kablam!   |
+kablam! 6 | #[derive(Show, Clone)]
+kablam!   |          ^^^^
+kablam! 
+kablam! warning: `#[derive]` for custom traits is deprecated and will be removed in v1.15. Prefer using procedural macro custom derive
+kablam!   --> src/abs.rs:12:10
+kablam!    |
+kablam! 12 | #[derive(Show, Clone)]
+kablam!    |          ^^^^
+kablam! 
+kablam! warning: `#[derive]` for custom traits is deprecated and will be removed in v1.15. Prefer using procedural macro custom derive
+kablam!   --> src/parser.rs:10:10
+kablam!    |
+kablam! 10 | #[derive(Show)]
+kablam!    |          ^^^^
+kablam! 
+kablam! warning: `#[derive]` for custom traits is deprecated and will be removed in v1.15. Prefer using procedural macro custom derive
+kablam!  --> src/eval.rs:9:10
+kablam!   |
+kablam! 9 | #[derive(Show)]
+kablam!   |          ^^^^
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::File`
+kablam!  --> src/main.rs:7:5
+kablam!   |
+kablam! 7 | use std::io::File;
+kablam!   |     ^^^^^^^^^^^^^ no `File` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `abs::Expr::PLus`
+kablam!  --> src/parser.rs:4:40
+kablam!   |
+kablam! 4 | use abs::Expr::{self, Id, LitInt, Neg, PLus, Minus};
+kablam!   |                                        ^^^^ no `PLus` in `abs::Expr`. Did you mean to use `Plus`?
+kablam! 
+kablam! error[E0425]: cannot find function `Plus` in this scope
+kablam!    --> src/parser.rs:132:16
+kablam!     |
+kablam! 132 |         return Plus(box e1, box e2);
+kablam!     |                ^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidate is found in another module, you can import it into scope:
+kablam!               `use abs::Expr::Plus;`
+kablam! 
+kablam! error[E0425]: cannot find function `Plus` in this scope
+kablam!    --> src/parser.rs:138:16
+kablam!     |
+kablam! 138 |         return Plus(box e1, box e2);
+kablam!     |                ^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidate is found in another module, you can import it into scope:
+kablam!               `use abs::Expr::Plus;`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `HshMap`
+kablam!   --> src/eval.rs:14:20
+kablam!    |
+kablam! 14 |         return Env(HshMap::new());
+kablam!    |                    ^^^^^^^^^^^ Use of undeclared type or module `HshMap`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `End`
+kablam!   --> src/eval.rs:34:21
+kablam!    |
+kablam! 34 |         Eval { env: End::new() }
+kablam!    |                     ^^^^^^^^ Use of undeclared type or module `End`
+kablam! 
+kablam! error[E0425]: cannot find function `args` in module `std::os`
+kablam!   --> src/main.rs:18:16
+kablam!    |
+kablam! 18 |     let args = std::os::args();
+kablam!    |                ^^^^^^^^^^^^^ not found in `std::os`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::env::args;`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> src/main.rs:22:16
+kablam!    |
+kablam! 22 |     let path = Path::new(&args[1]);
+kablam!    |                ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error[E0425]: cannot find function `preprocess` in this scope
+kablam!   --> src/main.rs:25:17
+kablam!    |
+kablam! 25 |     let lines = preprocess(s.as_slice());
+kablam!    |                 ^^^^^^^^^^ did you mean `preprocessor`?
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> src/main.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(custom_derive)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> src/main.rs:2:1
+kablam!   |
+kablam! 2 | #![feature(box_patterns)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: box expression syntax is experimental; you can call `Box::new` instead. (see issue #27779)
+kablam!    --> src/parser.rs:126:20
+kablam!     |
+kablam! 126 |         return Neg(box e);
+kablam!     |                    ^^^^^
+kablam! 
+kablam! error: box expression syntax is experimental; you can call `Box::new` instead. (see issue #27779)
+kablam!    --> src/parser.rs:132:21
+kablam!     |
+kablam! 132 |         return Plus(box e1, box e2);
+kablam!     |                     ^^^^^^
+kablam! 
+kablam! error: box expression syntax is experimental; you can call `Box::new` instead. (see issue #27779)
+kablam!    --> src/parser.rs:132:29
+kablam!     |
+kablam! 132 |         return Plus(box e1, box e2);
+kablam!     |                             ^^^^^^
+kablam! 
+kablam! error: box expression syntax is experimental; you can call `Box::new` instead. (see issue #27779)
+kablam!    --> src/parser.rs:138:21
+kablam!     |
+kablam! 138 |         return Plus(box e1, box e2);
+kablam!     |                     ^^^^^^
+kablam! 
+kablam! error: box expression syntax is experimental; you can call `Box::new` instead. (see issue #27779)
+kablam!    --> src/parser.rs:138:29
+kablam!     |
+kablam! 138 |         return Plus(box e1, box e2);
+kablam!     |                             ^^^^^^
+kablam! 
+kablam! error: aborting due to 7 previous errors
+kablam! 
+kablam! error: Could not compile `orion`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f a4114047b3271a769d4eedfcba40b743e7e545d239ab204ba3c8899732d2d44d`
+blam! a4114047b3271a769d4eedfcba40b743e7e545d239ab204ba3c8899732d2d44d

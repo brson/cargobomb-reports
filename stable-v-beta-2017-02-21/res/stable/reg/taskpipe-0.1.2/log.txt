@@ -1,0 +1,50 @@
+boom! testing taskpipe-0.1.2 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 3ca6b1d84e490d341ef23f775848ff6baa259334a7a2071bcd20104fe20dff66
+boom! running `docker start -a 3ca6b1d84e490d341ef23f775848ff6baa259334a7a2071bcd20104fe20dff66`
+kablam!    Compiling taskpipe v0.1.2 (file:///source)
+kablam! error[E0432]: unresolved import `std::thread::JoinGuard`
+kablam!  --> src/lib.rs:6:26
+kablam!   |
+kablam! 6 | use std::thread::{Thread,JoinGuard};
+kablam!   |                          ^^^^^^^^^ no `JoinGuard` in `thread`
+kablam! 
+kablam! error: no associated item named `spawn` found for type `std::thread::Thread` in the current scope
+kablam!   --> src/lib.rs:34:5
+kablam!    |
+kablam! 34 |     Thread::spawn(move || {
+kablam!    |     ^^^^^^^^^^^^^
+kablam! 
+kablam! error: no associated item named `spawn` found for type `std::thread::Thread` in the current scope
+kablam!   --> src/lib.rs:61:9
+kablam!    |
+kablam! 61 |         Thread::spawn(move || {
+kablam!    |         ^^^^^^^^^^^^^
+kablam! 
+kablam! error: no associated item named `spawn` found for type `std::thread::Thread` in the current scope
+kablam!   --> src/lib.rs:66:9
+kablam!    |
+kablam! 66 |         Thread::spawn(move || {
+kablam!    |         ^^^^^^^^^^^^^
+kablam! 
+kablam! error: no associated item named `spawn` found for type `std::thread::Thread` in the current scope
+kablam!   --> src/lib.rs:92:9
+kablam!    |
+kablam! 92 |         Thread::spawn(move || {
+kablam!    |         ^^^^^^^^^^^^^
+kablam! 
+kablam! error: no associated item named `scoped` found for type `std::thread::Thread` in the current scope
+kablam!    --> src/lib.rs:133:9
+kablam!     |
+kablam! 133 |         Thread::scoped(move || {
+kablam!     |         ^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 5 previous errors
+kablam! 
+kablam! error: Could not compile `taskpipe`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 3ca6b1d84e490d341ef23f775848ff6baa259334a7a2071bcd20104fe20dff66`
+blam! 3ca6b1d84e490d341ef23f775848ff6baa259334a7a2071bcd20104fe20dff66

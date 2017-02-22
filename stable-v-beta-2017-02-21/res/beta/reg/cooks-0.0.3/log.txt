@@ -1,0 +1,62 @@
+boom! testing cooks-0.0.3 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 76dbb7295fcf9f581c190510546cc77976a607b0a4653270a3e1af74ff84321e
+boom! running `docker start -a 76dbb7295fcf9f581c190510546cc77976a607b0a4653270a3e1af74ff84321e`
+kablam!    Compiling cooks v0.0.3 (file:///source)
+kablam! error: expected pattern, found `:`
+kablam!    --> src/lib.rs:460:69
+kablam!     |
+kablam! 460 |                                        .cook_n((20 - i) as usize, |&: x: i32| {
+kablam!     |                                                                     ^
+kablam! 
+kablam! error: expected pattern, found `:`
+kablam!    --> src/lib.rs:467:66
+kablam!     |
+kablam! 467 |             for j in (0i32..(i + 1)).cook_n((20 - i) as usize, |&: x: i32| Some(x as f32)) {
+kablam!     |                                                                  ^
+kablam! 
+kablam! error[E0432]: unresolved import `std::iter::IteratorExt`
+kablam!   --> src/lib.rs:30:17
+kablam!    |
+kablam! 30 | use std::iter::{IteratorExt};
+kablam!    |                 ^^^^^^^^^^^ no `IteratorExt` in `iter`. Did you mean to use `Iterator`?
+kablam! 
+kablam! error[E0425]: cannot find function `num_cpus` in module `std::os`
+kablam!   --> src/lib.rs:64:22
+kablam!    |
+kablam! 64 |         Cooks::new_n(::std::os::num_cpus(), f)
+kablam!    |                      ^^^^^^^^^^^^^^^^^^^ not found in `std::os`
+kablam! 
+kablam! error[E0425]: cannot find function `num_cpus` in module `std::os`
+kablam!    --> src/lib.rs:356:21
+kablam!     |
+kablam! 356 |         self.cook_n(::std::os::num_cpus(), f)
+kablam!     |                     ^^^^^^^^^^^^^^^^^^^ not found in `std::os`
+kablam! 
+kablam! error[E0425]: cannot find function `num_cpus` in module `std::os`
+kablam!    --> src/lib.rs:381:21
+kablam!     |
+kablam! 381 |         self.cook_n(::std::os::num_cpus(), f)
+kablam!     |                     ^^^^^^^^^^^^^^^^^^^ not found in `std::os`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!   --> src/lib.rs:28:1
+kablam!    |
+kablam! 28 | #![feature(unsafe_destructor, std_misc, os, core)]
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: The attribute `unsafe_destructor` is currently unknown to the compiler and may have meaning added to it in the future (see issue #29642)
+kablam!    --> src/lib.rs:216:1
+kablam!     |
+kablam! 216 | #[unsafe_destructor]
+kablam!     | ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `cooks`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 76dbb7295fcf9f581c190510546cc77976a607b0a4653270a3e1af74ff84321e`
+blam! 76dbb7295fcf9f581c190510546cc77976a607b0a4653270a3e1af74ff84321e

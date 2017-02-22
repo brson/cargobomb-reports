@@ -1,0 +1,34 @@
+boom! testing libedgegrid-0.1.1 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! b5dd0709c8014f576e600ad3f934796d11c703cb0ce3c8374bd855ec2a041571
+boom! running `docker start -a b5dd0709c8014f576e600ad3f934796d11c703cb0ce3c8374bd855ec2a041571`
+kablam!    Compiling sodium-sys v0.0.4
+kablam!    Compiling curl-sys v0.1.35
+kablam!    Compiling serde v0.6.15
+kablam!    Compiling libedgegrid v0.1.1 (file:///source)
+kablam! error: failed to run custom build command for `sodium-sys v0.0.4`
+kablam! process didn't exit successfully: `/target/debug/build/sodium-sys-097619479dde7a4b/build-script-build` (exit code: 101)
+kablam! --- stderr
+kablam! ./autogen.sh: 13: ./autogen.sh: libtoolize: not found
+kablam! thread 'main' panicked at 'assertion failed: status.success()', /cargo-home/registry/src/github.com-1ecc6299db9ec823/sodium-sys-0.0.4/build.rs:68
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error[E0308]: mismatched types
+kablam!   --> build.rs:65:37
+kablam!    |
+kablam! 65 |             serde_codegen::register(&mut registry);
+kablam!    |                                     ^^^^^^^^^^^^^ expected struct `syntex::Registry`, found struct `inner::syntex::Registry`
+kablam!    |
+kablam!    = note: expected type `&mut syntex::Registry`
+kablam!               found type `&mut inner::syntex::Registry`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `libedgegrid`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f b5dd0709c8014f576e600ad3f934796d11c703cb0ce3c8374bd855ec2a041571`
+blam! b5dd0709c8014f576e600ad3f934796d11c703cb0ce3c8374bd855ec2a041571

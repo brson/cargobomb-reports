@@ -1,0 +1,56 @@
+boom! testing cli-0.0.1 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 2e08d625d918e7573d8fed54e0075911b7d3054c0e2230450cf6bf37c829fd3a
+boom! running `docker start -a 2e08d625d918e7573d8fed54e0075911b7d3054c0e2230450cf6bf37c829fd3a`
+kablam!    Compiling cli v0.0.1 (file:///source)
+kablam! error[E0432]: unresolved import `std::old_io`
+kablam!  --> src/term.rs:5:5
+kablam!   |
+kablam! 5 | use std::old_io;
+kablam!   |     ^^^^^^^^^^^ no `old_io` in the root
+kablam! 
+kablam! error: no method named `as_slice` found for type `std::string::String` in the current scope
+kablam!    --> src/term.rs:228:53
+kablam!     |
+kablam! 228 |         prompt_input = get_prompt_input(prompt_text.as_slice(), hide_input);
+kablam!     |                                                     ^^^^^^^^
+kablam! 
+kablam! error: no associated item named `from_str` found for type `std::string::String` in the current scope
+kablam!    --> src/term.rs:229:28
+kablam!     |
+kablam! 229 |         if prompt_input != String::from_str("") {
+kablam!     |                            ^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use std::str::FromStr;`
+kablam! 
+kablam! error: no associated item named `from_str` found for type `std::string::String` in the current scope
+kablam!    --> src/term.rs:242:29
+kablam!     |
+kablam! 242 |         if confirm_input != String::from_str("") {
+kablam!     |                             ^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use std::str::FromStr;`
+kablam! 
+kablam! error: no method named `as_slice` found for type `std::string::String` in the current scope
+kablam!    --> src/term.rs:269:57
+kablam!     |
+kablam! 269 |         let prompt_input = get_prompt_input(prompt_text.as_slice(), false).to_ascii_lowercase();
+kablam!     |                                                         ^^^^^^^^
+kablam! 
+kablam! error: no method named `as_slice` found for type `std::string::String` in the current scope
+kablam!    --> src/term.rs:185:36
+kablam!     |
+kablam! 185 |         try!(f.write_str(self.text.as_slice()));
+kablam!     |                                    ^^^^^^^^
+kablam! 
+kablam! error: aborting due to 5 previous errors
+kablam! 
+kablam! error: Could not compile `cli`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 2e08d625d918e7573d8fed54e0075911b7d3054c0e2230450cf6bf37c829fd3a`
+blam! 2e08d625d918e7573d8fed54e0075911b7d3054c0e2230450cf6bf37c829fd3a

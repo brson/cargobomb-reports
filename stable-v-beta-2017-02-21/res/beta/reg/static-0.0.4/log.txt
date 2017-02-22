@@ -1,0 +1,44 @@
+boom! testing static-0.0.4 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 4324a8b7f6a257559cec63980dd8ed2988f5a9654180d73b2f1d38c2d35b6c1f
+boom! running `docker start -a 4324a8b7f6a257559cec63980dd8ed2988f5a9654180d73b2f1d38c2d35b6c1f`
+kablam!    Compiling static v0.0.4 (file:///source)
+kablam! error[E0432]: unresolved import `std::path::AsPath`
+kablam!  --> src/requested_path.rs:2:26
+kablam!   |
+kablam! 2 | use std::path::{PathBuf, AsPath};
+kablam!   |                          ^^^^^^ no `AsPath` in `path`. Did you mean to use `Path`?
+kablam! 
+kablam! error[E0432]: unresolved import `std::fs::PathExt`
+kablam!  --> src/requested_path.rs:3:5
+kablam!   |
+kablam! 3 | use std::fs::PathExt;
+kablam!   |     ^^^^^^^^^^^^^^^^ no `PathExt` in `fs`
+kablam! 
+kablam! error[E0432]: unresolved import `std::path::AsPath`
+kablam!  --> src/static_handler.rs:1:26
+kablam!   |
+kablam! 1 | use std::path::{PathBuf, AsPath};
+kablam!   |                          ^^^^^^ no `AsPath` in `path`. Did you mean to use `Path`?
+kablam! 
+kablam! error[E0432]: unresolved import `std::fs::PathExt`
+kablam!  --> src/static_handler.rs:2:5
+kablam!   |
+kablam! 2 | use std::fs::PathExt;
+kablam!   |     ^^^^^^^^^^^^^^^^ no `PathExt` in `fs`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> src/lib.rs:4:1
+kablam!   |
+kablam! 4 | #![feature(core, std_misc, path_ext, fs_time)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `static`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 4324a8b7f6a257559cec63980dd8ed2988f5a9654180d73b2f1d38c2d35b6c1f`
+blam! 4324a8b7f6a257559cec63980dd8ed2988f5a9654180d73b2f1d38c2d35b6c1f

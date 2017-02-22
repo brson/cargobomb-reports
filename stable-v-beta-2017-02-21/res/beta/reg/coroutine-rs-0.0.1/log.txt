@@ -1,0 +1,50 @@
+boom! testing coroutine-rs-0.0.1 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! ebeca41f371f8e799d3cd3ebf9e652173efedcf76c13d72b78c6c2943b008432
+boom! running `docker start -a ebeca41f371f8e799d3cd3ebf9e652173efedcf76c13d72b78c6c2943b008432`
+kablam!    Compiling coroutine-rs v0.0.1 (file:///source)
+kablam! error[E0432]: unresolved import `std::simd`
+kablam!   --> src/context.rs:15:5
+kablam!    |
+kablam! 15 | use std::simd;
+kablam!    |     ^^^^^^^^^ no `simd` in the root
+kablam! 
+kablam! error[E0432]: unresolved import `std::rt::util::min_stack`
+kablam!   --> src/coroutine.rs:48:5
+kablam!    |
+kablam! 48 | use std::rt::util::min_stack;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `util` in `rt`
+kablam! 
+kablam! error[E0432]: unresolved import `std::rt::unwind::try`
+kablam!   --> src/coroutine.rs:51:5
+kablam!    |
+kablam! 51 | use std::rt::unwind::try;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^ Could not find `unwind` in `rt`
+kablam! 
+kablam! error[E0432]: unresolved import `std::env::page_size`
+kablam!   --> src/stack.rs:13:22
+kablam!    |
+kablam! 13 | use std::env::{self, page_size};
+kablam!    |                      ^^^^^^^^^ no `page_size` in `env`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!   --> src/lib.rs:15:1
+kablam!    |
+kablam! 15 | #![feature(box_syntax, std_misc, libc, asm, core, alloc, test, unboxed_closures, page_size)]
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!   --> src/lib.rs:16:1
+kablam!    |
+kablam! 16 | #![feature(rustc_private)]
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `coroutine-rs`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f ebeca41f371f8e799d3cd3ebf9e652173efedcf76c13d72b78c6c2943b008432`
+blam! ebeca41f371f8e799d3cd3ebf9e652173efedcf76c13d72b78c6c2943b008432

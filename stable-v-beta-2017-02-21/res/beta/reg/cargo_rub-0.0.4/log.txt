@@ -1,0 +1,56 @@
+boom! testing cargo_rub-0.0.4 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 4914591ee6782219469bdf8ae09e063af571ba1b5793b4442234172a9457bf26
+boom! running `docker start -a 4914591ee6782219469bdf8ae09e063af571ba1b5793b4442234172a9457bf26`
+kablam!    Compiling commandext v0.1.0
+kablam!    Compiling buildable v0.0.5
+kablam!    Compiling cargo_rub v0.0.4 (file:///source)
+kablam! error[E0432]: unresolved import `std::io::File`
+kablam!  --> build.rs:6:5
+kablam!   |
+kablam! 6 | use std::io::File;
+kablam!   |     ^^^^^^^^^^^^^ no `File` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::process::Command`
+kablam!  --> build.rs:7:5
+kablam!   |
+kablam! 7 | use std::io::process::Command;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `process` in `io`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> build.rs:58:15
+kablam!    |
+kablam! 58 |     let dst = Path::new(os::getenv("OUT_DIR").unwrap());
+kablam!    |               ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error: `#[derive]` for custom traits is not stable enough for use. It is deprecated and will be removed in v1.15 (see issue #29644)
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/buildable-0.0.5/src/lib.rs:214:47
+kablam!     |
+kablam! 214 | #[derive(Copy,PartialEq, Eq, PartialOrd, Ord, Show)]
+kablam!     |                                               ^^^^
+kablam! 
+kablam! error[E0425]: cannot find function `getenv` in module `os`
+kablam!   --> build.rs:58:25
+kablam!    |
+kablam! 58 |     let dst = Path::new(os::getenv("OUT_DIR").unwrap());
+kablam! error: aborting due to previous error
+kablam! 
+kablam!    |                         ^^^^^^^^^^ not found in `os`
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `buildable`.
+kablam! error: no method named `as_slice` found for type `std::string::String` in the current scope
+kablam!   --> build.rs:60:25
+kablam!    |
+kablam! 60 |     f.write_str(version.as_slice()).unwrap();
+kablam!    |                         ^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `cargo_rub`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f 4914591ee6782219469bdf8ae09e063af571ba1b5793b4442234172a9457bf26`
+blam! 4914591ee6782219469bdf8ae09e063af571ba1b5793b4442234172a9457bf26

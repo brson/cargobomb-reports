@@ -1,0 +1,134 @@
+boom! testing mkv-0.0.5 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 32775f687331fa7bd4f15fd6038baa2a1e5efef73424772875f95485acaf3164
+boom! running `docker start -a 32775f687331fa7bd4f15fd6038baa2a1e5efef73424772875f95485acaf3164`
+kablam!    Compiling mkv v0.0.5 (file:///source)
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 1.79 secs
+boom! running `docker rm -f 32775f687331fa7bd4f15fd6038baa2a1e5efef73424772875f95485acaf3164`
+blam! 32775f687331fa7bd4f15fd6038baa2a1e5efef73424772875f95485acaf3164
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 2480383a7cb690325a7de6fc4d166129e892ab26597ed367ec457aa35a9d081f
+boom! running `docker start -a 2480383a7cb690325a7de6fc4d166129e892ab26597ed367ec457aa35a9d081f`
+kablam!    Compiling mkv v0.0.5 (file:///source)
+kablam! error[E0433]: failed to resolve. Maybe a missing `extern crate log;`?
+kablam!  --> examples/simplelogger.rs:2:6
+kablam!   |
+kablam! 2 | impl ::log::Log for SimpleLogger {
+kablam!   |      ^^^^^^^^^^ Maybe a missing `extern crate log;`?
+kablam! 
+kablam! error[E0433]: failed to resolve. Maybe a missing `extern crate log;`?
+kablam!  --> examples/simplelogger.rs:3:27
+kablam!   |
+kablam! 3 |     fn enabled(&self, _: &::log::LogMetadata) -> bool { true     }
+kablam!   |                           ^^^^^^^^^^^^^^^^^^ Maybe a missing `extern crate log;`?
+kablam! 
+kablam! error[E0433]: failed to resolve. Maybe a missing `extern crate log;`?
+kablam!  --> examples/simplelogger.rs:4:28
+kablam!   |
+kablam! 4 |     fn log(&self, record: &::log::LogRecord) { println!("{}", record.args());  }
+kablam!   |                            ^^^^^^^^^^^^^^^^ Maybe a missing `extern crate log;`?
+kablam! 
+kablam! error: main function not found
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!   --> examples/event_dumper.rs:22:9
+kablam!    |
+kablam! 22 |     let mut reader : Box<Read> = match args().len() {
+kablam!    |         ^^^^^^^^^^
+kablam! 
+kablam! warning: function `eldb_test__id_to_class` should have a snake case name such as `eldb_test_id_to_class`, #[warn(non_snake_case)] on by default
+kablam!    --> src/elements/database.rs:266:1
+kablam!     |
+kablam! 266 |   fn eldb_test__id_to_class() {
+kablam!     |  _^ starting here...
+kablam! 267 | |     assert_eq!(id_to_class(0x1A45DFA3), Class::EBML);
+kablam! 268 | |     assert_eq!(id_to_class(0x002EB524), Class::ColourSpace);
+kablam! 269 | |     assert_eq!(id_to_class(0x000000EC), Class::Void);
+kablam! 270 | |     assert_eq!(id_to_class(0x00004285), Class::DocTypeReadVersion);
+kablam! 271 | |     assert_eq!(id_to_class(0x1A45DBBBB), Class::Unknown);
+kablam! 272 | | }
+kablam!     | |_^ ...ending here
+kablam! 
+kablam! warning: function `eldb_test__class_to_id` should have a snake case name such as `eldb_test_class_to_id`, #[warn(non_snake_case)] on by default
+kablam!    --> src/elements/database.rs:275:1
+kablam!     |
+kablam! 275 |   fn eldb_test__class_to_id() {
+kablam!     |  _^ starting here...
+kablam! 276 | |     assert_eq!(class_to_id(Class::EBML              ), 0x1A45DFA3);
+kablam! 277 | |     assert_eq!(class_to_id(Class::ColourSpace       ), 0x002EB524);
+kablam! 278 | |     assert_eq!(class_to_id(Class::Void              ), 0x000000EC);
+kablam! 279 | |     assert_eq!(class_to_id(Class::DocTypeReadVersion), 0x00004285);
+kablam! 280 | | }
+kablam!     | |_^ ...ending here
+kablam! 
+kablam! warning: function `eldb_test__class_to_type` should have a snake case name such as `eldb_test_class_to_type`, #[warn(non_snake_case)] on by default
+kablam!    --> src/elements/database.rs:283:1
+kablam!     |
+kablam! 283 |   fn eldb_test__class_to_type() {
+kablam!     |  _^ starting here...
+kablam! 284 | |     use super::Type::*;
+kablam! 285 | |     assert_eq!(class_to_type(Class::EBML              ), Master);
+kablam! 286 | |     assert_eq!(class_to_type(Class::ColourSpace       ), Binary);
+kablam! 287 | |     assert_eq!(class_to_type(Class::Void              ), Binary);
+kablam! 288 | |     assert_eq!(class_to_type(Class::DocTypeReadVersion), Unsigned);
+kablam! 289 | | }
+kablam!     | |_^ ...ending here
+kablam! 
+kablam! error: Could not compile `mkv`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 2480383a7cb690325a7de6fc4d166129e892ab26597ed367ec457aa35a9d081f`
+blam! 2480383a7cb690325a7de6fc4d166129e892ab26597ed367ec457aa35a9d081f
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! 4a6b8df3cc685474f0b8ed70e47a6649f08eb6adaea2385b8f334b348259260b
+boom! running `docker start -a 4a6b8df3cc685474f0b8ed70e47a6649f08eb6adaea2385b8f334b348259260b`
+kablam!    Compiling mkv v0.0.5 (file:///source)
+kablam! warning: unused variable: `element_logger`, #[warn(unused_variables)] on by default
+kablam!   --> examples/dom_dumper.rs:32:9
+kablam!    |
+kablam! 32 |     let element_logger = mkv::elements::parser::debug::DebugPrint::new(log::LogLevel::Info);
+kablam!    |         ^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!   --> examples/dom_dumper.rs:23:9
+kablam!    |
+kablam! 23 |     let mut reader : Box<Read> = match args().len() {
+kablam!    |         ^^^^^^^^^^
+kablam! 
+kablam! error[E0433]: failed to resolve. Maybe a missing `extern crate log;`?
+kablam!  --> examples/simplelogger.rs:2:6
+kablam!   |
+kablam! 2 | impl ::log::Log for SimpleLogger {
+kablam!   |      ^^^^^^^^^^ Maybe a missing `extern crate log;`?
+kablam! 
+kablam! error[E0433]: failed to resolve. Maybe a missing `extern crate log;`?
+kablam!  --> examples/simplelogger.rs:3:27
+kablam!   |
+kablam! 3 |     fn enabled(&self, _: &::log::LogMetadata) -> bool { true     }
+kablam!   |                           ^^^^^^^^^^^^^^^^^^ Maybe a missing `extern crate log;`?
+kablam! 
+kablam! error[E0433]: failed to resolve. Maybe a missing `extern crate log;`?
+kablam!  --> examples/simplelogger.rs:4:28
+kablam!   |
+kablam! 4 |     fn log(&self, record: &::log::LogRecord) { println!("{}", record.args());  }
+kablam!   |                            ^^^^^^^^^^^^^^^^ Maybe a missing `extern crate log;`?
+kablam! 
+kablam! error: main function not found
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `mkv`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 4a6b8df3cc685474f0b8ed70e47a6649f08eb6adaea2385b8f334b348259260b`
+blam! 4a6b8df3cc685474f0b8ed70e47a6649f08eb6adaea2385b8f334b348259260b

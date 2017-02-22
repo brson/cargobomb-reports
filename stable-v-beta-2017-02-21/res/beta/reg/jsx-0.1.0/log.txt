@@ -1,0 +1,38 @@
+boom! testing jsx-0.1.0 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 8a333c3d6ddbbc41287aa7b2abe7ee41eac4721c5117fb4fc378fe93468a192c
+boom! running `docker start -a 8a333c3d6ddbbc41287aa7b2abe7ee41eac4721c5117fb4fc378fe93468a192c`
+kablam!    Compiling jsx v0.1.0 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::ast::TokenTree`
+kablam!  --> src/lib.rs:9:19
+kablam!   |
+kablam! 9 | use syntax::ast::{TokenTree, Ident, PathSegment, PathParameters, Path, Field};
+kablam!   |                   ^^^^^^^^^ no `TokenTree` in `ast`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::intern`
+kablam!   --> src/lib.rs:12:35
+kablam!    |
+kablam! 12 | use syntax::parse::token::{Token, intern};
+kablam!    |                                   ^^^^^^ no `intern` in `parse::token`
+kablam! 
+kablam! error[E0432]: unresolved import `rustc::plugin::Registry`
+kablam!   --> src/lib.rs:13:5
+kablam!    |
+kablam! 13 | use rustc::plugin::Registry;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `plugin` in `rustc`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> src/lib.rs:3:1
+kablam!   |
+kablam! 3 | #![feature(plugin_registrar, rustc_private, quote)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `jsx`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 8a333c3d6ddbbc41287aa7b2abe7ee41eac4721c5117fb4fc378fe93468a192c`
+blam! 8a333c3d6ddbbc41287aa7b2abe7ee41eac4721c5117fb4fc378fe93468a192c

@@ -1,0 +1,32 @@
+boom! testing rust-pm-0.0.2 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 67b32147c546f3146b4117835bbeee23f65fd3bd2ff2c952a1db4ce18c86cedf
+boom! running `docker start -a 67b32147c546f3146b4117835bbeee23f65fd3bd2ff2c952a1db4ce18c86cedf`
+kablam!    Compiling rust-pm v0.0.2 (file:///source)
+kablam! error[E0432]: unresolved import `toml::Parser`
+kablam!  --> src/main.rs:8:12
+kablam!   |
+kablam! 8 | use toml::{Parser, Value};
+kablam!   |            ^^^^^^ no `Parser` in the root
+kablam! 
+kablam! error[E0425]: cannot find function `scoped` in module `thread`
+kablam!   --> src/logger.rs:35:21
+kablam!    |
+kablam! 35 |             let _ = thread::scoped(move || {
+kablam!    |                     ^^^^^^^^^^^^^^ not found in `thread`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> src/main.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(scoped)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `rust-pm`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 67b32147c546f3146b4117835bbeee23f65fd3bd2ff2c952a1db4ce18c86cedf`
+blam! 67b32147c546f3146b4117835bbeee23f65fd3bd2ff2c952a1db4ce18c86cedf

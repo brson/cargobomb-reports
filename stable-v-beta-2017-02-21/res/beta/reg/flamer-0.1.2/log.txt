@@ -1,0 +1,45 @@
+boom! testing flamer-0.1.2 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 9a198159478c755af8ae15c6054a7869147738c649402a10e78dca849f1a2260
+boom! running `docker start -a 9a198159478c755af8ae15c6054a7869147738c649402a10e78dca849f1a2260`
+kablam!    Compiling flame v0.1.11
+kablam!    Compiling flamer v0.1.2 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::ext::expand::expand_expr`
+kablam!   --> src/lib.rs:14:27
+kablam!    |
+kablam! 14 | use syntax::ext::expand::{expand_expr, expand_item};
+kablam!    |                           ^^^^^^^^^^^ no `expand_expr` in `ext::expand`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::ext::expand::expand_item`
+kablam!   --> src/lib.rs:14:40
+kablam!    |
+kablam! 14 | use syntax::ext::expand::{expand_expr, expand_item};
+kablam!    |                                        ^^^^^^^^^^^ no `expand_item` in `ext::expand`
+kablam! 
+kablam! error[E0532]: expected tuple struct/variant, found unit variant `MetaItemKind::Word`
+kablam!   --> src/lib.rs:50:20
+kablam!    |
+kablam! 50 |             if let MetaItemKind::Word(ref name) = attr.node.value.node {
+kablam!    |                    ^^^^^^^^^^^^^^^^^^ not a tuple struct/variant
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!   --> src/lib.rs:94:35
+kablam!    |
+kablam! 94 |     reg.register_syntax_extension(token::intern("flame"),
+kablam!    |                                   ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> src/lib.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(plugin_registrar, quote, rustc_private)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `flamer`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 9a198159478c755af8ae15c6054a7869147738c649402a10e78dca849f1a2260`
+blam! 9a198159478c755af8ae15c6054a7869147738c649402a10e78dca849f1a2260

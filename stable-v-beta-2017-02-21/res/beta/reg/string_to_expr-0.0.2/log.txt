@@ -1,0 +1,69 @@
+boom! testing string_to_expr-0.0.2 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 09323cc874f0f1393d58e46b4078407fa17c627a756e3b47edb8f99e0594fb4a
+boom! running `docker start -a 09323cc874f0f1393d58e46b4078407fa17c627a756e3b47edb8f99e0594fb4a`
+kablam!    Compiling string_to_expr v0.0.2 (file:///source)
+kablam! error[E0432]: unresolved import `rustc::plugin::Registry`
+kablam!   --> src/lib.rs:11:5
+kablam!    |
+kablam! 11 | use rustc::plugin::Registry;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `plugin` in `rustc`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::diagnostic::FatalError`
+kablam!   --> src/parser_any_macro.rs:14:13
+kablam!    |
+kablam! 14 |         use syntax::diagnostic::FatalError;
+kablam!    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `diagnostic` in `syntax`
+kablam! ...
+kablam! 41 |             panictry!(parser.bump())
+kablam!    |             ------------------------ in this macro invocation
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::diagnostic::FatalError`
+kablam!   --> src/parser_any_macro.rs:14:13
+kablam!    |
+kablam! 14 |         use syntax::diagnostic::FatalError;
+kablam!    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `diagnostic` in `syntax`
+kablam! ...
+kablam! 81 |                 _ => ret.push(panictry!(parser.parse_impl_item()))
+kablam!    |                               ----------------------------------- in this macro invocation
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!   --> src/lib.rs:22:30
+kablam!    |
+kablam! 22 |                       tts: &[ast::TokenTree]) -> Box<MacResult + 'a> {
+kablam!    |                              ^^^^^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `ExprLit` in module `ast`
+kablam!   --> src/lib.rs:28:9
+kablam!    |
+kablam! 28 |         ast::ExprLit(ref spanned) => {
+kablam!    |         ^^^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use rustc::hir::ExprLit;`
+kablam!              `use rustc::hir::Expr_::ExprLit;`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `LitStr` in module `ast`
+kablam!   --> src/lib.rs:30:17
+kablam!    |
+kablam! 30 |                 ast::LitStr(ref s, _) => s.to_string(),
+kablam!    |                 ^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> src/lib.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(plugin_registrar, rustc_private)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `string_to_expr`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 09323cc874f0f1393d58e46b4078407fa17c627a756e3b47edb8f99e0594fb4a`
+blam! 09323cc874f0f1393d58e46b4078407fa17c627a756e3b47edb8f99e0594fb4a

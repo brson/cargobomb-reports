@@ -1,0 +1,59 @@
+boom! testing core-utils-0.1.2 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 60ce3c074c1d7d783f583859e5f99959c0ac6482ca857967a67c172c275c9538
+boom! running `docker start -a 60ce3c074c1d7d783f583859e5f99959c0ac6482ca857967a67c172c275c9538`
+kablam!    Compiling rpf v0.1.6
+kablam!    Compiling pgetopts v0.1.2
+kablam!    Compiling core-utils v0.1.2 (file:///source)
+kablam! error[E0554]error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/ln/main.rs:7:1
+kablam!   |
+kablam! 7 | #![feature(path_ext,slice_splits)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! : #[feature] may not be used on the stable release channel
+kablam! error: aborting due to previous error
+kablam! 
+kablam!  --> src/rm/main.rs:7:1
+kablam!   |
+kablam! 7 | #![feature(path_ext)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+blam! Build failed, waiting for other jobs to finish...
+kablam! error[E0432]: unresolved import `rpf::Status`
+kablam!   --> src/cat/main.rs:16:11
+kablam!    |
+kablam! 16 | use rpf::{Status,Styled,Prog};
+kablam!    |           ^^^^^^ no `Status` in the root. Did you mean to use `status`?
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/ls/main.rs:7:1
+kablam!   |
+kablam! 7 | #![feature(path_ext)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error[E0308]: mismatched types
+kablam!   --> src/cat/main.rs:92:24
+kablam!    |
+kablam! 92 |                        vec!["Alberto Corona"]);
+kablam!    |                        ^^^^^^^^^^^^^^^^^^^^^^ expected &[&str], found struct `std::vec::Vec`
+kablam!    |
+kablam!    = note: expected type `&[&str]`
+kablam!    = note:    found type `std::vec::Vec<&str>`
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `core-utils`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 60ce3c074c1d7d783f583859e5f99959c0ac6482ca857967a67c172c275c9538`
+blam! 60ce3c074c1d7d783f583859e5f99959c0ac6482ca857967a67c172c275c9538

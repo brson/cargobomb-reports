@@ -1,0 +1,51 @@
+boom! testing https://github.com/zegl/kram-rust#cff99c048aa188d71d57a3fa7a8bade0556178de against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! f8771b2e33a8ab7693f7a91f3cf67b2ff08c97848f752a4c8a51dc943e5dd94c
+boom! running `docker start -a f8771b2e33a8ab7693f7a91f3cf67b2ff08c97848f752a4c8a51dc943e5dd94c`
+kablam!    Compiling kram-rust v0.0.1 (file:///source)
+kablam! error[E0063]: missing field `Reference` in initializer of `vm::Value`
+kablam!    --> src/vm/mod.rs:241:3
+kablam!     |
+kablam! 241 | 		Value {
+kablam!     | 		^^^^^ missing `Reference`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/libraries/mod.rs:10:68
+kablam!    |
+kablam! 10 |       fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+kablam!    |  ____________________________________________________________________^ starting here...
+kablam! 11 | |         println!("<Library>");
+kablam! 12 | |     }
+kablam!    | |_____^ ...ending here: expected enum `std::result::Result`, found ()
+kablam!    |
+kablam!    = note: expected type `std::result::Result<(), std::fmt::Error>`
+kablam!               found type `()`
+kablam! 
+kablam! error[E0277]: the trait bound `libraries::Library: std::marker::Sized` is not satisfied
+kablam!    --> src/vm/mod.rs:230:2
+kablam!     |
+kablam! 230 | 	Reference: Box<Library>,
+kablam!     | 	^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::marker::Sized` is not implemented for `libraries::Library`
+kablam!     |
+kablam!     = note: `libraries::Library` does not have a constant size known at compile-time
+kablam!     = note: required because of the requirements on the impl of `std::clone::Clone` for `std::boxed::Box<libraries::Library>`
+kablam!     = note: required by `std::clone::Clone::clone`
+kablam! 
+kablam! error[E0277]: the trait bound `libraries::Library: std::clone::Clone` is not satisfied
+kablam!    --> src/vm/mod.rs:230:2
+kablam!     |
+kablam! 230 | 	Reference: Box<Library>,
+kablam!     | 	^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::clone::Clone` is not implemented for `libraries::Library`
+kablam!     |
+kablam!     = note: required because of the requirements on the impl of `std::clone::Clone` for `std::boxed::Box<libraries::Library>`
+kablam!     = note: required by `std::clone::Clone::clone`
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `kram-rust`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f8771b2e33a8ab7693f7a91f3cf67b2ff08c97848f752a4c8a51dc943e5dd94c`
+blam! f8771b2e33a8ab7693f7a91f3cf67b2ff08c97848f752a4c8a51dc943e5dd94c

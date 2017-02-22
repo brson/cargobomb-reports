@@ -1,0 +1,80 @@
+boom! testing math3d-0.0.1 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! e3d651e40ac71a28f891d17d30c6e07bcb6c6c8662e6cd7f701809e73ad57706
+boom! running `docker start -a e3d651e40ac71a28f891d17d30c6e07bcb6c6c8662e6cd7f701809e73ad57706`
+kablam!    Compiling math3d v0.0.1 (file:///source)
+kablam! error[E0432]: unresolved import `std::num::Float`
+kablam!  --> src/lib.rs:4:5
+kablam!   |
+kablam! 4 | use std::num::Float;
+kablam!   |     ^^^^^^^^^^^^^^^ no `Float` in `num`
+kablam! 
+kablam! error[E0437]: type `Output` is not a member of trait `IndexMut`
+kablam!   --> src/lib.rs:18:5
+kablam!    |
+kablam! 18 |     type Output = [f32; 4];
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^ not a member of trait `IndexMut`
+kablam! 
+kablam! error[E0437]: type `Output` is not a member of trait `IndexMut`
+kablam!   --> src/lib.rs:90:5
+kablam!    |
+kablam! 90 |     type Output = f32;
+kablam!    |     ^^^^^^^^^^^^^^^^^^ not a member of trait `IndexMut`
+kablam! 
+kablam! error[E0053]: method `index` has an incompatible type for trait
+kablam!   --> src/lib.rs:12:5
+kablam!    |
+kablam! 12 |       fn index<'a>(&'a self, row: &usize) -> &'a [f32; 4] {
+kablam!    |  _____^ starting here...
+kablam! 13 | |         &self.0[*row]
+kablam! 14 | |     }
+kablam!    | |_____^ ...ending here: expected usize, found &usize
+kablam!    |
+kablam!    = note: expected type `fn(&Matrix4, usize) -> &[f32; 4]`
+kablam!    = note:    found type `fn(&Matrix4, &usize) -> &[f32; 4]`
+kablam! 
+kablam! error[E0053]: method `index_mut` has an incompatible type for trait
+kablam!   --> src/lib.rs:20:5
+kablam!    |
+kablam! 20 |       fn index_mut<'a>(&'a mut self, row: &usize) -> &'a mut [f32; 4] {
+kablam!    |  _____^ starting here...
+kablam! 21 | |         &mut self.0[*row]
+kablam! 22 | |     }
+kablam!    | |_____^ ...ending here: expected usize, found &usize
+kablam!    |
+kablam!    = note: expected type `fn(&mut Matrix4, usize) -> &mut [f32; 4]`
+kablam!    = note:    found type `fn(&mut Matrix4, &usize) -> &mut [f32; 4]`
+kablam! 
+kablam! error[E0053]: method `index` has an incompatible type for trait
+kablam!   --> src/lib.rs:84:5
+kablam!    |
+kablam! 84 |       fn index<'a>(&'a self, index: &usize) -> &'a f32 {
+kablam!    |  _____^ starting here...
+kablam! 85 | |         &self.0[*index]
+kablam! 86 | |     }
+kablam!    | |_____^ ...ending here: expected usize, found &usize
+kablam!    |
+kablam!    = note: expected type `fn(&Vector3, usize) -> &f32`
+kablam!    = note:    found type `fn(&Vector3, &usize) -> &f32`
+kablam! 
+kablam! error[E0053]: method `index_mut` has an incompatible type for trait
+kablam!   --> src/lib.rs:92:5
+kablam!    |
+kablam! 92 |       fn index_mut<'a>(&'a mut self, index: &usize) -> &'a mut f32 {
+kablam!    |  _____^ starting here...
+kablam! 93 | |         &mut self.0[*index]
+kablam! 94 | |     }
+kablam!    | |_____^ ...ending here: expected usize, found &usize
+kablam!    |
+kablam!    = note: expected type `fn(&mut Vector3, usize) -> &mut f32`
+kablam!    = note:    found type `fn(&mut Vector3, &usize) -> &mut f32`
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `math3d`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f e3d651e40ac71a28f891d17d30c6e07bcb6c6c8662e6cd7f701809e73ad57706`
+blam! e3d651e40ac71a28f891d17d30c6e07bcb6c6c8662e6cd7f701809e73ad57706

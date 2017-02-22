@@ -1,0 +1,63 @@
+boom! testing kwarg_macros-0.0.6 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 74d62721a162e6682b85ea89c0764a07d0eb256ca230a437be8758570cb95c6f
+boom! running `docker start -a 74d62721a162e6682b85ea89c0764a07d0eb256ca230a437be8758570cb95c6f`
+kablam!    Compiling kwarg_macros v0.0.6 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::ast::TokenTree`
+kablam!   --> src/lib.rs:14:25
+kablam!    |
+kablam! 14 | use syntax::ast::{self, TokenTree};
+kablam!    |                         ^^^^^^^^^ no `TokenTree` in `ast`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::intern`
+kablam!   --> src/lib.rs:19:5
+kablam!    |
+kablam! 19 | use syntax::parse::token::intern;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `intern` in `parse::token`
+kablam! 
+kablam! error[E0412]: cannot find type `Delimited` in module `ast`
+kablam!   --> src/lib.rs:50:81
+kablam!    |
+kablam! 50 | fn new_delimited(sp: Span, delim: token::DelimToken, tts: Vec<TokenTree>) -> Rc<ast::Delimited>
+kablam!    |                                                                                 ^^^^^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use syntax::tokenstream::Delimited;`
+kablam! 
+kablam! error[E0422]: cannot find struct, variant or union type `Delimited` in module `ast`
+kablam!   --> src/lib.rs:52:10
+kablam!    |
+kablam! 52 | 	Rc::new(ast::Delimited{ delim: delim, open_span: sp, close_span: sp, tts: tts })
+kablam!    | 	        ^^^^^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use syntax::tokenstream::Delimited;`
+kablam!              `use syntax::tokenstream::TokenTree::Delimited;`
+kablam! 
+kablam! error[E0425]: cannot find value `Plain` in module `token`
+kablam!    --> src/lib.rs:203:70
+kablam!     |
+kablam! 203 | 		call_tts.push(TokenTree::Token(sp, token::Ident(self.name.clone(), token::Plain)));
+kablam!     | 		                                                                   ^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> src/lib.rs:7:1
+kablam!   |
+kablam! 7 | #![feature(quote, plugin_registrar)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> src/lib.rs:8:1
+kablam!   |
+kablam! 8 | #![feature(rustc_private)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `kwarg_macros`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 74d62721a162e6682b85ea89c0764a07d0eb256ca230a437be8758570cb95c6f`
+blam! 74d62721a162e6682b85ea89c0764a07d0eb256ca230a437be8758570cb95c6f

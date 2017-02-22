@@ -1,0 +1,192 @@
+boom! testing plumbum-0.0.8 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 20fd306dd0e71d68409d5cbc36a7154b3a344526427f014b67ea8d9e9a51d548
+boom! running `docker start -a 20fd306dd0e71d68409d5cbc36a7154b3a344526427f014b67ea8d9e9a51d548`
+kablam!    Compiling plumbum v0.0.8 (file:///source)
+kablam! warning: private type `Void` in public interface (error E0446), #[warn(private_in_public)] on by default
+kablam!    --> src/lib.rs:165:5
+kablam!     |
+kablam! 165 |     pub fn connect<A>(mut self, mut sink: Sink<'a, O, A>) -> A where O: 'static {
+kablam!     |     ^
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #34537 <https://github.com/rust-lang/rust/issues/34537>
+kablam! 
+kablam! warning: private type `Void` in public interface (error E0446), #[warn(private_in_public)] on by default
+kablam!    --> src/lib.rs:281:1
+kablam!     |
+kablam! 281 | pub type Sink<'a, I, A> = ConduitM<'a, I, Void, A>;
+kablam!     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #34537 <https://github.com/rust-lang/rust/issues/34537>
+kablam! 
+kablam! warning[E0276]: impl has stricter requirements than trait, #[warn(extra_requirement_in_impl)] on by default
+kablam!    --> src/lib.rs:265:5
+kablam!     |
+kablam! 265 |       fn extend<T: IntoIterator<Item=O>>(&mut self, iterator: T)
+kablam!     |  _____^ starting here...
+kablam! 266 | |         where I: 'a, T::IntoIter: 'a {
+kablam! 267 | |         let mut other = replace(self, ().into()).extend_iter(iterator.into_iter());
+kablam! 268 | |         swap(self, &mut other);
+kablam! 269 | |     }
+kablam!     | |_____^ ...ending here: impl has extra requirement `I: 'a`
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #37166 <https://github.com/rust-lang/rust/issues/37166>
+kablam! 
+kablam! warning[E0276]: impl has stricter requirements than trait, #[warn(extra_requirement_in_impl)] on by default
+kablam!    --> src/lib.rs:265:5
+kablam!     |
+kablam! 265 |       fn extend<T: IntoIterator<Item=O>>(&mut self, iterator: T)
+kablam!     |  _____^ starting here...
+kablam! 266 | |         where I: 'a, T::IntoIter: 'a {
+kablam! 267 | |         let mut other = replace(self, ().into()).extend_iter(iterator.into_iter());
+kablam! 268 | |         swap(self, &mut other);
+kablam! 269 | |     }
+kablam!     | |_____^ ...ending here: impl has extra requirement `<T as std::iter::IntoIterator>::IntoIter: 'a`
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #37166 <https://github.com/rust-lang/rust/issues/37166>
+kablam! 
+kablam! warning[E0276]: impl has stricter requirements than trait, #[warn(extra_requirement_in_impl)] on by default
+kablam!    --> src/lib.rs:273:5
+kablam!     |
+kablam! 273 |       fn from_iter<T: IntoIterator<Item=O>>(iterator: T) -> Self
+kablam!     |  _____^ starting here...
+kablam! 274 | |         where I: 'a, T::IntoIter: 'a {
+kablam! 275 | |         ConduitM::extend_iter(().into(), iterator.into_iter())
+kablam! 276 | |     }
+kablam!     | |_____^ ...ending here: impl has extra requirement `I: 'a`
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #37166 <https://github.com/rust-lang/rust/issues/37166>
+kablam! 
+kablam! warning[E0276]: impl has stricter requirements than trait, #[warn(extra_requirement_in_impl)] on by default
+kablam!    --> src/lib.rs:273:5
+kablam!     |
+kablam! 273 |       fn from_iter<T: IntoIterator<Item=O>>(iterator: T) -> Self
+kablam!     |  _____^ starting here...
+kablam! 274 | |         where I: 'a, T::IntoIter: 'a {
+kablam! 275 | |         ConduitM::extend_iter(().into(), iterator.into_iter())
+kablam! 276 | |     }
+kablam!     | |_____^ ...ending here: impl has extra requirement `<T as std::iter::IntoIterator>::IntoIter: 'a`
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #37166 <https://github.com/rust-lang/rust/issues/37166>
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 0.54 secs
+boom! running `docker rm -f 20fd306dd0e71d68409d5cbc36a7154b3a344526427f014b67ea8d9e9a51d548`
+blam! 20fd306dd0e71d68409d5cbc36a7154b3a344526427f014b67ea8d9e9a51d548
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 507a0377dd879a0c2e9ce34d0cddc271c115749cf3779a241e7e65835e813062
+boom! running `docker start -a 507a0377dd879a0c2e9ce34d0cddc271c115749cf3779a241e7e65835e813062`
+kablam!    Compiling plumbum v0.0.8 (file:///source)
+kablam! warning: private type `Void` in public interface (error E0446), #[warn(private_in_public)] on by default
+kablam!    --> src/lib.rs:165:5
+kablam!     |
+kablam! 165 |     pub fn connect<A>(mut self, mut sink: Sink<'a, O, A>) -> A where O: 'static {
+kablam!     |     ^
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #34537 <https://github.com/rust-lang/rust/issues/34537>
+kablam! 
+kablam! warning: private type `Void` in public interface (error E0446), #[warn(private_in_public)] on by default
+kablam!    --> src/lib.rs:281:1
+kablam!     |
+kablam! 281 | pub type Sink<'a, I, A> = ConduitM<'a, I, Void, A>;
+kablam!     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #34537 <https://github.com/rust-lang/rust/issues/34537>
+kablam! 
+kablam! warning[E0276]: impl has stricter requirements than trait, #[warn(extra_requirement_in_impl)] on by default
+kablam!    --> src/lib.rs:265:5
+kablam!     |
+kablam! 265 |       fn extend<T: IntoIterator<Item=O>>(&mut self, iterator: T)
+kablam!     |  _____^ starting here...
+kablam! 266 | |         where I: 'a, T::IntoIter: 'a {
+kablam! 267 | |         let mut other = replace(self, ().into()).extend_iter(iterator.into_iter());
+kablam! 268 | |         swap(self, &mut other);
+kablam! 269 | |     }
+kablam!     | |_____^ ...ending here: impl has extra requirement `I: 'a`
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #37166 <https://github.com/rust-lang/rust/issues/37166>
+kablam! 
+kablam! warning[E0276]: impl has stricter requirements than trait, #[warn(extra_requirement_in_impl)] on by default
+kablam!    --> src/lib.rs:265:5
+kablam!     |
+kablam! 265 |       fn extend<T: IntoIterator<Item=O>>(&mut self, iterator: T)
+kablam!     |  _____^ starting here...
+kablam! 266 | |         where I: 'a, T::IntoIter: 'a {
+kablam! 267 | |         let mut other = replace(self, ().into()).extend_iter(iterator.into_iter());
+kablam! 268 | |         swap(self, &mut other);
+kablam! 269 | |     }
+kablam!     | |_____^ ...ending here: impl has extra requirement `<T as std::iter::IntoIterator>::IntoIter: 'a`
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #37166 <https://github.com/rust-lang/rust/issues/37166>
+kablam! 
+kablam! warning[E0276]: impl has stricter requirements than trait, #[warn(extra_requirement_in_impl)] on by default
+kablam!    --> src/lib.rs:273:5
+kablam!     |
+kablam! 273 |       fn from_iter<T: IntoIterator<Item=O>>(iterator: T) -> Self
+kablam!     |  _____^ starting here...
+kablam! 274 | |         where I: 'a, T::IntoIter: 'a {
+kablam! 275 | |         ConduitM::extend_iter(().into(), iterator.into_iter())
+kablam! 276 | |     }
+kablam!     | |_____^ ...ending here: impl has extra requirement `I: 'a`
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #37166 <https://github.com/rust-lang/rust/issues/37166>
+kablam! 
+kablam! warning[E0276]: impl has stricter requirements than trait, #[warn(extra_requirement_in_impl)] on by default
+kablam!    --> src/lib.rs:273:5
+kablam!     |
+kablam! 273 |       fn from_iter<T: IntoIterator<Item=O>>(iterator: T) -> Self
+kablam!     |  _____^ starting here...
+kablam! 274 | |         where I: 'a, T::IntoIter: 'a {
+kablam! 275 | |         ConduitM::extend_iter(().into(), iterator.into_iter())
+kablam! 276 | |     }
+kablam!     | |_____^ ...ending here: impl has extra requirement `<T as std::iter::IntoIterator>::IntoIter: 'a`
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #37166 <https://github.com/rust-lang/rust/issues/37166>
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 1.20 secs
+boom! running `docker rm -f 507a0377dd879a0c2e9ce34d0cddc271c115749cf3779a241e7e65835e813062`
+blam! 507a0377dd879a0c2e9ce34d0cddc271c115749cf3779a241e7e65835e813062
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! 1279d67a52b1e05b87408ceea4765002a9042f7caf100423cfe3c03038cca07c
+boom! running `docker start -a 1279d67a52b1e05b87408ceea4765002a9042f7caf100423cfe3c03038cca07c`
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/plumbum-bc820dad200ea66b
+blam! 
+blam! running 2 tests
+blam! test kleisli::kleisli_run_plus_one ... ok
+blam! test kleisli::kleisli_run_to_string ... ok
+blam! 
+blam! test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured
+kablam!    Doc-tests plumbum
+blam! 
+blam! 
+blam! running 7 tests
+blam! test ConduitM<'a, (), O, ()>::connect_0 ... ok
+blam! test ConduitM<'a, I, O, ()>::fuse_0 ... ok
+blam! test kleisli::Kleisli<'a, A, I, O, A>::new_0 ... ok
+blam! test _0 ... ok
+blam! test kleisli::Kleisli<'a, A, I, O, B>::append_0 ... ok
+blam! test fuse_0 ... ok
+blam! test pipe_0 ... ok
+blam! 
+blam! test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f 1279d67a52b1e05b87408ceea4765002a9042f7caf100423cfe3c03038cca07c`
+blam! 1279d67a52b1e05b87408ceea4765002a9042f7caf100423cfe3c03038cca07c

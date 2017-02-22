@@ -1,0 +1,27 @@
+boom! testing sprs-0.4.1 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 3ba87277c62c991a342fd7c77669e14cccf0c8d0ec69b83d4adffd8668c22777
+boom! running `docker start -a 3ba87277c62c991a342fd7c77669e14cccf0c8d0ec69b83d4adffd8668c22777`
+kablam!    Compiling ndarray v0.6.10
+kablam!    Compiling sprs v0.4.1 (file:///source)
+kablam! error: type alias is never used: `CsMatViewMut`
+kablam!   --> src/sparse/mod.rs:21:1
+kablam!    |
+kablam! 21 | pub type CsMatViewMut<'a, N> = CsMat<N, &'a [usize], &'a [usize], &'a mut [N]>;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam! note: lint level defined here
+kablam!   --> src/lib.rs:50:9
+kablam!    |
+kablam! 50 | #![deny(warnings)]
+kablam!    |         ^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `sprs`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 3ba87277c62c991a342fd7c77669e14cccf0c8d0ec69b83d4adffd8668c22777`
+blam! 3ba87277c62c991a342fd7c77669e14cccf0c8d0ec69b83d4adffd8668c22777

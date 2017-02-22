@@ -1,0 +1,38 @@
+boom! testing eventual-0.1.7 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 42cb81c38e9d9c6e6bbef96a3f3cf33109c35916d93eb505ecf43f79c835dc4f
+boom! running `docker start -a 42cb81c38e9d9c6e6bbef96a3f3cf33109c35916d93eb505ecf43f79c835dc4f`
+kablam!    Compiling eventual v0.1.7 (file:///source)
+kablam! error: unused import: `Async`
+kablam!  --> src/core.rs:1:6
+kablam!   |
+kablam! 1 | use {Async, BoxedReceive, AsyncResult, AsyncError};
+kablam!   |      ^^^^^
+kablam!   |
+kablam! note: lint level defined here
+kablam!  --> src/lib.rs:50:9
+kablam!   |
+kablam! 50| #![deny(warnings)]
+kablam!   |         ^^^^^^^^
+kablam! 
+kablam! error: unused import: `Pair`
+kablam!  --> src/run.rs:1:20
+kablam!   |
+kablam! 1 | use super::{Async, Pair, AsyncError, Future};
+kablam!   |                    ^^^^
+kablam! 
+kablam! error: unused import: `syncbox::Task`
+kablam!  --> src/run.rs:2:5
+kablam!   |
+kablam! 2 | use syncbox::Task;
+kablam!   |     ^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `eventual`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 42cb81c38e9d9c6e6bbef96a3f3cf33109c35916d93eb505ecf43f79c835dc4f`
+blam! 42cb81c38e9d9c6e6bbef96a3f3cf33109c35916d93eb505ecf43f79c835dc4f

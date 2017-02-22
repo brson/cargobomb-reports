@@ -1,0 +1,27 @@
+boom! testing spectrogram-0.1.0 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! bcea2ca99fd86e7eca630df4592790798644045b7f7b600f208ba75e53f71f71
+boom! running `docker start -a bcea2ca99fd86e7eca630df4592790798644045b7f7b600f208ba75e53f71f71`
+kablam!    Compiling goertzel v0.2.0
+kablam!    Compiling spectrogram v0.1.0 (file:///source)
+kablam! error[E0308]: mismatched types
+kablam!   --> src/lib.rs:13:52
+kablam!    |
+kablam! 13 |             let p = goertzel::Parameters::new(bin, sample_rate, 256);
+kablam!    |                                                    ^^^^^^^^^^^ expected u32, found f32
+kablam! 
+kablam! error: non-scalar cast: `{integer}` as `f32`
+kablam!   --> src/lib.rs:12:38
+kablam!    |
+kablam! 12 |         for bin in (0 .. 30).map(|x| (x * 256) as f32) {
+kablam!    |                                      ^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `spectrogram`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f bcea2ca99fd86e7eca630df4592790798644045b7f7b600f208ba75e53f71f71`
+blam! bcea2ca99fd86e7eca630df4592790798644045b7f7b600f208ba75e53f71f71

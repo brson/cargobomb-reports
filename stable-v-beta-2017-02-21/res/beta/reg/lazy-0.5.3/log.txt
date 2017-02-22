@@ -1,0 +1,39 @@
+boom! testing lazy-0.5.3 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 1c0d1f5baeec9e10a1a68f1186c314718a5c725f282e483615f004fcb0d5e30e
+boom! running `docker start -a 1c0d1f5baeec9e10a1a68f1186c314718a5c725f282e483615f004fcb0d5e30e`
+kablam!    Compiling oncemutex v0.1.1
+kablam!    Compiling lazy v0.5.3 (file:///source)
+kablam! error[E0432]: unresolved import `std::thunk::Invoke`
+kablam!  --> src/single.rs:4:5
+kablam!   |
+kablam! 4 | use std::thunk::Invoke;
+kablam!   |     ^^^^^^^^^^^^^^^^^^ Could not find `thunk` in `std`
+kablam! 
+kablam! error[E0432]: unresolved import `std::thunk::Invoke`
+kablam!  --> src/sync.rs:4:5
+kablam!   |
+kablam! 4 | use std::thunk::Invoke;
+kablam!   |     ^^^^^^^^^^^^^^^^^^ Could not find `thunk` in `std`
+kablam! 
+kablam! error[E0425]: cannot find function `copy_lifetime` in module `mem`
+kablam!    --> src/sync.rs:103:44
+kablam!     |
+kablam! 103 |             Evaluated(ref val) => unsafe { mem::copy_lifetime(self, val) },
+kablam!     |                                            ^^^^^^^^^^^^^^^^^^ not found in `mem`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> src/lib.rs:2:1
+kablam!   |
+kablam! 2 | #![feature(core, std_misc, unsafe_destructor, optin_builtin_traits)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `lazy`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 1c0d1f5baeec9e10a1a68f1186c314718a5c725f282e483615f004fcb0d5e30e`
+blam! 1c0d1f5baeec9e10a1a68f1186c314718a5c725f282e483615f004fcb0d5e30e

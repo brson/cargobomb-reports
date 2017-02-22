@@ -1,0 +1,34 @@
+boom! testing reactive-streams-0.0.1 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 3cbe60b550f3d4303539d2674d29b8319eef23ebeb04f57e50118758afd5514b
+boom! running `docker start -a 3cbe60b550f3d4303539d2674d29b8319eef23ebeb04f57e50118758afd5514b`
+kablam!    Compiling reactive-streams v0.0.1 (file:///source)
+kablam! error[E0038]: the trait `Subscriber` cannot be made into an object
+kablam!  --> src/lib.rs:3:3
+kablam!   |
+kablam! 3 |   fn subscribe(s: Subscriber<T>);
+kablam!   |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Subscriber` cannot be made into an object
+kablam!   |
+kablam!   = note: method `onSubscribe` has no receiver
+kablam!   = note: method `onNext` has no receiver
+kablam!   = note: method `onError` has no receiver
+kablam!   = note: method `onComplete` has no receiver
+kablam! 
+kablam! error[E0038]: the trait `Subscription` cannot be made into an object
+kablam!   --> src/lib.rs:15:3
+kablam!    |
+kablam! 15 |   fn onSubscribe(s: Subscription);
+kablam!    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Subscription` cannot be made into an object
+kablam!    |
+kablam!    = note: method `request` has no receiver
+kablam!    = note: method `cancel` has no receiver
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `reactive-streams`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 3cbe60b550f3d4303539d2674d29b8319eef23ebeb04f57e50118758afd5514b`
+blam! 3cbe60b550f3d4303539d2674d29b8319eef23ebeb04f57e50118758afd5514b

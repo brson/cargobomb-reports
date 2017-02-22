@@ -1,0 +1,31 @@
+boom! testing diesel_infer_schema-0.11.0 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 6b05e81c73b5fb180c4ed7e8fe16a06843f89b7c41b5f76618c98e129161f61d
+boom! running `docker start -a 6b05e81c73b5fb180c4ed7e8fe16a06843f89b7c41b5f76618c98e129161f61d`
+kablam!    Compiling diesel_infer_schema v0.11.0 (file:///source)
+kablam! error[E0282]: unable to infer enough type information about `_`
+kablam!    --> src/inference.rs:118:37
+kablam!     |
+kablam! 118 |       let primary_keys: Vec<String> = try!(match *conn {
+kablam!     |  _____________________________________^ starting here...
+kablam! 119 | |         #[cfg(feature = "sqlite")]
+kablam! 120 | |         InferConnection::Sqlite(ref c) => ::sqlite::get_primary_keys(c, table),
+kablam! 121 | |         #[cfg(feature = "postgres")]
+kablam! 122 | |         InferConnection::Pg(ref c) => ::information_schema::get_primary_keys(c, table),
+kablam! 123 | |         #[cfg(feature = "mysql")]
+kablam! 124 | |         InferConnection::Mysql(ref c) => ::information_schema::get_primary_keys(c, table),
+kablam! 125 | |     });
+kablam!     | |______^ ...ending here: cannot infer type for `_`
+kablam!     |
+kablam!     = note: type annotations or generic parameter binding required
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `diesel_infer_schema`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 6b05e81c73b5fb180c4ed7e8fe16a06843f89b7c41b5f76618c98e129161f61d`
+blam! 6b05e81c73b5fb180c4ed7e8fe16a06843f89b7c41b5f76618c98e129161f61d

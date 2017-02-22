@@ -1,0 +1,31 @@
+boom! testing diesel_infer_schema-0.11.0 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! ac30fef7a9c458418b76b9d3493b48248ead7ffddd213d311100e7685b0f7c56
+boom! running `docker start -a ac30fef7a9c458418b76b9d3493b48248ead7ffddd213d311100e7685b0f7c56`
+kablam!    Compiling diesel_infer_schema v0.11.0 (file:///source)
+kablam! error[E0282]: unable to infer enough type information about `_`
+kablam!    --> src/inference.rs:118:37
+kablam!     |
+kablam! 118 |       let primary_keys: Vec<String> = try!(match *conn {
+kablam!     |  _____________________________________^ starting here...
+kablam! 119 | |         #[cfg(feature = "sqlite")]
+kablam! 120 | |         InferConnection::Sqlite(ref c) => ::sqlite::get_primary_keys(c, table),
+kablam! 121 | |         #[cfg(feature = "postgres")]
+kablam! 122 | |         InferConnection::Pg(ref c) => ::information_schema::get_primary_keys(c, table),
+kablam! 123 | |         #[cfg(feature = "mysql")]
+kablam! 124 | |         InferConnection::Mysql(ref c) => ::information_schema::get_primary_keys(c, table),
+kablam! 125 | |     });
+kablam!     | |______^ ...ending here: cannot infer type for `_`
+kablam!     |
+kablam!     = note: type annotations or generic parameter binding required
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `diesel_infer_schema`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f ac30fef7a9c458418b76b9d3493b48248ead7ffddd213d311100e7685b0f7c56`
+blam! ac30fef7a9c458418b76b9d3493b48248ead7ffddd213d311100e7685b0f7c56

@@ -1,0 +1,1111 @@
+boom! testing clt-0.0.5 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 3f168cb405d1fa4319c9eb1238a227511e6ac9056462f1672c4b019b766ca554
+boom! running `docker start -a 3f168cb405d1fa4319c9eb1238a227511e6ac9056462f1672c4b019b766ca554`
+kablam!    Compiling clt v0.0.5 (file:///source)
+kablam! warning: struct is never used: `Command`, #[warn(dead_code)] on by default
+kablam!   --> src/core.rs:19:1
+kablam!    |
+kablam! 19 |   pub struct Command {
+kablam!    |  _^ starting here...
+kablam! 20 | |     name: String,  // The name of the command to use
+kablam! 21 | |     callback: CommandCallback,  // The callback to execute
+kablam! 22 | |     options: Vec<Options>,  // The options to register with this command
+kablam! 23 | |     arguments: Vec<Argument>,  // The arguments to register with this command
+kablam! 24 | |     help: String,  // The help message to use for this command
+kablam! 25 | |     epilog: String,  // Printed at the end of the help page
+kablam! 26 | |     short_help: String,  // The short help to use for this command, this is shown on the command listing of the parent command
+kablam! 27 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! warning: method is never used: `new`, #[warn(dead_code)] on by default
+kablam!   --> src/core.rs:31:5
+kablam!    |
+kablam! 31 |     pub fn new(name: &str, callback: CommandCallback) -> Command {
+kablam!    |     ^
+kablam! 
+kablam! warning: method is never used: `option`, #[warn(dead_code)] on by default
+kablam!   --> src/core.rs:44:5
+kablam!    |
+kablam! 44 |       pub fn option(&mut self, short_name: &'static str, long_name: &'static str, help: &'static str,
+kablam!    |  _____^ starting here...
+kablam! 45 | |                   is_flag: bool, is_bool_flag: bool, multiple: bool,
+kablam! 46 | |                   required: bool, default: Option<&'static str>) {
+kablam! 47 | |         let option = Options::new(short_name, long_name, help, is_flag,
+kablam! 48 | |                                   is_bool_flag, multiple, required, default);
+kablam! 49 | |         self.options.push(option);
+kablam! 50 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `argument`, #[warn(dead_code)] on by default
+kablam!   --> src/core.rs:53:5
+kablam!    |
+kablam! 53 |       pub fn argument(&mut self, name: &'static str, required: bool, default: Option<&'static str>) {
+kablam!    |  _____^ starting here...
+kablam! 54 | |         let argument = Argument::new(name, required, default);
+kablam! 55 | |         self.arguments.push(argument);
+kablam! 56 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `make_formatter`, #[warn(dead_code)] on by default
+kablam!   --> src/core.rs:58:5
+kablam!    |
+kablam! 58 |       fn make_formatter(&self) -> HelpFormatter {
+kablam!    |  _____^ starting here...
+kablam! 59 | |         HelpFormatter::new(80, 2)
+kablam! 60 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `format_usage`, #[warn(dead_code)] on by default
+kablam!   --> src/core.rs:62:5
+kablam!    |
+kablam! 62 |       fn format_usage(&self, formatter: &mut HelpFormatter) {
+kablam!    |  _____^ starting here...
+kablam! 63 | |         let mut pieces: Vec<String> = Vec::new();
+kablam! 64 | |         pieces.push("[OPTIONS]".to_string());
+kablam! 65 | |         for argument in self.arguments.iter() {
+kablam! 66 | |             pieces.push(argument.get_usage_piece());
+kablam! 67 | |         }
+kablam! 68 | |         formatter.write_usage(&self.name, pieces.concat(), "Usage: ")
+kablam! 69 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `get_usage`, #[warn(dead_code)] on by default
+kablam!   --> src/core.rs:71:5
+kablam!    |
+kablam! 71 |       pub fn get_usage(&self) -> String {
+kablam!    |  _____^ starting here...
+kablam! 72 | |         let mut formatter = self.make_formatter();
+kablam! 73 | |         self.format_usage(&mut formatter);
+kablam! 74 | |         formatter.getvalue()
+kablam! 75 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `format_help_text`, #[warn(dead_code)] on by default
+kablam!   --> src/core.rs:77:5
+kablam!    |
+kablam! 77 |       fn format_help_text(&self, formatter: &mut HelpFormatter) {
+kablam!    |  _____^ starting here...
+kablam! 78 | |         if !self.help.is_empty() {
+kablam! 79 | |             formatter.write_paragraph();
+kablam! 80 | |             formatter.indent();
+kablam! 81 | |             formatter.write_text(self.help.clone());
+kablam! 82 | |             formatter.dedent();
+kablam! 83 | |         }
+kablam! 84 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `format_options`, #[warn(dead_code)] on by default
+kablam!   --> src/core.rs:86:5
+kablam!    |
+kablam! 86 |     fn format_options(&self, formatter: &mut HelpFormatter) {
+kablam!    |     ^
+kablam! 
+kablam! warning: method is never used: `format_epilog`, #[warn(dead_code)] on by default
+kablam!    --> src/core.rs:98:5
+kablam!     |
+kablam! 98  |       fn format_epilog(&self, formatter: &mut HelpFormatter) {
+kablam!     |  _____^ starting here...
+kablam! 99  | |         if !self.epilog.is_empty() {
+kablam! 100 | |             formatter.write_paragraph();
+kablam! 101 | |             formatter.indent();
+kablam! 102 | |             formatter.write_text(self.epilog.clone());
+kablam! 103 | |             formatter.dedent();
+kablam! 104 | |         }
+kablam! 105 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `format_help`, #[warn(dead_code)] on by default
+kablam!    --> src/core.rs:107:5
+kablam!     |
+kablam! 107 |       fn format_help(&self, formatter: &mut HelpFormatter) {
+kablam!     |  _____^ starting here...
+kablam! 108 | |         self.format_usage(formatter);
+kablam! 109 | |         self.format_help_text(formatter);
+kablam! 110 | |         self.format_options(formatter);
+kablam! 111 | |         self.format_epilog(formatter);
+kablam! 112 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `get_help`, #[warn(dead_code)] on by default
+kablam!    --> src/core.rs:114:5
+kablam!     |
+kablam! 114 |       pub fn get_help(&self) -> String {
+kablam!     |  _____^ starting here...
+kablam! 115 | |         let mut formatter = self.make_formatter();
+kablam! 116 | |         self.format_help(&mut formatter);
+kablam! 117 | |         formatter.getvalue()
+kablam! 118 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `get_help_option`, #[warn(dead_code)] on by default
+kablam!    --> src/core.rs:121:5
+kablam!     |
+kablam! 121 |       fn get_help_option(&self) -> Options {
+kablam!     |  _____^ starting here...
+kablam! 122 | |         let help_option_names = vec!["h", "help"];
+kablam! 123 | |         let show_help = |params: Params| {
+kablam! 124 | |             print!("{}", self.get_help());
+kablam! 125 | |         };
+kablam! 126 | |         return Options::new(help_option_names[0], help_option_names[1],
+kablam! 127 | |                             "Show this message and exit.", true, true, false, false, None);
+kablam! 128 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: unused variable: `show_help`, #[warn(unused_variables)] on by default
+kablam!    --> src/core.rs:123:13
+kablam!     |
+kablam! 123 |         let show_help = |params: Params| {
+kablam!     |             ^^^^^^^^^
+kablam! 
+kablam! warning: unused variable: `params`, #[warn(unused_variables)] on by default
+kablam!    --> src/core.rs:123:26
+kablam!     |
+kablam! 123 |         let show_help = |params: Params| {
+kablam!     |                          ^^^^^^
+kablam! 
+kablam! warning: method is never used: `invoke`, #[warn(dead_code)] on by default
+kablam!    --> src/core.rs:131:5
+kablam!     |
+kablam! 131 |       pub fn invoke(&self, pragram_name: String, args: Vec<String>) {
+kablam!     |  _____^ starting here...
+kablam! 132 | |         let args = self.parse_args(args);
+kablam! 133 | |         let callback = self.callback;
+kablam! 134 | |         callback(args);
+kablam! 135 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: unused variable: `pragram_name`, #[warn(unused_variables)] on by default
+kablam!    --> src/core.rs:131:26
+kablam!     |
+kablam! 131 |     pub fn invoke(&self, pragram_name: String, args: Vec<String>) {
+kablam!     |                          ^^^^^^^^^^^^
+kablam! 
+kablam! warning: method is never used: `get_options`, #[warn(dead_code)] on by default
+kablam!    --> src/core.rs:138:5
+kablam!     |
+kablam! 138 |       fn get_options(&self) -> Vec<Options> {
+kablam!     |  _____^ starting here...
+kablam! 139 | |         let mut options: Vec<Options> = Vec::new();
+kablam! 140 | |         for option in self.options.iter() {
+kablam! 141 | |             options.push(option.clone());
+kablam! 142 | |         }
+kablam! 143 | |         let help_option = self.get_help_option();
+kablam! 144 | |         options.push(help_option);
+kablam! 145 | |         return options;
+kablam! 146 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `make_parser`, #[warn(dead_code)] on by default
+kablam!    --> src/core.rs:149:5
+kablam!     |
+kablam! 149 |       fn make_parser(&self) -> getopts::Options {
+kablam!     |  _____^ starting here...
+kablam! 150 | |         let mut parser = getopts::Options::new();
+kablam! 151 | |         for option in self.get_options().iter() {
+kablam! 152 | |             option.add_to_parser(&mut parser);
+kablam! 153 | |         }
+kablam! 154 | |         return parser;
+kablam! 155 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `parse_args`, #[warn(dead_code)] on by default
+kablam!    --> src/core.rs:158:5
+kablam!     |
+kablam! 158 |       fn parse_args(&self, args: Vec<String>) -> Vec<String> {
+kablam!     |  _____^ starting here...
+kablam! 159 | |         args
+kablam! 160 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `run`, #[warn(dead_code)] on by default
+kablam!    --> src/core.rs:163:5
+kablam!     |
+kablam! 163 |       pub fn run(&self) {
+kablam!     |  _____^ starting here...
+kablam! 164 | |         let mut args = env::args();
+kablam! 165 | |         let program = args.nth(0).unwrap();
+kablam! 166 | |         let program_path = Path::new(&program);
+kablam! 167 | |         let program_name = program_path.file_name().unwrap().to_str().unwrap();
+kablam! 168 | |         // Hook for the Bash completion.
+kablam! 169 | |         // bashcomplete(self, program_name);
+kablam! 170 | |         self.invoke(program_name.to_string(), args.collect());
+kablam! 171 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: type alias is never used: `Params`, #[warn(dead_code)] on by default
+kablam!   --> src/types.rs:11:1
+kablam!    |
+kablam! 11 | pub type Params = Vec<String>;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: type alias is never used: `CommandCallback`, #[warn(dead_code)] on by default
+kablam!   --> src/types.rs:15:1
+kablam!    |
+kablam! 15 | pub type CommandCallback = fn(Params);
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: method is never used: `new`, #[warn(dead_code)] on by default
+kablam!   --> src/types.rs:32:5
+kablam!    |
+kablam! 32 |     pub fn new(s_name: &'static str, l_name: &'static str, help: &'static str, is_flag: bool, is_bool_flag: bool,
+kablam!    |     ^
+kablam! 
+kablam! warning: method is never used: `add_to_parser`, #[warn(dead_code)] on by default
+kablam!   --> src/types.rs:46:5
+kablam!    |
+kablam! 46 |     pub fn add_to_parser(&self, parser: &mut getopts::Options) {
+kablam!    |     ^
+kablam! 
+kablam! warning: method is never used: `get_help_record`, #[warn(dead_code)] on by default
+kablam!   --> src/types.rs:66:5
+kablam!    |
+kablam! 66 |     pub fn get_help_record(&self) -> (String, String) {
+kablam!    |     ^
+kablam! 
+kablam! warning: struct is never used: `Argument`, #[warn(dead_code)] on by default
+kablam!    --> src/types.rs:100:1
+kablam!     |
+kablam! 100 |   pub struct Argument {
+kablam!     |  _^ starting here...
+kablam! 101 | |     name: &'static str,
+kablam! 102 | |     required: bool,
+kablam! 103 | |     default: Option<&'static str>,
+kablam! 104 | | }
+kablam!     | |_^ ...ending here
+kablam! 
+kablam! warning: method is never used: `new`, #[warn(dead_code)] on by default
+kablam!    --> src/types.rs:107:5
+kablam!     |
+kablam! 107 |       pub fn new(name: &'static str, required: bool, default: Option<&'static str>) -> Argument {
+kablam!     |  _____^ starting here...
+kablam! 108 | |         Argument {
+kablam! 109 | |             name: name,
+kablam! 110 | |             required: required,
+kablam! 111 | |             default: default,
+kablam! 112 | |         }
+kablam! 113 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `add_to_parser`, #[warn(dead_code)] on by default
+kablam!    --> src/types.rs:115:5
+kablam!     |
+kablam! 115 |       pub fn add_to_parser(&self, parser: &mut getopts::Options) {
+kablam!     |  _____^ starting here...
+kablam! 116 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: unused variable: `parser`, #[warn(unused_variables)] on by default
+kablam!    --> src/types.rs:115:33
+kablam!     |
+kablam! 115 |     pub fn add_to_parser(&self, parser: &mut getopts::Options) {
+kablam!     |                                 ^^^^^^
+kablam! 
+kablam! warning: method is never used: `get_usage_piece`, #[warn(dead_code)] on by default
+kablam!    --> src/types.rs:118:5
+kablam!     |
+kablam! 118 |       pub fn get_usage_piece(&self) -> String {
+kablam!     |  _____^ starting here...
+kablam! 119 | |         match self.required {
+kablam! 120 | |             true => format!("{}", self.name),
+kablam! 121 | |             false => format!("[{}]", self.name),
+kablam! 122 | |         }
+kablam! 123 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: unused import: `std::path::Path`, #[warn(unused_imports)] on by default
+kablam!   --> src/term.rs:16:5
+kablam!    |
+kablam! 16 | use std::path::Path;
+kablam!    |     ^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused import: `Duration`, #[warn(unused_imports)] on by default
+kablam!   --> src/term.rs:18:26
+kablam!    |
+kablam! 18 | use std::time::{Instant, Duration, SystemTime, UNIX_EPOCH};
+kablam!    |                          ^^^^^^^^
+kablam! 
+kablam! warning: unused variable: `hide_input`, #[warn(unused_variables)] on by default
+kablam!    --> src/term.rs:223:40
+kablam!     |
+kablam! 223 | fn get_prompt_input(prompt_text: &str, hide_input: bool) -> String {
+kablam!     |                                        ^^^^^^^^^^
+kablam! 
+kablam! warning: method is never used: `time_per_iteration`, #[warn(dead_code)] on by default
+kablam!    --> src/term.rs:437:5
+kablam!     |
+kablam! 437 |       fn time_per_iteration(&self) -> f32 {
+kablam!     |  _____^ starting here...
+kablam! 438 | |         if self.avgs.len() == 0 {
+kablam! 439 | |             return 0.0;
+kablam! 440 | |         }
+kablam! 441 | |         let avg_sum = self.avgs.iter().fold(0f32, |x, &y| x + y);
+kablam! 442 | |         return avg_sum / (self.avgs.len() as f32);
+kablam! 443 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `estimate_time`, #[warn(dead_code)] on by default
+kablam!    --> src/term.rs:445:5
+kablam!     |
+kablam! 445 |       fn estimate_time(&self) -> f32 {
+kablam!     |  _____^ starting here...
+kablam! 446 | |         if self.finished {
+kablam! 447 | |             return 0.0
+kablam! 448 | |         }
+kablam! 449 | |         let remaining_step = (self.length - self.pos) as f32;
+kablam! 450 | |         self.time_per_iteration() * remaining_step
+kablam! 451 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/term.rs:477:13
+kablam!     |
+kablam! 477 |         let mut info: String;
+kablam!     |             ^^^^^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/term.rs:578:13
+kablam!     |
+kablam! 578 |         let mut filepath = tmpdir.path().clone();
+kablam!     |             ^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused import: `std`, #[warn(unused_imports)] on by default
+kablam!  --> src/formatting.rs:7:5
+kablam!   |
+kablam! 7 | use std;
+kablam!   |     ^^^
+kablam! 
+kablam! warning: struct is never used: `HelpFormatter`, #[warn(dead_code)] on by default
+kablam!   --> src/formatting.rs:12:1
+kablam!    |
+kablam! 12 |   pub struct HelpFormatter {
+kablam!    |  _^ starting here...
+kablam! 13 | |     width: usize,
+kablam! 14 | |     indent_increment: usize,
+kablam! 15 | |     current_indent: usize,
+kablam! 16 | |     buffer: Vec<String>,
+kablam! 17 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! warning: method is never used: `new`, #[warn(dead_code)] on by default
+kablam!   --> src/formatting.rs:25:5
+kablam!    |
+kablam! 25 |       pub fn new(width: usize, indent_increment: usize) -> HelpFormatter {
+kablam!    |  _____^ starting here...
+kablam! 26 | |         HelpFormatter {
+kablam! 27 | |             width: width,
+kablam! 28 | |             indent_increment: indent_increment,
+kablam! 29 | |             current_indent: 0,
+kablam! 30 | |             buffer: Vec::new(),
+kablam! 31 | |         }
+kablam! 32 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `indent`, #[warn(dead_code)] on by default
+kablam!   --> src/formatting.rs:35:5
+kablam!    |
+kablam! 35 |       pub fn indent(&mut self) {
+kablam!    |  _____^ starting here...
+kablam! 36 | |         self.current_indent = self.current_indent + self.indent_increment;
+kablam! 37 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `dedent`, #[warn(dead_code)] on by default
+kablam!   --> src/formatting.rs:40:5
+kablam!    |
+kablam! 40 |       pub fn dedent(&mut self) {
+kablam!    |  _____^ starting here...
+kablam! 41 | |         self.current_indent = self.current_indent - self.indent_increment;
+kablam! 42 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `write`, #[warn(dead_code)] on by default
+kablam!   --> src/formatting.rs:45:5
+kablam!    |
+kablam! 45 |       pub fn write(&mut self, s: String) {
+kablam!    |  _____^ starting here...
+kablam! 46 | |         self.buffer.push(s);
+kablam! 47 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `write_paragraph`, #[warn(dead_code)] on by default
+kablam!   --> src/formatting.rs:50:5
+kablam!    |
+kablam! 50 |       pub fn write_paragraph(&mut self) {
+kablam!    |  _____^ starting here...
+kablam! 51 | |         let mut newline = String::new();
+kablam! 52 | |         newline.push_str("\n");
+kablam! 53 | |         if !self.buffer.is_empty() {
+kablam! 54 | |             self.buffer.push(newline);
+kablam! 55 | |         }
+kablam! 56 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `write_heading`, #[warn(dead_code)] on by default
+kablam!   --> src/formatting.rs:59:5
+kablam!    |
+kablam! 59 |       pub fn write_heading(&mut self, heading: &str) {
+kablam!    |  _____^ starting here...
+kablam! 60 | |         let current_indent = self.current_indent;
+kablam! 61 | |         self.write(format!("{:>2$}{}\n", "", heading, current_indent));
+kablam! 62 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `write_dl`, #[warn(dead_code)] on by default
+kablam!   --> src/formatting.rs:65:5
+kablam!    |
+kablam! 65 |       pub fn write_dl(&mut self, rows: Vec<(String, String)>) {
+kablam!    |  _____^ starting here...
+kablam! 66 | |         let col_spacing: usize = 2;
+kablam! 67 | |         let current_indent = self.current_indent;
+kablam! 68 | |         for &(ref first, ref second) in rows.iter() {
+kablam! 69 | |             self.write(format!("{:>2$}{}", "", first, current_indent));
+kablam! 70 | |             self.write(format!("{:>2$}{}\n", "", second, col_spacing));
+kablam! 71 | |         }
+kablam! 72 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `enter_section`, #[warn(dead_code)] on by default
+kablam!   --> src/formatting.rs:75:5
+kablam!    |
+kablam! 75 |       pub fn enter_section(&mut self, name: &str) {
+kablam!    |  _____^ starting here...
+kablam! 76 | |         self.write_paragraph();
+kablam! 77 | |         self.write_heading(name);
+kablam! 78 | |         self.indent();
+kablam! 79 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `exit_section`, #[warn(dead_code)] on by default
+kablam!   --> src/formatting.rs:82:5
+kablam!    |
+kablam! 82 |       pub fn exit_section(&mut self) {
+kablam!    |  _____^ starting here...
+kablam! 83 | |         self.dedent();
+kablam! 84 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `write_text`, #[warn(dead_code)] on by default
+kablam!   --> src/formatting.rs:87:5
+kablam!    |
+kablam! 87 |     pub fn write_text(&mut self, text: String) {
+kablam!    |     ^
+kablam! 
+kablam! warning: method is never used: `write_usage`, #[warn(dead_code)] on by default
+kablam!    --> src/formatting.rs:100:5
+kablam!     |
+kablam! 100 |     pub fn write_usage(&mut self, name: &str, args: String, prefix: &str) {
+kablam!     |     ^
+kablam! 
+kablam! warning: method is never used: `getvalue`, #[warn(dead_code)] on by default
+kablam!    --> src/formatting.rs:117:5
+kablam!     |
+kablam! 117 |       pub fn getvalue(&self) -> String {
+kablam!     |  _____^ starting here...
+kablam! 118 | |         self.buffer.concat()
+kablam! 119 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: function is never used: `wrap_text`, #[warn(dead_code)] on by default
+kablam!    --> src/formatting.rs:125:1
+kablam!     |
+kablam! 125 |   fn wrap_text(text: String, width: usize, initial_indent: &str, subsequent_indent: &str) -> String {
+kablam!     |  _^ starting here...
+kablam! 126 | |     return text;
+kablam! 127 | | }
+kablam!     | |_^ ...ending here
+kablam! 
+kablam! warning: unused variable: `width`, #[warn(unused_variables)] on by default
+kablam!    --> src/formatting.rs:125:28
+kablam!     |
+kablam! 125 | fn wrap_text(text: String, width: usize, initial_indent: &str, subsequent_indent: &str) -> String {
+kablam!     |                            ^^^^^
+kablam! 
+kablam! warning: unused variable: `initial_indent`, #[warn(unused_variables)] on by default
+kablam!    --> src/formatting.rs:125:42
+kablam!     |
+kablam! 125 | fn wrap_text(text: String, width: usize, initial_indent: &str, subsequent_indent: &str) -> String {
+kablam!     |                                          ^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused variable: `subsequent_indent`, #[warn(unused_variables)] on by default
+kablam!    --> src/formatting.rs:125:64
+kablam!     |
+kablam! 125 | fn wrap_text(text: String, width: usize, initial_indent: &str, subsequent_indent: &str) -> String {
+kablam!     |                                                                ^^^^^^^^^^^^^^^^^
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.78 secs
+boom! running `docker rm -f 3f168cb405d1fa4319c9eb1238a227511e6ac9056462f1672c4b019b766ca554`
+blam! 3f168cb405d1fa4319c9eb1238a227511e6ac9056462f1672c4b019b766ca554
+boom! running: cargo +beta test --frozen --no-run
+boom! creating container for: cargo +beta test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta test --frozen --no-run cargobomb`
+blam! 4c82d65ffa30d76621bc8590709d8f5117e8f91d962bfd0c471f05e6b4db3238
+boom! running `docker start -a 4c82d65ffa30d76621bc8590709d8f5117e8f91d962bfd0c471f05e6b4db3238`
+kablam!    Compiling clt v0.0.5 (file:///source)
+kablam! warning: struct is never used: `Command`, #[warn(dead_code)] on by default
+kablam!   --> src/core.rs:19:1
+kablam!    |
+kablam! 19 |   pub struct Command {
+kablam!    |  _^ starting here...
+kablam! 20 | |     name: String,  // The name of the command to use
+kablam! 21 | |     callback: CommandCallback,  // The callback to execute
+kablam! 22 | |     options: Vec<Options>,  // The options to register with this command
+kablam! 23 | |     arguments: Vec<Argument>,  // The arguments to register with this command
+kablam! 24 | |     help: String,  // The help message to use for this command
+kablam! 25 | |     epilog: String,  // Printed at the end of the help page
+kablam! 26 | |     short_help: String,  // The short help to use for this command, this is shown on the command listing of the parent command
+kablam! 27 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! warning: method is never used: `new`, #[warn(dead_code)] on by default
+kablam!   --> src/core.rs:31:5
+kablam!    |
+kablam! 31 |     pub fn new(name: &str, callback: CommandCallback) -> Command {
+kablam!    |     ^
+kablam! 
+kablam! warning: method is never used: `option`, #[warn(dead_code)] on by default
+kablam!   --> src/core.rs:44:5
+kablam!    |
+kablam! 44 |       pub fn option(&mut self, short_name: &'static str, long_name: &'static str, help: &'static str,
+kablam!    |  _____^ starting here...
+kablam! 45 | |                   is_flag: bool, is_bool_flag: bool, multiple: bool,
+kablam! 46 | |                   required: bool, default: Option<&'static str>) {
+kablam! 47 | |         let option = Options::new(short_name, long_name, help, is_flag,
+kablam! 48 | |                                   is_bool_flag, multiple, required, default);
+kablam! 49 | |         self.options.push(option);
+kablam! 50 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `argument`, #[warn(dead_code)] on by default
+kablam!   --> src/core.rs:53:5
+kablam!    |
+kablam! 53 |       pub fn argument(&mut self, name: &'static str, required: bool, default: Option<&'static str>) {
+kablam!    |  _____^ starting here...
+kablam! 54 | |         let argument = Argument::new(name, required, default);
+kablam! 55 | |         self.arguments.push(argument);
+kablam! 56 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `make_formatter`, #[warn(dead_code)] on by default
+kablam!   --> src/core.rs:58:5
+kablam!    |
+kablam! 58 |       fn make_formatter(&self) -> HelpFormatter {
+kablam!    |  _____^ starting here...
+kablam! 59 | |         HelpFormatter::new(80, 2)
+kablam! 60 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `format_usage`, #[warn(dead_code)] on by default
+kablam!   --> src/core.rs:62:5
+kablam!    |
+kablam! 62 |       fn format_usage(&self, formatter: &mut HelpFormatter) {
+kablam!    |  _____^ starting here...
+kablam! 63 | |         let mut pieces: Vec<String> = Vec::new();
+kablam! 64 | |         pieces.push("[OPTIONS]".to_string());
+kablam! 65 | |         for argument in self.arguments.iter() {
+kablam! 66 | |             pieces.push(argument.get_usage_piece());
+kablam! 67 | |         }
+kablam! 68 | |         formatter.write_usage(&self.name, pieces.concat(), "Usage: ")
+kablam! 69 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `get_usage`, #[warn(dead_code)] on by default
+kablam!   --> src/core.rs:71:5
+kablam!    |
+kablam! 71 |       pub fn get_usage(&self) -> String {
+kablam!    |  _____^ starting here...
+kablam! 72 | |         let mut formatter = self.make_formatter();
+kablam! 73 | |         self.format_usage(&mut formatter);
+kablam! 74 | |         formatter.getvalue()
+kablam! 75 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `format_help_text`, #[warn(dead_code)] on by default
+kablam!   --> src/core.rs:77:5
+kablam!    |
+kablam! 77 |       fn format_help_text(&self, formatter: &mut HelpFormatter) {
+kablam!    |  _____^ starting here...
+kablam! 78 | |         if !self.help.is_empty() {
+kablam! 79 | |             formatter.write_paragraph();
+kablam! 80 | |             formatter.indent();
+kablam! 81 | |             formatter.write_text(self.help.clone());
+kablam! 82 | |             formatter.dedent();
+kablam! 83 | |         }
+kablam! 84 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `format_options`, #[warn(dead_code)] on by default
+kablam!   --> src/core.rs:86:5
+kablam!    |
+kablam! 86 |     fn format_options(&self, formatter: &mut HelpFormatter) {
+kablam!    |     ^
+kablam! 
+kablam! warning: method is never used: `format_epilog`, #[warn(dead_code)] on by default
+kablam!    --> src/core.rs:98:5
+kablam!     |
+kablam! 98  |       fn format_epilog(&self, formatter: &mut HelpFormatter) {
+kablam!     |  _____^ starting here...
+kablam! 99  | |         if !self.epilog.is_empty() {
+kablam! 100 | |             formatter.write_paragraph();
+kablam! 101 | |             formatter.indent();
+kablam! 102 | |             formatter.write_text(self.epilog.clone());
+kablam! 103 | |             formatter.dedent();
+kablam! 104 | |         }
+kablam! 105 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `format_help`, #[warn(dead_code)] on by default
+kablam!    --> src/core.rs:107:5
+kablam!     |
+kablam! 107 |       fn format_help(&self, formatter: &mut HelpFormatter) {
+kablam!     |  _____^ starting here...
+kablam! 108 | |         self.format_usage(formatter);
+kablam! 109 | |         self.format_help_text(formatter);
+kablam! 110 | |         self.format_options(formatter);
+kablam! 111 | |         self.format_epilog(formatter);
+kablam! 112 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `get_help`, #[warn(dead_code)] on by default
+kablam!    --> src/core.rs:114:5
+kablam!     |
+kablam! 114 |       pub fn get_help(&self) -> String {
+kablam!     |  _____^ starting here...
+kablam! 115 | |         let mut formatter = self.make_formatter();
+kablam! 116 | |         self.format_help(&mut formatter);
+kablam! 117 | |         formatter.getvalue()
+kablam! 118 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `get_help_option`, #[warn(dead_code)] on by default
+kablam!    --> src/core.rs:121:5
+kablam!     |
+kablam! 121 |       fn get_help_option(&self) -> Options {
+kablam!     |  _____^ starting here...
+kablam! 122 | |         let help_option_names = vec!["h", "help"];
+kablam! 123 | |         let show_help = |params: Params| {
+kablam! 124 | |             print!("{}", self.get_help());
+kablam! 125 | |         };
+kablam! 126 | |         return Options::new(help_option_names[0], help_option_names[1],
+kablam! 127 | |                             "Show this message and exit.", true, true, false, false, None);
+kablam! 128 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: unused variable: `show_help`, #[warn(unused_variables)] on by default
+kablam!    --> src/core.rs:123:13
+kablam!     |
+kablam! 123 |         let show_help = |params: Params| {
+kablam!     |             ^^^^^^^^^
+kablam! 
+kablam! warning: unused variable: `params`, #[warn(unused_variables)] on by default
+kablam!    --> src/core.rs:123:26
+kablam!     |
+kablam! 123 |         let show_help = |params: Params| {
+kablam!     |                          ^^^^^^
+kablam! 
+kablam! warning: method is never used: `invoke`, #[warn(dead_code)] on by default
+kablam!    --> src/core.rs:131:5
+kablam!     |
+kablam! 131 |       pub fn invoke(&self, pragram_name: String, args: Vec<String>) {
+kablam!     |  _____^ starting here...
+kablam! 132 | |         let args = self.parse_args(args);
+kablam! 133 | |         let callback = self.callback;
+kablam! 134 | |         callback(args);
+kablam! 135 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: unused variable: `pragram_name`, #[warn(unused_variables)] on by default
+kablam!    --> src/core.rs:131:26
+kablam!     |
+kablam! 131 |     pub fn invoke(&self, pragram_name: String, args: Vec<String>) {
+kablam!     |                          ^^^^^^^^^^^^
+kablam! 
+kablam! warning: method is never used: `get_options`, #[warn(dead_code)] on by default
+kablam!    --> src/core.rs:138:5
+kablam!     |
+kablam! 138 |       fn get_options(&self) -> Vec<Options> {
+kablam!     |  _____^ starting here...
+kablam! 139 | |         let mut options: Vec<Options> = Vec::new();
+kablam! 140 | |         for option in self.options.iter() {
+kablam! 141 | |             options.push(option.clone());
+kablam! 142 | |         }
+kablam! 143 | |         let help_option = self.get_help_option();
+kablam! 144 | |         options.push(help_option);
+kablam! 145 | |         return options;
+kablam! 146 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `make_parser`, #[warn(dead_code)] on by default
+kablam!    --> src/core.rs:149:5
+kablam!     |
+kablam! 149 |       fn make_parser(&self) -> getopts::Options {
+kablam!     |  _____^ starting here...
+kablam! 150 | |         let mut parser = getopts::Options::new();
+kablam! 151 | |         for option in self.get_options().iter() {
+kablam! 152 | |             option.add_to_parser(&mut parser);
+kablam! 153 | |         }
+kablam! 154 | |         return parser;
+kablam! 155 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `parse_args`, #[warn(dead_code)] on by default
+kablam!    --> src/core.rs:158:5
+kablam!     |
+kablam! 158 |       fn parse_args(&self, args: Vec<String>) -> Vec<String> {
+kablam!     |  _____^ starting here...
+kablam! 159 | |         args
+kablam! 160 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `run`, #[warn(dead_code)] on by default
+kablam!    --> src/core.rs:163:5
+kablam!     |
+kablam! 163 |       pub fn run(&self) {
+kablam!     |  _____^ starting here...
+kablam! 164 | |         let mut args = env::args();
+kablam! 165 | |         let program = args.nth(0).unwrap();
+kablam! 166 | |         let program_path = Path::new(&program);
+kablam! 167 | |         let program_name = program_path.file_name().unwrap().to_str().unwrap();
+kablam! 168 | |         // Hook for the Bash completion.
+kablam! 169 | |         // bashcomplete(self, program_name);
+kablam! 170 | |         self.invoke(program_name.to_string(), args.collect());
+kablam! 171 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: type alias is never used: `Params`, #[warn(dead_code)] on by default
+kablam!   --> src/types.rs:11:1
+kablam!    |
+kablam! 11 | pub type Params = Vec<String>;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: type alias is never used: `CommandCallback`, #[warn(dead_code)] on by default
+kablam!   --> src/types.rs:15:1
+kablam!    |
+kablam! 15 | pub type CommandCallback = fn(Params);
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: method is never used: `new`, #[warn(dead_code)] on by default
+kablam!   --> src/types.rs:32:5
+kablam!    |
+kablam! 32 |     pub fn new(s_name: &'static str, l_name: &'static str, help: &'static str, is_flag: bool, is_bool_flag: bool,
+kablam!    |     ^
+kablam! 
+kablam! warning: method is never used: `add_to_parser`, #[warn(dead_code)] on by default
+kablam!   --> src/types.rs:46:5
+kablam!    |
+kablam! 46 |     pub fn add_to_parser(&self, parser: &mut getopts::Options) {
+kablam!    |     ^
+kablam! 
+kablam! warning: method is never used: `get_help_record`, #[warn(dead_code)] on by default
+kablam!   --> src/types.rs:66:5
+kablam!    |
+kablam! 66 |     pub fn get_help_record(&self) -> (String, String) {
+kablam!    |     ^
+kablam! 
+kablam! warning: struct is never used: `Argument`, #[warn(dead_code)] on by default
+kablam!    --> src/types.rs:100:1
+kablam!     |
+kablam! 100 |   pub struct Argument {
+kablam!     |  _^ starting here...
+kablam! 101 | |     name: &'static str,
+kablam! 102 | |     required: bool,
+kablam! 103 | |     default: Option<&'static str>,
+kablam! 104 | | }
+kablam!     | |_^ ...ending here
+kablam! 
+kablam! warning: method is never used: `new`, #[warn(dead_code)] on by default
+kablam!    --> src/types.rs:107:5
+kablam!     |
+kablam! 107 |       pub fn new(name: &'static str, required: bool, default: Option<&'static str>) -> Argument {
+kablam!     |  _____^ starting here...
+kablam! 108 | |         Argument {
+kablam! 109 | |             name: name,
+kablam! 110 | |             required: required,
+kablam! 111 | |             default: default,
+kablam! 112 | |         }
+kablam! 113 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `add_to_parser`, #[warn(dead_code)] on by default
+kablam!    --> src/types.rs:115:5
+kablam!     |
+kablam! 115 |       pub fn add_to_parser(&self, parser: &mut getopts::Options) {
+kablam!     |  _____^ starting here...
+kablam! 116 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: unused variable: `parser`, #[warn(unused_variables)] on by default
+kablam!    --> src/types.rs:115:33
+kablam!     |
+kablam! 115 |     pub fn add_to_parser(&self, parser: &mut getopts::Options) {
+kablam!     |                                 ^^^^^^
+kablam! 
+kablam! warning: method is never used: `get_usage_piece`, #[warn(dead_code)] on by default
+kablam!    --> src/types.rs:118:5
+kablam!     |
+kablam! 118 |       pub fn get_usage_piece(&self) -> String {
+kablam!     |  _____^ starting here...
+kablam! 119 | |         match self.required {
+kablam! 120 | |             true => format!("{}", self.name),
+kablam! 121 | |             false => format!("[{}]", self.name),
+kablam! 122 | |         }
+kablam! 123 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: unused import: `std::path::Path`, #[warn(unused_imports)] on by default
+kablam!   --> src/term.rs:16:5
+kablam!    |
+kablam! 16 | use std::path::Path;
+kablam!    |     ^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused import: `Duration`, #[warn(unused_imports)] on by default
+kablam!   --> src/term.rs:18:26
+kablam!    |
+kablam! 18 | use std::time::{Instant, Duration, SystemTime, UNIX_EPOCH};
+kablam!    |                          ^^^^^^^^
+kablam! 
+kablam! warning: unused variable: `hide_input`, #[warn(unused_variables)] on by default
+kablam!    --> src/term.rs:223:40
+kablam!     |
+kablam! 223 | fn get_prompt_input(prompt_text: &str, hide_input: bool) -> String {
+kablam!     |                                        ^^^^^^^^^^
+kablam! 
+kablam! warning: method is never used: `time_per_iteration`, #[warn(dead_code)] on by default
+kablam!    --> src/term.rs:437:5
+kablam!     |
+kablam! 437 |       fn time_per_iteration(&self) -> f32 {
+kablam!     |  _____^ starting here...
+kablam! 438 | |         if self.avgs.len() == 0 {
+kablam! 439 | |             return 0.0;
+kablam! 440 | |         }
+kablam! 441 | |         let avg_sum = self.avgs.iter().fold(0f32, |x, &y| x + y);
+kablam! 442 | |         return avg_sum / (self.avgs.len() as f32);
+kablam! 443 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `estimate_time`, #[warn(dead_code)] on by default
+kablam!    --> src/term.rs:445:5
+kablam!     |
+kablam! 445 |       fn estimate_time(&self) -> f32 {
+kablam!     |  _____^ starting here...
+kablam! 446 | |         if self.finished {
+kablam! 447 | |             return 0.0
+kablam! 448 | |         }
+kablam! 449 | |         let remaining_step = (self.length - self.pos) as f32;
+kablam! 450 | |         self.time_per_iteration() * remaining_step
+kablam! 451 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/term.rs:477:13
+kablam!     |
+kablam! 477 |         let mut info: String;
+kablam!     |             ^^^^^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/term.rs:578:13
+kablam!     |
+kablam! 578 |         let mut filepath = tmpdir.path().clone();
+kablam!     |             ^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused import: `std`, #[warn(unused_imports)] on by default
+kablam!  --> src/formatting.rs:7:5
+kablam!   |
+kablam! 7 | use std;
+kablam!   |     ^^^
+kablam! 
+kablam! warning: struct is never used: `HelpFormatter`, #[warn(dead_code)] on by default
+kablam!   --> src/formatting.rs:12:1
+kablam!    |
+kablam! 12 |   pub struct HelpFormatter {
+kablam!    |  _^ starting here...
+kablam! 13 | |     width: usize,
+kablam! 14 | |     indent_increment: usize,
+kablam! 15 | |     current_indent: usize,
+kablam! 16 | |     buffer: Vec<String>,
+kablam! 17 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! warning: method is never used: `new`, #[warn(dead_code)] on by default
+kablam!   --> src/formatting.rs:25:5
+kablam!    |
+kablam! 25 |       pub fn new(width: usize, indent_increment: usize) -> HelpFormatter {
+kablam!    |  _____^ starting here...
+kablam! 26 | |         HelpFormatter {
+kablam! 27 | |             width: width,
+kablam! 28 | |             indent_increment: indent_increment,
+kablam! 29 | |             current_indent: 0,
+kablam! 30 | |             buffer: Vec::new(),
+kablam! 31 | |         }
+kablam! 32 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `indent`, #[warn(dead_code)] on by default
+kablam!   --> src/formatting.rs:35:5
+kablam!    |
+kablam! 35 |       pub fn indent(&mut self) {
+kablam!    |  _____^ starting here...
+kablam! 36 | |         self.current_indent = self.current_indent + self.indent_increment;
+kablam! 37 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `dedent`, #[warn(dead_code)] on by default
+kablam!   --> src/formatting.rs:40:5
+kablam!    |
+kablam! 40 |       pub fn dedent(&mut self) {
+kablam!    |  _____^ starting here...
+kablam! 41 | |         self.current_indent = self.current_indent - self.indent_increment;
+kablam! 42 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `write`, #[warn(dead_code)] on by default
+kablam!   --> src/formatting.rs:45:5
+kablam!    |
+kablam! 45 |       pub fn write(&mut self, s: String) {
+kablam!    |  _____^ starting here...
+kablam! 46 | |         self.buffer.push(s);
+kablam! 47 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `write_paragraph`, #[warn(dead_code)] on by default
+kablam!   --> src/formatting.rs:50:5
+kablam!    |
+kablam! 50 |       pub fn write_paragraph(&mut self) {
+kablam!    |  _____^ starting here...
+kablam! 51 | |         let mut newline = String::new();
+kablam! 52 | |         newline.push_str("\n");
+kablam! 53 | |         if !self.buffer.is_empty() {
+kablam! 54 | |             self.buffer.push(newline);
+kablam! 55 | |         }
+kablam! 56 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `write_heading`, #[warn(dead_code)] on by default
+kablam!   --> src/formatting.rs:59:5
+kablam!    |
+kablam! 59 |       pub fn write_heading(&mut self, heading: &str) {
+kablam!    |  _____^ starting here...
+kablam! 60 | |         let current_indent = self.current_indent;
+kablam! 61 | |         self.write(format!("{:>2$}{}\n", "", heading, current_indent));
+kablam! 62 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `write_dl`, #[warn(dead_code)] on by default
+kablam!   --> src/formatting.rs:65:5
+kablam!    |
+kablam! 65 |       pub fn write_dl(&mut self, rows: Vec<(String, String)>) {
+kablam!    |  _____^ starting here...
+kablam! 66 | |         let col_spacing: usize = 2;
+kablam! 67 | |         let current_indent = self.current_indent;
+kablam! 68 | |         for &(ref first, ref second) in rows.iter() {
+kablam! 69 | |             self.write(format!("{:>2$}{}", "", first, current_indent));
+kablam! 70 | |             self.write(format!("{:>2$}{}\n", "", second, col_spacing));
+kablam! 71 | |         }
+kablam! 72 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `enter_section`, #[warn(dead_code)] on by default
+kablam!   --> src/formatting.rs:75:5
+kablam!    |
+kablam! 75 |       pub fn enter_section(&mut self, name: &str) {
+kablam!    |  _____^ starting here...
+kablam! 76 | |         self.write_paragraph();
+kablam! 77 | |         self.write_heading(name);
+kablam! 78 | |         self.indent();
+kablam! 79 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `exit_section`, #[warn(dead_code)] on by default
+kablam!   --> src/formatting.rs:82:5
+kablam!    |
+kablam! 82 |       pub fn exit_section(&mut self) {
+kablam!    |  _____^ starting here...
+kablam! 83 | |         self.dedent();
+kablam! 84 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `write_text`, #[warn(dead_code)] on by default
+kablam!   --> src/formatting.rs:87:5
+kablam!    |
+kablam! 87 |     pub fn write_text(&mut self, text: String) {
+kablam!    |     ^
+kablam! 
+kablam! warning: method is never used: `write_usage`, #[warn(dead_code)] on by default
+kablam!    --> src/formatting.rs:100:5
+kablam!     |
+kablam! 100 |     pub fn write_usage(&mut self, name: &str, args: String, prefix: &str) {
+kablam!     |     ^
+kablam! 
+kablam! warning: method is never used: `getvalue`, #[warn(dead_code)] on by default
+kablam!    --> src/formatting.rs:117:5
+kablam!     |
+kablam! 117 |       pub fn getvalue(&self) -> String {
+kablam!     |  _____^ starting here...
+kablam! 118 | |         self.buffer.concat()
+kablam! 119 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: function is never used: `wrap_text`, #[warn(dead_code)] on by default
+kablam!    --> src/formatting.rs:125:1
+kablam!     |
+kablam! 125 |   fn wrap_text(text: String, width: usize, initial_indent: &str, subsequent_indent: &str) -> String {
+kablam!     |  _^ starting here...
+kablam! 126 | |     return text;
+kablam! 127 | | }
+kablam!     | |_^ ...ending here
+kablam! 
+kablam! warning: unused variable: `width`, #[warn(unused_variables)] on by default
+kablam!    --> src/formatting.rs:125:28
+kablam!     |
+kablam! 125 | fn wrap_text(text: String, width: usize, initial_indent: &str, subsequent_indent: &str) -> String {
+kablam!     |                            ^^^^^
+kablam! 
+kablam! warning: unused variable: `initial_indent`, #[warn(unused_variables)] on by default
+kablam!    --> src/formatting.rs:125:42
+kablam!     |
+kablam! 125 | fn wrap_text(text: String, width: usize, initial_indent: &str, subsequent_indent: &str) -> String {
+kablam!     |                                          ^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused variable: `subsequent_indent`, #[warn(unused_variables)] on by default
+kablam!    --> src/formatting.rs:125:64
+kablam!     |
+kablam! 125 | fn wrap_text(text: String, width: usize, initial_indent: &str, subsequent_indent: &str) -> String {
+kablam!     |                                                                ^^^^^^^^^^^^^^^^^
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 2.97 secs
+boom! running `docker rm -f 4c82d65ffa30d76621bc8590709d8f5117e8f91d962bfd0c471f05e6b4db3238`
+blam! 4c82d65ffa30d76621bc8590709d8f5117e8f91d962bfd0c471f05e6b4db3238
+boom! running: cargo +beta test --frozen
+boom! creating container for: cargo +beta test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta test --frozen cargobomb`
+blam! 5eb0d756b002f109d1bfe68cd8525a13accd7da8b326ee2311f490c3356ccf0c
+boom! running `docker start -a 5eb0d756b002f109d1bfe68cd8525a13accd7da8b326ee2311f490c3356ccf0c`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/clt-1c8352b2d919740e
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/test_basic-2c3869ff2c2e14ff
+blam! 
+blam! running 1 test
+blam! test foo ... ok
+blam! 
+blam! test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!    Doc-tests clt
+blam! 
+blam! running 5 tests
+blam! test term::Editor<'a, 'k, 'v>::edit_0 ... ok
+blam! test term::Editor<'a, 'k, 'v>::edit_file_0 ... ok
+blam! test term::Style_0 ... ok
+blam! test term::ProgressBar_0 ... ok
+blam! test term::get_terminal_size_0 ... ok
+blam! 
+blam! test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f 5eb0d756b002f109d1bfe68cd8525a13accd7da8b326ee2311f490c3356ccf0c`
+blam! 5eb0d756b002f109d1bfe68cd8525a13accd7da8b326ee2311f490c3356ccf0c

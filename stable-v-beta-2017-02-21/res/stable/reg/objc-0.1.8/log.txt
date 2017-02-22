@@ -1,0 +1,50 @@
+boom! testing objc-0.1.8 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! f21b0c23e0e7fe11ce6d0560035d8b50a3e7f37add41cc67c64c41c4eb3a0a22
+boom! running `docker start -a f21b0c23e0e7fe11ce6d0560035d8b50a3e7f37add41cc67c64c41c4eb3a0a22`
+kablam!    Compiling objc v0.1.8 (file:///source)
+kablam! error: `unsafe extern "C" fn(*mut runtime::Object, runtime::Sel, ...) -> *mut runtime::Object {runtime::::objc_msgSend}` is now zero-sized and has to be cast to a pointer before transmuting to `unsafe extern "C" fn(*mut runtime::Object, runtime::Sel, ...) -> R`, #[deny(transmute_from_fn_item_types)] on by default
+kablam!   --> src/message.rs:52:18
+kablam!    |
+kablam! 52 |         unsafe { mem::transmute(runtime::objc_msgSend) }
+kablam!    |                  ^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #19925 <https://github.com/rust-lang/rust/issues/19925>
+kablam! 
+kablam! error: `unsafe extern "C" fn(*mut runtime::Object, runtime::Sel, ...) {runtime::::objc_msgSend_stret}` is now zero-sized and has to be cast to a pointer before transmuting to `unsafe extern "C" fn(*mut runtime::Object, runtime::Sel, ...) -> R`, #[deny(transmute_from_fn_item_types)] on by default
+kablam!   --> src/message.rs:54:18
+kablam!    |
+kablam! 54 |         unsafe { mem::transmute(runtime::objc_msgSend_stret) }
+kablam!    |                  ^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #19925 <https://github.com/rust-lang/rust/issues/19925>
+kablam! 
+kablam! error: `unsafe extern "C" fn(*const runtime::Super, runtime::Sel, ...) -> *mut runtime::Object {runtime::::objc_msgSendSuper}` is now zero-sized and has to be cast to a pointer before transmuting to `unsafe extern "C" fn(*const runtime::Super, runtime::Sel, ...) -> R`, #[deny(transmute_from_fn_item_types)] on by default
+kablam!   --> src/message.rs:61:18
+kablam!    |
+kablam! 61 |         unsafe { mem::transmute(runtime::objc_msgSendSuper) }
+kablam!    |                  ^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #19925 <https://github.com/rust-lang/rust/issues/19925>
+kablam! 
+kablam! error: `unsafe extern "C" fn(*const runtime::Super, runtime::Sel, ...) {runtime::::objc_msgSendSuper_stret}` is now zero-sized and has to be cast to a pointer before transmuting to `unsafe extern "C" fn(*const runtime::Super, runtime::Sel, ...) -> R`, #[deny(transmute_from_fn_item_types)] on by default
+kablam!   --> src/message.rs:63:18
+kablam!    |
+kablam! 63 |         unsafe { mem::transmute(runtime::objc_msgSendSuper_stret) }
+kablam!    |                  ^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #19925 <https://github.com/rust-lang/rust/issues/19925>
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `objc`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f21b0c23e0e7fe11ce6d0560035d8b50a3e7f37add41cc67c64c41c4eb3a0a22`
+blam! f21b0c23e0e7fe11ce6d0560035d8b50a3e7f37add41cc67c64c41c4eb3a0a22

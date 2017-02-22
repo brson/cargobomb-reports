@@ -1,0 +1,44 @@
+boom! testing https://github.com/tikue/fizzbuzz#9ad97dd64d1f0f8135f44e116c4eb983d1de1000 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 6a820bd962e32747273a00ca7eba0a380d314f87401b055c23373ed2fceaa75f
+boom! running `docker start -a 6a820bd962e32747273a00ca7eba0a380d314f87401b055c23373ed2fceaa75f`
+kablam!    Compiling fizzbuzz v0.0.1 (file:///source)
+kablam! error: rust-call ABI is subject to change (see issue #29625)
+kablam!  --> src/main.rs:7:5
+kablam!   |
+kablam! 7 |       extern "rust-call" fn call(&self, (_,): (B,)) -> A {
+kablam!   |  _____^ starting here...
+kablam! 8 | |         self.x.clone()
+kablam! 9 | |     }
+kablam!   | |_____^ ...ending here
+kablam! 
+kablam! error: box expression syntax is experimental; you can call `Box::new` instead. (see issue #27779)
+kablam!   --> src/main.rs:16:5
+kablam!    |
+kablam! 16 |     box Const { x: a }
+kablam!    |     ^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: rust-call ABI is subject to change (see issue #29625)
+kablam!   --> src/main.rs:23:5
+kablam!    |
+kablam! 23 |       extern "rust-call" fn call(&self, (a,): (A,)) -> A {
+kablam!    |  _____^ starting here...
+kablam! 24 | |         a
+kablam! 25 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! error: box expression syntax is experimental; you can call `Box::new` instead. (see issue #27779)
+kablam!   --> src/main.rs:42:29
+kablam!    |
+kablam! 42 |     let x = test(5, "buzz", box Id);
+kablam!    |                             ^^^^^^
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `fizzbuzz`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 6a820bd962e32747273a00ca7eba0a380d314f87401b055c23373ed2fceaa75f`
+blam! 6a820bd962e32747273a00ca7eba0a380d314f87401b055c23373ed2fceaa75f

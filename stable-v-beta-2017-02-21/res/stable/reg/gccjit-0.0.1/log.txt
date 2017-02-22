@@ -1,0 +1,132 @@
+boom! testing gccjit-0.0.1 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 9658fad0d2948c19fcf5b846e5d2f9231d98eb2345c2b65788f73b1240542c56
+boom! running `docker start -a 9658fad0d2948c19fcf5b846e5d2f9231d98eb2345c2b65788f73b1240542c56`
+kablam! warning: dependency (gccjit_sys) specified without providing a local path, Git repository, or version to use. This will be considered an error in future versions
+kablam!    Compiling gccjit_sys v0.0.1
+kablam!    Compiling gccjit v0.0.1 (file:///source)
+kablam! warning: lint raw_pointer_derive has been removed: using derive with raw pointers is ok, #[warn(renamed_and_removed_lints)] on by default
+kablam!  --> src/lib.rs:1:10
+kablam!   |
+kablam! 1 | #![allow(raw_pointer_derive)]
+kablam!   |          ^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 1.30 secs
+boom! running `docker rm -f 9658fad0d2948c19fcf5b846e5d2f9231d98eb2345c2b65788f73b1240542c56`
+blam! 9658fad0d2948c19fcf5b846e5d2f9231d98eb2345c2b65788f73b1240542c56
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! f9c6b58fbb8f4e46d878d750199abf6eacdbdb14c4ebc923710c06802e711716
+boom! running `docker start -a f9c6b58fbb8f4e46d878d750199abf6eacdbdb14c4ebc923710c06802e711716`
+kablam! warning: dependency (gccjit_sys) specified without providing a local path, Git repository, or version to use. This will be considered an error in future versions
+kablam!    Compiling gccjit v0.0.1 (file:///source)
+kablam! warning: unused variable: `ctx`, #[warn(unused_variables)] on by default
+kablam!    --> src/context.rs:694:13
+kablam!     |
+kablam! 694 |         let ctx = Context::default();
+kablam!     |             ^^^
+kablam! 
+kablam! warning: unused variable: `child`, #[warn(unused_variables)] on by default
+kablam!    --> src/context.rs:700:13
+kablam!     |
+kablam! 700 |         let child = ctx.new_child_context();
+kablam!     |             ^^^^^
+kablam! 
+kablam! warning: unused variable: `location`, #[warn(unused_variables)] on by default
+kablam!    --> src/context.rs:706:13
+kablam!     |
+kablam! 706 |         let location = ctx.new_location("hello.rs", 1, 32);
+kablam!     |             ^^^^^^^^
+kablam! 
+kablam! warning: unused variable: `int_type`, #[warn(unused_variables)] on by default
+kablam!    --> src/context.rs:712:13
+kablam!     |
+kablam! 712 |         let int_type = ctx.new_type::<i32>();
+kablam!     |             ^^^^^^^^
+kablam! 
+kablam! warning: unused variable: `int_field`, #[warn(unused_variables)] on by default
+kablam!    --> src/context.rs:719:13
+kablam!     |
+kablam! 719 |         let int_field = ctx.new_field(None, int_type, "x");
+kablam!     |             ^^^^^^^^^
+kablam! 
+kablam! warning: lint raw_pointer_derive has been removed: using derive with raw pointers is ok, #[warn(renamed_and_removed_lints)] on by default
+kablam!  --> src/lib.rs:1:10
+kablam!   |
+kablam! 1 | #![allow(raw_pointer_derive)]
+kablam!   |          ^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/gccjit-8354dab3361cd826.0.o" "-o" "/target/debug/deps/gccjit-8354dab3361cd826" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libgccjit_sys-6179b8271fb0888c.rlib" "/target/debug/deps/liblibc-46e3f3685e5149b2.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-dd7007be8bc832b7.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-19e7cee83d8001c7.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-58bde84252e1d985.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-2ddb28df747fcb8c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-21709492a058d9ce.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-e19aa6725ab01bfd.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-99ff2e008613b591.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-e2513aecb8fbb70c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-f3200ab7e7fe644c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-dba58b8da674d203.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-6d4348bcabf40a71.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-9f45c45fdcba4301.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-b4ef8c9d93bc879a.rlib" "-l" "gccjit" "-l" "c" "-l" "m" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lgccjit
+kablam! collect2: error: ld returned 1 exit status
+kablam! 
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `gccjit`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f9c6b58fbb8f4e46d878d750199abf6eacdbdb14c4ebc923710c06802e711716`
+blam! f9c6b58fbb8f4e46d878d750199abf6eacdbdb14c4ebc923710c06802e711716
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! 11ea1654d7ce990c75d6f734d8017228f2e736d82916cf10fdeef5e1e0bd7b5b
+boom! running `docker start -a 11ea1654d7ce990c75d6f734d8017228f2e736d82916cf10fdeef5e1e0bd7b5b`
+kablam! warning: dependency (gccjit_sys) specified without providing a local path, Git repository, or version to use. This will be considered an error in future versions
+kablam!    Compiling gccjit v0.0.1 (file:///source)
+kablam! warning: unused variable: `ctx`, #[warn(unused_variables)] on by default
+kablam!    --> src/context.rs:694:13
+kablam!     |
+kablam! 694 |         let ctx = Context::default();
+kablam!     |             ^^^
+kablam! 
+kablam! warning: unused variable: `child`, #[warn(unused_variables)] on by default
+kablam!    --> src/context.rs:700:13
+kablam!     |
+kablam! 700 |         let child = ctx.new_child_context();
+kablam!     |             ^^^^^
+kablam! 
+kablam! warning: unused variable: `location`, #[warn(unused_variables)] on by default
+kablam!    --> src/context.rs:706:13
+kablam!     |
+kablam! 706 |         let location = ctx.new_location("hello.rs", 1, 32);
+kablam!     |             ^^^^^^^^
+kablam! 
+kablam! warning: unused variable: `int_type`, #[warn(unused_variables)] on by default
+kablam!    --> src/context.rs:712:13
+kablam!     |
+kablam! 712 |         let int_type = ctx.new_type::<i32>();
+kablam!     |             ^^^^^^^^
+kablam! 
+kablam! warning: unused variable: `int_field`, #[warn(unused_variables)] on by default
+kablam!    --> src/context.rs:719:13
+kablam!     |
+kablam! 719 |         let int_field = ctx.new_field(None, int_type, "x");
+kablam!     |             ^^^^^^^^^
+kablam! 
+kablam! warning: lint raw_pointer_derive has been removed: using derive with raw pointers is ok, #[warn(renamed_and_removed_lints)] on by default
+kablam!  --> src/lib.rs:1:10
+kablam!   |
+kablam! 1 | #![allow(raw_pointer_derive)]
+kablam!   |          ^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/gccjit-8354dab3361cd826.0.o" "-o" "/target/debug/deps/gccjit-8354dab3361cd826" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libgccjit_sys-6179b8271fb0888c.rlib" "/target/debug/deps/liblibc-46e3f3685e5149b2.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-dd7007be8bc832b7.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-19e7cee83d8001c7.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-58bde84252e1d985.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-2ddb28df747fcb8c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-21709492a058d9ce.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-e19aa6725ab01bfd.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-99ff2e008613b591.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-e2513aecb8fbb70c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-f3200ab7e7fe644c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-dba58b8da674d203.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-6d4348bcabf40a71.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-9f45c45fdcba4301.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-b4ef8c9d93bc879a.rlib" "-l" "gccjit" "-l" "c" "-l" "m" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lgccjit
+kablam! collect2: error: ld returned 1 exit status
+kablam! 
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `gccjit`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 11ea1654d7ce990c75d6f734d8017228f2e736d82916cf10fdeef5e1e0bd7b5b`
+blam! 11ea1654d7ce990c75d6f734d8017228f2e736d82916cf10fdeef5e1e0bd7b5b

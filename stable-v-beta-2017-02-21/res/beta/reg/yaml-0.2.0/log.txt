@@ -1,0 +1,35 @@
+boom! testing yaml-0.2.0 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 053d5308ea9c114b354c540a4d1a2d4b48cbf624227e59254c49d5c8c58e5e2d
+boom! running `docker start -a 053d5308ea9c114b354c540a4d1a2d4b48cbf624227e59254c49d5c8c58e5e2d`
+kablam!    Compiling yaml v0.2.0 (file:///source)
+kablam!    Compiling regex v0.1.80
+kablam! error[E0432]: unresolved import `std::fs::PathExt`
+kablam!  --> build.rs:3:21
+kablam!   |
+kablam! 3 | use std::fs::{File, PathExt};
+kablam!   |                     ^^^^^^^ no `PathExt` in `fs`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> build.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(path_ext)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `yaml`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/regex-0.1.80/src/lib.rs:451:34
+kablam!     |
+kablam! 451 | #![cfg_attr(feature = "pattern", feature(pattern))]
+kablam!     |                                  ^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f 053d5308ea9c114b354c540a4d1a2d4b48cbf624227e59254c49d5c8c58e5e2d`
+blam! 053d5308ea9c114b354c540a4d1a2d4b48cbf624227e59254c49d5c8c58e5e2d

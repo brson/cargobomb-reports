@@ -1,0 +1,293 @@
+boom! testing nalgebra-0.11.0 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 09683c5c78e3da2c6a35f675013ee45e61b6b3eaed8f3a3388266da514256a04
+boom! running `docker start -a 09683c5c78e3da2c6a35f675013ee45e61b6b3eaed8f3a3388266da514256a04`
+kablam!    Compiling nalgebra v0.11.0 (file:///source)
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 42.91 secs
+boom! running `docker rm -f 09683c5c78e3da2c6a35f675013ee45e61b6b3eaed8f3a3388266da514256a04`
+blam! 09683c5c78e3da2c6a35f675013ee45e61b6b3eaed8f3a3388266da514256a04
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 424c15fb8bfaee6e80411808a5c8823d0cdc88a707443a6fd69488a0b4ca034d
+boom! running `docker start -a 424c15fb8bfaee6e80411808a5c8823d0cdc88a707443a6fd69488a0b4ca034d`
+kablam!    Compiling nalgebra v0.11.0 (file:///source)
+kablam! error: macro undefined: 'quickcheck!'
+kablam!   --> tests/isometry.rs:18:1
+kablam!    |
+kablam! 18 | quickcheck!(
+kablam!    | ^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error[E0277]: the trait bound `na::Matrix<f32, na::Dynamic, na::Dynamic, na::MatrixVec<f32, na::Dynamic, na::Dynamic>>: serde::ser::Serialize` is not satisfied
+kablam!   --> tests/serde.rs:33:22
+kablam!    |
+kablam! 33 |     let serialized = serde_json::to_string(&v).unwrap();
+kablam!    |                      ^^^^^^^^^^^^^^^^^^^^^ the trait `serde::ser::Serialize` is not implemented for `na::Matrix<f32, na::Dynamic, na::Dynamic, na::MatrixVec<f32, na::Dynamic, na::Dynamic>>`
+kablam!    |
+kablam!    = note: required by `serde_json::to_string`
+kablam! 
+kablam! error[E0277]: the trait bound `na::Matrix<f32, na::Dynamic, na::Dynamic, na::MatrixVec<f32, na::Dynamic, na::Dynamic>>: serde::de::Deserialize` is not satisfied
+kablam!   --> tests/serde.rs:34:19
+kablam!    |
+kablam! 34 |     assert_eq!(v, serde_json::from_str(&serialized).unwrap());
+kablam!    |                   ^^^^^^^^^^^^^^^^^^^^ the trait `serde::de::Deserialize` is not implemented for `na::Matrix<f32, na::Dynamic, na::Dynamic, na::MatrixVec<f32, na::Dynamic, na::Dynamic>>`
+kablam!    |
+kablam!    = note: required by `serde_json::from_str`
+kablam! 
+kablam! error[E0277]: the trait bound `na::Matrix<f32, na::U3, na::U4, na::MatrixArray<f32, na::U3, na::U4>>: serde::ser::Serialize` is not satisfied
+kablam!   --> tests/serde.rs:24:30
+kablam!    |
+kablam! 24 |             let serialized = serde_json::to_string(&v).unwrap();
+kablam!    |                              ^^^^^^^^^^^^^^^^^^^^^ the trait `serde::ser::Serialize` is not implemented for `na::Matrix<f32, na::U3, na::U4, na::MatrixArray<f32, na::U3, na::U4>>`
+kablam! ...
+kablam! 37 | test_serde!(
+kablam!    | - in this macro invocation
+kablam!    |
+kablam!    = note: required by `serde_json::to_string`
+kablam! 
+kablam! error[E0277]: the trait bound `na::Matrix<f32, na::U3, na::U4, na::MatrixArray<f32, na::U3, na::U4>>: serde::de::Deserialize` is not satisfied
+kablam!   --> tests/serde.rs:25:27
+kablam!    |
+kablam! 25 |             assert_eq!(v, serde_json::from_str(&serialized).unwrap());
+kablam!    |                           ^^^^^^^^^^^^^^^^^^^^ the trait `serde::de::Deserialize` is not implemented for `na::Matrix<f32, na::U3, na::U4, na::MatrixArray<f32, na::U3, na::U4>>`
+kablam! ...
+kablam! 37 | test_serde!(
+kablam!    | - in this macro invocation
+kablam!    |
+kablam!    = note: required by `serde_json::from_str`
+kablam! 
+kablam! error[E0277]: the trait bound `na::PointBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U1>>: serde::ser::Serialize` is not satisfied
+kablam!   --> tests/serde.rs:24:30
+kablam!    |
+kablam! 24 |             let serialized = serde_json::to_string(&v).unwrap();
+kablam!    |                              ^^^^^^^^^^^^^^^^^^^^^ the trait `serde::ser::Serialize` is not implemented for `na::PointBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U1>>`
+kablam! ...
+kablam! 37 | test_serde!(
+kablam!    | - in this macro invocation
+kablam!    |
+kablam!    = note: required by `serde_json::to_string`
+kablam! 
+kablam! error[E0277]: the trait bound `na::PointBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U1>>: serde::de::Deserialize` is not satisfied
+kablam!   --> tests/serde.rs:25:27
+kablam!    |
+kablam! 25 |             assert_eq!(v, serde_json::from_str(&serialized).unwrap());
+kablam!    |                           ^^^^^^^^^^^^^^^^^^^^ the trait `serde::de::Deserialize` is not implemented for `na::PointBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U1>>`
+kablam! ...
+kablam! 37 | test_serde!(
+kablam!    | - in this macro invocation
+kablam!    |
+kablam!    = note: required by `serde_json::from_str`
+kablam! 
+kablam! error[E0277]: the trait bound `na::TranslationBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U1>>: serde::ser::Serialize` is not satisfied
+kablam!   --> tests/serde.rs:24:30
+kablam!    |
+kablam! 24 |             let serialized = serde_json::to_string(&v).unwrap();
+kablam!    |                              ^^^^^^^^^^^^^^^^^^^^^ the trait `serde::ser::Serialize` is not implemented for `na::TranslationBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U1>>`
+kablam! ...
+kablam! 37 | test_serde!(
+kablam!    | - in this macro invocation
+kablam!    |
+kablam!    = note: required by `serde_json::to_string`
+kablam! 
+kablam! error[E0277]: the trait bound `na::TranslationBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U1>>: serde::de::Deserialize` is not satisfied
+kablam!   --> tests/serde.rs:25:27
+kablam!    |
+kablam! 25 |             assert_eq!(v, serde_json::from_str(&serialized).unwrap());
+kablam!    |                           ^^^^^^^^^^^^^^^^^^^^ the trait `serde::de::Deserialize` is not implemented for `na::TranslationBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U1>>`
+kablam! ...
+kablam! 37 | test_serde!(
+kablam!    | - in this macro invocation
+kablam!    |
+kablam!    = note: required by `serde_json::from_str`
+kablam! 
+kablam! error[E0277]: the trait bound `na::RotationBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U3>>: serde::ser::Serialize` is not satisfied
+kablam!   --> tests/serde.rs:24:30
+kablam!    |
+kablam! 24 |             let serialized = serde_json::to_string(&v).unwrap();
+kablam!    |                              ^^^^^^^^^^^^^^^^^^^^^ the trait `serde::ser::Serialize` is not implemented for `na::RotationBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U3>>`
+kablam! ...
+kablam! 37 | test_serde!(
+kablam!    | - in this macro invocation
+kablam!    |
+kablam!    = note: required by `serde_json::to_string`
+kablam! 
+kablam! error[E0277]: the trait bound `na::RotationBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U3>>: serde::de::Deserialize` is not satisfied
+kablam!   --> tests/serde.rs:25:27
+kablam!    |
+kablam! 25 |             assert_eq!(v, serde_json::from_str(&serialized).unwrap());
+kablam!    |                           ^^^^^^^^^^^^^^^^^^^^ the trait `serde::de::Deserialize` is not implemented for `na::RotationBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U3>>`
+kablam! ...
+kablam! 37 | test_serde!(
+kablam!    | - in this macro invocation
+kablam!    |
+kablam!    = note: required by `serde_json::from_str`
+kablam! 
+kablam! error[E0277]: the trait bound `na::IsometryBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U1>, na::Unit<na::QuaternionBase<f32, na::MatrixArray<f32, na::U4, na::U1>>>>: serde::ser::Serialize` is not satisfied
+kablam!   --> tests/serde.rs:24:30
+kablam!    |
+kablam! 24 |             let serialized = serde_json::to_string(&v).unwrap();
+kablam!    |                              ^^^^^^^^^^^^^^^^^^^^^ the trait `serde::ser::Serialize` is not implemented for `na::IsometryBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U1>, na::Unit<na::QuaternionBase<f32, na::MatrixArray<f32, na::U4, na::U1>>>>`
+kablam! ...
+kablam! 37 | test_serde!(
+kablam!    | - in this macro invocation
+kablam!    |
+kablam!    = note: required by `serde_json::to_string`
+kablam! 
+kablam! error[E0277]: the trait bound `na::IsometryBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U1>, na::Unit<na::QuaternionBase<f32, na::MatrixArray<f32, na::U4, na::U1>>>>: serde::de::Deserialize` is not satisfied
+kablam!   --> tests/serde.rs:25:27
+kablam!    |
+kablam! 25 |             assert_eq!(v, serde_json::from_str(&serialized).unwrap());
+kablam!    |                           ^^^^^^^^^^^^^^^^^^^^ the trait `serde::de::Deserialize` is not implemented for `na::IsometryBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U1>, na::Unit<na::QuaternionBase<f32, na::MatrixArray<f32, na::U4, na::U1>>>>`
+kablam! ...
+kablam! 37 | test_serde!(
+kablam!    | - in this macro invocation
+kablam!    |
+kablam!    = note: required by `serde_json::from_str`
+kablam! 
+kablam! error[E0277]: the trait bound `na::IsometryBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U1>, na::RotationBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U3>>>: serde::ser::Serialize` is not satisfied
+kablam!   --> tests/serde.rs:24:30
+kablam!    |
+kablam! 24 |             let serialized = serde_json::to_string(&v).unwrap();
+kablam!    |                              ^^^^^^^^^^^^^^^^^^^^^ the trait `serde::ser::Serialize` is not implemented for `na::IsometryBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U1>, na::RotationBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U3>>>`
+kablam! ...
+kablam! 37 | test_serde!(
+kablam!    | - in this macro invocation
+kablam!    |
+kablam!    = note: required by `serde_json::to_string`
+kablam! 
+kablam! error[E0277]: the trait bound `na::IsometryBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U1>, na::RotationBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U3>>>: serde::de::Deserialize` is not satisfied
+kablam!   --> tests/serde.rs:25:27
+kablam!    |
+kablam! 25 |             assert_eq!(v, serde_json::from_str(&serialized).unwrap());
+kablam!    |                           ^^^^^^^^^^^^^^^^^^^^ the trait `serde::de::Deserialize` is not implemented for `na::IsometryBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U1>, na::RotationBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U3>>>`
+kablam! ...
+kablam! 37 | test_serde!(
+kablam!    | - in this macro invocation
+kablam!    |
+kablam!    = note: required by `serde_json::from_str`
+kablam! 
+kablam! error[E0277]: the trait bound `na::SimilarityBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U1>, na::Unit<na::QuaternionBase<f32, na::MatrixArray<f32, na::U4, na::U1>>>>: serde::ser::Serialize` is not satisfied
+kablam!   --> tests/serde.rs:24:30
+kablam!    |
+kablam! 24 |             let serialized = serde_json::to_string(&v).unwrap();
+kablam!    |                              ^^^^^^^^^^^^^^^^^^^^^ the trait `serde::ser::Serialize` is not implemented for `na::SimilarityBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U1>, na::Unit<na::QuaternionBase<f32, na::MatrixArray<f32, na::U4, na::U1>>>>`
+kablam! ...
+kablam! 37 | test_serde!(
+kablam!    | - in this macro invocation
+kablam!    |
+kablam!    = note: required by `serde_json::to_string`
+kablam! 
+kablam! error[E0277]: the trait bound `na::SimilarityBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U1>, na::Unit<na::QuaternionBase<f32, na::MatrixArray<f32, na::U4, na::U1>>>>: serde::de::Deserialize` is not satisfied
+kablam!   --> tests/serde.rs:25:27
+kablam!    |
+kablam! 25 |             assert_eq!(v, serde_json::from_str(&serialized).unwrap());
+kablam!    |                           ^^^^^^^^^^^^^^^^^^^^ the trait `serde::de::Deserialize` is not implemented for `na::SimilarityBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U1>, na::Unit<na::QuaternionBase<f32, na::MatrixArray<f32, na::U4, na::U1>>>>`
+kablam! ...
+kablam! 37 | test_serde!(
+kablam!    | - in this macro invocation
+kablam!    |
+kablam!    = note: required by `serde_json::from_str`
+kablam! 
+kablam! error[E0277]: the trait bound `na::SimilarityBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U1>, na::RotationBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U3>>>: serde::ser::Serialize` is not satisfied
+kablam!   --> tests/serde.rs:24:30
+kablam!    |
+kablam! 24 |             let serialized = serde_json::to_string(&v).unwrap();
+kablam!    |                              ^^^^^^^^^^^^^^^^^^^^^ the trait `serde::ser::Serialize` is not implemented for `na::SimilarityBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U1>, na::RotationBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U3>>>`
+kablam! ...
+kablam! 37 | test_serde!(
+kablam!    | - in this macro invocation
+kablam!    |
+kablam!    = note: required by `serde_json::to_string`
+kablam! 
+kablam! error[E0277]: the trait bound `na::SimilarityBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U1>, na::RotationBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U3>>>: serde::de::Deserialize` is not satisfied
+kablam!   --> tests/serde.rs:25:27
+kablam!    |
+kablam! 25 |             assert_eq!(v, serde_json::from_str(&serialized).unwrap());
+kablam!    |                           ^^^^^^^^^^^^^^^^^^^^ the trait `serde::de::Deserialize` is not implemented for `na::SimilarityBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U1>, na::RotationBase<f32, na::U3, na::MatrixArray<f32, na::U3, na::U3>>>`
+kablam! ...
+kablam! 37 | test_serde!(
+kablam!    | - in this macro invocation
+kablam!    |
+kablam!    = note: required by `serde_json::from_str`
+kablam! 
+kablam! error[E0277]: the trait bound `na::QuaternionBase<f32, na::MatrixArray<f32, na::U4, na::U1>>: serde::ser::Serialize` is not satisfied
+kablam!   --> tests/serde.rs:24:30
+kablam!    |
+kablam! 24 |             let serialized = serde_json::to_string(&v).unwrap();
+kablam!    |                              ^^^^^^^^^^^^^^^^^^^^^ the trait `serde::ser::Serialize` is not implemented for `na::QuaternionBase<f32, na::MatrixArray<f32, na::U4, na::U1>>`
+kablam! ...
+kablam! 37 | test_serde!(
+kablam!    | - in this macro invocation
+kablam!    |
+kablam!    = note: required by `serde_json::to_string`
+kablam! 
+kablam! error[E0277]: the trait bound `na::QuaternionBase<f32, na::MatrixArray<f32, na::U4, na::U1>>: serde::de::Deserialize` is not satisfied
+kablam!   --> tests/serde.rs:25:27
+kablam!    |
+kablam! 25 |             assert_eq!(v, serde_json::from_str(&serialized).unwrap());
+kablam!    |                           ^^^^^^^^^^^^^^^^^^^^ the trait `serde::de::Deserialize` is not implemented for `na::QuaternionBase<f32, na::MatrixArray<f32, na::U4, na::U1>>`
+kablam! ...
+kablam! 37 | test_serde!(
+kablam!    | - in this macro invocation
+kablam!    |
+kablam!    = note: required by `serde_json::from_str`
+kablam! 
+kablam! error: aborting due to 20 previous errors
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `nalgebra`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 424c15fb8bfaee6e80411808a5c8823d0cdc88a707443a6fd69488a0b4ca034d`
+blam! 424c15fb8bfaee6e80411808a5c8823d0cdc88a707443a6fd69488a0b4ca034d
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! 67bf4efaad7877140f4ef12e7848533a290317e188073a0b00d72c786a690577
+boom! running `docker start -a 67bf4efaad7877140f4ef12e7848533a290317e188073a0b00d72c786a690577`
+kablam!    Compiling nalgebra v0.11.0 (file:///source)
+kablam! error: macro undefined: 'quickcheck!'
+kablam!   --> tests/isometry.rs:18:1
+kablam!    |
+kablam! 18 | quickcheck!(
+kablam!    | ^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! warning: unused import: `Point3`, #[warn(unused_imports)] on by default
+kablam!  --> tests/projection.rs:9:10
+kablam!   |
+kablam! 9 | use na::{Point3, Perspective3, Orthographic3};
+kablam!   |          ^^^^^^
+kablam! 
+kablam! warning: unused import: `One`, #[warn(unused_imports)] on by default
+kablam!   --> tests/matrix.rs:10:17
+kablam!    |
+kablam! 10 | use num::{Zero, One};
+kablam!    |                 ^^^
+kablam! 
+kablam! warning: unused imports: `Matrix1`, `Matrix4x6`, #[warn(unused_imports)] on by default
+kablam!   --> tests/matrix.rs:18:10
+kablam!    |
+kablam! 18 |          Matrix1, Matrix2, Matrix3, Matrix4, Matrix5, Matrix6,
+kablam!    |          ^^^^^^^
+kablam! 19 |          Matrix2x3, Matrix3x2, Matrix3x4, Matrix4x3, Matrix2x4, Matrix4x6};
+kablam!    |                                                                 ^^^^^^^^^
+kablam! 
+kablam! warning: function is never used: `is_subspace_basis`, #[warn(dead_code)] on by default
+kablam!    --> tests/matrix.rs:613:1
+kablam!     |
+kablam! 613 | fn is_subspace_basis<T: FiniteDimInnerSpace<Real = f64> + Display>(vs: &[T]) -> bool {
+kablam!     | ^
+kablam! 
+kablam! error: Could not compile `nalgebra`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 67bf4efaad7877140f4ef12e7848533a290317e188073a0b00d72c786a690577`
+blam! 67bf4efaad7877140f4ef12e7848533a290317e188073a0b00d72c786a690577

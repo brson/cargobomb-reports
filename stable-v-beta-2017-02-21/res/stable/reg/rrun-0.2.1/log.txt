@@ -1,0 +1,100 @@
+boom! testing rrun-0.2.1 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! c8dbeeca8819893b33028be64be357243bbedbd1db14f623b48829a095476b78
+boom! running `docker start -a c8dbeeca8819893b33028be64be357243bbedbd1db14f623b48829a095476b78`
+kablam!    Compiling rrun v0.2.1 (file:///source)
+kablam! error[E0412]: type name `toml::Table` is undefined or not in scope
+kablam!   --> src/engine.rs:21:25
+kablam!    |
+kablam! 21 |     pub fn new(config: &toml::Table) -> DefaultEngine {
+kablam!    |                         ^^^^^^^^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: you can import it into scope: `use toml::value::Table;`.
+kablam! 
+kablam! error[E0412]: type name `toml::Table` is undefined or not in scope
+kablam!   --> src/engine.rs:27:36
+kablam!    |
+kablam! 27 |     pub fn get_completers(config: &toml::Table) -> Vec<Box<AutoCompleter>> {
+kablam!    |                                    ^^^^^^^^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: you can import it into scope: `use toml::value::Table;`.
+kablam! 
+kablam! error[E0412]: type name `toml::Table` is undefined or not in scope
+kablam!   --> src/engine.rs:46:33
+kablam!    |
+kablam! 46 |     pub fn get_runners(config: &toml::Table) -> HashMap<String, Vec<Box<ExternalRunner>>> {
+kablam!    |                                 ^^^^^^^^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: you can import it into scope: `use toml::value::Table;`.
+kablam! 
+kablam! error[E0412]: type name `toml::Table` is undefined or not in scope
+kablam!   --> src/main.rs:87:43
+kablam!    |
+kablam! 87 | fn read_config(config_file: &mut File) -> toml::Table {
+kablam!    |                                           ^^^^^^^^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: you can import it into scope: `use toml::value::Table;`.
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Parser` in `toml`
+kablam!   --> src/main.rs:94:18
+kablam!    |
+kablam! 94 |     let config = toml::Parser::new(&toml).parse().unwrap_or_else(|| panic!("Unable to parse config file TOML!"));
+kablam!    |                  ^^^^^^^^^^^^^^^^^ Could not find `Parser` in `toml`
+kablam! 
+kablam! error: the type of this value must be known in this context
+kablam!   --> src/engine.rs:29:27
+kablam!    |
+kablam! 29 |         let completions = maybe_completions.flat_map(|cs| cs.as_slice().unwrap().into_iter());
+kablam!    |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: the type of this value must be known in this context
+kablam!   --> src/engine.rs:49:27
+kablam!    |
+kablam! 49 |             .flat_map(|r| r.as_slice().unwrap().into_iter())
+kablam!    |                           ^^^^^^^^^^^^
+kablam! 
+kablam! error[E0277]: the trait bound `itertools::GroupBy<std::string::String, std::vec::IntoIter<Box<externalrunner::ExternalRunner>>, [closure@src/engine.rs:65:58: 65:74]>: std::iter::Iterator` is not satisfied
+kablam!   --> src/engine.rs:65:9
+kablam!    |
+kablam! 65 |           for (key, group) in runners.into_iter().group_by(|r| r.get_type()) {
+kablam!    |  _________^ starting here...
+kablam! 66 | |             runners_by_type.insert(key, group.into_iter().collect_vec());
+kablam! 67 | |         }
+kablam!    | |_________^ ...ending here: the trait `std::iter::Iterator` is not implemented for `itertools::GroupBy<std::string::String, std::vec::IntoIter<Box<externalrunner::ExternalRunner>>, [closure@src/engine.rs:65:58: 65:74]>`
+kablam!    |
+kablam!    = note: `itertools::GroupBy<std::string::String, std::vec::IntoIter<Box<externalrunner::ExternalRunner>>, [closure@src/engine.rs:65:58: 65:74]>` is not an iterator; maybe try calling `.iter()` or a similar method
+kablam!    = note: required by `std::iter::IntoIterator::into_iter`
+kablam! 
+kablam! error: no method named `at` found for type `regex::Captures<'_>` in the current scope
+kablam!   --> src/externalautocompleter.rs:36:34
+kablam!    |
+kablam! 36 |                 trigger_match[0].at(1).unwrap()
+kablam!    |                                  ^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/externalautocompleter.rs:43:112
+kablam!    |
+kablam! 43 |                     .fold(self.command.replace("{}", sub_query), (|a, (i, e)| a.replace(&format!("{{{}}}", i), e)));
+kablam!    |                                                                                                                ^ expected &str, found struct `regex::Match`
+kablam!    |
+kablam!    = note: expected type `&str`
+kablam!    = note:    found type `regex::Match<'_>`
+kablam! 
+kablam! error[E0277]: the trait bound `std::iter::Iterator<Item=autocomplete::Completion>: std::marker::Sized` is not satisfied
+kablam!   --> src/externalautocompleter.rs:83:9
+kablam!    |
+kablam! 83 |         Box::new(completion_vec.into_iter())
+kablam!    |         ^^^^^^^^ the trait `std::marker::Sized` is not implemented for `std::iter::Iterator<Item=autocomplete::Completion>`
+kablam!    |
+kablam!    = note: `std::iter::Iterator<Item=autocomplete::Completion>` does not have a constant size known at compile-time
+kablam!    = note: required by `std::boxed::<impl Box<T>>::new`
+kablam! 
+kablam! error: aborting due to 6 previous errors
+kablam! 
+kablam! error: Could not compile `rrun`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f c8dbeeca8819893b33028be64be357243bbedbd1db14f623b48829a095476b78`
+blam! c8dbeeca8819893b33028be64be357243bbedbd1db14f623b48829a095476b78

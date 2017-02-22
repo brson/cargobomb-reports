@@ -1,0 +1,34 @@
+boom! testing pair_stack-0.1.0 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 8e8db192ab66961e4a5398bba70aec409337af33de051f7fb034426f7f379653
+boom! running `docker start -a 8e8db192ab66961e4a5398bba70aec409337af33de051f7fb034426f7f379653`
+kablam!    Compiling r2d2_postgres v0.11.1
+kablam!    Compiling mount v0.3.0
+kablam!    Compiling staticfile v0.4.0
+kablam!    Compiling pair_stack v0.1.0 (file:///source)
+kablam! error[E0432]: unresolved import `postgres::SslMode`
+kablam!   --> src/lib.rs:13:5
+kablam!    |
+kablam! 13 | use postgres::SslMode;
+kablam!    |     ^^^^^^^^^^^^^^^^^ no `SslMode` in the root
+kablam! 
+kablam! error[E0061]: this function takes 4 parameters but 3 parameters were supplied
+kablam!    --> src/lib.rs:110:24
+kablam!     |
+kablam! 110 |           self.api.route(method, path, move |req: &mut Request | -> IronResult<Response> {
+kablam!     |  ________________________^ starting here...
+kablam! 111 | |             let pool = req.get::<PRead<AppDb>>().unwrap();
+kablam! 112 | |             let conn = pool.get().unwrap();
+kablam! 113 | |             api(req, &conn)
+kablam! 114 | |         });
+kablam!     | |_________^ ...ending here: expected 4 parameters
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `pair_stack`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 8e8db192ab66961e4a5398bba70aec409337af33de051f7fb034426f7f379653`
+blam! 8e8db192ab66961e4a5398bba70aec409337af33de051f7fb034426f7f379653

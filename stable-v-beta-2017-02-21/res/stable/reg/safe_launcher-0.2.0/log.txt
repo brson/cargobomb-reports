@@ -1,0 +1,28 @@
+boom! testing safe_launcher-0.2.0 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! b58d26e6bf6b7836cb965ead2bc53712ecb86615092e04508a4b24df9379eb1f
+boom! running `docker start -a b58d26e6bf6b7836cb965ead2bc53712ecb86615092e04508a4b24df9379eb1f`
+kablam!    Compiling crossbeam v0.1.6
+kablam!    Compiling ip v1.0.0
+kablam!    Compiling libsodium-sys v0.0.14
+kablam!    Compiling mime v0.1.3
+blam! Build failed, waiting for other jobs to finish...
+kablam! error[E0512]: transmute called with differently sized types: [usize; 32] (2048 bits) to [std::sync::atomic::AtomicBool; 32] (256 bits)
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/crossbeam-0.1.6/src/sync/seg_queue.rs:34:29
+kablam!    |
+kablam! 34 |             ready: unsafe { mem::transmute([0usize; SEG_SIZE]) },
+kablam!    |                             ^^^^^^^^^^^^^^ transmuting between 2048 bits and 256 bits
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: failed to run custom build command for `libsodium-sys v0.0.14`
+kablam! process didn't exit successfully: `/target/debug/build/libsodium-sys-23f5d09ede001495/build-script-build` (exit code: 101)
+kablam! --- stderr
+kablam! thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: "Failed to run `\"pkg-config\" \"--libs\" \"--cflags\" \"libsodium\"`: No such file or directory (os error 2)"', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:837
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f b58d26e6bf6b7836cb965ead2bc53712ecb86615092e04508a4b24df9379eb1f`
+blam! b58d26e6bf6b7836cb965ead2bc53712ecb86615092e04508a4b24df9379eb1f

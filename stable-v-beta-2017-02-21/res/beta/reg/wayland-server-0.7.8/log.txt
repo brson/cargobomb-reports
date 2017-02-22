@@ -1,0 +1,122 @@
+boom! testing wayland-server-0.7.8 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 57c73145c54d1665863a9e9c06aa03700f604794399a9d0bfd249d6f69b45d04
+boom! running `docker start -a 57c73145c54d1665863a9e9c06aa03700f604794399a9d0bfd249d6f69b45d04`
+kablam!    Compiling wayland-server v0.7.8 (file:///source)
+kablam!    Compiling wayland-sys v0.7.8
+kablam! warning: missing documentation for a struct
+kablam!    --> src/event_loop.rs:187:1
+kablam!     |
+kablam! 187 |   pub struct EventLoop {
+kablam!     |  _^ starting here...
+kablam! 188 | |     ptr: *mut wl_event_loop,
+kablam! 189 | |     display: Option<*mut wl_display>,
+kablam! 190 | |     handle: Box<EventLoopHandle>
+kablam! 191 | | }
+kablam!     | |_^ ...ending here
+kablam!     |
+kablam! note: lint level defined here
+kablam!    --> src/lib.rs:176:9
+kablam!     |
+kablam! 176 | #![warn(missing_docs)]
+kablam!     |         ^^^^^^^^^^^^
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 5.77 secs
+boom! running `docker rm -f 57c73145c54d1665863a9e9c06aa03700f604794399a9d0bfd249d6f69b45d04`
+blam! 57c73145c54d1665863a9e9c06aa03700f604794399a9d0bfd249d6f69b45d04
+boom! running: cargo +beta test --frozen --no-run
+boom! creating container for: cargo +beta test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta test --frozen --no-run cargobomb`
+blam! c50d05c5f4342608c126fefecb416a3850440f96062c681e734424f2fd264e73
+boom! running `docker start -a c50d05c5f4342608c126fefecb416a3850440f96062c681e734424f2fd264e73`
+kablam!    Compiling wayland-server v0.7.8 (file:///source)
+kablam! warning: unused `#[macro_use]` import, #[warn(unused_imports)] on by default
+kablam!  --> examples/simple_server.rs:1:1
+kablam!   |
+kablam! 1 | #[macro_use] extern crate wayland_server;
+kablam!   | ^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused variable: `display`, #[warn(unused_variables)] on by default
+kablam!  --> examples/simple_server.rs:5:10
+kablam!   |
+kablam! 5 |     let (display, mut event_loop) = wayland_server::create_display();
+kablam!   |          ^^^^^^^
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!  --> examples/simple_server.rs:7:5
+kablam!   |
+kablam! 7 |     event_loop.run();
+kablam!   |     ^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/examples/simple_server-689b94dee4a5d670.0.o" "-o" "/target/debug/examples/simple_server-689b94dee4a5d670" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libwayland_server-0b872e43d273301c.rlib" "/target/debug/deps/libbitflags-65ddff5d2b91509e.rlib" "/target/debug/deps/libwayland_sys-d792721870f736b9.rlib" "/target/debug/deps/liblibc-2a4507ee5e52ea3e.rlib" "/target/debug/deps/libdlib-2a7ce3ba78fe6cc9.rlib" "/target/debug/deps/liblibloading-c41a2f71457b39f3.rlib" "/target/debug/deps/liblazy_static-2a16fcec40d2bdf3.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-dfc89321dbee872e.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-b9a1672c9b07eb79.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-2368fc95b0a72ca5.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-7b8c40539a92cc94.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-248c1fb3029c3b47.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-716ec913507cca23.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-73671a945a075b27.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-40657eb22c503f7a.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-86ff76aef4ef75d0.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-3f5cb0b311b4f9c5.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-a27e0b02588f3694.rlib" "-l" "wayland-server" "-l" "util" "-l" "dl" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lwayland-server
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `wayland-server`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/wayland_server-2821fb9a215da57e.0.o" "-o" "/target/debug/deps/wayland_server-2821fb9a215da57e" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libbitflags-65ddff5d2b91509e.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-495f7d16c61e193e.rlib" "/target/debug/deps/libwayland_sys-d792721870f736b9.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-e268adbf4cfcbb37.rlib" "/target/debug/deps/libdlib-2a7ce3ba78fe6cc9.rlib" "/target/debug/deps/liblibloading-c41a2f71457b39f3.rlib" "/target/debug/deps/liblazy_static-2a16fcec40d2bdf3.rlib" "/target/debug/deps/liblibc-2a4507ee5e52ea3e.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-7fad624c8a987316.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-dfc89321dbee872e.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-b9a1672c9b07eb79.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-2368fc95b0a72ca5.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-7b8c40539a92cc94.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-248c1fb3029c3b47.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-716ec913507cca23.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-73671a945a075b27.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-40657eb22c503f7a.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-86ff76aef4ef75d0.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-3f5cb0b311b4f9c5.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-a27e0b02588f3694.rlib" "-l" "wayland-server" "-l" "dl" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lwayland-server
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f c50d05c5f4342608c126fefecb416a3850440f96062c681e734424f2fd264e73`
+blam! c50d05c5f4342608c126fefecb416a3850440f96062c681e734424f2fd264e73
+boom! running: cargo +beta test --frozen
+boom! creating container for: cargo +beta test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta test --frozen cargobomb`
+blam! e8a43ade0608a768d135750cc5ebe07de9737795ff48f43d8556e0b3cfc3741e
+boom! running `docker start -a e8a43ade0608a768d135750cc5ebe07de9737795ff48f43d8556e0b3cfc3741e`
+kablam!    Compiling wayland-server v0.7.8 (file:///source)
+kablam! warning: unused `#[macro_use]` import, #[warn(unused_imports)] on by default
+kablam!  --> examples/simple_server.rs:1:1
+kablam!   |
+kablam! 1 | #[macro_use] extern crate wayland_server;
+kablam!   | ^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused variable: `display`, #[warn(unused_variables)] on by default
+kablam!  --> examples/simple_server.rs:5:10
+kablam!   |
+kablam! 5 |     let (display, mut event_loop) = wayland_server::create_display();
+kablam!   |          ^^^^^^^
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!  --> examples/simple_server.rs:7:5
+kablam!   |
+kablam! 7 |     event_loop.run();
+kablam!   |     ^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/examples/simple_server-689b94dee4a5d670.0.o" "-o" "/target/debug/examples/simple_server-689b94dee4a5d670" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libwayland_server-0b872e43d273301c.rlib" "/target/debug/deps/libbitflags-65ddff5d2b91509e.rlib" "/target/debug/deps/libwayland_sys-d792721870f736b9.rlib" "/target/debug/deps/liblibc-2a4507ee5e52ea3e.rlib" "/target/debug/deps/libdlib-2a7ce3ba78fe6cc9.rlib" "/target/debug/deps/liblibloading-c41a2f71457b39f3.rlib" "/target/debug/deps/liblazy_static-2a16fcec40d2bdf3.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-dfc89321dbee872e.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-b9a1672c9b07eb79.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-2368fc95b0a72ca5.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-7b8c40539a92cc94.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-248c1fb3029c3b47.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-716ec913507cca23.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-73671a945a075b27.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-40657eb22c503f7a.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-86ff76aef4ef75d0.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-3f5cb0b311b4f9c5.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-a27e0b02588f3694.rlib" "-l" "wayland-server" "-l" "util" "-l" "dl" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lwayland-server
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `wayland-server`.
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/wayland_server-2821fb9a215da57e.0.o" "-o" "/target/debug/deps/wayland_server-2821fb9a215da57e" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libbitflags-65ddff5d2b91509e.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-495f7d16c61e193e.rlib" "/target/debug/deps/libwayland_sys-d792721870f736b9.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-e268adbf4cfcbb37.rlib" "/target/debug/deps/libdlib-2a7ce3ba78fe6cc9.rlib" "/target/debug/deps/liblibloading-c41a2f71457b39f3.rlib" "/target/debug/deps/liblazy_static-2a16fcec40d2bdf3.rlib" "/target/debug/deps/liblibc-2a4507ee5e52ea3e.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-7fad624c8a987316.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-dfc89321dbee872e.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-b9a1672c9b07eb79.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-2368fc95b0a72ca5.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-7b8c40539a92cc94.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-248c1fb3029c3b47.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-716ec913507cca23.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-73671a945a075b27.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-40657eb22c503f7a.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-86ff76aef4ef75d0.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-3f5cb0b311b4f9c5.rlib" "/rustup-home/toolchains/beta-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-a27e0b02588f3694.rlib" "-l" "wayland-server" "-l" "dl" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lwayland-server
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f e8a43ade0608a768d135750cc5ebe07de9737795ff48f43d8556e0b3cfc3741e`
+blam! e8a43ade0608a768d135750cc5ebe07de9737795ff48f43d8556e0b3cfc3741e

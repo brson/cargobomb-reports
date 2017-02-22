@@ -1,0 +1,84 @@
+boom! testing spade-0.3.0 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! db20eaf02a0a6037293f79169a72f2224b287ebf856ec16db5862d2ee2ee725f
+boom! running `docker start -a db20eaf02a0a6037293f79169a72f2224b287ebf856ec16db5862d2ee2ee725f`
+kablam!    Compiling clamp v0.1.0
+kablam!    Compiling spade v0.3.0 (file:///source)
+kablam! error[E0432]: unresolved import `nalgebra::Repeat`
+kablam!   --> src/vector_traits.rs:19:16
+kablam!    |
+kablam! 19 | use nalgebra::{Repeat};
+kablam!    |                ^^^^^^ no `Repeat` in the root
+kablam! 
+kablam! error[E0405]: cannot find trait `BaseFloat` in module `na`
+kablam!   --> src/traits.rs:33:50
+kablam!    |
+kablam! 33 | pub trait SpadeFloat: SpadeNum + cg::BaseFloat + na::BaseFloat { }
+kablam!    |                                                  ^^^^^^^^^^^^^ not found in `na`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use cgmath::BaseFloat;`
+kablam! 
+kablam! error[E0405]: cannot find trait `BaseNum` in module `na`
+kablam!    --> src/vector_traits.rs:149:21
+kablam!     |
+kablam! 149 | impl <S: SpadeNum + na::BaseNum> TwoDimensional for na::Vector2<S> { }
+kablam!     |                     ^^^^^^^^^^^ not found in `na`
+kablam!     |
+kablam!     = help: possible candidate is found in another module, you can import it into scope:
+kablam!               `use cgmath::BaseNum;`
+kablam! 
+kablam! error[E0405]: cannot find trait `BaseNum` in module `na`
+kablam!    --> src/vector_traits.rs:171:21
+kablam!     |
+kablam! 171 | impl <S: SpadeNum + na::BaseNum> ThreeDimensional for na::Vector3<S> { }
+kablam!     |                     ^^^^^^^^^^^ not found in `na`
+kablam!     |
+kablam!     = help: possible candidate is found in another module, you can import it into scope:
+kablam!               `use cgmath::BaseNum;`
+kablam! 
+kablam! error[E0405]: cannot find trait `BaseNum` in module `na`
+kablam!    --> src/vector_traits.rs:251:20
+kablam!     |
+kablam! 251 | impl<S: SpadeNum + na::BaseNum> VectorN for na::Vector2<S> {
+kablam!     |                    ^^^^^^^^^^^ not found in `na`
+kablam!     |
+kablam!     = help: possible candidate is found in another module, you can import it into scope:
+kablam!               `use cgmath::BaseNum;`
+kablam! 
+kablam! error[E0405]: cannot find trait `BaseNum` in module `na`
+kablam!    --> src/vector_traits.rs:264:20
+kablam!     |
+kablam! 264 | impl<S: SpadeNum + na::BaseNum> VectorN for na::Vector3<S> {
+kablam!     |                    ^^^^^^^^^^^ not found in `na`
+kablam!     |
+kablam!     = help: possible candidate is found in another module, you can import it into scope:
+kablam!               `use cgmath::BaseNum;`
+kablam! 
+kablam! error[E0405]: cannot find trait `BaseNum` in module `na`
+kablam!    --> src/vector_traits.rs:277:20
+kablam!     |
+kablam! 277 | impl<S: SpadeNum + na::BaseNum> VectorN for na::Vector4<S> {
+kablam!     |                    ^^^^^^^^^^^ not found in `na`
+kablam!     |
+kablam!     = help: possible candidate is found in another module, you can import it into scope:
+kablam!               `use cgmath::BaseNum;`
+kablam! 
+kablam! error[E0405]: cannot find trait `BaseNum` in module `na`
+kablam!    --> src/bigvec.rs:111:60
+kablam!     |
+kablam! 111 | impl <I> From<na::Vector2<I>> for BigVec2<BigInt> where I: na::BaseNum + ToBigInt {
+kablam!     |                                                            ^^^^^^^^^^^ not found in `na`
+kablam!     |
+kablam!     = help: possible candidate is found in another module, you can import it into scope:
+kablam!               `use cgmath::BaseNum;`
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `spade`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f db20eaf02a0a6037293f79169a72f2224b287ebf856ec16db5862d2ee2ee725f`
+blam! db20eaf02a0a6037293f79169a72f2224b287ebf856ec16db5862d2ee2ee725f

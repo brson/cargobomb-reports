@@ -1,0 +1,26 @@
+boom! testing jit_macros-0.0.9 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 711d614b42a19b1d5e423452e9c67a55311f0c7f0c976f1b0c7ad0ed61abf50c
+boom! running `docker start -a 711d614b42a19b1d5e423452e9c67a55311f0c7f0c976f1b0c7ad0ed61abf50c`
+kablam!    Compiling jit_macros v0.0.9 (file:///source)
+kablam! error: `$arg:ty` may be followed by `->`, which is not allowed for `ty` fragments
+kablam!    --> src/macros.rs:363:19
+kablam!     |
+kablam! 363 |     ($($arg:ty),* -> $ret:ty) => ({
+kablam!     |                   ^^
+kablam! 
+kablam! error: `$arg:expr` may be followed by `->`, which is not allowed for `expr` fragments
+kablam!    --> src/macros.rs:369:25
+kablam!     |
+kablam! 369 |     (raw $($arg:expr),* -> $ret:expr) => ({
+kablam!     |                         ^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `jit_macros`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 711d614b42a19b1d5e423452e9c67a55311f0c7f0c976f1b0c7ad0ed61abf50c`
+blam! 711d614b42a19b1d5e423452e9c67a55311f0c7f0c976f1b0c7ad0ed61abf50c

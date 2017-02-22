@@ -1,0 +1,158 @@
+boom! testing fdringbuf-0.0.2 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 3ef29b8d4f936944c12c49407c972d0c28f8e365007aa91fc638a3ad5a678008
+boom! running `docker start -a 3ef29b8d4f936944c12c49407c972d0c28f8e365007aa91fc638a3ad5a678008`
+kablam! warning: dependency (nix) specified without providing a local path, Git repository, or version to use. This will be considered an error in future versions
+kablam! warning: unused manifest key: dev_dependencies.nix.nix
+kablam!    Compiling fdringbuf v0.0.2 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.61 secs
+boom! running `docker rm -f 3ef29b8d4f936944c12c49407c972d0c28f8e365007aa91fc638a3ad5a678008`
+blam! 3ef29b8d4f936944c12c49407c972d0c28f8e365007aa91fc638a3ad5a678008
+boom! running: cargo +beta test --frozen --no-run
+boom! creating container for: cargo +beta test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta test --frozen --no-run cargobomb`
+blam! 61bfb52ab77be7460997aa8f3130f732a607f52a0a790d77ef30af478505164e
+boom! running `docker start -a 61bfb52ab77be7460997aa8f3130f732a607f52a0a790d77ef30af478505164e`
+kablam! warning: dependency (nix) specified without providing a local path, Git repository, or version to use. This will be considered an error in future versions
+kablam! warning: unused manifest key: dev_dependencies.nix.nix
+kablam!    Compiling fdringbuf v0.0.2 (file:///source)
+kablam! error[E0432]: unresolved import `self::nix::sys::eventfd::*`
+kablam!    --> src/fdbuf.rs:211:13
+kablam!     |
+kablam! 211 |         use self::nix::sys::eventfd::*;
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `eventfd` in `sys`
+kablam! 
+kablam! error[E0425]: cannot find function `eventfd` in this scope
+kablam!    --> src/fdbuf.rs:212:29
+kablam!     |
+kablam! 212 |         let (efd1, efd2) = (eventfd(0, EFD_CLOEXEC).unwrap(), eventfd(0, EFD_CLOEXEC).unwrap());
+kablam!     |                             ^^^^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use fdbuf::tests::nix::libc::eventfd;`
+kablam!               `use libc::eventfd;`
+kablam! 
+kablam! error[E0425]: cannot find value `EFD_CLOEXEC` in this scope
+kablam!    --> src/fdbuf.rs:212:40
+kablam!     |
+kablam! 212 |         let (efd1, efd2) = (eventfd(0, EFD_CLOEXEC).unwrap(), eventfd(0, EFD_CLOEXEC).unwrap());
+kablam!     |                                        ^^^^^^^^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use fdbuf::tests::nix::libc::EFD_CLOEXEC;`
+kablam!               `use libc::EFD_CLOEXEC;`
+kablam! 
+kablam! error[E0425]: cannot find function `eventfd` in this scope
+kablam!    --> src/fdbuf.rs:212:63
+kablam!     |
+kablam! 212 |         let (efd1, efd2) = (eventfd(0, EFD_CLOEXEC).unwrap(), eventfd(0, EFD_CLOEXEC).unwrap());
+kablam!     |                                                               ^^^^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use fdbuf::tests::nix::libc::eventfd;`
+kablam!               `use libc::eventfd;`
+kablam! 
+kablam! error[E0425]: cannot find value `EFD_CLOEXEC` in this scope
+kablam!    --> src/fdbuf.rs:212:74
+kablam!     |
+kablam! 212 |         let (efd1, efd2) = (eventfd(0, EFD_CLOEXEC).unwrap(), eventfd(0, EFD_CLOEXEC).unwrap());
+kablam!     |                                                                          ^^^^^^^^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use fdbuf::tests::nix::libc::EFD_CLOEXEC;`
+kablam!               `use libc::EFD_CLOEXEC;`
+kablam! 
+kablam! error[E0425]: cannot find function `scoped` in module `std::thread`
+kablam!    --> src/fdbuf.rs:226:21
+kablam!     |
+kablam! 226 |         let guard = ::std::thread::scoped(move || {
+kablam!     |                     ^^^^^^^^^^^^^^^^^^^^^ not found in `std::thread`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> src/lib.rs:1:19
+kablam!   |
+kablam! 1 | #![cfg_attr(test, feature(test))]
+kablam!   |                   ^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `fdringbuf`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 61bfb52ab77be7460997aa8f3130f732a607f52a0a790d77ef30af478505164e`
+blam! 61bfb52ab77be7460997aa8f3130f732a607f52a0a790d77ef30af478505164e
+boom! running: cargo +beta test --frozen
+boom! creating container for: cargo +beta test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta test --frozen cargobomb`
+blam! 33cfca4f0bd0214eb4a2fa5cd5f97e5f1ea52d85b2aede03db78aa870481ac79
+boom! running `docker start -a 33cfca4f0bd0214eb4a2fa5cd5f97e5f1ea52d85b2aede03db78aa870481ac79`
+kablam! warning: dependency (nix) specified without providing a local path, Git repository, or version to use. This will be considered an error in future versions
+kablam! warning: unused manifest key: dev_dependencies.nix.nix
+kablam!    Compiling fdringbuf v0.0.2 (file:///source)
+kablam! error[E0432]: unresolved import `self::nix::sys::eventfd::*`
+kablam!    --> src/fdbuf.rs:211:13
+kablam!     |
+kablam! 211 |         use self::nix::sys::eventfd::*;
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `eventfd` in `sys`
+kablam! 
+kablam! error[E0425]: cannot find function `eventfd` in this scope
+kablam!    --> src/fdbuf.rs:212:29
+kablam!     |
+kablam! 212 |         let (efd1, efd2) = (eventfd(0, EFD_CLOEXEC).unwrap(), eventfd(0, EFD_CLOEXEC).unwrap());
+kablam!     |                             ^^^^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use fdbuf::tests::nix::libc::eventfd;`
+kablam!               `use libc::eventfd;`
+kablam! 
+kablam! error[E0425]: cannot find value `EFD_CLOEXEC` in this scope
+kablam!    --> src/fdbuf.rs:212:40
+kablam!     |
+kablam! 212 |         let (efd1, efd2) = (eventfd(0, EFD_CLOEXEC).unwrap(), eventfd(0, EFD_CLOEXEC).unwrap());
+kablam!     |                                        ^^^^^^^^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use fdbuf::tests::nix::libc::EFD_CLOEXEC;`
+kablam!               `use libc::EFD_CLOEXEC;`
+kablam! 
+kablam! error[E0425]: cannot find function `eventfd` in this scope
+kablam!    --> src/fdbuf.rs:212:63
+kablam!     |
+kablam! 212 |         let (efd1, efd2) = (eventfd(0, EFD_CLOEXEC).unwrap(), eventfd(0, EFD_CLOEXEC).unwrap());
+kablam!     |                                                               ^^^^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use fdbuf::tests::nix::libc::eventfd;`
+kablam!               `use libc::eventfd;`
+kablam! 
+kablam! error[E0425]: cannot find value `EFD_CLOEXEC` in this scope
+kablam!    --> src/fdbuf.rs:212:74
+kablam!     |
+kablam! 212 |         let (efd1, efd2) = (eventfd(0, EFD_CLOEXEC).unwrap(), eventfd(0, EFD_CLOEXEC).unwrap());
+kablam!     |                                                                          ^^^^^^^^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use fdbuf::tests::nix::libc::EFD_CLOEXEC;`
+kablam!               `use libc::EFD_CLOEXEC;`
+kablam! 
+kablam! error[E0425]: cannot find function `scoped` in module `std::thread`
+kablam!    --> src/fdbuf.rs:226:21
+kablam!     |
+kablam! 226 |         let guard = ::std::thread::scoped(move || {
+kablam!     |                     ^^^^^^^^^^^^^^^^^^^^^ not found in `std::thread`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> src/lib.rs:1:19
+kablam!   |
+kablam! 1 | #![cfg_attr(test, feature(test))]
+kablam!   |                   ^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `fdringbuf`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 33cfca4f0bd0214eb4a2fa5cd5f97e5f1ea52d85b2aede03db78aa870481ac79`
+blam! 33cfca4f0bd0214eb4a2fa5cd5f97e5f1ea52d85b2aede03db78aa870481ac79

@@ -1,0 +1,89 @@
+boom! testing ggp-rs-0.1.2 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! a9ac4acb3035af420be55583acd05443e88509b6f6444c45402e4354b24c3b50
+boom! running `docker start -a a9ac4acb3035af420be55583acd05443e88509b6f6444c45402e4354b24c3b50`
+kablam!    Compiling gdl-parser v0.0.8
+kablam!    Compiling ggp-rs v0.1.2 (file:///source)
+kablam! error[E0277]: the trait bound `GameHandler<P>: std::net::ToSocketAddrs` is not satisfied
+kablam!    --> src/lib.rs:147:11
+kablam!     |
+kablam! 147 |     match Server::http(handler).listen(host) {
+kablam!     |           ^^^^^^^^^^^^ the trait `std::net::ToSocketAddrs` is not implemented for `GameHandler<P>`
+kablam!     |
+kablam!     = note: required by `<hyper::Server>::http`
+kablam! 
+kablam! error: no method named `listen` found for type `std::result::Result<hyper::Server, hyper::Error>` in the current scope
+kablam!    --> src/lib.rs:147:33
+kablam!     |
+kablam! 147 |     match Server::http(handler).listen(host) {
+kablam!     |                                 ^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/game_manager.rs:544:38
+kablam!     |
+kablam! 544 |                     self.consume_str(&r).unwrap();
+kablam!     |                                      ^^ expected str, found struct `regex::Match`
+kablam!     |
+kablam!     = note: expected type `&str`
+kablam!                found type `&regex::Match<'_>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .as_str()
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/game_manager.rs:546:47
+kablam!     |
+kablam! 546 |                     let mut desc = gdl::parse(r);
+kablam!     |                                               ^ expected &str, found struct `regex::Match`
+kablam!     |
+kablam!     = note: expected type `&str`
+kablam!                found type `regex::Match<'_>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .as_str()
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/game_manager.rs:561:38
+kablam!     |
+kablam! 561 |                     self.consume_str(&s).unwrap();
+kablam!     |                                      ^^ expected str, found struct `regex::Match`
+kablam!     |
+kablam!     = note: expected type `&str`
+kablam!                found type `&regex::Match<'_>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .as_str()
+kablam! 
+kablam! error[E0277]: the trait bound `std::string::String: std::convert::From<regex::Match<'_>>` is not satisfied
+kablam!    --> src/game_manager.rs:563:42
+kablam!     |
+kablam! 563 |                     moves.push(Move::new(Constant::new(s).into()));
+kablam!     |                                          ^^^^^^^^^^^^^ the trait `std::convert::From<regex::Match<'_>>` is not implemented for `std::string::String`
+kablam!     |
+kablam!     = help: the following implementations were found:
+kablam!               <std::string::String as std::convert::From<&'a str>>
+kablam!               <std::string::String as std::convert::From<std::borrow::Cow<'a, str>>>
+kablam!     = note: required because of the requirements on the impl of `std::convert::Into<std::string::String>` for `regex::Match<'_>`
+kablam!     = note: required by `gdl_parser::Constant::new`
+kablam! 
+kablam! error: no method named `at` found for type `regex::Captures<'_>` in the current scope
+kablam!    --> src/game_manager.rs:580:18
+kablam!     |
+kablam! 580 |             caps.at(1).unwrap().to_string()
+kablam!     |                  ^^
+kablam! 
+kablam! error[E0277]: the trait bound `str: std::marker::Sized` is not satisfied
+kablam!    --> src/game_manager.rs:577:13
+kablam!     |
+kablam! 577 |         let gdl = {
+kablam!     |             ^^^ the trait `std::marker::Sized` is not implemented for `str`
+kablam!     |
+kablam!     = note: `str` does not have a constant size known at compile-time
+kablam!     = note: all local variables must have a statically known size
+kablam! 
+kablam! error: aborting due to 8 previous errors
+kablam! 
+kablam! error: Could not compile `ggp-rs`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f a9ac4acb3035af420be55583acd05443e88509b6f6444c45402e4354b24c3b50`
+blam! a9ac4acb3035af420be55583acd05443e88509b6f6444c45402e4354b24c3b50

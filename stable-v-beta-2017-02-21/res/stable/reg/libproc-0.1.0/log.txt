@@ -1,0 +1,90 @@
+boom! testing libproc-0.1.0 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! ce03e34eca4d791cb8d2a459d78f3a48969a02741bfce9155822048d005b9627
+boom! running `docker start -a ce03e34eca4d791cb8d2a459d78f3a48969a02741bfce9155822048d005b9627`
+kablam!    Compiling libproc v0.1.0 (file:///source)
+kablam! warning: function is never used: `regionfilename_test`, #[warn(dead_code)] on by default
+kablam!    --> src/libproc/proc_pid.rs:276:1
+kablam!     |
+kablam! 276 |   fn regionfilename_test() {
+kablam!     |  _^ starting here...
+kablam! 277 | |     match regionfilename(1, 0) {
+kablam! 278 | |         // run tests with 'cargo test -- --nocapture' to see the test output
+kablam! 279 | |         Ok(regionfilename) => println!("Region Filename (at address = 0) of init process PID = 1 is '{}'", regionfilename),
+kablam! 280 | |         Err(message) => assert!(true, message)
+kablam! 281 | |     }
+kablam! 282 | | }
+kablam!     | |_^ ...ending here
+kablam! 
+kablam! warning: function is never used: `pidpath_test_unknown_pid`, #[warn(dead_code)] on by default
+kablam!    --> src/libproc/proc_pid.rs:324:1
+kablam!     |
+kablam! 324 |   fn pidpath_test_unknown_pid() {
+kablam!     |  _^ starting here...
+kablam! 325 | |     match pidpath(-1) {
+kablam! 326 | |         // run tests with 'cargo test -- --nocapture' to see the test output
+kablam! 327 | |         Ok(path) => assert!(false, "It found the path of process Pwith ID = -1 (path = {}), that's not possible\n", path),
+kablam! 328 | |         Err(message) => assert!(false, message)
+kablam! 329 | |     }
+kablam! 330 | | }
+kablam!     | |_^ ...ending here
+kablam! 
+kablam! warning: function is never used: `name_test_init_pid`, #[warn(dead_code)] on by default
+kablam!    --> src/libproc/proc_pid.rs:415:1
+kablam!     |
+kablam! 415 |   fn name_test_init_pid() {
+kablam!     |  _^ starting here...
+kablam! 416 | |     match pidpath(1) {
+kablam! 417 | |         // run tests with 'cargo test -- --nocapture' to see the test output
+kablam! 418 | |         Ok(path) => println!("Name of init process PID = 1 is '{}'", path),
+kablam! 419 | |         Err(message) => assert!(true, message)
+kablam! 420 | |     }
+kablam! 421 | | }
+kablam!     | |_^ ...ending here
+kablam! 
+kablam! warning: unused import: `c_long`, #[warn(unused_imports)] on by default
+kablam!  --> src/libproc/kmesg_buffer.rs:4:35
+kablam!   |
+kablam! 4 | use self::libc::{uint32_t, c_int, c_long};
+kablam!   |                                   ^^^^^^
+kablam! 
+kablam! warning: unused import: `io`, #[warn(unused_imports)] on by default
+kablam!  --> src/libproc/kmesg_buffer.rs:6:26
+kablam!   |
+kablam! 6 | use std::{ptr, mem, env, io};
+kablam!   |                          ^^
+kablam! 
+kablam! warning: unused import: `std::io::Write`, #[warn(unused_imports)] on by default
+kablam!  --> src/libproc/kmesg_buffer.rs:7:5
+kablam!   |
+kablam! 7 | use std::io::Write;
+kablam!   |     ^^^^^^^^^^^^^^
+kablam! 
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/dmesg-a6549675c3c065db.0.o" "-o" "/target/debug/deps/dmesg-a6549675c3c065db" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/liblibproc-c88fa8b61634cbba.rlib" "/target/debug/deps/liberrno-46fb354b536e88a5.rlib" "/target/debug/deps/liblibc-83c2bd88b43ecde3.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-2ddb28df747fcb8c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-21709492a058d9ce.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-e19aa6725ab01bfd.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-99ff2e008613b591.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-e2513aecb8fbb70c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-f3200ab7e7fe644c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-dba58b8da674d203.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-6d4348bcabf40a71.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-9f45c45fdcba4301.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-b4ef8c9d93bc879a.rlib" "-l" "proc" "-l" "proc" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lproc
+kablam! /usr/bin/ld: cannot find -lproc
+kablam! collect2: error: ld returned 1 exit status
+kablam! 
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/procinfo-d2843d1006272a8e.0.o" "-o" "/target/debug/deps/procinfo-d2843d1006272a8e" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/liblibproc-c88fa8b61634cbba.rlib" "/target/debug/deps/liberrno-46fb354b536e88a5.rlib" "/target/debug/deps/liblibc-83c2bd88b43ecde3.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-2ddb28df747fcb8c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-21709492a058d9ce.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-e19aa6725ab01bfd.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-99ff2e008613b591.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-e2513aecb8fbb70c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-f3200ab7e7fe644c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-dba58b8da674d203.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-6d4348bcabf40a71.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-9f45c45fdcba4301.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-b4ef8c9d93bc879a.rlib" "-l" "proc" "-l" "proc" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lproc
+kablam! /usr/bin/ld: cannot find -lproc
+kablam! collect2: error: ld returned 1 exit status
+kablam! 
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `libproc`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f ce03e34eca4d791cb8d2a459d78f3a48969a02741bfce9155822048d005b9627`
+blam! ce03e34eca4d791cb8d2a459d78f3a48969a02741bfce9155822048d005b9627

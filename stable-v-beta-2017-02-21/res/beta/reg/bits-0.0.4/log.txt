@@ -1,0 +1,32 @@
+boom! testing bits-0.0.4 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 1a888dddc9e52f7bd671e031fdbaa7346c43edb4f4f6f951ebe85e1a3eea107d
+boom! running `docker start -a 1a888dddc9e52f7bd671e031fdbaa7346c43edb4f4f6f951ebe85e1a3eea107d`
+kablam!    Compiling bits v0.0.4 (file:///source)
+kablam! error[E0405]: cannot find trait `Int` in module `num`
+kablam!  --> src/generic.rs:3:19
+kablam!   |
+kablam! 3 | pub trait BitOps: num::Int {
+kablam!   |                   ^^^^^^^^ not found in `num`
+kablam! 
+kablam! error[E0405]: cannot find trait `Int` in module `num`
+kablam!    --> src/generic.rs:254:9
+kablam!     |
+kablam! 254 | impl<T: num::Int> BitOps for T {}
+kablam!     |         ^^^^^^^^ not found in `num`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> src/lib.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(core)]
+kablam!   | ^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `bits`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 1a888dddc9e52f7bd671e031fdbaa7346c43edb4f4f6f951ebe85e1a3eea107d`
+blam! 1a888dddc9e52f7bd671e031fdbaa7346c43edb4f4f6f951ebe85e1a3eea107d

@@ -1,0 +1,147 @@
+boom! testing freestanding-musl-malloc-1.0.0 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 725a76b829eeea01d01e802695b19a156ad68643fec5fd3856bb9ab4b957ae1e
+boom! running `docker start -a 725a76b829eeea01d01e802695b19a156ad68643fec5fd3856bb9ab4b957ae1e`
+kablam!    Compiling freestanding-musl-malloc v1.0.0 (file:///source)
+kablam! warning: malloc.c: In function 'free':
+kablam! warning: malloc.c:504:17: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+kablam! warning:    uintptr_t a = (uintptr_t)self + SIZE_ALIGN+PAGE_SIZE-1 & -PAGE_SIZE;
+kablam! warning:                  ^
+kablam! warning: malloc.c:505:17: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+kablam! warning:    uintptr_t b = (uintptr_t)next - SIZE_ALIGN & -PAGE_SIZE;
+kablam! warning:                  ^
+kablam! warning: malloc.c:507:11: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+kablam! warning:    madvise((void *)a, b-a, MADV_DONTNEED);
+kablam! warning:            ^
+kablam! warning: memalign.c: In function '__memalign':
+kablam! warning: memalign.c:31:17: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+kablam! warning:   new = (void *)((uintptr_t)mem + align-1 & -align);
+kablam! warning:                  ^
+kablam! warning: memalign.c:31:8: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+kablam! warning:   new = (void *)((uintptr_t)mem + align-1 & -align);
+kablam! warning:         ^
+kablam! warning: static variable `musl_alloc_errno` should have an upper case name such as `MUSL_ALLOC_ERRNO`, #[warn(non_upper_case_globals)] on by default
+kablam!  --> lib.rs:4:1
+kablam!   |
+kablam! 4 | pub static mut musl_alloc_errno: usize = 0;
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 1.1 secs
+boom! running `docker rm -f 725a76b829eeea01d01e802695b19a156ad68643fec5fd3856bb9ab4b957ae1e`
+blam! 725a76b829eeea01d01e802695b19a156ad68643fec5fd3856bb9ab4b957ae1e
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 6e582ad89e80420345d13362b9ee640acc1fe4c8f96b2379e714280b25831913
+boom! running `docker start -a 6e582ad89e80420345d13362b9ee640acc1fe4c8f96b2379e714280b25831913`
+kablam! warning: malloc.c: In function 'free':
+kablam! warning: malloc.c:504:17: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+kablam! warning:    uintptr_t a = (uintptr_t)self + SIZE_ALIGN+PAGE_SIZE-1 & -PAGE_SIZE;
+kablam! warning:                  ^
+kablam! warning: malloc.c:505:17: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+kablam! warning:    uintptr_t b = (uintptr_t)next - SIZE_ALIGN & -PAGE_SIZE;
+kablam! warning:                  ^
+kablam! warning: malloc.c:507:11: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+kablam! warning:    madvise((void *)a, b-a, MADV_DONTNEED);
+kablam! warning:            ^
+kablam! warning: memalign.c: In function '__memalign':
+kablam! warning: memalign.c:31:17: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+kablam! warning:   new = (void *)((uintptr_t)mem + align-1 & -align);
+kablam! warning:                  ^
+kablam! warning: memalign.c:31:8: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+kablam! warning:   new = (void *)((uintptr_t)mem + align-1 & -align);
+kablam! warning:         ^
+kablam!    Compiling freestanding-musl-malloc v1.0.0 (file:///source)
+kablam! warning: static variable `musl_alloc_errno` should have an upper case name such as `MUSL_ALLOC_ERRNO`, #[warn(non_upper_case_globals)] on by default
+kablam!  --> lib.rs:4:1
+kablam!   |
+kablam! 4 | pub static mut musl_alloc_errno: usize = 0;
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/freestanding_musl_malloc-29c8e0f38c6a03f9.0.o" "-o" "/target/debug/deps/freestanding_musl_malloc-29c8e0f38c6a03f9" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/target/debug/build/freestanding-musl-malloc-21e135836783ed6a/out" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,--whole-archive" "-l" "musl_alloc" "-Wl,--no-whole-archive" "-Wl,-Bdynamic" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-dd7007be8bc832b7.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-58bde84252e1d985.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-19e7cee83d8001c7.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-2ddb28df747fcb8c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-21709492a058d9ce.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-e19aa6725ab01bfd.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-99ff2e008613b591.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-e2513aecb8fbb70c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-f3200ab7e7fe644c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-dba58b8da674d203.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-6d4348bcabf40a71.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-9f45c45fdcba4301.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-b4ef8c9d93bc879a.rlib" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib(jemalloc.pic.o): In function `free':
+kablam! /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/liballoc_jemalloc/../jemalloc/src/jemalloc.c:1916: multiple definition of `free'
+kablam! /target/debug/build/freestanding-musl-malloc-21e135836783ed6a/out/libmusl_alloc.a(malloc.o):/source/malloc.c:435: first defined here
+kablam! /rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib(jemalloc.pic.o): In function `realloc':
+kablam! /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/liballoc_jemalloc/../jemalloc/src/jemalloc.c:1850: multiple definition of `realloc'
+kablam! /target/debug/build/freestanding-musl-malloc-21e135836783ed6a/out/libmusl_alloc.a(malloc.o):/source/x86_64/atomic_arch.h:55: first defined here
+kablam! /rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib(jemalloc.pic.o): In function `je_pow2_ceil_u64':
+kablam! /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/liballoc_jemalloc/../jemalloc/include/jemalloc/internal/util.h:211: multiple definition of `malloc'
+kablam! /target/debug/build/freestanding-musl-malloc-21e135836783ed6a/out/libmusl_alloc.a(malloc.o):/source/x86_64/atomic_arch.h:55: first defined here
+kablam! /rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib(jemalloc.pic.o): In function `je_pow2_ceil_u64':
+kablam! /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/liballoc_jemalloc/../jemalloc/include/jemalloc/internal/util.h:211: multiple definition of `calloc'
+kablam! /target/debug/build/freestanding-musl-malloc-21e135836783ed6a/out/libmusl_alloc.a(calloc.o):/source/calloc.c:6: first defined here
+kablam! /rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib(jemalloc.pic.o): In function `je_pow2_ceil_u64':
+kablam! /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/liballoc_jemalloc/../jemalloc/include/jemalloc/internal/util.h:211: multiple definition of `malloc_usable_size'
+kablam! /target/debug/build/freestanding-musl-malloc-21e135836783ed6a/out/libmusl_alloc.a(malloc_usable_size.o):/source/malloc_usable_size.c:13: first defined here
+kablam! collect2: error: ld returned 1 exit status
+kablam! 
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `freestanding-musl-malloc`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 6e582ad89e80420345d13362b9ee640acc1fe4c8f96b2379e714280b25831913`
+blam! 6e582ad89e80420345d13362b9ee640acc1fe4c8f96b2379e714280b25831913
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! 69c4dfecda767434d32e2641dac4347496c8afe65e581f04469193980ab6fe7f
+boom! running `docker start -a 69c4dfecda767434d32e2641dac4347496c8afe65e581f04469193980ab6fe7f`
+kablam! warning: malloc.c: In function 'free':
+kablam! warning: malloc.c:504:17: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+kablam! warning:    uintptr_t a = (uintptr_t)self + SIZE_ALIGN+PAGE_SIZE-1 & -PAGE_SIZE;
+kablam! warning:                  ^
+kablam! warning: malloc.c:505:17: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+kablam! warning:    uintptr_t b = (uintptr_t)next - SIZE_ALIGN & -PAGE_SIZE;
+kablam! warning:                  ^
+kablam! warning: malloc.c:507:11: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+kablam! warning:    madvise((void *)a, b-a, MADV_DONTNEED);
+kablam! warning:            ^
+kablam! warning: memalign.c: In function '__memalign':
+kablam! warning: memalign.c:31:17: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+kablam! warning:   new = (void *)((uintptr_t)mem + align-1 & -align);
+kablam! warning:                  ^
+kablam! warning: memalign.c:31:8: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+kablam! warning:   new = (void *)((uintptr_t)mem + align-1 & -align);
+kablam! warning:         ^
+kablam!    Compiling freestanding-musl-malloc v1.0.0 (file:///source)
+kablam! warning: static variable `musl_alloc_errno` should have an upper case name such as `MUSL_ALLOC_ERRNO`, #[warn(non_upper_case_globals)] on by default
+kablam!  --> lib.rs:4:1
+kablam!   |
+kablam! 4 | pub static mut musl_alloc_errno: usize = 0;
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/freestanding_musl_malloc-29c8e0f38c6a03f9.0.o" "-o" "/target/debug/deps/freestanding_musl_malloc-29c8e0f38c6a03f9" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/target/debug/build/freestanding-musl-malloc-21e135836783ed6a/out" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,--whole-archive" "-l" "musl_alloc" "-Wl,--no-whole-archive" "-Wl,-Bdynamic" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-dd7007be8bc832b7.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-58bde84252e1d985.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-19e7cee83d8001c7.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-2ddb28df747fcb8c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-21709492a058d9ce.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-e19aa6725ab01bfd.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-99ff2e008613b591.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-e2513aecb8fbb70c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-f3200ab7e7fe644c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-dba58b8da674d203.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-6d4348bcabf40a71.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-9f45c45fdcba4301.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-b4ef8c9d93bc879a.rlib" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib(jemalloc.pic.o): In function `free':
+kablam! /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/liballoc_jemalloc/../jemalloc/src/jemalloc.c:1916: multiple definition of `free'
+kablam! /target/debug/build/freestanding-musl-malloc-21e135836783ed6a/out/libmusl_alloc.a(malloc.o):/source/malloc.c:435: first defined here
+kablam! /rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib(jemalloc.pic.o): In function `realloc':
+kablam! /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/liballoc_jemalloc/../jemalloc/src/jemalloc.c:1850: multiple definition of `realloc'
+kablam! /target/debug/build/freestanding-musl-malloc-21e135836783ed6a/out/libmusl_alloc.a(malloc.o):/source/x86_64/atomic_arch.h:55: first defined here
+kablam! /rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib(jemalloc.pic.o): In function `je_pow2_ceil_u64':
+kablam! /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/liballoc_jemalloc/../jemalloc/include/jemalloc/internal/util.h:211: multiple definition of `malloc'
+kablam! /target/debug/build/freestanding-musl-malloc-21e135836783ed6a/out/libmusl_alloc.a(malloc.o):/source/x86_64/atomic_arch.h:55: first defined here
+kablam! /rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib(jemalloc.pic.o): In function `je_pow2_ceil_u64':
+kablam! /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/liballoc_jemalloc/../jemalloc/include/jemalloc/internal/util.h:211: multiple definition of `calloc'
+kablam! /target/debug/build/freestanding-musl-malloc-21e135836783ed6a/out/libmusl_alloc.a(calloc.o):/source/calloc.c:6: first defined here
+kablam! /rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib(jemalloc.pic.o): In function `je_pow2_ceil_u64':
+kablam! /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/liballoc_jemalloc/../jemalloc/include/jemalloc/internal/util.h:211: multiple definition of `malloc_usable_size'
+kablam! /target/debug/build/freestanding-musl-malloc-21e135836783ed6a/out/libmusl_alloc.a(malloc_usable_size.o):/source/malloc_usable_size.c:13: first defined here
+kablam! collect2: error: ld returned 1 exit status
+kablam! 
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `freestanding-musl-malloc`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 69c4dfecda767434d32e2641dac4347496c8afe65e581f04469193980ab6fe7f`
+blam! 69c4dfecda767434d32e2641dac4347496c8afe65e581f04469193980ab6fe7f

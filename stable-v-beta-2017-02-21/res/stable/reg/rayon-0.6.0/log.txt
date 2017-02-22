@@ -1,0 +1,99 @@
+boom! testing rayon-0.6.0 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! f9860651d0998058fbf8cff1540bba7c70f5683e2b96e47e904278421c38e449
+boom! running `docker start -a f9860651d0998058fbf8cff1540bba7c70f5683e2b96e47e904278421c38e449`
+kablam!    Compiling rayon v0.6.0 (file:///source)
+kablam! warning: struct is never used: `HeapJob`, #[warn(dead_code)] on by default
+kablam!    --> src/job.rs:130:1
+kablam!     |
+kablam! 130 |   pub struct HeapJob<BODY>
+kablam!     |  _^ starting here...
+kablam! 131 | |     where BODY: FnOnce(JobMode)
+kablam! 132 | | {
+kablam! 133 | |     job: UnsafeCell<Option<BODY>>,
+kablam! 134 | | }
+kablam!     | |_^ ...ending here
+kablam! 
+kablam! warning: method is never used: `new`, #[warn(dead_code)] on by default
+kablam!    --> src/job.rs:139:5
+kablam!     |
+kablam! 139 |       pub fn new(func: BODY) -> Self {
+kablam!     |  _____^ starting here...
+kablam! 140 | |         HeapJob { job: UnsafeCell::new(Some(func)) }
+kablam! 141 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `as_job_ref`, #[warn(dead_code)] on by default
+kablam!    --> src/job.rs:146:5
+kablam!     |
+kablam! 146 |       pub unsafe fn as_job_ref(self: Box<Self>) -> JobRef {
+kablam!     |  _____^ starting here...
+kablam! 147 | |         let this: *const Self = mem::transmute(self);
+kablam! 148 | |         JobRef::new(this)
+kablam! 149 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `bump_spawn_count`, #[warn(dead_code)] on by default
+kablam!    --> src/thread_pool.rs:334:5
+kablam!     |
+kablam! 334 |       pub fn bump_spawn_count(&self) {
+kablam!     |  _____^ starting here...
+kablam! 335 | |         self.spawn_count.set(self.spawn_count.get() + 1);
+kablam! 336 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 3.11 secs
+boom! running `docker rm -f f9860651d0998058fbf8cff1540bba7c70f5683e2b96e47e904278421c38e449`
+blam! f9860651d0998058fbf8cff1540bba7c70f5683e2b96e47e904278421c38e449
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 7344fc0c89fa75309382595ab6b70b63eb50665b29904446afc4debfe7c90e58
+boom! running `docker start -a 7344fc0c89fa75309382595ab6b70b63eb50665b29904446afc4debfe7c90e58`
+kablam!    Compiling compiletest_rs v0.2.5
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.2.5/src/compiletest.rs:13:1
+kablam!    |
+kablam! 13 | #![feature(rustc_private)]
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.2.5/src/compiletest.rs:14:1
+kablam!    |
+kablam! 14 | #![feature(test)]
+kablam!    | ^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `compiletest_rs`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 7344fc0c89fa75309382595ab6b70b63eb50665b29904446afc4debfe7c90e58`
+blam! 7344fc0c89fa75309382595ab6b70b63eb50665b29904446afc4debfe7c90e58
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! 4176884cf262b85361c3207b338e2857dd049c48050ae25935ff57bee4ffba16
+boom! running `docker start -a 4176884cf262b85361c3207b338e2857dd049c48050ae25935ff57bee4ffba16`
+kablam!    Compiling compiletest_rs v0.2.5
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.2.5/src/compiletest.rs:13:1
+kablam!    |
+kablam! 13 | #![feature(rustc_private)]
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.2.5/src/compiletest.rs:14:1
+kablam!    |
+kablam! 14 | #![feature(test)]
+kablam!    | ^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `compiletest_rs`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 4176884cf262b85361c3207b338e2857dd049c48050ae25935ff57bee4ffba16`
+blam! 4176884cf262b85361c3207b338e2857dd049c48050ae25935ff57bee4ffba16

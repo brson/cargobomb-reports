@@ -1,0 +1,198 @@
+boom! testing range_check-0.1.0 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! a72611692aaa69226166deb635d5c026817fed80e30eac45a81d2e51606c2266
+boom! running `docker start -a a72611692aaa69226166deb635d5c026817fed80e30eac45a81d2e51606c2266`
+kablam!    Compiling range_check v0.1.0 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.34 secs
+boom! running `docker rm -f a72611692aaa69226166deb635d5c026817fed80e30eac45a81d2e51606c2266`
+blam! a72611692aaa69226166deb635d5c026817fed80e30eac45a81d2e51606c2266
+boom! running: cargo +beta test --frozen --no-run
+boom! creating container for: cargo +beta test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta test --frozen --no-run cargobomb`
+blam! 45c74fdc7d7c1a796f5c99951ec9966c97b64e9c30f7375747d3905165cad969
+boom! running `docker start -a 45c74fdc7d7c1a796f5c99951ec9966c97b64e9c30f7375747d3905165cad969`
+kablam!    Compiling range_check v0.1.0 (file:///source)
+kablam! error: use of unstable library feature 'range_contains': recently added as per RFC (see issue #32311)
+kablam!    --> src/lib.rs:173:24
+kablam!     |
+kablam! 173 |         assert!((1..5).contains(3));
+kablam!     |                        ^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'range_contains': recently added as per RFC (see issue #32311)
+kablam!    --> src/lib.rs:179:25
+kablam!     |
+kablam! 179 |         assert!(!(1..5).contains(&7));
+kablam!     |                         ^^^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:179:34
+kablam!     |
+kablam! 179 |         assert!(!(1..5).contains(&7));
+kablam!     |                                  ^^ expected integral variable, found &{integer}
+kablam!     |
+kablam!     = note: expected type `{integer}`
+kablam!                found type `&{integer}`
+kablam! 
+kablam! error: use of unstable library feature 'range_contains': recently added as per RFC (see issue #32311)
+kablam!    --> src/lib.rs:185:23
+kablam!     |
+kablam! 185 |         assert!((1..).contains(&3));
+kablam!     |                       ^^^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:185:32
+kablam!     |
+kablam! 185 |         assert!((1..).contains(&3));
+kablam!     |                                ^^ expected integral variable, found &{integer}
+kablam!     |
+kablam!     = note: expected type `{integer}`
+kablam!                found type `&{integer}`
+kablam! 
+kablam! error: use of unstable library feature 'range_contains': recently added as per RFC (see issue #32311)
+kablam!    --> src/lib.rs:191:24
+kablam!     |
+kablam! 191 |         assert!(!(1..).contains(&-7));
+kablam!     |                        ^^^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:191:33
+kablam!     |
+kablam! 191 |         assert!(!(1..).contains(&-7));
+kablam!     |                                 ^^^ expected integral variable, found &{integer}
+kablam!     |
+kablam!     = note: expected type `{integer}`
+kablam!                found type `&{integer}`
+kablam! 
+kablam! error: use of unstable library feature 'range_contains': recently added as per RFC (see issue #32311)
+kablam!    --> src/lib.rs:197:23
+kablam!     |
+kablam! 197 |         assert!((..5).contains(&3));
+kablam!     |                       ^^^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:197:32
+kablam!     |
+kablam! 197 |         assert!((..5).contains(&3));
+kablam!     |                                ^^ expected integral variable, found &{integer}
+kablam!     |
+kablam!     = note: expected type `{integer}`
+kablam!                found type `&{integer}`
+kablam! 
+kablam! error: use of unstable library feature 'range_contains': recently added as per RFC (see issue #32311)
+kablam!    --> src/lib.rs:203:24
+kablam!     |
+kablam! 203 |         assert!(!(..5).contains(&7));
+kablam!     |                        ^^^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:203:33
+kablam!     |
+kablam! 203 |         assert!(!(..5).contains(&7));
+kablam!     |                                 ^^ expected integral variable, found &{integer}
+kablam!     |
+kablam!     = note: expected type `{integer}`
+kablam!                found type `&{integer}`
+kablam! 
+kablam! error: aborting due to 11 previous errors
+kablam! 
+kablam! error: Could not compile `range_check`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 45c74fdc7d7c1a796f5c99951ec9966c97b64e9c30f7375747d3905165cad969`
+blam! 45c74fdc7d7c1a796f5c99951ec9966c97b64e9c30f7375747d3905165cad969
+boom! running: cargo +beta test --frozen
+boom! creating container for: cargo +beta test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta test --frozen cargobomb`
+blam! 7fbf5da22516dc67858f60fe8bf2bc6443ec988fef62567c9e3250a16d6e374c
+boom! running `docker start -a 7fbf5da22516dc67858f60fe8bf2bc6443ec988fef62567c9e3250a16d6e374c`
+kablam!    Compiling range_check v0.1.0 (file:///source)
+kablam! error: use of unstable library feature 'range_contains': recently added as per RFC (see issue #32311)
+kablam!    --> src/lib.rs:173:24
+kablam!     |
+kablam! 173 |         assert!((1..5).contains(3));
+kablam!     |                        ^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'range_contains': recently added as per RFC (see issue #32311)
+kablam!    --> src/lib.rs:179:25
+kablam!     |
+kablam! 179 |         assert!(!(1..5).contains(&7));
+kablam!     |                         ^^^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:179:34
+kablam!     |
+kablam! 179 |         assert!(!(1..5).contains(&7));
+kablam!     |                                  ^^ expected integral variable, found &{integer}
+kablam!     |
+kablam!     = note: expected type `{integer}`
+kablam!                found type `&{integer}`
+kablam! 
+kablam! error: use of unstable library feature 'range_contains': recently added as per RFC (see issue #32311)
+kablam!    --> src/lib.rs:185:23
+kablam!     |
+kablam! 185 |         assert!((1..).contains(&3));
+kablam!     |                       ^^^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:185:32
+kablam!     |
+kablam! 185 |         assert!((1..).contains(&3));
+kablam!     |                                ^^ expected integral variable, found &{integer}
+kablam!     |
+kablam!     = note: expected type `{integer}`
+kablam!                found type `&{integer}`
+kablam! 
+kablam! error: use of unstable library feature 'range_contains': recently added as per RFC (see issue #32311)
+kablam!    --> src/lib.rs:191:24
+kablam!     |
+kablam! 191 |         assert!(!(1..).contains(&-7));
+kablam!     |                        ^^^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:191:33
+kablam!     |
+kablam! 191 |         assert!(!(1..).contains(&-7));
+kablam!     |                                 ^^^ expected integral variable, found &{integer}
+kablam!     |
+kablam!     = note: expected type `{integer}`
+kablam!                found type `&{integer}`
+kablam! 
+kablam! error: use of unstable library feature 'range_contains': recently added as per RFC (see issue #32311)
+kablam!    --> src/lib.rs:197:23
+kablam!     |
+kablam! 197 |         assert!((..5).contains(&3));
+kablam!     |                       ^^^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:197:32
+kablam!     |
+kablam! 197 |         assert!((..5).contains(&3));
+kablam!     |                                ^^ expected integral variable, found &{integer}
+kablam!     |
+kablam!     = note: expected type `{integer}`
+kablam!                found type `&{integer}`
+kablam! 
+kablam! error: use of unstable library feature 'range_contains': recently added as per RFC (see issue #32311)
+kablam!    --> src/lib.rs:203:24
+kablam!     |
+kablam! 203 |         assert!(!(..5).contains(&7));
+kablam!     |                        ^^^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:203:33
+kablam!     |
+kablam! 203 |         assert!(!(..5).contains(&7));
+kablam!     |                                 ^^ expected integral variable, found &{integer}
+kablam!     |
+kablam!     = note: expected type `{integer}`
+kablam!                found type `&{integer}`
+kablam! 
+kablam! error: aborting due to 11 previous errors
+kablam! 
+kablam! error: Could not compile `range_check`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 7fbf5da22516dc67858f60fe8bf2bc6443ec988fef62567c9e3250a16d6e374c`
+blam! 7fbf5da22516dc67858f60fe8bf2bc6443ec988fef62567c9e3250a16d6e374c

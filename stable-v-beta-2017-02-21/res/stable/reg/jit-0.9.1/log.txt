@@ -1,0 +1,20 @@
+boom! testing jit-0.9.1 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! c22e825dba845c4718bc521210ea4c7a5e9dd80d4ee56a3ee8c492242966a65d
+boom! running `docker start -a c22e825dba845c4718bc521210ea4c7a5e9dd80d4ee56a3ee8c492242966a65d`
+kablam!    Compiling jit v0.9.1 (file:///source)
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!   --> src/jit.rs:29:1
+kablam!    |
+kablam! 29 | #![feature(alloc, core, plugin, unboxed_closures, optin_builtin_traits, associated_consts)]
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `jit`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f c22e825dba845c4718bc521210ea4c7a5e9dd80d4ee56a3ee8c492242966a65d`
+blam! c22e825dba845c4718bc521210ea4c7a5e9dd80d4ee56a3ee8c492242966a65d

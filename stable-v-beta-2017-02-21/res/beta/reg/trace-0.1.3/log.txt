@@ -1,0 +1,50 @@
+boom! testing trace-0.1.3 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! b11efbaa9000a01c42de02493816277b289cb3e07a782171f75d57012792226b
+boom! running `docker start -a b11efbaa9000a01c42de02493816277b289cb3e07a782171f75d57012792226b`
+kablam!    Compiling trace v0.1.3 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::ast::TokenTree`
+kablam!   --> src/lib.rs:12:65
+kablam!    |
+kablam! 12 | use syntax::ast::{self, Item, ItemKind, MetaItem, Block, Ident, TokenTree, FnDecl, ImplItem,
+kablam!    |                                                                 ^^^^^^^^^ no `TokenTree` in `ast`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::intern`
+kablam!   --> src/lib.rs:24:34
+kablam!    |
+kablam! 24 | use syntax::parse::token::{self, intern};
+kablam!    |                                  ^^^^^^ no `intern` in `parse::token`
+kablam! 
+kablam! error[E0532]: expected tuple struct/variant, found unit variant `Word`
+kablam!   --> src/lib.rs:92:18
+kablam!    |
+kablam! 92 |                 &Word(ref item_name) => { v.insert(item_name.to_string()); },
+kablam!    |                  ^^^^ not a tuple struct/variant
+kablam! 
+kablam! error[E0532]: expected tuple struct/variant, found unit variant `Word`
+kablam!    --> src/lib.rs:126:18
+kablam!     |
+kablam! 126 |                 &Word(ref name) => {
+kablam!     |                  ^^^^ not a tuple struct/variant
+kablam! 
+kablam! error[E0425]: cannot find value `Plain` in module `token`
+kablam!    --> src/lib.rs:316:58
+kablam!     |
+kablam! 316 |         .map(|ident| vec![token::Ident((*ident).clone(), token::Plain)])
+kablam!     |                                                          ^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> src/lib.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(quote, plugin_registrar, rustc_private, slice_concat_ext)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `trace`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f b11efbaa9000a01c42de02493816277b289cb3e07a782171f75d57012792226b`
+blam! b11efbaa9000a01c42de02493816277b289cb3e07a782171f75d57012792226b

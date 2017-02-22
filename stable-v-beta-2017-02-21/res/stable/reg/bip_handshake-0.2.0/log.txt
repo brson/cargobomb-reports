@@ -1,0 +1,79 @@
+boom! testing bip_handshake-0.2.0 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 6ee473f9e56449373da354103733c037bcd6f21ac4472c2aa4210ef1f556d201
+boom! running `docker start -a 6ee473f9e56449373da354103733c037bcd6f21ac4472c2aa4210ef1f556d201`
+kablam!    Compiling bip_handshake v0.2.0 (file:///source)
+kablam! warning[E0276]: impl has stricter requirements than trait, #[warn(extra_requirement_in_impl)] on by default
+kablam!   --> src/bittorrent/mod.rs:88:5
+kablam!    |
+kablam! 88 |       fn filter<F>(&mut self, process: Box<F>) where F: Fn(&SocketAddr) -> bool + Send + 'static {
+kablam!    |  _____^ starting here...
+kablam! 89 | |         if self.inner.send.send(HandlerTask::RegisterFilter(process)).is_err() {
+kablam! 90 | |             error!("bip_handshake: Error sending a filter peer message to event loop...");
+kablam! 91 | |         }
+kablam! 92 | |     }
+kablam!    | |_____^ ...ending here: impl has extra requirement `F: 'static`
+kablam!    | 
+kablam!   ::: src/handshaker.rs
+kablam!    |
+kablam! 23 |       fn filter<F>(&mut self, process: Box<F>) where F: Fn(&SocketAddr) -> bool + Send;
+kablam!    |       --------------------------------------------------------------------------------- definition of `filter` from trait
+kablam!    |
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #37166 <https://github.com/rust-lang/rust/issues/37166>
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 1.29 secs
+boom! running `docker rm -f 6ee473f9e56449373da354103733c037bcd6f21ac4472c2aa4210ef1f556d201`
+blam! 6ee473f9e56449373da354103733c037bcd6f21ac4472c2aa4210ef1f556d201
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 216bfb658835c155c3a2082332c1345bc97eff1bd3ccdb566882f94303706d01
+boom! running `docker start -a 216bfb658835c155c3a2082332c1345bc97eff1bd3ccdb566882f94303706d01`
+kablam!    Compiling bip_handshake v0.2.0 (file:///source)
+kablam! warning[E0276]: impl has stricter requirements than trait, #[warn(extra_requirement_in_impl)] on by default
+kablam!   --> src/bittorrent/mod.rs:88:5
+kablam!    |
+kablam! 88 |       fn filter<F>(&mut self, process: Box<F>) where F: Fn(&SocketAddr) -> bool + Send + 'static {
+kablam!    |  _____^ starting here...
+kablam! 89 | |         if self.inner.send.send(HandlerTask::RegisterFilter(process)).is_err() {
+kablam! 90 | |             error!("bip_handshake: Error sending a filter peer message to event loop...");
+kablam! 91 | |         }
+kablam! 92 | |     }
+kablam!    | |_____^ ...ending here: impl has extra requirement `F: 'static`
+kablam!    | 
+kablam!   ::: src/handshaker.rs
+kablam!    |
+kablam! 23 |       fn filter<F>(&mut self, process: Box<F>) where F: Fn(&SocketAddr) -> bool + Send;
+kablam!    |       --------------------------------------------------------------------------------- definition of `filter` from trait
+kablam!    |
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #37166 <https://github.com/rust-lang/rust/issues/37166>
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 3.11 secs
+boom! running `docker rm -f 216bfb658835c155c3a2082332c1345bc97eff1bd3ccdb566882f94303706d01`
+blam! 216bfb658835c155c3a2082332c1345bc97eff1bd3ccdb566882f94303706d01
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! a1e24f0e6b109156bca69438ac431546506241bedbc0653f0d0ae5b2f5371b55
+boom! running `docker start -a a1e24f0e6b109156bca69438ac431546506241bedbc0653f0d0ae5b2f5371b55`
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/bip_handshake-aa4028221754224f
+blam! 
+blam! running 2 tests
+blam! test bittorrent::tests::positive_make_conenction ... ok
+blam! test bittorrent::tests::positive_shutdown_on_drop ... ok
+blam! 
+blam! test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!    Doc-tests bip_handshake
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f a1e24f0e6b109156bca69438ac431546506241bedbc0653f0d0ae5b2f5371b55`
+blam! a1e24f0e6b109156bca69438ac431546506241bedbc0653f0d0ae5b2f5371b55

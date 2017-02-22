@@ -1,0 +1,187 @@
+boom! testing nue-io-0.3.0 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 4bf633b0876c5c6588bd190f4a07f1575bf430e645050134c436b7e0d53f4b5b
+boom! running `docker start -a 4bf633b0876c5c6588bd190f4a07f1575bf430e645050134c436b7e0d53f4b5b`
+kablam!    Compiling resize-slice v0.1.2
+kablam!    Compiling nue-io v0.3.0 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.98 secs
+boom! running `docker rm -f 4bf633b0876c5c6588bd190f4a07f1575bf430e645050134c436b7e0d53f4b5b`
+blam! 4bf633b0876c5c6588bd190f4a07f1575bf430e645050134c436b7e0d53f4b5b
+boom! running: cargo +beta test --frozen --no-run
+boom! creating container for: cargo +beta test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta test --frozen --no-run cargobomb`
+blam! 5818aafae4483c49bfa4b6c74ec1a728e4444217fb14971d4b183f022f1ad525
+boom! running `docker start -a 5818aafae4483c49bfa4b6c74ec1a728e4444217fb14971d4b183f022f1ad525`
+kablam!    Compiling nue-io v0.3.0 (file:///source)
+kablam! error[E0034]: multiple applicable items in scope
+kablam!    --> src/region.rs:167:16
+kablam!     |
+kablam! 167 |         region.read_exact(&mut odata).unwrap();
+kablam!     |                ^^^^^^^^^^ multiple `read_exact` found
+kablam!     |
+kablam! note: candidate #1 is defined in an impl of the trait `read_exact::ReadExactExt` for the type `_`
+kablam!    --> src/read_exact.rs:21:5
+kablam!     |
+kablam! 21  |       fn read_exact(&mut self, buf: &mut [u8]) -> Result<(), Error> {
+kablam!     |  _____^ starting here...
+kablam! 22  | |         match self.read_exact_eof(buf) {
+kablam! 23  | |             Ok(len) if len == buf.len() => Ok(()),
+kablam! 24  | |             Ok(_) => Err(Error::UnexpectedEOF),
+kablam! 25  | |             Err(e) => Err(e.into()),
+kablam! 26  | |         }
+kablam! 27  | |     }
+kablam!     | |_____^ ...ending here
+kablam! note: candidate #2 is defined in an impl of the trait `std::io::Read` for the type `region::Region<_>`
+kablam!    --> src/region.rs:65:1
+kablam!     |
+kablam! 65  | impl<T: Read + Tell + SeekAbsolute> Read for Region<T> {
+kablam!     | ^
+kablam!     = note: candidate #3 is defined in an impl of the trait `std::io::Read` for the type `&mut _`
+kablam! 
+kablam! error[E0034]: multiple applicable items in scope
+kablam!    --> src/region.rs:171:16
+kablam!     |
+kablam! 171 |         region.read_exact(&mut odata[..0x20]).unwrap();
+kablam!     |                ^^^^^^^^^^ multiple `read_exact` found
+kablam!     |
+kablam! note: candidate #1 is defined in an impl of the trait `read_exact::ReadExactExt` for the type `_`
+kablam!    --> src/read_exact.rs:21:5
+kablam!     |
+kablam! 21  |       fn read_exact(&mut self, buf: &mut [u8]) -> Result<(), Error> {
+kablam!     |  _____^ starting here...
+kablam! 22  | |         match self.read_exact_eof(buf) {
+kablam! 23  | |             Ok(len) if len == buf.len() => Ok(()),
+kablam! 24  | |             Ok(_) => Err(Error::UnexpectedEOF),
+kablam! 25  | |             Err(e) => Err(e.into()),
+kablam! 26  | |         }
+kablam! 27  | |     }
+kablam!     | |_____^ ...ending here
+kablam! note: candidate #2 is defined in an impl of the trait `std::io::Read` for the type `region::Region<_>`
+kablam!    --> src/region.rs:65:1
+kablam!     |
+kablam! 65  | impl<T: Read + Tell + SeekAbsolute> Read for Region<T> {
+kablam!     | ^
+kablam!     = note: candidate #3 is defined in an impl of the trait `std::io::Read` for the type `&mut _`
+kablam! 
+kablam! error[E0034]: multiple applicable items in scope
+kablam!    --> src/region.rs:175:16
+kablam!     |
+kablam! 175 |         region.read_exact(&mut odata[..]).unwrap();
+kablam!     |                ^^^^^^^^^^ multiple `read_exact` found
+kablam!     |
+kablam! note: candidate #1 is defined in an impl of the trait `read_exact::ReadExactExt` for the type `_`
+kablam!    --> src/read_exact.rs:21:5
+kablam!     |
+kablam! 21  |       fn read_exact(&mut self, buf: &mut [u8]) -> Result<(), Error> {
+kablam!     |  _____^ starting here...
+kablam! 22  | |         match self.read_exact_eof(buf) {
+kablam! 23  | |             Ok(len) if len == buf.len() => Ok(()),
+kablam! 24  | |             Ok(_) => Err(Error::UnexpectedEOF),
+kablam! 25  | |             Err(e) => Err(e.into()),
+kablam! 26  | |         }
+kablam! 27  | |     }
+kablam!     | |_____^ ...ending here
+kablam! note: candidate #2 is defined in an impl of the trait `std::io::Read` for the type `region::Region<_>`
+kablam!    --> src/region.rs:65:1
+kablam!     |
+kablam! 65  | impl<T: Read + Tell + SeekAbsolute> Read for Region<T> {
+kablam!     | ^
+kablam!     = note: candidate #3 is defined in an impl of the trait `std::io::Read` for the type `&mut _`
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `nue-io`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 5818aafae4483c49bfa4b6c74ec1a728e4444217fb14971d4b183f022f1ad525`
+blam! 5818aafae4483c49bfa4b6c74ec1a728e4444217fb14971d4b183f022f1ad525
+boom! running: cargo +beta test --frozen
+boom! creating container for: cargo +beta test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta test --frozen cargobomb`
+blam! fc5906565eb5b35619e89ac249d249611319844f620d1d7b4045810c39987316
+boom! running `docker start -a fc5906565eb5b35619e89ac249d249611319844f620d1d7b4045810c39987316`
+kablam!    Compiling nue-io v0.3.0 (file:///source)
+kablam! error[E0034]: multiple applicable items in scope
+kablam!    --> src/region.rs:167:16
+kablam!     |
+kablam! 167 |         region.read_exact(&mut odata).unwrap();
+kablam!     |                ^^^^^^^^^^ multiple `read_exact` found
+kablam!     |
+kablam! note: candidate #1 is defined in an impl of the trait `read_exact::ReadExactExt` for the type `_`
+kablam!    --> src/read_exact.rs:21:5
+kablam!     |
+kablam! 21  |       fn read_exact(&mut self, buf: &mut [u8]) -> Result<(), Error> {
+kablam!     |  _____^ starting here...
+kablam! 22  | |         match self.read_exact_eof(buf) {
+kablam! 23  | |             Ok(len) if len == buf.len() => Ok(()),
+kablam! 24  | |             Ok(_) => Err(Error::UnexpectedEOF),
+kablam! 25  | |             Err(e) => Err(e.into()),
+kablam! 26  | |         }
+kablam! 27  | |     }
+kablam!     | |_____^ ...ending here
+kablam! note: candidate #2 is defined in an impl of the trait `std::io::Read` for the type `region::Region<_>`
+kablam!    --> src/region.rs:65:1
+kablam!     |
+kablam! 65  | impl<T: Read + Tell + SeekAbsolute> Read for Region<T> {
+kablam!     | ^
+kablam!     = note: candidate #3 is defined in an impl of the trait `std::io::Read` for the type `&mut _`
+kablam! 
+kablam! error[E0034]: multiple applicable items in scope
+kablam!    --> src/region.rs:171:16
+kablam!     |
+kablam! 171 |         region.read_exact(&mut odata[..0x20]).unwrap();
+kablam!     |                ^^^^^^^^^^ multiple `read_exact` found
+kablam!     |
+kablam! note: candidate #1 is defined in an impl of the trait `read_exact::ReadExactExt` for the type `_`
+kablam!    --> src/read_exact.rs:21:5
+kablam!     |
+kablam! 21  |       fn read_exact(&mut self, buf: &mut [u8]) -> Result<(), Error> {
+kablam!     |  _____^ starting here...
+kablam! 22  | |         match self.read_exact_eof(buf) {
+kablam! 23  | |             Ok(len) if len == buf.len() => Ok(()),
+kablam! 24  | |             Ok(_) => Err(Error::UnexpectedEOF),
+kablam! 25  | |             Err(e) => Err(e.into()),
+kablam! 26  | |         }
+kablam! 27  | |     }
+kablam!     | |_____^ ...ending here
+kablam! note: candidate #2 is defined in an impl of the trait `std::io::Read` for the type `region::Region<_>`
+kablam!    --> src/region.rs:65:1
+kablam!     |
+kablam! 65  | impl<T: Read + Tell + SeekAbsolute> Read for Region<T> {
+kablam!     | ^
+kablam!     = note: candidate #3 is defined in an impl of the trait `std::io::Read` for the type `&mut _`
+kablam! 
+kablam! error[E0034]: multiple applicable items in scope
+kablam!    --> src/region.rs:175:16
+kablam!     |
+kablam! 175 |         region.read_exact(&mut odata[..]).unwrap();
+kablam!     |                ^^^^^^^^^^ multiple `read_exact` found
+kablam!     |
+kablam! note: candidate #1 is defined in an impl of the trait `read_exact::ReadExactExt` for the type `_`
+kablam!    --> src/read_exact.rs:21:5
+kablam!     |
+kablam! 21  |       fn read_exact(&mut self, buf: &mut [u8]) -> Result<(), Error> {
+kablam!     |  _____^ starting here...
+kablam! 22  | |         match self.read_exact_eof(buf) {
+kablam! 23  | |             Ok(len) if len == buf.len() => Ok(()),
+kablam! 24  | |             Ok(_) => Err(Error::UnexpectedEOF),
+kablam! 25  | |             Err(e) => Err(e.into()),
+kablam! 26  | |         }
+kablam! 27  | |     }
+kablam!     | |_____^ ...ending here
+kablam! note: candidate #2 is defined in an impl of the trait `std::io::Read` for the type `region::Region<_>`
+kablam!    --> src/region.rs:65:1
+kablam!     |
+kablam! 65  | impl<T: Read + Tell + SeekAbsolute> Read for Region<T> {
+kablam!     | ^
+kablam!     = note: candidate #3 is defined in an impl of the trait `std::io::Read` for the type `&mut _`
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `nue-io`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f fc5906565eb5b35619e89ac249d249611319844f620d1d7b4045810c39987316`
+blam! fc5906565eb5b35619e89ac249d249611319844f620d1d7b4045810c39987316

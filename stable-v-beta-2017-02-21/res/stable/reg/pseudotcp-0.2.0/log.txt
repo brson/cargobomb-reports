@@ -1,0 +1,38 @@
+boom! testing pseudotcp-0.2.0 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! ce4c66e836c2dc1f464ca12e71f733591ecbb71fbeefb32b37b29ff46d4f4d0e
+boom! running `docker start -a ce4c66e836c2dc1f464ca12e71f733591ecbb71fbeefb32b37b29ff46d4f4d0e`
+kablam!    Compiling pseudotcp v0.2.0 (file:///source)
+kablam! error: struct `PseudoTcpDebugLevel` is private
+kablam!    --> src/api.rs:250:32
+kablam!     |
+kablam! 250 | 	pub fn set_debug_level(level: ffi::PseudoTcpDebugLevel) {
+kablam!     | 	                              ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: struct `PseudoTcpState` is private
+kablam!    --> src/api.rs:292:29
+kablam!     |
+kablam! 292 | 	pub fn get_state(&self) -> ffi::PseudoTcpState {
+kablam!     | 	                           ^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: struct `PseudoTcpState` is private
+kablam!    --> src/api.rs:301:3
+kablam!     |
+kablam! 301 | 		ffi::PseudoTcpState::from_bits(value as u32).unwrap()
+kablam!     | 		^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: struct `PseudoTcpState` is private
+kablam!    --> src/pseudo_tcp_stream.rs:269:29
+kablam!     |
+kablam! 269 | 	pub fn get_state(&self) -> ffi::PseudoTcpState {
+kablam!     | 	                           ^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `pseudotcp`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f ce4c66e836c2dc1f464ca12e71f733591ecbb71fbeefb32b37b29ff46d4f4d0e`
+blam! ce4c66e836c2dc1f464ca12e71f733591ecbb71fbeefb32b37b29ff46d4f4d0e

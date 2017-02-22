@@ -1,0 +1,32 @@
+boom! testing fleet-0.2.0 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 883c2fa9e91a87863f80544154fc5f70d4e51ea523ce2d2957cd1e74f1d175a3
+boom! running `docker start -a 883c2fa9e91a87863f80544154fc5f70d4e51ea523ce2d2957cd1e74f1d175a3`
+kablam!    Compiling fleet v0.2.0 (file:///source)
+kablam! error[E0432]: unresolved import `hyper::error::HttpError`
+kablam!  --> src/error.rs:5:5
+kablam!   |
+kablam! 5 | use hyper::error::HttpError;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^ no `HttpError` in `error`
+kablam! 
+kablam! error: no method named `serialize` found for type `url::Url` in the current scope
+kablam!   --> src/client.rs:22:43
+kablam!    |
+kablam! 22 |             root_url: format!("{}{}", url.serialize(), "fleet/v1"),
+kablam!    |                                           ^^^^^^^^^
+kablam! 
+kablam! error: no method named `set_query_from_pairs` found for type `url::Url` in the current scope
+kablam!    --> src/client.rs:114:13
+kablam!     |
+kablam! 114 |         url.set_query_from_pairs(query_pairs.iter().map(|(k, v)| (*k, *v)));
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `fleet`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 883c2fa9e91a87863f80544154fc5f70d4e51ea523ce2d2957cd1e74f1d175a3`
+blam! 883c2fa9e91a87863f80544154fc5f70d4e51ea523ce2d2957cd1e74f1d175a3

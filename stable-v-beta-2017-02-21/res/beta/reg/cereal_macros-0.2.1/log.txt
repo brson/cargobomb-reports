@@ -1,0 +1,38 @@
+boom! testing cereal_macros-0.2.1 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 36d3c9feca79f42199bbeff010ed0b4c08146ca2f8b1f139bbcca4d77172232a
+boom! running `docker start -a 36d3c9feca79f42199bbeff010ed0b4c08146ca2f8b1f139bbcca4d77172232a`
+kablam!    Compiling cereal_macros v0.2.1 (file:///source)
+kablam! error[E0432]: unresolved import `rustc::plugin::Registry`
+kablam!  --> src/plugin.rs:7:5
+kablam!   |
+kablam! 7 | use rustc::plugin::Registry;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `plugin` in `rustc`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::ext::deriving::generic`
+kablam!   --> src/plugin.rs:12:5
+kablam!    |
+kablam! 12 | use syntax::ext::deriving::generic;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `deriving` in `ext`
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!   --> src/plugin.rs:18:40
+kablam!    |
+kablam! 18 |     registry.register_syntax_extension(token::intern("derive_CerealData"),
+kablam!    |                                        ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> src/plugin.rs:2:1
+kablam!   |
+kablam! 2 | #![feature(box_syntax, plugin_registrar, quote, rustc_private)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `cereal_macros`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 36d3c9feca79f42199bbeff010ed0b4c08146ca2f8b1f139bbcca4d77172232a`
+blam! 36d3c9feca79f42199bbeff010ed0b4c08146ca2f8b1f139bbcca4d77172232a

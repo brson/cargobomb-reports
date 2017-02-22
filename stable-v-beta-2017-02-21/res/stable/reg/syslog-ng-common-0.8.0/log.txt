@@ -1,0 +1,166 @@
+boom! testing syslog-ng-common-0.8.0 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 9c271a506484ef3dd046bdc09de61f4b3ba5b18777af502c08d94f46b0df886d
+boom! running `docker start -a 9c271a506484ef3dd046bdc09de61f4b3ba5b18777af502c08d94f46b0df886d`
+kablam!    Compiling syslog-ng-sys v0.3.0
+kablam!    Compiling glib v0.0.8
+kablam!    Compiling syslog-ng-common v0.8.0 (file:///source)
+kablam! warning: use of extern static requires unsafe function or block (error E0133), #[warn(safe_extern_statics)] on by default
+kablam!   --> src/messages.rs:50:12
+kablam!    |
+kablam! 50 |         if messages::trace_flag != 0 {
+kablam!    |            ^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #36247 <https://github.com/rust-lang/rust/issues/35112>
+kablam! 
+kablam! warning: use of extern static requires unsafe function or block (error E0133), #[warn(safe_extern_statics)] on by default
+kablam!   --> src/messages.rs:52:19
+kablam!    |
+kablam! 52 |         } else if messages::debug_flag != 0 {
+kablam!    |                   ^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #36247 <https://github.com/rust-lang/rust/issues/35112>
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 3.52 secs
+boom! running `docker rm -f 9c271a506484ef3dd046bdc09de61f4b3ba5b18777af502c08d94f46b0df886d`
+blam! 9c271a506484ef3dd046bdc09de61f4b3ba5b18777af502c08d94f46b0df886d
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! a74995f22eef7e38b9ec5bba0e901c6347ee3edbc56f916c3b5116031b303725
+boom! running `docker start -a a74995f22eef7e38b9ec5bba0e901c6347ee3edbc56f916c3b5116031b303725`
+kablam!    Compiling syslog-ng-common v0.8.0 (file:///source)
+kablam! warning: use of extern static requires unsafe function or block (error E0133), #[warn(safe_extern_statics)] on by default
+kablam!   --> src/messages.rs:50:12
+kablam!    |
+kablam! 50 |         if messages::trace_flag != 0 {
+kablam!    |            ^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #36247 <https://github.com/rust-lang/rust/issues/35112>
+kablam! 
+kablam! warning: use of extern static requires unsafe function or block (error E0133), #[warn(safe_extern_statics)] on by default
+kablam!   --> src/messages.rs:52:19
+kablam!    |
+kablam! 52 |         } else if messages::debug_flag != 0 {
+kablam!    |                   ^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #36247 <https://github.com/rust-lang/rust/issues/35112>
+kablam! 
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/template_functions-fd1ded13fdd21e2c.0.o" "-o" "/target/debug/deps/template_functions-fd1ded13fdd21e2c" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libsyslog_ng_common-55f8adc7a67a7e5b.rlib" "/target/debug/deps/libglib-5a75469d0baece95.rlib" "/target/debug/deps/libsyslog_ng_sys-c7fa04abdf35bc0f.rlib" "/target/debug/deps/liblog-1ce22d3a92f37841.rlib" "/target/debug/deps/libgio_sys-d0e38cb1b4c01a9b.rlib" "/target/debug/deps/libgobject_sys-52c1159eb60ce36e.rlib" "/target/debug/deps/libglib_sys-13fe40cc78d761ce.rlib" "/target/debug/deps/libbitflags-a2e309ac4b5b98e2.rlib" "/target/debug/deps/liblibc-83c2bd88b43ecde3.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-2ddb28df747fcb8c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-21709492a058d9ce.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-e19aa6725ab01bfd.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-99ff2e008613b591.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-e2513aecb8fbb70c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-f3200ab7e7fe644c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-dba58b8da674d203.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-6d4348bcabf40a71.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-9f45c45fdcba4301.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-b4ef8c9d93bc879a.rlib" "-l" "syslog-ng" "-l" "syslog-ng" "-l" "syslog-ng" "-l" "syslog-ng" "-l" "syslog-ng" "-l" "syslog-ng" "-l" "syslog-ng" "-l" "gio-2.0" "-l" "gobject-2.0" "-l" "glib-2.0" "-l" "gobject-2.0" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lsyslog-ng
+kablam! /usr/bin/ld: cannot find -lsyslog-ng
+kablam! /usr/bin/ld: cannot find -lsyslog-ng
+kablam! /usr/bin/ld: cannot find -lsyslog-ng
+kablam! /usr/bin/ld: cannot find -lsyslog-ng
+kablam! /usr/bin/ld: cannot find -lsyslog-ng
+kablam! /usr/bin/ld: cannot find -lsyslog-ng
+kablam! /usr/bin/ld: cannot find -lgio-2.0
+kablam! /usr/bin/ld: cannot find -lgobject-2.0
+kablam! /usr/bin/ld: cannot find -lglib-2.0
+kablam! /usr/bin/ld: cannot find -lgobject-2.0
+kablam! collect2: error: ld returned 1 exit status
+kablam! 
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/syslog_ng_common-bd4af5692f1823a2.0.o" "-o" "/target/debug/deps/syslog_ng_common-bd4af5692f1823a2" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libsyslog_ng_sys-c7fa04abdf35bc0f.rlib" "/target/debug/deps/liblog-1ce22d3a92f37841.rlib" "/target/debug/deps/libglib-5a75469d0baece95.rlib" "/target/debug/deps/libgio_sys-d0e38cb1b4c01a9b.rlib" "/target/debug/deps/libgobject_sys-52c1159eb60ce36e.rlib" "/target/debug/deps/libglib_sys-13fe40cc78d761ce.rlib" "/target/debug/deps/libbitflags-a2e309ac4b5b98e2.rlib" "/target/debug/deps/liblibc-83c2bd88b43ecde3.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-dd7007be8bc832b7.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-19e7cee83d8001c7.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-58bde84252e1d985.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-2ddb28df747fcb8c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-21709492a058d9ce.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-e19aa6725ab01bfd.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-99ff2e008613b591.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-e2513aecb8fbb70c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-f3200ab7e7fe644c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-dba58b8da674d203.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-6d4348bcabf40a71.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-9f45c45fdcba4301.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-b4ef8c9d93bc879a.rlib" "-l" "syslog-ng" "-l" "syslog-ng" "-l" "syslog-ng" "-l" "syslog-ng" "-l" "syslog-ng" "-l" "syslog-ng" "-l" "syslog-ng" "-l" "gio-2.0" "-l" "gobject-2.0" "-l" "glib-2.0" "-l" "gobject-2.0" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lsyslog-ng
+kablam! /usr/bin/ld: cannot find -lsyslog-ng
+kablam! /usr/bin/ld: cannot find -lsyslog-ng
+kablam! /usr/bin/ld: cannot find -lsyslog-ng
+kablam! /usr/bin/ld: cannot find -lsyslog-ng
+kablam! /usr/bin/ld: cannot find -lsyslog-ng
+kablam! /usr/bin/ld: cannot find -lsyslog-ng
+kablam! /usr/bin/ld: cannot find -lgio-2.0
+kablam! /usr/bin/ld: cannot find -lgobject-2.0
+kablam! /usr/bin/ld: cannot find -lglib-2.0
+kablam! /usr/bin/ld: cannot find -lgobject-2.0
+kablam! collect2: error: ld returned 1 exit status
+kablam! 
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `syslog-ng-common`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f a74995f22eef7e38b9ec5bba0e901c6347ee3edbc56f916c3b5116031b303725`
+blam! a74995f22eef7e38b9ec5bba0e901c6347ee3edbc56f916c3b5116031b303725
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! e23db3f1cc52e1644618db556507c60a91593f2caf1f084a6042fb7a5e77d466
+boom! running `docker start -a e23db3f1cc52e1644618db556507c60a91593f2caf1f084a6042fb7a5e77d466`
+kablam!    Compiling syslog-ng-common v0.8.0 (file:///source)
+kablam! warning: use of extern static requires unsafe function or block (error E0133), #[warn(safe_extern_statics)] on by default
+kablam!   --> src/messages.rs:50:12
+kablam!    |
+kablam! 50 |         if messages::trace_flag != 0 {
+kablam!    |            ^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #36247 <https://github.com/rust-lang/rust/issues/35112>
+kablam! 
+kablam! warning: use of extern static requires unsafe function or block (error E0133), #[warn(safe_extern_statics)] on by default
+kablam!   --> src/messages.rs:52:19
+kablam!    |
+kablam! 52 |         } else if messages::debug_flag != 0 {
+kablam!    |                   ^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #36247 <https://github.com/rust-lang/rust/issues/35112>
+kablam! 
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/template_functions-fd1ded13fdd21e2c.0.o" "-o" "/target/debug/deps/template_functions-fd1ded13fdd21e2c" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libsyslog_ng_common-55f8adc7a67a7e5b.rlib" "/target/debug/deps/libglib-5a75469d0baece95.rlib" "/target/debug/deps/libsyslog_ng_sys-c7fa04abdf35bc0f.rlib" "/target/debug/deps/liblog-1ce22d3a92f37841.rlib" "/target/debug/deps/libgio_sys-d0e38cb1b4c01a9b.rlib" "/target/debug/deps/libgobject_sys-52c1159eb60ce36e.rlib" "/target/debug/deps/libglib_sys-13fe40cc78d761ce.rlib" "/target/debug/deps/libbitflags-a2e309ac4b5b98e2.rlib" "/target/debug/deps/liblibc-83c2bd88b43ecde3.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-2ddb28df747fcb8c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-21709492a058d9ce.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-e19aa6725ab01bfd.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-99ff2e008613b591.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-e2513aecb8fbb70c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-f3200ab7e7fe644c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-dba58b8da674d203.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-6d4348bcabf40a71.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-9f45c45fdcba4301.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-b4ef8c9d93bc879a.rlib" "-l" "syslog-ng" "-l" "syslog-ng" "-l" "syslog-ng" "-l" "syslog-ng" "-l" "syslog-ng" "-l" "syslog-ng" "-l" "syslog-ng" "-l" "gio-2.0" "-l" "gobject-2.0" "-l" "glib-2.0" "-l" "gobject-2.0" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lsyslog-ng
+kablam! /usr/bin/ld: cannot find -lsyslog-ng
+kablam! /usr/bin/ld: cannot find -lsyslog-ng
+kablam! /usr/bin/ld: cannot find -lsyslog-ng
+kablam! /usr/bin/ld: cannot find -lsyslog-ng
+kablam! /usr/bin/ld: cannot find -lsyslog-ng
+kablam! /usr/bin/ld: cannot find -lsyslog-ng
+kablam! /usr/bin/ld: cannot find -lgio-2.0
+kablam! /usr/bin/ld: cannot find -lgobject-2.0
+kablam! /usr/bin/ld: cannot find -lglib-2.0
+kablam! /usr/bin/ld: cannot find -lgobject-2.0
+kablam! collect2: error: ld returned 1 exit status
+kablam! 
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/syslog_ng_common-bd4af5692f1823a2.0.o" "-o" "/target/debug/deps/syslog_ng_common-bd4af5692f1823a2" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libsyslog_ng_sys-c7fa04abdf35bc0f.rlib" "/target/debug/deps/liblog-1ce22d3a92f37841.rlib" "/target/debug/deps/libglib-5a75469d0baece95.rlib" "/target/debug/deps/libgio_sys-d0e38cb1b4c01a9b.rlib" "/target/debug/deps/libgobject_sys-52c1159eb60ce36e.rlib" "/target/debug/deps/libglib_sys-13fe40cc78d761ce.rlib" "/target/debug/deps/libbitflags-a2e309ac4b5b98e2.rlib" "/target/debug/deps/liblibc-83c2bd88b43ecde3.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-dd7007be8bc832b7.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-19e7cee83d8001c7.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-58bde84252e1d985.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-2ddb28df747fcb8c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-21709492a058d9ce.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-e19aa6725ab01bfd.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-99ff2e008613b591.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-e2513aecb8fbb70c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-f3200ab7e7fe644c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-dba58b8da674d203.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-6d4348bcabf40a71.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-9f45c45fdcba4301.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-b4ef8c9d93bc879a.rlib" "-l" "syslog-ng" "-l" "syslog-ng" "-l" "syslog-ng" "-l" "syslog-ng" "-l" "syslog-ng" "-l" "syslog-ng" "-l" "syslog-ng" "-l" "gio-2.0" "-l" "gobject-2.0" "-l" "glib-2.0" "-l" "gobject-2.0" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lsyslog-ng
+kablam! /usr/bin/ld: cannot find -lsyslog-ng
+kablam! /usr/bin/ld: cannot find -lsyslog-ng
+kablam! /usr/bin/ld: cannot find -lsyslog-ng
+kablam! /usr/bin/ld: cannot find -lsyslog-ng
+kablam! /usr/bin/ld: cannot find -lsyslog-ng
+kablam! /usr/bin/ld: cannot find -lsyslog-ng
+kablam! /usr/bin/ld: cannot find -lgio-2.0
+kablam! /usr/bin/ld: cannot find -lgobject-2.0
+kablam! /usr/bin/ld: cannot find -lglib-2.0
+kablam! /usr/bin/ld: cannot find -lgobject-2.0
+kablam! collect2: error: ld returned 1 exit status
+kablam! 
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `syslog-ng-common`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f e23db3f1cc52e1644618db556507c60a91593f2caf1f084a6042fb7a5e77d466`
+blam! e23db3f1cc52e1644618db556507c60a91593f2caf1f084a6042fb7a5e77d466

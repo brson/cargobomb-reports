@@ -1,0 +1,46 @@
+boom! testing pty-shell-0.1.4 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 29409821930ba02e210b757cbc7d1718c38e357583f1e9770b3e4cc8bda1860d
+boom! running `docker start -a 29409821930ba02e210b757cbc7d1718c38e357583f1e9770b3e4cc8bda1860d`
+kablam!    Compiling pty-shell v0.1.4 (file:///source)
+kablam! warning: static variable `termios_to_restore` should have an upper case name such as `TERMIOS_TO_RESTORE`, #[warn(non_upper_case_globals)] on by default
+kablam!  --> src/terminal.rs:8:1
+kablam!   |
+kablam! 8 | static mut termios_to_restore: Option<Termios> = None;
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: static variable `sigwinch_count` should have an upper case name such as `SIGWINCH_COUNT`, #[warn(non_upper_case_globals)] on by default
+kablam!   --> src/raw_handler.rs:13:1
+kablam!    |
+kablam! 13 | static mut sigwinch_count: i32 = 0;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0276]: impl has stricter requirements than trait, #[deny(extra_requirement_in_impl)] on by default
+kablam!   --> src/lib.rs:50:5
+kablam!    |
+kablam! 38 |       fn proxy<H: PtyHandler>(&self, handler: H) -> Result<()>;
+kablam!    |       --------------------------------------------------------- definition of `proxy` from trait
+kablam! ...
+kablam! 50 |       fn proxy<H: PtyHandler + 'static>(&self, handler: H) -> Result<()> {
+kablam!    |  _____^ starting here...
+kablam! 51 | |         if self.pid() != 0 {
+kablam! 52 | |             try!(setup_terminal(self.pty().unwrap()));
+kablam! 53 | |             try!(do_proxy(self.pty().unwrap(), handler));
+kablam! 54 | |         }
+kablam! 55 | |
+kablam! 56 | |         Ok(())
+kablam! 57 | |     }
+kablam!    | |_____^ ...ending here: impl has extra requirement `H: 'static`
+kablam!    |
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #37166 <https://github.com/rust-lang/rust/issues/37166>
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `pty-shell`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 29409821930ba02e210b757cbc7d1718c38e357583f1e9770b3e4cc8bda1860d`
+blam! 29409821930ba02e210b757cbc7d1718c38e357583f1e9770b3e4cc8bda1860d

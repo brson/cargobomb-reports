@@ -1,0 +1,56 @@
+boom! testing https://github.com/dfockler/rust-toy-server#fca7c454537897ea7c360123ac959b834c10e5f6 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! d0d40f5771a1082025449f0a0695347a1d94a7d748ee842815bbc77e1fd07d0e
+boom! running `docker start -a d0d40f5771a1082025449f0a0695347a1d94a7d748ee842815bbc77e1fd07d0e`
+kablam!    Compiling server v0.0.1 (file:///source)
+kablam! error[E0432]: unresolved import `std::old_io::TcpListener`
+kablam!  --> src/main.rs:1:19
+kablam!   |
+kablam! 1 | use std::old_io::{TcpListener, TcpStream};
+kablam!   |                   ^^^^^^^^^^^ Could not find `old_io` in `std`
+kablam! 
+kablam! error[E0432]: unresolved import `std::old_io::TcpStream`
+kablam!  --> src/main.rs:1:32
+kablam!   |
+kablam! 1 | use std::old_io::{TcpListener, TcpStream};
+kablam!   |                                ^^^^^^^^^ Could not find `old_io` in `std`
+kablam! 
+kablam! error[E0432]: unresolved import `std::old_io::Acceptor`
+kablam!  --> src/main.rs:2:19
+kablam!   |
+kablam! 2 | use std::old_io::{Acceptor, Listener};
+kablam!   |                   ^^^^^^^^ Could not find `old_io` in `std`
+kablam! 
+kablam! error[E0432]: unresolved import `std::old_io::Listener`
+kablam!  --> src/main.rs:2:29
+kablam!   |
+kablam! 2 | use std::old_io::{Acceptor, Listener};
+kablam!   |                             ^^^^^^^^ Could not find `old_io` in `std`
+kablam! 
+kablam! error[E0432]: unresolved import `std::old_io::File`
+kablam!  --> src/main.rs:4:5
+kablam!   |
+kablam! 4 | use std::old_io::File;
+kablam!   |     ^^^^^^^^^^^^^^^^^ Could not find `old_io` in `std`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> src/main.rs:37:29
+kablam!    |
+kablam! 37 | 	let contents = File::open(&Path::new("index.html")).read_to_end().unwrap();
+kablam!    | 	                           ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error: no associated item named `spawn` found for type `std::thread::Thread` in the current scope
+kablam!   --> src/main.rs:21:8
+kablam!    |
+kablam! 21 |     			Thread::spawn(move|| {
+kablam!    |     			^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `server`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f d0d40f5771a1082025449f0a0695347a1d94a7d748ee842815bbc77e1fd07d0e`
+blam! d0d40f5771a1082025449f0a0695347a1d94a7d748ee842815bbc77e1fd07d0e

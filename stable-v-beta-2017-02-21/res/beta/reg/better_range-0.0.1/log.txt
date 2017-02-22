@@ -1,0 +1,222 @@
+boom! testing better_range-0.0.1 against beta for beta
+boom! running: cargo +beta build --frozen
+boom! creating container for: cargo +beta build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/beta:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/beta:/target:rw -e USER_ID=500 -e CMD=cargo +beta build --frozen cargobomb`
+blam! 3891c7621c43f4197b22d2a354967a3c866b35bec0d6755266fa9db8f390912f
+boom! running `docker start -a 3891c7621c43f4197b22d2a354967a3c866b35bec0d6755266fa9db8f390912f`
+kablam!    Compiling stainless v0.0.4
+kablam! error[E0432]: unresolved import `rustc::plugin`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/stainless-0.0.4/src/lib.rs:86:5
+kablam!    |
+kablam! 86 | use rustc::plugin;
+kablam!    |     ^^^^^^^^^^^^^ no `plugin` in the root
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::ast_util`
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/stainless-0.0.4/src/generate.rs:1:24
+kablam!   |
+kablam! 1 | use syntax::{ast, abi, ast_util, codemap};
+kablam!   |                        ^^^^^^^^ no `ast_util` in the root
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/stainless-0.0.4/src/describe.rs:59:47
+kablam!    |
+kablam! 59 |                 name: ast::Ident, tokens: Vec<ast::TokenTree>) -> Box<base::MacResult + 'a> {
+kablam!    |                                               ^^^^^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `MacItems` in `base`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/stainless-0.0.4/src/describe.rs:64:5
+kablam!    |
+kablam! 64 |     base::MacItems::new(Some(state.generate(sp, cx, ())).into_iter())
+kablam!    |     ^^^^^^^^^^^^^^^^^^^ Could not find `MacItems` in `base`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `InternedString` in `token`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/stainless-0.0.4/src/generate.rs:24:64
+kablam!    |
+kablam! 24 |         let test_attribute = cx.attribute(sp, cx.meta_word(sp, token::InternedString::new("test")));
+kablam!    |                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `InternedString` in `token`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `InternedString` in `token`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/stainless-0.0.4/src/generate.rs:27:61
+kablam!    |
+kablam! 27 |         let should_fail = cx.attribute(sp, cx.meta_word(sp, token::InternedString::new("should_fail")));
+kablam!    |                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `InternedString` in `token`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `InternedString` in `token`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/stainless-0.0.4/src/generate.rs:29:47
+kablam!    |
+kablam! 29 |         let non_snake_word = cx.meta_word(sp, token::InternedString::new("non_snake_case"));
+kablam!    |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `InternedString` in `token`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `InternedString` in `token`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/stainless-0.0.4/src/generate.rs:30:53
+kablam!    |
+kablam! 30 |         let allow_non_snake_case = cx.meta_list(sp, token::InternedString::new("allow"),
+kablam!    |                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `InternedString` in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `ItemFn` in module `ast`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/stainless-0.0.4/src/generate.rs:79:19
+kablam!    |
+kablam! 79 |             node: ast::ItemFn(
+kablam!    |                   ^^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use rustc::hir::ItemFn;`
+kablam!              `use rustc::hir::Item_::ItemFn;`
+kablam!              `use rustc::hir::intravisit::FnKind::ItemFn;`
+kablam!              `use syntax::visit::FnKind::ItemFn;`
+kablam! 
+kablam! error[E0425]: cannot find function `TyTup` in module `ast`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/stainless-0.0.4/src/generate.rs:81:46
+kablam!    |
+kablam! 81 |                 cx.fn_decl(vec![], cx.ty(sp, ast::TyTup(vec![]))),
+kablam!    |                                              ^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use rustc::hir::TyTup;`
+kablam!              `use rustc::hir::Ty_::TyTup;`
+kablam! 
+kablam! error[E0425]: cannot find value `NormalFn` in module `ast`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/stainless-0.0.4/src/generate.rs:84:17
+kablam!    |
+kablam! 84 |                 ast::NormalFn,
+kablam!    |                 ^^^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0425]: cannot find value `Rust` in module `abi`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/stainless-0.0.4/src/generate.rs:85:17
+kablam!    |
+kablam! 85 |                 abi::Rust,
+kablam!    |                 ^^^^^^^^^ not found in `abi`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use syntax::abi::Abi::Rust;`
+kablam! 
+kablam! error[E0425]: cannot find value `Inherited` in module `ast`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/stainless-0.0.4/src/generate.rs:92:18
+kablam!    |
+kablam! 92 |             vis: ast::Inherited,
+kablam!    |                  ^^^^^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use rustc::hir::Inherited;`
+kablam!              `use rustc::hir::Visibility::Inherited;`
+kablam!              `use syntax::ast::Visibility::Inherited;`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `InternedString` in `token`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/stainless-0.0.4/src/generate.rs:103:65
+kablam!     |
+kablam! 103 |         let bench_attribute = cx.attribute(sp, cx.meta_word(sp, token::InternedString::new("bench")));
+kablam!     |                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `InternedString` in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `ItemFn` in module `ast`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/stainless-0.0.4/src/generate.rs:113:19
+kablam!     |
+kablam! 113 |             node: ast::ItemFn(
+kablam!     |                   ^^^^^^^^^^^ not found in `ast`
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use rustc::hir::ItemFn;`
+kablam!               `use rustc::hir::Item_::ItemFn;`
+kablam!               `use rustc::hir::intravisit::FnKind::ItemFn;`
+kablam!               `use syntax::visit::FnKind::ItemFn;`
+kablam! 
+kablam! error[E0425]: cannot find function `TyTup` in module `ast`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/stainless-0.0.4/src/generate.rs:119:31
+kablam!     |
+kablam! 119 |                 }], cx.ty(sp, ast::TyTup(vec![]))),
+kablam!     |                               ^^^^^^^^^^ not found in `ast`
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use rustc::hir::TyTup;`
+kablam!               `use rustc::hir::Ty_::TyTup;`
+kablam! 
+kablam! error[E0425]: cannot find value `NormalFn` in module `ast`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/stainless-0.0.4/src/generate.rs:122:17
+kablam!     |
+kablam! 122 |                 ast::NormalFn,
+kablam!     |                 ^^^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0425]: cannot find value `Rust` in module `abi`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/stainless-0.0.4/src/generate.rs:123:17
+kablam!     |
+kablam! 123 |                 abi::Rust,
+kablam!     |                 ^^^^^^^^^ not found in `abi`
+kablam!     |
+kablam!     = help: possible candidate is found in another module, you can import it into scope:
+kablam!               `use syntax::abi::Abi::Rust;`
+kablam! 
+kablam! error[E0425]: cannot find value `Inherited` in module `ast`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/stainless-0.0.4/src/generate.rs:130:18
+kablam!     |
+kablam! 130 |             vis: ast::Inherited,
+kablam!     |                  ^^^^^^^^^^^^^^ not found in `ast`
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use rustc::hir::Inherited;`
+kablam!               `use rustc::hir::Visibility::Inherited;`
+kablam!               `use syntax::ast::Visibility::Inherited;`
+kablam! 
+kablam! error[E0425]: cannot find value `Public` in module `ast`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/stainless-0.0.4/src/generate.rs:158:47
+kablam!     |
+kablam! 158 |         let super_glob = cx.view_use_glob(sp, ast::Public, vec![cx.ident_of("super")]);
+kablam!     |                                               ^^^^^^^^^^^ not found in `ast`
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use rustc::hir::Public;`
+kablam!               `use rustc::hir::Visibility::Public;`
+kablam!               `use rustc::middle::privacy::AccessLevel::Public;`
+kablam!               `use rustc::ty::Visibility::Public;`
+kablam!             and 1 other candidates
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/stainless-0.0.4/src/lib.rs:98:35
+kablam!    |
+kablam! 98 |     reg.register_syntax_extension(token::intern("describe"), syntax::ext::base::IdentTT(box describe, None));
+kablam!    |                                   ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the beta release channel
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/stainless-0.0.4/src/lib.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(plugin_registrar, quote)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: The attribute `deriving` is currently unknown to the compiler and may have meaning added to it in the future (see issue #29642)
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/stainless-0.0.4/src/describe.rs:35:1
+kablam!    |
+kablam! 35 | #[deriving(Clone)]
+kablam!    | ^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: The attribute `deriving` is currently unknown to the compiler and may have meaning added to it in the future (see issue #29642)
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/stainless-0.0.4/src/describe.rs:46:1
+kablam!    |
+kablam! 46 | #[deriving(Clone)]
+kablam!    | ^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: The attribute `deriving` is currently unknown to the compiler and may have meaning added to it in the future (see issue #29642)
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/stainless-0.0.4/src/test.rs:5:1
+kablam!   |
+kablam! 5 | #[deriving(Clone)]
+kablam!   | ^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: The attribute `deriving` is currently unknown to the compiler and may have meaning added to it in the future (see issue #29642)
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/stainless-0.0.4/src/bench.rs:6:1
+kablam!   |
+kablam! 6 | #[deriving(Clone)]
+kablam!   | ^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: box expression syntax is experimental; you can call `Box::new` instead. (see issue #27779)
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/stainless-0.0.4/src/lib.rs:98:89
+kablam!    |
+kablam! 98 |     reg.register_syntax_extension(token::intern("describe"), syntax::ext::base::IdentTT(box describe, None));
+kablam!    |                                                                                         ^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 6 previous errors
+kablam! 
+kablam! error: Could not compile `stainless`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 3891c7621c43f4197b22d2a354967a3c866b35bec0d6755266fa9db8f390912f`
+blam! 3891c7621c43f4197b22d2a354967a3c866b35bec0d6755266fa9db8f390912f

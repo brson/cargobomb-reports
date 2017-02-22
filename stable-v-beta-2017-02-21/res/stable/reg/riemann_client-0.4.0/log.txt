@@ -1,0 +1,64 @@
+boom! testing riemann_client-0.4.0 against stable for beta
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/beta/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/beta/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! ab60f8899d63e40dce54b63d80e38f6ad98f2a033ab8ab164cbf06bb9f376535
+boom! running `docker start -a ab60f8899d63e40dce54b63d80e38f6ad98f2a033ab8ab164cbf06bb9f376535`
+kablam!    Compiling riemann_client v0.4.0 (file:///source)
+kablam! error[E0277]: the trait bound `std::cell::Cell<u32>: std::marker::Sync` is not satisfied
+kablam!    --> src/proto/mod.rs:282:6
+kablam!     |
+kablam! 282 | impl ::protobuf::Message for State {
+kablam!     |      ^^^^^^^^^^^^^^^^^^^ the trait `std::marker::Sync` is not implemented for `std::cell::Cell<u32>`
+kablam!     |
+kablam!     = note: `std::cell::Cell<u32>` cannot be shared between threads safely
+kablam!     = note: required because it appears within the type `proto::State`
+kablam!     = note: required by `protobuf::Message`
+kablam! 
+kablam! error[E0277]: the trait bound `std::cell::Cell<u32>: std::marker::Sync` is not satisfied
+kablam!    --> src/proto/mod.rs:875:6
+kablam!     |
+kablam! 875 | impl ::protobuf::Message for Event {
+kablam!     |      ^^^^^^^^^^^^^^^^^^^ the trait `std::marker::Sync` is not implemented for `std::cell::Cell<u32>`
+kablam!     |
+kablam!     = note: `std::cell::Cell<u32>` cannot be shared between threads safely
+kablam!     = note: required because it appears within the type `proto::Event`
+kablam!     = note: required by `protobuf::Message`
+kablam! 
+kablam! error[E0277]: the trait bound `std::cell::Cell<u32>: std::marker::Sync` is not satisfied
+kablam!     --> src/proto/mod.rs:1253:6
+kablam!      |
+kablam! 1253 | impl ::protobuf::Message for Query {
+kablam!      |      ^^^^^^^^^^^^^^^^^^^ the trait `std::marker::Sync` is not implemented for `std::cell::Cell<u32>`
+kablam!      |
+kablam!      = note: `std::cell::Cell<u32>` cannot be shared between threads safely
+kablam!      = note: required because it appears within the type `proto::Query`
+kablam!      = note: required by `protobuf::Message`
+kablam! 
+kablam! error[E0277]: the trait bound `std::cell::Cell<u32>: std::marker::Sync` is not satisfied
+kablam!     --> src/proto/mod.rs:1548:6
+kablam!      |
+kablam! 1548 | impl ::protobuf::Message for Msg {
+kablam!      |      ^^^^^^^^^^^^^^^^^^^ the trait `std::marker::Sync` is not implemented for `std::cell::Cell<u32>`
+kablam!      |
+kablam!      = note: `std::cell::Cell<u32>` cannot be shared between threads safely
+kablam!      = note: required because it appears within the type `proto::Msg`
+kablam!      = note: required by `protobuf::Message`
+kablam! 
+kablam! error[E0277]: the trait bound `std::cell::Cell<u32>: std::marker::Sync` is not satisfied
+kablam!     --> src/proto/mod.rs:1850:6
+kablam!      |
+kablam! 1850 | impl ::protobuf::Message for Attribute {
+kablam!      |      ^^^^^^^^^^^^^^^^^^^ the trait `std::marker::Sync` is not implemented for `std::cell::Cell<u32>`
+kablam!      |
+kablam!      = note: `std::cell::Cell<u32>` cannot be shared between threads safely
+kablam!      = note: required because it appears within the type `proto::Attribute`
+kablam!      = note: required by `protobuf::Message`
+kablam! 
+kablam! error: aborting due to 5 previous errors
+kablam! 
+kablam! error: Could not compile `riemann_client`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f ab60f8899d63e40dce54b63d80e38f6ad98f2a033ab8ab164cbf06bb9f376535`
+blam! ab60f8899d63e40dce54b63d80e38f6ad98f2a033ab8ab164cbf06bb9f376535
