@@ -1,0 +1,224 @@
+boom! testing tylar-0.1.2 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! e6ce727bdaa98d519679237fc2ff171ce1c54940a9e06f5fdf19008ce4608453
+boom! running `docker start -a e6ce727bdaa98d519679237fc2ff171ce1c54940a9e06f5fdf19008ce4608453`
+kablam!    Compiling tylar v0.1.2 (file:///source)
+kablam! error[E0277]: the trait bound `A: NumType<A>` is not satisfied
+kablam!   --> src/lib.rs:93:1
+kablam!    |
+kablam! 93 | impl<A:PosType<A>,B:NegType<B>> Neg<Succ<A>> for Succ<A> where A: Neg<A,Out=B> { type Out = Pred<B>; }
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `NumType<A>` is not implemented for `A`
+kablam!    |
+kablam!    = help: consider adding a `where A: NumType<A>` bound
+kablam!    = note: required by `PosType`
+kablam! 
+kablam! error[E0277]: the trait bound `B: NumType<B>` is not satisfied
+kablam!   --> src/lib.rs:93:1
+kablam!    |
+kablam! 93 | impl<A:PosType<A>,B:NegType<B>> Neg<Succ<A>> for Succ<A> where A: Neg<A,Out=B> { type Out = Pred<B>; }
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `NumType<B>` is not implemented for `B`
+kablam!    |
+kablam!    = help: consider adding a `where B: NumType<B>` bound
+kablam!    = note: required by `NegType`
+kablam! 
+kablam! error[E0277]: the trait bound `A: NumType<A>` is not satisfied
+kablam!   --> src/lib.rs:94:1
+kablam!    |
+kablam! 94 | impl<A:NegType<A>,B:PosType<B>> Neg<Pred<A>> for Pred<A> where A: Neg<A,Out=B> { type Out = Succ<B>; }
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `NumType<A>` is not implemented for `A`
+kablam!    |
+kablam!    = help: consider adding a `where A: NumType<A>` bound
+kablam!    = note: required by `NegType`
+kablam! 
+kablam! error[E0277]: the trait bound `B: NumType<B>` is not satisfied
+kablam!   --> src/lib.rs:94:1
+kablam!    |
+kablam! 94 | impl<A:NegType<A>,B:PosType<B>> Neg<Pred<A>> for Pred<A> where A: Neg<A,Out=B> { type Out = Succ<B>; }
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `NumType<B>` is not implemented for `B`
+kablam!    |
+kablam!    = help: consider adding a `where B: NumType<B>` bound
+kablam!    = note: required by `PosType`
+kablam! 
+kablam! error[E0277]: the trait bound `A: NumType<A>` is not satisfied
+kablam!    --> src/lib.rs:102:1
+kablam!     |
+kablam! 102 | impl<A:PosType<A>> Incr<Succ<A>> for Succ<A> { type Out = Succ<Succ<A>>; }
+kablam!     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `NumType<A>` is not implemented for `A`
+kablam!     |
+kablam!     = help: consider adding a `where A: NumType<A>` bound
+kablam!     = note: required by `PosType`
+kablam! 
+kablam! error[E0277]: the trait bound `A: NumType<A>` is not satisfied
+kablam!    --> src/lib.rs:103:1
+kablam!     |
+kablam! 103 | impl<A:NegType<A>> Incr<Pred<A>> for Pred<A> { type Out = A; }
+kablam!     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `NumType<A>` is not implemented for `A`
+kablam!     |
+kablam!     = help: consider adding a `where A: NumType<A>` bound
+kablam!     = note: required by `NegType`
+kablam! 
+kablam! error[E0277]: the trait bound `A: NumType<A>` is not satisfied
+kablam!    --> src/lib.rs:111:1
+kablam!     |
+kablam! 111 | impl<A:PosType<A>> Decr<Succ<A>> for Succ<A> { type Out = A; }
+kablam!     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `NumType<A>` is not implemented for `A`
+kablam!     |
+kablam!     = help: consider adding a `where A: NumType<A>` bound
+kablam!     = note: required by `PosType`
+kablam! 
+kablam! error[E0277]: the trait bound `A: NumType<A>` is not satisfied
+kablam!    --> src/lib.rs:112:1
+kablam!     |
+kablam! 112 | impl<A:NegType<A>> Decr<Pred<A>> for Pred<A> { type Out = Pred<Pred<A>>; }
+kablam!     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `NumType<A>` is not implemented for `A`
+kablam!     |
+kablam!     = help: consider adding a `where A: NumType<A>` bound
+kablam!     = note: required by `NegType`
+kablam! 
+kablam! error[E0277]: the trait bound `A: NumType<A>` is not satisfied
+kablam!    --> src/lib.rs:120:1
+kablam!     |
+kablam! 120 | impl<A:PosType<A>,B,C> Add<Succ<A>,B> for Succ<A> where B:Incr<B,Out=C>, A:Add<A,C>  { type Out = A::Out; }
+kablam!     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `NumType<A>` is not implemented for `A`
+kablam!     |
+kablam!     = help: consider adding a `where A: NumType<A>` bound
+kablam!     = note: required by `PosType`
+kablam! 
+kablam! error[E0277]: the trait bound `A: NumType<A>` is not satisfied
+kablam!    --> src/lib.rs:121:1
+kablam!     |
+kablam! 121 | impl<A:NegType<A>,B,C> Add<Pred<A>,B> for Pred<A> where B:Decr<B,Out=C>, A:Add<A,C>  { type Out = A::Out; }
+kablam!     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `NumType<A>` is not implemented for `A`
+kablam!     |
+kablam!     = help: consider adding a `where A: NumType<A>` bound
+kablam!     = note: required by `NegType`
+kablam! 
+kablam! error[E0277]: the trait bound `A: NumType<A>` is not satisfied
+kablam!    --> src/lib.rs:139:1
+kablam!     |
+kablam! 139 | impl<A:PosType<A>,B> Halve<Succ<Succ<A>>> for Succ<Succ<A>> where A:Halve<A,Out=B>  { type Out = Succ<B>; }
+kablam!     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `NumType<A>` is not implemented for `A`
+kablam!     |
+kablam!     = help: consider adding a `where A: NumType<A>` bound
+kablam!     = note: required by `PosType`
+kablam! 
+kablam! error[E0277]: the trait bound `A: NumType<A>` is not satisfied
+kablam!    --> src/lib.rs:140:1
+kablam!     |
+kablam! 140 | impl<A:NegType<A>,B> Halve<Pred<Pred<A>>> for Pred<Pred<A>> where A:Halve<A,Out=B>  { type Out = Pred<B>; }
+kablam!     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `NumType<A>` is not implemented for `A`
+kablam!     |
+kablam!     = help: consider adding a `where A: NumType<A>` bound
+kablam!     = note: required by `NegType`
+kablam! 
+kablam! error[E0277]: the trait bound `A: NumType<A>` is not satisfied
+kablam!    --> src/lib.rs:148:1
+kablam!     |
+kablam! 148 | impl<A:PosType<A>,B,C> Mul<Succ<A>,B> for Succ<A> where A:Mul<A,B,Out=C>, B:Add<B,C> { type Out = B::Out; }
+kablam!     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `NumType<A>` is not implemented for `A`
+kablam!     |
+kablam!     = help: consider adding a `where A: NumType<A>` bound
+kablam!     = note: required by `PosType`
+kablam! 
+kablam! error[E0277]: the trait bound `A: NumType<A>` is not satisfied
+kablam!    --> src/lib.rs:149:1
+kablam!     |
+kablam! 149 | impl<A:NegType<A>,B,NB,C> Mul<Pred<A>,B> for Pred<A> where A:Mul<A,B,Out=C>, B:Neg<B,Out=NB>, NB:Add<NB,C> { type Out = NB::Out; }
+kablam!     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `NumType<A>` is not implemented for `A`
+kablam!     |
+kablam!     = help: consider adding a `where A: NumType<A>` bound
+kablam!     = note: required by `NegType`
+kablam! 
+kablam! error[E0277]: the trait bound `A: NumType<A>` is not satisfied
+kablam!    --> src/lib.rs:156:1
+kablam!     |
+kablam! 156 | impl<A:PosType<A>> Div<Zero,Succ<A>> for Zero { type Out = Zero; }
+kablam!     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `NumType<A>` is not implemented for `A`
+kablam!     |
+kablam!     = help: consider adding a `where A: NumType<A>` bound
+kablam!     = note: required by `PosType`
+kablam! 
+kablam! error[E0277]: the trait bound `A: NumType<A>` is not satisfied
+kablam!    --> src/lib.rs:157:1
+kablam!     |
+kablam! 157 | impl<A:NegType<A>> Div<Zero,Pred<A>> for Zero { type Out = Zero; }
+kablam!     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `NumType<A>` is not implemented for `A`
+kablam!     |
+kablam!     = help: consider adding a `where A: NumType<A>` bound
+kablam!     = note: required by `NegType`
+kablam! 
+kablam! error[E0277]: the trait bound `NN: NumType<NN>` is not satisfied
+kablam!    --> src/lib.rs:159:1
+kablam!     |
+kablam! 159 |   impl<N:NegType<N>,NN:NegType<NN>,P:PosType<P>,PP:PosType<PP>> Div<Pred<N>,Pred<NN>> for Pred<N>
+kablam!     |  _^ starting here...
+kablam! 160 | |     where N:Neg<N,Out=P>, NN:Neg<NN,Out=PP>, Succ<P>:Div<Succ<P>,Succ<PP>> { type Out = <Succ<P> as Div<Succ<P>,Succ<PP>>>::Out; }
+kablam!     | |__________________________________________________________________________________________________________________________________^ ...ending here: the trait `NumType<NN>` is not implemented for `NN`
+kablam!     |
+kablam!     = help: consider adding a `where NN: NumType<NN>` bound
+kablam!     = note: required by `NegType`
+kablam! 
+kablam! error[E0277]: the trait bound `P: NumType<P>` is not satisfied
+kablam!    --> src/lib.rs:159:1
+kablam!     |
+kablam! 159 |   impl<N:NegType<N>,NN:NegType<NN>,P:PosType<P>,PP:PosType<PP>> Div<Pred<N>,Pred<NN>> for Pred<N>
+kablam!     |  _^ starting here...
+kablam! 160 | |     where N:Neg<N,Out=P>, NN:Neg<NN,Out=PP>, Succ<P>:Div<Succ<P>,Succ<PP>> { type Out = <Succ<P> as Div<Succ<P>,Succ<PP>>>::Out; }
+kablam!     | |__________________________________________________________________________________________________________________________________^ ...ending here: the trait `NumType<P>` is not implemented for `P`
+kablam!     |
+kablam!     = help: consider adding a `where P: NumType<P>` bound
+kablam!     = note: required by `PosType`
+kablam! 
+kablam! error[E0277]: the trait bound `PP: NumType<PP>` is not satisfied
+kablam!    --> src/lib.rs:159:1
+kablam!     |
+kablam! 159 |   impl<N:NegType<N>,NN:NegType<NN>,P:PosType<P>,PP:PosType<PP>> Div<Pred<N>,Pred<NN>> for Pred<N>
+kablam!     |  _^ starting here...
+kablam! 160 | |     where N:Neg<N,Out=P>, NN:Neg<NN,Out=PP>, Succ<P>:Div<Succ<P>,Succ<PP>> { type Out = <Succ<P> as Div<Succ<P>,Succ<PP>>>::Out; }
+kablam!     | |__________________________________________________________________________________________________________________________________^ ...ending here: the trait `NumType<PP>` is not implemented for `PP`
+kablam!     |
+kablam!     = help: consider adding a `where PP: NumType<PP>` bound
+kablam!     = note: required by `PosType`
+kablam! 
+kablam! error[E0277]: the trait bound `N: NumType<N>` is not satisfied
+kablam!    --> src/lib.rs:159:1
+kablam!     |
+kablam! 159 |   impl<N:NegType<N>,NN:NegType<NN>,P:PosType<P>,PP:PosType<PP>> Div<Pred<N>,Pred<NN>> for Pred<N>
+kablam!     |  _^ starting here...
+kablam! 160 | |     where N:Neg<N,Out=P>, NN:Neg<NN,Out=PP>, Succ<P>:Div<Succ<P>,Succ<PP>> { type Out = <Succ<P> as Div<Succ<P>,Succ<PP>>>::Out; }
+kablam!     | |__________________________________________________________________________________________________________________________________^ ...ending here: the trait `NumType<N>` is not implemented for `N`
+kablam!     |
+kablam!     = help: consider adding a `where N: NumType<N>` bound
+kablam!     = note: required by `NegType`
+kablam! 
+kablam! error[E0277]: the trait bound `N: NumType<N>` is not satisfied
+kablam!    --> src/lib.rs:161:1
+kablam!     |
+kablam! 161 |   impl<P:NumType<P>, N:NegType<N>,PP:NumType<PP>,PPP:NumType<PPP>> Div<Succ<P>,Pred<N>> for Succ<P>
+kablam!     |  _^ starting here...
+kablam! 162 | |     where N:Neg<N,Out=PP>, Succ<P>:Div<Succ<P>,Succ<PP>,Out=Succ<PPP>>, Succ<PPP>:Neg<Succ<PPP>> { type Out = <Succ<PPP> as Neg<Succ<PPP>>>::Out; }
+kablam!     | |___________________________________________________________________________________________________________________________________________________^ ...ending here: the trait `NumType<N>` is not implemented for `N`
+kablam!     |
+kablam!     = help: consider adding a `where N: NumType<N>` bound
+kablam!     = note: required by `NegType`
+kablam! 
+kablam! error[E0277]: the trait bound `N: NumType<N>` is not satisfied
+kablam!    --> src/lib.rs:163:1
+kablam!     |
+kablam! 163 |   impl<P:NumType<P>, N:NegType<N>,PP:NumType<PP>,PPP:NumType<PPP>> Div<Pred<N>,Succ<P>> for Pred<N>
+kablam!     |  _^ starting here...
+kablam! 164 | |     where N:Neg<N,Out=PP>, Succ<PP>:Div<Succ<PP>,Succ<P>,Out=Succ<PPP>>, Succ<PPP>:Neg<Succ<PPP>> { type Out = <Succ<PPP> as Neg<Succ<PPP>>>::Out; }
+kablam!     | |____________________________________________________________________________________________________________________________________________________^ ...ending here: the trait `NumType<N>` is not implemented for `N`
+kablam!     |
+kablam!     = help: consider adding a `where N: NumType<N>` bound
+kablam!     = note: required by `NegType`
+kablam! 
+kablam! error: aborting due to 22 previous errors
+kablam! 
+kablam! error: Could not compile `tylar`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f e6ce727bdaa98d519679237fc2ff171ce1c54940a9e06f5fdf19008ce4608453`
+blam! e6ce727bdaa98d519679237fc2ff171ce1c54940a9e06f5fdf19008ce4608453

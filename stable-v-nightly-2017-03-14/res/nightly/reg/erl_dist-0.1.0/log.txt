@@ -1,0 +1,202 @@
+boom! testing erl_dist-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 77a7e4c724a6a9527f6c05229442e15ccfb160723de8bc24045aab3f0ee4b773
+boom! running `docker start -a 77a7e4c724a6a9527f6c05229442e15ccfb160723de8bc24045aab3f0ee4b773`
+kablam!    Compiling handy_async v0.2.10
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/handy_async-0.2.10/src/io/read_pattern.rs:425:1
+kablam!     |
+kablam! 425 |   pub type ReadFixnum<R, P, T> where P: Pattern =
+kablam!     |  _^ starting here...
+kablam! 426 | |     <combinators::Map<P, fn(P::Value) -> T> as AsyncMatch<PatternReader<R>>>::Future;
+kablam!     | |_____________________________________________________________________________________^ ...ending here
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/handy_async-0.2.10/src/io/write_pattern.rs:225:1
+kablam!     |
+kablam! 225 |   pub type WriteFixnum<W, P, T> where P: Pattern =
+kablam!     |  _^ starting here...
+kablam! 226 | |     <combinators::Map<P, fn (P::Value) -> T> as AsyncMatch<PatternWriter<W>>>::Future;
+kablam!     | |______________________________________________________________________________________^ ...ending here
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/handy_async-0.2.10/src/matcher/async_match.rs:414:1
+kablam!     |
+kablam! 414 | pub type MatchBranch<M, A, B, C, D, E, F, G, H>
+kablam!     | ^
+kablam! 
+kablam!    Compiling erl_dist v0.1.0 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 5.78 secs
+boom! running `docker rm -f 77a7e4c724a6a9527f6c05229442e15ccfb160723de8bc24045aab3f0ee4b773`
+blam! 77a7e4c724a6a9527f6c05229442e15ccfb160723de8bc24045aab3f0ee4b773
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 9fb59c634b95300b20a8ddf32db0116f7077703dba236d360cdce95746aa5152
+boom! running `docker start -a 9fb59c634b95300b20a8ddf32db0116f7077703dba236d360cdce95746aa5152`
+kablam!    Compiling fibers v0.1.5
+kablam!    Compiling erl_dist v0.1.0 (file:///source)
+kablam! error: no method named `spawn_monitor` found for type `fibers::InPlaceExecutor` in the current scope
+kablam!   --> examples/send_msg.rs:63:28
+kablam!    |
+kablam! 63 |     let monitor = executor.spawn_monitor(TcpStream::connect(epmd_addr.clone())
+kablam!    |                            ^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!    = help: candidate #1: `use fibers::Spawn;`
+kablam! 
+kablam! error: no method named `spawn_monitor` found for type `fibers::InPlaceExecutor` in the current scope
+kablam!   --> examples/epmd_cli.rs:48:22
+kablam!    |
+kablam! 48 |             executor.spawn_monitor(connect.and_then(move |socket| client.get_names(socket)));
+kablam!    |                      ^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!    = help: candidate #1: `use fibers::Spawn;`
+kablam! 
+kablam! error: no method named `spawn_monitor` found for type `fibers::InPlaceExecutor` in the current scope
+kablam!   --> examples/epmd_cli.rs:56:32
+kablam!    |
+kablam! 56 |         let monitor = executor.spawn_monitor(connect.and_then(move |socket| client.dump(socket)));
+kablam!    |                                ^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!    = help: candidate #1: `use fibers::Spawn;`
+kablam! 
+kablam! error: no method named `spawn_monitor` found for type `fibers::InPlaceExecutor` in the current scope
+kablam!   --> examples/epmd_cli.rs:66:22
+kablam!    |
+kablam! 66 |             executor.spawn_monitor(connect.and_then(move |socket| {
+kablam!    |                      ^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!    = help: candidate #1: `use fibers::Spawn;`
+kablam! 
+kablam! error: no method named `spawn_monitor` found for type `fibers::InPlaceExecutor` in the current scope
+kablam!   --> examples/epmd_cli.rs:76:32
+kablam!    |
+kablam! 76 |         let monitor = executor.spawn_monitor(connect.and_then(move |socket| client.kill(socket)));
+kablam!    |                                ^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!    = help: candidate #1: `use fibers::Spawn;`
+kablam! 
+kablam! error: no method named `spawn_monitor` found for type `fibers::InPlaceExecutor` in the current scope
+kablam!   --> examples/epmd_cli.rs:90:22
+kablam!    |
+kablam! 90 |             executor.spawn_monitor(connect.and_then(move |socket| client.register(socket, node)));
+kablam!    |                      ^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!    = help: candidate #1: `use fibers::Spawn;`
+kablam! 
+kablam! error: aborting due to 5 previous errors
+kablam! 
+kablam! error: Could not compile `erl_dist`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `erl_dist`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: no method named `spawn_monitor` found for type `fibers::InPlaceExecutor` in the current scope
+kablam!   --> examples/handshake.rs:48:28
+kablam!    |
+kablam! 48 |     let monitor = executor.spawn_monitor(TcpStream::connect(epmd_addr.clone())
+kablam!    |                            ^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!    = help: candidate #1: `use fibers::Spawn;`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `erl_dist`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f 9fb59c634b95300b20a8ddf32db0116f7077703dba236d360cdce95746aa5152`
+blam! 9fb59c634b95300b20a8ddf32db0116f7077703dba236d360cdce95746aa5152
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! a7aa6c9e791e1760cd2089bb11d77a4487436a312645062ea166173d97ad281f
+boom! running `docker start -a a7aa6c9e791e1760cd2089bb11d77a4487436a312645062ea166173d97ad281f`
+kablam!    Compiling erl_dist v0.1.0 (file:///source)
+kablam! error: no method named `spawn_monitor` found for type `fibers::InPlaceExecutor` in the current scope
+kablam!   --> examples/epmd_cli.rs:48:22
+kablam!    |
+kablam! 48 |             executor.spawn_monitor(connect.and_then(move |socket| client.get_names(socket)));
+kablam!    |                      ^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!    = help: candidate #1: `use fibers::Spawn;`
+kablam! 
+kablam! error: no method named `spawn_monitor` found for type `fibers::InPlaceExecutor` in the current scope
+kablam!   --> examples/epmd_cli.rs:56:32
+kablam!    |
+kablam! 56 |         let monitor = executor.spawn_monitor(connect.and_then(move |socket| client.dump(socket)));
+kablam!    |                                ^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!    = help: candidate #1: `use fibers::Spawn;`
+kablam! 
+kablam! error: no method named `spawn_monitor` found for type `fibers::InPlaceExecutor` in the current scope
+kablam!   --> examples/epmd_cli.rs:66:22
+kablam!    |
+kablam! 66 |             executor.spawn_monitor(connect.and_then(move |socket| {
+kablam!    |                      ^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!    = help: candidate #1: `use fibers::Spawn;`
+kablam! 
+kablam! error: no method named `spawn_monitor` found for type `fibers::InPlaceExecutor` in the current scope
+kablam!   --> examples/epmd_cli.rs:76:32
+kablam!    |
+kablam! 76 |         let monitor = executor.spawn_monitor(connect.and_then(move |socket| client.kill(socket)));
+kablam!    |                                ^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!    = help: candidate #1: `use fibers::Spawn;`
+kablam! 
+kablam! error: no method named `spawn_monitor` found for type `fibers::InPlaceExecutor` in the current scope
+kablam!   --> examples/epmd_cli.rs:90:22
+kablam!    |
+kablam! 90 |             executor.spawn_monitor(connect.and_then(move |socket| client.register(socket, node)));
+kablam!    |                      ^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!    = help: candidate #1: `use fibers::Spawn;`
+kablam! 
+kablam! error: no method named `spawn_monitor` found for type `fibers::InPlaceExecutor` in the current scope
+kablam!   --> examples/send_msg.rs:63:28
+kablam!    |
+kablam! 63 |     let monitor = executor.spawn_monitor(TcpStream::connect(epmd_addr.clone())
+kablam!    |                            ^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!    = help: candidate #1: `use fibers::Spawn;`
+kablam! 
+kablam! error: aborting due to 5 previous errors
+kablam! 
+kablam! error: no method named `spawn_monitor` found for type `fibers::InPlaceExecutor` in the current scope
+kablam!   --> examples/handshake.rs:48:28
+kablam!    |
+kablam! 48 |     let monitor = executor.spawn_monitor(TcpStream::connect(epmd_addr.clone())
+kablam!    |                            ^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!    = help: candidate #1: `use fibers::Spawn;`
+kablam! 
+kablam! error: Could not compile `erl_dist`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `erl_dist`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `erl_dist`.
+kablam! error: build failed
+boom! running `docker rm -f a7aa6c9e791e1760cd2089bb11d77a4487436a312645062ea166173d97ad281f`
+blam! a7aa6c9e791e1760cd2089bb11d77a4487436a312645062ea166173d97ad281f

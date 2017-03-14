@@ -1,0 +1,63 @@
+boom! testing resources_package-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! f65817458a0a6c5ae9be260252c9ac52ade8cbbaf20a90577f2046bf1782892c
+boom! running `docker start -a f65817458a0a6c5ae9be260252c9ac52ade8cbbaf20a90577f2046bf1782892c`
+kablam!    Compiling resources_package_package v0.0.6
+kablam!    Compiling resources_package v0.1.0 (file:///source)
+kablam! error[E0432]: unresolved import `std::fs::PathExt`
+kablam!   --> src/lib.rs:40:21
+kablam!    |
+kablam! 40 | use std::fs::{self, PathExt};
+kablam!    |                     ^^^^^^^ no `PathExt` in `fs`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::ast::TokenTree`
+kablam!   --> src/lib.rs:43:25
+kablam!    |
+kablam! 43 | use syntax::ast::{self, TokenTree};
+kablam!    |                         ^^^^^^^^^ no `TokenTree` in `ast`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::ast::ExprLit`
+kablam!   --> src/lib.rs:71:27
+kablam!    |
+kablam! 71 |         use syntax::ast::{ExprLit, ExprVec};
+kablam!    |                           ^^^^^^^ no `ExprLit` in `ast`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::ast::ExprVec`
+kablam!   --> src/lib.rs:71:36
+kablam!    |
+kablam! 71 |         use syntax::ast::{ExprLit, ExprVec};
+kablam!    |                                    ^^^^^^^ no `ExprVec` in `ast`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `plugin` in `rustc`
+kablam!   --> src/lib.rs:51:35
+kablam!    |
+kablam! 51 | pub fn plugin_registrar(reg: &mut rustc::plugin::Registry) {
+kablam!    |                                   ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `plugin` in `rustc`
+kablam! 
+kablam! error[E0425]: cannot find function `walk_dir` in module `fs`
+kablam!    --> src/lib.rs:125:19
+kablam!     |
+kablam! 125 |             match fs::walk_dir(&path) {
+kablam!     |                   ^^^^^^^^^^^^ not found in `fs`
+kablam! 
+kablam! error[E0425]: cannot find function `LitByteStr` in module `ast`
+kablam!    --> src/lib.rs:165:44
+kablam!     |
+kablam! 165 |                 ecx.expr_lit(span.clone(), ast::LitByteStr(Rc::new(name.to_string().into_bytes()))),
+kablam!     |                                            ^^^^^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0061]: this function takes 3 parameters but 2 parameters were supplied
+kablam!    --> src/lib.rs:155:39
+kablam!     |
+kablam! 155 |             ecx.codemap().new_filemap(path.clone(), "".to_string());
+kablam!     |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 3 parameters
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `resources_package`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f65817458a0a6c5ae9be260252c9ac52ade8cbbaf20a90577f2046bf1782892c`
+blam! f65817458a0a6c5ae9be260252c9ac52ade8cbbaf20a90577f2046bf1782892c

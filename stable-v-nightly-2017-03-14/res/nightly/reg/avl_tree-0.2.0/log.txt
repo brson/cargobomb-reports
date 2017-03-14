@@ -1,0 +1,212 @@
+boom! testing avl_tree-0.2.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! ef231e0f45541a7b254b567fb971eb6aa05f26fb1ec4f76b787b5088c1c4662e
+boom! running `docker start -a ef231e0f45541a7b254b567fb971eb6aa05f26fb1ec4f76b787b5088c1c4662e`
+kablam!    Compiling avl_tree v0.2.0 (file:///source)
+kablam! warning: unused or unknown feature
+kablam!  --> src/lib.rs:5:12
+kablam!   |
+kablam! 5 | #![feature(rand)]
+kablam!   |            ^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_features)] on by default
+kablam! 
+kablam! warning: function is never used: `contains`
+kablam!    --> src/node.rs:145:1
+kablam!     |
+kablam! 145 |   fn contains<K:Ord,D>(key: &K, root: &Box<Node<K,D>> ) -> bool  {
+kablam!     |  _^ starting here...
+kablam! 146 | |     search(key,root).is_some()
+kablam! 147 | | }
+kablam!     | |_^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: function is never used: `min`
+kablam!    --> src/node.rs:175:1
+kablam!     |
+kablam! 175 |   pub fn min<K:Ord,D>(root: &Box<Node<K,D>>) -> &D {
+kablam!     |  _^ starting here...
+kablam! 176 | |     root.left.as_ref().map_or(&root.data, min)
+kablam! 177 | | }
+kablam!     | |_^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: function is never used: `max`
+kablam!    --> src/node.rs:180:1
+kablam!     |
+kablam! 180 |   pub fn max<K:Ord,D>(root: &Box<Node<K,D>>) -> &D {
+kablam!     |  _^ starting here...
+kablam! 181 | |     root.right.as_ref().map_or(&root.data, max)
+kablam! 182 | | }
+kablam!     | |_^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: function is never used: `simple_tree`
+kablam!    --> src/node.rs:249:1
+kablam!     |
+kablam! 249 |   fn simple_tree(size: i32) -> Box<Node<u64,i32>> {
+kablam!     |  _^ starting here...
+kablam! 250 | |     let mut t = Box::new(Node::<u64,i32>{key: 1, data: 1337, height: 0, left:None, right: None});
+kablam! 251 | |     for x in 2..size+1 {
+kablam! 252 | |         t = insert((x as u64),1337+x-1,t)
+kablam! 253 | |     }
+kablam! 254 | |     t
+kablam! 255 | | }
+kablam!     | |_^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: function is never used: `is_sorted_left`
+kablam!    --> src/node.rs:257:1
+kablam!     |
+kablam! 257 |   fn is_sorted_left<K:Ord,D>(node: &Box<Node<K,D>>) -> bool {
+kablam!     |  _^ starting here...
+kablam! 258 | |     node.left.as_ref().map_or(true, |succ| succ.key < node.key)
+kablam! 259 | | }
+kablam!     | |_^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: function is never used: `is_sorted_right`
+kablam!    --> src/node.rs:261:1
+kablam!     |
+kablam! 261 |   fn is_sorted_right<K:Ord,D>(node: &Box<Node<K,D>>) -> bool {
+kablam!     |  _^ starting here...
+kablam! 262 | |     node.right.as_ref().map_or(true, |succ| succ.key > node.key)
+kablam! 263 | | }
+kablam!     | |_^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: function is never used: `is_avl_node`
+kablam!    --> src/node.rs:265:1
+kablam!     |
+kablam! 265 |   fn is_avl_node<K:Ord,D>(node: &Box<Node<K,D>>) -> bool {
+kablam!     |  _^ starting here...
+kablam! 266 | |     let sorted = is_sorted_left(node) && is_sorted_right(node);
+kablam! 267 | |     let balanced = node.height == cmp::max(height(&node.left),height(&node.right))+1;
+kablam! 268 | |     return sorted && balanced;
+kablam! 269 | | }
+kablam!     | |_^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: function is never used: `is_avl_tree`
+kablam!    --> src/node.rs:271:1
+kablam!     |
+kablam! 271 |   pub fn is_avl_tree<K:Ord,D>(root: &Option<Box<Node<K,D>>>) -> bool {
+kablam!     |  _^ starting here...
+kablam! 272 | |     (*root).as_ref().map_or(true, is_avl_node)
+kablam! 273 | | }
+kablam!     | |_^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused imports: `max`, `min`, `to_string`
+kablam!  --> src/tree.rs:5:33
+kablam!   |
+kablam! 5 | use node::{insert,delete,search,min,max,is_avl_tree, to_string, min_pair, max_pair};
+kablam!   |                                 ^^^ ^^^              ^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: method is never used: `test_avl_tree`
+kablam!    --> src/tree.rs:183:5
+kablam!     |
+kablam! 183 |       fn test_avl_tree(&self) -> bool {
+kablam!     |  _____^ starting here...
+kablam! 184 | |         is_avl_tree(&self.root)
+kablam! 185 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.57 secs
+boom! running `docker rm -f ef231e0f45541a7b254b567fb971eb6aa05f26fb1ec4f76b787b5088c1c4662e`
+blam! ef231e0f45541a7b254b567fb971eb6aa05f26fb1ec4f76b787b5088c1c4662e
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 05237eec9b9fa122a6dc38800a52507145ab581f8733914f8493019edb86b74f
+boom! running `docker start -a 05237eec9b9fa122a6dc38800a52507145ab581f8733914f8493019edb86b74f`
+kablam!    Compiling avl_tree v0.2.0 (file:///source)
+kablam! warning: unused or unknown feature
+kablam!  --> src/lib.rs:5:12
+kablam!   |
+kablam! 5 | #![feature(rand)]
+kablam!   |            ^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_features)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/node.rs:368:9
+kablam!     |
+kablam! 368 |     let mut t = simple_tree(50);
+kablam!     |         ^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: unused imports: `max`, `min`, `to_string`
+kablam!  --> src/tree.rs:5:33
+kablam!   |
+kablam! 5 | use node::{insert,delete,search,min,max,is_avl_tree, to_string, min_pair, max_pair};
+kablam!   |                                 ^^^ ^^^              ^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.66 secs
+boom! running `docker rm -f 05237eec9b9fa122a6dc38800a52507145ab581f8733914f8493019edb86b74f`
+blam! 05237eec9b9fa122a6dc38800a52507145ab581f8733914f8493019edb86b74f
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! fb882585e2ba682f5ca813f1bd16226d18ba86ad3d29a177dd2480809d21dc3b
+boom! running `docker start -a fb882585e2ba682f5ca813f1bd16226d18ba86ad3d29a177dd2480809d21dc3b`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/avl_tree-67b8e13f7f376d4e
+blam! 
+blam! running 9 tests
+blam! test iterators::test_iterators ... ok
+blam! test node::rotations_on_tree ... ok
+blam! test node::simple_tree_operations ... ok
+blam! test node::test_delete ... ok
+blam! test node::test_drop_min ... ok
+blam! test node::test_drop_root ... ok
+blam! test node::test_min_after ... ok
+blam! test node::test_min_max ... ok
+blam! test tree::test_fuzz ... ok
+blam! 
+blam! test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured
+kablam!      Running /target/debug/deps/lib-bc259f8a9b833065
+blam! 
+blam! 
+blam! running 8 tests
+blam! test test_contains ... ok
+blam! test test_delete ... ok
+blam! test test_empty ... ok
+blam! test test_getters ... ok
+blam! test test_iter ... ok
+blam! test test_min ... ok
+blam! test test_range_iter ... ok
+blam! test test_perfomance ... FAILED
+blam! 
+blam! failures:
+blam! 
+blam! ---- test_perfomance stdout ----
+blam! 	thread 'test_perfomance' panicked at 'assertion failed: diff_full < diff_simple * 13', tests/lib.rs:97
+blam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+blam! 
+blam! 
+blam! failures:
+blam!     test_perfomance
+blam! 
+blam! test result: FAILED. 7 passed; 1 failed; 0 ignored; 0 measured
+blam! 
+kablam! error: test failed
+boom! running `docker rm -f fb882585e2ba682f5ca813f1bd16226d18ba86ad3d29a177dd2480809d21dc3b`
+blam! fb882585e2ba682f5ca813f1bd16226d18ba86ad3d29a177dd2480809d21dc3b

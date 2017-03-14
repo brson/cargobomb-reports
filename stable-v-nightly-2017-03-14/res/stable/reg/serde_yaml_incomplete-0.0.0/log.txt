@@ -1,0 +1,27 @@
+boom! testing serde_yaml_incomplete-0.0.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 299d8b4f3f2fa442ecdc45a569b0700dbdc82130ef261e453e4c18cc32f18a60
+boom! running `docker start -a 299d8b4f3f2fa442ecdc45a569b0700dbdc82130ef261e453e4c18cc32f18a60`
+kablam!    Compiling quasi_codegen v0.32.0
+kablam!    Compiling serde v0.4.3
+kablam! error[E0277]: the trait bound `Self: std::marker::Sized` is not satisfied
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde-0.4.3/src/de/mod.rs:22:5
+kablam!    |
+kablam! 22 |       fn deserialize<D>(deserializer: &mut D) -> Result<Self, D::Error>
+kablam!    |  _____^ starting here...
+kablam! 23 | |         where D: Deserializer;
+kablam!    | |______________________________^ ...ending here: the trait `std::marker::Sized` is not implemented for `Self`
+kablam!    |
+kablam!    = help: consider adding a `where Self: std::marker::Sized` bound
+kablam!    = note: required by `std::result::Result`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `serde`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 299d8b4f3f2fa442ecdc45a569b0700dbdc82130ef261e453e4c18cc32f18a60`
+blam! 299d8b4f3f2fa442ecdc45a569b0700dbdc82130ef261e453e4c18cc32f18a60

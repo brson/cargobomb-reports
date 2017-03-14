@@ -1,0 +1,564 @@
+boom! testing http-box-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! d0e5f60698216b7d8c3d20577375373c756cdd270cda9c710241239c49cec44e
+boom! running `docker start -a d0e5f60698216b7d8c3d20577375373c756cdd270cda9c710241239c49cec44e`
+kablam!    Compiling byte-slice v0.1.11
+kablam!    Compiling http-box v0.1.0 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 4.25 secs
+boom! running `docker rm -f d0e5f60698216b7d8c3d20577375373c756cdd270cda9c710241239c49cec44e`
+blam! d0e5f60698216b7d8c3d20577375373c756cdd270cda9c710241239c49cec44e
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! ed62a95261631d55b68c4717d59ded221a1502e42c503a4bde5c26fb90588d76
+boom! running `docker start -a ed62a95261631d55b68c4717d59ded221a1502e42c503a4bde5c26fb90588d76`
+kablam!    Compiling http-box v0.1.0 (file:///source)
+kablam! warning: unused result which must be used
+kablam!    --> tests/chunk_encoded.rs:136:5
+kablam!     |
+kablam! 136 |     File::open("tests/data/chunk_encoded.dat").unwrap().read_to_end(&mut d);
+kablam!     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> tests/head.rs:95:5
+kablam!    |
+kablam! 95 |     File::open("tests/data/multipart.dat").unwrap().read_to_end(&mut d);
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!    --> tests/head.rs:108:5
+kablam!     |
+kablam! 108 |     p.resume(&d);
+kablam!     |     ^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> tests/url_encoded.rs:78:5
+kablam!    |
+kablam! 78 |     File::open("tests/data/url_encoded.dat").unwrap().read_to_end(&mut d);
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!    --> tests/multipart.rs:159:5
+kablam!     |
+kablam! 159 |     File::open("tests/data/multipart.dat").unwrap().read_to_end(&mut d);
+kablam!     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!    --> tests/multipart.rs:181:5
+kablam!     |
+kablam! 181 |     util::parse_field(p.handler().headers.get("content-type").unwrap().as_bytes(),
+kablam!     |     ^
+kablam!     |
+kablam!     = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unknown lint: `cyclomatic_complexity`
+kablam!     --> src/http1.rs:1308:28
+kablam!      |
+kablam! 1308 |     #[cfg_attr(test, allow(cyclomatic_complexity))]
+kablam!      |                            ^^^^^^^^^^^^^^^^^^^^^
+kablam!      |
+kablam!      = note: #[warn(unknown_lints)] on by default
+kablam! 
+kablam! warning: method is never used: `reset`
+kablam!    --> src/test/http1/mod.rs:197:5
+kablam!     |
+kablam! 197 |     pub fn reset(&mut self) {
+kablam!     |     ^
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused variable: `s`
+kablam!   --> src/test/util/mod.rs:64:57
+kablam!    |
+kablam! 64 |         assert!(match parse_field($stream, b';', true, |s: FieldSegment|{true}) {
+kablam!    |                                                         ^
+kablam!    | 
+kablam!   ::: src/test/util/parse_field.rs
+kablam!    |
+kablam! 26 |     field_error!(b"name=\"value\\", b'\\', FieldError::Value);
+kablam!    |     ---------------------------------------------------------- in this macro invocation
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `s`
+kablam!   --> src/test/util/mod.rs:64:57
+kablam!    |
+kablam! 64 |         assert!(match parse_field($stream, b';', true, |s: FieldSegment|{true}) {
+kablam!    |                                                         ^
+kablam!    | 
+kablam!   ::: src/test/util/parse_field.rs
+kablam!    |
+kablam! 31 |     field_error!(b"name=\"value", b'e', FieldError::Value);
+kablam!    |     ------------------------------------------------------- in this macro invocation
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `s`
+kablam!   --> src/test/util/mod.rs:64:57
+kablam!    |
+kablam! 64 |         assert!(match parse_field($stream, b';', true, |s: FieldSegment|{true}) {
+kablam!    |                                                         ^
+kablam!    | 
+kablam!   ::: src/test/util/parse_field.rs
+kablam!    |
+kablam! 36 |     field_error!(b"name=\"value\" abc", b'a', FieldError::Value);
+kablam!    |     ------------------------------------------------------------- in this macro invocation
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!   --> src/test/util/mod.rs:27:51
+kablam!    |
+kablam! 27 |                                               let mut v = String::new();
+kablam!    |                                                   ^^^^^
+kablam!    | 
+kablam!   ::: src/test/util/parse_field.rs
+kablam!    |
+kablam! 43 |     field!(map, b"name-no-value", 13);
+kablam!    |     ---------------------------------- in this macro invocation
+kablam!    |
+kablam!    = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!   --> src/test/util/mod.rs:27:51
+kablam!    |
+kablam! 27 |                                               let mut v = String::new();
+kablam!    |                                                   ^^^^^
+kablam!    | 
+kablam!   ::: src/test/util/parse_field.rs
+kablam!    |
+kablam! 52 |     field!(map, b"name-no-value;", 14);
+kablam!    |     ----------------------------------- in this macro invocation
+kablam!    |
+kablam!    = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!   --> src/test/util/mod.rs:27:51
+kablam!    |
+kablam! 27 |                                               let mut v = String::new();
+kablam!    |                                                   ^^^^^
+kablam!    | 
+kablam!   ::: src/test/util/parse_field.rs
+kablam!    |
+kablam! 61 |     field!(map, b"name=\"value \\\"2\\\" here\"", 23);
+kablam!    |     -------------------------------------------------- in this macro invocation
+kablam!    |
+kablam!    = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!   --> src/test/util/mod.rs:27:51
+kablam!    |
+kablam! 27 |                                               let mut v = String::new();
+kablam!    |                                                   ^^^^^
+kablam!    | 
+kablam!   ::: src/test/util/parse_field.rs
+kablam!    |
+kablam! 70 |     field!(map, b"name=\"value\"", 12);
+kablam!    |     ----------------------------------- in this macro invocation
+kablam!    |
+kablam!    = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!   --> src/test/util/mod.rs:27:51
+kablam!    |
+kablam! 27 |                                               let mut v = String::new();
+kablam!    |                                                   ^^^^^
+kablam!    | 
+kablam!   ::: src/test/util/parse_field.rs
+kablam!    |
+kablam! 79 |     field!(map, b"name=\"value\";", 13);
+kablam!    |     ------------------------------------ in this macro invocation
+kablam!    |
+kablam!    = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!   --> src/test/util/mod.rs:27:51
+kablam!    |
+kablam! 27 |                                               let mut v = String::new();
+kablam!    |                                                   ^^^^^
+kablam!    | 
+kablam!   ::: src/test/util/parse_field.rs
+kablam!    |
+kablam! 88 |     field!(map, b"name-no-value; name1=value1; name2=\"value2\"", 43);
+kablam!    |     ------------------------------------------------------------------ in this macro invocation
+kablam!    |
+kablam!    = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!   --> src/test/util/mod.rs:27:51
+kablam!    |
+kablam! 27 |                                               let mut v = String::new();
+kablam!    |                                                   ^^^^^
+kablam!    | 
+kablam!   ::: src/test/util/parse_field.rs
+kablam!    |
+kablam! 99 |     field!(map, b"name-no-value; name1=value1; name2=\"value2\";", 44);
+kablam!    |     ------------------------------------------------------------------- in this macro invocation
+kablam!    |
+kablam!    = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/test/util/mod.rs:27:51
+kablam!     |
+kablam! 27  |                                               let mut v = String::new();
+kablam!     |                                                   ^^^^^
+kablam!     | 
+kablam!    ::: src/test/util/parse_field.rs
+kablam!     |
+kablam! 110 |     field!(map, b"NAME1=value1; NAME2=value2", 26);
+kablam!     |     ----------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/test/util/mod.rs:27:51
+kablam!     |
+kablam! 27  |                                               let mut v = String::new();
+kablam!     |                                                   ^^^^^
+kablam!     | 
+kablam!    ::: src/test/util/parse_field.rs
+kablam!     |
+kablam! 120 |     field!(map, b"name=value", 10);
+kablam!     |     ------------------------------- in this macro invocation
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/test/util/mod.rs:27:51
+kablam!     |
+kablam! 27  |                                               let mut v = String::new();
+kablam!     |                                                   ^^^^^
+kablam!     | 
+kablam!    ::: src/test/util/parse_field.rs
+kablam!     |
+kablam! 129 |     field!(map, b"name=value;", 11);
+kablam!     |     -------------------------------- in this macro invocation
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 33.19 secs
+boom! running `docker rm -f ed62a95261631d55b68c4717d59ded221a1502e42c503a4bde5c26fb90588d76`
+blam! ed62a95261631d55b68c4717d59ded221a1502e42c503a4bde5c26fb90588d76
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 783c78e10832341cd52b8b8498d36d46bd3fda3902f3be68e1b0eca7d27e7450
+boom! running `docker start -a 783c78e10832341cd52b8b8498d36d46bd3fda3902f3be68e1b0eca7d27e7450`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/chunk_encoded-640f207e04d8b6a5
+blam! 
+blam! running 1 test
+blam! test chunk_encoded_body ... ok
+blam! 
+blam! test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/head-8d170c4112a5fe05
+blam! 
+blam! running 1 test
+blam! test head ... ok
+blam! 
+blam! test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/http_box-a4e212065494162f
+blam! 
+blam! running 239 tests
+blam! test test::http1::chunk_data::multiple_chunks ... ok
+blam! test test::http1::chunk_data::single ... ok
+blam! test test::http1::chunk_data::multiple ... ok
+blam! test test::http1::chunk_extension_name::callback_exit ... ok
+blam! test test::http1::chunk_extension_name::no_value ... ok
+blam! test test::http1::chunk_extension_name::normalize ... ok
+blam! test test::http1::chunk_extension_name::valid ... ok
+blam! test test::http1::chunk_extension_quoted_value::basic ... ok
+blam! test test::http1::chunk_extension_name::byte_check ... ok
+blam! test test::http1::chunk_extension_finished::callback_exit ... ok
+blam! test test::http1::chunk_extension_quoted_value::byte_check ... ok
+blam! test test::http1::chunk_extension_quoted_value::callback_exit ... ok
+blam! test test::http1::chunk_extension_quoted_value::escaped ... ok
+blam! test test::http1::chunk_extension_quoted_value::repeat ... ok
+blam! test test::http1::chunk_extension_value::basic ... ok
+blam! test test::http1::chunk_data::byte_check ... ok
+blam! test test::http1::chunk_extension_value::byte_check_unquoted ... ok
+blam! test test::http1::chunk_extension_value::callback_exit ... ok
+blam! test test::http1::chunk_extension_value::linear_space ... ok
+blam! test test::http1::chunk_extension_value::repeat ... ok
+blam! test test::http1::chunk_extensions_finished::callback_exit ... ok
+blam! test test::http1::chunk_length::length1 ... ok
+blam! test test::http1::chunk_length::callback_exit ... ok
+blam! test test::http1::chunk_length::byte_check ... ok
+blam! test test::http1::chunk_length::length2 ... ok
+blam! test test::http1::chunk_length::length3 ... ok
+blam! test test::http1::chunk_length::missing_length ... ok
+blam! test test::http1::chunk_length::too_long ... ok
+blam! test test::http1::chunk_trailer::multiple ... ok
+blam! test test::http1::chunk_trailer::single ... ok
+blam! test test::http1::header_name::by_name_accept ... ok
+blam! test test::http1::header_name::by_name_accept_charset ... ok
+blam! test test::http1::header_name::by_name_accept_encoding ... ok
+blam! test test::http1::header_name::by_name_accept_language ... ok
+blam! test test::http1::header_name::by_name_authorization ... ok
+blam! test test::http1::header_name::by_name_cache_control ... ok
+blam! test test::http1::header_name::by_name_connection ... ok
+blam! test test::http1::header_name::by_name_content_length ... ok
+blam! test test::http1::header_name::by_name_content_security_policy ... ok
+blam! test test::http1::header_name::by_name_content_type ... ok
+blam! test test::http1::header_name::by_name_cookie ... ok
+blam! test test::http1::header_name::by_name_last_modified ... ok
+blam! test test::http1::header_name::by_name_location ... ok
+blam! test test::http1::header_name::by_name_pragma ... ok
+blam! test test::http1::header_name::by_name_set_cookie ... ok
+blam! test test::http1::header_name::by_name_transfer_encoding ... ok
+blam! test test::http1::header_name::by_name_upgrade ... ok
+blam! test test::http1::header_name::by_name_user_agent ... ok
+blam! test test::http1::header_name::by_name_www_authenticate ... ok
+blam! test test::http1::header_name::by_name_x_forwarded_for ... ok
+blam! test test::http1::header_name::by_name_x_forwarded_host ... ok
+blam! test test::http1::header_name::by_name_x_powered_by ... ok
+blam! test test::http1::header_name::by_name_x_webkit_csp ... ok
+blam! test test::http1::header_name::by_name_x_xss_protection ... ok
+blam! test test::http1::header_name::byte_check ... ok
+blam! test test::http1::header_name::callback_exit ... ok
+blam! test test::http1::header_name::multiple ... ok
+blam! test test::http1::header_name::normalize ... ok
+blam! test test::http1::header_name::single ... ok
+blam! test test::http1::header_quoted_value::escaped_multiple ... ok
+blam! test test::http1::header_quoted_value::multiple ... ok
+blam! test test::http1::header_quoted_value::single ... ok
+blam! test test::http1::header_quoted_value::byte_check ... ok
+blam! test test::http1::header_value::multiline ... ok
+blam! test test::http1::header_value::multiple ... ok
+blam! test test::http1::header_quoted_value::escaped_single ... ok
+blam! test test::http1::header_value::single ... ok
+blam! test test::http1::header_value::space ... ok
+blam! test test::http1::headers_finished::callback_exit ... ok
+blam! test test::http1::headers_finished::finished ... ok
+blam! test test::http1::initial_finished::callback_exit ... ok
+blam! test test::http1::multipart_begin::callback_exit ... ok
+blam! test test::http1::multipart_boundary::first_boundary_hyphen1_error ... ok
+blam! test test::http1::multipart_boundary::first_boundary_hyphen2_error ... ok
+blam! test test::http1::multipart_boundary::first_boundary_match ... ok
+blam! test test::http1::header_value::byte_check ... ok
+blam! test test::http1::multipart_boundary::first_boundary_no_match ... ok
+blam! test test::http1::multipart_boundary::second_boundary_match ... ok
+blam! test test::http1::multipart_boundary::second_false_boundary ... ok
+blam! test test::http1::multipart_boundary::second_false_third_boundary_match ... ok
+blam! test test::http1::multipart_data::data_ok ... ok
+blam! test test::http1::multipart_header::headers_ok ... ok
+blam! test test::http1::request_http::h_lower ... ok
+blam! test test::http1::header_value::callback_exit ... ok
+blam! test test::http1::request_http::callback_exit ... ok
+blam! test test::http1::request_http::htt_lower ... ok
+blam! test test::http1::request_http::ht_upper ... ok
+blam! test test::http1::request_http::ht_lower ... ok
+blam! test test::http1::request_http::htt_upper ... ok
+blam! test test::http1::request_http::h_upper ... ok
+blam! test test::http1::request_http::http_1_0 ... ok
+blam! test test::http1::request_http::http_1_1 ... ok
+blam! test test::http1::request_http::http_2_0 ... ok
+blam! test test::http1::request_http::http_lower ... ok
+blam! test test::http1::request_http::http_slash_lower ... ok
+blam! test test::http1::request_http::http_slash_upper ... ok
+blam! test test::http1::request_http::http_upper ... ok
+blam! test test::http1::request_method::multiple_delete ... ok
+blam! test test::http1::request_method::callback_exit ... ok
+blam! test test::http1::request_method::byte_check ... ok
+blam! test test::http1::request_method::multiple_get ... ok
+blam! test test::http1::request_method::multiple_connect ... ok
+blam! test test::http1::request_method::multiple_head ... ok
+blam! test test::http1::request_method::multiple_options ... ok
+blam! test test::http1::request_method::multiple_post ... ok
+blam! test test::http1::request_method::multiple_put ... ok
+blam! test test::http1::request_method::multiple_trace ... ok
+blam! test test::http1::request_method::multiple_unknown ... ok
+blam! test test::http1::request_method::single_delete ... ok
+blam! test test::http1::request_method::single_connect ... ok
+blam! test test::http1::request_method::single_get ... ok
+blam! test test::http1::request_method::normalize ... ok
+blam! test test::http1::request_method::single_head ... ok
+blam! test test::http1::request_method::single_put ... ok
+blam! test test::http1::request_method::single_trace ... ok
+blam! test test::http1::request_method::single_post ... ok
+blam! test test::http1::request_method::single_options ... ok
+blam! test test::http1::request_method::single_unknown ... ok
+blam! test test::http1::request_method::starting_space ... ok
+blam! test test::http1::request_url::callback_exit ... ok
+blam! test test::http1::request_url::asterisk ... ok
+blam! test test::http1::request_url::with_schema ... ok
+blam! test test::http1::request_url::without_schema ... ok
+blam! test test::http1::request_version::v0_1000 ... ok
+blam! test test::http1::request_version::v0_0 ... ok
+blam! test test::http1::request_version::callback_exit ... ok
+blam! test test::http1::request_version::v1000_0 ... ok
+blam! test test::http1::request_version::v1_0 ... ok
+blam! test test::http1::request_version::v1_1 ... ok
+blam! test test::http1::request_url::byte_check ... ok
+blam! test test::http1::response_http::callback_exit ... ok
+blam! test test::http1::response_http::h_lower ... ok
+blam! test test::http1::response_http::ht_lower ... ok
+blam! test test::http1::response_http::h_upper ... ok
+blam! test test::http1::response_http::ht_upper ... ok
+blam! test test::http1::request_version::v999_999 ... ok
+blam! test test::http1::request_version::v2_0 ... ok
+blam! test test::http1::response_http::http_1_0 ... ok
+blam! test test::http1::response_http::http_2_0 ... ok
+blam! test test::http1::response_http::http_lower ... ok
+blam! test test::http1::response_http::http_slash_lower ... ok
+blam! test test::http1::response_http::http_slash_upper ... ok
+blam! test test::http1::response_http::http_upper ... ok
+blam! test test::http1::response_http::htt_upper ... ok
+blam! test test::http1::response_status::byte_check ... ok
+blam! test test::http1::response_http::http_1_1 ... ok
+blam! test test::http1::response_status::single ... ok
+blam! test test::http1::response_status::multiple ... ok
+blam! test test::http1::response_status_code::callback_exit ... ok
+blam! test test::http1::response_status_code::v0 ... ok
+blam! test test::http1::response_status_code::v1000 ... ok
+blam! test test::http1::response_status_code::v999 ... ok
+blam! test test::http1::response_http::htt_lower ... ok
+blam! test test::http1::response_status::callback_exit ... ok
+blam! test test::http1::response_version::v0_1000 ... ok
+blam! test test::http1::response_version::callback_exit ... ok
+blam! test test::http1::response_version::v0_0 ... ok
+blam! test test::http1::response_version::v1_0 ... ok
+blam! test test::http1::response_version::v1_1 ... ok
+blam! test test::http1::response_status_code::byte_check ... ok
+blam! test test::http1::response_version::v999_999 ... ok
+blam! test test::http1::url_encoded_name::basic ... ok
+blam! test test::http1::url_encoded_name::callback_exit ... ok
+blam! test test::http1::response_version::v2_0 ... ok
+blam! test test::http1::url_encoded_name::ending_ampersand ... ok
+blam! test test::http1::url_encoded_name::ending_equal ... ok
+blam! test test::http1::url_encoded_name::byte_check ... ok
+blam! test test::http1::url_encoded_name::ending_plus ... ok
+blam! test test::http1::response_version::v1000_0 ... ok
+blam! test test::http1::url_encoded_name::hex_error ... ok
+blam! test test::http1::url_encoded_name::ending_percent ... ok
+blam! test test::http1::url_encoded_name::hex ... ok
+blam! test test::http1::url_encoded_value::equal_error ... ok
+blam! test test::http1::url_encoded_value::full_simple ... ok
+blam! test test::http1::url_encoded_value::callback_exit ... ok
+blam! test test::http1::url_encoded_value::byte_check ... ok
+blam! test test::http1::url_encoded_value::full_complex ... ok
+blam! test test::http1::url_encoded_value::hex_error ... ok
+blam! test test::http1::url_encoded_value::value ... ok
+blam! test test::http1::url_encoded_value::value_hex ... ok
+blam! test test::http1::url_encoded_value::value_ending_percent ... ok
+blam! test test::http1::url_encoded_value::value_ending_ampersand ... ok
+blam! test test::util::decode::basic ... ok
+blam! test test::http1::url_encoded_value::value_ending_plus ... ok
+blam! test test::util::decode::byte_check ... ok
+blam! test test::util::decode::ending_hex ... ok
+blam! test test::util::decode::ending_plus ... ok
+blam! test test::util::decode::complex ... ok
+blam! test test::util::decode::ending_hex_error ... ok
+blam! test test::util::decode::plus ... ok
+blam! test test::util::decode::middle_plus ... ok
+blam! test test::util::decode::middle_hex ... ok
+blam! test test::util::decode::starting_hex ... ok
+blam! test test::util::decode::starting_hex_error ... ok
+blam! test test::util::parse_field::missing_escape_byte_error ... ok
+blam! test test::util::decode::middle_hex_error ... ok
+blam! test test::util::parse_field::missing_semicolon_error ... ok
+blam! test test::util::parse_field::multiple_no_semi ... ok
+blam! test test::util::parse_field::multiple_with_semi ... ok
+blam! test test::util::parse_field::missing_quote_error ... ok
+blam! test test::util::parse_field::no_value_no_semi ... ok
+blam! test test::util::parse_field::no_value_with_semi ... ok
+blam! test test::util::decode::starting_plus ... ok
+blam! test test::util::parse_field::normalize ... ok
+blam! test test::util::parse_field::quoted_no_semi ... ok
+blam! test test::util::parse_field::unquoted_no_semi ... ok
+blam! test test::util::parse_field::unquoted_with_semi ... ok
+blam! test test::util::parse_query_field::basic ... ok
+blam! test test::util::parse_query_field::complex ... ok
+blam! test test::util::parse_query_field::ending_ampersand ... ok
+blam! test test::util::parse_field::quoted_with_semi ... ok
+blam! test test::util::parse_query_field::ending_equal ... ok
+blam! test test::util::parse_field::quoted_escaped ... ok
+blam! test test::util::parse_query_field::ending_hex ... ok
+blam! test test::util::parse_query_field::ending_hex_error1 ... ok
+blam! test test::util::parse_query_field::ending_hex_error2 ... ok
+blam! test test::util::parse_query_field::ending_hex_error3 ... ok
+blam! test test::util::parse_query_field::ending_plus ... ok
+blam! test test::util::parse_query_field::starting_ampersand_error ... ok
+blam! test test::util::parse_query_field::starting_equal_error ... ok
+blam! test test::util::parse_query_field::starting_hex ... ok
+blam! test test::util::parse_query_field::starting_hex_error1 ... ok
+blam! test test::util::parse_query_field::starting_hex_error2 ... ok
+blam! test test::util::parse_query_value::complex ... ok
+blam! test test::util::parse_query_value::basic ... ok
+blam! test test::util::parse_query_field::starting_plus ... ok
+blam! test test::util::parse_query_field::starting_hex_error3 ... ok
+blam! test test::util::parse_query_value::ending_hex_error2 ... ok
+blam! test test::util::parse_query_value::ending_ampersand ... ok
+blam! test test::util::parse_query_value::ending_hex ... ok
+blam! test test::util::parse_query_value::ending_hex_error1 ... ok
+blam! test test::util::parse_query_value::starting_ampersand ... ok
+blam! test test::util::parse_query_value::ending_plus ... ok
+blam! test test::util::parse_query_value::ending_hex_error3 ... ok
+blam! test test::util::parse_query_value::starting_hex_error1 ... ok
+blam! test test::util::parse_query_value::starting_hex ... ok
+blam! test test::util::parse_query_value::starting_hex_error2 ... ok
+blam! test test::util::parse_query_value::starting_plus ... ok
+blam! test test::util::parse_query_value::starting_hex_error3 ... ok
+blam! 
+blam! test result: ok. 239 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/multipart-bc3ba239427be0e3
+blam! 
+blam! running 1 test
+blam! test multipart ... ok
+blam! 
+blam! test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/skeptic-509ef6a13b3e5ba6
+blam! 
+blam! running 1 test
+kablam! warning: unused result which must be used
+kablam!    --> /tmp/rust-skeptic.9pR9FK7TXv50/test.rs:123:5
+kablam!     |
+kablam! 123 |       p.resume(b"GET /url?query HTTP/1.0\r\n\
+kablam!     |  _____^ starting here...
+kablam! 124 | |                Header1: This is the first header\r\n\
+kablam! 125 | |                Header2: This is the second header\r\n\
+kablam! 126 | |                \r\n");
+kablam!     | |______________________^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(unused_must_use)] on by default
+kablam! 
+blam! test readme_0 ... ok
+blam! 
+blam! test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/url_encoded-030af61d2d4a4d19
+blam! 
+blam! running 1 test
+blam! test url_encoded ... ok
+blam! 
+blam! test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!    Doc-tests http-box
+blam! 
+blam! running 5 tests
+blam! test src/util.rs - util::decode_into_vec (line 452) ... ok
+blam! test src/util.rs - util::parse_field (line 506) ... ok
+blam! test src/util.rs - util::parse_field (line 532) ... ok
+blam! test src/util.rs - util::decode (line 351) ... ok
+blam! test src/util.rs - util::parse_query (line 740) ... ok
+blam! 
+blam! test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f 783c78e10832341cd52b8b8498d36d46bd3fda3902f3be68e1b0eca7d27e7450`
+blam! 783c78e10832341cd52b8b8498d36d46bd3fda3902f3be68e1b0eca7d27e7450

@@ -1,0 +1,44 @@
+boom! testing utmp-0.0.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! e020eecd80b14d25e9d5c5189267b059703d609b1da1b51e1657b76d24d0bf63
+boom! running `docker start -a e020eecd80b14d25e9d5c5189267b059703d609b1da1b51e1657b76d24d0bf63`
+kablam!    Compiling utmp v0.0.2 (file:///source)
+kablam! error[E0432]: unresolved import `std::io::File`
+kablam!  --> src/lib.rs:4:15
+kablam!   |
+kablam! 4 | use std::io::{File, SeekStyle};
+kablam!   |               ^^^^ no `File` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::SeekStyle`
+kablam!  --> src/lib.rs:4:21
+kablam!   |
+kablam! 4 | use std::io::{File, SeekStyle};
+kablam!   |                     ^^^^^^^^^ no `SeekStyle` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::num::FromPrimitive`
+kablam!  --> src/lib.rs:5:5
+kablam!   |
+kablam! 5 | use std::num::FromPrimitive;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^ no `FromPrimitive` in `num`
+kablam! 
+kablam! error: cannot find derive macro `FromPrimitive` in this scope
+kablam!  --> src/lib.rs:7:10
+kablam!   |
+kablam! 7 | #[derive(FromPrimitive)]
+kablam!   |          ^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> src/lib.rs:36:16
+kablam!    |
+kablam! 36 |     let path = Path::new("/var/run/utmpx");
+kablam!    |                ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error: aborting due to 5 previous errors
+kablam! 
+kablam! error: Could not compile `utmp`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f e020eecd80b14d25e9d5c5189267b059703d609b1da1b51e1657b76d24d0bf63`
+blam! e020eecd80b14d25e9d5c5189267b059703d609b1da1b51e1657b76d24d0bf63

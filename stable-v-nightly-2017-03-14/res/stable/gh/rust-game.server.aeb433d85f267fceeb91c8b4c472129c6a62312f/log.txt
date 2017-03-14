@@ -1,0 +1,34 @@
+boom! testing https://github.com/rust-game/server#aeb433d85f267fceeb91c8b4c472129c6a62312f against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! e3eb0fd682786544c3c9ee99882be1063419d6f7b52ca01a5dc9497b9dca0e71
+boom! running `docker start -a e3eb0fd682786544c3c9ee99882be1063419d6f7b52ca01a5dc9497b9dca0e71`
+kablam!    Compiling server v0.0.1 (file:///source)
+kablam! error[E0432]: unresolved import `self::Context`
+kablam!  --> src/middleware.rs:1:5
+kablam!   |
+kablam! 1 | use self::Context;
+kablam!   |     ^^^^^^^^^^^^^ no `Context` in `middleware`
+kablam! 
+kablam! error[E0405]: trait `Session` is not in scope
+kablam!   --> src/context.rs:16:7
+kablam!    |
+kablam! 16 | impl  Session for SimpleContext{
+kablam!    |       ^^^^^^^ `Session` is not in scope
+kablam!    |
+kablam!    = help: you can import it into scope: `use session::Session;`.
+kablam! 
+kablam! error[E0404]: `ModuleStack` is not a trait
+kablam!   --> src/server.rs:30:21
+kablam!    |
+kablam! 30 |     fn add_module<M:ModuleStack>(M);
+kablam!    |                     ^^^^^^^^^^^ expected trait, found struct
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `server`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f e3eb0fd682786544c3c9ee99882be1063419d6f7b52ca01a5dc9497b9dca0e71`
+blam! e3eb0fd682786544c3c9ee99882be1063419d6f7b52ca01a5dc9497b9dca0e71

@@ -1,0 +1,30 @@
+boom! testing diesel_infer_schema-0.11.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 05d74b961c2bea0174de991f0eec235433025e412def3412485956e23e518257
+boom! running `docker start -a 05d74b961c2bea0174de991f0eec235433025e412def3412485956e23e518257`
+kablam!    Compiling diesel_infer_schema v0.11.0 (file:///source)
+kablam! error[E0282]: type annotations needed
+kablam!    --> src/inference.rs:118:37
+kablam!     |
+kablam! 118 |       let primary_keys: Vec<String> = try!(match *conn {
+kablam!     |  _____________________________________^ starting here...
+kablam! 119 | |         #[cfg(feature = "sqlite")]
+kablam! 120 | |         InferConnection::Sqlite(ref c) => ::sqlite::get_primary_keys(c, table),
+kablam! 121 | |         #[cfg(feature = "postgres")]
+kablam! 122 | |         InferConnection::Pg(ref c) => ::information_schema::get_primary_keys(c, table),
+kablam! 123 | |         #[cfg(feature = "mysql")]
+kablam! 124 | |         InferConnection::Mysql(ref c) => ::information_schema::get_primary_keys(c, table),
+kablam! 125 | |     });
+kablam!     | |______^ ...ending here: cannot infer type for `_`
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `diesel_infer_schema`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 05d74b961c2bea0174de991f0eec235433025e412def3412485956e23e518257`
+blam! 05d74b961c2bea0174de991f0eec235433025e412def3412485956e23e518257

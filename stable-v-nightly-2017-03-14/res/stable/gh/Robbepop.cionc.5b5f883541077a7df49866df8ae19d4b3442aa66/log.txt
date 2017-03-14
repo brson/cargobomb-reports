@@ -1,0 +1,623 @@
+boom! testing https://github.com/Robbepop/cionc#5b5f883541077a7df49866df8ae19d4b3442aa66 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 18078d9d4fa9fc113f089edeca265334dea0c4a23690243481eab89828655f7e
+boom! running `docker start -a 18078d9d4fa9fc113f089edeca265334dea0c4a23690243481eab89828655f7e`
+kablam!    Compiling string-interner v0.3.1
+kablam!    Compiling clap v2.20.3
+kablam!    Compiling cionc_parser v0.0.1 (file:///source/src/parser)
+kablam! warning: method is never used: `is_fully_initialized`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/code_map.rs:268:2
+kablam!     |
+kablam! 268 |   	fn is_fully_initialized(&self) -> bool {
+kablam!     |  __^ starting here...
+kablam! 269 | | 		self.initialized_until.get() == self.span.hi
+kablam! 270 | | 	}
+kablam!     | |__^ ...ending here
+kablam! 
+kablam! warning: method is never used: `str_from_span`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/code_map.rs:328:2
+kablam!     |
+kablam! 328 |   	fn str_from_span(&self, span: Span) -> &str {
+kablam!     |  __^ starting here...
+kablam! 329 | | 		assert!(self.span.contains(span));
+kablam! 330 | | 		let rel_lo = self.to_relative_offset(span.lo);
+kablam! 331 | | 		let rel_hi = self.to_relative_offset(span.hi) + 1;
+kablam! 332 | | 		&self.src[rel_lo .. rel_hi]
+kablam! 333 | | 	}
+kablam!     | |__^ ...ending here
+kablam! 
+kablam! warning: field is never used: `file_loader`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/code_map.rs:370:2
+kablam!     |
+kablam! 370 | 	file_loader: Box<FileLoader>
+kablam!     | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: method is never used: `file_exists`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/code_map.rs:389:2
+kablam!     |
+kablam! 389 |   	fn file_exists(&self, path: &Path) -> bool {
+kablam!     |  __^ starting here...
+kablam! 390 | | 		self.file_loader.file_exists(path)
+kablam! 391 | | 	}
+kablam!     | |__^ ...ending here
+kablam! 
+kablam! warning: method is never used: `load_file`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/code_map.rs:393:2
+kablam!     |
+kablam! 393 |   	fn load_file(&self, path: &Path) -> io::Result<FileMap> {
+kablam!     |  __^ starting here...
+kablam! 394 | | 		let src = try!(self.file_loader.read_file(path));
+kablam! 395 | | 		Ok(self.new_filemap_from(path.to_str().unwrap().to_string(), src))
+kablam! 396 | | 	}
+kablam!     | |__^ ...ending here
+kablam! 
+kablam! warning: method is never used: `enclosing_span`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/code_map.rs:420:2
+kablam!     |
+kablam! 420 | 	fn enclosing_span(&self) -> Span {
+kablam!     | 	^
+kablam! 
+kablam! warning: method is never used: `contains_pos`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/code_map.rs:433:2
+kablam!     |
+kablam! 433 |   	fn contains_pos(&self, byte_pos: BytePos) -> bool {
+kablam!     |  __^ starting here...
+kablam! 434 | | 		self.enclosing_span().contains_pos(byte_pos)
+kablam! 435 | | 	}
+kablam!     | |__^ ...ending here
+kablam! 
+kablam! warning: method is never used: `lookup_filemap`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/code_map.rs:437:2
+kablam!     |
+kablam! 437 | 	fn lookup_filemap(&self, byte_pos: BytePos) -> FileMap {
+kablam!     | 	^
+kablam! 
+kablam! warning: struct is never used: `Loc`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/code_map.rs:452:1
+kablam!     |
+kablam! 452 |   struct Loc {
+kablam!     |  _^ starting here...
+kablam! 453 | | 	pub source: FileMap,
+kablam! 454 | | 	pub line: usize, // the 1-based line number within the source
+kablam! 455 | | 	pub col: CharPos // the 0-based col'th character within the given line
+kablam! 456 | | }
+kablam!     | |_^ ...ending here
+kablam! 
+kablam! warning: field is never used: `name`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/item.rs:32:2
+kablam!    |
+kablam! 32 | 	name: Name,
+kablam!    | 	^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `kind`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/item.rs:33:2
+kablam!    |
+kablam! 33 | 	kind: DefnKind,
+kablam!    | 	^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `visibility`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/item.rs:34:2
+kablam!    |
+kablam! 34 | 	visibility: Visibility
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `expr`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/item.rs:63:2
+kablam!    |
+kablam! 63 | 	expr: P<Expr>,
+kablam!    | 	^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `mutability`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/item.rs:64:2
+kablam!    |
+kablam! 64 | 	mutability: Mutability
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `items`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/item.rs:89:2
+kablam!    |
+kablam! 89 | 	items: Vec<Item>
+kablam!    | 	^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `inner`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/ty.rs:43:2
+kablam!    |
+kablam! 43 | 	inner: P<Ty>
+kablam!    | 	^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `inner`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/ty.rs:47:2
+kablam!    |
+kablam! 47 | 	inner: P<Ty>,
+kablam!    | 	^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `num`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/ty.rs:48:2
+kablam!    |
+kablam! 48 | 	num  : usize
+kablam!    | 	^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `types`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/ty.rs:52:2
+kablam!    |
+kablam! 52 | 	types: Vec<Ty>
+kablam!    | 	^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `args`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/ty.rs:56:2
+kablam!    |
+kablam! 56 | 	args: Vec<Ty>,
+kablam!    | 	^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `ret_ty`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/ty.rs:57:2
+kablam!    |
+kablam! 57 | 	ret_ty: P<Ty>
+kablam!    | 	^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `stmts`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/expr.rs:31:5
+kablam!    |
+kablam! 31 |     stmts: Vec<Stmt>
+kablam!    |     ^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `vals`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/expr.rs:39:2
+kablam!    |
+kablam! 39 | 	vals: Vec<Expr>
+kablam!    | 	^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `elems`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/expr.rs:43:2
+kablam!    |
+kablam! 43 | 	elems: Vec<Expr>
+kablam!    | 	^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `from`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/expr.rs:47:2
+kablam!    |
+kablam! 47 | 	from: Option<P<Expr>>,
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `to`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/expr.rs:48:2
+kablam!    |
+kablam! 48 | 	to: Option<P<Expr>>
+kablam!    | 	^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `expr`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/expr.rs:52:2
+kablam!    |
+kablam! 52 | 	expr: P<Expr>,
+kablam!    | 	^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `args`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/expr.rs:53:2
+kablam!    |
+kablam! 53 | 	args: Vec<Expr>
+kablam!    | 	^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `expr`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/expr.rs:57:2
+kablam!    |
+kablam! 57 | 	expr: P<Expr>,
+kablam!    | 	^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `args`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/expr.rs:58:2
+kablam!    |
+kablam! 58 | 	args: Vec<Expr>
+kablam!    | 	^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `lhs`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/expr.rs:62:2
+kablam!    |
+kablam! 62 | 	lhs: P<Expr>,
+kablam!    | 	^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `rhs`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/expr.rs:63:2
+kablam!    |
+kablam! 63 | 	rhs: P<Expr>,
+kablam!    | 	^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `kind`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/expr.rs:64:2
+kablam!    |
+kablam! 64 | 	kind: BinaryKind
+kablam!    | 	^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `expr`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/expr.rs:93:2
+kablam!    |
+kablam! 93 | 	expr: P<Expr>,
+kablam!    | 	^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `kind`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/expr.rs:94:2
+kablam!    |
+kablam! 94 | 	kind: UnaryKind
+kablam!    | 	^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `cond`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/ast/expr.rs:105:2
+kablam!     |
+kablam! 105 | 	cond: P<Expr>,
+kablam!     | 	^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `then_expr`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/ast/expr.rs:106:2
+kablam!     |
+kablam! 106 | 	then_expr: P<Expr>,
+kablam!     | 	^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `else_expr`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/ast/expr.rs:107:2
+kablam!     |
+kablam! 107 | 	else_expr: Option<P<Expr>>
+kablam!     | 	^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `matcher`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/ast/expr.rs:111:2
+kablam!     |
+kablam! 111 | 	matcher: P<Expr>
+kablam!     | 	^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `lhs`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/ast/expr.rs:116:2
+kablam!     |
+kablam! 116 | 	lhs: P<Expr>,
+kablam!     | 	^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `rhs`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/ast/expr.rs:117:2
+kablam!     |
+kablam! 117 | 	rhs: P<Expr>
+kablam!     | 	^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `lhs`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/ast/expr.rs:121:2
+kablam!     |
+kablam! 121 | 	lhs: P<Expr>,
+kablam!     | 	^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `rhs`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/ast/expr.rs:122:2
+kablam!     |
+kablam! 122 | 	rhs: P<Expr>,
+kablam!     | 	^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `op`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/ast/expr.rs:123:2
+kablam!     |
+kablam! 123 | 	op: BinaryKind
+kablam!     | 	^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `context`, #[warn(dead_code)] on by default
+kablam!  --> src/parser/parser.rs:9:2
+kablam!   |
+kablam! 9 | 	context: ParseSess,
+kablam!   | 	^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `token_stream`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/parser.rs:10:2
+kablam!    |
+kablam! 10 | 	token_stream: Box<Iterator<Item=Token>>
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam!    Compiling cionc v0.1.0 (file:///source)
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 21.86 secs
+boom! running `docker rm -f 18078d9d4fa9fc113f089edeca265334dea0c4a23690243481eab89828655f7e`
+blam! 18078d9d4fa9fc113f089edeca265334dea0c4a23690243481eab89828655f7e
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 23b486ab7bec203f220bd08b8674cc55c42a14d4b7adc25d2766dd831a91b127
+boom! running `docker start -a 23b486ab7bec203f220bd08b8674cc55c42a14d4b7adc25d2766dd831a91b127`
+kablam!    Compiling cionc v0.1.0 (file:///source)
+kablam! warning: field is never used: `file_loader`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/code_map.rs:370:2
+kablam!     |
+kablam! 370 | 	file_loader: Box<FileLoader>
+kablam!     | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: method is never used: `file_exists`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/code_map.rs:389:2
+kablam!     |
+kablam! 389 |   	fn file_exists(&self, path: &Path) -> bool {
+kablam!     |  __^ starting here...
+kablam! 390 | | 		self.file_loader.file_exists(path)
+kablam! 391 | | 	}
+kablam!     | |__^ ...ending here
+kablam! 
+kablam! warning: method is never used: `load_file`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/code_map.rs:393:2
+kablam!     |
+kablam! 393 |   	fn load_file(&self, path: &Path) -> io::Result<FileMap> {
+kablam!     |  __^ starting here...
+kablam! 394 | | 		let src = try!(self.file_loader.read_file(path));
+kablam! 395 | | 		Ok(self.new_filemap_from(path.to_str().unwrap().to_string(), src))
+kablam! 396 | | 	}
+kablam!     | |__^ ...ending here
+kablam! 
+kablam! warning: struct is never used: `Loc`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/code_map.rs:452:1
+kablam!     |
+kablam! 452 |   struct Loc {
+kablam!     |  _^ starting here...
+kablam! 453 | | 	pub source: FileMap,
+kablam! 454 | | 	pub line: usize, // the 1-based line number within the source
+kablam! 455 | | 	pub col: CharPos // the 0-based col'th character within the given line
+kablam! 456 | | }
+kablam!     | |_^ ...ending here
+kablam! 
+kablam! warning: field is never used: `name`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/item.rs:32:2
+kablam!    |
+kablam! 32 | 	name: Name,
+kablam!    | 	^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `kind`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/item.rs:33:2
+kablam!    |
+kablam! 33 | 	kind: DefnKind,
+kablam!    | 	^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `visibility`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/item.rs:34:2
+kablam!    |
+kablam! 34 | 	visibility: Visibility
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `expr`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/item.rs:63:2
+kablam!    |
+kablam! 63 | 	expr: P<Expr>,
+kablam!    | 	^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `mutability`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/item.rs:64:2
+kablam!    |
+kablam! 64 | 	mutability: Mutability
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `items`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/item.rs:89:2
+kablam!    |
+kablam! 89 | 	items: Vec<Item>
+kablam!    | 	^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `inner`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/ty.rs:43:2
+kablam!    |
+kablam! 43 | 	inner: P<Ty>
+kablam!    | 	^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `inner`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/ty.rs:47:2
+kablam!    |
+kablam! 47 | 	inner: P<Ty>,
+kablam!    | 	^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `num`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/ty.rs:48:2
+kablam!    |
+kablam! 48 | 	num  : usize
+kablam!    | 	^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `types`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/ty.rs:52:2
+kablam!    |
+kablam! 52 | 	types: Vec<Ty>
+kablam!    | 	^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `args`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/ty.rs:56:2
+kablam!    |
+kablam! 56 | 	args: Vec<Ty>,
+kablam!    | 	^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `ret_ty`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/ty.rs:57:2
+kablam!    |
+kablam! 57 | 	ret_ty: P<Ty>
+kablam!    | 	^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `stmts`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/expr.rs:31:5
+kablam!    |
+kablam! 31 |     stmts: Vec<Stmt>
+kablam!    |     ^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `vals`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/expr.rs:39:2
+kablam!    |
+kablam! 39 | 	vals: Vec<Expr>
+kablam!    | 	^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `elems`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/expr.rs:43:2
+kablam!    |
+kablam! 43 | 	elems: Vec<Expr>
+kablam!    | 	^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `from`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/expr.rs:47:2
+kablam!    |
+kablam! 47 | 	from: Option<P<Expr>>,
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `to`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/expr.rs:48:2
+kablam!    |
+kablam! 48 | 	to: Option<P<Expr>>
+kablam!    | 	^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `expr`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/expr.rs:52:2
+kablam!    |
+kablam! 52 | 	expr: P<Expr>,
+kablam!    | 	^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `args`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/expr.rs:53:2
+kablam!    |
+kablam! 53 | 	args: Vec<Expr>
+kablam!    | 	^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `expr`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/expr.rs:57:2
+kablam!    |
+kablam! 57 | 	expr: P<Expr>,
+kablam!    | 	^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `args`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/expr.rs:58:2
+kablam!    |
+kablam! 58 | 	args: Vec<Expr>
+kablam!    | 	^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `lhs`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/expr.rs:62:2
+kablam!    |
+kablam! 62 | 	lhs: P<Expr>,
+kablam!    | 	^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `rhs`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/expr.rs:63:2
+kablam!    |
+kablam! 63 | 	rhs: P<Expr>,
+kablam!    | 	^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `kind`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/expr.rs:64:2
+kablam!    |
+kablam! 64 | 	kind: BinaryKind
+kablam!    | 	^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `expr`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/expr.rs:93:2
+kablam!    |
+kablam! 93 | 	expr: P<Expr>,
+kablam!    | 	^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `kind`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/ast/expr.rs:94:2
+kablam!    |
+kablam! 94 | 	kind: UnaryKind
+kablam!    | 	^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `cond`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/ast/expr.rs:105:2
+kablam!     |
+kablam! 105 | 	cond: P<Expr>,
+kablam!     | 	^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `then_expr`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/ast/expr.rs:106:2
+kablam!     |
+kablam! 106 | 	then_expr: P<Expr>,
+kablam!     | 	^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `else_expr`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/ast/expr.rs:107:2
+kablam!     |
+kablam! 107 | 	else_expr: Option<P<Expr>>
+kablam!     | 	^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `matcher`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/ast/expr.rs:111:2
+kablam!     |
+kablam! 111 | 	matcher: P<Expr>
+kablam!     | 	^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `lhs`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/ast/expr.rs:116:2
+kablam!     |
+kablam! 116 | 	lhs: P<Expr>,
+kablam!     | 	^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `rhs`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/ast/expr.rs:117:2
+kablam!     |
+kablam! 117 | 	rhs: P<Expr>
+kablam!     | 	^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `lhs`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/ast/expr.rs:121:2
+kablam!     |
+kablam! 121 | 	lhs: P<Expr>,
+kablam!     | 	^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `rhs`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/ast/expr.rs:122:2
+kablam!     |
+kablam! 122 | 	rhs: P<Expr>,
+kablam!     | 	^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `op`, #[warn(dead_code)] on by default
+kablam!    --> src/parser/ast/expr.rs:123:2
+kablam!     |
+kablam! 123 | 	op: BinaryKind
+kablam!     | 	^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `context`, #[warn(dead_code)] on by default
+kablam!  --> src/parser/parser.rs:9:2
+kablam!   |
+kablam! 9 | 	context: ParseSess,
+kablam!   | 	^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `token_stream`, #[warn(dead_code)] on by default
+kablam!   --> src/parser/parser.rs:10:2
+kablam!    |
+kablam! 10 | 	token_stream: Box<Iterator<Item=Token>>
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 3.35 secs
+boom! running `docker rm -f 23b486ab7bec203f220bd08b8674cc55c42a14d4b7adc25d2766dd831a91b127`
+blam! 23b486ab7bec203f220bd08b8674cc55c42a14d4b7adc25d2766dd831a91b127
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! c743bc7fb296e20d75916fc782522035b7a92b2ae059fc15059ebf8e03a6f815
+boom! running `docker start -a c743bc7fb296e20d75916fc782522035b7a92b2ae059fc15059ebf8e03a6f815`
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/cionc-1d2b6246d99fbe44
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+kablam!      Running /target/debug/deps/test_cionc_parser-f4fab0f543e3b543
+blam! 
+blam! 
+blam! running 23 tests
+blam! test code_map::tests::t1 ... ok
+blam! test lexer::tests::byte_ascii_escape_literal ... ok
+blam! test lexer::tests::binary_integer_literals ... ok
+blam! test lexer::tests::byte_string_literal ... ok
+blam! test lexer::tests::byte_unicode_escape_literal ... ok
+blam! test lexer::tests::char_ascii_escape_literal ... ok
+blam! test lexer::tests::char_literal ... ok
+blam! test lexer::tests::char_unicode_escape_literal ... ok
+blam! test lexer::tests::byte_literal ... ok
+blam! test lexer::tests::comments ... ok
+blam! test lexer::tests::decimal_integer_literals ... ok
+blam! test lexer::tests::dot_after_number_sequence ... ok
+blam! test lexer::tests::hexdec_integer_literals ... ok
+blam! test lexer::tests::float_literals ... ok
+blam! test lexer::tests::finite_tokens ... ok
+blam! test lexer::tests::octal_integer_literals ... ok
+blam! test lexer::tests::raw_string_literal ... ok
+blam! test lexer::tests::raw_byte_string_literal ... ok
+blam! test lexer::tests::string_literal_escape_whitespace ... ok
+blam! test lexer::tests::simple_identifiers ... ok
+blam! test lexer::tests::string_literal ... ok
+blam! test lexer::tests::single_byte_tokens ... ok
+blam! test lexer::tests::whitespace ... ok
+blam! 
+blam! test result: ok. 23 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f c743bc7fb296e20d75916fc782522035b7a92b2ae059fc15059ebf8e03a6f815`
+blam! c743bc7fb296e20d75916fc782522035b7a92b2ae059fc15059ebf8e03a6f815

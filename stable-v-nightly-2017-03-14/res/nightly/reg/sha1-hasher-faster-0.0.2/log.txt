@@ -1,0 +1,49 @@
+boom! testing sha1-hasher-faster-0.0.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 55e49da0b379a36957f10caea04f8f688386d3946b1b633765153849fb218b71
+boom! running `docker start -a 55e49da0b379a36957f10caea04f8f688386d3946b1b633765153849fb218b71`
+kablam!    Compiling sha1-hasher-faster v0.0.2 (file:///source)
+kablam! error[E0432]: unresolved import `std::num::Int`
+kablam!  --> src/util.rs:1:5
+kablam!   |
+kablam! 1 | use std::num::Int;
+kablam!   |     ^^^^^^^^^^^^^ no `Int` in `num`
+kablam! 
+kablam! error[E0432]: unresolved import `std::slice::bytes::copy_memory`
+kablam!  --> src/util.rs:2:5
+kablam!   |
+kablam! 2 | use std::slice::bytes::copy_memory;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `bytes` in `slice`
+kablam! 
+kablam! error[E0437]: type `Output` is not a member of trait `hash::Hasher`
+kablam!    --> src/lib.rs:149:5
+kablam!     |
+kablam! 149 |     type Output = Vec<u8>;
+kablam!     |     ^^^^^^^^^^^^^^^^^^^^^^ not a member of trait `hash::Hasher`
+kablam! 
+kablam! error[E0407]: method `reset` is not a member of trait `hash::Hasher`
+kablam!    --> src/lib.rs:151:5
+kablam!     |
+kablam! 151 |       fn reset(&mut self) {
+kablam!     |  _____^ starting here...
+kablam! 152 | |         self.state = Sha1State::new();
+kablam! 153 | |         self.buffer.reset();
+kablam! 154 | |         self.length_bits = 0;
+kablam! 155 | |     }
+kablam!     | |_____^ ...ending here: not a member of trait `hash::Hasher`
+kablam! 
+kablam! error[E0405]: cannot find trait `Writer` in module `hash`
+kablam!    --> src/lib.rs:171:6
+kablam!     |
+kablam! 171 | impl hash::Writer for Sha1 {
+kablam!     |      ^^^^^^^^^^^^ not found in `hash`
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `sha1-hasher-faster`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 55e49da0b379a36957f10caea04f8f688386d3946b1b633765153849fb218b71`
+blam! 55e49da0b379a36957f10caea04f8f688386d3946b1b633765153849fb218b71

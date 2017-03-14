@@ -1,0 +1,44 @@
+boom! testing try-let-0.1.5 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 51ae0de9779e1b740debf7aeb30d8b2c3a8a50cdaaa18901e4a92e598b14383c
+boom! running `docker start -a 51ae0de9779e1b740debf7aeb30d8b2c3a8a50cdaaa18901e4a92e598b14383c`
+kablam!    Compiling try-let v0.1.5 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::parse::token::intern`
+kablam!   --> src/lib.rs:13:5
+kablam!    |
+kablam! 13 | use syntax::parse::token::intern;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `intern` in `parse::token`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `keywords` in `token`
+kablam!    --> src/lib.rs:135:36
+kablam!     |
+kablam! 135 |         try!(parser.expect_keyword(token::keywords::Else));
+kablam!     |                                    ^^^^^^^^^^^^^^^^^^^^^ Could not find `keywords` in `token`
+kablam! 
+kablam! error: no associated item named `Vec` found for type `syntax::ast::PatKind` in the current scope
+kablam!   --> src/lib.rs:72:9
+kablam!    |
+kablam! 72 |         PatKind::Vec(ref v1, ref op, ref v2) => {
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0560]: struct `syntax::ast::Path` has no field named `global`
+kablam!    --> src/lib.rs:105:28
+kablam!     |
+kablam! 105 |                            global: false,
+kablam!     |                            ^^^^^^^ `syntax::ast::Path` does not have this field
+kablam! 
+kablam! error: no associated item named `none` found for type `syntax::ast::PathParameters` in the current scope
+kablam!    --> src/lib.rs:108:44
+kablam!     |
+kablam! 108 |                                parameters: PathParameters::none()
+kablam!     |                                            ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `try-let`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 51ae0de9779e1b740debf7aeb30d8b2c3a8a50cdaaa18901e4a92e598b14383c`
+blam! 51ae0de9779e1b740debf7aeb30d8b2c3a8a50cdaaa18901e4a92e598b14383c

@@ -1,0 +1,161 @@
+boom! testing sdl2-0.27.3 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! c8e79b598482271854f75ecb9582386d740e531844ebbe29f6f9622db0539040
+boom! running `docker start -a c8e79b598482271854f75ecb9582386d740e531844ebbe29f6f9622db0539040`
+kablam!    Compiling sdl2 v0.27.3 (file:///source)
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 5.65 secs
+boom! running `docker rm -f c8e79b598482271854f75ecb9582386d740e531844ebbe29f6f9622db0539040`
+blam! c8e79b598482271854f75ecb9582386d740e531844ebbe29f6f9622db0539040
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! d3be0686ad2b0a575243ca00d5439a70f49206c141e734223edd756443bff752
+boom! running `docker start -a d3be0686ad2b0a575243ca00d5439a70f49206c141e734223edd756443bff752`
+kablam!    Compiling sdl2 v0.27.3 (file:///source)
+kablam! error[E0432]error[E0432]: unresolved import `sdl2::gfx::primitives::DrawRenderer`
+kablam!  --> examples/gfx_demo.rs:7:5
+kablam!   |
+kablam! 7 | use sdl2::gfx::primitives::DrawRenderer;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `gfx` in `sdl2`
+kablam! 
+kablam! : unresolved import `sdl2::image::LoadTexture`
+kablam!  --> examples/image_demo.rs:5:19
+kablam!   |
+kablam! 5 | use sdl2::image::{LoadTexture, INIT_PNG, INIT_JPG};
+kablam!   |                   ^^^^^^^^^^^ Could not find `image` in `sdl2`
+kablam! 
+kablam! error[E0432]: unresolved import `sdl2::image::INIT_PNG`
+kablam!  --> examples/image_demo.rs:5:32
+kablam!   |
+kablam! 5 | use sdl2::image::{LoadTexture, INIT_PNG, INIT_JPG};
+kablam!   |                                ^^^^^^^^ Could not find `image` in `sdl2`
+kablam! 
+kablam! error[E0432]: unresolved import `sdl2::image::INIT_JPG`
+kablam!  --> examples/image_demo.rs:5:42
+kablam!   |
+kablam! 5 | use sdl2::image::{LoadTexture, INIT_PNG, INIT_JPG};
+kablam!   |                                          ^^^^^^^^ Could not find `image` in `sdl2`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `image` in `sdl2`
+kablam!   --> examples/image_demo.rs:13:26
+kablam!    |
+kablam! 13 |     let _image_context = sdl2::image::init(INIT_PNG | INIT_JPG).unwrap();
+kablam!    |                          ^^^^^^^^^^^^^^^^^ Could not find `image` in `sdl2`
+kablam! 
+kablam! error: no method named `load_texture` found for type `sdl2::render::Renderer<'_>` in the current scope
+kablam!   --> examples/image_demo.rs:20:28
+kablam!    |
+kablam! 20 |     let texture = renderer.load_texture(png).unwrap();
+kablam! error: no method named `pixel` found for type `sdl2::render::Renderer<'_>` in the current scope
+kablam!   --> examples/gfx_demo.rs:53:38
+kablam!    |
+kablam! 53 |                             renderer.pixel(i as i16, i as i16, 0xFF000FFu32).unwrap();
+kablam!    |                                      ^^^^^
+kablam! 
+kablam! error: no method named `line` found for type `sdl2::render::Renderer<'_>` in the current scope
+kablam!   --> examples/gfx_demo.rs:62:38
+kablam!    |
+kablam! 62 |                     let _ = renderer.line(lastx, lasty, x as i16, y as i16, color);
+kablam!    |                                      ^^^^
+kablam! 
+kablam!    |                            ^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! warning: unused import: `AudioCallback`, #[warn(unused_imports)] on by default
+kablam!  --> examples/audio-queue-squarewave.rs:3:19
+kablam!   |
+kablam! 3 | use sdl2::audio::{AudioCallback, AudioSpecDesired};
+kablam!   |                   ^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/examples/audio_queue_squarewave-2e42ca88fa0b0ef3.0.o" "-o" "/target/debug/examples/audio_queue_squarewave-2e42ca88fa0b0ef3" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libsdl2-4fafb5a6a1000aa2.rlib" "/target/debug/deps/liblazy_static-4345d0db7d7e9b05.rlib" "/target/debug/deps/librand-26cfd8d095643d5f.rlib" "/target/debug/deps/libnum-d03d1dba35730483.rlib" "/target/debug/deps/libnum_iter-f48a79cea69f0b4a.rlib" "/target/debug/deps/libnum_integer-5359a9ecb109fd5e.rlib" "/target/debug/deps/libbitflags-725a4e5043ace390.rlib" "/target/debug/deps/libnum_traits-e71ec950eb575a4e.rlib" "/target/debug/deps/libsdl2_sys-0677ce402ff7e25f.rlib" "/target/debug/deps/liblibc-6451aa7d8103c93e.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-2ddb28df747fcb8c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-21709492a058d9ce.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-e19aa6725ab01bfd.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-99ff2e008613b591.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-e2513aecb8fbb70c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-f3200ab7e7fe644c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-dba58b8da674d203.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-6d4348bcabf40a71.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-9f45c45fdcba4301.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-b4ef8c9d93bc879a.rlib" "-l" "SDL2" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lSDL2
+kablam! collect2: error: ld returned 1 exit status
+kablam! 
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/sdl2-44dc2b8fe71d1147.0.o" "-o" "/target/debug/deps/sdl2-44dc2b8fe71d1147" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libnum-d03d1dba35730483.rlib" "/target/debug/deps/libnum_iter-f48a79cea69f0b4a.rlib" "/target/debug/deps/libbitflags-725a4e5043ace390.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-dd7007be8bc832b7.rlib" "/target/debug/deps/libsdl2_sys-0677ce402ff7e25f.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-58bde84252e1d985.rlib" "/target/debug/deps/libnum_integer-5359a9ecb109fd5e.rlib" "/target/debug/deps/libnum_traits-e71ec950eb575a4e.rlib" "/target/debug/deps/liblazy_static-4345d0db7d7e9b05.rlib" "/target/debug/deps/librand-26cfd8d095643d5f.rlib" "/target/debug/deps/liblibc-6451aa7d8103c93e.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-19e7cee83d8001c7.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-2ddb28df747fcb8c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-21709492a058d9ce.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-e19aa6725ab01bfd.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-99ff2e008613b591.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-e2513aecb8fbb70c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-f3200ab7e7fe644c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-dba58b8da674d203.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-6d4348bcabf40a71.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-9f45c45fdcba4301.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-b4ef8c9d93bc879a.rlib" "-l" "SDL2" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lSDL2
+kablam! collect2: error: ld returned 1 exit status
+kablam! 
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `sdl2`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f d3be0686ad2b0a575243ca00d5439a70f49206c141e734223edd756443bff752`
+blam! d3be0686ad2b0a575243ca00d5439a70f49206c141e734223edd756443bff752
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! 43d12e0ec4dca21f38b4ccd96783654f0df907548b9c401981aa48a2be877c3b
+boom! running `docker start -a 43d12e0ec4dca21f38b4ccd96783654f0df907548b9c401981aa48a2be877c3b`
+kablam!    Compiling sdl2 v0.27.3 (file:///source)
+kablam! error[E0433]: failed to resolve. Could not find `ttf` in `sdl2`
+kablam!   --> examples/ttf_demo.rs:49:23
+kablam!    |
+kablam! 49 |     let ttf_context = sdl2::ttf::init().unwrap();
+kablam!    |                       ^^^^^^^^^^^^^^^ Could not find `ttf` in `sdl2`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `ttf` in `sdl2`
+kablam!   --> examples/ttf_demo.rs:61:20
+kablam!    |
+kablam! 61 |     font.set_style(sdl2::ttf::STYLE_BOLD);
+kablam!    |                    ^^^^^^^^^^^^^^^^^^^^^ Could not find `ttf` in `sdl2`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `ttf` in `sdl2`
+kablam!   --> examples/ttf_demo.rs:94:37
+kablam!    |
+kablam! 94 |     println!("linked sdl2_ttf: {}", sdl2::ttf::get_linked_version());
+kablam!    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `ttf` in `sdl2`
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/examples/demo-d63eae5d4d6b0bc8.0.o" "-o" "/target/debug/examples/demo-d63eae5d4d6b0bc8" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libsdl2-4fafb5a6a1000aa2.rlib" "/target/debug/deps/liblazy_static-4345d0db7d7e9b05.rlib" "/target/debug/deps/librand-26cfd8d095643d5f.rlib" "/target/debug/deps/libnum-d03d1dba35730483.rlib" "/target/debug/deps/libnum_iter-f48a79cea69f0b4a.rlib" "/target/debug/deps/libnum_integer-5359a9ecb109fd5e.rlib" "/target/debug/deps/libbitflags-725a4e5043ace390.rlib" "/target/debug/deps/libnum_traits-e71ec950eb575a4e.rlib" "/target/debug/deps/libsdl2_sys-0677ce402ff7e25f.rlib" "/target/debug/deps/liblibc-6451aa7d8103c93e.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-2ddb28df747fcb8c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-21709492a058d9ce.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-e19aa6725ab01bfd.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-99ff2e008613b591.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-e2513aecb8fbb70c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-f3200ab7e7fe644c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-dba58b8da674d203.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-6d4348bcabf40a71.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-9f45c45fdcba4301.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-b4ef8c9d93bc879a.rlib" "-l" "SDL2" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lSDL2
+kablam! collect2: error: ld returned 1 exit status
+kablam! 
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+blam! Build failed, waiting for other jobs to finish...
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/examples/audio_wav-8342c162f2c4d292.0.o" "-o" "/target/debug/examples/audio_wav-8342c162f2c4d292" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libsdl2-4fafb5a6a1000aa2.rlib" "/target/debug/deps/liblazy_static-4345d0db7d7e9b05.rlib" "/target/debug/deps/librand-26cfd8d095643d5f.rlib" "/target/debug/deps/libnum-d03d1dba35730483.rlib" "/target/debug/deps/libnum_iter-f48a79cea69f0b4a.rlib" "/target/debug/deps/libnum_integer-5359a9ecb109fd5e.rlib" "/target/debug/deps/libbitflags-725a4e5043ace390.rlib" "/target/debug/deps/libnum_traits-e71ec950eb575a4e.rlib" "/target/debug/deps/libsdl2_sys-0677ce402ff7e25f.rlib" "/target/debug/deps/liblibc-6451aa7d8103c93e.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-2ddb28df747fcb8c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-21709492a058d9ce.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-e19aa6725ab01bfd.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-99ff2e008613b591.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-e2513aecb8fbb70c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-f3200ab7e7fe644c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-dba58b8da674d203.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-6d4348bcabf40a71.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-9f45c45fdcba4301.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-b4ef8c9d93bc879a.rlib" "-l" "SDL2" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lSDL2
+kablam! collect2: error: ld returned 1 exit status
+kablam! 
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/sdl2-44dc2b8fe71d1147.0.o" "-o" "/target/debug/deps/sdl2-44dc2b8fe71d1147" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libnum-d03d1dba35730483.rlib" "/target/debug/deps/libnum_iter-f48a79cea69f0b4a.rlib" "/target/debug/deps/libbitflags-725a4e5043ace390.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-dd7007be8bc832b7.rlib" "/target/debug/deps/libsdl2_sys-0677ce402ff7e25f.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-58bde84252e1d985.rlib" "/target/debug/deps/libnum_integer-5359a9ecb109fd5e.rlib" "/target/debug/deps/libnum_traits-e71ec950eb575a4e.rlib" "/target/debug/deps/liblazy_static-4345d0db7d7e9b05.rlib" "/target/debug/deps/librand-26cfd8d095643d5f.rlib" "/target/debug/deps/liblibc-6451aa7d8103c93e.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-19e7cee83d8001c7.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-2ddb28df747fcb8c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-21709492a058d9ce.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-e19aa6725ab01bfd.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-99ff2e008613b591.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-e2513aecb8fbb70c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-f3200ab7e7fe644c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-dba58b8da674d203.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-6d4348bcabf40a71.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-9f45c45fdcba4301.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-b4ef8c9d93bc879a.rlib" "-l" "SDL2" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lSDL2
+kablam! collect2: error: ld returned 1 exit status
+kablam! 
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `sdl2`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 43d12e0ec4dca21f38b4ccd96783654f0df907548b9c401981aa48a2be877c3b`
+blam! 43d12e0ec4dca21f38b4ccd96783654f0df907548b9c401981aa48a2be877c3b

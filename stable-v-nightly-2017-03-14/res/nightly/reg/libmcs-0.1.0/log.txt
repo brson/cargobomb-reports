@@ -1,0 +1,90 @@
+boom! testing libmcs-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! d4a288998cb7317f8386662b55954822f5b512abac8feb4032881b1f79221348
+boom! running `docker start -a d4a288998cb7317f8386662b55954822f5b512abac8feb4032881b1f79221348`
+kablam!    Compiling libmcs v0.1.0 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.53 secs
+boom! running `docker rm -f d4a288998cb7317f8386662b55954822f5b512abac8feb4032881b1f79221348`
+blam! d4a288998cb7317f8386662b55954822f5b512abac8feb4032881b1f79221348
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! d9c1af7443e3f335b3c2427b4f32196607ed695427ab387c685fec153113644b
+boom! running `docker start -a d9c1af7443e3f335b3c2427b4f32196607ed695427ab387c685fec153113644b`
+kablam!    Compiling libmcs v0.1.0 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 3.98 secs
+boom! running `docker rm -f d9c1af7443e3f335b3c2427b4f32196607ed695427ab387c685fec153113644b`
+blam! d9c1af7443e3f335b3c2427b4f32196607ed695427ab387c685fec153113644b
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 27de65cfe21585709c87a67ac5a13024883c5219afe8e14accbf190114b8910c
+boom! running `docker start -a 27de65cfe21585709c87a67ac5a13024883c5219afe8e14accbf190114b8910c`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/libmcs-fc62373c6b8b339e
+blam! 
+blam! running 12 tests
+blam! test mcs::tests::test_get_mut ... ok
+blam! test mcs::tests::smoke ... ok
+blam! test mcs::tests::test_into_inner ... ok
+blam! test mcs::tests::test_into_inner_drop ... ok
+kablam! thread '<unnamed>' panicked at 'test panic in inner thread to poison mutex', src/mcs.rs:388
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+blam! test mcs::tests::test_into_inner_poison ... ok
+kablam! thread '<unnamed>' panicked at 'test panic in inner thread to poison mutex', src/mcs.rs:411
+kablam! thread '<unnamed>' panicked at 'explicit panic', src/mcs.rs:465
+blam! test mcs::tests::test_get_mut_poison ... ok
+kablam! thread '<unnamed>' panicked at 'assertion failed: `(left == right)` (left: `1`, right: `2`)', src/mcs.rs:429
+blam! test mcs::tests::test_mutex_arc_access_in_unwind ... ok
+blam! test mcs::tests::test_mutex_arc_nested ... ok
+blam! test mcs::tests::test_mutex_arc_poison ... ok
+blam! test mcs::tests::test_mutex_unsized ... ok
+blam! test mcs::tests::try_lock ... ok
+blam! test mcs::tests::lots_and_lots ... ok
+blam! 
+blam! test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!    Doc-tests libmcs
+blam! 
+blam! running 3 tests
+blam! test src/mcs.rs - mcs::Mutex (line 80) ... FAILED
+blam! test src/mcs.rs - mcs::Mutex (line 37) ... FAILED
+blam! test src/mcs.rs - mcs::Mutex<T>::new (line 138) ... ok
+blam! 
+blam! failures:
+blam! 
+blam! ---- src/mcs.rs - mcs::Mutex (line 80) stdout ----
+blam! 	error[E0432]: unresolved import `libmcs::Mutex`
+blam!  --> <anon>:6:5
+blam!   |
+blam! 6 | use libmcs::Mutex;
+blam!   |     ^^^^^^^^^^^^^ Maybe a missing `extern crate libmcs;`?
+blam! 
+blam! error: aborting due to previous error(s)
+blam! 
+blam! thread 'rustc' panicked at 'Box<Any>', /checkout/src/librustc/session/mod.rs:203
+blam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+blam! 
+blam! ---- src/mcs.rs - mcs::Mutex (line 37) stdout ----
+blam! 	error[E0432]: unresolved import `libmcs::Mutex`
+blam!  --> <anon>:8:5
+blam!   |
+blam! 8 | use libmcs::Mutex;
+blam!   |     ^^^^^^^^^^^^^ Maybe a missing `extern crate libmcs;`?
+blam! 
+blam! error: aborting due to previous error(s)
+blam! 
+blam! thread 'rustc' panicked at 'Box<Any>', /checkout/src/librustc/session/mod.rs:203
+blam! 
+blam! 
+blam! failures:
+blam!     src/mcs.rs - mcs::Mutex (line 37)
+blam!     src/mcs.rs - mcs::Mutex (line 80)
+blam! 
+blam! test result: FAILED. 1 passed; 2 failed; 0 ignored; 0 measured
+blam! 
+kablam! error: test failed
+boom! running `docker rm -f 27de65cfe21585709c87a67ac5a13024883c5219afe8e14accbf190114b8910c`
+blam! 27de65cfe21585709c87a67ac5a13024883c5219afe8e14accbf190114b8910c

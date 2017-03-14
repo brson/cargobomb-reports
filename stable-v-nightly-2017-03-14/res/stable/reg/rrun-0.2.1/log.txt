@@ -1,0 +1,129 @@
+boom! testing rrun-0.2.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! f91c37065b20e456ca770ff0867c140970b7ee31d96d1c4031f1074b393f6f0d
+boom! running `docker start -a f91c37065b20e456ca770ff0867c140970b7ee31d96d1c4031f1074b393f6f0d`
+kablam!    Compiling rrun v0.2.1 (file:///source)
+kablam! error[E0412]: type name `toml::Table` is undefined or not in scope
+kablam!   --> src/engine.rs:21:25
+kablam!    |
+kablam! 21 |     pub fn new(config: &toml::Table) -> DefaultEngine {
+kablam!    |                         ^^^^^^^^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: you can import it into scope: `use toml::value::Table;`.
+kablam! 
+kablam! error[E0412]: type name `toml::Table` is undefined or not in scope
+kablam!   --> src/engine.rs:27:36
+kablam!    |
+kablam! 27 |     pub fn get_completers(config: &toml::Table) -> Vec<Box<AutoCompleter>> {
+kablam!    |                                    ^^^^^^^^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: you can import it into scope: `use toml::value::Table;`.
+kablam! 
+kablam! error[E0412]: type name `toml::Table` is undefined or not in scope
+kablam!   --> src/engine.rs:46:33
+kablam!    |
+kablam! 46 |     pub fn get_runners(config: &toml::Table) -> HashMap<String, Vec<Box<ExternalRunner>>> {
+kablam!    |                                 ^^^^^^^^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: you can import it into scope: `use toml::value::Table;`.
+kablam! 
+kablam! error[E0412]: type name `toml::Table` is undefined or not in scope
+kablam!   --> src/main.rs:87:43
+kablam!    |
+kablam! 87 | fn read_config(config_file: &mut File) -> toml::Table {
+kablam!    |                                           ^^^^^^^^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: you can import it into scope: `use toml::value::Table;`.
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Parser` in `toml`
+kablam!   --> src/main.rs:94:18
+kablam!    |
+kablam! 94 |     let config = toml::Parser::new(&toml).parse().unwrap_or_else(|| panic!("Unable to parse config file TOML!"));
+kablam!    |                  ^^^^^^^^^^^^^^^^^ Could not find `Parser` in `toml`
+kablam! 
+kablam! error: the type of this value must be known in this context
+kablam!   --> src/engine.rs:29:27
+kablam!    |
+kablam! 29 |         let completions = maybe_completions.flat_map(|cs| cs.as_slice().unwrap().into_iter());
+kablam!    |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: the type of this value must be known in this context
+kablam!   --> src/engine.rs:49:27
+kablam!    |
+kablam! 49 |             .flat_map(|r| r.as_slice().unwrap().into_iter())
+kablam!    |                           ^^^^^^^^^^^^
+kablam! 
+kablam! error[E0277]: the trait bound `itertools::GroupBy<std::string::String, std::vec::IntoIter<Box<externalrunner::ExternalRunner>>, [closure@src/engine.rs:65:58: 65:74]>: std::iter::Iterator` is not satisfied
+kablam!   --> src/engine.rs:65:9
+kablam!    |
+kablam! 65 |           for (key, group) in runners.into_iter().group_by(|r| r.get_type()) {
+kablam!    |  _________^ starting here...
+kablam! 66 | |             runners_by_type.insert(key, group.into_iter().collect_vec());
+kablam! 67 | |         }
+kablam!    | |_________^ ...ending here: the trait `std::iter::Iterator` is not implemented for `itertools::GroupBy<std::string::String, std::vec::IntoIter<Box<externalrunner::ExternalRunner>>, [closure@src/engine.rs:65:58: 65:74]>`
+kablam!    |
+kablam!    = note: `itertools::GroupBy<std::string::String, std::vec::IntoIter<Box<externalrunner::ExternalRunner>>, [closure@src/engine.rs:65:58: 65:74]>` is not an iterator; maybe try calling `.iter()` or a similar method
+kablam!    = note: required by `std::iter::IntoIterator::into_iter`
+kablam! 
+kablam! error: no method named `at` found for type `regex::Captures<'_>` in the current scope
+kablam!   --> src/externalautocompleter.rs:36:34
+kablam!    |
+kablam! 36 |                 trigger_match[0].at(1).unwrap()
+kablam!    |                                  ^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/externalautocompleter.rs:43:112
+kablam!    |
+kablam! 43 |                     .fold(self.command.replace("{}", sub_query), (|a, (i, e)| a.replace(&format!("{{{}}}", i), e)));
+kablam!    |                                                                                                                ^ expected &str, found struct `regex::Match`
+kablam!    |
+kablam!    = note: expected type `&str`
+kablam!    = note:    found type `regex::Match<'_>`
+kablam! 
+kablam! error[E0277]: the trait bound `std::iter::Iterator<Item=autocomplete::Completion>: std::marker::Sized` is not satisfied
+kablam!   --> src/externalautocompleter.rs:83:9
+kablam!    |
+kablam! 83 |         Box::new(completion_vec.into_iter())
+kablam!    |         ^^^^^^^^ the trait `std::marker::Sized` is not implemented for `std::iter::Iterator<Item=autocomplete::Completion>`
+kablam!    |
+kablam!    = note: `std::iter::Iterator<Item=autocomplete::Completion>` does not have a constant size known at compile-time
+kablam!    = note: required by `std::boxed::<impl Box<T>>::new`
+kablam! 
+kablam! error: no associated item named `get_screen` found for type `gtk::WindowExt` in the current scope
+kablam!    --> src/main.rs:156:18
+kablam!     |
+kablam! 156 |     let screen = gtk::WindowExt::get_screen(&window).unwrap();
+kablam!     |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: the method `get_screen` exists but the following trait bounds were not satisfied: `gtk::WindowExt : std::marker::Sized`, `gtk::WindowExt : glib::IsA<gtk::Widget>`, `gtk::WindowExt : glib::IsA<glib::Object>`, `&gtk::WindowExt : glib::IsA<gtk::Widget>`, `&gtk::WindowExt : glib::IsA<glib::Object>`, `&mut gtk::WindowExt : glib::IsA<gtk::Widget>`, `&mut gtk::WindowExt : glib::IsA<glib::Object>`
+kablam! 
+kablam! error[E0038]: the trait `gtk::WindowExt` cannot be made into an object
+kablam!    --> src/main.rs:156:18
+kablam!     |
+kablam! 156 |     let screen = gtk::WindowExt::get_screen(&window).unwrap();
+kablam!     |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `gtk::WindowExt` cannot be made into an object
+kablam!     |
+kablam!     = note: method `add_mnemonic` has generic type parameters
+kablam!     = note: method `remove_mnemonic` has generic type parameters
+kablam!     = note: method `set_attached_to` has generic type parameters
+kablam!     = note: method `set_default` has generic type parameters
+kablam!     = note: method `set_focus` has generic type parameters
+kablam!     = note: method `set_icon_from_file` has generic type parameters
+kablam!     = note: method `set_icon_name` has generic type parameters
+kablam!     = note: method `set_titlebar` has generic type parameters
+kablam!     = note: method `set_transient_for` has generic type parameters
+kablam!     = note: method `connect_activate_default` has generic type parameters
+kablam!     = note: method `connect_activate_focus` has generic type parameters
+kablam!     = note: method `connect_enable_debugging` has generic type parameters
+kablam!     = note: method `connect_keys_changed` has generic type parameters
+kablam!     = note: method `connect_set_focus` has generic type parameters
+kablam! 
+kablam! error: aborting due to 8 previous errors
+kablam! 
+kablam! error: Could not compile `rrun`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f91c37065b20e456ca770ff0867c140970b7ee31d96d1c4031f1074b393f6f0d`
+blam! f91c37065b20e456ca770ff0867c140970b7ee31d96d1c4031f1074b393f6f0d

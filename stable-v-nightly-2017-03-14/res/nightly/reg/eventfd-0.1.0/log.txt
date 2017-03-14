@@ -1,0 +1,26 @@
+boom! testing eventfd-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 6bf99e35542f596d0953072f050810134abbc5b35ce91413a2aa75654ee28c0c
+boom! running `docker start -a 6bf99e35542f596d0953072f050810134abbc5b35ce91413a2aa75654ee28c0c`
+kablam!    Compiling eventfd v0.1.0 (file:///source)
+kablam! error[E0308]: mismatched types
+kablam!   --> src/lib.rs:57:62
+kablam!    |
+kablam! 57 |             libc::read(self.fd as c_int, ptr as *mut c_void, std::mem::size_of_val(&ret) as u64)
+kablam!    |                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected usize, found u64
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/lib.rs:71:65
+kablam!    |
+kablam! 71 |             libc::write(self.fd as c_int, ptr as *const c_void, std::mem::size_of_val(&val) as u64)
+kablam!    |                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected usize, found u64
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `eventfd`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 6bf99e35542f596d0953072f050810134abbc5b35ce91413a2aa75654ee28c0c`
+blam! 6bf99e35542f596d0953072f050810134abbc5b35ce91413a2aa75654ee28c0c

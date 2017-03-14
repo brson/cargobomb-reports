@@ -1,0 +1,384 @@
+boom! testing gurobi-0.3.2 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! b3f0cacaa04ac8789a193863546db71a0ba966a72e3726276cbaf3b8b835e009
+boom! running `docker start -a b3f0cacaa04ac8789a193863546db71a0ba966a72e3726276cbaf3b8b835e009`
+kablam!    Compiling gurobi-sys v0.3.0
+kablam!    Compiling gurobi v0.3.2 (file:///source)
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 5.52 secs
+boom! running `docker rm -f b3f0cacaa04ac8789a193863546db71a0ba966a72e3726276cbaf3b8b835e009`
+blam! b3f0cacaa04ac8789a193863546db71a0ba966a72e3726276cbaf3b8b835e009
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 107b56fc5a139e303f19ca65474dde182a510049b88d0e649c717edcb4546d25
+boom! running `docker start -a 107b56fc5a139e303f19ca65474dde182a510049b88d0e649c717edcb4546d25`
+kablam!    Compiling gurobi v0.3.2 (file:///source)
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/examples/qcp-7239db71a936557e.0.o" "-o" "/target/debug/examples/qcp-7239db71a936557e" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib" "/target/debug/deps/libgurobi_sys-ff0007a5d21d8712.rlib" "/target/debug/deps/libitertools-e3d9976f2df6bda8.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-2ddb28df747fcb8c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-21709492a058d9ce.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-e19aa6725ab01bfd.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-99ff2e008613b591.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-e2513aecb8fbb70c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-f3200ab7e7fe644c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-dba58b8da674d203.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-6d4348bcabf40a71.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-9f45c45fdcba4301.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-b4ef8c9d93bc879a.rlib" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::env::{{impl}}::new':
+kablam! /source/src/env.rs:27: undefined reference to `GRBloadenv'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::env::{{impl}}::drop':
+kablam! /source/src/env.rs:121: undefined reference to `GRBfreeenv'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::env::get_error_msg':
+kablam! /source/src/env.rs:150: undefined reference to `GRBgeterrormsg'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::from_raw':
+kablam! /source/src/model/mod.rs:292: undefined reference to `GRBgetenv'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::new':
+kablam! /source/src/model/mod.rs:338: undefined reference to `GRBnewmodel'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::update':
+kablam! /source/src/model/mod.rs:442: undefined reference to `GRBdelvars'
+kablam! /source/src/model/mod.rs:447: undefined reference to `GRBdelconstrs'
+kablam! /source/src/model/mod.rs:452: undefined reference to `GRBdelqconstrs'
+kablam! /source/src/model/mod.rs:457: undefined reference to `GRBdelsos'
+kablam! /source/src/model/mod.rs:461: undefined reference to `GRBupdatemodel'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::optimize':
+kablam! /source/src/model/mod.rs:491: undefined reference to `GRBoptimize'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::write':
+kablam! /source/src/model/mod.rs:585: undefined reference to `GRBwrite'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::add_var':
+kablam! /source/src/model/mod.rs:610: undefined reference to `GRBaddvar'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::add_constr':
+kablam! /source/src/model/mod.rs:719: undefined reference to `GRBaddconstr'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::add_qconstr':
+kablam! /source/src/model/mod.rs:891: undefined reference to `GRBaddqconstr'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::add_qpterms':
+kablam! /source/src/model/mod.rs:1243: undefined reference to `GRBaddqpterms'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::del_qpterms':
+kablam! /source/src/model/mod.rs:1255: undefined reference to `GRBdelq'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::drop':
+kablam! /source/src/model/mod.rs:1271: undefined reference to `GRBfreemodel'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::parameter::{{impl}}::get_param':
+kablam! /source/src/param.rs:44: undefined reference to `GRBgetintparam'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::attribute::{{impl}}::get_attr':
+kablam! /source/src/attr.rs:40: undefined reference to `GRBgetintattr'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::attribute::{{impl}}::set_attr':
+kablam! /source/src/attr.rs:44: undefined reference to `GRBsetintattr'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::attribute::{{impl}}::set_attrlist':
+kablam! /source/src/attr.rs:163: undefined reference to `GRBsetdblattrlist'
+kablam! collect2: error: ld returned 1 exit status
+kablam! 
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/examples/qp-f06f052e188276e2.0.o" "-o" "/target/debug/examples/qp-f06f052e188276e2" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib" "/target/debug/deps/libgurobi_sys-ff0007a5d21d8712.rlib" "/target/debug/deps/libitertools-e3d9976f2df6bda8.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-2ddb28df747fcb8c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-21709492a058d9ce.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-e19aa6725ab01bfd.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-99ff2e008613b591.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-e2513aecb8fbb70c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-f3200ab7e7fe644c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-dba58b8da674d203.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-6d4348bcabf40a71.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-9f45c45fdcba4301.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-b4ef8c9d93bc879a.rlib" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::env::{{impl}}::new':
+kablam! /source/src/env.rs:27: undefined reference to `GRBloadenv'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::env::{{impl}}::drop':
+kablam! /source/src/env.rs:121: undefined reference to `GRBfreeenv'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::env::get_error_msg':
+kablam! /source/src/env.rs:150: undefined reference to `GRBgeterrormsg'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::from_raw':
+kablam! /source/src/model/mod.rs:292: undefined reference to `GRBgetenv'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::new':
+kablam! /source/src/model/mod.rs:338: undefined reference to `GRBnewmodel'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::update':
+kablam! /source/src/model/mod.rs:442: undefined reference to `GRBdelvars'
+kablam! /source/src/model/mod.rs:447: undefined reference to `GRBdelconstrs'
+kablam! /source/src/model/mod.rs:452: undefined reference to `GRBdelqconstrs'
+kablam! /source/src/model/mod.rs:457: undefined reference to `GRBdelsos'
+kablam! /source/src/model/mod.rs:461: undefined reference to `GRBupdatemodel'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::optimize':
+kablam! /source/src/model/mod.rs:491: undefined reference to `GRBoptimize'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::write':
+kablam! /source/src/model/mod.rs:585: undefined reference to `GRBwrite'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::add_var':
+kablam! /source/src/model/mod.rs:610: undefined reference to `GRBaddvar'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::add_constr':
+kablam! /source/src/model/mod.rs:719: undefined reference to `GRBaddconstr'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::add_qpterms':
+kablam! /source/src/model/mod.rs:1243: undefined reference to `GRBaddqpterms'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::del_qpterms':
+kablam! /source/src/model/mod.rs:1255: undefined reference to `GRBdelq'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::drop':
+kablam! /source/src/model/mod.rs:1271: undefined reference to `GRBfreemodel'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::parameter::{{impl}}::get_param':
+kablam! /source/src/param.rs:44: undefined reference to `GRBgetintparam'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::attribute::{{impl}}::get_attr':
+kablam! /source/src/attr.rs:40: undefined reference to `GRBgetintattr'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::attribute::{{impl}}::set_attr':
+kablam! /source/src/attr.rs:44: undefined reference to `GRBsetintattr'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::attribute::{{impl}}::set_attrlist':
+kablam! /source/src/attr.rs:163: undefined reference to `GRBsetdblattrlist'
+kablam! collect2: error: ld returned 1 exit status
+kablam! 
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/examples/sos-6b4aeac31fd16966.0.o" "-o" "/target/debug/examples/sos-6b4aeac31fd16966" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib" "/target/debug/deps/libgurobi_sys-ff0007a5d21d8712.rlib" "/target/debug/deps/libitertools-e3d9976f2df6bda8.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-2ddb28df747fcb8c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-21709492a058d9ce.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-e19aa6725ab01bfd.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-99ff2e008613b591.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-e2513aecb8fbb70c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-f3200ab7e7fe644c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-dba58b8da674d203.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-6d4348bcabf40a71.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-9f45c45fdcba4301.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-b4ef8c9d93bc879a.rlib" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::env::{{impl}}::new':
+kablam! /source/src/env.rs:27: undefined reference to `GRBloadenv'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::env::{{impl}}::drop':
+kablam! /source/src/env.rs:121: undefined reference to `GRBfreeenv'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::env::get_error_msg':
+kablam! /source/src/env.rs:150: undefined reference to `GRBgeterrormsg'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::from_raw':
+kablam! /source/src/model/mod.rs:292: undefined reference to `GRBgetenv'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::new':
+kablam! /source/src/model/mod.rs:338: undefined reference to `GRBnewmodel'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::update':
+kablam! /source/src/model/mod.rs:442: undefined reference to `GRBdelvars'
+kablam! /source/src/model/mod.rs:447: undefined reference to `GRBdelconstrs'
+kablam! /source/src/model/mod.rs:452: undefined reference to `GRBdelqconstrs'
+kablam! /source/src/model/mod.rs:457: undefined reference to `GRBdelsos'
+kablam! /source/src/model/mod.rs:461: undefined reference to `GRBupdatemodel'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::optimize':
+kablam! /source/src/model/mod.rs:491: undefined reference to `GRBoptimize'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::write':
+kablam! /source/src/model/mod.rs:585: undefined reference to `GRBwrite'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::add_var':
+kablam! /source/src/model/mod.rs:610: undefined reference to `GRBaddvar'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::add_sos':
+kablam! /source/src/model/mod.rs:924: undefined reference to `GRBaddsos'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::add_qpterms':
+kablam! /source/src/model/mod.rs:1243: undefined reference to `GRBaddqpterms'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::del_qpterms':
+kablam! /source/src/model/mod.rs:1255: undefined reference to `GRBdelq'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::drop':
+kablam! /source/src/model/mod.rs:1271: undefined reference to `GRBfreemodel'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::parameter::{{impl}}::get_param':
+kablam! /source/src/param.rs:44: undefined reference to `GRBgetintparam'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::attribute::{{impl}}::get_attr':
+kablam! /source/src/attr.rs:40: undefined reference to `GRBgetintattr'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::attribute::{{impl}}::set_attr':
+kablam! /source/src/attr.rs:44: undefined reference to `GRBsetintattr'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::attribute::{{impl}}::get_attr':
+kablam! /source/src/attr.rs:55: undefined reference to `GRBgetdblattr'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::attribute::{{impl}}::get_attrelement':
+kablam! /source/src/attr.rs:145: undefined reference to `GRBgetdblattrelement'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::attribute::{{impl}}::set_attrlist':
+kablam! /source/src/attr.rs:163: undefined reference to `GRBsetdblattrlist'
+kablam! collect2: error: ld returned 1 exit status
+kablam! 
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/gurobi-da24f2415944584a.0.o" "-o" "/target/debug/deps/gurobi-da24f2415944584a" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libgurobi_sys-ff0007a5d21d8712.rlib" "/target/debug/deps/libitertools-e3d9976f2df6bda8.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-dd7007be8bc832b7.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-19e7cee83d8001c7.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-58bde84252e1d985.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-2ddb28df747fcb8c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-21709492a058d9ce.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-e19aa6725ab01bfd.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-99ff2e008613b591.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-e2513aecb8fbb70c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-f3200ab7e7fe644c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-dba58b8da674d203.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-6d4348bcabf40a71.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-9f45c45fdcba4301.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-b4ef8c9d93bc879a.rlib" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /target/debug/deps/gurobi-da24f2415944584a.0.o: In function `gurobi::env::{{impl}}::new':
+kablam! /source/src/env.rs:27: undefined reference to `GRBloadenv'
+kablam! /target/debug/deps/gurobi-da24f2415944584a.0.o: In function `gurobi::env::{{impl}}::drop':
+kablam! /source/src/env.rs:121: undefined reference to `GRBfreeenv'
+kablam! /target/debug/deps/gurobi-da24f2415944584a.0.o: In function `gurobi::env::get_error_msg':
+kablam! /source/src/env.rs:150: undefined reference to `GRBgeterrormsg'
+kablam! /target/debug/deps/gurobi-da24f2415944584a.0.o: In function `gurobi::model::{{impl}}::from_raw':
+kablam! /source/src/model/mod.rs:292: undefined reference to `GRBgetenv'
+kablam! /target/debug/deps/gurobi-da24f2415944584a.0.o: In function `gurobi::model::{{impl}}::new':
+kablam! /source/src/model/mod.rs:338: undefined reference to `GRBnewmodel'
+kablam! /target/debug/deps/gurobi-da24f2415944584a.0.o: In function `gurobi::model::{{impl}}::update':
+kablam! /source/src/model/mod.rs:442: undefined reference to `GRBdelvars'
+kablam! /source/src/model/mod.rs:447: undefined reference to `GRBdelconstrs'
+kablam! /source/src/model/mod.rs:452: undefined reference to `GRBdelqconstrs'
+kablam! /source/src/model/mod.rs:457: undefined reference to `GRBdelsos'
+kablam! /source/src/model/mod.rs:461: undefined reference to `GRBupdatemodel'
+kablam! /target/debug/deps/gurobi-da24f2415944584a.0.o: In function `gurobi::model::{{impl}}::add_var':
+kablam! /source/src/model/mod.rs:610: undefined reference to `GRBaddvar'
+kablam! /target/debug/deps/gurobi-da24f2415944584a.0.o: In function `gurobi::model::{{impl}}::drop':
+kablam! /source/src/model/mod.rs:1271: undefined reference to `GRBfreemodel'
+kablam! /target/debug/deps/gurobi-da24f2415944584a.0.o: In function `gurobi::parameter::{{impl}}::get_param':
+kablam! /source/src/param.rs:44: undefined reference to `GRBgetintparam'
+kablam! /target/debug/deps/gurobi-da24f2415944584a.0.o: In function `gurobi::parameter::{{impl}}::set_param':
+kablam! /source/src/param.rs:48: undefined reference to `GRBsetintparam'
+kablam! /target/debug/deps/gurobi-da24f2415944584a.0.o: In function `gurobi::attribute::{{impl}}::get_attr':
+kablam! /source/src/attr.rs:40: undefined reference to `GRBgetintattr'
+kablam! collect2: error: ld returned 1 exit status
+kablam! 
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `gurobi`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 107b56fc5a139e303f19ca65474dde182a510049b88d0e649c717edcb4546d25`
+blam! 107b56fc5a139e303f19ca65474dde182a510049b88d0e649c717edcb4546d25
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! 3739f5b4855d3423ff01454c6de5d04566fadd655c71827e627b15bf76168507
+boom! running `docker start -a 3739f5b4855d3423ff01454c6de5d04566fadd655c71827e627b15bf76168507`
+kablam!    Compiling gurobi v0.3.2 (file:///source)
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/examples/tune-e3a2686f00c0fc00.0.o" "-o" "/target/debug/examples/tune-e3a2686f00c0fc00" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib" "/target/debug/deps/libgurobi_sys-ff0007a5d21d8712.rlib" "/target/debug/deps/libitertools-e3d9976f2df6bda8.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-2ddb28df747fcb8c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-21709492a058d9ce.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-e19aa6725ab01bfd.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-99ff2e008613b591.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-e2513aecb8fbb70c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-f3200ab7e7fe644c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-dba58b8da674d203.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-6d4348bcabf40a71.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-9f45c45fdcba4301.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-b4ef8c9d93bc879a.rlib" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::env::{{impl}}::new':
+kablam! /source/src/env.rs:27: undefined reference to `GRBloadenv'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::env::{{impl}}::drop':
+kablam! /source/src/env.rs:121: undefined reference to `GRBfreeenv'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::env::get_error_msg':
+kablam! /source/src/env.rs:150: undefined reference to `GRBgeterrormsg'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::from_raw':
+kablam! /source/src/model/mod.rs:292: undefined reference to `GRBgetenv'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::read_from':
+kablam! /source/src/model/mod.rs:356: undefined reference to `GRBreadmodel'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::update':
+kablam! /source/src/model/mod.rs:442: undefined reference to `GRBdelvars'
+kablam! /source/src/model/mod.rs:447: undefined reference to `GRBdelconstrs'
+kablam! /source/src/model/mod.rs:452: undefined reference to `GRBdelqconstrs'
+kablam! /source/src/model/mod.rs:457: undefined reference to `GRBdelsos'
+kablam! /source/src/model/mod.rs:461: undefined reference to `GRBupdatemodel'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::optimize':
+kablam! /source/src/model/mod.rs:491: undefined reference to `GRBoptimize'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::tune':
+kablam! /source/src/model/mod.rs:536: undefined reference to `GRBtunemodel'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::get_tune_result':
+kablam! /source/src/model/mod.rs:542: undefined reference to `GRBgettuneresult'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::write':
+kablam! /source/src/model/mod.rs:585: undefined reference to `GRBwrite'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::drop':
+kablam! /source/src/model/mod.rs:1271: undefined reference to `GRBfreemodel'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::parameter::{{impl}}::set_param':
+kablam! /source/src/param.rs:48: undefined reference to `GRBsetintparam'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::attribute::{{impl}}::get_attr':
+kablam! /source/src/attr.rs:40: undefined reference to `GRBgetintattr'
+kablam! collect2: error: ld returned 1 exit status
+kablam! 
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/examples/mip-00713879b656667c.0.o" "-o" "/target/debug/examples/mip-00713879b656667c" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib" "/target/debug/deps/libgurobi_sys-ff0007a5d21d8712.rlib" "/target/debug/deps/libitertools-e3d9976f2df6bda8.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-2ddb28df747fcb8c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-21709492a058d9ce.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-e19aa6725ab01bfd.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-99ff2e008613b591.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-e2513aecb8fbb70c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-f3200ab7e7fe644c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-dba58b8da674d203.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-6d4348bcabf40a71.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-9f45c45fdcba4301.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-b4ef8c9d93bc879a.rlib" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::env::{{impl}}::new':
+kablam! /source/src/env.rs:27: undefined reference to `GRBloadenv'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::env::{{impl}}::drop':
+kablam! /source/src/env.rs:121: undefined reference to `GRBfreeenv'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::env::get_error_msg':
+kablam! /source/src/env.rs:150: undefined reference to `GRBgeterrormsg'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::from_raw':
+kablam! /source/src/model/mod.rs:292: undefined reference to `GRBgetenv'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::new':
+kablam! /source/src/model/mod.rs:338: undefined reference to `GRBnewmodel'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::update':
+kablam! /source/src/model/mod.rs:442: undefined reference to `GRBdelvars'
+kablam! /source/src/model/mod.rs:447: undefined reference to `GRBdelconstrs'
+kablam! /source/src/model/mod.rs:452: undefined reference to `GRBdelqconstrs'
+kablam! /source/src/model/mod.rs:457: undefined reference to `GRBdelsos'
+kablam! /source/src/model/mod.rs:461: undefined reference to `GRBupdatemodel'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::optimize':
+kablam! /source/src/model/mod.rs:491: undefined reference to `GRBoptimize'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::write':
+kablam! /source/src/model/mod.rs:585: undefined reference to `GRBwrite'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::add_var':
+kablam! /source/src/model/mod.rs:610: undefined reference to `GRBaddvar'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::add_constr':
+kablam! /source/src/model/mod.rs:719: undefined reference to `GRBaddconstr'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::add_qpterms':
+kablam! /source/src/model/mod.rs:1243: undefined reference to `GRBaddqpterms'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::del_qpterms':
+kablam! /source/src/model/mod.rs:1255: undefined reference to `GRBdelq'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::drop':
+kablam! /source/src/model/mod.rs:1271: undefined reference to `GRBfreemodel'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::parameter::{{impl}}::get_param':
+kablam! /source/src/param.rs:44: undefined reference to `GRBgetintparam'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::attribute::{{impl}}::get_attr':
+kablam! /source/src/attr.rs:40: undefined reference to `GRBgetintattr'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::attribute::{{impl}}::set_attr':
+kablam! /source/src/attr.rs:44: undefined reference to `GRBsetintattr'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::attribute::{{impl}}::get_attr':
+kablam! /source/src/attr.rs:55: undefined reference to `GRBgetdblattr'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::attribute::{{impl}}::get_attrelement':
+kablam! /source/src/attr.rs:145: undefined reference to `GRBgetdblattrelement'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::attribute::{{impl}}::set_attrlist':
+kablam! /source/src/attr.rs:163: undefined reference to `GRBsetdblattrlist'
+kablam! collect2: error: ld returned 1 exit status
+kablam! 
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/examples/piecewise-dcb3e7b06194fd10.0.o" "-o" "/target/debug/examples/piecewise-dcb3e7b06194fd10" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib" "/target/debug/deps/libgurobi_sys-ff0007a5d21d8712.rlib" "/target/debug/deps/libitertools-e3d9976f2df6bda8.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-2ddb28df747fcb8c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-21709492a058d9ce.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-e19aa6725ab01bfd.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-99ff2e008613b591.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-e2513aecb8fbb70c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-f3200ab7e7fe644c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-dba58b8da674d203.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-6d4348bcabf40a71.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-9f45c45fdcba4301.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-b4ef8c9d93bc879a.rlib" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::env::{{impl}}::new':
+kablam! /source/src/env.rs:27: undefined reference to `GRBloadenv'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::env::{{impl}}::drop':
+kablam! /source/src/env.rs:121: undefined reference to `GRBfreeenv'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::env::get_error_msg':
+kablam! /source/src/env.rs:150: undefined reference to `GRBgeterrormsg'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::from_raw':
+kablam! /source/src/model/mod.rs:292: undefined reference to `GRBgetenv'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::new':
+kablam! /source/src/model/mod.rs:338: undefined reference to `GRBnewmodel'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::update':
+kablam! /source/src/model/mod.rs:442: undefined reference to `GRBdelvars'
+kablam! /source/src/model/mod.rs:447: undefined reference to `GRBdelconstrs'
+kablam! /source/src/model/mod.rs:452: undefined reference to `GRBdelqconstrs'
+kablam! /source/src/model/mod.rs:457: undefined reference to `GRBdelsos'
+kablam! /source/src/model/mod.rs:461: undefined reference to `GRBupdatemodel'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::optimize':
+kablam! /source/src/model/mod.rs:491: undefined reference to `GRBoptimize'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::add_var':
+kablam! /source/src/model/mod.rs:610: undefined reference to `GRBaddvar'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::add_constr':
+kablam! /source/src/model/mod.rs:719: undefined reference to `GRBaddconstr'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::set_pwl_obj':
+kablam! /source/src/model/mod.rs:1164: undefined reference to `GRBsetpwlobj'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::model::{{impl}}::drop':
+kablam! /source/src/model/mod.rs:1271: undefined reference to `GRBfreemodel'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::parameter::{{impl}}::get_param':
+kablam! /source/src/param.rs:44: undefined reference to `GRBgetintparam'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::attribute::{{impl}}::get_attr':
+kablam! /source/src/attr.rs:40: undefined reference to `GRBgetintattr'
+kablam! /source/src/attr.rs:55: undefined reference to `GRBgetdblattr'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::attribute::{{impl}}::get_attrelement':
+kablam! /source/src/attr.rs:145: undefined reference to `GRBgetdblattrelement'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::attribute::{{impl}}::set_attrelement':
+kablam! /source/src/attr.rs:151: undefined reference to `GRBsetdblattrelement'
+kablam! /target/debug/deps/libgurobi-d74c3e10a1a8b927.rlib(gurobi-d74c3e10a1a8b927.0.o): In function `gurobi::attribute::{{impl}}::get_attrelement':
+kablam! /source/src/attr.rs:215: undefined reference to `GRBgetstrattrelement'
+kablam! collect2: error: ld returned 1 exit status
+kablam! 
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/gurobi-da24f2415944584a.0.o" "-o" "/target/debug/deps/gurobi-da24f2415944584a" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libgurobi_sys-ff0007a5d21d8712.rlib" "/target/debug/deps/libitertools-e3d9976f2df6bda8.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-dd7007be8bc832b7.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-19e7cee83d8001c7.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-58bde84252e1d985.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-2ddb28df747fcb8c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-21709492a058d9ce.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-e19aa6725ab01bfd.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-99ff2e008613b591.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-e2513aecb8fbb70c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-f3200ab7e7fe644c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-dba58b8da674d203.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-6d4348bcabf40a71.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-9f45c45fdcba4301.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-b4ef8c9d93bc879a.rlib" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /target/debug/deps/gurobi-da24f2415944584a.0.o: In function `gurobi::env::{{impl}}::new':
+kablam! /source/src/env.rs:27: undefined reference to `GRBloadenv'
+kablam! /target/debug/deps/gurobi-da24f2415944584a.0.o: In function `gurobi::env::{{impl}}::drop':
+kablam! /source/src/env.rs:121: undefined reference to `GRBfreeenv'
+kablam! /target/debug/deps/gurobi-da24f2415944584a.0.o: In function `gurobi::env::get_error_msg':
+kablam! /source/src/env.rs:150: undefined reference to `GRBgeterrormsg'
+kablam! /target/debug/deps/gurobi-da24f2415944584a.0.o: In function `gurobi::model::{{impl}}::from_raw':
+kablam! /source/src/model/mod.rs:292: undefined reference to `GRBgetenv'
+kablam! /target/debug/deps/gurobi-da24f2415944584a.0.o: In function `gurobi::model::{{impl}}::new':
+kablam! /source/src/model/mod.rs:338: undefined reference to `GRBnewmodel'
+kablam! /target/debug/deps/gurobi-da24f2415944584a.0.o: In function `gurobi::model::{{impl}}::update':
+kablam! /source/src/model/mod.rs:442: undefined reference to `GRBdelvars'
+kablam! /source/src/model/mod.rs:447: undefined reference to `GRBdelconstrs'
+kablam! /source/src/model/mod.rs:452: undefined reference to `GRBdelqconstrs'
+kablam! /source/src/model/mod.rs:457: undefined reference to `GRBdelsos'
+kablam! /source/src/model/mod.rs:461: undefined reference to `GRBupdatemodel'
+kablam! /target/debug/deps/gurobi-da24f2415944584a.0.o: In function `gurobi::model::{{impl}}::add_var':
+kablam! /source/src/model/mod.rs:610: undefined reference to `GRBaddvar'
+kablam! /target/debug/deps/gurobi-da24f2415944584a.0.o: In function `gurobi::model::{{impl}}::drop':
+kablam! /source/src/model/mod.rs:1271: undefined reference to `GRBfreemodel'
+kablam! /target/debug/deps/gurobi-da24f2415944584a.0.o: In function `gurobi::parameter::{{impl}}::get_param':
+kablam! /source/src/param.rs:44: undefined reference to `GRBgetintparam'
+kablam! /target/debug/deps/gurobi-da24f2415944584a.0.o: In function `gurobi::parameter::{{impl}}::set_param':
+kablam! /source/src/param.rs:48: undefined reference to `GRBsetintparam'
+kablam! /target/debug/deps/gurobi-da24f2415944584a.0.o: In function `gurobi::attribute::{{impl}}::get_attr':
+kablam! /source/src/attr.rs:40: undefined reference to `GRBgetintattr'
+kablam! collect2: error: ld returned 1 exit status
+kablam! 
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `gurobi`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 3739f5b4855d3423ff01454c6de5d04566fadd655c71827e627b15bf76168507`
+blam! 3739f5b4855d3423ff01454c6de5d04566fadd655c71827e627b15bf76168507

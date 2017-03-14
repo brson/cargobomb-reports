@@ -1,0 +1,177 @@
+boom! testing https://github.com/guilherme/sg#ed4cf5cf26f5927ba06f68c756b3962e31a72308 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 475a4594c4cfc85fd2cc4d0cdd295005e69c2b60fc19b20a6eab5e01d9124458
+boom! running `docker start -a 475a4594c4cfc85fd2cc4d0cdd295005e69c2b60fc19b20a6eab5e01d9124458`
+kablam!    Compiling sg v0.1.0 (file:///source)
+kablam! warning: this feature has been stable since 1.17.0. Attribute no longer needed
+kablam!  --> src/lib.rs:1:12
+kablam!   |
+kablam! 1 | #![feature(field_init_shorthand)]
+kablam!   |            ^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(stable_features)] on by default
+kablam! 
+kablam! warning: unused variable: `event`
+kablam!   --> src/sg/headless_ui.rs:22:23
+kablam!    |
+kablam! 22 |     fn trigger(&self, event: &'static str) -> () {
+kablam!    |                       ^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `headless`
+kablam!   --> src/sg/factories/app_factory.rs:20:26
+kablam!    |
+kablam! 20 |     fn create_view(self, headless: bool) -> Box<impl View> {
+kablam!    |                          ^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: struct is never used: `ResultSet`
+kablam!  --> src/sg/filter.rs:1:1
+kablam!   |
+kablam! 1 |   pub struct ResultSet {
+kablam!   |  _^ starting here...
+kablam! 2 | |     all_data: Vec<String>,
+kablam! 3 | |     matches: Vec<String>,
+kablam! 4 | |     pending_data: Vec<String>,
+kablam! 5 | |     filter_string: Option<String>,
+kablam! 6 | | }
+kablam!   | |_^ ...ending here
+kablam!   |
+kablam!   = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `new`
+kablam!   --> src/sg/filter.rs:10:5
+kablam!    |
+kablam! 10 |       pub fn new() -> Self {
+kablam!    |  _____^ starting here...
+kablam! 11 | |         ResultSet { all_data: vec![], matches: vec![], pending_data: vec![], filter_string: None }
+kablam! 12 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `push`
+kablam!   --> src/sg/filter.rs:14:5
+kablam!    |
+kablam! 14 |       pub fn push(&mut self, result: &str) {
+kablam!    |  _____^ starting here...
+kablam! 15 | |         self.pending_data.push(result.to_string());
+kablam! 16 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `filtered_length`
+kablam!   --> src/sg/filter.rs:18:5
+kablam!    |
+kablam! 18 |       pub fn filtered_length(&self) -> usize {
+kablam!    |  _____^ starting here...
+kablam! 19 | |         self.matches.len()
+kablam! 20 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `set_filter_string`
+kablam!   --> src/sg/filter.rs:22:5
+kablam!    |
+kablam! 22 |       pub fn set_filter_string(&mut self, filter_string: &str) {
+kablam!    |  _____^ starting here...
+kablam! 23 | |         self.filter_string = Some(filter_string.to_string());
+kablam! 24 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: struct is never used: `Filter`
+kablam!   --> src/sg/filter.rs:28:1
+kablam!    |
+kablam! 28 | pub struct Filter;
+kablam!    | ^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `filter`
+kablam!   --> src/sg/filter.rs:32:5
+kablam!    |
+kablam! 32 |       pub fn filter(result_set: &mut ResultSet, filter_string: &str) {
+kablam!    |  _____^ starting here...
+kablam! 33 | |         let matches = result_set.pending_data.clone().into_iter().filter(|x| x.contains(filter_string) ).collect();
+kablam! 34 | |         result_set.matches = matches;
+kablam! 35 | |         result_set.all_data.append(&mut result_set.pending_data);
+kablam! 36 | |         result_set.set_filter_string(filter_string);
+kablam! 37 | |         // trigger filter complete event?
+kablam! 38 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 2.69 secs
+boom! running `docker rm -f 475a4594c4cfc85fd2cc4d0cdd295005e69c2b60fc19b20a6eab5e01d9124458`
+blam! 475a4594c4cfc85fd2cc4d0cdd295005e69c2b60fc19b20a6eab5e01d9124458
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 7d0a1d970f2e200b9012bfa749f5ca30b6918897ced45614aa7d21a7dfd0a101
+boom! running `docker start -a 7d0a1d970f2e200b9012bfa749f5ca30b6918897ced45614aa7d21a7dfd0a101`
+kablam!    Compiling sg v0.1.0 (file:///source)
+kablam! warning: this feature has been stable since 1.17.0. Attribute no longer needed
+kablam!  --> src/lib.rs:1:12
+kablam!   |
+kablam! 1 | #![feature(field_init_shorthand)]
+kablam!   |            ^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(stable_features)] on by default
+kablam! 
+kablam! warning: unused variable: `event`
+kablam!   --> src/sg/headless_ui.rs:22:23
+kablam!    |
+kablam! 22 |     fn trigger(&self, event: &'static str) -> () {
+kablam!    |                       ^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `headless`
+kablam!   --> src/sg/factories/app_factory.rs:20:26
+kablam!    |
+kablam! 20 |     fn create_view(self, headless: bool) -> Box<impl View> {
+kablam!    |                          ^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.67 secs
+boom! running `docker rm -f 7d0a1d970f2e200b9012bfa749f5ca30b6918897ced45614aa7d21a7dfd0a101`
+blam! 7d0a1d970f2e200b9012bfa749f5ca30b6918897ced45614aa7d21a7dfd0a101
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 943066c23fb4fe0f9dfdc30ee359847d3a5455ff5f4da601d92b77657eadcb2f
+boom! running `docker start -a 943066c23fb4fe0f9dfdc30ee359847d3a5455ff5f4da601d92b77657eadcb2f`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/sg-a8bf069e397a9e07
+blam! 
+blam! running 3 tests
+blam! test sg::data_source::tests::fixed_data_source_return_lines_of_data ... ok
+blam! test sg::filter::it_does_basic_filtering_correctly ... ok
+blam! test sg::app::tests::it_does_basic_filtering ... ok
+blam! 
+blam! test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/sg-ad8a1f0f65fac65b
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!    Doc-tests sg
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f 943066c23fb4fe0f9dfdc30ee359847d3a5455ff5f4da601d92b77657eadcb2f`
+blam! 943066c23fb4fe0f9dfdc30ee359847d3a5455ff5f4da601d92b77657eadcb2f

@@ -1,0 +1,73 @@
+boom! testing disk_utils-0.0.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! d5ecd4b02201a181260b5eccf8f2076079b67a117dc93ff303d9aa4a3d372ddd
+boom! running `docker start -a d5ecd4b02201a181260b5eccf8f2076079b67a117dc93ff303d9aa4a3d372ddd`
+kablam!    Compiling disk_utils v0.0.1 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 2.53 secs
+boom! running `docker rm -f d5ecd4b02201a181260b5eccf8f2076079b67a117dc93ff303d9aa4a3d372ddd`
+blam! d5ecd4b02201a181260b5eccf8f2076079b67a117dc93ff303d9aa4a3d372ddd
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 370e1c6d9a63a14b743ef31860deeb7b1a4d6dbd1997c01d2fdd3c5f89955e1d
+boom! running `docker start -a 370e1c6d9a63a14b743ef31860deeb7b1a4d6dbd1997c01d2fdd3c5f89955e1d`
+kablam!    Compiling disk_utils v0.0.1 (file:///source)
+kablam! warning: method is never used: `set_flush_err`
+kablam!   --> tests/test_redo_log.rs:39:5
+kablam!    |
+kablam! 39 |       pub fn set_flush_err(&mut self, flush_err: bool) {
+kablam!    |  _____^ starting here...
+kablam! 40 | |         *self.flush_err.write().unwrap() = flush_err;
+kablam! 41 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 9.68 secs
+boom! running `docker rm -f 370e1c6d9a63a14b743ef31860deeb7b1a4d6dbd1997c01d2fdd3c5f89955e1d`
+blam! 370e1c6d9a63a14b743ef31860deeb7b1a4d6dbd1997c01d2fdd3c5f89955e1d
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 78b23c11aff93517965788989401715582395318e2e0af29050019479c2e9032
+boom! running `docker start -a 78b23c11aff93517965788989401715582395318e2e0af29050019479c2e9032`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/disk_utils-b754830d04695b9b
+blam! 
+blam! running 1 test
+blam! test wal::redo_log::test_changes ... ok
+blam! 
+blam! test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/test_append-900867f357b88cc6
+blam! 
+blam! running 3 tests
+blam! test test_no_padding_on_same_block ... FAILED
+blam! test test_padding_before_new_block ... FAILED
+blam! test test_single_bytes ... FAILED
+blam! 
+blam! failures:
+blam! 
+blam! ---- test_no_padding_on_same_block stdout ----
+blam! 	thread 'test_no_padding_on_same_block' panicked at 'called `Result::unwrap()` on an `Err` value: IoError(Error { repr: Os { code: 30, message: "Read-only file system" } })', /checkout/src/libcore/result.rs:860
+blam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+blam! 
+blam! ---- test_padding_before_new_block stdout ----
+blam! 	thread 'test_padding_before_new_block' panicked at 'called `Result::unwrap()` on an `Err` value: IoError(Error { repr: Os { code: 30, message: "Read-only file system" } })', /checkout/src/libcore/result.rs:860
+blam! 
+blam! ---- test_single_bytes stdout ----
+blam! 	thread 'test_single_bytes' panicked at 'called `Result::unwrap()` on an `Err` value: IoError(Error { repr: Os { code: 30, message: "Read-only file system" } })', /checkout/src/libcore/result.rs:860
+blam! 
+blam! 
+blam! failures:
+blam!     test_no_padding_on_same_block
+blam!     test_padding_before_new_block
+blam!     test_single_bytes
+blam! 
+blam! test result: FAILED. 0 passed; 3 failed; 0 ignored; 0 measured
+blam! 
+kablam! error: test failed
+boom! running `docker rm -f 78b23c11aff93517965788989401715582395318e2e0af29050019479c2e9032`
+blam! 78b23c11aff93517965788989401715582395318e2e0af29050019479c2e9032

@@ -1,0 +1,32 @@
+boom! testing overload-strings-0.1.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 500b81f863150c2ccca9b13eeb39831d2749f21de5c5d80e74e0e482f8fab112
+boom! running `docker start -a 500b81f863150c2ccca9b13eeb39831d2749f21de5c5d80e74e0e482f8fab112`
+kablam!    Compiling overload-strings v0.1.1 (file:///source)
+kablam! error[E0532]: expected tuple struct/variant, found unit variant `MetaItemKind::Word`
+kablam!   --> src/lib.rs:23:17
+kablam!    |
+kablam! 23 |                 MetaItemKind::Word(ref name) if name == ATTR_NAME => true,
+kablam!    |                 ^^^^^^^^^^^^^^^^^^ not a tuple struct/variant
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!   --> src/lib.rs:73:35
+kablam!    |
+kablam! 73 |     reg.register_syntax_extension(token::intern(ATTR_NAME),
+kablam!    |                                   ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error: no field `node` on type `&syntax::ast::Attribute`
+kablam!   --> src/lib.rs:22:24
+kablam!    |
+kablam! 22 |             match attr.node.value.node {
+kablam!    |                        ^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `overload-strings`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 500b81f863150c2ccca9b13eeb39831d2749f21de5c5d80e74e0e482f8fab112`
+blam! 500b81f863150c2ccca9b13eeb39831d2749f21de5c5d80e74e0e482f8fab112

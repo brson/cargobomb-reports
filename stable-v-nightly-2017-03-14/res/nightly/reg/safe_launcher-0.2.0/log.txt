@@ -1,0 +1,29 @@
+boom! testing safe_launcher-0.2.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! bf812473c5a0ce3c9110dbc274ffaf07cee18f93e8f05359e10a5de98a9ce702
+boom! running `docker start -a bf812473c5a0ce3c9110dbc274ffaf07cee18f93e8f05359e10a5de98a9ce702`
+kablam!    Compiling crossbeam v0.1.6
+kablam!    Compiling libsodium-sys v0.0.14
+kablam!    Compiling message_filter v0.2.0
+kablam! error: failed to run custom build command for `libsodium-sys v0.0.14`
+kablam! process didn't exit successfully: `/target/debug/build/libsodium-sys-c81c2aab8a6cece2/build-script-build` (exit code: 101)
+kablam! --- stderr
+kablam! thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: "Failed to run `\"pkg-config\" \"--libs\" \"--cflags\" \"libsodium\"`: No such file or directory (os error 2)"', /checkout/src/libcore/result.rs:860
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error[E0512]: transmute called with differently sized types: [usize; 32] (2048 bits) to [std::sync::atomic::AtomicBool; 32] (256 bits)
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/crossbeam-0.1.6/src/sync/seg_queue.rs:34:29
+kablam!    |
+kablam! 34 |             ready: unsafe { mem::transmute([0usize; SEG_SIZE]) },
+kablam!    |                             ^^^^^^^^^^^^^^ transmuting between 2048 bits and 256 bits
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `crossbeam`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f bf812473c5a0ce3c9110dbc274ffaf07cee18f93e8f05359e10a5de98a9ce702`
+blam! bf812473c5a0ce3c9110dbc274ffaf07cee18f93e8f05359e10a5de98a9ce702

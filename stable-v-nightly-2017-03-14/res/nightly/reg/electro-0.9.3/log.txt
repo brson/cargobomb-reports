@@ -1,0 +1,263 @@
+boom! testing electro-0.9.3 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 986b507340c37f1cb250f8ba4071be188eb39eb8f390030dc1888ca66404eb20
+boom! running `docker start -a 986b507340c37f1cb250f8ba4071be188eb39eb8f390030dc1888ca66404eb20`
+kablam!    Compiling rulinalg v0.4.2
+kablam!    Compiling electro v0.9.3 (file:///source)
+kablam! warning: unused attribute
+kablam!  --> src/fd.rs:3:1
+kablam!   |
+kablam! 3 | #![feature(step_by)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_attributes)] on by default
+kablam! 
+kablam! warning: crate-level attribute should be in the root module
+kablam!  --> src/fd.rs:3:1
+kablam!   |
+kablam! 3 | #![feature(step_by)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_attributes)] on by default
+kablam! 
+kablam! warning: function is never used: `lower_diag_inds`
+kablam!    --> src/fem.rs:471:1
+kablam!     |
+kablam! 471 |   fn lower_diag_inds(nrows: usize) -> Vec<[usize; 2]> {
+kablam!     |  _^ starting here...
+kablam! 472 | |   (0..nrows)
+kablam! 473 | |     .enumerate()
+kablam! 474 | |     .flat_map(|(iter_ind, row_ind)| {
+kablam! 475 | |       (0..iter_ind + 1).map(move |col_ind| {
+kablam! 476 | |         [row_ind, col_ind]
+kablam! 477 | |       })
+kablam! 478 | |     }).collect()
+kablam! 479 | | }
+kablam!     | |_^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: function is never used: `triangular`
+kablam!    --> src/fem.rs:492:1
+kablam!     |
+kablam! 492 |   fn triangular(count: usize) -> usize {
+kablam!     |  _^ starting here...
+kablam! 493 | |   (count * (count + 1)) / 2
+kablam! 494 | | }
+kablam!     | |_^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: function is never used: `triangular_inverse`
+kablam!    --> src/fem.rs:498:1
+kablam!     |
+kablam! 498 |   fn triangular_inverse(tri_num: usize) -> Result<usize, Error> {
+kablam!     |  _^ starting here...
+kablam! 499 | |   let test_num = (((tri_num * 8 + 1) as f64).sqrt() - 1.0) / 2.0;
+kablam! 500 | |   if test_num == test_num.floor() {
+kablam! 501 | |     Ok(test_num as usize)
+kablam! 502 | |   } else {
+kablam! 503 | |     Err(Error::new(ErrorKind::InvalidArg,
+kablam! 504 | |                    format!("Input {} was not triangular.", &tri_num)))
+kablam! 505 | |   }
+kablam! 506 | | }
+kablam!     | |_^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: function is never used: `symmetric_matrix`
+kablam!    --> src/fem.rs:510:1
+kablam!     |
+kablam! 510 | fn symmetric_matrix<T>(values: Vec<T>) -> Matrix<T>
+kablam!     | ^
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: function is never used: `upper_diag_matrix`
+kablam!    --> src/fem.rs:535:1
+kablam!     |
+kablam! 535 | fn upper_diag_matrix<T>(values: Vec<T>) -> Matrix<T>
+kablam!     | ^
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: function is never used: `lower_diag_matrix`
+kablam!    --> src/fem.rs:555:1
+kablam!     |
+kablam! 555 | fn lower_diag_matrix<T>(values: Vec<T>) -> Matrix<T>
+kablam!     | ^
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 6.15 secs
+boom! running `docker rm -f 986b507340c37f1cb250f8ba4071be188eb39eb8f390030dc1888ca66404eb20`
+blam! 986b507340c37f1cb250f8ba4071be188eb39eb8f390030dc1888ca66404eb20
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 40e88cd6a122ab66111cc49c0006c10f51aec03c891c2f32125ad1aaba6d3e3a
+boom! running `docker start -a 40e88cd6a122ab66111cc49c0006c10f51aec03c891c2f32125ad1aaba6d3e3a`
+kablam!    Compiling electro v0.9.3 (file:///source)
+kablam! error: no method named `iter_rows` found for type `rulinalg::matrix::Matrix<f64>` in the current scope
+kablam!  --> examples/topo_split_feed.rs:9:29
+kablam!   |
+kablam! 9 |   for row in split_feed_mat.iter_rows() {
+kablam!   |                             ^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: no method named `iter_rows` found for type `rulinalg::matrix::Matrix<f64>` in the current scope
+kablam!  --> examples/topo_stripline.rs:9:28
+kablam!   |
+kablam! 9 |   for row in stripline_mat.iter_rows() {
+kablam!   |                            ^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `electro`.
+kablam! error: Could not compile `electro`.
+blam! Build failed, waiting for other jobs to finish...
+blam! Build failed, waiting for other jobs to finish...
+kablam! warning: unused attribute
+kablam!  --> src/fd.rs:3:1
+kablam!   |
+kablam! 3 | #![feature(step_by)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_attributes)] on by default
+kablam! 
+kablam! warning: crate-level attribute should be in the root module
+kablam!  --> src/fd.rs:3:1
+kablam!   |
+kablam! 3 | #![feature(step_by)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_attributes)] on by default
+kablam! 
+kablam! warning: function is never used: `lower_diag_inds`
+kablam!    --> src/fem.rs:471:1
+kablam!     |
+kablam! 471 |   fn lower_diag_inds(nrows: usize) -> Vec<[usize; 2]> {
+kablam!     |  _^ starting here...
+kablam! 472 | |   (0..nrows)
+kablam! 473 | |     .enumerate()
+kablam! 474 | |     .flat_map(|(iter_ind, row_ind)| {
+kablam! 475 | |       (0..iter_ind + 1).map(move |col_ind| {
+kablam! 476 | |         [row_ind, col_ind]
+kablam! 477 | |       })
+kablam! 478 | |     }).collect()
+kablam! 479 | | }
+kablam!     | |_^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: function is never used: `triangular`
+kablam!    --> src/fem.rs:492:1
+kablam!     |
+kablam! 492 |   fn triangular(count: usize) -> usize {
+kablam!     |  _^ starting here...
+kablam! 493 | |   (count * (count + 1)) / 2
+kablam! 494 | | }
+kablam!     | |_^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: function is never used: `triangular_inverse`
+kablam!    --> src/fem.rs:498:1
+kablam!     |
+kablam! 498 |   fn triangular_inverse(tri_num: usize) -> Result<usize, Error> {
+kablam!     |  _^ starting here...
+kablam! 499 | |   let test_num = (((tri_num * 8 + 1) as f64).sqrt() - 1.0) / 2.0;
+kablam! 500 | |   if test_num == test_num.floor() {
+kablam! 501 | |     Ok(test_num as usize)
+kablam! 502 | |   } else {
+kablam! 503 | |     Err(Error::new(ErrorKind::InvalidArg,
+kablam! 504 | |                    format!("Input {} was not triangular.", &tri_num)))
+kablam! 505 | |   }
+kablam! 506 | | }
+kablam!     | |_^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: function is never used: `symmetric_matrix`
+kablam!    --> src/fem.rs:510:1
+kablam!     |
+kablam! 510 | fn symmetric_matrix<T>(values: Vec<T>) -> Matrix<T>
+kablam!     | ^
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: function is never used: `upper_diag_matrix`
+kablam!    --> src/fem.rs:535:1
+kablam!     |
+kablam! 535 | fn upper_diag_matrix<T>(values: Vec<T>) -> Matrix<T>
+kablam!     | ^
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: function is never used: `lower_diag_matrix`
+kablam!    --> src/fem.rs:555:1
+kablam!     |
+kablam! 555 | fn lower_diag_matrix<T>(values: Vec<T>) -> Matrix<T>
+kablam!     | ^
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f 40e88cd6a122ab66111cc49c0006c10f51aec03c891c2f32125ad1aaba6d3e3a`
+blam! 40e88cd6a122ab66111cc49c0006c10f51aec03c891c2f32125ad1aaba6d3e3a
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! a134199fb71e2f5f5815eb64c39cc03377625a9b31758b28d44d493238da513b
+boom! running `docker start -a a134199fb71e2f5f5815eb64c39cc03377625a9b31758b28d44d493238da513b`
+kablam!    Compiling electro v0.9.3 (file:///source)
+kablam! error: no method named `iter_rows` found for type `rulinalg::matrix::Matrix<f64>` in the current scope
+kablam!  --> examples/topo_microstrip.rs:9:29
+kablam!   |
+kablam! 9 |   for row in microstrip_mat.iter_rows() {
+kablam!   |                             ^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `electro`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: no method named `iter_rows` found for type `rulinalg::matrix::Matrix<f64>` in the current scope
+kablam!   --> examples/mm_plate.rs:28:51
+kablam!    |
+kablam! 28 |   for row in charge_dist.top_grid.charge.unwrap().iter_rows() {
+kablam!    |                                                   ^^^^^^^^^
+kablam! 
+kablam! error: no method named `iter_rows` found for type `rulinalg::matrix::Matrix<f64>` in the current scope
+kablam!   --> examples/mm_plate.rs:34:54
+kablam!    |
+kablam! 34 |   for row in charge_dist.bottom_grid.charge.unwrap().iter_rows() {
+kablam!    |                                                      ^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `electro`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: no method named `iter_rows` found for type `rulinalg::matrix::Matrix<f64>` in the current scope
+kablam!   --> examples/mm_cylinder.rs:22:47
+kablam!    |
+kablam! 22 |   for row in charge_dist.grid.charge.unwrap().iter_rows() {
+kablam!    |                                               ^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `electro`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: no method named `iter_rows` found for type `rulinalg::matrix::Matrix<f64>` in the current scope
+kablam!   --> examples/fd_split_rect.rs:83:38
+kablam!    |
+kablam! 83 |   for row in computed_grid.potential.iter_rows() {
+kablam!    |                                      ^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f a134199fb71e2f5f5815eb64c39cc03377625a9b31758b28d44d493238da513b`
+blam! a134199fb71e2f5f5815eb64c39cc03377625a9b31758b28d44d493238da513b

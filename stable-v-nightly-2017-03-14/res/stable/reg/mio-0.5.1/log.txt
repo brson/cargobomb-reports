@@ -1,0 +1,33 @@
+boom! testing mio-0.5.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! c6666cc2551884356294d57bce34c57122f7b3fb01ac6a5649d5f8702fdfb849
+boom! running `docker start -a c6666cc2551884356294d57bce34c57122f7b3fb01ac6a5649d5f8702fdfb849`
+kablam!    Compiling miow v0.1.5
+kablam!    Compiling mio v0.5.1 (file:///source)
+kablam! error: unused import: `TcpListenerExt`
+kablam!  --> src/sys/unix/tcp.rs:8:26
+kablam!   |
+kablam! 8 | use net2::{TcpStreamExt, TcpListenerExt};
+kablam!   |                          ^^^^^^^^^^^^^^
+kablam!   |
+kablam! note: lint level defined here
+kablam!  --> src/lib.rs:83:24
+kablam!   |
+kablam! 83| #![cfg_attr(unix, deny(warnings))]
+kablam!   |                        ^^^^^^^^
+kablam! 
+kablam! error: unused import: `TryAccept`
+kablam!   --> src/sys/unix/tcp.rs:12:55
+kablam!    |
+kablam! 12 | use {io, Evented, EventSet, PollOpt, Selector, Token, TryAccept};
+kablam!    |                                                       ^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `mio`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f c6666cc2551884356294d57bce34c57122f7b3fb01ac6a5649d5f8702fdfb849`
+blam! c6666cc2551884356294d57bce34c57122f7b3fb01ac6a5649d5f8702fdfb849

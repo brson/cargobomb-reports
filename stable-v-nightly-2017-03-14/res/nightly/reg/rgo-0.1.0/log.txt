@@ -1,0 +1,219 @@
+boom! testing rgo-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 98f8dff58b5934410626eb5ec0c20c61daf23264ed103b777b39f1ec3747d053
+boom! running `docker start -a 98f8dff58b5934410626eb5ec0c20c61daf23264ed103b777b39f1ec3747d053`
+kablam!    Compiling convenience v0.1.0
+kablam!    Compiling rgo v0.1.0 (file:///source)
+kablam! warning: unused `#[macro_use]` import
+kablam!   --> src/lib.rs:16:1
+kablam!    |
+kablam! 16 | #[macro_use]
+kablam!    | ^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused `#[macro_use]` import
+kablam!   --> src/lib.rs:18:1
+kablam!    |
+kablam! 18 | #[macro_use]
+kablam!    | ^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: method is never used: `next_kind`
+kablam!   --> src/parser/mod.rs:88:5
+kablam!    |
+kablam! 88 |       fn next_kind(&mut self) -> TokenKind {
+kablam!    |  _____^ starting here...
+kablam! 89 | |         self.reader.peek().map(|x| x.token.kind).unwrap_or(TokenKind::Eof)
+kablam! 90 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `eat_and_get`
+kablam!    --> src/parser/mod.rs:101:5
+kablam!     |
+kablam! 101 |       fn eat_and_get(&mut self, expected: TokenKind) -> PResult<(Token)> {
+kablam!     |  _____^ starting here...
+kablam! 102 | |         if self.token.kind != expected {
+kablam! 103 | |             return Err(self.err(ErrorKind::unexpected_token(vec![expected], self.token.clone())));
+kablam! 104 | |         }
+kablam! 105 | |         Ok(self.bump_and_get())
+kablam! 106 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `parse_basic_lit`
+kablam!    --> src/parser/mod.rs:555:5
+kablam!     |
+kablam! 555 |     fn parse_basic_lit(&mut self) -> PResult<ast::BasicLit> {
+kablam!     |     ^
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `parse_rune_lit`
+kablam!    --> src/parser/mod.rs:587:5
+kablam!     |
+kablam! 587 |     fn parse_rune_lit(&mut self) -> PResult<char> {
+kablam!     |     ^
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `interpret_float_lit`
+kablam!    --> src/parser/mod.rs:637:5
+kablam!     |
+kablam! 637 |     fn interpret_float_lit(&mut self, value: &str, token_name: &str) -> PResult<BigRational> {
+kablam!     |     ^
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `parse_int_lit`
+kablam!    --> src/parser/mod.rs:706:5
+kablam!     |
+kablam! 706 |     fn parse_int_lit(&mut self) -> PResult<BigInt> {
+kablam!     |     ^
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `interpret_int`
+kablam!    --> src/parser/mod.rs:743:5
+kablam!     |
+kablam! 743 |     fn interpret_int(&mut self, lit: &str, base: u32, token_name: &str) -> PResult<BigInt> {
+kablam!     |     ^
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `parse_unary_operation`
+kablam!    --> src/parser/mod.rs:761:5
+kablam!     |
+kablam! 761 |       fn parse_unary_operation(&mut self) -> PResult<ast::UnaryOperation> {
+kablam!     |  _____^ starting here...
+kablam! 762 | |         trace!("parse_unary_operation");
+kablam! 763 | |
+kablam! 764 | |         Ok(ast::UnaryOperation {
+kablam! 765 | |             operator: try!(self.parse_unary_operator()),
+kablam! 766 | |             operand: Box::new(try!(self.parse_unary_expr())),
+kablam! 767 | |         })
+kablam! 768 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 6.50 secs
+boom! running `docker rm -f 98f8dff58b5934410626eb5ec0c20c61daf23264ed103b777b39f1ec3747d053`
+blam! 98f8dff58b5934410626eb5ec0c20c61daf23264ed103b777b39f1ec3747d053
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! adbbf1f080c49b4bb24bb8908e965302ddfe51426075e7314422d6731e1b4976
+boom! running `docker start -a adbbf1f080c49b4bb24bb8908e965302ddfe51426075e7314422d6731e1b4976`
+kablam!    Compiling rgo v0.1.0 (file:///source)
+kablam! warning: unused `#[macro_use]` import
+kablam!   --> src/lib.rs:16:1
+kablam!    |
+kablam! 16 | #[macro_use]
+kablam!    | ^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused `#[macro_use]` import
+kablam!   --> src/lib.rs:18:1
+kablam!    |
+kablam! 18 | #[macro_use]
+kablam!    | ^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: method is never used: `next_kind`
+kablam!   --> src/parser/mod.rs:88:5
+kablam!    |
+kablam! 88 |       fn next_kind(&mut self) -> TokenKind {
+kablam!    |  _____^ starting here...
+kablam! 89 | |         self.reader.peek().map(|x| x.token.kind).unwrap_or(TokenKind::Eof)
+kablam! 90 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `parse_unary_operation`
+kablam!    --> src/parser/mod.rs:761:5
+kablam!     |
+kablam! 761 |       fn parse_unary_operation(&mut self) -> PResult<ast::UnaryOperation> {
+kablam!     |  _____^ starting here...
+kablam! 762 | |         trace!("parse_unary_operation");
+kablam! 763 | |
+kablam! 764 | |         Ok(ast::UnaryOperation {
+kablam! 765 | |             operator: try!(self.parse_unary_operator()),
+kablam! 766 | |             operand: Box::new(try!(self.parse_unary_expr())),
+kablam! 767 | |         })
+kablam! 768 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 7.39 secs
+boom! running `docker rm -f adbbf1f080c49b4bb24bb8908e965302ddfe51426075e7314422d6731e1b4976`
+blam! adbbf1f080c49b4bb24bb8908e965302ddfe51426075e7314422d6731e1b4976
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! d0a5a5f3a11acc4c0784809735710709997695b5fac8c07dcd52116af07fe734
+boom! running `docker start -a d0a5a5f3a11acc4c0784809735710709997695b5fac8c07dcd52116af07fe734`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/rgo-290c36591540799c
+blam! 
+blam! running 26 tests
+blam! test lexer::test::tokenize_comments ... ok
+blam! test lexer::test::test_text_literals ... ok
+blam! test lexer::test::tokenize_hello ... ok
+blam! test lexer::test::test_numerical_tokens ... ok
+blam! test lexer::test::tokenize_ident ... ok
+blam! test lexer::test::tokenize_mixed_whitespace ... ok
+blam! test lexer::test::tokenize_package_declaration ... ok
+blam! test lexer::test::tokenize_hello_with_comments ... ok
+blam! test lexer::test::tokenize_plain_interpreted_str ... ok
+blam! test lexer::test::tokenize_keywords ... ok
+blam! test lexer::test::tokenize_simple_assignment_with_inline_comment ... ok
+blam! test lexer::test::tokenize_simple_import ... ok
+blam! test lexer::test::tokenize_simple_assignment ... ok
+blam! test parser::test::test_interpret_ints ... ok
+blam! test lexer::test::tokenize_simple ... ok
+blam! test parser::test::test_interpret_rune_surrogate_half ... ok
+blam! test parser::test::test_interpret_imaginaries ... ok
+blam! test parser::test::test_interpret_rune_too_few_octal_digits ... ok
+blam! test parser::test::test_interpret_rune_too_many_characters ... ok
+blam! test parser::test::test_interpret_runes ... ok
+blam! test parser::test::test_interpret_string_illegal_surrogate_half ... ok
+blam! test parser::test::test_interpret_string_invalid_codepoint ... ok
+blam! test parser::test::test_interpret_strings ... ok
+blam! test parser::test::test_interpret_floats ... ok
+blam! test parser::test::test_interpret_rune_invalid_codepoint ... ok
+blam! test parser::test::test_interpret_rune_too_few_hex_digits ... ok
+blam! 
+blam! test result: ok. 26 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/rgo-f2f5961d15e5f6ca
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/runner-9b659e62b9a13659
+kablam! thread 'main' panicked at 'Error { offset: 120, kind: UnexpectedToken { found: Token { kind: Var, value: None }, expected: [Func] } }', tests/runner.rs:51
+kablam! note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+kablam! stack backtrace:
+kablam!    0: runner::parsing_does_not_panic::{{closure}}
+kablam!              at ./tests/runner.rs:51
+kablam!    1: runner::for_all_in
+kablam!              at ./tests/runner.rs:25
+kablam!    2: runner::parsing_does_not_panic
+kablam!              at ./tests/runner.rs:45
+kablam!    3: runner::main
+kablam!              at ./tests/runner.rs:35
+kablam! error: test failed
+boom! running `docker rm -f d0a5a5f3a11acc4c0784809735710709997695b5fac8c07dcd52116af07fe734`
+blam! d0a5a5f3a11acc4c0784809735710709997695b5fac8c07dcd52116af07fe734

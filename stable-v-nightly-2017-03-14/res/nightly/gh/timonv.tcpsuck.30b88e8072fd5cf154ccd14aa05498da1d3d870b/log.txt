@@ -1,0 +1,143 @@
+boom! testing https://github.com/timonv/tcpsuck#30b88e8072fd5cf154ccd14aa05498da1d3d870b against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 04815ee92ab53368df987d636095ed5ccdf820072c85094fa274e0ed6598cc78
+boom! running `docker start -a 04815ee92ab53368df987d636095ed5ccdf820072c85094fa274e0ed6598cc78`
+kablam!    Compiling tcpsuck v0.0.1 (file:///source)
+kablam! error: expected type, found `||`
+kablam!    --> src/broadcaster.rs:151:29
+kablam!     |
+kablam! 151 |     fn timeout(max: int, f: || -> bool) -> bool {
+kablam!     |                             ^^
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::TcpListener`
+kablam!  --> src/server.rs:1:15
+kablam!   |
+kablam! 1 | use std::io::{TcpListener, TcpStream, Acceptor, Listener, BufferedStream};
+kablam!   |               ^^^^^^^^^^^ no `TcpListener` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::TcpStream`
+kablam!  --> src/server.rs:1:28
+kablam!   |
+kablam! 1 | use std::io::{TcpListener, TcpStream, Acceptor, Listener, BufferedStream};
+kablam!   |                            ^^^^^^^^^ no `TcpStream` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::Acceptor`
+kablam!  --> src/server.rs:1:39
+kablam!   |
+kablam! 1 | use std::io::{TcpListener, TcpStream, Acceptor, Listener, BufferedStream};
+kablam!   |                                       ^^^^^^^^ no `Acceptor` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::Listener`
+kablam!  --> src/server.rs:1:49
+kablam!   |
+kablam! 1 | use std::io::{TcpListener, TcpStream, Acceptor, Listener, BufferedStream};
+kablam!   |                                                 ^^^^^^^^ no `Listener` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::BufferedStream`
+kablam!  --> src/server.rs:1:59
+kablam!   |
+kablam! 1 | use std::io::{TcpListener, TcpStream, Acceptor, Listener, BufferedStream};
+kablam!   |                                                           ^^^^^^^^^^^^^^ no `BufferedStream` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::BufferedWriter`
+kablam!  --> src/broadcaster.rs:1:5
+kablam!   |
+kablam! 1 | use std::io::BufferedWriter;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^ no `BufferedWriter` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::sync::RWLock`
+kablam!  --> src/broadcaster.rs:2:17
+kablam!   |
+kablam! 2 | use std::sync::{RWLock, Arc};
+kablam!   |                 ^^^^^^ no `RWLock` in `sync`. Did you mean to use `RwLock`?
+kablam! 
+kablam! error[E0425]: cannot find function `channel` in this scope
+kablam!   --> src/server.rs:16:24
+kablam!    |
+kablam! 16 |         let (tx, rx) = channel::<(String, String)>();
+kablam!    |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::sync::mpsc::channel;`
+kablam! 
+kablam! error[E0425]: cannot find function `spawn` in this scope
+kablam!   --> src/server.rs:29:13
+kablam!    |
+kablam! 29 |             spawn(move || {
+kablam!    |             ^^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::thread::spawn;`
+kablam! 
+kablam! error[E0412]: cannot find type `Sender` in this scope
+kablam!   --> src/server.rs:36:77
+kablam!    |
+kablam! 36 |     fn handle_client(server: Broadcaster<TcpStream>, stream: TcpStream, tx: Sender<(String, String)>) {
+kablam!    |                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^ did you mean `Send`?
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::sync::mpsc::Sender;`
+kablam! 
+kablam! error[E0405]: cannot find trait `Reader` in this scope
+kablam!  --> src/broadcaster.rs:5:37
+kablam!   |
+kablam! 5 | pub struct Broadcaster<T: 'static + Reader + Writer> {
+kablam!   |                                     ^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0405]: cannot find trait `Writer` in this scope
+kablam!  --> src/broadcaster.rs:5:46
+kablam!   |
+kablam! 5 | pub struct Broadcaster<T: 'static + Reader + Writer> {
+kablam!   |                                              ^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0405]: cannot find trait `Reader` in this scope
+kablam!   --> src/broadcaster.rs:10:9
+kablam!    |
+kablam! 10 | impl<T: Reader + Writer + Clone> Broadcaster<T> {
+kablam!    |         ^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0405]: cannot find trait `Writer` in this scope
+kablam!   --> src/broadcaster.rs:10:18
+kablam!    |
+kablam! 10 | impl<T: Reader + Writer + Clone> Broadcaster<T> {
+kablam!    |                  ^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `Receiver` in this scope
+kablam!   --> src/broadcaster.rs:27:45
+kablam!    |
+kablam! 27 |     pub fn listen_and_broadcast(&self, rec: Receiver<(String, String)>) {
+kablam!    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::sync::mpsc::Receiver;`
+kablam! 
+kablam! error[E0425]: cannot find function `spawn` in this scope
+kablam!   --> src/broadcaster.rs:29:9
+kablam!    |
+kablam! 29 |         spawn(move || {
+kablam!    |         ^^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::thread::spawn;`
+kablam! 
+kablam! error[E0405]: cannot find trait `Reader` in this scope
+kablam!   --> src/broadcaster.rs:59:9
+kablam!    |
+kablam! 59 | impl<T: Reader + Writer>Clone for Broadcaster<T> {
+kablam!    |         ^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0405]: cannot find trait `Writer` in this scope
+kablam!   --> src/broadcaster.rs:59:18
+kablam!    |
+kablam! 59 | impl<T: Reader + Writer>Clone for Broadcaster<T> {
+kablam!    |                  ^^^^^^ not found in this scope
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `tcpsuck`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 04815ee92ab53368df987d636095ed5ccdf820072c85094fa274e0ed6598cc78`
+blam! 04815ee92ab53368df987d636095ed5ccdf820072c85094fa274e0ed6598cc78

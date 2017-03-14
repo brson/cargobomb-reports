@@ -1,0 +1,51 @@
+boom! testing syslog-ng-common-0.8.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 68e009e520db3a72ac8c185810e30536872e696cfd718909b1cc2e7aa70a9c6b
+boom! running `docker start -a 68e009e520db3a72ac8c185810e30536872e696cfd718909b1cc2e7aa70a9c6b`
+kablam!    Compiling syslog-ng-sys v0.3.0
+kablam!    Compiling glib v0.0.8
+kablam! error[E0591]: `extern "C" fn(&std::cell::RefCell<std::boxed::Box<std::ops::FnMut() -> source::Continue + 'static>>) -> i32 {source::trampoline}` is zero-sized and can't be transmuted to `std::option::Option<unsafe extern "C" fn(*mut libc::c_void) -> i32>`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/glib-0.0.8/src/source.rs:73:70
+kablam!    |
+kablam! 73 |         glib_ffi::g_idle_add_full(glib_ffi::G_PRIORITY_DEFAULT_IDLE, transmute(trampoline),
+kablam!    |                                                                      ^^^^^^^^^
+kablam!    |
+kablam! note: cast with `as` to a pointer instead
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/glib-0.0.8/src/source.rs:73:70
+kablam!    |
+kablam! 73 |         glib_ffi::g_idle_add_full(glib_ffi::G_PRIORITY_DEFAULT_IDLE, transmute(trampoline),
+kablam!    |                                                                      ^^^^^^^^^
+kablam! 
+kablam! error[E0591]: `extern "C" fn(&std::cell::RefCell<std::boxed::Box<std::ops::FnMut() -> source::Continue + 'static>>) -> i32 {source::trampoline}` is zero-sized and can't be transmuted to `std::option::Option<unsafe extern "C" fn(*mut libc::c_void) -> i32>`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/glib-0.0.8/src/source.rs:91:78
+kablam!    |
+kablam! 91 |         glib_ffi::g_timeout_add_full(glib_ffi::G_PRIORITY_DEFAULT, interval, transmute(trampoline),
+kablam!    |                                                                              ^^^^^^^^^
+kablam!    |
+kablam! note: cast with `as` to a pointer instead
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/glib-0.0.8/src/source.rs:91:78
+kablam!    |
+kablam! 91 |         glib_ffi::g_timeout_add_full(glib_ffi::G_PRIORITY_DEFAULT, interval, transmute(trampoline),
+kablam!    |                                                                              ^^^^^^^^^
+kablam! 
+kablam! error[E0591]: `extern "C" fn(&std::cell::RefCell<std::boxed::Box<std::ops::FnMut() -> source::Continue + 'static>>) -> i32 {source::trampoline}` is zero-sized and can't be transmuted to `std::option::Option<unsafe extern "C" fn(*mut libc::c_void) -> i32>`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/glib-0.0.8/src/source.rs:109:13
+kablam!     |
+kablam! 109 |             transmute(trampoline), into_raw(func), Some(destroy_closure))
+kablam!     |             ^^^^^^^^^
+kablam!     |
+kablam! note: cast with `as` to a pointer instead
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/glib-0.0.8/src/source.rs:109:13
+kablam!     |
+kablam! 109 |             transmute(trampoline), into_raw(func), Some(destroy_closure))
+kablam!     |             ^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `glib`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f 68e009e520db3a72ac8c185810e30536872e696cfd718909b1cc2e7aa70a9c6b`
+blam! 68e009e520db3a72ac8c185810e30536872e696cfd718909b1cc2e7aa70a9c6b

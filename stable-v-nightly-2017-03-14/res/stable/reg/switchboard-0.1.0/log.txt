@@ -1,0 +1,64 @@
+boom! testing switchboard-0.1.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! f8dc6e45e05e122d0010dfe2a76cfa272759b01ec1c1f76b61eb9e2264ae1307
+boom! running `docker start -a f8dc6e45e05e122d0010dfe2a76cfa272759b01ec1c1f76b61eb9e2264ae1307`
+kablam!    Compiling switchboard v0.1.0 (file:///source)
+kablam! error[E0432]: unresolved import `mio::EventLoop`
+kablam!  --> src/miowrap.rs:3:11
+kablam!   |
+kablam! 3 | use mio::{EventLoop, Evented, EventSet, Token, PollOpt, Handler};
+kablam!   |           ^^^^^^^^^ no `EventLoop` in the root
+kablam! 
+kablam! error[E0432]: unresolved import `mio::EventSet`
+kablam!  --> src/miowrap.rs:3:31
+kablam!   |
+kablam! 3 | use mio::{EventLoop, Evented, EventSet, Token, PollOpt, Handler};
+kablam!   |                               ^^^^^^^^ no `EventSet` in the root. Did you mean to use `Evented`?
+kablam! 
+kablam! error[E0432]: unresolved import `mio::Handler`
+kablam!  --> src/miowrap.rs:3:57
+kablam!   |
+kablam! 3 | use mio::{EventLoop, Evented, EventSet, Token, PollOpt, Handler};
+kablam!   |                                                         ^^^^^^^ no `Handler` in the root
+kablam! 
+kablam! error[E0432]: unresolved import `mio::EventSet`
+kablam!  --> src/miohandler.rs:2:18
+kablam!   |
+kablam! 2 | use mio::{Token, EventSet, EventLoop};
+kablam!   |                  ^^^^^^^^ no `EventSet` in the root. Did you mean to use `Evented`?
+kablam! 
+kablam! error[E0432]: unresolved import `mio::EventLoop`
+kablam!  --> src/miohandler.rs:2:28
+kablam!   |
+kablam! 2 | use mio::{Token, EventSet, EventLoop};
+kablam!   |                            ^^^^^^^^^ no `EventLoop` in the root
+kablam! 
+kablam! error[E0432]: unresolved import `mio::util::Slab`
+kablam!  --> src/miohandler.rs:3:5
+kablam!   |
+kablam! 3 | use mio::util::Slab;
+kablam!   |     ^^^^^^^^^^^^^^^ Could not find `util` in `mio`
+kablam! 
+kablam! error[E0432]: unresolved import `mio::util::Slab`
+kablam!  --> src/filterslab.rs:2:5
+kablam!   |
+kablam! 2 | use mio::util::Slab;
+kablam!   |     ^^^^^^^^^^^^^^^ Could not find `util` in `mio`
+kablam! 
+kablam! error[E0405]: trait `mio::Handler` is not in scope
+kablam!   --> src/miohandler.rs:74:28
+kablam!    |
+kablam! 74 | impl<Ctx, R: Resolve<Ctx>> mio::Handler for Handler<Ctx, R> {
+kablam!    |                            ^^^^^^^^^^^^ `mio::Handler` is not in scope
+kablam!    |
+kablam!    = help: you can import it into scope: `use mio::deprecated::Handler;`.
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `switchboard`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f8dc6e45e05e122d0010dfe2a76cfa272759b01ec1c1f76b61eb9e2264ae1307`
+blam! f8dc6e45e05e122d0010dfe2a76cfa272759b01ec1c1f76b61eb9e2264ae1307

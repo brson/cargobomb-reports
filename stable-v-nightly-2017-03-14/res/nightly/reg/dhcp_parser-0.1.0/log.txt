@@ -1,0 +1,50 @@
+boom! testing dhcp_parser-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 78ad49d10ee76618dfe819e987c908352564f61eb2e61cd410b3a99283787641
+boom! running `docker start -a 78ad49d10ee76618dfe819e987c908352564f61eb2e61cd410b3a99283787641`
+kablam!    Compiling dhcp_parser v0.1.0 (file:///source)
+kablam! error[E0432]: unresolved import `nom::length_value`
+kablam!  --> src/options/parse.rs:4:34
+kablam!   |
+kablam! 4 | use nom::{be_u8, be_u32, be_i32, length_value, IResult};
+kablam!   |                                  ^^^^^^^^^^^^ no `length_value` in the root. Did you mean to use `length_data`?
+kablam! 
+kablam! error[E0261]: use of undeclared lifetime name `'a`
+kablam!   --> src/options/parse.rs:12:21
+kablam!    |
+kablam! 12 | named!(dhcp_option(&'a [u8]) -> DhcpOption, alt!(
+kablam!    |                     ^^ undeclared lifetime
+kablam! 
+kablam! error[E0261]: use of undeclared lifetime name `'a`
+kablam!   --> src/options/parse.rs:12:21
+kablam!    |
+kablam! 12 | named!(dhcp_option(&'a [u8]) -> DhcpOption, alt!(
+kablam!    |                     ^^ undeclared lifetime
+kablam! 
+kablam! error[E0261]: use of undeclared lifetime name `'a`
+kablam!    --> src/lib.rs:100:24
+kablam!     |
+kablam! 100 | named!(_parse_message(&'a [u8]) -> RawMessage<'a>,
+kablam!     |                        ^^ undeclared lifetime
+kablam! 
+kablam! error[E0261]: use of undeclared lifetime name `'a`
+kablam!    --> src/lib.rs:100:24
+kablam!     |
+kablam! 100 | named!(_parse_message(&'a [u8]) -> RawMessage<'a>,
+kablam!     |                        ^^ undeclared lifetime
+kablam! 
+kablam! error[E0261]: use of undeclared lifetime name `'a`
+kablam!    --> src/lib.rs:100:47
+kablam!     |
+kablam! 100 | named!(_parse_message(&'a [u8]) -> RawMessage<'a>,
+kablam!     |                                               ^^ undeclared lifetime
+kablam! 
+kablam! error: aborting due to 5 previous errors
+kablam! 
+kablam! error: Could not compile `dhcp_parser`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 78ad49d10ee76618dfe819e987c908352564f61eb2e61cd410b3a99283787641`
+blam! 78ad49d10ee76618dfe819e987c908352564f61eb2e61cd410b3a99283787641

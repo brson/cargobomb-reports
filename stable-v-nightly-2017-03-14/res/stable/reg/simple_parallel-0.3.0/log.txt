@@ -1,0 +1,20 @@
+boom! testing simple_parallel-0.3.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 3ce1bfc79e091ed27521e457c6e164cf2b7bdb086e59118682fedb47bbb65e41
+boom! running `docker start -a 3ce1bfc79e091ed27521e457c6e164cf2b7bdb086e59118682fedb47bbb65e41`
+kablam!    Compiling crossbeam v0.1.6
+kablam! error[E0512]: transmute called with differently sized types: [usize; 32] (2048 bits) to [std::sync::atomic::AtomicBool; 32] (256 bits)
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/crossbeam-0.1.6/src/sync/seg_queue.rs:34:29
+kablam!    |
+kablam! 34 |             ready: unsafe { mem::transmute([0usize; SEG_SIZE]) },
+kablam!    |                             ^^^^^^^^^^^^^^ transmuting between 2048 bits and 256 bits
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `crossbeam`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 3ce1bfc79e091ed27521e457c6e164cf2b7bdb086e59118682fedb47bbb65e41`
+blam! 3ce1bfc79e091ed27521e457c6e164cf2b7bdb086e59118682fedb47bbb65e41

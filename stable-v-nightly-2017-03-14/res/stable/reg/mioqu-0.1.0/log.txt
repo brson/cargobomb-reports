@@ -1,0 +1,86 @@
+boom! testing mioqu-0.1.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 1c6608b4596ad045d2d810857758b1574057181fd15c7776060a05b08cb8b34a
+boom! running `docker start -a 1c6608b4596ad045d2d810857758b1574057181fd15c7776060a05b08cb8b34a`
+kablam!    Compiling mioqu v0.1.0 (file:///source)
+kablam! error[E0432]: unresolved import `mio::NotifyError`
+kablam!  --> src/result.rs:4:5
+kablam!   |
+kablam! 4 | use mio::NotifyError;
+kablam!   |     ^^^^^^^^^^^^^^^^ no `NotifyError` in the root
+kablam! 
+kablam! error[E0432]: unresolved import `mio::EventSet`
+kablam!  --> src/handler.rs:2:18
+kablam!   |
+kablam! 2 | use mio::{Token, EventSet};
+kablam!   |                  ^^^^^^^^ no `EventSet` in the root. Did you mean to use `Evented`?
+kablam! 
+kablam! error[E0432]: unresolved import `mio::EventSet`
+kablam!  --> src/queue.rs:5:24
+kablam!   |
+kablam! 5 | use mio::{self, Token, EventSet};
+kablam!   |                        ^^^^^^^^ no `EventSet` in the root. Did you mean to use `Evented`?
+kablam! 
+kablam! error[E0412]: type name `mio::EventLoop` is undefined or not in scope
+kablam!  --> src/queue.rs:9:34
+kablam!   |
+kablam! 9 | pub type EventLoop<H: Handler> = mio::EventLoop<Queue<H>>;
+kablam!   |                                  ^^^^^^^^^^^^^^^^^^^^^^^^ undefined or not in scope
+kablam!   |
+kablam!   = help: you can import several candidates into scope (`use ...;`):
+kablam!   = help:   `mio::deprecated::EventLoop`
+kablam!   = help:   `queue::EventLoop`
+kablam! 
+kablam! error[E0405]: trait `mio::Handler` is not in scope
+kablam!   --> src/queue.rs:16:18
+kablam!    |
+kablam! 16 | impl<H: Handler> mio::Handler for Queue<H> {
+kablam!    |                  ^^^^^^^^^^^^ `mio::Handler` is not in scope
+kablam!    |
+kablam!    = help: you can import several candidates into scope (`use ...;`):
+kablam!    = help:   `handler::Handler`
+kablam!    = help:   `mio::deprecated::Handler`
+kablam! 
+kablam! error[E0412]: type name `mio::Sender` is undefined or not in scope
+kablam!    --> src/queue.rs:109:13
+kablam!     |
+kablam! 109 |     sender: mio::Sender<Message<H::Processor, H::Message, H::Response>>
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ undefined or not in scope
+kablam!     |
+kablam!     = help: you can import several candidates into scope (`use ...;`):
+kablam!     = help:   `mio::channel::Sender`
+kablam!     = help:   `mio::deprecated::Sender`
+kablam!     = help:   `std::sync::mpsc::Sender`
+kablam! 
+kablam! error[E0412]: type name `mio::Sender` is undefined or not in scope
+kablam!    --> src/queue.rs:150:12
+kablam!     |
+kablam! 150 |     Notify(mio::Sender<T>),
+kablam!     |            ^^^^^^^^^^^^^^ undefined or not in scope
+kablam!     |
+kablam!     = help: you can import several candidates into scope (`use ...;`):
+kablam!     = help:   `mio::channel::Sender`
+kablam!     = help:   `mio::deprecated::Sender`
+kablam!     = help:   `std::sync::mpsc::Sender`
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!   --> src/result.rs:17:1
+kablam!    |
+kablam! 17 | pub type Result<T, H: Handler> = result::Result<T, Error<H>>;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!  --> src/queue.rs:9:1
+kablam!   |
+kablam! 9 | pub type EventLoop<H: Handler> = mio::EventLoop<Queue<H>>;
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `mioqu`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 1c6608b4596ad045d2d810857758b1574057181fd15c7776060a05b08cb8b34a`
+blam! 1c6608b4596ad045d2d810857758b1574057181fd15c7776060a05b08cb8b34a

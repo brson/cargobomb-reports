@@ -1,0 +1,94 @@
+boom! testing msgpacknet-0.1.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! d7ace39cc5083207ce4c148ded10615bc87ff2ea2e6c753a4d001f2f1985ec1a
+boom! running `docker start -a d7ace39cc5083207ce4c148ded10615bc87ff2ea2e6c753a4d001f2f1985ec1a`
+kablam!    Compiling rmp-serde v0.8.2
+kablam! error[E0432]: unresolved import `rmp::decode::FixedValueReadError`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/rmp-serde-0.8.2/src/decode.rs:11:5
+kablam!    |
+kablam! 11 |     FixedValueReadError,
+kablam!    |     ^^^^^^^^^^^^^^^^^^^ no `FixedValueReadError` in `decode`. Did you mean to use `ValueReadError`?
+kablam! 
+kablam! error[E0432]: unresolved import `rmp::decode::ReadError`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/rmp-serde-0.8.2/src/decode.rs:13:5
+kablam!    |
+kablam! 13 |     ReadError,
+kablam!    |     ^^^^^^^^^ no `ReadError` in `decode`
+kablam! 
+kablam! error[E0432]: unresolved import `rmp::decode::read_array_size`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/rmp-serde-0.8.2/src/decode.rs:15:5
+kablam!    |
+kablam! 15 |     read_array_size,
+kablam!    |     ^^^^^^^^^^^^^^^ no `read_array_size` in `decode`. Did you mean to use `read_array_len`?
+kablam! 
+kablam! error[E0432]: unresolved import `rmp::decode::read_numeric_data`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/rmp-serde-0.8.2/src/decode.rs:16:5
+kablam!    |
+kablam! 16 |     read_numeric_data,
+kablam!    |     ^^^^^^^^^^^^^^^^^ no `read_numeric_data` in `decode`
+kablam! 
+kablam! error[E0432]: unresolved import `rmp::decode::read_str_data`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/rmp-serde-0.8.2/src/decode.rs:17:5
+kablam!    |
+kablam! 17 |     read_str_data,
+kablam!    |     ^^^^^^^^^^^^^ no `read_str_data` in `decode`. Did you mean to use `read_str_ref`?
+kablam! 
+kablam! error[E0432]: unresolved import `rmp::decode::read_full`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/rmp-serde-0.8.2/src/decode.rs:19:5
+kablam!    |
+kablam! 19 |     read_full,
+kablam!    |     ^^^^^^^^^ no `read_full` in `decode`. Did you mean to use `read_bool`?
+kablam! 
+kablam! error[E0432]: unresolved import `rmp::encode::write_sint_eff`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/rmp-serde-0.8.2/src/encode.rs:11:5
+kablam!    |
+kablam! 11 |     write_sint_eff,
+kablam!    |     ^^^^^^^^^^^^^^ no `write_sint_eff` in `encode`. Did you mean to use `write_sint`?
+kablam! 
+kablam! error[E0432]: unresolved import `rmp::encode::WriteError`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/rmp-serde-0.8.2/src/encode.rs:18:5
+kablam!    |
+kablam! 18 |     WriteError,
+kablam!    |     ^^^^^^^^^^ no `WriteError` in `encode`
+kablam! 
+kablam! error[E0432]: unresolved import `rmp::encode::FixedValueWriteError`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/rmp-serde-0.8.2/src/encode.rs:19:5
+kablam!    |
+kablam! 19 |     FixedValueWriteError,
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^ no `FixedValueWriteError` in `encode`. Did you mean to use `ValueWriteError`?
+kablam! 
+kablam! error: no associated item named `InvalidDataCopy` found for type `rmp::decode::DecodeStringError<'_>` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/rmp-serde-0.8.2/src/decode.rs:144:13
+kablam!     |
+kablam! 144 |             DecodeStringError::InvalidDataCopy(..) => Error::Uncategorized("InvalidDataCopy".to_string()),
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0277]: the trait bound `encode::Error: std::convert::From<std::io::Error>` is not satisfied
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/rmp-serde-0.8.2/src/encode.rs:166:41
+kablam!     |
+kablam! 166 |         write_nil(&mut self.wr).map_err(From::from)
+kablam!     |                                         ^^^^^^^^^^ the trait `std::convert::From<std::io::Error>` is not implemented for `encode::Error`
+kablam!     |
+kablam!     = help: the following implementations were found:
+kablam!     = help:   <encode::Error as std::convert::From<rmp::encode::ValueWriteError>>
+kablam!     = note: required by `std::convert::From::from`
+kablam! 
+kablam! error[E0277]: the trait bound `encode::Error: std::convert::From<std::io::Error>` is not satisfied
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/rmp-serde-0.8.2/src/encode.rs:170:47
+kablam!     |
+kablam! 170 |         write_bool(&mut self.wr, val).map_err(From::from)
+kablam!     |                                               ^^^^^^^^^^ the trait `std::convert::From<std::io::Error>` is not implemented for `encode::Error`
+kablam!     |
+kablam!     = help: the following implementations were found:
+kablam!     = help:   <encode::Error as std::convert::From<rmp::encode::ValueWriteError>>
+kablam!     = note: required by `std::convert::From::from`
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `rmp-serde`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f d7ace39cc5083207ce4c148ded10615bc87ff2ea2e6c753a4d001f2f1985ec1a`
+blam! d7ace39cc5083207ce4c148ded10615bc87ff2ea2e6c753a4d001f2f1985ec1a

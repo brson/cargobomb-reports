@@ -1,0 +1,74 @@
+boom! testing chord3-0.3.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 73dec1d8ce938e3f2235544bf32ebc1db419b84cc4edc70b77c4192d7185890a
+boom! running `docker start -a 73dec1d8ce938e3f2235544bf32ebc1db419b84cc4edc70b77c4192d7185890a`
+kablam!    Compiling pdf v0.5.2
+kablam!    Compiling chord3 v0.3.0 (file:///source)
+kablam! error[E0308]: mismatched types
+kablam!    --> src/main.rs:161:54
+kablam!     |
+kablam! 161 |                 let arg = caps.name("arg").unwrap_or("").to_string();
+kablam!     |                                                      ^^ expected struct `regex::Match`, found reference
+kablam!     |
+kablam!     = note: expected type `regex::Match<'_>`
+kablam!                found type `&'static str`
+kablam! 
+kablam! error: no method named `to_string` found for type `regex::Match<'_>` in the current scope
+kablam!    --> src/main.rs:161:58
+kablam!     |
+kablam! 161 |                 let arg = caps.name("arg").unwrap_or("").to_string();
+kablam!     |                                                          ^^^^^^^^^
+kablam!     |
+kablam!     = note: the method `to_string` exists but the following trait bounds were not satisfied: `regex::Match<'_> : std::fmt::Display`
+kablam! 
+kablam! error: no method named `to_lowercase` found for type `regex::Match<'_>` in the current scope
+kablam!    --> src/main.rs:162:51
+kablam!     |
+kablam! 162 |                 match &*caps.name("cmd").unwrap().to_lowercase() {
+kablam!     |                                                   ^^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `at` found for type `regex::Captures<'_>` in the current scope
+kablam!    --> src/main.rs:177:44
+kablam!     |
+kablam! 177 |                                 match caps.at(n as usize+2) {
+kablam!     |                                            ^^
+kablam! 
+kablam! error: no method named `at` found for type `regex::Captures<'_>` in the current scope
+kablam!    --> src/main.rs:184:44
+kablam!     |
+kablam! 184 |                                 name: caps.at(1).unwrap().to_string(),
+kablam!     |                                            ^^
+kablam! 
+kablam! error: no method named `at` found for type `regex::Captures<'_>` in the current scope
+kablam!    --> src/main.rs:190:46
+kablam!     |
+kablam! 190 |                             let whole = caps.at(0).unwrap();
+kablam!     |                                              ^^
+kablam! 
+kablam! error: no method named `at` found for type `regex::Captures<'_>` in the current scope
+kablam!    --> src/main.rs:242:37
+kablam!     |
+kablam! 242 |                             s: caps.at(0).unwrap().to_string()
+kablam!     |                                     ^^
+kablam! 
+kablam! error: no method named `at` found for type `regex::Captures<'_>` in the current scope
+kablam!    --> src/main.rs:250:33
+kablam!     |
+kablam! 250 |                     s.push(caps.at(1).unwrap().to_string());
+kablam!     |                                 ^^
+kablam! 
+kablam! error: no method named `at` found for type `regex::Captures<'_>` in the current scope
+kablam!    --> src/main.rs:251:47
+kablam!     |
+kablam! 251 |                     if let Some(chord) = caps.at(2) {
+kablam!     |                                               ^^
+kablam! 
+kablam! error: aborting due to 9 previous errors
+kablam! 
+kablam! error: Could not compile `chord3`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 73dec1d8ce938e3f2235544bf32ebc1db419b84cc4edc70b77c4192d7185890a`
+blam! 73dec1d8ce938e3f2235544bf32ebc1db419b84cc4edc70b77c4192d7185890a

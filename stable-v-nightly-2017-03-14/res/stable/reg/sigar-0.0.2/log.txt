@@ -1,0 +1,27 @@
+boom! testing sigar-0.0.2 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! cfc6dc49ba45781eeac130d1d77d2c0e4f57ef0cd7c0fe7189fa90b43b30507b
+boom! running `docker start -a cfc6dc49ba45781eeac130d1d77d2c0e4f57ef0cd7c0fe7189fa90b43b30507b`
+kablam!    Compiling sigar v0.0.2 (file:///source)
+kablam! warning: use of deprecated item: renamed to join, #[warn(deprecated)] on by default
+kablam!   --> build.rs:38:31
+kablam!    |
+kablam! 38 |             .arg(&config_opts.connect(" "))
+kablam!    |                               ^^^^^^^
+kablam! 
+kablam! error: failed to run custom build command for `sigar v0.0.2 (file:///source)`
+kablam! process didn't exit successfully: `/target/debug/build/sigar-9c6ab71ca52e6239/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! running: "sh" "-c" "/source/sigar/autogen.sh"
+kablam! libtoolize 1.5.x wasn't found, exiting
+kablam! running: "sh" "-c" "\"/source/sigar/configure\" --prefix=\"/target/debug/build/sigar-399919cbe2702d94/out\""
+kablam! 
+kablam! --- stderr
+kablam! sh: 1: /source/sigar/configure: not found
+kablam! thread 'main' panicked at 'assertion failed: cmd.stdout(Stdio::inherit()).stderr(Stdio::inherit()).status().unwrap().success()', build.rs:63
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f cfc6dc49ba45781eeac130d1d77d2c0e4f57ef0cd7c0fe7189fa90b43b30507b`
+blam! cfc6dc49ba45781eeac130d1d77d2c0e4f57ef0cd7c0fe7189fa90b43b30507b

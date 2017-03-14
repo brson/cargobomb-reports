@@ -1,0 +1,2058 @@
+boom! testing https://github.com/rustyrazorblade/TotalRecallDB#bde2977242fbc097b5f23c4dd01f02d24f917677 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 8ce9704c052763528446aa8745c6f171c8671f0a2f163e579a4b09430d3fc077
+boom! running `docker start -a 8ce9704c052763528446aa8745c6f171c8671f0a2f163e579a4b09430d3fc077`
+kablam!    Compiling peg v0.4.0
+kablam!    Compiling termion v1.1.4
+kablam!    Compiling term_size v0.2.1
+kablam!    Compiling memchr v0.1.11
+kablam!    Compiling rand v0.3.15
+kablam!    Compiling aho-corasick v0.5.3
+kablam!    Compiling thread-id v2.0.0
+kablam!    Compiling thread_local v0.2.7
+kablam!    Compiling clap v2.19.2
+kablam!    Compiling regex v0.1.80
+kablam!    Compiling tempdir v0.3.5
+kablam!    Compiling peg-syntax-ext v0.4.2
+kablam!    Compiling env_logger v0.3.5
+kablam!    Compiling totalrecalldb v0.1.0 (file:///source)
+kablam! warning: unused or unknown feature
+kablam!  --> src/main.rs:2:12
+kablam!   |
+kablam! 2 | #![feature(test)]
+kablam!   |            ^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_features)] on by default
+kablam! 
+kablam! warning: unused `#[macro_use]` import
+kablam!  --> src/main.rs:6:1
+kablam!   |
+kablam! 6 | #[macro_use]
+kablam!   | ^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `std::env`
+kablam!  --> src/db/database.rs:3:5
+kablam!   |
+kablam! 3 | use std::env;
+kablam!   |     ^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused variable: `err`
+kablam!   --> src/db/database.rs:34:13
+kablam!    |
+kablam! 34 |     fn from(err: ParseError) -> DatabaseError {
+kablam!    |             ^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: private type `db::database::ResultSet` in public interface (error E0446)
+kablam!   --> src/db/database.rs:28:15
+kablam!    |
+kablam! 28 |     ResultSet(ResultSet),
+kablam!    |               ^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(private_in_public)] on by default
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #34537 <https://github.com/rust-lang/rust/issues/34537>
+kablam! 
+kablam! warning: method is never used: `new_temp`
+kablam!   --> src/db/database.rs:75:5
+kablam!    |
+kablam! 75 |       pub fn new_temp() -> Database {
+kablam!    |  _____^ starting here...
+kablam! 76 | |         let tmpdir = TempDir::new("totalrecalldb").expect("Creating temp dir failed");
+kablam! 77 | |         info!("Created temporary DB at {:?}", tmpdir.path());
+kablam! 78 | |         Database::new(tmpdir.into_path())
+kablam! 79 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `create_temp_stream`
+kablam!    --> src/db/database.rs:96:5
+kablam!     |
+kablam! 96  |       pub fn create_temp_stream(&mut self) -> DatabaseResult<Stream> {
+kablam!     |  _____^ starting here...
+kablam! 97  | |         let storage = Memory::new().expect("Memory is failing uggghhh");
+kablam! 98  | |         let mut stream = Stream::new(storage);
+kablam! 99  | |         Ok(stream)
+kablam! 100 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!   --> src/db/database.rs:98:13
+kablam!    |
+kablam! 98 |         let mut stream = Stream::new(storage);
+kablam!    |             ^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: method is never used: `get_stream`
+kablam!    --> src/db/database.rs:102:5
+kablam!     |
+kablam! 102 |       fn get_stream(&self, name: &str) -> Option<&Stream> {
+kablam!     |  _____^ starting here...
+kablam! 103 | |         self.tables.get(name)
+kablam! 104 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused variable: `table`
+kablam!    --> src/db/database.rs:119:31
+kablam!     |
+kablam! 119 |             Statement::Select(table, predicates) => {
+kablam!     |                               ^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `predicates`
+kablam!    --> src/db/database.rs:119:38
+kablam!     |
+kablam! 119 |             Statement::Select(table, predicates) => {
+kablam!     |                                      ^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: method is never used: `select`
+kablam!    --> src/db/database.rs:130:5
+kablam!     |
+kablam! 130 |       pub fn select(&self, stream: &str, predicates: Option<Box<Expression>>) ->
+kablam!     |  _____^ starting here...
+kablam! 131 | |                     Result<QueryResult, DatabaseError> {
+kablam! 132 | |         let result = self.get_stream(stream)
+kablam! 133 | |                          .ok_or(DatabaseError::StreamNotFound)?
+kablam! 134 | |                          .select(predicates)?;
+kablam! 135 | |
+kablam! 136 | |         Err(DatabaseError::UnknownError)
+kablam! 137 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused variable: `result`
+kablam!    --> src/db/database.rs:132:13
+kablam!     |
+kablam! 132 |         let result = self.get_stream(stream)
+kablam!     |             ^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused import: `std::error`
+kablam!  --> src/db/stream.rs:2:5
+kablam!   |
+kablam! 2 | use std::error;
+kablam!   |     ^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `super::value::Value`
+kablam!  --> src/db/stream.rs:6:5
+kablam!   |
+kablam! 6 | use super::value::Value;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `super::storage::Memory`
+kablam!   --> src/db/stream.rs:10:5
+kablam!    |
+kablam! 10 | use super::storage::Memory;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused variable: `storage`
+kablam!   --> src/db/stream.rs:60:28
+kablam!    |
+kablam! 60 |     pub fn new<S: Storage>(storage: S) -> Stream {
+kablam!    |                            ^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!   --> src/db/stream.rs:69:13
+kablam!    |
+kablam! 69 |         let mut stream = Stream {
+kablam!    |             ^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: unused variable: `predicates`
+kablam!   --> src/db/stream.rs:99:26
+kablam!    |
+kablam! 99 |     pub fn select(&self, predicates: Option<Box<Expression>>) -> Result<(), StreamError> {
+kablam!    |                          ^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: method is never used: `offset`
+kablam!    --> src/db/stream.rs:125:5
+kablam!     |
+kablam! 125 |       fn offset(&'a mut self, num: u64) -> &'a mut StreamIterator {
+kablam!     |  _____^ starting here...
+kablam! 126 | |         self.position = num;
+kablam! 127 | |         self
+kablam! 128 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused imports: `Duration`, `SystemTime`
+kablam!  --> src/db/row/row.rs:2:17
+kablam!   |
+kablam! 2 | use std::time::{Duration, SystemTime};
+kablam!   |                 ^^^^^^^^  ^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `std::collections::HashMap`
+kablam!  --> src/db/row/row.rs:3:5
+kablam!   |
+kablam! 3 | use std::collections::HashMap;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> src/db/row/row.rs:33:9
+kablam!    |
+kablam! 33 |         f.write_str("Row: ");
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> src/db/row/row.rs:59:17
+kablam!    |
+kablam! 59 |                 cur.by_ref().take(size).read_to_end(&mut data);
+kablam!    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> src/db/row/row.rs:96:9
+kablam!    |
+kablam! 96 |         buffer.write_u16::<BigEndian>(fields);
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!    --> src/db/row/row.rs:100:13
+kablam!     |
+kablam! 100 |             buffer.write_u64::<BigEndian>(k as u64);
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!    --> src/db/row/row.rs:101:13
+kablam!     |
+kablam! 101 |             buffer.write_u64::<BigEndian>(v.len());
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused import: `super::*;`
+kablam!   --> src/db/row/reader.rs:95:9
+kablam!    |
+kablam! 95 |     use super::*;
+kablam!    |         ^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `db::row::RowBuilder`
+kablam!   --> src/db/row/reader.rs:96:9
+kablam!    |
+kablam! 96 |     use db::row::RowBuilder;
+kablam!    |         ^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `db::stream::Stream`
+kablam!   --> src/db/row/reader.rs:97:9
+kablam!    |
+kablam! 97 |     use db::stream::Stream;
+kablam!    |         ^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `db::schema::Type`
+kablam!   --> src/db/row/reader.rs:98:9
+kablam!    |
+kablam! 98 |     use db::schema::Type;
+kablam!    |         ^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `db::storage::Memory`
+kablam!   --> src/db/row/reader.rs:99:9
+kablam!    |
+kablam! 99 |     use db::storage::Memory;
+kablam!    |         ^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused attribute
+kablam!  --> src/db/row/reader.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(box_syntax, box_patterns)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_attributes)] on by default
+kablam! 
+kablam! warning: crate-level attribute should be in the root module
+kablam!  --> src/db/row/reader.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(box_syntax, box_patterns)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_attributes)] on by default
+kablam! 
+kablam! warning: field is never used: `databases`
+kablam!  --> src/db/server.rs:5:5
+kablam!   |
+kablam! 5 |     databases: HashMap<String, Database>
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused import: `Schema`
+kablam!  --> src/db/value.rs:8:21
+kablam!   |
+kablam! 8 | use super::schema::{Schema, Type};
+kablam!   |                     ^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `Value`
+kablam!  --> src/db/parser/mod.rs:5:20
+kablam!   |
+kablam! 5 | use super::value::{Value, TypedValue};
+kablam!   |                    ^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused imports: `DatabaseError`, `QueryResult`
+kablam!  --> src/db/parser/integration_tests.rs:1:30
+kablam!   |
+kablam! 1 | use db::database::{Database, QueryResult, DatabaseError};
+kablam!   |                              ^^^^^^^^^^^  ^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: function is never used: `get_db`
+kablam!   --> src/db/parser/integration_tests.rs:4:1
+kablam!    |
+kablam! 4  |   fn get_db() -> Database {
+kablam!    |  _^ starting here...
+kablam! 5  | |     let mut db = Database::new_temp();
+kablam! 6  | |     {
+kablam! 7  | |         let mut stream = db.create_stream("users").unwrap();
+kablam! 8  | |         stream.schema.add_type("name", Type::String);
+kablam! 9  | |         stream.schema.add_type("age", Type::Int);
+kablam! 10 | |     }
+kablam! 11 | |     db
+kablam! 12 | | }
+kablam!    | |_^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: variant is never used: `DropStream`
+kablam!   --> src/db/parser/mod.rs:23:5
+kablam!    |
+kablam! 23 |     DropStream,
+kablam!    |     ^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: variant is never used: `UseDatabase`
+kablam!   --> src/db/parser/mod.rs:24:5
+kablam!    |
+kablam! 24 |     UseDatabase,
+kablam!    |     ^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: variant is never used: `Subscribe`
+kablam!   --> src/db/parser/mod.rs:28:5
+kablam!    |
+kablam! 28 |     Subscribe,
+kablam!    |     ^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused import: `std::io::Cursor`
+kablam!  --> src/db/storage/page.rs:1:5
+kablam!   |
+kablam! 1 | use std::io::Cursor;
+kablam!   |     ^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `Read`
+kablam!  --> src/db/storage/page.rs:2:15
+kablam!   |
+kablam! 2 | use std::io::{Read, Write};
+kablam!   |               ^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `ReadBytesExt`
+kablam!  --> src/db/storage/page.rs:4:43
+kablam!   |
+kablam! 4 | use byteorder::{BigEndian, WriteBytesExt, ReadBytesExt};
+kablam!   |                                           ^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `db::row::Row`
+kablam!  --> src/db/storage/page.rs:5:5
+kablam!   |
+kablam! 5 | use db::row::Row;
+kablam!   |     ^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused variable: `tmp`
+kablam!   --> src/db/storage/page.rs:30:13
+kablam!    |
+kablam! 30 |         let tmp: [u8; PAGE_SIZE];
+kablam!    |             ^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> src/db/storage/page.rs:47:9
+kablam!    |
+kablam! 47 |         self.data.write_u16::<BigEndian>(len);
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> src/db/storage/page.rs:48:9
+kablam!    |
+kablam! 48 |         self.data.write(bytes);
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused imports: `RowBuilder`, `Row`
+kablam!  --> src/db/storage/memory/mod.rs:3:13
+kablam!   |
+kablam! 3 | use super::{Row, RowBuilder};
+kablam!   |             ^^^  ^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: struct is never used: `Memory`
+kablam!  --> src/db/storage/memory/mod.rs:6:1
+kablam!   |
+kablam! 6 |   pub struct Memory {
+kablam!   |  _^ starting here...
+kablam! 7 | |     pages: Vec<Page>
+kablam! 8 | | }
+kablam!   | |_^ ...ending here
+kablam!   |
+kablam!   = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `new`
+kablam!   --> src/db/storage/memory/mod.rs:10:5
+kablam!    |
+kablam! 10 |       pub fn new() -> StorageResult<Memory> {
+kablam!    |  _____^ starting here...
+kablam! 11 | |         Ok(Memory{pages:Vec::new()})
+kablam! 12 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused variable: `num`
+kablam!   --> src/db/storage/memory/mod.rs:15:24
+kablam!    |
+kablam! 15 |     fn get_page(&self, num: u64) -> StorageResult<Page> {
+kablam!    |                        ^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `page`
+kablam!   --> src/db/storage/memory/mod.rs:18:30
+kablam!    |
+kablam! 18 |     fn write_page(&mut self, page: &Page) -> StorageResult<()> {
+kablam!    |                              ^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused import: `PathBuf`
+kablam!  --> src/db/storage/disk/segment.rs:2:23
+kablam!   |
+kablam! 2 | use std::path::{Path, PathBuf};
+kablam!   |                       ^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: variant is never used: `FlushFailure`
+kablam!   --> src/db/storage/disk/segment.rs:26:5
+kablam!    |
+kablam! 26 |     FlushFailure,
+kablam!    |     ^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: variant is never used: `UnknownError`
+kablam!   --> src/db/storage/disk/segment.rs:28:5
+kablam!    |
+kablam! 28 |     UnknownError,
+kablam!    |     ^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> src/db/storage/disk/segment.rs:70:9
+kablam!    |
+kablam! 70 |         self.fp.seek(SeekFrom::End(0));
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> src/db/storage/disk/segment.rs:72:9
+kablam!    |
+kablam! 72 |         self.fp.flush();
+kablam!    |         ^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: method is never used: `read_page`
+kablam!   --> src/db/storage/disk/segment.rs:77:5
+kablam!    |
+kablam! 77 |     fn read_page(&mut self, page: u64) -> SegmentResult<Page> {
+kablam!    |     ^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> src/db/storage/disk/segment.rs:80:9
+kablam!    |
+kablam! 80 |         self.fp.seek(SeekFrom::Start(offset));
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> src/db/storage/disk/segment.rs:83:9
+kablam!    |
+kablam! 83 |         self.fp.read(&mut data);
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused import: `std::fs::File`
+kablam!  --> src/db/storage/disk/mod.rs:4:5
+kablam!   |
+kablam! 4 | use std::fs::File;
+kablam!   |     ^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `std::path::Path`
+kablam!  --> src/db/storage/disk/mod.rs:5:5
+kablam!   |
+kablam! 5 | use std::path::Path;
+kablam!   |     ^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused imports: `RowBuilder`, `Row`
+kablam!   --> src/db/storage/disk/mod.rs:10:13
+kablam!    |
+kablam! 10 | use super::{Row, RowBuilder};
+kablam!    |             ^^^  ^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: field is never used: `segment_size`
+kablam!   --> src/db/storage/disk/mod.rs:16:5
+kablam!    |
+kablam! 16 |     segment_size: usize, // bytes
+kablam!    |     ^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: field is never used: `first_segment`
+kablam!   --> src/db/storage/disk/mod.rs:19:5
+kablam!    |
+kablam! 19 |     first_segment: u64,
+kablam!    |     ^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: field is never used: `segments`
+kablam!   --> src/db/storage/disk/mod.rs:20:5
+kablam!    |
+kablam! 20 |     segments: Vec<Segment>,
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `set_pages_per_segment`
+kablam!   --> src/db/storage/disk/mod.rs:58:5
+kablam!    |
+kablam! 58 |       fn set_pages_per_segment(&mut self, pages_per_segment: usize) {
+kablam!    |  _____^ starting here...
+kablam! 59 | |         self.pages_per_segment = pages_per_segment;
+kablam! 60 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused variable: `page`
+kablam!   --> src/db/storage/disk/mod.rs:82:24
+kablam!    |
+kablam! 82 |     fn get_page(&self, page: u64) -> StorageResult<Page> {
+kablam!    |                        ^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> src/db/storage/disk/mod.rs:86:9
+kablam!    |
+kablam! 86 |         self.current_segment.write(&page);
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> src/db/storage/disk/mod.rs:89:13
+kablam!    |
+kablam! 89 |             self.flush();
+kablam!    |             ^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused import: `PageResult`
+kablam!  --> src/db/storage/engine.rs:6:25
+kablam!   |
+kablam! 6 | use db::storage::page::{PageResult, PageError};
+kablam!   |                         ^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: struct is never used: `StorageEngine`
+kablam!   --> src/db/storage/engine.rs:9:1
+kablam!    |
+kablam! 9  |   pub struct StorageEngine<'a> {
+kablam!    |  _^ starting here...
+kablam! 10 | |     storage: Box<Storage + 'a>,
+kablam! 11 | |     current_page: Page,
+kablam! 12 | | }
+kablam!    | |_^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `new`
+kablam!   --> src/db/storage/engine.rs:15:5
+kablam!    |
+kablam! 15 |       pub fn new<T:Storage + 'a>(storage: T) -> StorageEngine<'a> {
+kablam!    |  _____^ starting here...
+kablam! 16 | |         let page = Page::new();
+kablam! 17 | |         let s = Box::new(storage);
+kablam! 18 | |         StorageEngine{storage:s,
+kablam! 19 | |                       current_page: page}
+kablam! 20 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `insert`
+kablam!   --> src/db/storage/engine.rs:26:5
+kablam!    |
+kablam! 26 |     pub fn insert(&mut self, row: &Row, schema: &Schema) {
+kablam!    |     ^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused variable: `schema`
+kablam!   --> src/db/storage/engine.rs:26:41
+kablam!    |
+kablam! 26 |     pub fn insert(&mut self, row: &Row, schema: &Schema) {
+kablam!    |                                         ^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> src/db/storage/engine.rs:32:13
+kablam!    |
+kablam! 32 |             self.storage.write_page(&self.current_page);
+kablam!    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> src/db/storage/engine.rs:34:13
+kablam!    |
+kablam! 34 |             self.current_page.write(&data);
+kablam!    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: method is never used: `get_by_pk`
+kablam!   --> src/db/storage/engine.rs:38:5
+kablam!    |
+kablam! 38 |       pub fn get_by_pk(&mut self, id: u64) {
+kablam!    |  _____^ starting here...
+kablam! 39 | |
+kablam! 40 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused variable: `id`
+kablam!   --> src/db/storage/engine.rs:38:33
+kablam!    |
+kablam! 38 |     pub fn get_by_pk(&mut self, id: u64) {
+kablam!    |                                 ^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused import: `db::database::Database`
+kablam!  --> src/db/tests/parser/mod.rs:3:5
+kablam!   |
+kablam! 3 | use db::database::Database;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `super::get_sample_schema`
+kablam!  --> src/db/tests/expressions.rs:3:5
+kablam!   |
+kablam! 3 | use super::get_sample_schema;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused imports: `RowBuilder`, `RowReader`
+kablam!  --> src/db/tests/expressions.rs:4:15
+kablam!   |
+kablam! 4 | use db::row::{RowBuilder, RowReader};
+kablam!   |               ^^^^^^^^^^  ^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `db::parser::parse_statement`
+kablam!  --> src/db/tests/expressions.rs:5:5
+kablam!   |
+kablam! 5 | use db::parser::parse_statement;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `db::parser::where_clause`
+kablam!  --> src/db/tests/expressions.rs:6:5
+kablam!   |
+kablam! 6 | use db::parser::where_clause;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `db::storage::Storage`
+kablam!  --> src/db/tests/storage/mod.rs:6:5
+kablam!   |
+kablam! 6 | use db::storage::Storage;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: function is never used: `get_memory_storage`
+kablam!   --> src/db/tests/storage/mod.rs:18:1
+kablam!    |
+kablam! 18 |   fn get_memory_storage<'a>() -> StorageEngine<'a> {
+kablam!    |  _^ starting here...
+kablam! 19 | |     let mem = Memory::new().expect("Memory storage");
+kablam! 20 | |     StorageEngine::new(mem)
+kablam! 21 | | }
+kablam!    | |_^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: function is never used: `get_disk_storage`
+kablam!   --> src/db/tests/storage/mod.rs:23:1
+kablam!    |
+kablam! 23 |   fn get_disk_storage<'a>() -> StorageEngine<'a> {
+kablam!    |  _^ starting here...
+kablam! 24 | |     // disk storage
+kablam! 25 | |     let tmp = TempDir::new("totalrecallwhatever").expect("Expected dir");
+kablam! 26 | |     let mut tmp2 = tmp.into_path();
+kablam! 27 | |     tmp2.push("blah");
+kablam! 28 | |
+kablam! 29 | |     let disk = Disk::new(10, tmp2).expect("Disk storage");
+kablam! 30 | |     StorageEngine::new(disk)
+kablam! 31 | | }
+kablam!    | |_^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: function is never used: `get_sample_schema`
+kablam!   --> src/db/tests/mod.rs:12:1
+kablam!    |
+kablam! 12 |   fn get_sample_schema() -> Schema {
+kablam!    |  _^ starting here...
+kablam! 13 | |     let mut s = Schema::new();
+kablam! 14 | |     s.add_type("name", Type::String);
+kablam! 15 | |     s.add_type("age", Type::Int);
+kablam! 16 | |     s
+kablam! 17 | | }
+kablam!    | |_^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: function is never used: `create_test_db`
+kablam!   --> src/db/tests/mod.rs:19:1
+kablam!    |
+kablam! 19 | fn create_test_db() -> Database {
+kablam!    | ^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: function is never used: `populate_stream`
+kablam!   --> src/db/tests/mod.rs:31:1
+kablam!    |
+kablam! 31 | fn populate_stream(stream: &mut Stream, rows: u64) {
+kablam!    | ^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> src/db/tests/mod.rs:38:9
+kablam!    |
+kablam! 38 |         stream.insert(builder);
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused import: `Arg`
+kablam!   --> src/main.rs:23:12
+kablam!    |
+kablam! 23 | use clap::{Arg, App, SubCommand};
+kablam!    |            ^^^
+kablam!    |
+kablam!    = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused imports: `Read`, `self`
+kablam!   --> src/main.rs:25:15
+kablam!    |
+kablam! 25 | use std::io::{self, Read};
+kablam!    |               ^^^^  ^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused variable: `server`
+kablam!   --> src/main.rs:34:9
+kablam!    |
+kablam! 34 |     let server = Server::new();
+kablam!    |         ^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `matches`
+kablam!   --> src/main.rs:41:17
+kablam!    |
+kablam! 41 |     if let Some(matches) = app.subcommand_matches("test") {
+kablam!    |                 ^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> src/main.rs:69:21
+kablam!    |
+kablam! 69 |                     write!(stdout, "Exiting\r\n");
+kablam!    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused variable: `e`
+kablam!   --> src/main.rs:84:17
+kablam!    |
+kablam! 84 |             Err(e) => {}
+kablam!    |                 ^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 31.34 secs
+boom! running `docker rm -f 8ce9704c052763528446aa8745c6f171c8671f0a2f163e579a4b09430d3fc077`
+blam! 8ce9704c052763528446aa8745c6f171c8671f0a2f163e579a4b09430d3fc077
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! ffd9d12b10e0993f4061bd6666046f4fc33dc9086cbbd32e72ca82074024f72b
+boom! running `docker start -a ffd9d12b10e0993f4061bd6666046f4fc33dc9086cbbd32e72ca82074024f72b`
+kablam!    Compiling totalrecalldb v0.1.0 (file:///source)
+kablam! warning: unused `#[macro_use]` import
+kablam!  --> src/main.rs:6:1
+kablam!   |
+kablam! 6 | #[macro_use]
+kablam!   | ^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `std::env`
+kablam!  --> src/db/database.rs:3:5
+kablam!   |
+kablam! 3 | use std::env;
+kablam!   |     ^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused variable: `err`
+kablam!   --> src/db/database.rs:34:13
+kablam!    |
+kablam! 34 |     fn from(err: ParseError) -> DatabaseError {
+kablam!    |             ^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: private type `db::database::ResultSet` in public interface (error E0446)
+kablam!   --> src/db/database.rs:28:15
+kablam!    |
+kablam! 28 |     ResultSet(ResultSet),
+kablam!    |               ^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(private_in_public)] on by default
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #34537 <https://github.com/rust-lang/rust/issues/34537>
+kablam! 
+kablam! warning: method is never used: `create_temp_stream`
+kablam!    --> src/db/database.rs:96:5
+kablam!     |
+kablam! 96  |       pub fn create_temp_stream(&mut self) -> DatabaseResult<Stream> {
+kablam!     |  _____^ starting here...
+kablam! 97  | |         let storage = Memory::new().expect("Memory is failing uggghhh");
+kablam! 98  | |         let mut stream = Stream::new(storage);
+kablam! 99  | |         Ok(stream)
+kablam! 100 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!   --> src/db/database.rs:98:13
+kablam!    |
+kablam! 98 |         let mut stream = Stream::new(storage);
+kablam!    |             ^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: method is never used: `get_stream`
+kablam!    --> src/db/database.rs:102:5
+kablam!     |
+kablam! 102 |       fn get_stream(&self, name: &str) -> Option<&Stream> {
+kablam!     |  _____^ starting here...
+kablam! 103 | |         self.tables.get(name)
+kablam! 104 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused variable: `table`
+kablam!    --> src/db/database.rs:119:31
+kablam!     |
+kablam! 119 |             Statement::Select(table, predicates) => {
+kablam!     |                               ^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `predicates`
+kablam!    --> src/db/database.rs:119:38
+kablam!     |
+kablam! 119 |             Statement::Select(table, predicates) => {
+kablam!     |                                      ^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: method is never used: `select`
+kablam!    --> src/db/database.rs:130:5
+kablam!     |
+kablam! 130 |       pub fn select(&self, stream: &str, predicates: Option<Box<Expression>>) ->
+kablam!     |  _____^ starting here...
+kablam! 131 | |                     Result<QueryResult, DatabaseError> {
+kablam! 132 | |         let result = self.get_stream(stream)
+kablam! 133 | |                          .ok_or(DatabaseError::StreamNotFound)?
+kablam! 134 | |                          .select(predicates)?;
+kablam! 135 | |
+kablam! 136 | |         Err(DatabaseError::UnknownError)
+kablam! 137 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused variable: `result`
+kablam!    --> src/db/database.rs:132:13
+kablam!     |
+kablam! 132 |         let result = self.get_stream(stream)
+kablam!     |             ^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!    --> src/db/database.rs:165:9
+kablam!     |
+kablam! 165 |         db.create_stream("Jon");
+kablam!     |         ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!    --> src/db/database.rs:173:9
+kablam!     |
+kablam! 173 |         db.create_stream("Jon");
+kablam!     |         ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused import: `std::error`
+kablam!  --> src/db/stream.rs:2:5
+kablam!   |
+kablam! 2 | use std::error;
+kablam!   |     ^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `super::value::Value`
+kablam!  --> src/db/stream.rs:6:5
+kablam!   |
+kablam! 6 | use super::value::Value;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused variable: `storage`
+kablam!   --> src/db/stream.rs:60:28
+kablam!    |
+kablam! 60 |     pub fn new<S: Storage>(storage: S) -> Stream {
+kablam!    |                            ^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!   --> src/db/stream.rs:69:13
+kablam!    |
+kablam! 69 |         let mut stream = Stream {
+kablam!    |             ^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: unused variable: `predicates`
+kablam!   --> src/db/stream.rs:99:26
+kablam!    |
+kablam! 99 |     pub fn select(&self, predicates: Option<Box<Expression>>) -> Result<(), StreamError> {
+kablam!    |                          ^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused import: `Schema`
+kablam!    --> src/db/stream.rs:147:22
+kablam!     |
+kablam! 147 |     use db::schema::{Schema, Type};
+kablam!     |                      ^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `Value`
+kablam!    --> src/db/stream.rs:148:21
+kablam!     |
+kablam! 148 |     use db::value::{Value, TypedValue};
+kablam!     |                     ^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `std::collections::HashMap`
+kablam!    --> src/db/stream.rs:149:9
+kablam!     |
+kablam! 149 |     use std::collections::HashMap;
+kablam!     |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused variable: `result`
+kablam!    --> src/db/stream.rs:174:17
+kablam!     |
+kablam! 174 |             let result = s.insert(row).unwrap();
+kablam!     |                 ^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `name_id`
+kablam!    --> src/db/stream.rs:183:13
+kablam!     |
+kablam! 183 |         let name_id = s.schema.add_type("name", Type::String);
+kablam!     |             ^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `name`
+kablam!    --> src/db/stream.rs:191:13
+kablam!     |
+kablam! 191 |         let name = row2.get("name").unwrap();
+kablam!     |             ^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!    --> src/db/stream.rs:210:9
+kablam!     |
+kablam! 210 |         s.insert(row);
+kablam!     |         ^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused variable: `r`
+kablam!    --> src/db/stream.rs:213:13
+kablam!     |
+kablam! 213 |         for r in s.into_iter() {
+kablam!     |             ^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/db/stream.rs:221:13
+kablam!     |
+kablam! 221 |         let mut s = get_stream_with_data();
+kablam!     |             ^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: unused variable: `row`
+kablam!    --> src/db/stream.rs:223:13
+kablam!     |
+kablam! 223 |         for row in s.into_iter().offset(9) {
+kablam!     |             ^^^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!    --> src/db/stream.rs:237:13
+kablam!     |
+kablam! 237 |             stream.insert(row);
+kablam!     |             ^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/db/stream.rs:243:13
+kablam!     |
+kablam! 243 |         let mut stream = get_stream_with_data();
+kablam!     |             ^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: unused variable: `stream`
+kablam!    --> src/db/stream.rs:243:13
+kablam!     |
+kablam! 243 |         let mut stream = get_stream_with_data();
+kablam!     |             ^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused attribute
+kablam!    --> src/db/stream.rs:142:5
+kablam!     |
+kablam! 142 |     #![feature(test)]
+kablam!     |     ^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_attributes)] on by default
+kablam! 
+kablam! warning: crate-level attribute should be in the root module
+kablam!    --> src/db/stream.rs:142:5
+kablam!     |
+kablam! 142 |     #![feature(test)]
+kablam!     |     ^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_attributes)] on by default
+kablam! 
+kablam! warning: unused imports: `Duration`, `SystemTime`
+kablam!  --> src/db/row/row.rs:2:17
+kablam!   |
+kablam! 2 | use std::time::{Duration, SystemTime};
+kablam!   |                 ^^^^^^^^  ^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `std::collections::HashMap`
+kablam!  --> src/db/row/row.rs:3:5
+kablam!   |
+kablam! 3 | use std::collections::HashMap;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> src/db/row/row.rs:33:9
+kablam!    |
+kablam! 33 |         f.write_str("Row: ");
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> src/db/row/row.rs:59:17
+kablam!    |
+kablam! 59 |                 cur.by_ref().take(size).read_to_end(&mut data);
+kablam!    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> src/db/row/row.rs:96:9
+kablam!    |
+kablam! 96 |         buffer.write_u16::<BigEndian>(fields);
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!    --> src/db/row/row.rs:100:13
+kablam!     |
+kablam! 100 |             buffer.write_u64::<BigEndian>(k as u64);
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!    --> src/db/row/row.rs:101:13
+kablam!     |
+kablam! 101 |             buffer.write_u64::<BigEndian>(v.len());
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused import: `std::collections::HashMap`
+kablam!    --> src/db/row/row.rs:111:9
+kablam!     |
+kablam! 111 |     use std::collections::HashMap;
+kablam!     |         ^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused variable: `r`
+kablam!    --> src/db/row/row.rs:122:13
+kablam!     |
+kablam! 122 |         let r = Row::new(fields);
+kablam!     |             ^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused import: `super::*;`
+kablam!   --> src/db/row/reader.rs:95:9
+kablam!    |
+kablam! 95 |     use super::*;
+kablam!    |         ^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused variable: `id`
+kablam!    --> src/db/row/reader.rs:110:13
+kablam!     |
+kablam! 110 |         let id = stream.insert(row);
+kablam!     |             ^^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `result`
+kablam!    --> src/db/row/reader.rs:113:13
+kablam!     |
+kablam! 113 |         let result = stream.get(0).unwrap();
+kablam!     |             ^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused attribute
+kablam!  --> src/db/row/reader.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(box_syntax, box_patterns)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_attributes)] on by default
+kablam! 
+kablam! warning: crate-level attribute should be in the root module
+kablam!  --> src/db/row/reader.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(box_syntax, box_patterns)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_attributes)] on by default
+kablam! 
+kablam! warning: field is never used: `databases`
+kablam!  --> src/db/server.rs:5:5
+kablam!   |
+kablam! 5 |     databases: HashMap<String, Database>
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused import: `Schema`
+kablam!  --> src/db/value.rs:8:21
+kablam!   |
+kablam! 8 | use super::schema::{Schema, Type};
+kablam!   |                     ^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/db/value.rs:161:13
+kablam!     |
+kablam! 161 |         let mut x = Value::from(1);
+kablam!     |             ^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/db/value.rs:171:13
+kablam!     |
+kablam! 171 |         let mut x = Value::from(1);
+kablam!     |             ^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/db/value.rs:172:13
+kablam!     |
+kablam! 172 |         let mut y = Value::from(1);
+kablam!     |             ^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/db/value.rs:177:13
+kablam!     |
+kablam! 177 |         let mut x = Value::from(2);
+kablam!     |             ^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/db/value.rs:178:13
+kablam!     |
+kablam! 178 |         let mut y = Value::from(1);
+kablam!     |             ^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/db/value.rs:183:13
+kablam!     |
+kablam! 183 |         let mut x = Value::from(1);
+kablam!     |             ^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/db/value.rs:184:13
+kablam!     |
+kablam! 184 |         let mut y = Value::from(2);
+kablam!     |             ^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/db/value.rs:189:13
+kablam!     |
+kablam! 189 |         let mut x = Value::from(-1);
+kablam!     |             ^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/db/value.rs:190:13
+kablam!     |
+kablam! 190 |         let mut y = Value::from(2);
+kablam!     |             ^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: unused import: `Value`
+kablam!  --> src/db/parser/mod.rs:5:20
+kablam!   |
+kablam! 5 | use super::value::{Value, TypedValue};
+kablam!   |                    ^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused variable: `x`
+kablam!   --> src/db/parser/integration_tests.rs:57:41
+kablam!    |
+kablam! 57 |     if let DatabaseError::FieldNotFound(x) = db.execute("insert into users set name = 'Jon', age = 35, pie=3;").unwrap_err() {
+kablam!    |                                         ^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: variant is never used: `DropStream`
+kablam!   --> src/db/parser/mod.rs:23:5
+kablam!    |
+kablam! 23 |     DropStream,
+kablam!    |     ^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: variant is never used: `UseDatabase`
+kablam!   --> src/db/parser/mod.rs:24:5
+kablam!    |
+kablam! 24 |     UseDatabase,
+kablam!    |     ^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: variant is never used: `Subscribe`
+kablam!   --> src/db/parser/mod.rs:28:5
+kablam!    |
+kablam! 28 |     Subscribe,
+kablam!    |     ^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused import: `Value`
+kablam!   --> src/db/parser/mod.rs:86:21
+kablam!    |
+kablam! 86 |     use db::value::{Value, TypedValue};
+kablam!    |                     ^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused variable: `builder`
+kablam!   --> src/db/parser/mod.rs:93:42
+kablam!    |
+kablam! 93 |         if let Statement::Insert(stream, builder) = result {
+kablam!    |                                          ^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `result`
+kablam!   --> src/db/parser/mod.rs:99:13
+kablam!    |
+kablam! 99 |         let result = parse_statement(x).unwrap();
+kablam!    |             ^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `result`
+kablam!    --> src/db/parser/mod.rs:105:13
+kablam!     |
+kablam! 105 |         let result = parse_statement("INSERT INTO test set k='test';").unwrap();
+kablam!     |             ^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `result`
+kablam!    --> src/db/parser/mod.rs:106:13
+kablam!     |
+kablam! 106 |         let result = parse_statement("INSERT INTO test set k='test my ''friend''';").unwrap();
+kablam!     |             ^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `tmp`
+kablam!    --> src/db/parser/mod.rs:112:13
+kablam!     |
+kablam! 112 |         let tmp = int_value("42").unwrap();
+kablam!     |             ^^^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `p`
+kablam!    --> src/db/parser/mod.rs:145:13
+kablam!     |
+kablam! 145 |         let p = parse_statement(x).unwrap();
+kablam!     |             ^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `p`
+kablam!    --> src/db/parser/mod.rs:151:13
+kablam!     |
+kablam! 151 |         let p = column_spec(x).unwrap();
+kablam!     |             ^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `p`
+kablam!    --> src/db/parser/mod.rs:154:13
+kablam!     |
+kablam! 154 |         let p = column_spec(x).unwrap();
+kablam!     |             ^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `tmp`
+kablam!    --> src/db/parser/mod.rs:203:13
+kablam!     |
+kablam! 203 |         let tmp = expression_value("1").expect("1");
+kablam!     |             ^^^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `tmp`
+kablam!    --> src/db/parser/mod.rs:207:13
+kablam!     |
+kablam! 207 |         let tmp = expression_field("name")
+kablam!     |             ^^^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `b`
+kablam!    --> src/db/parser/mod.rs:234:43
+kablam!     |
+kablam! 234 |             Expression::Comparison(ref a, ref b, ref c) =>
+kablam!     |                                           ^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `c`
+kablam!    --> src/db/parser/mod.rs:234:50
+kablam!     |
+kablam! 234 |             Expression::Comparison(ref a, ref b, ref c) =>
+kablam!     |                                                  ^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `x`
+kablam!    --> src/db/parser/mod.rs:243:13
+kablam!     |
+kablam! 243 |         let x = "(field + 3) > 10";
+kablam!     |             ^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused import: `std::io::Cursor`
+kablam!  --> src/db/storage/page.rs:1:5
+kablam!   |
+kablam! 1 | use std::io::Cursor;
+kablam!   |     ^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `Read`
+kablam!  --> src/db/storage/page.rs:2:15
+kablam!   |
+kablam! 2 | use std::io::{Read, Write};
+kablam!   |               ^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `ReadBytesExt`
+kablam!  --> src/db/storage/page.rs:4:43
+kablam!   |
+kablam! 4 | use byteorder::{BigEndian, WriteBytesExt, ReadBytesExt};
+kablam!   |                                           ^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `db::row::Row`
+kablam!  --> src/db/storage/page.rs:5:5
+kablam!   |
+kablam! 5 | use db::row::Row;
+kablam!   |     ^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused variable: `tmp`
+kablam!   --> src/db/storage/page.rs:30:13
+kablam!    |
+kablam! 30 |         let tmp: [u8; PAGE_SIZE];
+kablam!    |             ^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> src/db/storage/page.rs:47:9
+kablam!    |
+kablam! 47 |         self.data.write_u16::<BigEndian>(len);
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> src/db/storage/page.rs:48:9
+kablam!    |
+kablam! 48 |         self.data.write(bytes);
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused imports: `RowBuilder`, `Row`
+kablam!  --> src/db/storage/memory/mod.rs:3:13
+kablam!   |
+kablam! 3 | use super::{Row, RowBuilder};
+kablam!   |             ^^^  ^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: field is never used: `pages`
+kablam!  --> src/db/storage/memory/mod.rs:7:5
+kablam!   |
+kablam! 7 |     pages: Vec<Page>
+kablam!   |     ^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused variable: `num`
+kablam!   --> src/db/storage/memory/mod.rs:15:24
+kablam!    |
+kablam! 15 |     fn get_page(&self, num: u64) -> StorageResult<Page> {
+kablam!    |                        ^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `page`
+kablam!   --> src/db/storage/memory/mod.rs:18:30
+kablam!    |
+kablam! 18 |     fn write_page(&mut self, page: &Page) -> StorageResult<()> {
+kablam!    |                              ^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused import: `PathBuf`
+kablam!  --> src/db/storage/disk/segment.rs:2:23
+kablam!   |
+kablam! 2 | use std::path::{Path, PathBuf};
+kablam!   |                       ^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: variant is never used: `FlushFailure`
+kablam!   --> src/db/storage/disk/segment.rs:26:5
+kablam!    |
+kablam! 26 |     FlushFailure,
+kablam!    |     ^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: variant is never used: `UnknownError`
+kablam!   --> src/db/storage/disk/segment.rs:28:5
+kablam!    |
+kablam! 28 |     UnknownError,
+kablam!    |     ^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> src/db/storage/disk/segment.rs:70:9
+kablam!    |
+kablam! 70 |         self.fp.seek(SeekFrom::End(0));
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> src/db/storage/disk/segment.rs:72:9
+kablam!    |
+kablam! 72 |         self.fp.flush();
+kablam!    |         ^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> src/db/storage/disk/segment.rs:80:9
+kablam!    |
+kablam! 80 |         self.fp.seek(SeekFrom::Start(offset));
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> src/db/storage/disk/segment.rs:83:9
+kablam!    |
+kablam! 83 |         self.fp.read(&mut data);
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!    --> src/db/storage/disk/segment.rs:104:9
+kablam!     |
+kablam! 104 |         page.write(&data);
+kablam!     |         ^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!    --> src/db/storage/disk/segment.rs:105:9
+kablam!     |
+kablam! 105 |         segment.write(&page);
+kablam!     |         ^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused import: `std::fs::File`
+kablam!  --> src/db/storage/disk/mod.rs:4:5
+kablam!   |
+kablam! 4 | use std::fs::File;
+kablam!   |     ^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `std::path::Path`
+kablam!  --> src/db/storage/disk/mod.rs:5:5
+kablam!   |
+kablam! 5 | use std::path::Path;
+kablam!   |     ^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused imports: `RowBuilder`, `Row`
+kablam!   --> src/db/storage/disk/mod.rs:10:13
+kablam!    |
+kablam! 10 | use super::{Row, RowBuilder};
+kablam!    |             ^^^  ^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: field is never used: `segment_size`
+kablam!   --> src/db/storage/disk/mod.rs:16:5
+kablam!    |
+kablam! 16 |     segment_size: usize, // bytes
+kablam!    |     ^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: field is never used: `first_segment`
+kablam!   --> src/db/storage/disk/mod.rs:19:5
+kablam!    |
+kablam! 19 |     first_segment: u64,
+kablam!    |     ^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: field is never used: `segments`
+kablam!   --> src/db/storage/disk/mod.rs:20:5
+kablam!    |
+kablam! 20 |     segments: Vec<Segment>,
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused variable: `page`
+kablam!   --> src/db/storage/disk/mod.rs:82:24
+kablam!    |
+kablam! 82 |     fn get_page(&self, page: u64) -> StorageResult<Page> {
+kablam!    |                        ^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> src/db/storage/disk/mod.rs:86:9
+kablam!    |
+kablam! 86 |         self.current_segment.write(&page);
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> src/db/storage/disk/mod.rs:89:13
+kablam!    |
+kablam! 89 |             self.flush();
+kablam!    |             ^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!    --> src/db/storage/disk/mod.rs:112:9
+kablam!     |
+kablam! 112 |         disk.flush();
+kablam!     |         ^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!    --> src/db/storage/disk/mod.rs:114:9
+kablam!     |
+kablam! 114 |         disk.flush();
+kablam!     |         ^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!    --> src/db/storage/disk/mod.rs:126:9
+kablam!     |
+kablam! 126 |         page.write(&data);
+kablam!     |         ^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!    --> src/db/storage/disk/mod.rs:128:9
+kablam!     |
+kablam! 128 |         disk.write_page(&page);
+kablam!     |         ^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!    --> src/db/storage/disk/mod.rs:131:9
+kablam!     |
+kablam! 131 |         disk.write_page(&page);
+kablam!     |         ^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!    --> src/db/storage/disk/mod.rs:134:9
+kablam!     |
+kablam! 134 |         disk.get_page(0);
+kablam!     |         ^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused import: `PageResult`
+kablam!  --> src/db/storage/engine.rs:6:25
+kablam!   |
+kablam! 6 | use db::storage::page::{PageResult, PageError};
+kablam!   |                         ^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: field is never used: `current_page`
+kablam!   --> src/db/storage/engine.rs:11:5
+kablam!    |
+kablam! 11 |     current_page: Page,
+kablam!    |     ^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `insert`
+kablam!   --> src/db/storage/engine.rs:26:5
+kablam!    |
+kablam! 26 |     pub fn insert(&mut self, row: &Row, schema: &Schema) {
+kablam!    |     ^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused variable: `schema`
+kablam!   --> src/db/storage/engine.rs:26:41
+kablam!    |
+kablam! 26 |     pub fn insert(&mut self, row: &Row, schema: &Schema) {
+kablam!    |                                         ^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> src/db/storage/engine.rs:32:13
+kablam!    |
+kablam! 32 |             self.storage.write_page(&self.current_page);
+kablam!    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> src/db/storage/engine.rs:34:13
+kablam!    |
+kablam! 34 |             self.current_page.write(&data);
+kablam!    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: method is never used: `get_by_pk`
+kablam!   --> src/db/storage/engine.rs:38:5
+kablam!    |
+kablam! 38 |       pub fn get_by_pk(&mut self, id: u64) {
+kablam!    |  _____^ starting here...
+kablam! 39 | |
+kablam! 40 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused variable: `id`
+kablam!   --> src/db/storage/engine.rs:38:33
+kablam!    |
+kablam! 38 |     pub fn get_by_pk(&mut self, id: u64) {
+kablam!    |                                 ^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused import: `db::database::Database`
+kablam!  --> src/db/tests/parser/mod.rs:3:5
+kablam!   |
+kablam! 3 | use db::database::Database;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `db::parser::parse_statement`
+kablam!  --> src/db/tests/expressions.rs:5:5
+kablam!   |
+kablam! 5 | use db::parser::parse_statement;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `db::storage::Storage`
+kablam!  --> src/db/tests/storage/mod.rs:6:5
+kablam!   |
+kablam! 6 | use db::storage::Storage;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused variable: `s`
+kablam!   --> src/db/tests/storage/mod.rs:36:18
+kablam!    |
+kablam! 36 |     fn something(s: &StorageEngine) {
+kablam!    |                  ^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `s`
+kablam!   --> src/db/tests/storage/mod.rs:43:13
+kablam!    |
+kablam! 43 |     fn body(s: &StorageEngine) {
+kablam!    |             ^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: function is never used: `create_test_db`
+kablam!   --> src/db/tests/mod.rs:19:1
+kablam!    |
+kablam! 19 | fn create_test_db() -> Database {
+kablam!    | ^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: function is never used: `populate_stream`
+kablam!   --> src/db/tests/mod.rs:31:1
+kablam!    |
+kablam! 31 | fn populate_stream(stream: &mut Stream, rows: u64) {
+kablam!    | ^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> src/db/tests/mod.rs:38:9
+kablam!    |
+kablam! 38 |         stream.insert(builder);
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused import: `Arg`
+kablam!   --> src/main.rs:23:12
+kablam!    |
+kablam! 23 | use clap::{Arg, App, SubCommand};
+kablam!    |            ^^^
+kablam!    |
+kablam!    = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused imports: `Read`, `self`
+kablam!   --> src/main.rs:25:15
+kablam!    |
+kablam! 25 | use std::io::{self, Read};
+kablam!    |               ^^^^  ^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused variable: `server`
+kablam!   --> src/main.rs:34:9
+kablam!    |
+kablam! 34 |     let server = Server::new();
+kablam!    |         ^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `matches`
+kablam!   --> src/main.rs:41:17
+kablam!    |
+kablam! 41 |     if let Some(matches) = app.subcommand_matches("test") {
+kablam!    |                 ^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> src/main.rs:69:21
+kablam!    |
+kablam! 69 |                     write!(stdout, "Exiting\r\n");
+kablam!    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused variable: `e`
+kablam!   --> src/main.rs:84:17
+kablam!    |
+kablam! 84 |             Err(e) => {}
+kablam!    |                 ^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 7.7 secs
+boom! running `docker rm -f ffd9d12b10e0993f4061bd6666046f4fc33dc9086cbbd32e72ca82074024f72b`
+blam! ffd9d12b10e0993f4061bd6666046f4fc33dc9086cbbd32e72ca82074024f72b
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 80b58fa9caca1e7361e40bb4c80a14108df50c1393815b45fa3814ba0abdec46
+boom! running `docker start -a 80b58fa9caca1e7361e40bb4c80a14108df50c1393815b45fa3814ba0abdec46`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/totalrecalldb-24df1b9997d57cc5
+blam! 
+blam! running 48 tests
+blam! test db::database::tests::create_table_fails_when_table_exists ... ok
+blam! test db::parser::integration_tests::real_db_insert_parsing ... ok
+blam! test db::database::tests::create_table ... ok
+blam! test db::parser::integration_tests::define_stream_test ... ok
+blam! test db::parser::test::declare_stream_parsing ... ok
+blam! test db::parser::test::test_and ... ok
+blam! test db::parser::test::test_basic_insert ... ok
+blam! test db::parser::test::test_basic_parse_column_specification ... ok
+blam! test db::parser::integration_tests::test_quoted_string_insert ... ok
+blam! test db::parser::test::test_escaped_string ... ok
+blam! test db::parser::test::test_column_spec_list ... ok
+blam! test db::parser::test::test_field_expression ... ok
+blam! test db::parser::test::test_basic_string_parsing ... ok
+blam! test db::parser::test::test_int_parsing ... ok
+blam! test db::parser::integration_tests::test_schema_validation ... ok
+blam! test db::parser::test::test_field_list ... ok
+blam! test db::parser::test::test_grouping ... ok
+blam! test db::parser::test::test_quoted_string ... ok
+blam! test db::parser::test::test_parsing_with_quoted_string ... ok
+blam! test db::parser::test::test_value_expression ... ok
+blam! test db::parser::test::test_select_queries ... ok
+blam! test db::row::reader::tests::test_row_reader_simple ... ok
+blam! test db::row::row::tests::test_indexing ... ok
+blam! test db::row::row::tests::test_reading_and_writing_row ... ok
+blam! test db::parser::test::test_operators ... ok
+blam! test db::schema::tests::test_add_type_gets_new_id ... ok
+blam! test db::parser::test::test_where_clause ... ok
+blam! test db::parser::test::value_string_parsing ... ok
+blam! test db::storage::disk::segment::segment_tests::test_normal_segment_usage ... ok
+blam! test db::storage::disk::tests::test_disk_flush ... ok
+blam! test db::storage::disk::tests::test_disk_writes_segments_correctly ... ok
+blam! test db::stream::tests::test_builder_insertion ... ok
+blam! test db::storage::page::tests::test_page_fault ... ok
+blam! test db::stream::tests::test_equality ... ok
+blam! test db::storage::page::tests::test_page_insert_ok ... ok
+blam! test db::stream::tests::bench_row_insertion ... ok
+blam! test db::stream::tests::test_insert_works_normal_case ... ok
+blam! test db::stream::tests::test_table_scan ... ok
+blam! test db::stream::tests::test_iterator_offset ... ok
+blam! test db::tests::storage::test_storage_engine_creation ... ok
+blam! test db::tests::storage::test_insert_and_get ... ok
+blam! test db::value::tests::int_converts_back_ok ... ok
+blam! test db::value::tests::string_conversions ... ok
+blam! test db::value::tests::ints_should_compare_equal ... ok
+blam! test db::tests::expressions::test_evaluate_simple_equality ... ok
+blam! test db::value::tests::test_bool_value ... ok
+blam! test db::value::tests::test_int_custom_comparator ... ok
+blam! test db::value::tests::string_equality ... ok
+blam! 
+blam! test result: ok. 48 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f 80b58fa9caca1e7361e40bb4c80a14108df50c1393815b45fa3814ba0abdec46`
+blam! 80b58fa9caca1e7361e40bb4c80a14108df50c1393815b45fa3814ba0abdec46

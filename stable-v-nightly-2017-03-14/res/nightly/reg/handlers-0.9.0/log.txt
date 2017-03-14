@@ -1,0 +1,35 @@
+boom! testing handlers-0.9.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 1122b6f32beeed767269202b7bea2b3085abe6a49ab7d3114500c941dc8ecc4c
+boom! running `docker start -a 1122b6f32beeed767269202b7bea2b3085abe6a49ab7d3114500c941dc8ecc4c`
+kablam!    Compiling interpolate_idents v0.1.4
+kablam! error[E0422]: cannot find struct, variant or union type `SequenceRepetition` in module `syntax::tokenstream`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/interpolate_idents-0.1.4/src/lib.rs:71:60
+kablam!    |
+kablam! 71 |                     TokenTree::Sequence(s.clone(), Rc::new(syntax::tokenstream::SequenceRepetition {
+kablam!    |                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `syntax::tokenstream`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use syntax::ext::tt::quoted::SequenceRepetition;`
+kablam! 
+kablam! error: no associated item named `Sequence` found for type `syntax::tokenstream::TokenTree` in the current scope
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/interpolate_idents-0.1.4/src/lib.rs:70:18
+kablam!    |
+kablam! 70 |                 &TokenTree::Sequence(ref s, ref d) => {
+kablam!    |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no associated item named `Sequence` found for type `syntax::tokenstream::TokenTree` in the current scope
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/interpolate_idents-0.1.4/src/lib.rs:71:21
+kablam!    |
+kablam! 71 |                     TokenTree::Sequence(s.clone(), Rc::new(syntax::tokenstream::SequenceRepetition {
+kablam!    |                     ^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `interpolate_idents`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 1122b6f32beeed767269202b7bea2b3085abe6a49ab7d3114500c941dc8ecc4c`
+blam! 1122b6f32beeed767269202b7bea2b3085abe6a49ab7d3114500c941dc8ecc4c

@@ -1,0 +1,151 @@
+boom! testing https://github.com/codeslinger/smtpd#f9cb890b842eb2588f5ec60ad7788f9ca4d9d40a against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! f032f580effaf6232bc4c41d399cbf0821cfd0187969a011473596fdd68ecc54
+boom! running `docker start -a f032f580effaf6232bc4c41d399cbf0821cfd0187969a011473596fdd68ecc54`
+kablam!    Compiling smtpd v0.0.1 (file:///source)
+kablam! error: invalid suffix `u` for numeric literal
+kablam!   --> src/smtpd/config.rs:37:21
+kablam!    |
+kablam! 37 |     let mut count = 0u;
+kablam!    |                     ^^
+kablam!    |
+kablam!    = help: the suffix must be one of the integral types (`u32`, `isize`, etc)
+kablam! 
+kablam! error[E0432]: unresolved import `std::error::FromError`
+kablam!  --> src/smtpd/config.rs:2:5
+kablam!   |
+kablam! 2 | use std::error::FromError;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^ no `FromError` in `error`
+kablam! 
+kablam! error[E0432]: unresolved import `std::error::FromError`
+kablam!  --> src/smtpd/errors.rs:2:5
+kablam!   |
+kablam! 2 | use std::error::FromError;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^ no `FromError` in `error`
+kablam! 
+kablam! error[E0432]: unresolved import `std::fmt::Show`
+kablam!  --> src/smtpd/errors.rs:3:5
+kablam!   |
+kablam! 3 | use std::fmt::Show;
+kablam!   |     ^^^^^^^^^^^^^^ no `Show` in `fmt`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::TcpListener`
+kablam!  --> src/smtpd/net.rs:2:15
+kablam!   |
+kablam! 2 | use std::io::{TcpListener, Acceptor, Listener, TcpStream};
+kablam!   |               ^^^^^^^^^^^ no `TcpListener` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::Acceptor`
+kablam!  --> src/smtpd/net.rs:2:28
+kablam!   |
+kablam! 2 | use std::io::{TcpListener, Acceptor, Listener, TcpStream};
+kablam!   |                            ^^^^^^^^ no `Acceptor` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::Listener`
+kablam!  --> src/smtpd/net.rs:2:38
+kablam!   |
+kablam! 2 | use std::io::{TcpListener, Acceptor, Listener, TcpStream};
+kablam!   |                                      ^^^^^^^^ no `Listener` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::TcpStream`
+kablam!  --> src/smtpd/net.rs:2:48
+kablam!   |
+kablam! 2 | use std::io::{TcpListener, Acceptor, Listener, TcpStream};
+kablam!   |                                                ^^^^^^^^^ no `TcpStream` in `io`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `File` in `io`
+kablam!   --> src/smtpd/config.rs:16:19
+kablam!    |
+kablam! 16 |             match io::File::open(&Path::new(path)) {
+kablam!    |                   ^^^^^^^^^^^^^^ Could not find `File` in `io`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> src/smtpd/config.rs:16:35
+kablam!    |
+kablam! 16 |             match io::File::open(&Path::new(path)) {
+kablam!    |                                   ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `BufferedReader` in `io`
+kablam!   --> src/smtpd/config.rs:17:43
+kablam!    |
+kablam! 17 |                 Ok(file) => { read_config(io::BufferedReader::new(file)) }
+kablam!    |                                           ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `BufferedReader` in `io`
+kablam! 
+kablam! error[E0412]: cannot find type `BufferedReader` in module `io`
+kablam!   --> src/smtpd/config.rs:35:23
+kablam!    |
+kablam! 35 | fn read_config(mut f: io::BufferedReader<io::File>) -> Result<Config, ::errors::SError> {
+kablam!    |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `io`
+kablam! 
+kablam! error[E0412]: cannot find type `File` in module `io`
+kablam!   --> src/smtpd/config.rs:35:42
+kablam!    |
+kablam! 35 | fn read_config(mut f: io::BufferedReader<io::File>) -> Result<Config, ::errors::SError> {
+kablam!    |                                          ^^^^^^^^ not found in `io`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::fs::File;`
+kablam! 
+kablam! error[E0412]: cannot find type `IoError` in module `io`
+kablam!  --> src/smtpd/errors.rs:8:8
+kablam!   |
+kablam! 8 |     Io(io::IoError),
+kablam!   |        ^^^^^^^^^^^ did you mean `io::Error`?
+kablam! 
+kablam! error[E0412]: cannot find type `IoError` in module `io`
+kablam!   --> src/smtpd/errors.rs:21:16
+kablam!    |
+kablam! 21 | impl FromError<io::IoError> for SError {
+kablam!    |                ^^^^^^^^^^^ did you mean `io::Error`?
+kablam! 
+kablam! error[E0412]: cannot find type `IoError` in module `io`
+kablam!   --> src/smtpd/errors.rs:22:24
+kablam!    |
+kablam! 22 |     fn from_error(err: io::IoError) -> SError { SError::Io(err) }
+kablam!    |                        ^^^^^^^^^^^ did you mean `io::Error`?
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!   --> src/smtpd/errors.rs:31:23
+kablam!    |
+kablam! 31 |     InvalidLineFormat(uint),
+kablam!    |                       ^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!   --> src/smtpd/errors.rs:32:21
+kablam!    |
+kablam! 32 |     InvalidArgument(uint),
+kablam!    |                     ^^^^ not found in this scope
+kablam! 
+kablam! error: cannot find macro `error!` in this scope
+kablam!   --> src/smtpd/net.rs:17:25
+kablam!    |
+kablam! 17 |             Err(e) => { error!("failed to accept connection: {}", e) }
+kablam!    |                         ^^^^^
+kablam! 
+kablam! error: cannot find macro `error!` in this scope
+kablam!  --> src/smtpd/net.rs:8:21
+kablam!   |
+kablam! 8 |         Err(e) => { error!("failed to start TCP listener on {}: {}", config.listen_address, e); return }
+kablam!   |                     ^^^^^
+kablam! 
+kablam! error: cannot find macro `error!` in this scope
+kablam!   --> src/smtpd/net.rs:12:21
+kablam!    |
+kablam! 12 |         Err(e) => { error!("failed to bind to {}: {}", config.listen_address, e); return }
+kablam!    |                     ^^^^^
+kablam! 
+kablam! error: cannot find macro `info!` in this scope
+kablam!   --> src/smtpd/net.rs:24:5
+kablam!    |
+kablam! 24 |     info!("client connect from {}", stream.peer_name().unwrap());
+kablam!    |     ^^^^
+kablam! 
+kablam! error: aborting due to 22 previous errors
+kablam! 
+kablam! error: Could not compile `smtpd`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f032f580effaf6232bc4c41d399cbf0821cfd0187969a011473596fdd68ecc54`
+blam! f032f580effaf6232bc4c41d399cbf0821cfd0187969a011473596fdd68ecc54

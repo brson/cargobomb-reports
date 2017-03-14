@@ -1,0 +1,121 @@
+boom! testing bindgen_plugin-0.15.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 5b50ad8d29142030d61745d6c1535f6132620cc9c706ee697974379fde422c73
+boom! running `docker start -a 5b50ad8d29142030d61745d6c1535f6132620cc9c706ee697974379fde422c73`
+kablam!    Compiling bindgen v0.22.1
+kablam!    Compiling bindgen_plugin v0.15.0 (file:///source)
+kablam! error[E0432]: unresolved import `bindgen::Logger`
+kablam!   --> src/bgmacro.rs:14:51
+kablam!    |
+kablam! 14 | use bindgen::{Bindings, BindgenOptions, LinkType, Logger, self};
+kablam!    |                                                   ^^^^^^ no `Logger` in the root
+kablam! 
+kablam! error[E0432]: unresolved import `rustc::plugin::Registry`
+kablam!   --> src/lib.rs:11:5
+kablam!    |
+kablam! 11 | use rustc::plugin::Registry;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `plugin` in `rustc`
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!   --> src/bgmacro.rs:16:72
+kablam!    |
+kablam! 16 | pub fn bindgen_macro(cx: &mut base::ExtCtxt, sp: codemap::Span, tts: &[ast::TokenTree]) -> Box<base::MacResult+'static> {
+kablam!    |                                                                        ^^^^^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use syntax::ext::tt::quoted::TokenTree;`
+kablam!              `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0425]: cannot find function `get_include_dir` in module `bindgen`
+kablam!   --> src/bgmacro.rs:31:25
+kablam!    |
+kablam! 31 |     if let Some(path) = bindgen::get_include_dir() {
+kablam!    |                         ^^^^^^^^^^^^^^^^^^^^^^^^ not found in `bindgen`
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!    --> src/bgmacro.rs:133:52
+kablam!     |
+kablam! 133 | fn parse_macro_opts(cx: &mut base::ExtCtxt, tts: &[ast::TokenTree], visit: &mut MacroArgsVisitor) -> bool {
+kablam!     |                                                    ^^^^^^^^^^^^^^ not found in `ast`
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use syntax::ext::tt::quoted::TokenTree;`
+kablam!               `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `ExprLit` in module `ast`
+kablam!    --> src/bgmacro.rs:179:21
+kablam!     |
+kablam! 179 |                     ast::ExprLit(ref lit) => {
+kablam!     |                     ^^^^^^^^^^^^ not found in `ast`
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use rustc::hir::ExprLit;`
+kablam!               `use rustc::hir::Expr_::ExprLit;`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `LitStr` in module `ast`
+kablam!    --> src/bgmacro.rs:181:29
+kablam!     |
+kablam! 181 |                             ast::LitStr(ref s, _) => visit.visit_str(as_str(&name), &*s),
+kablam!     |                             ^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `LitBool` in module `ast`
+kablam!    --> src/bgmacro.rs:182:29
+kablam!     |
+kablam! 182 |                             ast::LitBool(b) => visit.visit_bool(as_str(&name), b),
+kablam!     |                             ^^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `LitInt` in module `ast`
+kablam!    --> src/bgmacro.rs:183:29
+kablam!     |
+kablam! 183 |                             ast::LitInt(i, ast::SignedIntLit(_, sign)) |
+kablam!     |                             ^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `SignedIntLit` in module `ast`
+kablam!    --> src/bgmacro.rs:183:44
+kablam!     |
+kablam! 183 |                             ast::LitInt(i, ast::SignedIntLit(_, sign)) |
+kablam!     |                                            ^^^^^^^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `LitInt` in module `ast`
+kablam!    --> src/bgmacro.rs:184:29
+kablam!     |
+kablam! 184 |                             ast::LitInt(i, ast::UnsuffixedIntLit(sign)) => {
+kablam!     |                             ^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `UnsuffixedIntLit` in module `ast`
+kablam!    --> src/bgmacro.rs:184:44
+kablam!     |
+kablam! 184 |                             ast::LitInt(i, ast::UnsuffixedIntLit(sign)) => {
+kablam!     |                                            ^^^^^^^^^^^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0425]: cannot find value `Minus` in module `ast`
+kablam!    --> src/bgmacro.rs:186:52
+kablam!     |
+kablam! 186 |                                 let i = if sign == ast::Minus { -i } else { i };
+kablam!     |                                                    ^^^^^^^^^^ not found in `ast`
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use syntax::parse::token::BinOpToken::Minus;`
+kablam!               `use syntax::parse::token::Minus;`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `LitInt` in module `ast`
+kablam!    --> src/bgmacro.rs:189:29
+kablam!     |
+kablam! 189 |                             ast::LitInt(i, ast::UnsignedIntLit(_)) => visit.visit_int(as_str(&name), i as i64),
+kablam!     |                             ^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `UnsignedIntLit` in module `ast`
+kablam!    --> src/bgmacro.rs:189:44
+kablam!     |
+kablam! 189 |                             ast::LitInt(i, ast::UnsignedIntLit(_)) => visit.visit_int(as_str(&name), i as i64),
+kablam!     |                                            ^^^^^^^^^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `bindgen_plugin`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 5b50ad8d29142030d61745d6c1535f6132620cc9c706ee697974379fde422c73`
+blam! 5b50ad8d29142030d61745d6c1535f6132620cc9c706ee697974379fde422c73

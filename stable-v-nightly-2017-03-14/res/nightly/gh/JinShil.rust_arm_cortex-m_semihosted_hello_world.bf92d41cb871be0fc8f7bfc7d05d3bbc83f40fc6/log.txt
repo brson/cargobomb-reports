@@ -1,0 +1,31 @@
+boom! testing https://github.com/JinShil/rust_arm_cortex-m_semihosted_hello_world#bf92d41cb871be0fc8f7bfc7d05d3bbc83f40fc6 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 31a4ba77ed70ac2a23f2dd11bf003070ae4bd8aaf44d9036531017e585e16806
+boom! running `docker start -a 31a4ba77ed70ac2a23f2dd11bf003070ae4bd8aaf44d9036531017e585e16806`
+kablam!    Compiling rust_arm_cortex-m_semihosted_hello_world v0.1.0 (file:///source)
+kablam! error: <inline asm>:3:14: error: invalid instruction mnemonic 'bkpt'
+kablam!              bkpt #0xAB
+kablam!              ^
+kablam! 
+kablam!    --> src/main.rs:94:9
+kablam!     |
+kablam! 94  |           asm!(
+kablam!     |  _________^ starting here...
+kablam! 95  | |             "mov r0, $0;
+kablam! 96  | |              mov r1, $1;
+kablam! 97  | |              bkpt #0xAB"
+kablam! 98  | |             : 
+kablam! 99  | |             : "r"(command), "r"(message)
+kablam! 100 | |             : "r0", "r1"
+kablam! 101 | |         );
+kablam!     | |__________^ ...ending here
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `rust_arm_cortex-m_semihosted_hello_world`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 31a4ba77ed70ac2a23f2dd11bf003070ae4bd8aaf44d9036531017e585e16806`
+blam! 31a4ba77ed70ac2a23f2dd11bf003070ae4bd8aaf44d9036531017e585e16806

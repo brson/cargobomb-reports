@@ -1,0 +1,45 @@
+boom! testing https://github.com/retep998/windump-rs#e80be568ac82cd533dd3167050da3fb769a94769 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! e99a829143c10c70c2f30e3657d53e582228949bfb07454e3021b059f10db23a
+boom! running `docker start -a e99a829143c10c70c2f30e3657d53e582228949bfb07454e3021b059f10db23a`
+kablam!    Compiling memchr v0.1.11
+kablam!    Compiling walkdir v0.1.6
+kablam!    Compiling thread-id v2.0.0
+kablam!    Compiling thread_local v0.2.6
+kablam!    Compiling aho-corasick v0.5.2
+kablam!    Compiling regex v0.1.73
+kablam!    Compiling windump v0.0.1 (file:///source)
+kablam! error[E0432]: unresolved import `std::fs::walk_dir`
+kablam!  --> src/bin/headers.rs:8:21
+kablam!   |
+kablam! 8 | use std::fs::{File, walk_dir};
+kablam!   |                     ^^^^^^^^ no `walk_dir` in `fs`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `windump`.
+kablam! error: no method named `relative_from` found for type `std::path::PathBuf` in the current scope
+kablam!   --> src/bin/cleaner.rs:86:31
+kablam!    |
+kablam! 86 |         let nativename = path.relative_from(lib).unwrap().to_str().unwrap();
+kablam!    |                               ^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0277]: the trait bound `str: std::marker::Sized` is not satisfied
+kablam!   --> src/bin/cleaner.rs:88:13
+kablam!    |
+kablam! 88 |         let libname = cratename.replace("-", "_");
+kablam!    |             ^^^^^^^ the trait `std::marker::Sized` is not implemented for `str`
+kablam!    |
+kablam!    = note: `str` does not have a constant size known at compile-time
+kablam!    = note: all local variables must have a statically known size
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `windump`.
+kablam! error: build failed
+boom! running `docker rm -f e99a829143c10c70c2f30e3657d53e582228949bfb07454e3021b059f10db23a`
+blam! e99a829143c10c70c2f30e3657d53e582228949bfb07454e3021b059f10db23a

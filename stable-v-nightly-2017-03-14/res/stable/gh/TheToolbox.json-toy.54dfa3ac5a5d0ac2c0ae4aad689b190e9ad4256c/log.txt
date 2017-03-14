@@ -1,0 +1,177 @@
+boom! testing https://github.com/TheToolbox/json-toy#54dfa3ac5a5d0ac2c0ae4aad689b190e9ad4256c against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 1f509a160dee4124f7a1bfec1c4acc72833c80b753aa027f4a1575cb8c797409
+boom! running `docker start -a 1f509a160dee4124f7a1bfec1c4acc72833c80b753aa027f4a1575cb8c797409`
+kablam!    Compiling json-toy v0.1.0 (file:///source)
+kablam! warning: value assigned to `state` is never read, #[warn(unused_assignments)] on by default
+kablam!    --> main.rs:86:51
+kablam!     |
+kablam! 86  |                     None => { retval = Ok($item); state = ExpectingNothingElse; },
+kablam!     |                                                   ^^^^^
+kablam! ...
+kablam! 135 |                         '}' | ']' => { CompleteItem!(JSON::Number(input[start..i].parse::<f64>().unwrap())); PopObject!(); },
+kablam!     |                                        --------------------------------------------------------------------- in this macro invocation
+kablam! 
+kablam! warning: value assigned to `state` is never read, #[warn(unused_assignments)] on by default
+kablam!    --> main.rs:87:74
+kablam!     |
+kablam! 87  |                     Some(&mut JSON::Array(ref mut a)) => {a.push($item); state = ExpectingComma; },
+kablam!     |                                                                          ^^^^^
+kablam! ...
+kablam! 135 |                         '}' | ']' => { CompleteItem!(JSON::Number(input[start..i].parse::<f64>().unwrap())); PopObject!(); },
+kablam!     |                                        --------------------------------------------------------------------- in this macro invocation
+kablam! 
+kablam! warning: value assigned to `state` is never read, #[warn(unused_assignments)] on by default
+kablam!    --> main.rs:91:82
+kablam!     |
+kablam! 91  |                             Some(k) => {o.insert(k,$item); key_stack.push(None); state = ExpectingComma; },
+kablam!     |                                                                                  ^^^^^
+kablam! ...
+kablam! 135 |                         '}' | ']' => { CompleteItem!(JSON::Number(input[start..i].parse::<f64>().unwrap())); PopObject!(); },
+kablam!     |                                        --------------------------------------------------------------------- in this macro invocation
+kablam! 
+kablam! warning: value assigned to `state` is never read, #[warn(unused_assignments)] on by default
+kablam!    --> main.rs:94:83
+kablam!     |
+kablam! 94  |                                     JSON::String(s) => { key_stack.push(Some(s)); state = ExpectingColon; },
+kablam!     |                                                                                   ^^^^^
+kablam! ...
+kablam! 135 |                         '}' | ']' => { CompleteItem!(JSON::Number(input[start..i].parse::<f64>().unwrap())); PopObject!(); },
+kablam!     |                                        --------------------------------------------------------------------- in this macro invocation
+kablam! 
+kablam! warning: value assigned to `state` is never read, #[warn(unused_assignments)] on by default
+kablam!    --> main.rs:86:51
+kablam!     |
+kablam! 86  |                     None => { retval = Ok($item); state = ExpectingNothingElse; },
+kablam!     |                                                   ^^^^^
+kablam! ...
+kablam! 136 |                         ',' => { CompleteItem!(JSON::Number(input[start..i].parse::<f64>().unwrap())); state = ExpectingItem; }
+kablam!     |                                  --------------------------------------------------------------------- in this macro invocation
+kablam! 
+kablam! warning: value assigned to `state` is never read, #[warn(unused_assignments)] on by default
+kablam!    --> main.rs:87:74
+kablam!     |
+kablam! 87  |                     Some(&mut JSON::Array(ref mut a)) => {a.push($item); state = ExpectingComma; },
+kablam!     |                                                                          ^^^^^
+kablam! ...
+kablam! 136 |                         ',' => { CompleteItem!(JSON::Number(input[start..i].parse::<f64>().unwrap())); state = ExpectingItem; }
+kablam!     |                                  --------------------------------------------------------------------- in this macro invocation
+kablam! 
+kablam! warning: value assigned to `state` is never read, #[warn(unused_assignments)] on by default
+kablam!    --> main.rs:91:82
+kablam!     |
+kablam! 91  |                             Some(k) => {o.insert(k,$item); key_stack.push(None); state = ExpectingComma; },
+kablam!     |                                                                                  ^^^^^
+kablam! ...
+kablam! 136 |                         ',' => { CompleteItem!(JSON::Number(input[start..i].parse::<f64>().unwrap())); state = ExpectingItem; }
+kablam!     |                                  --------------------------------------------------------------------- in this macro invocation
+kablam! 
+kablam! warning: value assigned to `state` is never read, #[warn(unused_assignments)] on by default
+kablam!    --> main.rs:94:83
+kablam!     |
+kablam! 94  |                                     JSON::String(s) => { key_stack.push(Some(s)); state = ExpectingColon; },
+kablam!     |                                                                                   ^^^^^
+kablam! ...
+kablam! 136 |                         ',' => { CompleteItem!(JSON::Number(input[start..i].parse::<f64>().unwrap())); state = ExpectingItem; }
+kablam!     |                                  --------------------------------------------------------------------- in this macro invocation
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 1.62 secs
+boom! running `docker rm -f 1f509a160dee4124f7a1bfec1c4acc72833c80b753aa027f4a1575cb8c797409`
+blam! 1f509a160dee4124f7a1bfec1c4acc72833c80b753aa027f4a1575cb8c797409
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! cfb30ba43ff2414af5cee896087b76053058172795f3c70e5d65ef0b4a629351
+boom! running `docker start -a cfb30ba43ff2414af5cee896087b76053058172795f3c70e5d65ef0b4a629351`
+kablam!    Compiling json-toy v0.1.0 (file:///source)
+kablam! warning: value assigned to `state` is never read, #[warn(unused_assignments)] on by default
+kablam!    --> main.rs:86:51
+kablam!     |
+kablam! 86  |                     None => { retval = Ok($item); state = ExpectingNothingElse; },
+kablam!     |                                                   ^^^^^
+kablam! ...
+kablam! 135 |                         '}' | ']' => { CompleteItem!(JSON::Number(input[start..i].parse::<f64>().unwrap())); PopObject!(); },
+kablam!     |                                        --------------------------------------------------------------------- in this macro invocation
+kablam! 
+kablam! warning: value assigned to `state` is never read, #[warn(unused_assignments)] on by default
+kablam!    --> main.rs:87:74
+kablam!     |
+kablam! 87  |                     Some(&mut JSON::Array(ref mut a)) => {a.push($item); state = ExpectingComma; },
+kablam!     |                                                                          ^^^^^
+kablam! ...
+kablam! 135 |                         '}' | ']' => { CompleteItem!(JSON::Number(input[start..i].parse::<f64>().unwrap())); PopObject!(); },
+kablam!     |                                        --------------------------------------------------------------------- in this macro invocation
+kablam! 
+kablam! warning: value assigned to `state` is never read, #[warn(unused_assignments)] on by default
+kablam!    --> main.rs:91:82
+kablam!     |
+kablam! 91  |                             Some(k) => {o.insert(k,$item); key_stack.push(None); state = ExpectingComma; },
+kablam!     |                                                                                  ^^^^^
+kablam! ...
+kablam! 135 |                         '}' | ']' => { CompleteItem!(JSON::Number(input[start..i].parse::<f64>().unwrap())); PopObject!(); },
+kablam!     |                                        --------------------------------------------------------------------- in this macro invocation
+kablam! 
+kablam! warning: value assigned to `state` is never read, #[warn(unused_assignments)] on by default
+kablam!    --> main.rs:94:83
+kablam!     |
+kablam! 94  |                                     JSON::String(s) => { key_stack.push(Some(s)); state = ExpectingColon; },
+kablam!     |                                                                                   ^^^^^
+kablam! ...
+kablam! 135 |                         '}' | ']' => { CompleteItem!(JSON::Number(input[start..i].parse::<f64>().unwrap())); PopObject!(); },
+kablam!     |                                        --------------------------------------------------------------------- in this macro invocation
+kablam! 
+kablam! warning: value assigned to `state` is never read, #[warn(unused_assignments)] on by default
+kablam!    --> main.rs:86:51
+kablam!     |
+kablam! 86  |                     None => { retval = Ok($item); state = ExpectingNothingElse; },
+kablam!     |                                                   ^^^^^
+kablam! ...
+kablam! 136 |                         ',' => { CompleteItem!(JSON::Number(input[start..i].parse::<f64>().unwrap())); state = ExpectingItem; }
+kablam!     |                                  --------------------------------------------------------------------- in this macro invocation
+kablam! 
+kablam! warning: value assigned to `state` is never read, #[warn(unused_assignments)] on by default
+kablam!    --> main.rs:87:74
+kablam!     |
+kablam! 87  |                     Some(&mut JSON::Array(ref mut a)) => {a.push($item); state = ExpectingComma; },
+kablam!     |                                                                          ^^^^^
+kablam! ...
+kablam! 136 |                         ',' => { CompleteItem!(JSON::Number(input[start..i].parse::<f64>().unwrap())); state = ExpectingItem; }
+kablam!     |                                  --------------------------------------------------------------------- in this macro invocation
+kablam! 
+kablam! warning: value assigned to `state` is never read, #[warn(unused_assignments)] on by default
+kablam!    --> main.rs:91:82
+kablam!     |
+kablam! 91  |                             Some(k) => {o.insert(k,$item); key_stack.push(None); state = ExpectingComma; },
+kablam!     |                                                                                  ^^^^^
+kablam! ...
+kablam! 136 |                         ',' => { CompleteItem!(JSON::Number(input[start..i].parse::<f64>().unwrap())); state = ExpectingItem; }
+kablam!     |                                  --------------------------------------------------------------------- in this macro invocation
+kablam! 
+kablam! warning: value assigned to `state` is never read, #[warn(unused_assignments)] on by default
+kablam!    --> main.rs:94:83
+kablam!     |
+kablam! 94  |                                     JSON::String(s) => { key_stack.push(Some(s)); state = ExpectingColon; },
+kablam!     |                                                                                   ^^^^^
+kablam! ...
+kablam! 136 |                         ',' => { CompleteItem!(JSON::Number(input[start..i].parse::<f64>().unwrap())); state = ExpectingItem; }
+kablam!     |                                  --------------------------------------------------------------------- in this macro invocation
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 1.54 secs
+boom! running `docker rm -f cfb30ba43ff2414af5cee896087b76053058172795f3c70e5d65ef0b4a629351`
+blam! cfb30ba43ff2414af5cee896087b76053058172795f3c70e5d65ef0b4a629351
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! 0d6c93812f1adf7287caf71b71d1f333d0883299a38bbc53f2f8e8c661c4f95b
+boom! running `docker start -a 0d6c93812f1adf7287caf71b71d1f333d0883299a38bbc53f2f8e8c661c4f95b`
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/json_toy-4ca57ba73a964a56
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f 0d6c93812f1adf7287caf71b71d1f333d0883299a38bbc53f2f8e8c661c4f95b`
+blam! 0d6c93812f1adf7287caf71b71d1f333d0883299a38bbc53f2f8e8c661c4f95b

@@ -1,0 +1,62 @@
+boom! testing differential-geometry-0.1.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 68872efd791dcf16a81539c937685818e372da3bc82118091bc5693f336b0c2f
+boom! running `docker start -a 68872efd791dcf16a81539c937685818e372da3bc82118091bc5693f336b0c2f`
+kablam!    Compiling differential-geometry v0.1.0 (file:///source)
+kablam! error[E0308]: mismatched types
+kablam!   --> src/coordinates.rs:43:20
+kablam!    |
+kablam! 43 |         Point { x: GenericArray::from_slice(coords) }
+kablam!    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `generic_array::GenericArray`, found reference
+kablam!    |
+kablam!    = note: expected type `generic_array::GenericArray<f64, _>`
+kablam!    = note:    found type `&generic_array::GenericArray<f64, _>`
+kablam! 
+kablam! error: no associated item named `new` found for type `generic_array::GenericArray<_, _>` in the current scope
+kablam!   --> src/tensors/tensor.rs:75:24
+kablam!    |
+kablam! 75 |             cur_coord: GenericArray::new()
+kablam!    |                        ^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no associated item named `new` found for type `generic_array::GenericArray<_, _>` in the current scope
+kablam!    --> src/tensors/tensor.rs:158:16
+kablam!     |
+kablam! 158 |             x: GenericArray::new()
+kablam!     |                ^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/tensors/tensor.rs:174:16
+kablam!     |
+kablam! 174 |             x: GenericArray::from_slice(slice)
+kablam!     |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `generic_array::GenericArray`, found reference
+kablam!     |
+kablam!     = note: expected type `generic_array::GenericArray<f64, <<T as coordinates::CoordinateSystem>::Dimension as typenum::Pow<_>>::Output>`
+kablam!     = note:    found type `&generic_array::GenericArray<f64, _>`
+kablam! 
+kablam! error: no associated item named `new` found for type `generic_array::GenericArray<_, _>` in the current scope
+kablam!    --> src/tensors/tensor.rs:524:26
+kablam!     |
+kablam! 524 |         let mut result = GenericArray::new();
+kablam!     |                          ^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no associated item named `new` found for type `generic_array::GenericArray<f64, <T as coordinates::CoordinateSystem>::Dimension>` in the current scope
+kablam!    --> src/tensors/tensor.rs:525:28
+kablam!     |
+kablam! 525 |         let mut row_norm = GenericArray::<f64, T::Dimension>::new();
+kablam!     |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no associated item named `new` found for type `generic_array::GenericArray<f64, <T as coordinates::CoordinateSystem>::Dimension>` in the current scope
+kablam!    --> src/tensors/tensor.rs:653:27
+kablam!     |
+kablam! 653 |             let mut dxm = GenericArray::<f64, T::Dimension>::new();
+kablam!     |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 7 previous errors
+kablam! 
+kablam! error: Could not compile `differential-geometry`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 68872efd791dcf16a81539c937685818e372da3bc82118091bc5693f336b0c2f`
+blam! 68872efd791dcf16a81539c937685818e372da3bc82118091bc5693f336b0c2f

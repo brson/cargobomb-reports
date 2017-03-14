@@ -1,0 +1,26 @@
+boom! testing scan-rules-0.2.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! b22a0880bf75091418a536e28976e127b4de9a7d6c766e0a2901fcb7bea09660
+boom! running `docker start -a b22a0880bf75091418a536e28976e127b4de9a7d6c766e0a2901fcb7bea09660`
+kablam!    Compiling scan-rules v0.2.0 (file:///source)
+kablam!    Compiling strcursor v0.2.3
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/strcursor-0.2.3/src/grapheme.rs:525:15
+kablam!     |
+kablam! 525 |         GcBuf(s)
+kablam!     |               ^ expected struct `std::boxed::Box`, found struct `std::string::String`
+kablam!     |
+kablam!     = note: expected type `std::boxed::Box<str>`
+kablam!                found type `std::string::String`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .into_boxed_str()
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `strcursor`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f b22a0880bf75091418a536e28976e127b4de9a7d6c766e0a2901fcb7bea09660`
+blam! b22a0880bf75091418a536e28976e127b4de9a7d6c766e0a2901fcb7bea09660

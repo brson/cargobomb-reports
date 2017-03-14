@@ -1,0 +1,27 @@
+boom! testing phloem-0.3.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 20c7bf1c65db8e6db08e18d48900fa518e9f023422a747059f618c92edf43758
+boom! running `docker start -a 20c7bf1c65db8e6db08e18d48900fa518e9f023422a747059f618c92edf43758`
+kablam!    Compiling rblas v0.0.10
+kablam!    Compiling collenchyma v0.0.3
+kablam! error[E0432]: unresolved import `std::sync::StaticMutex`
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/collenchyma-0.0.3/src/frameworks/opencl/api/platform.rs:9:17
+kablam!   |
+kablam! 9 | use std::sync::{StaticMutex, MUTEX_INIT};
+kablam!   |                 ^^^^^^^^^^^ no `StaticMutex` in `sync`
+kablam! 
+kablam! error[E0432]: unresolved import `std::sync::MUTEX_INIT`
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/collenchyma-0.0.3/src/frameworks/opencl/api/platform.rs:9:30
+kablam!   |
+kablam! 9 | use std::sync::{StaticMutex, MUTEX_INIT};
+kablam!   |                              ^^^^^^^^^^ no `MUTEX_INIT` in `sync`
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `collenchyma`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 20c7bf1c65db8e6db08e18d48900fa518e9f023422a747059f618c92edf43758`
+blam! 20c7bf1c65db8e6db08e18d48900fa518e9f023422a747059f618c92edf43758

@@ -1,0 +1,60 @@
+boom! testing intrusive-containers-0.2.4 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 27250c7992804b4aed502475ae36cb0b987ecabbea27736580cebfbaeec4875a
+boom! running `docker start -a 27250c7992804b4aed502475ae36cb0b987ecabbea27736580cebfbaeec4875a`
+kablam!    Compiling intrusive-containers v0.2.4 (file:///source)
+kablam! error[E0433]: failed to resolve. Could not find `order` in `iter`
+kablam!     --> src/linked_list.rs:1023:13
+kablam!      |
+kablam! 1023 |             iter::order::eq(self.iter(), other.iter())
+kablam!      |             ^^^^^^^^^^^^^^^ Could not find `order` in `iter`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `order` in `iter`
+kablam!     --> src/linked_list.rs:1028:13
+kablam!      |
+kablam! 1028 |             iter::order::ne(self.iter(), other.iter())
+kablam!      |             ^^^^^^^^^^^^^^^ Could not find `order` in `iter`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `order` in `iter`
+kablam!     --> src/linked_list.rs:1046:9
+kablam!      |
+kablam! 1046 |         iter::order::partial_cmp(self.iter(), other.iter())
+kablam!      |         ^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `order` in `iter`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `order` in `iter`
+kablam!     --> src/linked_list.rs:1057:9
+kablam!      |
+kablam! 1057 |         iter::order::cmp(self.iter(), other.iter())
+kablam!      |         ^^^^^^^^^^^^^^^^ Could not find `order` in `iter`
+kablam! 
+kablam! error[E0425]: cannot find function `into_raw` in module `boxed`
+kablam!     --> src/linked_list.rs:1308:9
+kablam!      |
+kablam! 1308 |         boxed::into_raw(self);
+kablam!      |         ^^^^^^^^^^^^^^^ not found in `boxed`
+kablam! 
+kablam! error: use of unstable library feature 'core_intrinsics': intrinsics are unlikely to ever be stabilized, instead they should be used through stabilized interfaces in the rest of the standard library (see issue #0)
+kablam!   --> src/linked_list.rs:22:5
+kablam!    |
+kablam! 22 | use std::intrinsics::forget;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: add #![feature(core_intrinsics)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'core_intrinsics': intrinsics are unlikely to ever be stabilized, instead they should be used through stabilized interfaces in the rest of the standard library (see issue #0)
+kablam!     --> src/linked_list.rs:1295:9
+kablam!      |
+kablam! 1295 |         forget(self);
+kablam!      |         ^^^^^^
+kablam!      |
+kablam!      = help: add #![feature(core_intrinsics)] to the crate attributes to enable
+kablam! 
+kablam! error: aborting due to 7 previous errors
+kablam! 
+kablam! error: Could not compile `intrusive-containers`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 27250c7992804b4aed502475ae36cb0b987ecabbea27736580cebfbaeec4875a`
+blam! 27250c7992804b4aed502475ae36cb0b987ecabbea27736580cebfbaeec4875a

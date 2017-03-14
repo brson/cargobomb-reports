@@ -1,0 +1,244 @@
+boom! testing numtraits-0.0.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 30162c4f72346460e79c05028e8f2b1931a589d5055904452cc3425e79f27b45
+boom! running `docker start -a 30162c4f72346460e79c05028e8f2b1931a589d5055904452cc3425e79f27b45`
+kablam!    Compiling numtraits v0.0.1 (file:///source)
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 0.38 secs
+boom! running `docker rm -f 30162c4f72346460e79c05028e8f2b1931a589d5055904452cc3425e79f27b45`
+blam! 30162c4f72346460e79c05028e8f2b1931a589d5055904452cc3425e79f27b45
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 5596e3cd2cf5ac044e83e4da074263234a2cea1640dd244a4e197963207b8925
+boom! running `docker start -a 5596e3cd2cf5ac044e83e4da074263234a2cea1640dd244a4e197963207b8925`
+kablam!    Compiling numtraits v0.0.1 (file:///source)
+kablam! warning: function is never used: `doit`, #[warn(dead_code)] on by default
+kablam!    --> src/lib.rs:121:1
+kablam!     |
+kablam! 121 |   fn doit<T: UpCastAs<u64>>() {
+kablam!     |  _^ starting here...
+kablam! 122 | |     let _ = T::from(10u64);
+kablam! 123 | |     // let y = T::from(10u8); // Error.
+kablam! 124 | |     let _: T = cast(10u16); // Works for all types upscalable up to `B` where `T: UpCastAs<B>`
+kablam! 125 | |     // let _: T = cast(10f32); // Error
+kablam! 126 | |     let _ = cast::<u16, T>(10u16); // Alternate syntax.
+kablam! 127 | |     let _: T = UpCastAs::from(10u8); // Works for all types as well.
+kablam! 128 | | }
+kablam!     | |_^ ...ending here
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 0.51 secs
+boom! running `docker rm -f 5596e3cd2cf5ac044e83e4da074263234a2cea1640dd244a4e197963207b8925`
+blam! 5596e3cd2cf5ac044e83e4da074263234a2cea1640dd244a4e197963207b8925
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! 753c53be1d46062a650ad38d1ff3376739d6014c47a821051f065c5521543c06
+boom! running `docker start -a 753c53be1d46062a650ad38d1ff3376739d6014c47a821051f065c5521543c06`
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/numtraits-a6941e08769b42d7
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!    Doc-tests numtraits
+blam! 
+blam! running 4 tests
+blam! test _2 ... FAILED
+blam! test _3 ... FAILED
+blam! test _1 ... FAILED
+blam! test _0 ... FAILED
+blam! 
+blam! failures:
+blam! 
+blam! ---- _2 stdout ----
+blam! 	error[E0405]: trait `UpCastAs` is not in scope
+blam!  --> <anon>:2:15
+blam!   |
+blam! 2 | fn example<T: UpCastAs<u32>>() {
+blam!   |               ^^^^^^^^^^^^^ `UpCastAs` is not in scope
+blam!   |
+blam!   = help: no candidates by the name of `UpCastAs` found in your project; maybe you misspelled the name or forgot to import an external crate?
+blam! 
+blam! error[E0433]: failed to resolve. Use of undeclared type or module `UpCastAs`
+blam!  --> <anon>:3:16
+blam!   |
+blam! 3 |     let _: T = UpCastAs::from(10u8);
+blam!   |                ^^^^^^^^^^^^^^ Use of undeclared type or module `UpCastAs`
+blam! 
+blam! error[E0433]: failed to resolve. Use of undeclared type or module `UpCastAs`
+blam!  --> <anon>:4:16
+blam!   |
+blam! 4 |     let _: T = UpCastAs::from(10u16);
+blam!   |                ^^^^^^^^^^^^^^ Use of undeclared type or module `UpCastAs`
+blam! 
+blam! error: cannot continue compilation due to previous error
+blam! 
+blam! thread '_2' panicked at 'Box<Any>', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/librustc/session/mod.rs:201
+blam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+blam! thread '_2' panicked at 'couldn't compile the test', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/librustdoc/test.rs:261
+blam! 
+blam! ---- _3 stdout ----
+blam! 	error[E0405]: trait `UpCastAs` is not in scope
+blam!  --> <anon>:2:15
+blam!   |
+blam! 2 | fn example<T: UpCastAs<u32>>() {
+blam!   |               ^^^^^^^^^^^^^ `UpCastAs` is not in scope
+blam!   |
+blam!   = help: no candidates by the name of `UpCastAs` found in your project; maybe you misspelled the name or forgot to import an external crate?
+blam! 
+blam! error: cannot continue compilation due to previous error
+blam! 
+blam! thread '_3' panicked at 'Box<Any>', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/librustc/session/mod.rs:201
+blam! thread '_3' panicked at 'couldn't compile the test', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/librustdoc/test.rs:261
+blam! 
+blam! ---- _1 stdout ----
+blam! 	error[E0405]: trait `UpCastAs` is not in scope
+blam!  --> <anon>:2:15
+blam!   |
+blam! 2 | fn example<T: UpCastAs<u32>>() {
+blam!   |               ^^^^^^^^^^^^^ `UpCastAs` is not in scope
+blam!   |
+blam!   = help: no candidates by the name of `UpCastAs` found in your project; maybe you misspelled the name or forgot to import an external crate?
+blam! 
+blam! error[E0425]: unresolved name `cast`
+blam!  --> <anon>:3:16
+blam!   |
+blam! 3 |     let _: T = cast(10u8);
+blam!   |                ^^^^ unresolved name
+blam! 
+blam! error[E0425]: unresolved name `cast`
+blam!  --> <anon>:4:13
+blam!   |
+blam! 4 |     let _ = cast::<u8, T>(10u8); // Alternate syntax, uglier.
+blam!   |             ^^^^^^^^^^^^^ unresolved name
+blam! 
+blam! error[E0425]: unresolved name `cast`
+blam!  --> <anon>:5:16
+blam!   |
+blam! 5 |     let _: T = cast(10u16);
+blam!   |                ^^^^ unresolved name
+blam! 
+blam! error[E0425]: unresolved name `cast`
+blam!  --> <anon>:6:16
+blam!   |
+blam! 6 |     let _: T = cast(10u32);
+blam!   |                ^^^^ unresolved name
+blam! 
+blam! error[E0425]: unresolved name `cast`
+blam!  --> <anon>:7:16
+blam!   |
+blam! 7 |     let _: T = cast(10u64); // Error, u64 > u32
+blam!   |                ^^^^ unresolved name
+blam! 
+blam! error[E0425]: unresolved name `cast`
+blam!  --> <anon>:8:16
+blam!   |
+blam! 8 |     let _: T = cast(10f32); // Error, f32 > u32
+blam!   |                ^^^^ unresolved name
+blam! 
+blam! error[E0425]: unresolved name `cast`
+blam!  --> <anon>:9:16
+blam!   |
+blam! 9 |     let _: T = cast(10f64); // Error, f32 > u32
+blam!   |                ^^^^ unresolved name
+blam! 
+blam! error: cannot continue compilation due to previous error
+blam! 
+blam! thread '_1' panicked at 'Box<Any>', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/librustc/session/mod.rs:201
+blam! thread '_1' panicked at 'couldn't compile the test', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/librustdoc/test.rs:261
+blam! 
+blam! ---- _0 stdout ----
+blam! 	error: chained comparison operators require parentheses
+blam!  --> <anon>:2:5
+blam!   |
+blam! 2 | f64 > f32 > u64 > u32 > u16 > u8
+blam!   |     ^^^^^^^^^^^
+blam! 
+blam! error: chained comparison operators require parentheses
+blam!  --> <anon>:2:11
+blam!   |
+blam! 2 | f64 > f32 > u64 > u32 > u16 > u8
+blam!   |           ^^^^^^^^^^^
+blam! 
+blam! error: chained comparison operators require parentheses
+blam!  --> <anon>:2:17
+blam!   |
+blam! 2 | f64 > f32 > u64 > u32 > u16 > u8
+blam!   |                 ^^^^^^^^^^^
+kablam! error: test failed
+blam! 
+blam! error: chained comparison operators require parentheses
+blam!  --> <anon>:2:23
+blam!   |
+blam! 2 | f64 > f32 > u64 > u32 > u16 > u8
+blam!   |                       ^^^^^^^^^^
+blam! 
+blam! error: expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `f64`
+blam!  --> <anon>:3:1
+blam!   |
+blam! 3 | f64 > f32 > i64 > i32 > i16 > i8
+blam!   | ^^^
+blam! 
+blam! error[E0425]: unresolved name `f64`
+blam!  --> <anon>:2:1
+blam!   |
+blam! 2 | f64 > f32 > u64 > u32 > u16 > u8
+blam!   | ^^^ unresolved name
+blam! 
+blam! error[E0425]: unresolved name `f32`
+blam!  --> <anon>:2:7
+blam!   |
+blam! 2 | f64 > f32 > u64 > u32 > u16 > u8
+blam!   |       ^^^ unresolved name
+blam! 
+blam! error[E0425]: unresolved name `u64`
+blam!  --> <anon>:2:13
+blam!   |
+blam! 2 | f64 > f32 > u64 > u32 > u16 > u8
+blam!   |             ^^^ unresolved name
+blam! 
+blam! error[E0425]: unresolved name `u32`
+blam!  --> <anon>:2:19
+blam!   |
+blam! 2 | f64 > f32 > u64 > u32 > u16 > u8
+blam!   |                   ^^^ unresolved name
+blam! 
+blam! error[E0425]: unresolved name `u16`
+blam!  --> <anon>:2:25
+blam!   |
+blam! 2 | f64 > f32 > u64 > u32 > u16 > u8
+blam!   |                         ^^^ unresolved name
+blam! 
+blam! error[E0425]: unresolved name `u8`
+blam!  --> <anon>:2:31
+blam!   |
+blam! 2 | f64 > f32 > u64 > u32 > u16 > u8
+blam!   |                               ^^ unresolved name
+blam! 
+blam! error[E0308]: mismatched types
+blam!  --> <anon>:2:1
+blam!   |
+blam! 2 | f64 > f32 > u64 > u32 > u16 > u8
+blam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected (), found bool
+blam!   |
+blam!   = note: expected type `()`
+blam!   = note:    found type `bool`
+blam! 
+blam! error: aborting due to previous error(s)
+blam! 
+blam! thread '_0' panicked at 'Box<Any>', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/librustc/session/mod.rs:201
+blam! 
+blam! 
+blam! failures:
+blam!     _0
+blam!     _1
+blam!     _2
+blam!     _3
+blam! 
+blam! test result: FAILED. 0 passed; 4 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f 753c53be1d46062a650ad38d1ff3376739d6014c47a821051f065c5521543c06`
+blam! 753c53be1d46062a650ad38d1ff3376739d6014c47a821051f065c5521543c06

@@ -1,0 +1,38 @@
+boom! testing catapult-0.1.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! f97e86b93d5b6268ba85327ec1e36b0d8a353b1be774a04697184cce7e4ea16c
+boom! running `docker start -a f97e86b93d5b6268ba85327ec1e36b0d8a353b1be774a04697184cce7e4ea16c`
+kablam!    Compiling catapult v0.1.2 (file:///source)
+kablam! error[E0432]: unresolved import `nom::eof`
+kablam!  --> src/config.rs:3:32
+kablam!   |
+kablam! 3 | use nom::{IResult, multispace, eof, alphanumeric, space, not_line_ending};
+kablam!   |                                ^^^ no `eof` in the root. Did you mean to use `eol`?
+kablam! 
+kablam! error[E0432]: unresolved import `serde::json`
+kablam!  --> src/filters.rs:3:5
+kablam!   |
+kablam! 3 | use serde::json;
+kablam!   |     ^^^^^^^^^^^ no `json` in the root
+kablam! 
+kablam! error[E0432]: unresolved import `serde::json::value`
+kablam!  --> src/filters.rs:4:5
+kablam!   |
+kablam! 4 | use serde::json::value;
+kablam!   |     ^^^^^^^^^^^^^^^^^^ Could not find `json` in `serde`
+kablam! 
+kablam! error[E0432]: unresolved import `serde::json::Value`
+kablam!  --> src/filters.rs:5:5
+kablam!   |
+kablam! 5 | use serde::json::Value;
+kablam!   |     ^^^^^^^^^^^^^^^^^^ Could not find `json` in `serde`
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `catapult`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f97e86b93d5b6268ba85327ec1e36b0d8a353b1be774a04697184cce7e4ea16c`
+blam! f97e86b93d5b6268ba85327ec1e36b0d8a353b1be774a04697184cce7e4ea16c

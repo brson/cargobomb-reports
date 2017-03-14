@@ -1,0 +1,26 @@
+boom! testing stripe-0.0.5 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! f98aad5eb209402ac2c11776c523f65c310b9124122c7a3b50506c5f00617271
+boom! running `docker start -a f98aad5eb209402ac2c11776c523f65c310b9124122c7a3b50506c5f00617271`
+kablam!    Compiling stripe v0.0.5 (file:///source)
+kablam! error[E0425]: cannot find function `serialize` in module `form_urlencoded`
+kablam!   --> src/connection.rs:84:23
+kablam!    |
+kablam! 84 |         let payload = form_urlencoded::serialize(object.into_iter());
+kablam!    |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `form_urlencoded`
+kablam! 
+kablam! error: no method named `path_mut` found for type `url::Url` in the current scope
+kablam!   --> src/connection.rs:57:13
+kablam!    |
+kablam! 57 |         url.path_mut().unwrap().append(&mut path);
+kablam!    |             ^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `stripe`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f98aad5eb209402ac2c11776c523f65c310b9124122c7a3b50506c5f00617271`
+blam! f98aad5eb209402ac2c11776c523f65c310b9124122c7a3b50506c5f00617271

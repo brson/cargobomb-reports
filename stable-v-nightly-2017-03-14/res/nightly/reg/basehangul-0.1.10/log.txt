@@ -1,0 +1,32 @@
+boom! testing basehangul-0.1.10 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 563d2f4fe61d27307d8d61aa6dc4023327f6713d6f263965d209482ff744dc40
+boom! running `docker start -a 563d2f4fe61d27307d8d61aa6dc4023327f6713d6f263965d209482ff744dc40`
+kablam!    Compiling basehangul v0.1.10 (file:///source)
+kablam! error[E0432]: unresolved import `std::borrow::IntoCow`
+kablam!   --> src/lib.rs:14:24
+kablam!    |
+kablam! 14 | use std::borrow::{Cow, IntoCow};
+kablam!    |                        ^^^^^^^ no `IntoCow` in `borrow`
+kablam! 
+kablam! error: no method named `into_cow` found for type `&'static str` in the current scope
+kablam!    --> src/lib.rs:243:68
+kablam!     |
+kablam! 243 |                     return Some(Err("non-integral number of bytes".into_cow()));
+kablam!     |                                                                    ^^^^^^^^
+kablam! 
+kablam! error: no method named `into_cow` found for type `&'static str` in the current scope
+kablam!    --> src/lib.rs:271:57
+kablam!     |
+kablam! 271 |                     return Some(Err("invalid code word".into_cow()));
+kablam!     |                                                         ^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `basehangul`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 563d2f4fe61d27307d8d61aa6dc4023327f6713d6f263965d209482ff744dc40`
+blam! 563d2f4fe61d27307d8d61aa6dc4023327f6713d6f263965d209482ff744dc40

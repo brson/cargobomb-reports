@@ -1,0 +1,32 @@
+boom! testing quant-0.0.4 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! a0950b5add32e71f8143ec24cb6842509d3220d3e1880910f912812fbb8d4104
+boom! running `docker start -a a0950b5add32e71f8143ec24cb6842509d3220d3e1880910f912812fbb8d4104`
+kablam!    Compiling quant v0.0.4 (file:///source)
+kablam! error[E0432]: unresolved import `std::marker::PhantomFn`
+kablam!   --> src/lib.rs:10:32
+kablam!    |
+kablam! 10 | use std::marker::{PhantomData, PhantomFn};
+kablam!    |                                ^^^^^^^^^ no `PhantomFn` in `marker`
+kablam! 
+kablam! error: stability attributes may not be used outside of the standard library
+kablam!   --> src/lib.rs:31:5
+kablam!    |
+kablam! 31 |   #[unstable]
+kablam!    |     ^^^^^^^^
+kablam! 
+kablam! error: stability attributes may not be used outside of the standard library
+kablam!   --> src/lib.rs:42:5
+kablam!    |
+kablam! 42 |   #[unstable]
+kablam!    |     ^^^^^^^^
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `quant`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f a0950b5add32e71f8143ec24cb6842509d3220d3e1880910f912812fbb8d4104`
+blam! a0950b5add32e71f8143ec24cb6842509d3220d3e1880910f912812fbb8d4104

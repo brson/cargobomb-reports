@@ -1,0 +1,111 @@
+boom! testing https://github.com/justincampbell/url-shortener-rust#dea15a889eaf723a4ab9ccfa1a9ca95e078f3b0a against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! b42719e9a17c325c720bdfeed87e9535976807f32fe09e59152cc2cd6acd680a
+boom! running `docker start -a b42719e9a17c325c720bdfeed87e9535976807f32fe09e59152cc2cd6acd680a`
+kablam!    Compiling shortener v0.0.1 (file:///source)
+kablam! warning: type alias is never used: `Token`
+kablam!  --> src/shortener.rs:3:1
+kablam!   |
+kablam! 3 | type Token = String;
+kablam!   | ^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: type alias is never used: `Url`
+kablam!  --> src/shortener.rs:4:1
+kablam!   |
+kablam! 4 | type Url = String;
+kablam!   | ^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: struct is never used: `World`
+kablam!  --> src/shortener.rs:6:1
+kablam!   |
+kablam! 6 |   pub struct World {
+kablam!   |  _^ starting here...
+kablam! 7 | |     id: i32,
+kablam! 8 | |     urls: HashMap<Token, Url>
+kablam! 9 | | }
+kablam!   | |_^ ...ending here
+kablam!   |
+kablam!   = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `empty`
+kablam!   --> src/shortener.rs:12:5
+kablam!    |
+kablam! 12 |       pub fn empty() -> World {
+kablam!    |  _____^ starting here...
+kablam! 13 | |         World { urls: HashMap::new(), id: 0 }
+kablam! 14 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `shorten`
+kablam!   --> src/shortener.rs:16:5
+kablam!    |
+kablam! 16 |       pub fn shorten(&mut self, url: &Url) -> Token {
+kablam!    |  _____^ starting here...
+kablam! 17 | |         self.id += 1;
+kablam! 18 | |         let token = World::tokenize(self.id);
+kablam! 19 | |
+kablam! 20 | |         self.urls.insert(token.to_string(), url.clone());
+kablam! 21 | |
+kablam! 22 | |         token
+kablam! 23 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `expand`
+kablam!   --> src/shortener.rs:25:5
+kablam!    |
+kablam! 25 |       pub fn expand(&self, token: Token) -> Option<&Url> {
+kablam!    |  _____^ starting here...
+kablam! 26 | |         self.urls.get(&token)
+kablam! 27 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `tokenize`
+kablam!   --> src/shortener.rs:29:5
+kablam!    |
+kablam! 29 |       fn tokenize(id: i32) -> String {
+kablam!    |  _____^ starting here...
+kablam! 30 | |         id.to_string()
+kablam! 31 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.7 secs
+boom! running `docker rm -f b42719e9a17c325c720bdfeed87e9535976807f32fe09e59152cc2cd6acd680a`
+blam! b42719e9a17c325c720bdfeed87e9535976807f32fe09e59152cc2cd6acd680a
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 4cf87b0beb4dc61bca3fddb108cc695e8d8519e5d73a852f8e95f3d558483a77
+boom! running `docker start -a 4cf87b0beb4dc61bca3fddb108cc695e8d8519e5d73a852f8e95f3d558483a77`
+kablam!    Compiling shortener v0.0.1 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.20 secs
+boom! running `docker rm -f 4cf87b0beb4dc61bca3fddb108cc695e8d8519e5d73a852f8e95f3d558483a77`
+blam! 4cf87b0beb4dc61bca3fddb108cc695e8d8519e5d73a852f8e95f3d558483a77
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! cd2094a2ad247a311fc24a56b641482ed3d81ef85e197d4529482b20bb7a865a
+boom! running `docker start -a cd2094a2ad247a311fc24a56b641482ed3d81ef85e197d4529482b20bb7a865a`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/shortener-74c216f2e0cb3244
+blam! 
+blam! running 1 test
+blam! test shortener::shorten_and_expand ... ok
+blam! 
+blam! test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f cd2094a2ad247a311fc24a56b641482ed3d81ef85e197d4529482b20bb7a865a`
+blam! cd2094a2ad247a311fc24a56b641482ed3d81ef85e197d4529482b20bb7a865a

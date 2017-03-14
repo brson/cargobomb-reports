@@ -1,0 +1,394 @@
+boom! testing qcollect-traits-0.7.4 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 0c018ac6eeab3b7adb0582b18397ee352ccb8959aedbe973773569b319e8594d
+boom! running `docker start -a 0c018ac6eeab3b7adb0582b18397ee352ccb8959aedbe973773569b319e8594d`
+kablam!    Compiling qcollect-traits v0.7.4 (file:///source)
+kablam! error[E0271]: type mismatch resolving `<<T as traits::_Iterate<'_>>::Iter as std::iter::Iterator>::Item == <&'r T as traits::_Iterate<'a>>::Item`
+kablam!   --> src/impls/core.rs:46:25
+kablam!    |
+kablam! 46 | impl<'r, 'a, T: ?Sized> _Iterate<'a> for &'r T
+kablam!    |                         ^^^^^^^^^^^^ expected type parameter, found reference
+kablam!    |
+kablam!    = note: expected type `<T as traits::_Iterate<'_>>::Item`
+kablam!               found type `<&'r T as traits::_Iterate<'a>>::Item`
+kablam!    = note: required by `traits::_Iterate`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<<T as traits::_Iterate<'_>>::Iter as std::iter::Iterator>::Item == <&'r mut T as traits::_Iterate<'a>>::Item`
+kablam!    --> src/impls/core.rs:127:25
+kablam!     |
+kablam! 127 | impl<'r, 'a, T: ?Sized> _Iterate<'a> for &'r mut T
+kablam!     |                         ^^^^^^^^^^^^ expected type parameter, found mutable reference
+kablam!     |
+kablam!     = note: expected type `<T as traits::_Iterate<'_>>::Item`
+kablam!                found type `<&'r mut T as traits::_Iterate<'a>>::Item`
+kablam!     = note: required by `traits::_Iterate`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<<T as traits::_IterateMut<'_>>::IterMut as std::iter::Iterator>::Item == <&'r mut T as traits::_IterateMut<'a>>::Item`
+kablam!    --> src/impls/core.rs:139:25
+kablam!     |
+kablam! 139 | impl<'r, 'a, T: ?Sized> _IterateMut<'a> for &'r mut T
+kablam!     |                         ^^^^^^^^^^^^^^^ expected type parameter, found mutable reference
+kablam!     |
+kablam!     = note: expected type `<T as traits::_IterateMut<'_>>::Item`
+kablam!                found type `<&'r mut T as traits::_IterateMut<'a>>::Item`
+kablam!     = note: required by `traits::_IterateMut`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<<T as traits::_Iterate<'_>>::Iter as std::iter::Iterator>::Item == <std::boxed::Box<T> as traits::_Iterate<'a>>::Item`
+kablam!    --> src/impls/core.rs:265:21
+kablam!     |
+kablam! 265 | impl<'a, T: ?Sized> _Iterate<'a> for Box<T>
+kablam!     |                     ^^^^^^^^^^^^ expected type parameter, found struct `std::boxed::Box`
+kablam!     |
+kablam!     = note: expected type `<T as traits::_Iterate<'_>>::Item`
+kablam!                found type `<std::boxed::Box<T> as traits::_Iterate<'a>>::Item`
+kablam!     = note: required by `traits::_Iterate`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<<T as traits::_IterateMut<'_>>::IterMut as std::iter::Iterator>::Item == <std::boxed::Box<T> as traits::_IterateMut<'a>>::Item`
+kablam!    --> src/impls/core.rs:277:21
+kablam!     |
+kablam! 277 | impl<'a, T: ?Sized> _IterateMut<'a> for Box<T>
+kablam!     |                     ^^^^^^^^^^^^^^^ expected type parameter, found struct `std::boxed::Box`
+kablam!     |
+kablam!     = note: expected type `<T as traits::_IterateMut<'_>>::Item`
+kablam!                found type `<std::boxed::Box<T> as traits::_IterateMut<'a>>::Item`
+kablam!     = note: required by `traits::_IterateMut`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<std::slice::Iter<'_, T> as std::iter::Iterator>::Item == <[T] as traits::_Iterate<'a>>::Item`
+kablam!   --> src/impls/slice.rs:66:17
+kablam!    |
+kablam! 66 | impl<'a, T: 'a> _Iterate<'a> for [T] {
+kablam!    |                 ^^^^^^^^^^^^ expected reference, found associated type
+kablam!    |
+kablam!    = note: expected type `&T`
+kablam!               found type `<[T] as traits::_Iterate<'a>>::Item`
+kablam!    = note: required by `traits::_Iterate`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<std::slice::IterMut<'_, T> as std::iter::Iterator>::Item == <[T] as traits::_IterateMut<'a>>::Item`
+kablam!   --> src/impls/slice.rs:74:17
+kablam!    |
+kablam! 74 | impl<'a, T: 'a> _IterateMut<'a> for [T] {
+kablam!    |                 ^^^^^^^^^^^^^^^ expected &mut _, found associated type
+kablam!    |
+kablam!    = note: expected type `&mut T`
+kablam!               found type `<[T] as traits::_IterateMut<'a>>::Item`
+kablam!    = note: required by `traits::_IterateMut`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<std::slice::Iter<'_, T> as std::iter::Iterator>::Item == <std::vec::Vec<T> as traits::_Iterate<'a>>::Item`
+kablam!   --> src/impls/vec.rs:81:17
+kablam!    |
+kablam! 81 | impl<'a, T: 'a> _Iterate<'a> for Vec<T> {
+kablam!    |                 ^^^^^^^^^^^^ expected reference, found associated type
+kablam!    |
+kablam!    = note: expected type `&T`
+kablam!               found type `<std::vec::Vec<T> as traits::_Iterate<'a>>::Item`
+kablam!    = note: required by `traits::_Iterate`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<std::slice::IterMut<'_, T> as std::iter::Iterator>::Item == <std::vec::Vec<T> as traits::_IterateMut<'a>>::Item`
+kablam!   --> src/impls/vec.rs:89:17
+kablam!    |
+kablam! 89 | impl<'a, T: 'a> _IterateMut<'a> for Vec<T> {
+kablam!    |                 ^^^^^^^^^^^^^^^ expected &mut _, found associated type
+kablam!    |
+kablam!    = note: expected type `&mut T`
+kablam!               found type `<std::vec::Vec<T> as traits::_IterateMut<'a>>::Item`
+kablam!    = note: required by `traits::_IterateMut`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<std::collections::vec_deque::Iter<'_, T> as std::iter::Iterator>::Item == <std::collections::VecDeque<T> as traits::_Iterate<'a>>::Item`
+kablam!   --> src/impls/vec_deque.rs:29:17
+kablam!    |
+kablam! 29 | impl<'a, T: 'a> _Iterate<'a> for VecDeque<T> {
+kablam!    |                 ^^^^^^^^^^^^ expected reference, found associated type
+kablam!    |
+kablam!    = note: expected type `&T`
+kablam!               found type `<std::collections::VecDeque<T> as traits::_Iterate<'a>>::Item`
+kablam!    = note: required by `traits::_Iterate`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<std::collections::vec_deque::IterMut<'_, T> as std::iter::Iterator>::Item == <std::collections::VecDeque<T> as traits::_IterateMut<'a>>::Item`
+kablam!   --> src/impls/vec_deque.rs:37:17
+kablam!    |
+kablam! 37 | impl<'a, T: 'a> _IterateMut<'a> for VecDeque<T> {
+kablam!    |                 ^^^^^^^^^^^^^^^ expected &mut _, found associated type
+kablam!    |
+kablam!    = note: expected type `&mut T`
+kablam!               found type `<std::collections::VecDeque<T> as traits::_IterateMut<'a>>::Item`
+kablam!    = note: required by `traits::_IterateMut`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<std::collections::linked_list::Iter<'_, T> as std::iter::Iterator>::Item == <std::collections::LinkedList<T> as traits::_Iterate<'a>>::Item`
+kablam!   --> src/impls/linked_list.rs:23:17
+kablam!    |
+kablam! 23 | impl<'a, T: 'a> _Iterate<'a> for LinkedList<T> {
+kablam!    |                 ^^^^^^^^^^^^ expected reference, found associated type
+kablam!    |
+kablam!    = note: expected type `&T`
+kablam!               found type `<std::collections::LinkedList<T> as traits::_Iterate<'a>>::Item`
+kablam!    = note: required by `traits::_Iterate`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<std::collections::linked_list::IterMut<'_, T> as std::iter::Iterator>::Item == <std::collections::LinkedList<T> as traits::_IterateMut<'a>>::Item`
+kablam!   --> src/impls/linked_list.rs:31:17
+kablam!    |
+kablam! 31 | impl<'a, T: 'a> _IterateMut<'a> for LinkedList<T> {
+kablam!    |                 ^^^^^^^^^^^^^^^ expected &mut _, found associated type
+kablam!    |
+kablam!    = note: expected type `&mut T`
+kablam!               found type `<std::collections::LinkedList<T> as traits::_IterateMut<'a>>::Item`
+kablam!    = note: required by `traits::_IterateMut`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<bit_vec::Iter<'_> as std::iter::Iterator>::Item == <bit_vec::BitVec as traits::_Iterate<'a>>::Item`
+kablam!   --> src/impls/bit_vec.rs:41:10
+kablam!    |
+kablam! 41 | impl<'a> _Iterate<'a> for BitVec {
+kablam!    |          ^^^^^^^^^^^^ expected bool, found associated type
+kablam!    |
+kablam!    = note: expected type `bool`
+kablam!               found type `<bit_vec::BitVec as traits::_Iterate<'a>>::Item`
+kablam!    = note: required by `traits::_Iterate`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<std::collections::btree_set::Iter<'_, T> as std::iter::Iterator>::Item == <std::collections::BTreeSet<T> as traits::_Iterate<'a>>::Item`
+kablam!   --> src/impls/btree_set.rs:33:23
+kablam!    |
+kablam! 33 | impl<'a, T: Ord + 'a> _Iterate<'a> for BTreeSet<T> {
+kablam!    |                       ^^^^^^^^^^^^ expected reference, found associated type
+kablam!    |
+kablam!    = note: expected type `&T`
+kablam!               found type `<std::collections::BTreeSet<T> as traits::_Iterate<'a>>::Item`
+kablam!    = note: required by `traits::_Iterate`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<std::collections::btree_map::Iter<'_, K, V> as std::iter::Iterator>::Item == <std::collections::BTreeMap<K, V> as traits::_Iterate<'a>>::Item`
+kablam!   --> src/impls/btree_map.rs:58:30
+kablam!    |
+kablam! 58 | impl<'a, K: Ord + 'a, V: 'a> _Iterate<'a> for BTreeMap<K, V> {
+kablam!    |                              ^^^^^^^^^^^^ expected tuple, found associated type
+kablam!    |
+kablam!    = note: expected type `(&K, &V)`
+kablam!               found type `<std::collections::BTreeMap<K, V> as traits::_Iterate<'a>>::Item`
+kablam!    = note: required by `traits::_Iterate`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<std::collections::btree_map::IterMut<'_, K, V> as std::iter::Iterator>::Item == <std::collections::BTreeMap<K, V> as traits::_IterateMut<'a>>::Item`
+kablam!   --> src/impls/btree_map.rs:66:30
+kablam!    |
+kablam! 66 | impl<'a, K: Ord + 'a, V: 'a> _IterateMut<'a> for BTreeMap<K, V> {
+kablam!    |                              ^^^^^^^^^^^^^^^ expected tuple, found associated type
+kablam!    |
+kablam!    = note: expected type `(&K, &mut V)`
+kablam!               found type `<std::collections::BTreeMap<K, V> as traits::_IterateMut<'a>>::Item`
+kablam!    = note: required by `traits::_IterateMut`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<vec_map::Iter<'_, T> as std::iter::Iterator>::Item == <vec_map::VecMap<T> as traits::_Iterate<'a>>::Item`
+kablam!   --> src/impls/vec_map.rs:60:17
+kablam!    |
+kablam! 60 | impl<'a, T: 'a> _Iterate<'a> for VecMap<T> {
+kablam!    |                 ^^^^^^^^^^^^ expected tuple, found associated type
+kablam!    |
+kablam!    = note: expected type `(usize, &T)`
+kablam!               found type `<vec_map::VecMap<T> as traits::_Iterate<'a>>::Item`
+kablam!    = note: required by `traits::_Iterate`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<vec_map::IterMut<'_, T> as std::iter::Iterator>::Item == <vec_map::VecMap<T> as traits::_IterateMut<'a>>::Item`
+kablam!   --> src/impls/vec_map.rs:68:17
+kablam!    |
+kablam! 68 | impl<'a, T: 'a> _IterateMut<'a> for VecMap<T> {
+kablam!    |                 ^^^^^^^^^^^^^^^ expected tuple, found associated type
+kablam!    |
+kablam!    = note: expected type `(usize, &mut T)`
+kablam!               found type `<vec_map::VecMap<T> as traits::_IterateMut<'a>>::Item`
+kablam!    = note: required by `traits::_IterateMut`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<<T as traits::_Iterate<'_>>::Iter as std::iter::Iterator>::Item == <&'r T as traits::_Iterate<'a>>::Item`
+kablam!   --> src/impls/core.rs:55:5
+kablam!    |
+kablam! 55 |     fn iter<'a>(&'a self) -> <Self as _Iterate<'a>>::Iter { (**self).iter() }
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected type parameter, found reference
+kablam!    |
+kablam!    = note: expected type `<T as traits::_Iterate<'_>>::Item`
+kablam!               found type `<&'r T as traits::_Iterate<'a>>::Item`
+kablam!    = note: required by `traits::_Iterate`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<<T as traits::_Iterate<'_>>::Iter as std::iter::Iterator>::Item == <&'r mut T as traits::_Iterate<'a>>::Item`
+kablam!    --> src/impls/core.rs:136:5
+kablam!     |
+kablam! 136 |     fn iter<'a>(&'a self) -> <Self as _Iterate<'a>>::Iter { (**self).iter() }
+kablam!     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected type parameter, found mutable reference
+kablam!     |
+kablam!     = note: expected type `<T as traits::_Iterate<'_>>::Item`
+kablam!                found type `<&'r mut T as traits::_Iterate<'a>>::Item`
+kablam!     = note: required by `traits::_Iterate`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<<T as traits::_IterateMut<'_>>::IterMut as std::iter::Iterator>::Item == <&'r mut T as traits::_IterateMut<'a>>::Item`
+kablam!    --> src/impls/core.rs:148:5
+kablam!     |
+kablam! 148 |     fn iter_mut<'a>(&'a mut self) -> <Self as _IterateMut<'a>>::IterMut { (**self).iter_mut() }
+kablam!     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected type parameter, found mutable reference
+kablam!     |
+kablam!     = note: expected type `<T as traits::_IterateMut<'_>>::Item`
+kablam!                found type `<&'r mut T as traits::_IterateMut<'a>>::Item`
+kablam!     = note: required by `traits::_IterateMut`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<<T as traits::_Iterate<'_>>::Iter as std::iter::Iterator>::Item == <std::boxed::Box<T> as traits::_Iterate<'a>>::Item`
+kablam!    --> src/impls/core.rs:274:5
+kablam!     |
+kablam! 274 |     fn iter<'a>(&'a self) -> <Self as _Iterate<'a>>::Iter { (**self).iter() }
+kablam!     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected type parameter, found struct `std::boxed::Box`
+kablam!     |
+kablam!     = note: expected type `<T as traits::_Iterate<'_>>::Item`
+kablam!                found type `<std::boxed::Box<T> as traits::_Iterate<'a>>::Item`
+kablam!     = note: required by `traits::_Iterate`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<<T as traits::_IterateMut<'_>>::IterMut as std::iter::Iterator>::Item == <std::boxed::Box<T> as traits::_IterateMut<'a>>::Item`
+kablam!    --> src/impls/core.rs:286:5
+kablam!     |
+kablam! 286 |     fn iter_mut<'a>(&'a mut self) -> <Self as _IterateMut<'a>>::IterMut { (**self).iter_mut() }
+kablam!     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected type parameter, found struct `std::boxed::Box`
+kablam!     |
+kablam!     = note: expected type `<T as traits::_IterateMut<'_>>::Item`
+kablam!                found type `<std::boxed::Box<T> as traits::_IterateMut<'a>>::Item`
+kablam!     = note: required by `traits::_IterateMut`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<std::slice::Iter<'_, T> as std::iter::Iterator>::Item == <[T] as traits::_Iterate<'a>>::Item`
+kablam!   --> src/impls/slice.rs:71:5
+kablam!    |
+kablam! 71 |     fn iter<'a>(&'a self) -> <Self as _Iterate<'a>>::Iter { (*self).iter() }
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected reference, found associated type
+kablam!    |
+kablam!    = note: expected type `&T`
+kablam!               found type `<[T] as traits::_Iterate<'a>>::Item`
+kablam!    = note: required by `traits::_Iterate`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<std::slice::IterMut<'_, T> as std::iter::Iterator>::Item == <[T] as traits::_IterateMut<'a>>::Item`
+kablam!   --> src/impls/slice.rs:79:5
+kablam!    |
+kablam! 79 |     fn iter_mut<'a>(&'a mut self) -> <Self as _IterateMut<'a>>::IterMut { (*self).iter_mut() }
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected &mut _, found associated type
+kablam!    |
+kablam!    = note: expected type `&mut T`
+kablam!               found type `<[T] as traits::_IterateMut<'a>>::Item`
+kablam!    = note: required by `traits::_IterateMut`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<std::slice::Iter<'_, T> as std::iter::Iterator>::Item == <std::vec::Vec<T> as traits::_Iterate<'a>>::Item`
+kablam!   --> src/impls/vec.rs:86:5
+kablam!    |
+kablam! 86 |     fn iter<'a>(&'a self) -> <Self as _Iterate<'a>>::Iter { (**self).iter() }
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected reference, found associated type
+kablam!    |
+kablam!    = note: expected type `&T`
+kablam!               found type `<std::vec::Vec<T> as traits::_Iterate<'a>>::Item`
+kablam!    = note: required by `traits::_Iterate`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<std::slice::IterMut<'_, T> as std::iter::Iterator>::Item == <std::vec::Vec<T> as traits::_IterateMut<'a>>::Item`
+kablam!   --> src/impls/vec.rs:94:5
+kablam!    |
+kablam! 94 |     fn iter_mut<'a>(&'a mut self) -> <Self as _IterateMut<'a>>::IterMut { (**self).iter_mut() }
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected &mut _, found associated type
+kablam!    |
+kablam!    = note: expected type `&mut T`
+kablam!               found type `<std::vec::Vec<T> as traits::_IterateMut<'a>>::Item`
+kablam!    = note: required by `traits::_IterateMut`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<std::collections::vec_deque::Iter<'_, T> as std::iter::Iterator>::Item == <std::collections::VecDeque<T> as traits::_Iterate<'a>>::Item`
+kablam!   --> src/impls/vec_deque.rs:34:5
+kablam!    |
+kablam! 34 |     fn iter<'a>(&'a self) -> <Self as _Iterate<'a>>::Iter { (*self).iter() }
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected reference, found associated type
+kablam!    |
+kablam!    = note: expected type `&T`
+kablam!               found type `<std::collections::VecDeque<T> as traits::_Iterate<'a>>::Item`
+kablam!    = note: required by `traits::_Iterate`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<std::collections::vec_deque::IterMut<'_, T> as std::iter::Iterator>::Item == <std::collections::VecDeque<T> as traits::_IterateMut<'a>>::Item`
+kablam!   --> src/impls/vec_deque.rs:42:5
+kablam!    |
+kablam! 42 |     fn iter_mut<'a>(&'a mut self) -> <Self as _IterateMut<'a>>::IterMut { (*self).iter_mut() }
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected &mut _, found associated type
+kablam!    |
+kablam!    = note: expected type `&mut T`
+kablam!               found type `<std::collections::VecDeque<T> as traits::_IterateMut<'a>>::Item`
+kablam!    = note: required by `traits::_IterateMut`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<std::collections::linked_list::Iter<'_, T> as std::iter::Iterator>::Item == <std::collections::LinkedList<T> as traits::_Iterate<'a>>::Item`
+kablam!   --> src/impls/linked_list.rs:28:5
+kablam!    |
+kablam! 28 |     fn iter<'a>(&'a self) -> <Self as _Iterate<'a>>::Iter { (*self).iter() }
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected reference, found associated type
+kablam!    |
+kablam!    = note: expected type `&T`
+kablam!               found type `<std::collections::LinkedList<T> as traits::_Iterate<'a>>::Item`
+kablam!    = note: required by `traits::_Iterate`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<std::collections::linked_list::IterMut<'_, T> as std::iter::Iterator>::Item == <std::collections::LinkedList<T> as traits::_IterateMut<'a>>::Item`
+kablam!   --> src/impls/linked_list.rs:36:5
+kablam!    |
+kablam! 36 |     fn iter_mut<'a>(&'a mut self) -> <Self as _IterateMut<'a>>::IterMut { (*self).iter_mut() }
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected &mut _, found associated type
+kablam!    |
+kablam!    = note: expected type `&mut T`
+kablam!               found type `<std::collections::LinkedList<T> as traits::_IterateMut<'a>>::Item`
+kablam!    = note: required by `traits::_IterateMut`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<bit_vec::Iter<'_> as std::iter::Iterator>::Item == <bit_vec::BitVec as traits::_Iterate<'a>>::Item`
+kablam!   --> src/impls/bit_vec.rs:46:5
+kablam!    |
+kablam! 46 |     fn iter<'a>(&'a self) -> <Self as _Iterate<'a>>::Iter { (*self).iter() }
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected bool, found associated type
+kablam!    |
+kablam!    = note: expected type `bool`
+kablam!               found type `<bit_vec::BitVec as traits::_Iterate<'a>>::Item`
+kablam!    = note: required by `traits::_Iterate`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<std::collections::btree_set::Iter<'_, T> as std::iter::Iterator>::Item == <std::collections::BTreeSet<T> as traits::_Iterate<'a>>::Item`
+kablam!   --> src/impls/btree_set.rs:38:5
+kablam!    |
+kablam! 38 |     fn iter<'a>(&'a self) -> <Self as _Iterate<'a>>::Iter { (*self).iter() }
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected reference, found associated type
+kablam!    |
+kablam!    = note: expected type `&T`
+kablam!               found type `<std::collections::BTreeSet<T> as traits::_Iterate<'a>>::Item`
+kablam!    = note: required by `traits::_Iterate`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<std::collections::btree_map::Iter<'_, K, V> as std::iter::Iterator>::Item == <std::collections::BTreeMap<K, V> as traits::_Iterate<'a>>::Item`
+kablam!   --> src/impls/btree_map.rs:63:5
+kablam!    |
+kablam! 63 |     fn iter<'a>(&'a self) -> <Self as _Iterate<'a>>::Iter { (*self).iter() }
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected tuple, found associated type
+kablam!    |
+kablam!    = note: expected type `(&K, &V)`
+kablam!               found type `<std::collections::BTreeMap<K, V> as traits::_Iterate<'a>>::Item`
+kablam!    = note: required by `traits::_Iterate`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<std::collections::btree_map::IterMut<'_, K, V> as std::iter::Iterator>::Item == <std::collections::BTreeMap<K, V> as traits::_IterateMut<'a>>::Item`
+kablam!   --> src/impls/btree_map.rs:71:5
+kablam!    |
+kablam! 71 |     fn iter_mut<'a>(&'a mut self) -> <Self as _IterateMut<'a>>::IterMut { (*self).iter_mut() }
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected tuple, found associated type
+kablam!    |
+kablam!    = note: expected type `(&K, &mut V)`
+kablam!               found type `<std::collections::BTreeMap<K, V> as traits::_IterateMut<'a>>::Item`
+kablam!    = note: required by `traits::_IterateMut`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<vec_map::Iter<'_, T> as std::iter::Iterator>::Item == <vec_map::VecMap<T> as traits::_Iterate<'a>>::Item`
+kablam!   --> src/impls/vec_map.rs:65:5
+kablam!    |
+kablam! 65 |     fn iter<'a>(&'a self) -> <Self as _Iterate<'a>>::Iter { (*self).iter() }
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected tuple, found associated type
+kablam!    |
+kablam!    = note: expected type `(usize, &T)`
+kablam!               found type `<vec_map::VecMap<T> as traits::_Iterate<'a>>::Item`
+kablam!    = note: required by `traits::_Iterate`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<vec_map::IterMut<'_, T> as std::iter::Iterator>::Item == <vec_map::VecMap<T> as traits::_IterateMut<'a>>::Item`
+kablam!   --> src/impls/vec_map.rs:73:5
+kablam!    |
+kablam! 73 |     fn iter_mut<'a>(&'a mut self) -> <Self as _IterateMut<'a>>::IterMut { (*self).iter_mut() }
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected tuple, found associated type
+kablam!    |
+kablam!    = note: expected type `(usize, &mut T)`
+kablam!               found type `<vec_map::VecMap<T> as traits::_IterateMut<'a>>::Item`
+kablam!    = note: required by `traits::_IterateMut`
+kablam! 
+kablam! error: aborting due to 38 previous errors
+kablam! 
+kablam! error: Could not compile `qcollect-traits`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 0c018ac6eeab3b7adb0582b18397ee352ccb8959aedbe973773569b319e8594d`
+blam! 0c018ac6eeab3b7adb0582b18397ee352ccb8959aedbe973773569b319e8594d

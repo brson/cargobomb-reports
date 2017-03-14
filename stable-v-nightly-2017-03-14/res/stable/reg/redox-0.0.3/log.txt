@@ -1,0 +1,23 @@
+boom! testing redox-0.0.3 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! c7e141bbe8e106089e1f92631668e7571f0a73bf101dfd21033c127f12f3f170
+boom! running `docker start -a c7e141bbe8e106089e1f92631668e7571f0a73bf101dfd21033c127f12f3f170`
+kablam!    Compiling redox v0.0.3 (file:///source)
+kablam! error[E0277]: the trait bound `Self: std::marker::Sized` is not satisfied
+kablam!   --> src/bencode/mod.rs:35:5
+kablam!    |
+kablam! 35 |     fn decode(T) -> BencodeResult<Self>;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::marker::Sized` is not implemented for `Self`
+kablam!    |
+kablam!    = help: consider adding a `where Self: std::marker::Sized` bound
+kablam!    = note: required by `std::result::Result`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `redox`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f c7e141bbe8e106089e1f92631668e7571f0a73bf101dfd21033c127f12f3f170`
+blam! c7e141bbe8e106089e1f92631668e7571f0a73bf101dfd21033c127f12f3f170

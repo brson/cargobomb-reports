@@ -1,0 +1,113 @@
+boom! testing https://github.com/psFried/flo#3b0667f3ba5048105bafc72a182d5e2ad2cd50aa against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! d47a1c228f78170976e66c119ac7b33b627ce4206971e12171f101e796708b35
+boom! running `docker start -a d47a1c228f78170976e66c119ac7b33b627ce4206971e12171f101e796708b35`
+kablam!    Compiling unsafe-any v0.4.1
+kablam!    Compiling num_cpus v1.2.1
+kablam!    Compiling term_size v0.2.1
+kablam!    Compiling net2 v0.2.26
+kablam!    Compiling typemap v0.3.3
+kablam!    Compiling serde-value v0.2.1
+kablam!    Compiling clap v2.18.0
+kablam!    Compiling time v0.1.35
+kablam!    Compiling mio v0.6.1
+kablam!    Compiling chrono v0.2.25
+kablam!    Compiling tokio-core v0.1.4
+kablam!    Compiling log4rs v0.4.8
+kablam!    Compiling flo v0.1.0 (file:///source)
+kablam! warning: unused import: `nom::IResult`, #[warn(unused_imports)] on by default
+kablam!  --> src/client/sync/client_stream.rs:5:5
+kablam!   |
+kablam! 5 | use nom::IResult;
+kablam!   |     ^^^^^^^^^^^^
+kablam! 
+kablam! warning: constant item is never used: `BUFFER_LENGTH`, #[warn(dead_code)] on by default
+kablam!  --> src/client/sync/client_stream.rs:9:1
+kablam!   |
+kablam! 9 | const BUFFER_LENGTH: usize = 8 * 1024;
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused import: `IResult`, #[warn(unused_imports)] on by default
+kablam!   --> src/protocol/client.rs:13:35
+kablam!    |
+kablam! 13 | use nom::{be_u64, be_u32, be_u16, IResult};
+kablam!    |                                   ^^^^^^^
+kablam! 
+kablam! warning: unused imports: `Read`, `self`, #[warn(unused_imports)] on by default
+kablam!   --> src/protocol/client.rs:17:15
+kablam!    |
+kablam! 17 | use std::io::{self, Read};
+kablam!    |               ^^^^  ^^^^
+kablam! 
+kablam! warning: function is never used: `serialize_produce_header`, #[warn(dead_code)] on by default
+kablam!    --> src/protocol/client.rs:470:1
+kablam!     |
+kablam! 470 | fn serialize_produce_header(header: &ProduceEventHeader, mut buf: &mut [u8]) -> usize {
+kablam!     | ^
+kablam! 
+kablam! warning: unused variable: `event`, #[warn(unused_variables)] on by default
+kablam!    --> src/protocol/client.rs:530:43
+kablam!     |
+kablam! 530 |             ProtocolMessage::ReceiveEvent(ref event) => {
+kablam!     |                                           ^^^^^^^^^
+kablam! 
+kablam! warning: unused variable: `need`, #[warn(unused_variables)] on by default
+kablam!    --> src/protocol/mod.rs:125:41
+kablam!     |
+kablam! 125 |                     IResult::Incomplete(need) => {
+kablam!     |                                         ^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!   --> src/serializer.rs:17:23
+kablam!    |
+kablam! 17 |     pub fn write_bool(mut self, value: bool) -> Self {
+kablam!    |                       ^^^^^^^^
+kablam! 
+kablam! error[E0277]: the trait bound `std::string::String: std::net::ToSocketAddrs` is not satisfied
+kablam!   --> src/client_cli/producer.rs:24:9
+kablam!    |
+kablam! 24 |         SyncConnection::connect(&server_address).map_err(|io_err| {
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::net::ToSocketAddrs` is not implemented for `std::string::String`
+kablam!    |
+kablam!    = note: required because of the requirements on the impl of `std::net::ToSocketAddrs` for `&std::string::String`
+kablam!    = note: required by `<flo_sync_client::SyncConnection<std::net::TcpStream>>::connect`
+kablam! 
+kablam! error[E0277]: the trait bound `std::string::String: std::net::ToSocketAddrs` is not satisfied
+kablam!   --> src/client_cli/consumer.rs:39:9
+kablam!    |
+kablam! 39 |         SyncConnection::connect(&address).map_err(|io_err| io_err.into())
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::net::ToSocketAddrs` is not implemented for `std::string::String`
+kablam!    |
+kablam!    = note: required because of the requirements on the impl of `std::net::ToSocketAddrs` for `&std::string::String`
+kablam!    = note: required by `<flo_sync_client::SyncConnection<std::net::TcpStream>>::connect`
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/main.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(conservative_impl_trait)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/main.rs:2:1
+kablam!   |
+kablam! 2 | #![feature(collections_bound)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/main.rs:3:1
+kablam!   |
+kablam! 3 | #![feature(btree_range)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `flo`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f d47a1c228f78170976e66c119ac7b33b627ce4206971e12171f101e796708b35`
+blam! d47a1c228f78170976e66c119ac7b33b627ce4206971e12171f101e796708b35

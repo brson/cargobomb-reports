@@ -1,0 +1,310 @@
+boom! testing process_viewer-0.0.4 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! aff4fd6dad991b5f318c52fd11a2a640ac469a4018a06d375ae1aeb2e2f45f5c
+boom! running `docker start -a aff4fd6dad991b5f318c52fd11a2a640ac469a4018a06d375ae1aeb2e2f45f5c`
+kablam!    Compiling sysinfo v0.2.9
+kablam!    Compiling process_viewer v0.0.4 (file:///source)
+kablam! error[E0432]: unresolved import `gtk::prelude::TreeViewSignals`
+kablam!  --> src/procs.rs:4:20
+kablam!   |
+kablam! 4 | use gtk::prelude::{TreeViewSignals, WidgetExt};
+kablam!   |                    ^^^^^^^^^^^^^^^ no `TreeViewSignals` in `prelude`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/process_viewer.rs:43:45
+kablam!    |
+kablam! 43 |     let entries: &HashMap<usize, Process> = system.get_process_list();
+kablam!    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^ expected usize, found i32
+kablam!    |
+kablam!    = note: expected type `&std::collections::HashMap<usize, sysinfo::Process>`
+kablam!               found type `&std::collections::HashMap<i32, sysinfo::Process>`
+kablam!    = help: here are some functions which might fulfill your needs:
+kablam!            - .hasher()
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/process_viewer.rs:64:41
+kablam!    |
+kablam! 64 |             create_and_fill_model(list, pro.pid, &pro.cmd, &pro.name, pro.cpu_usage, pro.memory);
+kablam!    |                                         ^^^^^^^ expected i64, found i32
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/process_viewer.rs:64:50
+kablam!    |
+kablam! 64 |             create_and_fill_model(list, pro.pid, &pro.cmd, &pro.name, pro.cpu_usage, pro.memory);
+kablam!    |                                                  ^^^^^^^^ expected str, found struct `std::vec::Vec`
+kablam!    |
+kablam!    = note: expected type `&str`
+kablam!               found type `&std::vec::Vec<std::string::String>`
+kablam!    = help: here are some functions which might fulfill your needs:
+kablam!            - .remove(...)
+kablam!            - .swap_remove(...)
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/process_viewer.rs:156:47
+kablam!     |
+kablam! 156 |     let start_time = unsafe { sys.get_process(libc::getpid() as i64).unwrap().start_time };
+kablam!     |                                               ^^^^^^^^^^^^^^^^^^^^^ expected i32, found i64
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/process_viewer.rs:160:28
+kablam!     |
+kablam! 160 |     let procs = Procs::new(sys.borrow().get_process_list(), &mut note);
+kablam!     |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected usize, found i32
+kablam!     |
+kablam!     = note: expected type `&std::collections::HashMap<usize, sysinfo::Process>`
+kablam!                found type `&std::collections::HashMap<i32, sysinfo::Process>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .hasher()
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/process_viewer.rs:179:81
+kablam!     |
+kablam! 179 |         if let Some(process) = current_pid.get().and_then(|pid| sys.get_process(pid)) {
+kablam!     |                                                                                 ^^^ expected i32, found i64
+kablam! 
+kablam! error: no associated item named `get_sort_column_id` found for type `gtk::TreeSortableExt` in the current scope
+kablam!    --> src/process_viewer.rs:236:22
+kablam!     |
+kablam! 236 |         let sorted = TreeSortableExt::get_sort_column_id(&list_store);
+kablam!     |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: the method `get_sort_column_id` exists but the following trait bounds were not satisfied: `gtk::TreeSortableExt : std::marker::Sized`, `gtk::TreeSortableExt : glib::IsA<gtk::TreeModel>`, `gtk::TreeSortableExt : glib::IsA<gtk::TreeSortable>`, `&gtk::TreeSortableExt : glib::IsA<gtk::TreeModel>`, `&gtk::TreeSortableExt : glib::IsA<gtk::TreeSortable>`, `&mut gtk::TreeSortableExt : glib::IsA<gtk::TreeModel>`, `&mut gtk::TreeSortableExt : glib::IsA<gtk::TreeSortable>`
+kablam! 
+kablam! error[E0038]: the trait `gtk::TreeSortableExt` cannot be made into an object
+kablam!    --> src/process_viewer.rs:236:22
+kablam!     |
+kablam! 236 |         let sorted = TreeSortableExt::get_sort_column_id(&list_store);
+kablam!     |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `gtk::TreeSortableExt` cannot be made into an object
+kablam!     |
+kablam!     = note: method `connect_sort_column_changed` has generic type parameters
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/process_viewer.rs:251:82
+kablam!     |
+kablam! 251 |         if let Some(process) = current_pid2.get().and_then(|pid| sys.get_process(pid)) {
+kablam!     |                                                                                  ^^^ expected i32, found i64
+kablam! 
+kablam! error: no method named `get_processor_list` found for type `std::cell::Ref<'_, sysinfo::System>` in the current scope
+kablam!    --> src/display_sysinfo.rs:106:26
+kablam!     |
+kablam! 106 |             let pro = &s.get_processor_list()[0];
+kablam!     |                          ^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use sysinfo::SystemExt;`
+kablam! 
+kablam! error[E0277]: the trait bound `std::option::Option<&str>: std::convert::From<std::option::Option<&std::string::String>>` is not satisfied
+kablam!    --> src/display_sysinfo.rs:110:15
+kablam!     |
+kablam! 110 |             p.set_text(Some(&format!("{:.2} %", pro.get_cpu_usage() * 100.)));
+kablam!     |               ^^^^^^^^ the trait `std::convert::From<std::option::Option<&std::string::String>>` is not implemented for `std::option::Option<&str>`
+kablam!     |
+kablam!     = help: the following implementations were found:
+kablam!               <std::option::Option<T> as std::convert::From<T>>
+kablam!     = note: required because of the requirements on the impl of `std::convert::Into<std::option::Option<&str>>` for `std::option::Option<&std::string::String>`
+kablam! 
+kablam! error: no method named `get_processor_list` found for type `std::cell::Ref<'_, sysinfo::System>` in the current scope
+kablam!    --> src/display_sysinfo.rs:117:39
+kablam!     |
+kablam! 117 |         for (i, pro) in sys1.borrow().get_processor_list().iter().skip(1).enumerate() {
+kablam!     |                                       ^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use sysinfo::SystemExt;`
+kablam! 
+kablam! error[E0277]: the trait bound `std::option::Option<&str>: std::convert::From<std::option::Option<&std::string::String>>` is not satisfied
+kablam!    --> src/display_sysinfo.rs:121:21
+kablam!     |
+kablam! 121 |             let l = gtk::Label::new(Some(&format!("{}", i)));
+kablam!     |                     ^^^^^^^^^^^^^^^ the trait `std::convert::From<std::option::Option<&std::string::String>>` is not implemented for `std::option::Option<&str>`
+kablam!     |
+kablam!     = help: the following implementations were found:
+kablam!               <std::option::Option<T> as std::convert::From<T>>
+kablam!     = note: required because of the requirements on the impl of `std::convert::Into<std::option::Option<&str>>` for `std::option::Option<&std::string::String>`
+kablam!     = note: required by `gtk::Label::new`
+kablam! 
+kablam! error[E0277]: the trait bound `std::option::Option<&str>: std::convert::From<std::option::Option<&std::string::String>>` is not satisfied
+kablam!    --> src/display_sysinfo.rs:123:15
+kablam!     |
+kablam! 123 |             p.set_text(Some(&format!("{:.2} %", pro.get_cpu_usage() * 100.)));
+kablam!     |               ^^^^^^^^ the trait `std::convert::From<std::option::Option<&std::string::String>>` is not implemented for `std::option::Option<&str>`
+kablam!     |
+kablam!     = help: the following implementations were found:
+kablam!               <std::option::Option<T> as std::convert::From<T>>
+kablam!     = note: required because of the requirements on the impl of `std::convert::Into<std::option::Option<&str>>` for `std::option::Option<&std::string::String>`
+kablam! 
+kablam! error: no method named `get_components_list` found for type `std::cell::Ref<'_, sysinfo::System>` in the current scope
+kablam!    --> src/display_sysinfo.rs:146:26
+kablam!     |
+kablam! 146 |         if sys1.borrow().get_components_list().len() > 0 {
+kablam!     |                          ^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use sysinfo::SystemExt;`
+kablam! 
+kablam! error: no method named `get_components_list` found for type `std::cell::Ref<'_, sysinfo::System>` in the current scope
+kablam!    --> src/display_sysinfo.rs:148:44
+kablam!     |
+kablam! 148 |             for component in sys1.borrow().get_components_list() {
+kablam!     |                                            ^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use sysinfo::SystemExt;`
+kablam! 
+kablam! error[E0277]: the trait bound `std::option::Option<&str>: std::convert::From<std::option::Option<&std::string::String>>` is not satisfied
+kablam!    --> src/display_sysinfo.rs:151:28
+kablam!     |
+kablam! 151 |                 let temp = gtk::Label::new(Some(&format!("{:.1} °C", component.temperature)));
+kablam!     |                            ^^^^^^^^^^^^^^^ the trait `std::convert::From<std::option::Option<&std::string::String>>` is not implemented for `std::option::Option<&str>`
+kablam!     |
+kablam!     = help: the following implementations were found:
+kablam!               <std::option::Option<T> as std::convert::From<T>>
+kablam!     = note: required because of the requirements on the impl of `std::convert::Into<std::option::Option<&str>>` for `std::option::Option<&std::string::String>`
+kablam!     = note: required by `gtk::Label::new`
+kablam! 
+kablam! error: no method named `get_total_memory` found for type `&sysinfo::System` in the current scope
+kablam!    --> src/display_sysinfo.rs:242:25
+kablam!     |
+kablam! 242 |         let total = sys.get_total_memory();
+kablam!     |                         ^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use sysinfo::SystemExt;`
+kablam! 
+kablam! error: no method named `get_used_memory` found for type `&sysinfo::System` in the current scope
+kablam!    --> src/display_sysinfo.rs:243:24
+kablam!     |
+kablam! 243 |         let used = sys.get_used_memory();
+kablam!     |                        ^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use sysinfo::SystemExt;`
+kablam! 
+kablam! error[E0277]: the trait bound `std::option::Option<&str>: std::convert::From<std::option::Option<&std::string::String>>` is not satisfied
+kablam!    --> src/display_sysinfo.rs:244:18
+kablam!     |
+kablam! 244 |         self.ram.set_text(Some(&disp(total, used)));
+kablam!     |                  ^^^^^^^^ the trait `std::convert::From<std::option::Option<&std::string::String>>` is not implemented for `std::option::Option<&str>`
+kablam!     |
+kablam!     = help: the following implementations were found:
+kablam!               <std::option::Option<T> as std::convert::From<T>>
+kablam!     = note: required because of the requirements on the impl of `std::convert::Into<std::option::Option<&str>>` for `std::option::Option<&std::string::String>`
+kablam! 
+kablam! error: no method named `get_total_swap` found for type `&sysinfo::System` in the current scope
+kablam!    --> src/display_sysinfo.rs:252:25
+kablam!     |
+kablam! 252 |         let total = sys.get_total_swap();
+kablam!     |                         ^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use sysinfo::SystemExt;`
+kablam! 
+kablam! error: no method named `get_used_swap` found for type `&sysinfo::System` in the current scope
+kablam!    --> src/display_sysinfo.rs:253:24
+kablam!     |
+kablam! 253 |         let used = sys.get_used_swap();
+kablam!     |                        ^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use sysinfo::SystemExt;`
+kablam! 
+kablam! error[E0277]: the trait bound `std::option::Option<&str>: std::convert::From<std::option::Option<&std::string::String>>` is not satisfied
+kablam!    --> src/display_sysinfo.rs:254:19
+kablam!     |
+kablam! 254 |         self.swap.set_text(Some(&disp(total, used)));
+kablam!     |                   ^^^^^^^^ the trait `std::convert::From<std::option::Option<&std::string::String>>` is not implemented for `std::option::Option<&str>`
+kablam!     |
+kablam!     = help: the following implementations were found:
+kablam!               <std::option::Option<T> as std::convert::From<T>>
+kablam!     = note: required because of the requirements on the impl of `std::convert::Into<std::option::Option<&str>>` for `std::option::Option<&std::string::String>`
+kablam! 
+kablam! error: no method named `get_components_list` found for type `&sysinfo::System` in the current scope
+kablam!    --> src/display_sysinfo.rs:268:46
+kablam!     |
+kablam! 268 |         for (pos, (component, label)) in sys.get_components_list()
+kablam!     |                                              ^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use sysinfo::SystemExt;`
+kablam! 
+kablam! error: non-scalar cast: `{integer}` as `f64`
+kablam!    --> src/display_sysinfo.rs:258:24
+kablam!     |
+kablam! 258 |             fraction = 0 as f64;
+kablam!     |                        ^^^^^^^^
+kablam! 
+kablam! error: no method named `get_processor_list` found for type `&sysinfo::System` in the current scope
+kablam!    --> src/display_sysinfo.rs:288:29
+kablam!     |
+kablam! 288 |         for (i, pro) in sys.get_processor_list().iter().enumerate() {
+kablam!     |                             ^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use sysinfo::SystemExt;`
+kablam! 
+kablam! error[E0277]: the trait bound `std::vec::Vec<std::string::String>: std::fmt::Display` is not satisfied
+kablam!   --> src/process_dialog.rs:68:29
+kablam!    |
+kablam! 68 |                             process.cmd,
+kablam!    |                             ^^^^^^^^^^^ the trait `std::fmt::Display` is not implemented for `std::vec::Vec<std::string::String>`
+kablam!    |
+kablam!    = note: `std::vec::Vec<std::string::String>` cannot be formatted with the default formatter; try using `:?` instead if you are using a format string
+kablam!    = note: required by `std::fmt::Display::fmt`
+kablam! 
+kablam! error[E0277]: the trait bound `std::option::Option<&str>: std::convert::From<std::option::Option<&std::string::String>>` is not satisfied
+kablam!   --> src/process_dialog.rs:78:17
+kablam!    |
+kablam! 78 |     let label = gtk::Label::new(Some(&text));
+kablam!    |                 ^^^^^^^^^^^^^^^ the trait `std::convert::From<std::option::Option<&std::string::String>>` is not implemented for `std::option::Option<&str>`
+kablam!    |
+kablam!    = help: the following implementations were found:
+kablam!              <std::option::Option<T> as std::convert::From<T>>
+kablam!    = note: required because of the requirements on the impl of `std::convert::Into<std::option::Option<&str>>` for `std::option::Option<&std::string::String>`
+kablam!    = note: required by `gtk::Label::new`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/procs.rs:66:48
+kablam!    |
+kablam! 66 |             create_and_fill_model(&list_store, pro.pid, &pro.cmd, &pro.name, pro.cpu_usage,
+kablam!    |                                                ^^^^^^^ expected i64, found i32
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/procs.rs:66:57
+kablam!    |
+kablam! 66 |             create_and_fill_model(&list_store, pro.pid, &pro.cmd, &pro.name, pro.cpu_usage,
+kablam!    |                                                         ^^^^^^^^ expected str, found struct `std::vec::Vec`
+kablam!    |
+kablam!    = note: expected type `&str`
+kablam!               found type `&std::vec::Vec<std::string::String>`
+kablam!    = help: here are some functions which might fulfill your needs:
+kablam!            - .remove(...)
+kablam!            - .swap_remove(...)
+kablam! 
+kablam! error: no method named `pack_start` found for type `gtk::TreeViewColumn` in the current scope
+kablam!    --> src/procs.rs:129:12
+kablam!     |
+kablam! 129 |     column.pack_start(&renderer, true);
+kablam!     |            ^^^^^^^^^^
+kablam!     |
+kablam!     = note: the method `pack_start` exists but the following trait bounds were not satisfied: `gtk::TreeViewColumn : glib::IsA<gtk::Box>`, `gtk::TreeViewColumn : glib::IsA<gtk::Container>`
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use gtk::CellLayoutExt;`
+kablam! 
+kablam! error: no method named `add_attribute` found for type `gtk::TreeViewColumn` in the current scope
+kablam!    --> src/procs.rs:130:12
+kablam!     |
+kablam! 130 |     column.add_attribute(&renderer, "text", id);
+kablam!     |            ^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use gtk::CellLayoutExt;`
+kablam! 
+kablam! error: aborting due to 32 previous errors
+kablam! 
+kablam! error: Could not compile `process_viewer`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f aff4fd6dad991b5f318c52fd11a2a640ac469a4018a06d375ae1aeb2e2f45f5c`
+blam! aff4fd6dad991b5f318c52fd11a2a640ac469a4018a06d375ae1aeb2e2f45f5c

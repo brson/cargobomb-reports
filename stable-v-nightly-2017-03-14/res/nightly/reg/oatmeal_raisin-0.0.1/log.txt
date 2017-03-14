@@ -1,0 +1,38 @@
+boom! testing oatmeal_raisin-0.0.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 4587a7c782b07f331d85ed73bfaff71aaa5d056290e2f168c8748ca391a64035
+boom! running `docker start -a 4587a7c782b07f331d85ed73bfaff71aaa5d056290e2f168c8748ca391a64035`
+kablam!    Compiling oatmeal_raisin v0.0.1 (file:///source)
+kablam! error[E0107]: wrong number of lifetime parameters: expected 0, found 1
+kablam!   --> src/lib.rs:29:22
+kablam!    |
+kablam! 29 | pub struct CookieJar(cookie::CookieJar<'static>);
+kablam!    |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^ unexpected lifetime parameter
+kablam! 
+kablam! error[E0107]: wrong number of lifetime parameters: expected 0, found 1
+kablam!   --> src/lib.rs:48:19
+kablam!    |
+kablam! 48 |     type Target = cookie::CookieJar<'static>;
+kablam!    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^ unexpected lifetime parameter
+kablam! 
+kablam! error[E0107]: wrong number of lifetime parameters: expected 0, found 1
+kablam!   --> src/lib.rs:50:25
+kablam!    |
+kablam! 50 |     fn deref(&self) -> &cookie::CookieJar<'static> {
+kablam!    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^ unexpected lifetime parameter
+kablam! 
+kablam! error[E0107]: wrong number of lifetime parameters: expected 0, found 1
+kablam!   --> src/lib.rs:56:37
+kablam!    |
+kablam! 56 |     fn deref_mut(&mut self) -> &mut cookie::CookieJar<'static> {
+kablam!    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^ unexpected lifetime parameter
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `oatmeal_raisin`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 4587a7c782b07f331d85ed73bfaff71aaa5d056290e2f168c8748ca391a64035`
+blam! 4587a7c782b07f331d85ed73bfaff71aaa5d056290e2f168c8748ca391a64035

@@ -1,0 +1,18 @@
+boom! testing redoxfs-0.1.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! e0d5a4850d567866bc862903a2fc085fdb9d97d91ca4c524200f8f39ca0b7a14
+boom! running `docker start -a e0d5a4850d567866bc862903a2fc085fdb9d97d91ca4c524200f8f39ca0b7a14`
+kablam!    Compiling redox_syscall v0.1.16
+kablam!    Compiling fuse v0.2.8
+kablam! error: failed to run custom build command for `fuse v0.2.8`
+kablam! process didn't exit successfully: `/target/debug/build/fuse-4995e2fcc4571c44/build-script-build` (exit code: 101)
+kablam! --- stderr
+kablam! thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: Command { command: "\"pkg-config\" \"--libs\" \"--cflags\" \"fuse\"", cause: Error { repr: Os { code: 2, message: "No such file or directory" } } }', /checkout/src/libcore/result.rs:860
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f e0d5a4850d567866bc862903a2fc085fdb9d97d91ca4c524200f8f39ca0b7a14`
+blam! e0d5a4850d567866bc862903a2fc085fdb9d97d91ca4c524200f8f39ca0b7a14

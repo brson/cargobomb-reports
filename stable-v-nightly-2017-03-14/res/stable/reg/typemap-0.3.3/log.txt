@@ -1,0 +1,23 @@
+boom! testing typemap-0.3.3 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 8f7f6f70ba9b866f87379b151e067f20ffe95462e46cfe62cbedd3602f50a770
+boom! running `docker start -a 8f7f6f70ba9b866f87379b151e067f20ffe95462e46cfe62cbedd3602f50a770`
+kablam!    Compiling typemap v0.3.3 (file:///source)
+kablam! error: defaults for type parameters are only allowed in `struct`, `enum`, `type`, or `trait` definitions., #[deny(invalid_type_param_default)] on by default
+kablam!    --> src/lib.rs:185:18
+kablam!     |
+kablam! 185 | impl<'a, K: Key, A: ?Sized + UnsafeAnyExt + 'a = UnsafeAny> Entry<'a, K, A> {
+kablam!     |                  ^
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #36887 <https://github.com/rust-lang/rust/issues/36887>
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `typemap`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 8f7f6f70ba9b866f87379b151e067f20ffe95462e46cfe62cbedd3602f50a770`
+blam! 8f7f6f70ba9b866f87379b151e067f20ffe95462e46cfe62cbedd3602f50a770

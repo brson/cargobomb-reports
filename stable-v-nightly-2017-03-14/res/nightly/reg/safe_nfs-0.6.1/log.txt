@@ -1,0 +1,23 @@
+boom! testing safe_nfs-0.6.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 0d4fea4060410c220fd621150f5df3397255471d6a8faa191c3dc3599824c758
+boom! running `docker start -a 0d4fea4060410c220fd621150f5df3397255471d6a8faa191c3dc3599824c758`
+kablam!    Compiling crossbeam v0.1.6
+kablam!    Compiling get_if_addrs v0.3.1
+kablam!    Compiling message_filter v0.3.1
+kablam!    Compiling hyper v0.6.16
+kablam! error[E0512]: transmute called with differently sized types: [usize; 32] (2048 bits) to [std::sync::atomic::AtomicBool; 32] (256 bits)
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/crossbeam-0.1.6/src/sync/seg_queue.rs:34:29
+kablam!    |
+kablam! 34 |             ready: unsafe { mem::transmute([0usize; SEG_SIZE]) },
+kablam!    |                             ^^^^^^^^^^^^^^ transmuting between 2048 bits and 256 bits
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `crossbeam`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f 0d4fea4060410c220fd621150f5df3397255471d6a8faa191c3dc3599824c758`
+blam! 0d4fea4060410c220fd621150f5df3397255471d6a8faa191c3dc3599824c758

@@ -1,0 +1,38 @@
+boom! testing bar-0.1.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! f39d85187d0f374ddcf190183f13c3019c506abe350e71649468fb74e8c2be60
+boom! running `docker start -a f39d85187d0f374ddcf190183f13c3019c506abe350e71649468fb74e8c2be60`
+kablam!    Compiling bar v0.1.1 (file:///source)
+kablam! error[E0061]: this function takes 1 parameter but 2 parameters were supplied
+kablam!   --> src/bar/bar.rs:65:41
+kablam!    |
+kablam! 65 |         for (_, elt) in self.elts.range(Bound::Unbounded, Bound::Excluded(&Position::center())) {
+kablam!    |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 1 parameter
+kablam! 
+kablam! error[E0061]: this function takes 1 parameter but 2 parameters were supplied
+kablam!   --> src/bar/bar.rs:71:41
+kablam!    |
+kablam! 71 |         for (_, elt) in self.elts.range(Bound::Included(&Position::center()),
+kablam!    |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 1 parameter
+kablam! 
+kablam! error[E0061]: this function takes 1 parameter but 2 parameters were supplied
+kablam!   --> src/bar/bar.rs:79:41
+kablam!    |
+kablam! 79 |         for (_, elt) in self.elts.range(Bound::Included(&Position::right()), Bound::Unbounded) {
+kablam!    |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 1 parameter
+kablam! 
+kablam! error: no method named `unwrap_or` found for type `&mut str` in the current scope
+kablam!    --> src/bar/bar.rs:103:45
+kablam!     |
+kablam! 103 |         let n = self.encode_utf8(&mut utf8).unwrap_or(0);
+kablam!     |                                             ^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `bar`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f39d85187d0f374ddcf190183f13c3019c506abe350e71649468fb74e8c2be60`
+blam! f39d85187d0f374ddcf190183f13c3019c506abe350e71649468fb74e8c2be60

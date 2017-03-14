@@ -1,0 +1,233 @@
+boom! testing fdringbuf-0.0.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! c26803dd0a66c2665dd62fc289f30b6244b4041c23566d1dfabd9b3733dac602
+boom! running `docker start -a c26803dd0a66c2665dd62fc289f30b6244b4041c23566d1dfabd9b3733dac602`
+kablam! warning: dependency (nix) specified without providing a local path, Git repository, or version to use. This will be considered an error in future versions
+kablam!    Compiling fdringbuf v0.0.2 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.32 secs
+boom! running `docker rm -f c26803dd0a66c2665dd62fc289f30b6244b4041c23566d1dfabd9b3733dac602`
+blam! c26803dd0a66c2665dd62fc289f30b6244b4041c23566d1dfabd9b3733dac602
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 8e264d4aa7a49c2e3e67f0da6f040d74dc05006544fc3f7b76c136b81bf1c807
+boom! running `docker start -a 8e264d4aa7a49c2e3e67f0da6f040d74dc05006544fc3f7b76c136b81bf1c807`
+kablam! warning: dependency (nix) specified without providing a local path, Git repository, or version to use. This will be considered an error in future versions
+kablam!    Compiling fdringbuf v0.0.2 (file:///source)
+kablam! error[E0432]: unresolved import `self::nix::sys::eventfd::*`
+kablam!    --> src/fdbuf.rs:211:13
+kablam!     |
+kablam! 211 |         use self::nix::sys::eventfd::*;
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `eventfd` in `sys`
+kablam! 
+kablam! error[E0425]: cannot find function `eventfd` in this scope
+kablam!    --> src/fdbuf.rs:212:29
+kablam!     |
+kablam! 212 |         let (efd1, efd2) = (eventfd(0, EFD_CLOEXEC).unwrap(), eventfd(0, EFD_CLOEXEC).unwrap());
+kablam!     |                             ^^^^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use fdbuf::tests::nix::libc::eventfd;`
+kablam!               `use libc::eventfd;`
+kablam! 
+kablam! error[E0425]: cannot find value `EFD_CLOEXEC` in this scope
+kablam!    --> src/fdbuf.rs:212:40
+kablam!     |
+kablam! 212 |         let (efd1, efd2) = (eventfd(0, EFD_CLOEXEC).unwrap(), eventfd(0, EFD_CLOEXEC).unwrap());
+kablam!     |                                        ^^^^^^^^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use fdbuf::tests::nix::libc::EFD_CLOEXEC;`
+kablam!               `use libc::EFD_CLOEXEC;`
+kablam! 
+kablam! error[E0425]: cannot find function `eventfd` in this scope
+kablam!    --> src/fdbuf.rs:212:63
+kablam!     |
+kablam! 212 |         let (efd1, efd2) = (eventfd(0, EFD_CLOEXEC).unwrap(), eventfd(0, EFD_CLOEXEC).unwrap());
+kablam!     |                                                               ^^^^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use fdbuf::tests::nix::libc::eventfd;`
+kablam!               `use libc::eventfd;`
+kablam! 
+kablam! error[E0425]: cannot find value `EFD_CLOEXEC` in this scope
+kablam!    --> src/fdbuf.rs:212:74
+kablam!     |
+kablam! 212 |         let (efd1, efd2) = (eventfd(0, EFD_CLOEXEC).unwrap(), eventfd(0, EFD_CLOEXEC).unwrap());
+kablam!     |                                                                          ^^^^^^^^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use fdbuf::tests::nix::libc::EFD_CLOEXEC;`
+kablam!               `use libc::EFD_CLOEXEC;`
+kablam! 
+kablam! error[E0425]: cannot find function `scoped` in module `std::thread`
+kablam!    --> src/fdbuf.rs:226:21
+kablam!     |
+kablam! 226 |         let guard = ::std::thread::scoped(move || {
+kablam!     |                     ^^^^^^^^^^^^^^^^^^^^^ not found in `std::thread`
+kablam! 
+kablam! error[E0560]: struct `fdbuf::tests::nix::sys::epoll::EpollEvent` has no field named `data`
+kablam!    --> src/fdbuf.rs:187:34
+kablam!     |
+kablam! 187 |         let event = EpollEvent { data: 0, events: EPOLLIN };
+kablam!     |                                  ^^^^^ `fdbuf::tests::nix::sys::epoll::EpollEvent` does not have this field
+kablam! 
+kablam! error[E0560]: struct `fdbuf::tests::nix::sys::epoll::EpollEvent` has no field named `events`
+kablam!    --> src/fdbuf.rs:187:43
+kablam!     |
+kablam! 187 |         let event = EpollEvent { data: 0, events: EPOLLIN };
+kablam!     |                                           ^^^^^^^ `fdbuf::tests::nix::sys::epoll::EpollEvent` does not have this field
+kablam! 
+kablam! error[E0277]: the trait bound `&mut fdbuf::tests::nix::sys::epoll::EpollEvent: std::convert::From<&fdbuf::tests::nix::sys::epoll::EpollEvent>` is not satisfied
+kablam!    --> src/fdbuf.rs:188:9
+kablam!     |
+kablam! 188 |         epoll_ctl(sleep, EpollOp::EpollCtlAdd, fd, &event).unwrap();
+kablam!     |         ^^^^^^^^^ the trait `std::convert::From<&fdbuf::tests::nix::sys::epoll::EpollEvent>` is not implemented for `&mut fdbuf::tests::nix::sys::epoll::EpollEvent`
+kablam!     |
+kablam!     = note: required because of the requirements on the impl of `std::convert::Into<&mut fdbuf::tests::nix::sys::epoll::EpollEvent>` for `&fdbuf::tests::nix::sys::epoll::EpollEvent`
+kablam!     = note: required by `fdbuf::tests::nix::sys::epoll::epoll_ctl`
+kablam! 
+kablam! error[E0560]: struct `fdbuf::tests::nix::sys::epoll::EpollEvent` has no field named `data`
+kablam!    --> src/fdbuf.rs:193:40
+kablam!     |
+kablam! 193 |         let mut events = [EpollEvent { data: 0, events: EPOLLIN }];
+kablam!     |                                        ^^^^^ `fdbuf::tests::nix::sys::epoll::EpollEvent` does not have this field
+kablam! 
+kablam! error[E0560]: struct `fdbuf::tests::nix::sys::epoll::EpollEvent` has no field named `events`
+kablam!    --> src/fdbuf.rs:193:49
+kablam!     |
+kablam! 193 |         let mut events = [EpollEvent { data: 0, events: EPOLLIN }];
+kablam!     |                                                 ^^^^^^^ `fdbuf::tests::nix::sys::epoll::EpollEvent` does not have this field
+kablam! 
+kablam! error: cannot apply unary operator `-` to type `u32`
+kablam!    --> src/fdbuf.rs:233:69
+kablam!     |
+kablam! 233 |                     for z in d.iter().take(300) { cc += 1; if *z == -1 { quit = true; return (cc, false); } sum += *z as u64 };
+kablam!     |                                                                     ^^
+kablam! 
+kablam! error: cannot apply unary operator `-` to type `u32`
+kablam!    --> src/fdbuf.rs:261:29
+kablam!     |
+kablam! 261 |         s.send(|d| { d[0] = -1; (1, false) }).unwrap();
+kablam!     |                             ^^
+kablam! 
+kablam! error: aborting due to 7 previous errors
+kablam! 
+kablam! error: Could not compile `fdringbuf`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 8e264d4aa7a49c2e3e67f0da6f040d74dc05006544fc3f7b76c136b81bf1c807`
+blam! 8e264d4aa7a49c2e3e67f0da6f040d74dc05006544fc3f7b76c136b81bf1c807
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 80f37e37790f55149e660ced9dabbc46e6c58a183cd7f71846f6e0d7955bec28
+boom! running `docker start -a 80f37e37790f55149e660ced9dabbc46e6c58a183cd7f71846f6e0d7955bec28`
+kablam! warning: dependency (nix) specified without providing a local path, Git repository, or version to use. This will be considered an error in future versions
+kablam!    Compiling fdringbuf v0.0.2 (file:///source)
+kablam! error[E0432]: unresolved import `self::nix::sys::eventfd::*`
+kablam!    --> src/fdbuf.rs:211:13
+kablam!     |
+kablam! 211 |         use self::nix::sys::eventfd::*;
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `eventfd` in `sys`
+kablam! 
+kablam! error[E0425]: cannot find function `eventfd` in this scope
+kablam!    --> src/fdbuf.rs:212:29
+kablam!     |
+kablam! 212 |         let (efd1, efd2) = (eventfd(0, EFD_CLOEXEC).unwrap(), eventfd(0, EFD_CLOEXEC).unwrap());
+kablam!     |                             ^^^^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use fdbuf::tests::nix::libc::eventfd;`
+kablam!               `use libc::eventfd;`
+kablam! 
+kablam! error[E0425]: cannot find value `EFD_CLOEXEC` in this scope
+kablam!    --> src/fdbuf.rs:212:40
+kablam!     |
+kablam! 212 |         let (efd1, efd2) = (eventfd(0, EFD_CLOEXEC).unwrap(), eventfd(0, EFD_CLOEXEC).unwrap());
+kablam!     |                                        ^^^^^^^^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use fdbuf::tests::nix::libc::EFD_CLOEXEC;`
+kablam!               `use libc::EFD_CLOEXEC;`
+kablam! 
+kablam! error[E0425]: cannot find function `eventfd` in this scope
+kablam!    --> src/fdbuf.rs:212:63
+kablam!     |
+kablam! 212 |         let (efd1, efd2) = (eventfd(0, EFD_CLOEXEC).unwrap(), eventfd(0, EFD_CLOEXEC).unwrap());
+kablam!     |                                                               ^^^^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use fdbuf::tests::nix::libc::eventfd;`
+kablam!               `use libc::eventfd;`
+kablam! 
+kablam! error[E0425]: cannot find value `EFD_CLOEXEC` in this scope
+kablam!    --> src/fdbuf.rs:212:74
+kablam!     |
+kablam! 212 |         let (efd1, efd2) = (eventfd(0, EFD_CLOEXEC).unwrap(), eventfd(0, EFD_CLOEXEC).unwrap());
+kablam!     |                                                                          ^^^^^^^^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use fdbuf::tests::nix::libc::EFD_CLOEXEC;`
+kablam!               `use libc::EFD_CLOEXEC;`
+kablam! 
+kablam! error[E0425]: cannot find function `scoped` in module `std::thread`
+kablam!    --> src/fdbuf.rs:226:21
+kablam!     |
+kablam! 226 |         let guard = ::std::thread::scoped(move || {
+kablam!     |                     ^^^^^^^^^^^^^^^^^^^^^ not found in `std::thread`
+kablam! 
+kablam! error[E0560]: struct `fdbuf::tests::nix::sys::epoll::EpollEvent` has no field named `data`
+kablam!    --> src/fdbuf.rs:187:34
+kablam!     |
+kablam! 187 |         let event = EpollEvent { data: 0, events: EPOLLIN };
+kablam!     |                                  ^^^^^ `fdbuf::tests::nix::sys::epoll::EpollEvent` does not have this field
+kablam! 
+kablam! error[E0560]: struct `fdbuf::tests::nix::sys::epoll::EpollEvent` has no field named `events`
+kablam!    --> src/fdbuf.rs:187:43
+kablam!     |
+kablam! 187 |         let event = EpollEvent { data: 0, events: EPOLLIN };
+kablam!     |                                           ^^^^^^^ `fdbuf::tests::nix::sys::epoll::EpollEvent` does not have this field
+kablam! 
+kablam! error[E0277]: the trait bound `&mut fdbuf::tests::nix::sys::epoll::EpollEvent: std::convert::From<&fdbuf::tests::nix::sys::epoll::EpollEvent>` is not satisfied
+kablam!    --> src/fdbuf.rs:188:9
+kablam!     |
+kablam! 188 |         epoll_ctl(sleep, EpollOp::EpollCtlAdd, fd, &event).unwrap();
+kablam!     |         ^^^^^^^^^ the trait `std::convert::From<&fdbuf::tests::nix::sys::epoll::EpollEvent>` is not implemented for `&mut fdbuf::tests::nix::sys::epoll::EpollEvent`
+kablam!     |
+kablam!     = note: required because of the requirements on the impl of `std::convert::Into<&mut fdbuf::tests::nix::sys::epoll::EpollEvent>` for `&fdbuf::tests::nix::sys::epoll::EpollEvent`
+kablam!     = note: required by `fdbuf::tests::nix::sys::epoll::epoll_ctl`
+kablam! 
+kablam! error[E0560]: struct `fdbuf::tests::nix::sys::epoll::EpollEvent` has no field named `data`
+kablam!    --> src/fdbuf.rs:193:40
+kablam!     |
+kablam! 193 |         let mut events = [EpollEvent { data: 0, events: EPOLLIN }];
+kablam!     |                                        ^^^^^ `fdbuf::tests::nix::sys::epoll::EpollEvent` does not have this field
+kablam! 
+kablam! error[E0560]: struct `fdbuf::tests::nix::sys::epoll::EpollEvent` has no field named `events`
+kablam!    --> src/fdbuf.rs:193:49
+kablam!     |
+kablam! 193 |         let mut events = [EpollEvent { data: 0, events: EPOLLIN }];
+kablam!     |                                                 ^^^^^^^ `fdbuf::tests::nix::sys::epoll::EpollEvent` does not have this field
+kablam! 
+kablam! error: cannot apply unary operator `-` to type `u32`
+kablam!    --> src/fdbuf.rs:233:69
+kablam!     |
+kablam! 233 |                     for z in d.iter().take(300) { cc += 1; if *z == -1 { quit = true; return (cc, false); } sum += *z as u64 };
+kablam!     |                                                                     ^^
+kablam! 
+kablam! error: cannot apply unary operator `-` to type `u32`
+kablam!    --> src/fdbuf.rs:261:29
+kablam!     |
+kablam! 261 |         s.send(|d| { d[0] = -1; (1, false) }).unwrap();
+kablam!     |                             ^^
+kablam! 
+kablam! error: aborting due to 7 previous errors
+kablam! 
+kablam! error: Could not compile `fdringbuf`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 80f37e37790f55149e660ced9dabbc46e6c58a183cd7f71846f6e0d7955bec28`
+blam! 80f37e37790f55149e660ced9dabbc46e6c58a183cd7f71846f6e0d7955bec28

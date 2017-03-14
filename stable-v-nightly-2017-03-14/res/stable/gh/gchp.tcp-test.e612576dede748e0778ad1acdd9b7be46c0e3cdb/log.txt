@@ -1,0 +1,51 @@
+boom! testing https://github.com/gchp/tcp-test#e612576dede748e0778ad1acdd9b7be46c0e3cdb against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 7486a5e89c6da16f2ffa87e1b831731242340fbf56324a3f519d74fbabec9c41
+boom! running `docker start -a 7486a5e89c6da16f2ffa87e1b831731242340fbf56324a3f519d74fbabec9c41`
+kablam!    Compiling tcp-test v0.1.0 (file:///source)
+kablam! warning: unused import: `std::io`, #[warn(unused_imports)] on by default
+kablam!  --> src/bin/client.rs:2:5
+kablam!   |
+kablam! 2 | use std::io;
+kablam!   |     ^^^^^^^
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!   --> src/bin/client.rs:10:5
+kablam!    |
+kablam! 10 |     stream.shutdown(Shutdown::Write);
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused variable: `data`, #[warn(unused_variables)] on by default
+kablam!   --> src/bin/client.rs:21:9
+kablam!    |
+kablam! 21 |     let data = stream.read_to_string(&mut response);
+kablam!    |         ^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!   --> src/bin/client.rs:16:9
+kablam!    |
+kablam! 16 |     let mut d =args().last().unwrap();
+kablam!    |         ^^^^^
+kablam! 
+kablam! warning: unused result which must be used, #[warn(unused_must_use)] on by default
+kablam!   --> src/bin/client.rs:22:5
+kablam!    |
+kablam! 22 |     stream.shutdown(Shutdown::Both);
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/bin/server.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(collections)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `tcp-test`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 7486a5e89c6da16f2ffa87e1b831731242340fbf56324a3f519d74fbabec9c41`
+blam! 7486a5e89c6da16f2ffa87e1b831731242340fbf56324a3f519d74fbabec9c41

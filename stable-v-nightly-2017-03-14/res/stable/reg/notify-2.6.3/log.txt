@@ -1,0 +1,125 @@
+boom! testing notify-2.6.3 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! c37b2a6bf773450ef62cc52f2b6ba57150e766492209ec2d1fc5aecaf271980c
+boom! running `docker start -a c37b2a6bf773450ef62cc52f2b6ba57150e766492209ec2d1fc5aecaf271980c`
+kablam!    Compiling notify v2.6.3 (file:///source)
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 3.76 secs
+boom! running `docker rm -f c37b2a6bf773450ef62cc52f2b6ba57150e766492209ec2d1fc5aecaf271980c`
+blam! c37b2a6bf773450ef62cc52f2b6ba57150e766492209ec2d1fc5aecaf271980c
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 58059977a428381b99a3ecbe3b71923ae6b3164dc1f27872a7e0dd5013e54429
+boom! running `docker start -a 58059977a428381b99a3ecbe3b71923ae6b3164dc1f27872a7e0dd5013e54429`
+kablam!    Compiling notify v2.6.3 (file:///source)
+kablam! warning: unused import: `notify`, #[warn(unused_imports)] on by default
+kablam!  --> tests/windows.rs:6:5
+kablam!   |
+kablam! 6 | use notify::*;
+kablam!   |     ^^^^^^
+kablam! 
+kablam! warning: unused import: `std::thread`, #[warn(unused_imports)] on by default
+kablam!  --> tests/windows.rs:7:5
+kablam!   |
+kablam! 7 | use std::thread;
+kablam!   |     ^^^^^^^^^^^
+kablam! 
+kablam! warning: unused import: `channel`, #[warn(unused_imports)] on by default
+kablam!  --> tests/windows.rs:8:23
+kablam!   |
+kablam! 8 | use std::sync::mpsc::{channel, Receiver};
+kablam!   |                       ^^^^^^^
+kablam! 
+kablam! warning: unused import: `tempdir::TempDir`, #[warn(unused_imports)] on by default
+kablam!  --> tests/windows.rs:9:5
+kablam!   |
+kablam! 9 | use tempdir::TempDir;
+kablam!   |     ^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: function is never used: `check_for_error`, #[warn(dead_code)] on by default
+kablam!   --> tests/windows.rs:11:1
+kablam!    |
+kablam! 11 |   fn check_for_error(rx:&Receiver<notify::Event>) {
+kablam!    |  _^ starting here...
+kablam! 12 | |     while let Ok(res) = rx.try_recv() {
+kablam! 13 | |         match res.op {
+kablam! 14 | |             Err(e) => panic!("unexpected err: {:?}: {:?}", e, res.path),
+kablam! 15 | |             _ => ()
+kablam! 16 | |         }
+kablam! 17 | |     };
+kablam! 18 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! warning: constant item is never used: `TIMEOUT_S`, #[warn(dead_code)] on by default
+kablam!   --> tests/notify.rs:21:1
+kablam!    |
+kablam! 21 | const TIMEOUT_S: f64 = 5.0;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: function is never used: `resolve_path`, #[warn(dead_code)] on by default
+kablam!   --> tests/notify.rs:53:1
+kablam!    |
+kablam! 53 |   fn resolve_path(path: &Path) -> PathBuf {
+kablam!    |  _^ starting here...
+kablam! 54 | |     let p = path.to_str().unwrap();
+kablam! 55 | |     PathBuf::from(p)
+kablam! 56 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! warning: function is never used: `validate_recv`, #[warn(dead_code)] on by default
+kablam!   --> tests/notify.rs:58:1
+kablam!    |
+kablam! 58 | fn validate_recv(rx: Receiver<Event>, evs: Vec<(&Path, Op)>) -> Vec<Event> {
+kablam!    | ^
+kablam! 
+kablam! warning: function is never used: `validate_watch_single_file`, #[warn(dead_code)] on by default
+kablam!    --> tests/notify.rs:121:1
+kablam!     |
+kablam! 121 | fn validate_watch_single_file<F, W>(ctor: F) where
+kablam!     | ^
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 5.82 secs
+boom! running `docker rm -f 58059977a428381b99a3ecbe3b71923ae6b3164dc1f27872a7e0dd5013e54429`
+blam! 58059977a428381b99a3ecbe3b71923ae6b3164dc1f27872a7e0dd5013e54429
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! a188b50567419f7bad1f043e92d54316fbabd1048bda7247be2a227e9aa8da2c
+boom! running `docker start -a a188b50567419f7bad1f043e92d54316fbabd1048bda7247be2a227e9aa8da2c`
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/notify-3f411ed1690ade51
+blam! 
+blam! running 1 test
+blam! test display_formatted_errors ... ok
+kablam!      Running /target/debug/deps/notify-ad443c91f8afb6ec
+blam! 
+blam! test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+blam! 
+blam! running 6 tests
+blam! test new_poll ... ok
+blam! test new_null ... ok
+blam! test new_inotify ... ok
+blam! test new_recommended ... ok
+blam! test test_watcher_send ... ok
+blam! test test_watcher_sync ... ok
+blam! 
+blam! test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/windows-dae0c1acc8532d39
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!    Doc-tests notify
+blam! 
+blam! running 1 test
+blam! test _0 ... ok
+blam! 
+blam! test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f a188b50567419f7bad1f043e92d54316fbabd1048bda7247be2a227e9aa8da2c`
+blam! a188b50567419f7bad1f043e92d54316fbabd1048bda7247be2a227e9aa8da2c

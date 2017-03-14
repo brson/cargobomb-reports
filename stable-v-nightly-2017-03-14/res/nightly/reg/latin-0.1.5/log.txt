@@ -1,0 +1,76 @@
+boom! testing latin-0.1.5 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 0b8cb1f45b4722249d365a406ee11c06aa2a75016bea7d43a547b3c58a163603
+boom! running `docker start -a 0b8cb1f45b4722249d365a406ee11c06aa2a75016bea7d43a547b3c58a163603`
+kablam!    Compiling latin v0.1.5 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.56 secs
+boom! running `docker rm -f 0b8cb1f45b4722249d365a406ee11c06aa2a75016bea7d43a547b3c58a163603`
+blam! 0b8cb1f45b4722249d365a406ee11c06aa2a75016bea7d43a547b3c58a163603
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 160950f30378b97a0e2276f9bbf0f30c87bdfef3b2b4de4047c077f9ae13535e
+boom! running `docker start -a 160950f30378b97a0e2276f9bbf0f30c87bdfef3b2b4de4047c077f9ae13535e`
+kablam!    Compiling latin v0.1.5 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.58 secs
+boom! running `docker rm -f 160950f30378b97a0e2276f9bbf0f30c87bdfef3b2b4de4047c077f9ae13535e`
+blam! 160950f30378b97a0e2276f9bbf0f30c87bdfef3b2b4de4047c077f9ae13535e
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! f691ccf3c1369e05a6e8027207f01933ab28b00258722d3520a337798798df10
+boom! running `docker start -a f691ccf3c1369e05a6e8027207f01933ab28b00258722d3520a337798798df10`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/latin-f2f6c806f363de62
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!    Doc-tests latin
+blam! 
+blam! running 14 tests
+blam! test src/directory.rs - directory::exists (line 7) ... ok
+blam! test src/directory.rs - directory::remove (line 75) ... ok
+blam! test src/directory.rs - directory::files (line 33) ... ok
+blam! test src/directory.rs - directory::children (line 18) ... ok
+blam! test src/file.rs - file::append_line (line 74) ... ok
+blam! test src/file.rs - file::append (line 55) ... ok
+blam! test src/file.rs - file::copy (line 135) ... ok
+blam! test src/directory.rs - directory::sub_directories (line 55) ... FAILED
+blam! test src/file.rs - file::remove (line 147) ... ok
+blam! test src/file.rs - file::read (line 90) ... ok
+blam! test src/file.rs - file::exists (line 121) ... ok
+blam! test src/file.rs - file::read_lines (line 108) ... ok
+blam! test src/file.rs - file::write (line 20) ... ok
+blam! test src/file.rs - file::write_lines (line 36) ... ok
+blam! 
+blam! failures:
+blam! 
+blam! ---- src/directory.rs - directory::sub_directories (line 55) stdout ----
+blam! 	error[E0382]: use of moved value: `subdir`
+blam!  --> <anon>:5:26
+blam!   |
+blam! 4 |     let children_count = latin::directory::children(subdir).unwrap().count();
+blam!   |                                                     ------ value moved here
+blam! 5 |     println!("{:?}: {}", subdir, children_count);
+blam!   |                          ^^^^^^ value used here after move
+blam!   |
+blam!   = note: move occurs because `subdir` has type `std::path::PathBuf`, which does not implement the `Copy` trait
+blam! 
+blam! error: aborting due to previous error(s)
+blam! 
+blam! thread 'rustc' panicked at 'Box<Any>', /checkout/src/librustc/session/mod.rs:203
+blam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+blam! 
+blam! 
+blam! failures:
+blam!     src/directory.rs - directory::sub_directories (line 55)
+blam! 
+blam! test result: FAILED. 13 passed; 1 failed; 0 ignored; 0 measured
+blam! 
+kablam! error: test failed
+boom! running `docker rm -f f691ccf3c1369e05a6e8027207f01933ab28b00258722d3520a337798798df10`
+blam! f691ccf3c1369e05a6e8027207f01933ab28b00258722d3520a337798798df10

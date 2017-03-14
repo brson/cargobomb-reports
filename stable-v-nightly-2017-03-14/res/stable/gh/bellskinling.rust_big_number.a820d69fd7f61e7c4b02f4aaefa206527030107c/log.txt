@@ -1,0 +1,24 @@
+boom! testing https://github.com/bellskinling/rust_big_number#a820d69fd7f61e7c4b02f4aaefa206527030107c against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! e1427c439e21ed777e1947a30073027e53d9af7f6dc6c27b464de025c4d0d72d
+boom! running `docker start -a e1427c439e21ed777e1947a30073027e53d9af7f6dc6c27b464de025c4d0d72d`
+kablam!    Compiling big_number v0.1.0 (file:///source)
+kablam! error[E0502]: cannot borrow `self.buffer` as immutable because it is also borrowed as mutable
+kablam!    --> src/big_number_core/big_number.rs:159:43
+kablam!     |
+kablam! 159 |         self.buffer.iter_mut().rev().skip(self.buffer.len() - pos - 1).take(len)
+kablam!     |         -----------                       ^^^^^^^^^^^ immutable borrow occurs here
+kablam!     |         |
+kablam!     |         mutable borrow occurs here
+kablam! 160 |     }
+kablam!     |     - mutable borrow ends here
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `big_number`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f e1427c439e21ed777e1947a30073027e53d9af7f6dc6c27b464de025c4d0d72d`
+blam! e1427c439e21ed777e1947a30073027e53d9af7f6dc6c27b464de025c4d0d72d

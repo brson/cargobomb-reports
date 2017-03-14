@@ -1,0 +1,74 @@
+boom! testing soundchange-0.0.8 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! baec99870eafef1a33925f17f461af15a5eef7999f8954482de190298f667023
+boom! running `docker start -a baec99870eafef1a33925f17f461af15a5eef7999f8954482de190298f667023`
+kablam!    Compiling soundchange v0.0.8 (file:///source)
+kablam! error[E0432]: unresolved import `std::borrow::IntoCow`
+kablam!   --> src/lib.rs:64:24
+kablam!    |
+kablam! 64 | use std::borrow::{Cow, IntoCow};
+kablam!    |                        ^^^^^^^ no `IntoCow` in `borrow`
+kablam! 
+kablam! error[E0432]: unresolved import `std::str::CharRange`
+kablam!   --> src/lib.rs:65:5
+kablam!    |
+kablam! 65 | use std::str::CharRange;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^ no `CharRange` in `str`
+kablam! 
+kablam! error[E0277]: the trait bound `CharOf<'a>: std::clone::Clone` is not satisfied
+kablam!   --> src/lib.rs:67:10
+kablam!    |
+kablam! 67 | #[derive(Copy)] pub struct CharOf<'a>(pub &'a (Fn(Option<char>) -> bool + 'a));
+kablam!    |          ^^^^ the trait `std::clone::Clone` is not implemented for `CharOf<'a>`
+kablam!    |
+kablam!    = note: required by `std::marker::Copy`
+kablam! 
+kablam! error[E0277]: the trait bound `StrOf<'a>: std::clone::Clone` is not satisfied
+kablam!   --> src/lib.rs:68:10
+kablam!    |
+kablam! 68 | #[derive(Copy)] pub struct StrOf<'a>(pub &'a (Fn(&str) -> Option<&str> + 'a));
+kablam!    |          ^^^^ the trait `std::clone::Clone` is not implemented for `StrOf<'a>`
+kablam!    |
+kablam!    = note: required by `std::marker::Copy`
+kablam! 
+kablam! error[E0277]: the trait bound `CharTo<'a>: std::clone::Clone` is not satisfied
+kablam!   --> src/lib.rs:69:10
+kablam!    |
+kablam! 69 | #[derive(Copy)] pub struct CharTo<'a>(pub &'a (Fn(char) -> char + 'a));
+kablam!    |          ^^^^ the trait `std::clone::Clone` is not implemented for `CharTo<'a>`
+kablam!    |
+kablam!    = note: required by `std::marker::Copy`
+kablam! 
+kablam! error[E0277]: the trait bound `StrTo<'a>: std::clone::Clone` is not satisfied
+kablam!   --> src/lib.rs:70:10
+kablam!    |
+kablam! 70 | #[derive(Copy)] pub struct StrTo<'a>(pub &'a (Fn(&str, &mut String) + 'a));
+kablam!    |          ^^^^ the trait `std::clone::Clone` is not implemented for `StrTo<'a>`
+kablam!    |
+kablam!    = note: required by `std::marker::Copy`
+kablam! 
+kablam! error[E0277]: the trait bound `Cond<'a>: std::clone::Clone` is not satisfied
+kablam!   --> src/lib.rs:72:10
+kablam!    |
+kablam! 72 | #[derive(Copy)]
+kablam!    |          ^^^^ the trait `std::clone::Clone` is not implemented for `Cond<'a>`
+kablam!    |
+kablam!    = note: required by `std::marker::Copy`
+kablam! 
+kablam! error[E0277]: the trait bound `Transform<'a>: std::clone::Clone` is not satisfied
+kablam!    --> src/lib.rs:261:10
+kablam!     |
+kablam! 261 | #[derive(Copy)]
+kablam!     |          ^^^^ the trait `std::clone::Clone` is not implemented for `Transform<'a>`
+kablam!     |
+kablam!     = note: required by `std::marker::Copy`
+kablam! 
+kablam! error: aborting due to 6 previous errors
+kablam! 
+kablam! error: Could not compile `soundchange`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f baec99870eafef1a33925f17f461af15a5eef7999f8954482de190298f667023`
+blam! baec99870eafef1a33925f17f461af15a5eef7999f8954482de190298f667023

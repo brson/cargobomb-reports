@@ -1,0 +1,112 @@
+boom! testing reminisce-0.9.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! f450012b4b19d727a9d8c7954752fa089ed2d4c6353c9614fe8792f8b8b04c44
+boom! running `docker start -a f450012b4b19d727a9d8c7954752fa089ed2d4c6353c9614fe8792f8b8b04c44`
+kablam!    Compiling reminisce v0.9.1 (file:///source)
+kablam! error[E0425]: cannot find function `walk_dir` in module `fs`
+kablam!   --> src/linux.rs:24:23
+kablam!    |
+kablam! 24 | 	if let Ok(entries) = fs::walk_dir("/dev/input/") {
+kablam!    | 	                     ^^^^^^^^^^^^ not found in `fs`
+kablam! 
+kablam! error[E0277]: the trait bound `Event: std::convert::From<<Self as Joystick>::NativeEvent>` is not satisfied
+kablam!    --> src/reminisce.rs:331:1
+kablam!     |
+kablam! 331 | pub trait StatefulJoystick : Joystick + Sized {
+kablam!     | ^ the trait `std::convert::From<<Self as Joystick>::NativeEvent>` is not implemented for `Event`
+kablam!     |
+kablam!     = help: consider adding a `where Event: std::convert::From<<Self as Joystick>::NativeEvent>` bound
+kablam!     = note: required by `Joystick`
+kablam! 
+kablam! error[E0277]: the trait bound `Event: std::convert::From<<J as Joystick>::NativeEvent>` is not satisfied
+kablam!    --> src/reminisce.rs:403:1
+kablam!     |
+kablam! 403 |   pub struct Poller<'a, J> where J:Joystick+'a {
+kablam!     |  _^ starting here...
+kablam! 404 | |     joystick: &'a mut J
+kablam! 405 | | }
+kablam!     | |_^ ...ending here: the trait `std::convert::From<<J as Joystick>::NativeEvent>` is not implemented for `Event`
+kablam!     |
+kablam!     = help: consider adding a `where Event: std::convert::From<<J as Joystick>::NativeEvent>` bound
+kablam!     = note: required by `Joystick`
+kablam! 
+kablam! error[E0277]: the trait bound `Event: std::convert::From<<Self as Joystick>::NativeEvent>` is not satisfied
+kablam!    --> src/reminisce.rs:337:2
+kablam!     |
+kablam! 337 | 	fn get_axis(&self, index: Axis) -> Option<i16>;
+kablam!     | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::convert::From<<Self as Joystick>::NativeEvent>` is not implemented for `Event`
+kablam!     |
+kablam!     = help: consider adding a `where Event: std::convert::From<<Self as Joystick>::NativeEvent>` bound
+kablam!     = note: required by `Joystick`
+kablam! 
+kablam! error[E0277]: the trait bound `Event: std::convert::From<<Self as Joystick>::NativeEvent>` is not satisfied
+kablam!    --> src/reminisce.rs:342:2
+kablam!     |
+kablam! 342 |   	fn get_normalised_axis(&self, index: Axis) -> Option<f32> {
+kablam!     |  __^ starting here...
+kablam! 343 | | 		self.get_axis(index).map(|v| v as f32 / MAX_AXIS_VALUE as f32)
+kablam! 344 | | 	}
+kablam!     | |__^ ...ending here: the trait `std::convert::From<<Self as Joystick>::NativeEvent>` is not implemented for `Event`
+kablam!     |
+kablam!     = help: consider adding a `where Event: std::convert::From<<Self as Joystick>::NativeEvent>` bound
+kablam!     = note: required by `Joystick`
+kablam! 
+kablam! error[E0277]: the trait bound `Event: std::convert::From<<Self as Joystick>::NativeEvent>` is not satisfied
+kablam!    --> src/reminisce.rs:347:2
+kablam!     |
+kablam! 347 |   	fn axes(&self) -> Axes<Self> {
+kablam!     |  __^ starting here...
+kablam! 348 | | 		use std::mem;
+kablam! 349 | | 		Axes {
+kablam! 350 | | 			joystick: self,
+kablam! 351 | | 			axis: unsafe { mem::zeroed() }
+kablam! 352 | | 		}
+kablam! 353 | | 	}
+kablam!     | |__^ ...ending here: the trait `std::convert::From<<Self as Joystick>::NativeEvent>` is not implemented for `Event`
+kablam!     |
+kablam!     = help: consider adding a `where Event: std::convert::From<<Self as Joystick>::NativeEvent>` bound
+kablam!     = note: required by `Joystick`
+kablam! 
+kablam! error[E0277]: the trait bound `Event: std::convert::From<<Self as Joystick>::NativeEvent>` is not satisfied
+kablam!    --> src/reminisce.rs:356:2
+kablam!     |
+kablam! 356 |   	fn buttons(&self) -> Buttons<Self> {
+kablam!     |  __^ starting here...
+kablam! 357 | | 		use std::mem;
+kablam! 358 | | 		Buttons {
+kablam! 359 | | 			joystick: self,
+kablam! 360 | | 			button: unsafe { mem::zeroed() }
+kablam! 361 | | 		}
+kablam! 362 | | 	}
+kablam!     | |__^ ...ending here: the trait `std::convert::From<<Self as Joystick>::NativeEvent>` is not implemented for `Event`
+kablam!     |
+kablam!     = help: consider adding a `where Event: std::convert::From<<Self as Joystick>::NativeEvent>` bound
+kablam!     = note: required by `Joystick`
+kablam! 
+kablam! error[E0277]: the trait bound `Event: std::convert::From<<Self as Joystick>::NativeEvent>` is not satisfied
+kablam!    --> src/reminisce.rs:365:2
+kablam!     |
+kablam! 365 | 	fn get_button(&self, index: Button) -> Option<bool>;
+kablam!     | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::convert::From<<Self as Joystick>::NativeEvent>` is not implemented for `Event`
+kablam!     |
+kablam!     = help: consider adding a `where Event: std::convert::From<<Self as Joystick>::NativeEvent>` bound
+kablam!     = note: required by `Joystick`
+kablam! 
+kablam! error[E0277]: the trait bound `Event: std::convert::From<<Self as Joystick>::NativeEvent>` is not satisfied
+kablam!    --> src/reminisce.rs:368:2
+kablam!     |
+kablam! 368 | 	fn update(&mut self);
+kablam!     | 	^^^^^^^^^^^^^^^^^^^^^ the trait `std::convert::From<<Self as Joystick>::NativeEvent>` is not implemented for `Event`
+kablam!     |
+kablam!     = help: consider adding a `where Event: std::convert::From<<Self as Joystick>::NativeEvent>` bound
+kablam!     = note: required by `Joystick`
+kablam! 
+kablam! error: aborting due to 8 previous errors
+kablam! 
+kablam! error: Could not compile `reminisce`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f450012b4b19d727a9d8c7954752fa089ed2d4c6353c9614fe8792f8b8b04c44`
+blam! f450012b4b19d727a9d8c7954752fa089ed2d4c6353c9614fe8792f8b8b04c44

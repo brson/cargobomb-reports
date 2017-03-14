@@ -1,0 +1,86 @@
+boom! testing nano_time-0.1.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 0dd7376d2017024fb9677398d1fd4c0321504d892a8ffc1950e2cf2b17702a1a
+boom! running `docker start -a 0dd7376d2017024fb9677398d1fd4c0321504d892a8ffc1950e2cf2b17702a1a`
+kablam!    Compiling nano_time v0.1.0 (file:///source)
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!  --> src/lib.rs:7:1
+kablam!   |
+kablam! 7 | extern crate libc;
+kablam!   | ^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/lib.rs:11:16
+kablam!    |
+kablam! 11 |     use libc::{c_int, timespec};
+kablam!    |                ^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/lib.rs:11:23
+kablam!    |
+kablam! 11 |     use libc::{c_int, timespec};
+kablam!    |                       ^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/lib.rs:19:38
+kablam!    |
+kablam! 19 |         pub fn clock_gettime(clk_id: c_int, tp: *mut timespec) -> c_int;
+kablam!    |                                      ^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/lib.rs:19:54
+kablam!    |
+kablam! 19 |         pub fn clock_gettime(clk_id: c_int, tp: *mut timespec) -> c_int;
+kablam!    |                                                      ^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/lib.rs:19:67
+kablam!    |
+kablam! 19 |         pub fn clock_gettime(clk_id: c_int, tp: *mut timespec) -> c_int;
+kablam!    |                                                                   ^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/lib.rs:69:22
+kablam!    |
+kablam! 69 |         let mut ts = libc::timespec { tv_sec: 0, tv_nsec: 0 };
+kablam!    |                      ^^^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/lib.rs:71:32
+kablam!    |
+kablam! 71 |             imp::clock_gettime(libc::CLOCK_MONOTONIC, &mut ts);
+kablam!    |                                ^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/lib.rs:69:39
+kablam!    |
+kablam! 69 |         let mut ts = libc::timespec { tv_sec: 0, tv_nsec: 0 };
+kablam!    |                                       ^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/lib.rs:69:50
+kablam!    |
+kablam! 69 |         let mut ts = libc::timespec { tv_sec: 0, tv_nsec: 0 };
+kablam!    |                                                  ^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/lib.rs:73:17
+kablam!    |
+kablam! 73 |         return (ts.tv_sec as u64) * 1000000000 + (ts.tv_nsec as u64)
+kablam!    |                 ^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/lib.rs:73:51
+kablam!    |
+kablam! 73 |         return (ts.tv_sec as u64) * 1000000000 + (ts.tv_nsec as u64)
+kablam!    |                                                   ^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `nano_time`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 0dd7376d2017024fb9677398d1fd4c0321504d892a8ffc1950e2cf2b17702a1a`
+blam! 0dd7376d2017024fb9677398d1fd4c0321504d892a8ffc1950e2cf2b17702a1a

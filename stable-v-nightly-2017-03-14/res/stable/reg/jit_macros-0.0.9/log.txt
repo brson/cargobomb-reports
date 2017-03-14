@@ -1,0 +1,26 @@
+boom! testing jit_macros-0.0.9 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! fd76f117d80bc91b11d71fcb0f592c33b3e59702a1f85024bbd459b1ebd48161
+boom! running `docker start -a fd76f117d80bc91b11d71fcb0f592c33b3e59702a1f85024bbd459b1ebd48161`
+kablam!    Compiling jit_macros v0.0.9 (file:///source)
+kablam! error: `$arg:ty` may be followed by `->`, which is not allowed for `ty` fragments
+kablam!    --> src/macros.rs:363:19
+kablam!     |
+kablam! 363 |     ($($arg:ty),* -> $ret:ty) => ({
+kablam!     |                   ^^
+kablam! 
+kablam! error: `$arg:expr` may be followed by `->`, which is not allowed for `expr` fragments
+kablam!    --> src/macros.rs:369:25
+kablam!     |
+kablam! 369 |     (raw $($arg:expr),* -> $ret:expr) => ({
+kablam!     |                         ^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `jit_macros`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f fd76f117d80bc91b11d71fcb0f592c33b3e59702a1f85024bbd459b1ebd48161`
+blam! fd76f117d80bc91b11d71fcb0f592c33b3e59702a1f85024bbd459b1ebd48161

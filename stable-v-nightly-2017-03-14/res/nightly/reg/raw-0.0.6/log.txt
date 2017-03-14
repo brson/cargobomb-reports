@@ -1,0 +1,54 @@
+boom! testing raw-0.0.6 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! a3d945b248a85f078df0a698d000b32e09063091bba67420f4fa7e3a18a0ba7e
+boom! running `docker start -a a3d945b248a85f078df0a698d000b32e09063091bba67420f4fa7e3a18a0ba7e`
+kablam!    Compiling raw v0.0.6 (file:///source)
+kablam! error[E0432]: unresolved import `std::raw::Slice`
+kablam!   --> src/rawptr.rs:13:5
+kablam!    |
+kablam! 13 | use std::raw::Slice;
+kablam!    |     ^^^^^^^^^^^^^^^ no `Slice` in `raw`
+kablam! 
+kablam! error[E0432]: unresolved import `std::rt::heap`
+kablam!  --> src/alloc/plain.rs:1:21
+kablam!   |
+kablam! 1 | use std::rt::heap::{self, usable_size, EMPTY};
+kablam!   |                     ^^^^ no `heap` in `rt`
+kablam! 
+kablam! error[E0432]: unresolved import `std::rt::heap::usable_size`
+kablam!  --> src/alloc/plain.rs:1:27
+kablam!   |
+kablam! 1 | use std::rt::heap::{self, usable_size, EMPTY};
+kablam!   |                           ^^^^^^^^^^^ Could not find `heap` in `rt`
+kablam! 
+kablam! error[E0432]: unresolved import `std::rt::heap::EMPTY`
+kablam!  --> src/alloc/plain.rs:1:40
+kablam!   |
+kablam! 1 | use std::rt::heap::{self, usable_size, EMPTY};
+kablam!   |                                        ^^^^^ Could not find `heap` in `rt`
+kablam! 
+kablam! error: use of unstable library feature 'core_intrinsics': intrinsics are unlikely to ever be stabilized, instead they should be used through stabilized interfaces in the rest of the standard library (see issue #0)
+kablam!  --> src/alloc/mod.rs:7:5
+kablam!   |
+kablam! 7 | use std::intrinsics::abort;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = help: add #![feature(core_intrinsics)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'core_intrinsics': intrinsics are unlikely to ever be stabilized, instead they should be used through stabilized interfaces in the rest of the standard library (see issue #0)
+kablam!   --> src/alloc/mod.rs:13:14
+kablam!    |
+kablam! 13 |     unsafe { abort() }
+kablam!    |              ^^^^^
+kablam!    |
+kablam!    = help: add #![feature(core_intrinsics)] to the crate attributes to enable
+kablam! 
+kablam! error: aborting due to 6 previous errors
+kablam! 
+kablam! error: Could not compile `raw`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f a3d945b248a85f078df0a698d000b32e09063091bba67420f4fa7e3a18a0ba7e`
+blam! a3d945b248a85f078df0a698d000b32e09063091bba67420f4fa7e3a18a0ba7e

@@ -1,0 +1,38 @@
+boom! testing bear-0.1.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 8d8a10da9fcf5d53330b010937f8ec41a15ac8445f581366046e3640106aa349
+boom! running `docker start -a 8d8a10da9fcf5d53330b010937f8ec41a15ac8445f581366046e3640106aa349`
+kablam!    Compiling bear v0.1.1 (file:///source)
+kablam! error[E0432]: unresolved import `std::io::File`
+kablam!  --> src/lib.rs:9:15
+kablam!   |
+kablam! 9 | use std::io::{File, BufferedReader};
+kablam!   |               ^^^^ no `File` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::BufferedReader`
+kablam!  --> src/lib.rs:9:21
+kablam!   |
+kablam! 9 | use std::io::{File, BufferedReader};
+kablam!   |                     ^^^^^^^^^^^^^^ no `BufferedReader` in `io`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> src/lib.rs:28:16
+kablam!    |
+kablam! 28 |     let path = Path::new("tests").join("fixtures").join(filename);
+kablam!    |                ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error: stability attributes may not be used outside of the standard library
+kablam!  --> src/lib.rs:3:4
+kablam!   |
+kablam! 3 | #![unstable]
+kablam!   |    ^^^^^^^^
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `bear`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 8d8a10da9fcf5d53330b010937f8ec41a15ac8445f581366046e3640106aa349`
+blam! 8d8a10da9fcf5d53330b010937f8ec41a15ac8445f581366046e3640106aa349

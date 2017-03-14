@@ -1,0 +1,104 @@
+boom! testing prefix-map-0.3.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! daca4e3fe0338d7e990be0c7006c4943fca83405ef076b1a11314e116b848164
+boom! running `docker start -a daca4e3fe0338d7e990be0c7006c4943fca83405ef076b1a11314e116b848164`
+kablam!    Compiling prefix-map v0.3.1 (file:///source)
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!    --> src/lib.rs:334:1
+kablam!     |
+kablam! 334 |   type IntoStepChildren<K: ToPrefix + ?Sized, V> =
+kablam!     |  _^ starting here...
+kablam! 335 | |     btree_map::IntoIter<<K as ToPrefix>::OwnedItem, PrefixMap<K, V>>;
+kablam!     | |_____________________________________________________________________^ ...ending here
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!    --> src/lib.rs:368:1
+kablam!     |
+kablam! 368 |   type StepChildren<'a, K: 'a + ToPrefix + ?Sized, V: 'a> =
+kablam!     |  _^ starting here...
+kablam! 369 | |     btree_map::Iter<'a, <K as ToPrefix>::OwnedItem, PrefixMap<K, V>>;
+kablam!     | |_____________________________________________________________________^ ...ending here
+kablam! 
+kablam! warning[E0122]: trait bounds are not (yet) enforced in type definitions
+kablam!    --> src/lib.rs:402:1
+kablam!     |
+kablam! 402 |   type StepChildrenMut<'a, K: 'a + ToPrefix + ?Sized, V: 'a> =
+kablam!     |  _^ starting here...
+kablam! 403 | |     btree_map::IterMut<'a, <K as ToPrefix>::OwnedItem, PrefixMap<K, V>>;
+kablam!     | |________________________________________________________________________^ ...ending here
+kablam! 
+kablam! error[E0277]: the trait bound `<[T] as prefix::ToPrefix>::OwnedItem: std::borrow::Borrow<T>` is not satisfied
+kablam!    --> src/prefix.rs:102:22
+kablam!     |
+kablam! 102 | impl<T: Clone + Ord> ToPrefix for [T] {
+kablam!     |                      ^^^^^^^^ the trait `std::borrow::Borrow<T>` is not implemented for `<[T] as prefix::ToPrefix>::OwnedItem`
+kablam!     |
+kablam!     = help: the following implementations were found:
+kablam!               <T as std::borrow::Borrow<T>>
+kablam!               <&'a T as std::borrow::Borrow<T>>
+kablam!               <&'a mut T as std::borrow::Borrow<T>>
+kablam!     = note: required by `prefix::ToPrefix`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<T as std::borrow::ToOwned>::Owned == <[T] as prefix::ToPrefix>::OwnedItem`
+kablam!    --> src/prefix.rs:102:22
+kablam!     |
+kablam! 102 | impl<T: Clone + Ord> ToPrefix for [T] {
+kablam!     |                      ^^^^^^^^ expected type parameter, found associated type
+kablam!     |
+kablam!     = note: expected type `T`
+kablam!                found type `<[T] as prefix::ToPrefix>::OwnedItem`
+kablam!     = note: required by `prefix::ToPrefix`
+kablam! 
+kablam! error[E0277]: the trait bound `<std::path::Path as prefix::ToPrefix>::OwnedItem: std::borrow::Borrow<std::ffi::OsStr>` is not satisfied
+kablam!    --> src/prefix.rs:131:6
+kablam!     |
+kablam! 131 | impl ToPrefix for Path {
+kablam!     |      ^^^^^^^^ the trait `std::borrow::Borrow<std::ffi::OsStr>` is not implemented for `<std::path::Path as prefix::ToPrefix>::OwnedItem`
+kablam!     |
+kablam!     = help: the following implementations were found:
+kablam!               <T as std::borrow::Borrow<T>>
+kablam!               <&'a T as std::borrow::Borrow<T>>
+kablam!               <&'a mut T as std::borrow::Borrow<T>>
+kablam!     = note: required by `prefix::ToPrefix`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<std::ffi::OsStr as std::borrow::ToOwned>::Owned == <std::path::Path as prefix::ToPrefix>::OwnedItem`
+kablam!    --> src/prefix.rs:131:6
+kablam!     |
+kablam! 131 | impl ToPrefix for Path {
+kablam!     |      ^^^^^^^^ expected struct `std::ffi::OsString`, found associated type
+kablam!     |
+kablam!     = note: expected type `std::ffi::OsString`
+kablam!                found type `<std::path::Path as prefix::ToPrefix>::OwnedItem`
+kablam!     = note: required by `prefix::ToPrefix`
+kablam! 
+kablam! error[E0277]: the trait bound `<str as prefix::ToPrefix>::OwnedItem: std::borrow::Borrow<str>` is not satisfied
+kablam!    --> src/prefix.rs:164:6
+kablam!     |
+kablam! 164 | impl ToPrefix for str {
+kablam!     |      ^^^^^^^^ the trait `std::borrow::Borrow<str>` is not implemented for `<str as prefix::ToPrefix>::OwnedItem`
+kablam!     |
+kablam!     = help: the following implementations were found:
+kablam!               <T as std::borrow::Borrow<T>>
+kablam!               <&'a T as std::borrow::Borrow<T>>
+kablam!               <&'a mut T as std::borrow::Borrow<T>>
+kablam!     = note: required by `prefix::ToPrefix`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `<str as std::borrow::ToOwned>::Owned == <str as prefix::ToPrefix>::OwnedItem`
+kablam!    --> src/prefix.rs:164:6
+kablam!     |
+kablam! 164 | impl ToPrefix for str {
+kablam!     |      ^^^^^^^^ expected struct `std::string::String`, found associated type
+kablam!     |
+kablam!     = note: expected type `std::string::String`
+kablam!                found type `<str as prefix::ToPrefix>::OwnedItem`
+kablam!     = note: required by `prefix::ToPrefix`
+kablam! 
+kablam! error: aborting due to 6 previous errors
+kablam! 
+kablam! error: Could not compile `prefix-map`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f daca4e3fe0338d7e990be0c7006c4943fca83405ef076b1a11314e116b848164`
+blam! daca4e3fe0338d7e990be0c7006c4943fca83405ef076b1a11314e116b848164

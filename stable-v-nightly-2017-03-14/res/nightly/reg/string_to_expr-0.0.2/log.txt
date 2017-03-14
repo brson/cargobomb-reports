@@ -1,0 +1,82 @@
+boom! testing string_to_expr-0.0.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! dec09afd81fbfb38fcfef23c1ee24b6c4b4f703dc76de8570525f87fe25be12f
+boom! running `docker start -a dec09afd81fbfb38fcfef23c1ee24b6c4b4f703dc76de8570525f87fe25be12f`
+kablam!    Compiling string_to_expr v0.0.2 (file:///source)
+kablam! error[E0432]: unresolved import `rustc::plugin::Registry`
+kablam!   --> src/lib.rs:11:5
+kablam!    |
+kablam! 11 | use rustc::plugin::Registry;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `plugin` in `rustc`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::diagnostic::FatalError`
+kablam!   --> src/parser_any_macro.rs:14:13
+kablam!    |
+kablam! 14 |         use syntax::diagnostic::FatalError;
+kablam!    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `diagnostic` in `syntax`
+kablam! ...
+kablam! 41 |             panictry!(parser.bump())
+kablam!    |             ------------------------ in this macro invocation
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::diagnostic::FatalError`
+kablam!   --> src/parser_any_macro.rs:14:13
+kablam!    |
+kablam! 14 |         use syntax::diagnostic::FatalError;
+kablam!    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `diagnostic` in `syntax`
+kablam! ...
+kablam! 81 |                 _ => ret.push(panictry!(parser.parse_impl_item()))
+kablam!    |                               ----------------------------------- in this macro invocation
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!   --> src/lib.rs:22:30
+kablam!    |
+kablam! 22 |                       tts: &[ast::TokenTree]) -> Box<MacResult + 'a> {
+kablam!    |                              ^^^^^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use syntax::ext::tt::quoted::TokenTree;`
+kablam!              `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `ExprLit` in module `ast`
+kablam!   --> src/lib.rs:28:9
+kablam!    |
+kablam! 28 |         ast::ExprLit(ref spanned) => {
+kablam!    |         ^^^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use rustc::hir::ExprLit;`
+kablam!              `use rustc::hir::Expr_::ExprLit;`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `LitStr` in module `ast`
+kablam!   --> src/lib.rs:30:17
+kablam!    |
+kablam! 30 |                 ast::LitStr(ref s, _) => s.to_string(),
+kablam!    |                 ^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0053]: method `make_impl_items` has an incompatible type for trait
+kablam!   --> src/parser_any_macro.rs:74:5
+kablam!    |
+kablam! 74 |     fn make_impl_items(self: Box<ParserAnyMacro<'a>>)
+kablam!    |     ^ expected struct `syntax::ast::ImplItem`, found struct `syntax::ptr::P`
+kablam!    |
+kablam!    = note: expected type `fn(std::boxed::Box<parser_any_macro::ParserAnyMacro<'a>>) -> std::option::Option<rustc_data_structures::small_vec::SmallVec<[syntax::ast::ImplItem; 1]>>`
+kablam!               found type `fn(std::boxed::Box<parser_any_macro::ParserAnyMacro<'a>>) -> std::option::Option<rustc_data_structures::small_vec::SmallVec<[syntax::ptr::P<syntax::ast::ImplItem>; 1]>>`
+kablam! 
+kablam! error[E0053]: method `make_stmts` has an incompatible type for trait
+kablam!    --> src/parser_any_macro.rs:88:5
+kablam!     |
+kablam! 88  |     fn make_stmts(self: Box<ParserAnyMacro<'a>>)
+kablam!     |     ^ expected struct `syntax::ast::Stmt`, found struct `syntax::ptr::P`
+kablam!     |
+kablam!     = note: expected type `fn(std::boxed::Box<parser_any_macro::ParserAnyMacro<'a>>) -> std::option::Option<rustc_data_structures::small_vec::SmallVec<[syntax::ast::Stmt; 1]>>`
+kablam!                found type `fn(std::boxed::Box<parser_any_macro::ParserAnyMacro<'a>>) -> std::option::Option<rustc_data_structures::small_vec::SmallVec<[syntax::ptr::P<syntax::ast::Stmt>; 1]>>`
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `string_to_expr`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f dec09afd81fbfb38fcfef23c1ee24b6c4b4f703dc76de8570525f87fe25be12f`
+blam! dec09afd81fbfb38fcfef23c1ee24b6c4b4f703dc76de8570525f87fe25be12f
