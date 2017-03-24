@@ -1,0 +1,229 @@
+boom! testing rust_mixin-0.0.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 55f054c2bc278631947da3570e201a02faba07db98bf8a1cde8edc0bd084695c
+boom! running `docker start -a 55f054c2bc278631947da3570e201a02faba07db98bf8a1cde8edc0bd084695c`
+kablam!    Compiling external_mixin_umbrella v0.0.2
+kablam! error[E0432]: unresolved import `std::fs::TempDir`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/lib.rs:10:21
+kablam!    |
+kablam! 10 | use std::fs::{self, TempDir, File};
+kablam!    |                     ^^^^^^^ no `TempDir` in `fs`
+kablam! 
+kablam! error[E0432]: unresolved import `rustc::plugin::Registry`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/lib.rs:19:5
+kablam!    |
+kablam! 19 | use rustc::plugin::Registry;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `plugin` in `rustc`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::attr::ParserAttr`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/parser_any_macro.rs:11:5
+kablam!    |
+kablam! 11 | use syntax::parse::attr::ParserAttr;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `ParserAttr` in `parse::attr`
+kablam! 
+kablam! error[E0407]: method `make_methods` is not a member of trait `MacResult`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/parser_any_macro.rs:72:5
+kablam!    |
+kablam! 72 |     fn make_methods(self: Box<ParserAnyMacro<'a>>) -> Option<SmallVector<P<ast::Method>>> {
+kablam!    |     ^ not a member of trait `MacResult`
+kablam! 
+kablam! error[E0412]: cannot find type `Method` in module `ast`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/parser_any_macro.rs:72:76
+kablam!    |
+kablam! 72 |     fn make_methods(self: Box<ParserAnyMacro<'a>>) -> Option<SmallVector<P<ast::Method>>> {
+kablam!    |                                                                            ^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0407]: method `make_stmt` is not a member of trait `MacResult`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/parser_any_macro.rs:87:5
+kablam!    |
+kablam! 87 |       fn make_stmt(self: Box<ParserAnyMacro<'a>>) -> Option<P<ast::Stmt>> {
+kablam!    |  _____^ starting here...
+kablam! 88 | |         let attrs = self.parser.borrow_mut().parse_outer_attributes();
+kablam! 89 | |         let ret = self.parser.borrow_mut().parse_stmt(attrs);
+kablam! 90 | |         self.ensure_complete_parse(true);
+kablam! 91 | |         Some(ret)
+kablam! 92 | |     }
+kablam!    | |_____^ ...ending here: not a member of trait `MacResult`
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/lib.rs:157:31
+kablam!     |
+kablam! 157 |                    raw_tts: &[ast::TokenTree])
+kablam!     |                               ^^^^^^^^^^^^^^ not found in `ast`
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use syntax::ext::tt::quoted::TokenTree;`
+kablam!               `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `TtDelimited` in module `ast`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/lib.rs:173:19
+kablam!     |
+kablam! 173 |             Some(&ast::TtDelimited(_, ref delim)) if delim.delim == token::Brace => {
+kablam!     |                   ^^^^^^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/lib.rs:241:50
+kablam!     |
+kablam! 241 | fn parse_options(cx: &mut ExtCtxt, option_tts: &[ast::TokenTree]) -> Result<Options, ()> {
+kablam!     |                                                  ^^^^^^^^^^^^^^ not found in `ast`
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use syntax::ext::tt::quoted::TokenTree;`
+kablam!               `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0277]: the trait bound `&&[std::string::String]: std::iter::Iterator` is not satisfied
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/lib.rs:29:10
+kablam!    |
+kablam! 29 |         .args(&args);
+kablam!    |          ^^^^ the trait `std::iter::Iterator` is not implemented for `&&[std::string::String]`
+kablam!    |
+kablam!    = note: `&&[std::string::String]` is not an iterator; maybe try calling `.iter()` or a similar method
+kablam!    = note: required because of the requirements on the impl of `std::iter::IntoIterator` for `&&[std::string::String]`
+kablam! 
+kablam! error[E0061]: this function takes 3 parameters but 2 parameters were supplied
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/lib.rs:94:27
+kablam!    |
+kablam! 94 |           Ok(base::NormalTT(Box::new(MixinExpander {
+kablam!    |  ___________________________^ starting here...
+kablam! 95 | |             name: name,
+kablam! 96 | |             dir: dir,
+kablam! 97 | |             expander: expander
+kablam! 98 | |         }), None))
+kablam!    | |________________^ ...ending here: expected 3 parameters
+kablam! 
+kablam! error: no method named `fileline_note` found for type `syntax::<unnamed>::Handler` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/lib.rs:132:41
+kablam!     |
+kablam! 132 |         cx.parse_sess().span_diagnostic.fileline_note(sp, &msg);
+kablam!     |                                         ^^^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `fileline_note` found for type `syntax::<unnamed>::Handler` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/lib.rs:139:41
+kablam!     |
+kablam! 139 |         cx.parse_sess().span_diagnostic.fileline_note(sp, &msg);
+kablam!     |                                         ^^^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `get_span` found for type `syntax::tokenstream::TokenTree` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/lib.rs:190:25
+kablam!     |
+kablam! 190 |         let lo = tts[0].get_span().lo;
+kablam!     |                         ^^^^^^^^
+kablam! 
+kablam! error[E0061]: this function takes 0 parameters but 1 parameter was supplied
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/lib.rs:194:33
+kablam!     |
+kablam! 194 |         let path = PathBuf::new(&filename);
+kablam!     |                                 ^^^^^^^^^ expected 0 parameters
+kablam! 
+kablam! error[E0061]: this function takes 3 parameters but 4 parameters were supplied
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/lib.rs:232:56
+kablam!     |
+kablam! 232 |         let parser = parse::new_parser_from_source_str(cx.parse_sess(),
+kablam!     |                                                        ^^^^^^^^^^^^^^^ expected 3 parameters
+kablam! 
+kablam! error: no field `last_span` on type `syntax::parse::parser::Parser<'_>`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/lib.rs:249:28
+kablam!     |
+kablam! 249 |         let ident_span = p.last_span;
+kablam!     |                            ^^^^^^^^^ did you mean `prev_span`?
+kablam! 
+kablam! error: no method named `as_str` found for type `std::result::Result<syntax::ast::Ident, syntax::<unnamed>::DiagnosticBuilder<'_>>` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/lib.rs:250:25
+kablam!     |
+kablam! 250 |         let key = ident.as_str().to_string();
+kablam!     |                         ^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/lib.rs:253:43
+kablam!     |
+kablam! 253 |         let ret = cx.expander().fold_expr(p.parse_expr());
+kablam!     |                                           ^^^^^^^^^^^^^^ expected struct `syntax::ptr::P`, found enum `std::result::Result`
+kablam!     |
+kablam!     = note: expected type `syntax::ptr::P<syntax::ast::Expr>`
+kablam!                found type `std::result::Result<syntax::ptr::P<syntax::ast::Expr>, syntax::<unnamed>::DiagnosticBuilder<'_>>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .unwrap()
+kablam!             - .unwrap_err()
+kablam! 
+kablam! error: no method named `get` found for type `std::collections::hash_map::Entry<'_, _, _>` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/lib.rs:269:14
+kablam!     |
+kablam! 269 |             .get()
+kablam!     |              ^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/parser_any_macro.rs:49:14
+kablam!    |
+kablam! 49 |         Some(ret)
+kablam!    |              ^^^ expected struct `syntax::ptr::P`, found enum `std::result::Result`
+kablam!    |
+kablam!    = note: expected type `syntax::ptr::P<syntax::ast::Expr>`
+kablam!               found type `std::result::Result<syntax::ptr::P<syntax::ast::Expr>, syntax::<unnamed>::DiagnosticBuilder<'_>>`
+kablam!    = help: here are some functions which might fulfill your needs:
+kablam!            - .unwrap()
+kablam!            - .unwrap_err()
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/parser_any_macro.rs:54:14
+kablam!    |
+kablam! 54 |         Some(ret)
+kablam!    |              ^^^ expected struct `syntax::ptr::P`, found enum `std::result::Result`
+kablam!    |
+kablam!    = note: expected type `syntax::ptr::P<syntax::ast::Pat>`
+kablam!               found type `std::result::Result<syntax::ptr::P<syntax::ast::Pat>, syntax::<unnamed>::DiagnosticBuilder<'_>>`
+kablam!    = help: here are some functions which might fulfill your needs:
+kablam!            - .unwrap()
+kablam!            - .unwrap_err()
+kablam! 
+kablam! error: no associated item named `zero` found for type `rustc_data_structures::small_vec::SmallVec<[_; 1]>` in the current scope
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/parser_any_macro.rs:57:23
+kablam!    |
+kablam! 57 |         let mut ret = SmallVector::zero();
+kablam!    |                       ^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `parse_item_with_outer_attributes` found for type `std::cell::RefMut<'_, syntax::parse::parser::Parser<'a>>` in the current scope
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/parser_any_macro.rs:63:26
+kablam!    |
+kablam! 63 |             match parser.parse_item_with_outer_attributes() {
+kablam!    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no associated item named `zero` found for type `rustc_data_structures::small_vec::SmallVec<[_; 1]>` in the current scope
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/parser_any_macro.rs:73:23
+kablam!    |
+kablam! 73 |         let mut ret = SmallVector::zero();
+kablam!    |                       ^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `parse_method_with_outer_attributes` found for type `std::cell::RefMut<'_, syntax::parse::parser::Parser<'a>>` in the current scope
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/parser_any_macro.rs:79:37
+kablam!    |
+kablam! 79 |                     ret.push(parser.parse_method_with_outer_attributes());
+kablam!    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0061]: this function takes 0 parameters but 1 parameter was supplied
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/parser_any_macro.rs:89:55
+kablam!    |
+kablam! 89 |         let ret = self.parser.borrow_mut().parse_stmt(attrs);
+kablam!    |                                                       ^^^^^ expected 0 parameters
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/external_mixin_umbrella-0.0.2/src/parser_any_macro.rs:91:14
+kablam!    |
+kablam! 91 |         Some(ret)
+kablam!    |              ^^^ expected struct `syntax::ptr::P`, found enum `std::result::Result`
+kablam!    |
+kablam!    = note: expected type `syntax::ptr::P<syntax::ast::Stmt>`
+kablam!               found type `std::result::Result<std::option::Option<syntax::ast::Stmt>, syntax::<unnamed>::DiagnosticBuilder<'_>>`
+kablam!    = help: here are some functions which might fulfill your needs:
+kablam!            - .unwrap()
+kablam!            - .unwrap_err()
+kablam!            - .unwrap_or_default()
+kablam! 
+kablam! error: aborting due to 19 previous errors
+kablam! 
+kablam! error: Could not compile `external_mixin_umbrella`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 55f054c2bc278631947da3570e201a02faba07db98bf8a1cde8edc0bd084695c`
+blam! 55f054c2bc278631947da3570e201a02faba07db98bf8a1cde8edc0bd084695c

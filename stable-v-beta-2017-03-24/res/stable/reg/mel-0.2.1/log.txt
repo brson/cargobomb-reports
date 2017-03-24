@@ -1,0 +1,26 @@
+boom! testing mel-0.2.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 9c34bb937564435bbe9a5d81ad748c24460040d4abf60b77172f47fa1eb4951e
+boom! running `docker start -a 9c34bb937564435bbe9a5d81ad748c24460040d4abf60b77172f47fa1eb4951e`
+kablam!    Compiling rblas v0.0.13
+kablam!    Compiling ndarray v0.3.1
+kablam!    Compiling hertz v0.2.0
+kablam!    Compiling apodize v0.2.0
+kablam! error[E0277]: the trait bound `Self: std::marker::Sized` is not satisfied
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/ndarray-0.3.1/src/lib.rs:366:5
+kablam!     |
+kablam! 366 |     unsafe fn clone_with_ptr(&self, ptr: *mut Self::Elem) -> (Self, *mut Self::Elem);
+kablam!     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::marker::Sized` is not implemented for `Self`
+kablam!     |
+kablam!     = help: consider adding a `where Self: std::marker::Sized` bound
+kablam!     = note: tuple elements must have `Sized` type
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `ndarray`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 9c34bb937564435bbe9a5d81ad748c24460040d4abf60b77172f47fa1eb4951e`
+blam! 9c34bb937564435bbe9a5d81ad748c24460040d4abf60b77172f47fa1eb4951e

@@ -1,0 +1,119 @@
+boom! testing trace-0.1.3 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 9580ee3b3d692019caf2f36763ff1d3ea8ef11338b8f195b571c7ff84ae47a41
+boom! running `docker start -a 9580ee3b3d692019caf2f36763ff1d3ea8ef11338b8f195b571c7ff84ae47a41`
+kablam!    Compiling trace v0.1.3 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::ast::TokenTree`
+kablam!   --> src/lib.rs:12:65
+kablam!    |
+kablam! 12 | use syntax::ast::{self, Item, ItemKind, MetaItem, Block, Ident, TokenTree, FnDecl, ImplItem,
+kablam!    |                                                                 ^^^^^^^^^ no `TokenTree` in `ast`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::intern`
+kablam!   --> src/lib.rs:24:34
+kablam!    |
+kablam! 24 | use syntax::parse::token::{self, intern};
+kablam!    |                                  ^^^^^^ no `intern` in `parse::token`
+kablam! 
+kablam! error[E0532]: expected tuple struct/variant, found unit variant `Word`
+kablam!   --> src/lib.rs:92:18
+kablam!    |
+kablam! 92 |                 &Word(ref item_name) => { v.insert(item_name.to_string()); },
+kablam!    |                  ^^^^ not a tuple struct/variant
+kablam! 
+kablam! error[E0532]: expected tuple struct/variant, found unit variant `Word`
+kablam!    --> src/lib.rs:126:18
+kablam!     |
+kablam! 126 |                 &Word(ref name) => {
+kablam!     |                  ^^^^ not a tuple struct/variant
+kablam! 
+kablam! error[E0425]: cannot find value `Plain` in module `token`
+kablam!    --> src/lib.rs:316:58
+kablam!     |
+kablam! 316 |         .map(|ident| vec![token::Ident((*ident).clone(), token::Plain)])
+kablam!     |                                                          ^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0023]: this pattern has 2 fields, but the corresponding tuple variant has 1 field
+kablam!    --> src/lib.rs:101:12
+kablam!     |
+kablam! 101 |     if let List(_, ref v) = meta.node {
+kablam!     |            ^^^^^^^^^^^^^^ expected 1 field, found 2
+kablam! 
+kablam! error[E0023]: this pattern has 2 fields, but the corresponding tuple variant has 1 field
+kablam!    --> src/lib.rs:104:18
+kablam!     |
+kablam! 104 |                 &NameValue(ref name, ref s) => {
+kablam!     |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 1 field, found 2
+kablam! 
+kablam! error[E0023]: this pattern has 2 fields, but the corresponding tuple variant has 1 field
+kablam!    --> src/lib.rs:117:18
+kablam!     |
+kablam! 117 |                 &List(ref name, ref list) =>  {
+kablam!     |                  ^^^^^^^^^^^^^^^^^^^^^^^^ expected 1 field, found 2
+kablam! 
+kablam! error[E0023]: this pattern has 2 fields, but the corresponding tuple variant has 1 field
+kablam!   --> src/lib.rs:93:18
+kablam!    |
+kablam! 93 |                 &List(ref item_name, _) | &NameValue(ref item_name, _) =>
+kablam!    |                  ^^^^^^^^^^^^^^^^^^^^^^ expected 1 field, found 2
+kablam! 
+kablam! error[E0023]: this pattern has 2 fields, but the corresponding tuple variant has 1 field
+kablam!   --> src/lib.rs:93:44
+kablam!    |
+kablam! 93 |                 &List(ref item_name, _) | &NameValue(ref item_name, _) =>
+kablam!    |                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 1 field, found 2
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:188:29
+kablam!     |
+kablam! 188 |                 if *name == "depth" {
+kablam!     |                             ^^^^^^^ expected struct `syntax::symbol::InternedString`, found reference
+kablam!     |
+kablam!     = note: expected type `syntax::symbol::InternedString`
+kablam!                found type `&'static str`
+kablam! 
+kablam! error[E0023]: this pattern has 2 fields, but the corresponding tuple variant has 3 fields
+kablam!    --> src/lib.rs:256:31
+kablam!     |
+kablam! 256 |             &PatKind::Wild | &PatKind::TupleStruct(_, None) | &PatKind::Lit(_)
+kablam!     |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 3 fields, found 2
+kablam! 
+kablam! error: no associated item named `QPath` found for type `syntax::ast::PatKind` in the current scope
+kablam!    --> src/lib.rs:257:63
+kablam!     |
+kablam! 257 |                 | &PatKind::Range(..) | &PatKind::Path(..) | &PatKind::QPath(..) => (),
+kablam!     |                                                               ^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0023]: this pattern has 2 fields, but the corresponding tuple variant has 3 fields
+kablam!    --> src/lib.rs:263:14
+kablam!     |
+kablam! 263 |             &PatKind::TupleStruct(_, Some(ref v)) | &PatKind::Tup(ref v) => {
+kablam!     |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 3 fields, found 2
+kablam! 
+kablam! error: no associated item named `Tup` found for type `syntax::ast::PatKind` in the current scope
+kablam!    --> src/lib.rs:263:54
+kablam!     |
+kablam! 263 |             &PatKind::TupleStruct(_, Some(ref v)) | &PatKind::Tup(ref v) => {
+kablam!     |                                                      ^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no associated item named `Vec` found for type `syntax::ast::PatKind` in the current scope
+kablam!    --> src/lib.rs:273:14
+kablam!     |
+kablam! 273 |             &PatKind::Vec(ref v1, ref opt, ref v2) => {
+kablam!     |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0061]: this function takes 1 parameter but 2 parameters were supplied
+kablam!    --> src/lib.rs:316:40
+kablam!     |
+kablam! 316 |         .map(|ident| vec![token::Ident((*ident).clone(), token::Plain)])
+kablam!     |                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 1 parameter
+kablam! 
+kablam! error: aborting due to 12 previous errors
+kablam! 
+kablam! error: Could not compile `trace`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 9580ee3b3d692019caf2f36763ff1d3ea8ef11338b8f195b571c7ff84ae47a41`
+blam! 9580ee3b3d692019caf2f36763ff1d3ea8ef11338b8f195b571c7ff84ae47a41

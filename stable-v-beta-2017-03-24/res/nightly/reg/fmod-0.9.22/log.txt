@@ -1,0 +1,43 @@
+boom! testing fmod-0.9.22 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 8634c74b7a6ee81a437602289f0e412628188ea18628ec79270ea25b1f642736
+boom! running `docker start -a 8634c74b7a6ee81a437602289f0e412628188ea18628ec79270ea25b1f642736`
+kablam!    Compiling fmod v0.9.22 (file:///source)
+kablam! warning: unused import: `channel::Channel`
+kablam!   --> src/sound.rs:29:5
+kablam!    |
+kablam! 29 | use channel::Channel;
+kablam!    |     ^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: static variable `callback` should have an upper case name such as `CALLBACK`
+kablam!   --> src/fmod_sys.rs:50:5
+kablam!    |
+kablam! 50 |       static mut callback : SysCallback = SysCallback {
+kablam!    |  _____^ starting here...
+kablam! 51 | |             file_open: None,
+kablam! 52 | |             file_close: None,
+kablam! 53 | |             file_read: None,
+kablam! 54 | |             file_seek: None
+kablam! 55 | |         };
+kablam!    | |__________^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(non_upper_case_globals)] on by default
+kablam! 
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/rfmod.0.o" "-o" "/target/debug/deps/librfmod.so" "/target/debug/deps/rfmod.crate.metadata.o" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "-l" "fmodex64" "-Wl,--whole-archive" "/tmp/rustc.yGg1PAU2a2Cq/liblibc-5dc7b85e748840b4.rlib" "-Wl,--no-whole-archive" "-Wl,--whole-archive" "/tmp/rustc.yGg1PAU2a2Cq/libc_vec-be496150d8557b7a.rlib" "-Wl,--no-whole-archive" "-Wl,--whole-archive" "/tmp/rustc.yGg1PAU2a2Cq/libbyteorder-35109819e11170bf.rlib" "-Wl,--no-whole-archive" "-Wl,--whole-archive" "/tmp/rustc.yGg1PAU2a2Cq/libstd-9a66b6a343d52844.rlib" "-Wl,--no-whole-archive" "-Wl,--whole-archive" "/tmp/rustc.yGg1PAU2a2Cq/libpanic_unwind-9d79f761aa668a33.rlib" "-Wl,--no-whole-archive" "-Wl,--whole-archive" "/tmp/rustc.yGg1PAU2a2Cq/libunwind-2beb731af7a6faec.rlib" "-Wl,--no-whole-archive" "-Wl,--whole-archive" "/tmp/rustc.yGg1PAU2a2Cq/librand-6bc49e032a89c77d.rlib" "-Wl,--no-whole-archive" "-Wl,--whole-archive" "/tmp/rustc.yGg1PAU2a2Cq/libcollections-a2a467c3ca3b6479.rlib" "-Wl,--no-whole-archive" "-Wl,--whole-archive" "/tmp/rustc.yGg1PAU2a2Cq/liballoc-ce7b9706e1719f27.rlib" "-Wl,--no-whole-archive" "-Wl,--whole-archive" "/tmp/rustc.yGg1PAU2a2Cq/liballoc_system-5636d8d1255715e9.rlib" "-Wl,--no-whole-archive" "-Wl,--whole-archive" "/tmp/rustc.yGg1PAU2a2Cq/liblibc-95af4192ed69a1c8.rlib" "-Wl,--no-whole-archive" "-Wl,--whole-archive" "/tmp/rustc.yGg1PAU2a2Cq/libstd_unicode-e54225ff8f33e08f.rlib" "-Wl,--no-whole-archive" "-Wl,--whole-archive" "/tmp/rustc.yGg1PAU2a2Cq/libcore-cd0ca85e71f914ca.rlib" "-Wl,--no-whole-archive" "/tmp/rustc.yGg1PAU2a2Cq/libcompiler_builtins-0bf24067248742a8.rlib" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util" "-shared"
+kablam!   = note: /usr/bin/ld: cannot find -lfmodex64
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `fmod`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 8634c74b7a6ee81a437602289f0e412628188ea18628ec79270ea25b1f642736`
+blam! 8634c74b7a6ee81a437602289f0e412628188ea18628ec79270ea25b1f642736

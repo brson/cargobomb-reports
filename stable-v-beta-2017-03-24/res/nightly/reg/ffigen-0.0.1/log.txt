@@ -1,0 +1,126 @@
+boom! testing ffigen-0.0.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 3120766bef51bf50bf7293e4ce48ac68fd696b929bc39d4664f4dec3514e6878
+boom! running `docker start -a 3120766bef51bf50bf7293e4ce48ac68fd696b929bc39d4664f4dec3514e6878`
+kablam!    Compiling ffigen v0.0.1 (file:///source)
+kablam! error[E0433]: failed to resolve. Could not find `Parser` in `toml`
+kablam!   --> src/parser/cargo.rs:39:24
+kablam!    |
+kablam! 39 |     let config = match toml::Parser::new(&config_content).parse() {
+kablam!    |                        ^^^^^^^^^^^^^^^^^ Could not find `Parser` in `toml`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `ItemFn` in module `ast`
+kablam!   --> src/parser/source.rs:29:13
+kablam!    |
+kablam! 29 |             ast::ItemFn(ref decl, _, _, abi, _, _) if abi == abi::C => {
+kablam!    |             ^^^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use syntex_syntax::visit::FnKind::ItemFn;`
+kablam! 
+kablam! error[E0425]: cannot find value `C` in module `abi`
+kablam!   --> src/parser/source.rs:29:62
+kablam!    |
+kablam! 29 |             ast::ItemFn(ref decl, _, _, abi, _, _) if abi == abi::C => {
+kablam!    |                                                              ^^^^^^ not found in `abi`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use Lang::C;`
+kablam!              `use syntex_syntax::abi::Abi::C;`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `MetaItem_` in `ast`
+kablam!   --> src/parser/source.rs:33:33
+kablam!    |
+kablam! 33 |                                 ast::MetaItem_::MetaWord(ref w) => interned_to_string(w) == "no_mangle",
+kablam!    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `MetaItem_` in `ast`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `ItemMod` in module `ast`
+kablam!   --> src/parser/source.rs:51:13
+kablam!    |
+kablam! 51 |             ast::ItemMod(_) => {
+kablam!    |             ^^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0412]: cannot find type `InternedString` in module `parse::token`
+kablam!    --> src/parser/source.rs:115:34
+kablam!     |
+kablam! 115 | fn interned_to_string(interned: &parse::token::InternedString) -> String {
+kablam!     |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `parse::token`
+kablam!     |
+kablam!     = help: possible candidate is found in another module, you can import it into scope:
+kablam!               `use syntex_syntax::symbol::InternedString;`
+kablam! 
+kablam! error: no method named `lookup` found for type `toml::Value` in the current scope
+kablam!   --> src/parser/cargo.rs:44:37
+kablam!    |
+kablam! 44 |     let package_name = match config.lookup("package.name") {
+kablam!    |                                     ^^^^^^
+kablam! 
+kablam! error: no method named `lookup` found for type `toml::Value` in the current scope
+kablam!   --> src/parser/cargo.rs:57:33
+kablam!    |
+kablam! 57 |     let lib_name = match config.lookup("lib.name") {
+kablam!    |                                 ^^^^^^
+kablam! 
+kablam! error: no method named `lookup` found for type `toml::Value` in the current scope
+kablam!   --> src/parser/cargo.rs:69:35
+kablam!    |
+kablam! 69 |     let crate_type = match config.lookup("lib.crate_type") {
+kablam!    |                                   ^^^^^^
+kablam! 
+kablam! error: no field `node` on type `&syntex_syntax::ast::Attribute`
+kablam!   --> src/parser/source.rs:32:37
+kablam!    |
+kablam! 32 |                             match v.node.value.node {
+kablam!    |                                     ^^^^
+kablam! 
+kablam! error[E0061]: this function takes 2 parameters but 3 parameters were supplied
+kablam!   --> src/parser/source.rs:74:46
+kablam!    |
+kablam! 74 |     let krate = parse::parse_crate_from_file(path, cfg, &sess);
+kablam!    |                                              ^^^^^^^^^^^^^^^^ expected 2 parameters
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/parser/source.rs:81:41
+kablam!    |
+kablam! 81 |         visit::walk_crate(&mut visitor, &krate);
+kablam!    |                                         ^^^^^^ expected struct `syntex_syntax::ast::Crate`, found enum `std::result::Result`
+kablam!    |
+kablam!    = note: expected type `&syntex_syntax::ast::Crate`
+kablam!               found type `&std::result::Result<syntex_syntax::ast::Crate, syntex_syntax::diagnostics::plugin::DiagnosticBuilder<'_>>`
+kablam!    = help: here are some functions which might fulfill your needs:
+kablam!            - .unwrap()
+kablam!            - .unwrap_err()
+kablam! 
+kablam! error: no associated item named `DefaultReturn` found for type `syntex_syntax::ast::FunctionRetTy` in the current scope
+kablam!    --> src/parser/source.rs:100:9
+kablam!     |
+kablam! 100 |         ast::FunctionRetTy::DefaultReturn(_) | ast::FunctionRetTy::NoReturn(_) => ReturnType::Void,
+kablam!     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no associated item named `NoReturn` found for type `syntex_syntax::ast::FunctionRetTy` in the current scope
+kablam!    --> src/parser/source.rs:100:48
+kablam!     |
+kablam! 100 |         ast::FunctionRetTy::DefaultReturn(_) | ast::FunctionRetTy::NoReturn(_) => ReturnType::Void,
+kablam!     |                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no associated item named `Return` found for type `syntex_syntax::ast::FunctionRetTy` in the current scope
+kablam!    --> src/parser/source.rs:101:9
+kablam!     |
+kablam! 101 |         ast::FunctionRetTy::Return(ref r) => ReturnType::Type(translate_type(r))
+kablam!     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/marshal/mod.rs:16:38
+kablam!    |
+kablam! 16 |         let allocated = libc::malloc(translated.len() as u64 + 1) as *mut u8;
+kablam!    |                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected usize, found u64
+kablam! 
+kablam! error: aborting due to 10 previous errors
+kablam! 
+kablam! error: Could not compile `ffigen`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 3120766bef51bf50bf7293e4ce48ac68fd696b929bc39d4664f4dec3514e6878`
+blam! 3120766bef51bf50bf7293e4ce48ac68fd696b929bc39d4664f4dec3514e6878

@@ -1,0 +1,63 @@
+boom! testing quasi_macros-0.32.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 23cae26fc7db5e6ad4f4808f4100e80552825085fc37c943a90da36d5ecc5e0e
+boom! running `docker start -a 23cae26fc7db5e6ad4f4808f4100e80552825085fc37c943a90da36d5ecc5e0e`
+kablam!    Compiling aster v0.41.0
+kablam!    Compiling quasi_codegen v0.32.0
+kablam! error[E0531]: cannot find tuple struct/variant `MatchNt` in module `token`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/quasi_codegen-0.32.0/src/lib.rs:433:9
+kablam!     |
+kablam! 433 |         token::MatchNt(name, kind) => {
+kablam!     |         ^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `MatchNt` in this scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/quasi_codegen-0.32.0/src/lib.rs:487:38
+kablam!     |
+kablam! 487 |         ref tt @ TokenTree::Token(_, MatchNt(..)) if !matcher => {
+kablam!     |                                      ^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `KleeneOp` in `tokenstream`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/quasi_codegen-0.32.0/src/lib.rs:544:17
+kablam!     |
+kablam! 544 |                 tokenstream::KleeneOp::ZeroOrMore => "ZeroOrMore",
+kablam!     |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `KleeneOp` in `tokenstream`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `KleeneOp` in `tokenstream`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/quasi_codegen-0.32.0/src/lib.rs:545:17
+kablam!     |
+kablam! 545 |                 tokenstream::KleeneOp::OneOrMore => "OneOrMore",
+kablam!     |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `KleeneOp` in `tokenstream`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `KleeneOp` in `tokenstream`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/quasi_codegen-0.32.0/src/lib.rs:590:61
+kablam!     |
+kablam! 590 |             let one_or_more = builder.expr().bool(seq.op == tokenstream::KleeneOp::OneOrMore);
+kablam!     |                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `KleeneOp` in `tokenstream`
+kablam! 
+kablam! error: no associated item named `Sequence` found for type `syntax::tokenstream::TokenTree` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/quasi_codegen-0.32.0/src/lib.rs:522:9
+kablam!     |
+kablam! 522 |         TokenTree::Sequence(sp, ref seq) if matcher => {
+kablam!     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no associated item named `Sequence` found for type `syntax::tokenstream::TokenTree` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/quasi_codegen-0.32.0/src/lib.rs:578:9
+kablam!     |
+kablam! 578 |         TokenTree::Sequence(sp, ref seq) => {
+kablam!     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no field `quote_depth` on type `syntax::parse::parser::Parser<'_>`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/quasi_codegen-0.32.0/src/lib.rs:667:7
+kablam!     |
+kablam! 667 |     p.quote_depth += 1;
+kablam!     |       ^^^^^^^^^^^ did you mean `obsolete_set`?
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `quasi_codegen`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 23cae26fc7db5e6ad4f4808f4100e80552825085fc37c943a90da36d5ecc5e0e`
+blam! 23cae26fc7db5e6ad4f4808f4100e80552825085fc37c943a90da36d5ecc5e0e

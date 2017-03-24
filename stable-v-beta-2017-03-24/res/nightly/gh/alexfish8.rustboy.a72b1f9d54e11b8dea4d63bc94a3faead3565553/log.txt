@@ -1,0 +1,48 @@
+boom! testing https://github.com/alexfish8/rustboy#a72b1f9d54e11b8dea4d63bc94a3faead3565553 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 203503623f8cbe67418429e3f02cc97c955a30c4126f191108b9ce06ed7d8f6d
+boom! running `docker start -a 203503623f8cbe67418429e3f02cc97c955a30c4126f191108b9ce06ed7d8f6d`
+kablam!    Compiling sdl2-sys v0.27.2
+kablam! warning: redundant linker flag specified for library `SDL2`
+kablam! 
+kablam!    Compiling sdl2 v0.29.0
+kablam!    Compiling rustboy v0.1.0 (file:///source)
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `File`
+kablam!   --> src/cpu.rs:97:27
+kablam!    |
+kablam! 97 |         let mut f = match File::open(STARTUP_ROM_PATH) {
+kablam!    |                           ^^^^^^^^^^ Use of undeclared type or module `File`
+kablam! 
+kablam! error[E0425]: cannot find value `STARTUP_ROM_PATH` in this scope
+kablam!   --> src/cpu.rs:97:38
+kablam!    |
+kablam! 97 |         let mut f = match File::open(STARTUP_ROM_PATH) {
+kablam!    |                                      ^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `STARTUP_ROM_PATH` in this scope
+kablam!    --> src/cpu.rs:100:53
+kablam!     |
+kablam! 100 |                 println!("Failed to open file: {}", STARTUP_ROM_PATH);
+kablam!     |                                                     ^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `process`
+kablam!    --> src/cpu.rs:101:17
+kablam!     |
+kablam! 101 |                 process::exit(1);
+kablam!     |                 ^^^^^^^^^^^^^ Use of undeclared type or module `process`
+kablam! 
+kablam! error: no associated item named `load_startup_rom` found for type `gameboy::Gameboy` in the current scope
+kablam!   --> src/gameboy.rs:24:27
+kablam!    |
+kablam! 24 |         let startup_rom = Gameboy::load_startup_rom()?;
+kablam!    |                           ^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `rustboy`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 203503623f8cbe67418429e3f02cc97c955a30c4126f191108b9ce06ed7d8f6d`
+blam! 203503623f8cbe67418429e3f02cc97c955a30c4126f191108b9ce06ed7d8f6d

@@ -1,0 +1,56 @@
+boom! testing rand_macros-0.1.10 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 423bee094f780b6890b6cec3baaf316875a3b2664e0c9378ac54a19a597a8a4d
+boom! running `docker start -a 423bee094f780b6890b6cec3baaf316875a3b2664e0c9378ac54a19a597a8a4d`
+kablam!    Compiling rand_macros v0.1.10 (file:///source)
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!   --> src/lib.rs:31:35
+kablam!    |
+kablam! 31 |     reg.register_syntax_extension(token::intern("derive_Rand"),
+kablam!    |                                   ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find value `MutMutable` in module `ast`
+kablam!   --> src/lib.rs:62:40
+kablam!    |
+kablam! 62 |                         Borrowed(None, ast::MutMutable))
+kablam!    |                                        ^^^^^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0425]: cannot find value `BiRem` in module `ast`
+kablam!    --> src/lib.rs:132:47
+kablam!     |
+kablam! 132 |                                               ast::BiRem,
+kablam!     |                                               ^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0063]: missing field `unify_fieldless_variants` in initializer of `syntax_ext::deriving::generic::MethodDef<'_>`
+kablam!   --> src/lib.rs:51:13
+kablam!    |
+kablam! 51 |             MethodDef {
+kablam!    |             ^^^^^^^^^ missing `unify_fieldless_variants`
+kablam! 
+kablam! error[E0063]: missing field `supports_unions` in initializer of `syntax_ext::deriving::generic::TraitDef<'_>`
+kablam!   --> src/lib.rs:43:21
+kablam!    |
+kablam! 43 |     let trait_def = TraitDef {
+kablam!    |                     ^^^^^^^^ missing `supports_unions`
+kablam! 
+kablam! error[E0061]: this function takes 2 parameters but 3 parameters were supplied
+kablam!    --> src/lib.rs:150:34
+kablam!     |
+kablam! 150 |             let block = cx.block(trait_span, vec!( let_statement ), Some(match_expr));
+kablam!     |                                  ^^^^^^^^^^ expected 2 parameters
+kablam! 
+kablam! error[E0023]: this pattern has 1 field, but the corresponding tuple variant has 2 fields
+kablam!    --> src/lib.rs:166:13
+kablam!     |
+kablam! 166 |             Unnamed(ref fields) => {
+kablam!     |             ^^^^^^^^^^^^^^^^^^^ expected 2 fields, found 1
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `rand_macros`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 423bee094f780b6890b6cec3baaf316875a3b2664e0c9378ac54a19a597a8a4d`
+blam! 423bee094f780b6890b6cec3baaf316875a3b2664e0c9378ac54a19a597a8a4d

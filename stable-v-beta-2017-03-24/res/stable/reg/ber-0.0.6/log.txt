@@ -1,0 +1,63 @@
+boom! testing ber-0.0.6 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! bb2b75ec0f66d7715745b8cd6ddb455533dba68b9fd69857c9cb4c26c3673950
+boom! running `docker start -a bb2b75ec0f66d7715745b8cd6ddb455533dba68b9fd69857c9cb4c26c3673950`
+kablam!    Compiling ber v0.0.6 (file:///source)
+kablam! error[E0412]: type name `byteorder::Error` is undefined or not in scope
+kablam!   --> src/err.rs:13:15
+kablam!    |
+kablam! 13 |     Byteorder(byteorder::Error),
+kablam!    |               ^^^^^^^^^^^^^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: you can import several candidates into scope (`use ...;`):
+kablam!    = help:   `err::Error`
+kablam!    = help:   `std::error::Error`
+kablam!    = help:   `std::fmt::Error`
+kablam!    = help:   `std::io::Error`
+kablam! 
+kablam! error[E0412]: type name `byteorder::Error` is undefined or not in scope
+kablam!   --> src/err.rs:76:11
+kablam!    |
+kablam! 76 | impl From<byteorder::Error> for Error {
+kablam!    |           ^^^^^^^^^^^^^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: you can import several candidates into scope (`use ...;`):
+kablam!    = help:   `err::Error`
+kablam!    = help:   `std::error::Error`
+kablam!    = help:   `std::fmt::Error`
+kablam!    = help:   `std::io::Error`
+kablam! 
+kablam! error[E0412]: type name `byteorder::Error` is undefined or not in scope
+kablam!   --> src/err.rs:77:19
+kablam!    |
+kablam! 77 |     fn from (err: byteorder::Error) -> Error {
+kablam!    |                   ^^^^^^^^^^^^^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: you can import several candidates into scope (`use ...;`):
+kablam!    = help:   `err::Error`
+kablam!    = help:   `std::error::Error`
+kablam!    = help:   `std::fmt::Error`
+kablam!    = help:   `std::io::Error`
+kablam! 
+kablam! error[E0412]: type name `byteorder::Result` is undefined or not in scope
+kablam!    --> src/tag.rs:311:57
+kablam!     |
+kablam! 311 | fn write_length (mut w: &mut Write, length: &Length) -> byteorder::Result<()> {
+kablam!     |                                                         ^^^^^^^^^^^^^^^^^^^^^ undefined or not in scope
+kablam!     |
+kablam!     = help: you can import several candidates into scope (`use ...;`):
+kablam!     = help:   `std::fmt::Result`
+kablam!     = help:   `std::io::Result`
+kablam!     = help:   `std::prelude::v1::Result`
+kablam!     = help:   `std::result::Result`
+kablam!     = help:   `std::thread::Result`
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `ber`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f bb2b75ec0f66d7715745b8cd6ddb455533dba68b9fd69857c9cb4c26c3673950`
+blam! bb2b75ec0f66d7715745b8cd6ddb455533dba68b9fd69857c9cb4c26c3673950

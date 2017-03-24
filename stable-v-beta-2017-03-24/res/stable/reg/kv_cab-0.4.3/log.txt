@@ -1,0 +1,23 @@
+boom! testing kv_cab-0.4.3 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! b2493544276b531d857d44052211115e808e3e21d0e57629b482f154ddbd1854
+boom! running `docker start -a b2493544276b531d857d44052211115e808e3e21d0e57629b482f154ddbd1854`
+kablam!    Compiling kv_cab v0.4.3 (file:///source)
+kablam! error: use of unstable library feature 'set_permissions_atomic' (see issue #37916)
+kablam!    --> src/lib.rs:176:29
+kablam!     |
+kablam! 162 |         retry!(i, {
+kablam!     |         - in this macro invocation
+kablam! ...
+kablam! 176 |             match self.file.set_permissions(perms) {
+kablam!     |                             ^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `kv_cab`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f b2493544276b531d857d44052211115e808e3e21d0e57629b482f154ddbd1854`
+blam! b2493544276b531d857d44052211115e808e3e21d0e57629b482f154ddbd1854

@@ -1,0 +1,137 @@
+boom! testing horrorshow-0.6.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 0dc532ad21df051a775bc435ddbbab26b45fab81a30a5b75bfeed9ee9cf34d2e
+boom! running `docker start -a 0dc532ad21df051a775bc435ddbbab26b45fab81a30a5b75bfeed9ee9cf34d2e`
+kablam!    Compiling horrorshow v0.6.1 (file:///source)
+kablam! warning: missing fragment specifier
+kablam!    --> src/macros.rs:223:79
+kablam!     |
+kablam! 223 |     ($tmpl:ident, ($($p:expr),*), $tag:ident($($attr:tt)+) : {$($code:tt)*} $($next)* ) => {
+kablam!     |                                                                               ^^^^^
+kablam!     |
+kablam!     = note: #[warn(missing_fragment_specifier)] on by default
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #40107 <https://github.com/rust-lang/rust/issues/40107>
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.5 secs
+boom! running `docker rm -f 0dc532ad21df051a775bc435ddbbab26b45fab81a30a5b75bfeed9ee9cf34d2e`
+blam! 0dc532ad21df051a775bc435ddbbab26b45fab81a30a5b75bfeed9ee9cf34d2e
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 5269bb95abf0b56b6c64232d794c4f0fc653b2b978b80471efdfe641f6dd4b56
+boom! running `docker start -a 5269bb95abf0b56b6c64232d794c4f0fc653b2b978b80471efdfe641f6dd4b56`
+kablam!    Compiling maud v0.13.0
+kablam!    Compiling maud_macros v0.13.0
+kablam! error[E0432]: unresolved import `syntax::parse::token::keywords`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:11:5
+kablam!    |
+kablam! 11 | use syntax::parse::token::keywords;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `keywords` in `parse::token`
+kablam! 
+kablam! error[E0425]: cannot find function `gensym_ident` in module `token`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/render.rs:19:22
+kablam!    |
+kablam! 19 |         let writer = token::gensym_ident("__maud_writer");
+kablam!    |                      ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error: no method named `get_span` found for type `&syntax::tokenstream::TokenTree` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:185:43
+kablam!     |
+kablam! 185 |                     parse_error!(self, tt.get_span(), "invalid syntax");
+kablam!     |                     ----------------------^^^^^^^^---------------------- in this macro invocation
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:198:32
+kablam!     |
+kablam! 198 |             self.render.string(&s);
+kablam!     |                                ^^ expected str, found struct `syntax::ast::Symbol`
+kablam!     |
+kablam!     = note: expected type `&str`
+kablam!                found type `&syntax::ast::Symbol`
+kablam! 
+kablam! error: no associated item named `Sequence` found for type `syntax::tokenstream::TokenTree` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:350:82
+kablam!     |
+kablam! 350 |             [TokenTree::Token(sp, _), ..] | [TokenTree::Delimited(sp, _), ..] | [TokenTree::Sequence(sp, _), ..] => {
+kablam!     |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `open_span`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:398:13
+kablam!     |
+kablam! 398 |             open_span: sp,
+kablam!     |             ^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `close_span`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:400:13
+kablam!     |
+kablam! 400 |             close_span: sp,
+kablam!     |             ^^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error: aborting due to 5 previous errors
+kablam! 
+kablam! error: Could not compile `maud_macros`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 5269bb95abf0b56b6c64232d794c4f0fc653b2b978b80471efdfe641f6dd4b56`
+blam! 5269bb95abf0b56b6c64232d794c4f0fc653b2b978b80471efdfe641f6dd4b56
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! cea06dfac65dd01a581f05128adeef57915666b292c8c61d6ffab942cdf10e47
+boom! running `docker start -a cea06dfac65dd01a581f05128adeef57915666b292c8c61d6ffab942cdf10e47`
+kablam!    Compiling maud_macros v0.13.0
+kablam! error[E0432]: unresolved import `syntax::parse::token::keywords`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:11:5
+kablam!    |
+kablam! 11 | use syntax::parse::token::keywords;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `keywords` in `parse::token`
+kablam! 
+kablam! error[E0425]: cannot find function `gensym_ident` in module `token`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/render.rs:19:22
+kablam!    |
+kablam! 19 |         let writer = token::gensym_ident("__maud_writer");
+kablam!    |                      ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error: no method named `get_span` found for type `&syntax::tokenstream::TokenTree` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:185:43
+kablam!     |
+kablam! 185 |                     parse_error!(self, tt.get_span(), "invalid syntax");
+kablam!     |                     ----------------------^^^^^^^^---------------------- in this macro invocation
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:198:32
+kablam!     |
+kablam! 198 |             self.render.string(&s);
+kablam!     |                                ^^ expected str, found struct `syntax::ast::Symbol`
+kablam!     |
+kablam!     = note: expected type `&str`
+kablam!                found type `&syntax::ast::Symbol`
+kablam! 
+kablam! error: no associated item named `Sequence` found for type `syntax::tokenstream::TokenTree` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:350:82
+kablam!     |
+kablam! 350 |             [TokenTree::Token(sp, _), ..] | [TokenTree::Delimited(sp, _), ..] | [TokenTree::Sequence(sp, _), ..] => {
+kablam!     |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `open_span`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:398:13
+kablam!     |
+kablam! 398 |             open_span: sp,
+kablam!     |             ^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `close_span`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:400:13
+kablam!     |
+kablam! 400 |             close_span: sp,
+kablam!     |             ^^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error: aborting due to 5 previous errors
+kablam! 
+kablam! error: Could not compile `maud_macros`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f cea06dfac65dd01a581f05128adeef57915666b292c8c61d6ffab942cdf10e47`
+blam! cea06dfac65dd01a581f05128adeef57915666b292c8c61d6ffab942cdf10e47

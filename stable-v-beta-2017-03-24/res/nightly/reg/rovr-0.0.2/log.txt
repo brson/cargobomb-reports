@@ -1,0 +1,59 @@
+boom! testing rovr-0.0.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! f4802b83656d0d0bfe3439b97cf37049445eb60b98d32e35386dc0b1a962af12
+boom! running `docker start -a f4802b83656d0d0bfe3439b97cf37049445eb60b98d32e35386dc0b1a962af12`
+kablam!    Compiling wayland-client v0.1.8
+kablam!    Compiling x11-dl v1.0.1
+kablam!    Compiling gl_generator v0.0.26
+kablam! error: module `events` is private
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/gl_generator-0.0.26/registry.rs:30:5
+kablam!    |
+kablam! 30 | use self::xml::reader::events::XmlEvent;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0517]: attribute should be applied to struct, enum or union
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/wayland-client-0.1.8/src/ffi/abi.rs:45:1
+kablam!    |
+kablam! 45 | #[repr(C)] pub type wl_dispatcher_func_t = extern fn(*const c_void, 
+kablam!    | ^^^^^^^^^^ requires a struct, enum or union
+kablam! 
+kablam! error[E0517]: attribute should be applied to struct, enum or union
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/wayland-client-0.1.8/src/ffi/abi.rs:51:1
+kablam!    |
+kablam! 51 | #[repr(C)] pub type wl_log_func_t = extern fn(_: *const c_char, ...);
+kablam!    | ^^^^^^^^^^ requires a struct, enum or union
+kablam! 
+kablam! error[E0517]: attribute should be applied to struct, enum or union
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/wayland-client-0.1.8/src/ffi/abi.rs:53:1
+kablam!    |
+kablam! 53 | #[repr(C)] pub type wl_fixed_t = int32_t;
+kablam!    | ^^^^^^^^^^ requires a struct, enum or union
+kablam! 
+kablam! error[E0277]: the trait bound `Self: std::marker::Sized` is not satisfied
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/wayland-client-0.1.8/src/core/mod.rs:57:5
+kablam!    |
+kablam! 57 |     fn from(other: T) -> Option<Self>;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::marker::Sized` is not implemented for `Self`
+kablam!    |
+kablam!    = help: consider adding a `where Self: std::marker::Sized` bound
+kablam!    = note: required by `std::option::Option`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `wayland-client`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: no method named `events` found for type `std::cell::RefMut<'_, registry::xml::EventReader<R>>` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/gl_generator-0.0.26/registry.rs:322:45
+kablam!     |
+kablam! 322 |         for event in self.port.borrow_mut().events() {
+kablam!     |                                             ^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `gl_generator`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f f4802b83656d0d0bfe3439b97cf37049445eb60b98d32e35386dc0b1a962af12`
+blam! f4802b83656d0d0bfe3439b97cf37049445eb60b98d32e35386dc0b1a962af12

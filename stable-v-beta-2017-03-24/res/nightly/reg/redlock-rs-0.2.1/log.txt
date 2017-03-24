@@ -1,0 +1,36 @@
+boom! testing redlock-rs-0.2.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 14e4e2d2f2dd42193819606d6f036131a7a24b030223037d0097e383053c7a66
+boom! running `docker start -a 14e4e2d2f2dd42193819606d6f036131a7a24b030223037d0097e383053c7a66`
+kablam!    Compiling redlock-rs v0.2.1 (file:///source)
+kablam! warning: use of deprecated item: replaced by `std::thread::sleep`
+kablam!  --> src/redlock.rs:7:5
+kablam!   |
+kablam! 7 | use std::thread::sleep_ms;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: replaced by `std::thread::sleep`
+kablam!    --> src/redlock.rs:142:13
+kablam!     |
+kablam! 142 |             sleep_ms(n);
+kablam!     |             ^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! error[E0425]: cannot find function `scoped` in module `thread`
+kablam!   --> src/main.rs:38:17
+kablam!    |
+kablam! 38 |         let _ = thread::scoped(move|| {
+kablam!    |                 ^^^^^^^^^^^^^^ not found in `thread`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `redlock-rs`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 14e4e2d2f2dd42193819606d6f036131a7a24b030223037d0097e383053c7a66`
+blam! 14e4e2d2f2dd42193819606d6f036131a7a24b030223037d0097e383053c7a66

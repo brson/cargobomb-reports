@@ -1,0 +1,15 @@
+boom! testing capsicum-0.1.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 40088dc72ca9325b5d746670c341fe79a1fe5328c7b5022802fdd5c02df5f75e
+boom! running `docker start -a 40088dc72ca9325b5d746670c341fe79a1fe5328c7b5022802fdd5c02df5f75e`
+kablam!    Compiling capsicum v0.1.1 (file:///source)
+kablam! error: failed to run custom build command for `capsicum v0.1.1 (file:///source)`
+kablam! process didn't exit successfully: `/target/debug/build/capsicum-68c23aa3fd6a6f3b/build-script-build` (exit code: 101)
+kablam! --- stderr
+kablam! thread 'main' panicked at 'This is a FreeBSD only crate. It will not compile on other OSes.', build.rs:7
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f 40088dc72ca9325b5d746670c341fe79a1fe5328c7b5022802fdd5c02df5f75e`
+blam! 40088dc72ca9325b5d746670c341fe79a1fe5328c7b5022802fdd5c02df5f75e

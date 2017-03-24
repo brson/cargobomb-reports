@@ -1,0 +1,76 @@
+boom! testing fnconcat-0.2.3 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 940e0ed2f87bb9739d01ddd22adc520754acd6ca99e7ee3255c6eca4b0f9a868
+boom! running `docker start -a 940e0ed2f87bb9739d01ddd22adc520754acd6ca99e7ee3255c6eca4b0f9a868`
+kablam!    Compiling fnconcat v0.2.3 (file:///source)
+kablam! error: no method named `get_span` found for type `&&syntax::tokenstream::TokenTree` in the current scope
+kablam!   --> src/lib.rs:90:33
+kablam!    |
+kablam! 90 |             ref tt => fail!((tt.get_span(), "non-ident, non-comma token")),
+kablam!    |                       ----------^^^^^^^^---------------------------------- in this macro invocation
+kablam! 
+kablam! error: no method named `get_span` found for type `syntax::tokenstream::TokenTree` in the current scope
+kablam!    --> src/lib.rs:129:43
+kablam!     |
+kablam! 129 |           fail!((fn_tokens[ident_token_pos].get_span(),
+kablam!     |  _________- starting here...                ^^^^^^^^
+kablam! 130 | |                "use square brackets (i.e. [..]) in place of the function name"));
+kablam!     | |_________________________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error: no method named `get_span` found for type `&&syntax::tokenstream::TokenTree` in the current scope
+kablam!    --> src/lib.rs:156:33
+kablam!     |
+kablam! 156 |             ref tt => fail!((tt.get_span(), "parenthesized group expected")),
+kablam!     |                       ----------^^^^^^^^------------------------------------ in this macro invocation
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `open_span`
+kablam!    --> src/lib.rs:206:13
+kablam!     |
+kablam! 206 |             open_span: span,
+kablam!     |             ^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `close_span`
+kablam!    --> src/lib.rs:208:13
+kablam!     |
+kablam! 208 |             close_span: span,
+kablam!     |             ^^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `open_span`
+kablam!    --> src/lib.rs:214:13
+kablam!     |
+kablam! 214 |             open_span: span,
+kablam!     |             ^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `close_span`
+kablam!    --> src/lib.rs:216:13
+kablam!     |
+kablam! 216 |             close_span: span,
+kablam!     |             ^^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `open_span`
+kablam!    --> src/lib.rs:220:13
+kablam!     |
+kablam! 220 |             open_span: span,
+kablam!     |             ^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `close_span`
+kablam!    --> src/lib.rs:222:13
+kablam!     |
+kablam! 222 |             close_span: span,
+kablam!     |             ^^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error: no method named `get_span` found for type `&syntax::tokenstream::TokenTree` in the current scope
+kablam!    --> src/lib.rs:278:29
+kablam!     |
+kablam! 278 |                 fail!((name.get_span(), "empty identifier"));
+kablam!     |                 ------------^^^^^^^^------------------------- in this macro invocation
+kablam! 
+kablam! error: aborting due to 10 previous errors
+kablam! 
+kablam! error: Could not compile `fnconcat`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 940e0ed2f87bb9739d01ddd22adc520754acd6ca99e7ee3255c6eca4b0f9a868`
+blam! 940e0ed2f87bb9739d01ddd22adc520754acd6ca99e7ee3255c6eca4b0f9a868

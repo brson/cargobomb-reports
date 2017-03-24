@@ -1,0 +1,730 @@
+boom! testing libvirt-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! d8c6f51159be9b7161d53dbb7220b3472de1522fe48fa2037d17f56e3d7d913f
+boom! running `docker start -a d8c6f51159be9b7161d53dbb7220b3472de1522fe48fa2037d17f56e3d7d913f`
+kablam!    Compiling libvirt-sys v1.2.18
+kablam!    Compiling libvirt v0.1.0 (file:///source)
+kablam! warning: unused import: `string`
+kablam!  --> src/connection.rs:4:11
+kablam!   |
+kablam! 4 | use std::{string, ptr, mem, slice};
+kablam!   |           ^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: variable `cUri` should have a snake case name such as `c_uri`
+kablam!   --> src/connection.rs:25:17
+kablam!    |
+kablam! 25 |             let cUri = CString::new(uri).unwrap();
+kablam!    |                 ^^^^
+kablam!    |
+kablam!    = note: #[warn(non_snake_case)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/connection.rs:175:17
+kablam!     |
+kablam! 175 |             let mut ids = ptr::null_mut();
+kablam!     |                 ^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable `pDomain` should have a snake case name such as `p_domain`
+kablam!    --> src/connection.rs:313:17
+kablam!     |
+kablam! 313 |             let pDomain = virt::virDomainCreateXML(self.conn, cxml.as_ptr(), flags);
+kablam!     |                 ^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(non_snake_case)] on by default
+kablam! 
+kablam! warning: variable `pDomain` should have a snake case name such as `p_domain`
+kablam!    --> src/connection.rs:324:17
+kablam!     |
+kablam! 324 |             let pDomain = virt::virDomainDefineXML(self.conn, cxml.as_ptr());
+kablam!     |                 ^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(non_snake_case)] on by default
+kablam! 
+kablam! warning: unused import: `std::string`
+kablam!  --> src/node.rs:2:5
+kablam!   |
+kablam! 2 | use std::string;
+kablam!   |     ^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `string`
+kablam!  --> src/domain.rs:4:11
+kablam!   |
+kablam! 4 | use std::{string, ptr, mem};
+kablam!   |           ^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `node`
+kablam!  --> src/domain.rs:5:5
+kablam!   |
+kablam! 5 | use node;
+kablam!   |     ^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `std::string`
+kablam!  --> src/network.rs:2:5
+kablam!   |
+kablam! 2 | use std::string;
+kablam!   |     ^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused variable: `out`
+kablam!   --> src/network.rs:76:17
+kablam!    |
+kablam! 76 |             let out: *mut i32 = match val {
+kablam!    |                 ^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused imports: `ptr`, `string`
+kablam!  --> src/interface.rs:2:11
+kablam!   |
+kablam! 2 | use std::{string, ptr};
+kablam!   |           ^^^^^^  ^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: method is never used: `create`
+kablam!   --> src/interface.rs:12:5
+kablam!    |
+kablam! 12 |       pub fn create(self, flags: u32) -> Result<(), VirError> {
+kablam!    |  _____^ starting here...
+kablam! 13 | |         unsafe {
+kablam! 14 | |             match virt::virInterfaceCreate(self.ptr, flags) == -1{
+kablam! 15 | |                 true => Err(VirError::new()),
+kablam! 16 | |                 false => Ok(())
+kablam! 17 | |             }
+kablam! 18 | |         }
+kablam! 19 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `destroy`
+kablam!   --> src/interface.rs:21:5
+kablam!    |
+kablam! 21 |       pub fn destroy(self, flags: u32) -> Result<(), VirError> {
+kablam!    |  _____^ starting here...
+kablam! 22 | |         unsafe {
+kablam! 23 | |             match virt::virInterfaceDestroy(self.ptr, flags) == -1{
+kablam! 24 | |                 true => Err(VirError::new()),
+kablam! 25 | |                 false => Ok(())
+kablam! 26 | |             }
+kablam! 27 | |         }
+kablam! 28 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `is_active`
+kablam!   --> src/interface.rs:30:5
+kablam!    |
+kablam! 30 |       pub fn is_active(self) -> Result<(), VirError> {
+kablam!    |  _____^ starting here...
+kablam! 31 | |         unsafe {
+kablam! 32 | |             match virt::virInterfaceIsActive(self.ptr) == 1 {
+kablam! 33 | |                 true => Ok(()),
+kablam! 34 | |                 false => Err(VirError::new())
+kablam! 35 | |             }
+kablam! 36 | |         }
+kablam! 37 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `mac`
+kablam!   --> src/interface.rs:39:5
+kablam!    |
+kablam! 39 |       pub fn mac(self) -> Result<String, VirError> {
+kablam!    |  _____^ starting here...
+kablam! 40 | |         unsafe {
+kablam! 41 | |             let result = virt::virInterfaceGetMACString(self.ptr);
+kablam! 42 | |             match result.is_null() {
+kablam! 43 | |                 true => Err(VirError::new()),
+kablam! 44 | |                 false => Ok(String::from_utf8_lossy(CStr::from_ptr(result).to_bytes()).into_owned())
+kablam! 45 | |             }
+kablam! 46 | |         }
+kablam! 47 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `name`
+kablam!   --> src/interface.rs:49:5
+kablam!    |
+kablam! 49 |       pub fn name(self) -> Result<String, VirError> {
+kablam!    |  _____^ starting here...
+kablam! 50 | |         unsafe {
+kablam! 51 | |             let result = virt::virInterfaceGetName(self.ptr);
+kablam! 52 | |             match result.is_null() {
+kablam! 53 | |                 true => Err(VirError::new()),
+kablam! 54 | |                 false => Ok(String::from_utf8_lossy(CStr::from_ptr(result).to_bytes()).into_owned())
+kablam! 55 | |             }
+kablam! 56 | |         }
+kablam! 57 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `xml_desc`
+kablam!   --> src/interface.rs:59:5
+kablam!    |
+kablam! 59 |       pub fn xml_desc(self, flags: u32) -> Result<String, VirError>{
+kablam!    |  _____^ starting here...
+kablam! 60 | |         unsafe {
+kablam! 61 | |             let results = virt::virInterfaceGetXMLDesc(self.ptr, flags);
+kablam! 62 | |             match results.is_null() {
+kablam! 63 | |                 true => Err(VirError::new()),
+kablam! 64 | |                 false => Ok(String::from_utf8_lossy(CStr::from_ptr(results).to_bytes()).into_owned())
+kablam! 65 | |             }
+kablam! 66 | |         }
+kablam! 67 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `undefine`
+kablam!   --> src/interface.rs:69:5
+kablam!    |
+kablam! 69 |       pub fn undefine(self) -> Result<(), VirError>{
+kablam!    |  _____^ starting here...
+kablam! 70 | |         unsafe {
+kablam! 71 | |             match virt::virInterfaceUndefine(self.ptr) != -1 {
+kablam! 72 | |                 false => Err(VirError::new()),
+kablam! 73 | |                 true => Ok(())
+kablam! 74 | |             }
+kablam! 75 | |         }
+kablam! 76 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `free`
+kablam!   --> src/interface.rs:78:5
+kablam!    |
+kablam! 78 |       pub fn free(self) -> Result<(), VirError> {
+kablam!    |  _____^ starting here...
+kablam! 79 | |         unsafe {
+kablam! 80 | |             match virt::virInterfaceFree(self.ptr) != -1 {
+kablam! 81 | |                 false => Err(VirError::new()),
+kablam! 82 | |                 true => Ok(())
+kablam! 83 | |             }
+kablam! 84 | |         }
+kablam! 85 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 2.7 secs
+boom! running `docker rm -f d8c6f51159be9b7161d53dbb7220b3472de1522fe48fa2037d17f56e3d7d913f`
+blam! d8c6f51159be9b7161d53dbb7220b3472de1522fe48fa2037d17f56e3d7d913f
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 8c82715ae6065247bdd3fc04e11f4f53be7374882175992c4a7783c6df03f97b
+boom! running `docker start -a 8c82715ae6065247bdd3fc04e11f4f53be7374882175992c4a7783c6df03f97b`
+kablam!    Compiling libvirt v0.1.0 (file:///source)
+kablam! warning: unused import: `string`
+kablam!  --> src/connection.rs:4:11
+kablam!   |
+kablam! 4 | use std::{string, ptr, mem, slice};
+kablam!   |           ^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: variable `cUri` should have a snake case name such as `c_uri`
+kablam!   --> src/connection.rs:25:17
+kablam!    |
+kablam! 25 |             let cUri = CString::new(uri).unwrap();
+kablam!    |                 ^^^^
+kablam!    |
+kablam!    = note: #[warn(non_snake_case)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/connection.rs:175:17
+kablam!     |
+kablam! 175 |             let mut ids = ptr::null_mut();
+kablam!     |                 ^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable `pDomain` should have a snake case name such as `p_domain`
+kablam!    --> src/connection.rs:313:17
+kablam!     |
+kablam! 313 |             let pDomain = virt::virDomainCreateXML(self.conn, cxml.as_ptr(), flags);
+kablam!     |                 ^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(non_snake_case)] on by default
+kablam! 
+kablam! warning: variable `pDomain` should have a snake case name such as `p_domain`
+kablam!    --> src/connection.rs:324:17
+kablam!     |
+kablam! 324 |             let pDomain = virt::virDomainDefineXML(self.conn, cxml.as_ptr());
+kablam!     |                 ^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(non_snake_case)] on by default
+kablam! 
+kablam! warning: unused import: `std::string`
+kablam!  --> src/node.rs:2:5
+kablam!   |
+kablam! 2 | use std::string;
+kablam!   |     ^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `string`
+kablam!  --> src/domain.rs:4:11
+kablam!   |
+kablam! 4 | use std::{string, ptr, mem};
+kablam!   |           ^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `node`
+kablam!  --> src/domain.rs:5:5
+kablam!   |
+kablam! 5 | use node;
+kablam!   |     ^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `std::string`
+kablam!  --> src/network.rs:2:5
+kablam!   |
+kablam! 2 | use std::string;
+kablam!   |     ^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused variable: `out`
+kablam!   --> src/network.rs:76:17
+kablam!    |
+kablam! 76 |             let out: *mut i32 = match val {
+kablam!    |                 ^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused imports: `ptr`, `string`
+kablam!  --> src/interface.rs:2:11
+kablam!   |
+kablam! 2 | use std::{string, ptr};
+kablam!   |           ^^^^^^  ^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: method is never used: `create`
+kablam!   --> src/interface.rs:12:5
+kablam!    |
+kablam! 12 |       pub fn create(self, flags: u32) -> Result<(), VirError> {
+kablam!    |  _____^ starting here...
+kablam! 13 | |         unsafe {
+kablam! 14 | |             match virt::virInterfaceCreate(self.ptr, flags) == -1{
+kablam! 15 | |                 true => Err(VirError::new()),
+kablam! 16 | |                 false => Ok(())
+kablam! 17 | |             }
+kablam! 18 | |         }
+kablam! 19 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `destroy`
+kablam!   --> src/interface.rs:21:5
+kablam!    |
+kablam! 21 |       pub fn destroy(self, flags: u32) -> Result<(), VirError> {
+kablam!    |  _____^ starting here...
+kablam! 22 | |         unsafe {
+kablam! 23 | |             match virt::virInterfaceDestroy(self.ptr, flags) == -1{
+kablam! 24 | |                 true => Err(VirError::new()),
+kablam! 25 | |                 false => Ok(())
+kablam! 26 | |             }
+kablam! 27 | |         }
+kablam! 28 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `is_active`
+kablam!   --> src/interface.rs:30:5
+kablam!    |
+kablam! 30 |       pub fn is_active(self) -> Result<(), VirError> {
+kablam!    |  _____^ starting here...
+kablam! 31 | |         unsafe {
+kablam! 32 | |             match virt::virInterfaceIsActive(self.ptr) == 1 {
+kablam! 33 | |                 true => Ok(()),
+kablam! 34 | |                 false => Err(VirError::new())
+kablam! 35 | |             }
+kablam! 36 | |         }
+kablam! 37 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `mac`
+kablam!   --> src/interface.rs:39:5
+kablam!    |
+kablam! 39 |       pub fn mac(self) -> Result<String, VirError> {
+kablam!    |  _____^ starting here...
+kablam! 40 | |         unsafe {
+kablam! 41 | |             let result = virt::virInterfaceGetMACString(self.ptr);
+kablam! 42 | |             match result.is_null() {
+kablam! 43 | |                 true => Err(VirError::new()),
+kablam! 44 | |                 false => Ok(String::from_utf8_lossy(CStr::from_ptr(result).to_bytes()).into_owned())
+kablam! 45 | |             }
+kablam! 46 | |         }
+kablam! 47 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `name`
+kablam!   --> src/interface.rs:49:5
+kablam!    |
+kablam! 49 |       pub fn name(self) -> Result<String, VirError> {
+kablam!    |  _____^ starting here...
+kablam! 50 | |         unsafe {
+kablam! 51 | |             let result = virt::virInterfaceGetName(self.ptr);
+kablam! 52 | |             match result.is_null() {
+kablam! 53 | |                 true => Err(VirError::new()),
+kablam! 54 | |                 false => Ok(String::from_utf8_lossy(CStr::from_ptr(result).to_bytes()).into_owned())
+kablam! 55 | |             }
+kablam! 56 | |         }
+kablam! 57 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `xml_desc`
+kablam!   --> src/interface.rs:59:5
+kablam!    |
+kablam! 59 |       pub fn xml_desc(self, flags: u32) -> Result<String, VirError>{
+kablam!    |  _____^ starting here...
+kablam! 60 | |         unsafe {
+kablam! 61 | |             let results = virt::virInterfaceGetXMLDesc(self.ptr, flags);
+kablam! 62 | |             match results.is_null() {
+kablam! 63 | |                 true => Err(VirError::new()),
+kablam! 64 | |                 false => Ok(String::from_utf8_lossy(CStr::from_ptr(results).to_bytes()).into_owned())
+kablam! 65 | |             }
+kablam! 66 | |         }
+kablam! 67 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `undefine`
+kablam!   --> src/interface.rs:69:5
+kablam!    |
+kablam! 69 |       pub fn undefine(self) -> Result<(), VirError>{
+kablam!    |  _____^ starting here...
+kablam! 70 | |         unsafe {
+kablam! 71 | |             match virt::virInterfaceUndefine(self.ptr) != -1 {
+kablam! 72 | |                 false => Err(VirError::new()),
+kablam! 73 | |                 true => Ok(())
+kablam! 74 | |             }
+kablam! 75 | |         }
+kablam! 76 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `free`
+kablam!   --> src/interface.rs:78:5
+kablam!    |
+kablam! 78 |       pub fn free(self) -> Result<(), VirError> {
+kablam!    |  _____^ starting here...
+kablam! 79 | |         unsafe {
+kablam! 80 | |             match virt::virInterfaceFree(self.ptr) != -1 {
+kablam! 81 | |                 false => Err(VirError::new()),
+kablam! 82 | |                 true => Ok(())
+kablam! 83 | |             }
+kablam! 84 | |         }
+kablam! 85 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/examples/hellolibvirt-8a1ba036cbecdec2.0.o" "-o" "/target/debug/examples/hellolibvirt-8a1ba036cbecdec2" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/liblibvirt-b1693a701bacdab9.rlib" "/target/debug/deps/liblibvirt_sys-0b432a09a1274893.rlib" "/target/debug/deps/liblibc-75e9a9d6ae05fbe7.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-9a66b6a343d52844.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-9d79f761aa668a33.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-2beb731af7a6faec.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-6bc49e032a89c77d.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-a2a467c3ca3b6479.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-ce7b9706e1719f27.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-4b74d6f2808677d3.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-95af4192ed69a1c8.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-e54225ff8f33e08f.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-cd0ca85e71f914ca.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-0bf24067248742a8.rlib" "-l" "virt" "-l" "virt" "-l" "c" "-l" "m" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lvirt
+kablam!           /usr/bin/ld: cannot find -lvirt
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `libvirt`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/libvirt-09e6bf1dd5abbb6c.0.o" "-o" "/target/debug/deps/libvirt-09e6bf1dd5abbb6c" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/liblibvirt_sys-0b432a09a1274893.rlib" "/target/debug/deps/liblibc-75e9a9d6ae05fbe7.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-b48219465f029877.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-78c30e2133d07853.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-73f5a5c68bc00f38.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-9a66b6a343d52844.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-9d79f761aa668a33.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-2beb731af7a6faec.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-6bc49e032a89c77d.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-a2a467c3ca3b6479.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-ce7b9706e1719f27.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-4b74d6f2808677d3.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-95af4192ed69a1c8.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-e54225ff8f33e08f.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-cd0ca85e71f914ca.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-0bf24067248742a8.rlib" "-l" "virt" "-l" "virt" "-l" "c" "-l" "m" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lvirt
+kablam!           /usr/bin/ld: cannot find -lvirt
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f 8c82715ae6065247bdd3fc04e11f4f53be7374882175992c4a7783c6df03f97b`
+blam! 8c82715ae6065247bdd3fc04e11f4f53be7374882175992c4a7783c6df03f97b
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 560d07ea91c8e6674a7b7acff80491484b834e1b2321b76965769c1b83426205
+boom! running `docker start -a 560d07ea91c8e6674a7b7acff80491484b834e1b2321b76965769c1b83426205`
+kablam!    Compiling libvirt v0.1.0 (file:///source)
+kablam! warning: unused import: `string`
+kablam!  --> src/connection.rs:4:11
+kablam!   |
+kablam! 4 | use std::{string, ptr, mem, slice};
+kablam!   |           ^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: variable `cUri` should have a snake case name such as `c_uri`
+kablam!   --> src/connection.rs:25:17
+kablam!    |
+kablam! 25 |             let cUri = CString::new(uri).unwrap();
+kablam!    |                 ^^^^
+kablam!    |
+kablam!    = note: #[warn(non_snake_case)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/connection.rs:175:17
+kablam!     |
+kablam! 175 |             let mut ids = ptr::null_mut();
+kablam!     |                 ^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable `pDomain` should have a snake case name such as `p_domain`
+kablam!    --> src/connection.rs:313:17
+kablam!     |
+kablam! 313 |             let pDomain = virt::virDomainCreateXML(self.conn, cxml.as_ptr(), flags);
+kablam!     |                 ^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(non_snake_case)] on by default
+kablam! 
+kablam! warning: variable `pDomain` should have a snake case name such as `p_domain`
+kablam!    --> src/connection.rs:324:17
+kablam!     |
+kablam! 324 |             let pDomain = virt::virDomainDefineXML(self.conn, cxml.as_ptr());
+kablam!     |                 ^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(non_snake_case)] on by default
+kablam! 
+kablam! warning: unused import: `std::string`
+kablam!  --> src/node.rs:2:5
+kablam!   |
+kablam! 2 | use std::string;
+kablam!   |     ^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `string`
+kablam!  --> src/domain.rs:4:11
+kablam!   |
+kablam! 4 | use std::{string, ptr, mem};
+kablam!   |           ^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `node`
+kablam!  --> src/domain.rs:5:5
+kablam!   |
+kablam! 5 | use node;
+kablam!   |     ^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `std::string`
+kablam!  --> src/network.rs:2:5
+kablam!   |
+kablam! 2 | use std::string;
+kablam!   |     ^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused variable: `out`
+kablam!   --> src/network.rs:76:17
+kablam!    |
+kablam! 76 |             let out: *mut i32 = match val {
+kablam!    |                 ^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused imports: `ptr`, `string`
+kablam!  --> src/interface.rs:2:11
+kablam!   |
+kablam! 2 | use std::{string, ptr};
+kablam!   |           ^^^^^^  ^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: method is never used: `create`
+kablam!   --> src/interface.rs:12:5
+kablam!    |
+kablam! 12 |       pub fn create(self, flags: u32) -> Result<(), VirError> {
+kablam!    |  _____^ starting here...
+kablam! 13 | |         unsafe {
+kablam! 14 | |             match virt::virInterfaceCreate(self.ptr, flags) == -1{
+kablam! 15 | |                 true => Err(VirError::new()),
+kablam! 16 | |                 false => Ok(())
+kablam! 17 | |             }
+kablam! 18 | |         }
+kablam! 19 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `destroy`
+kablam!   --> src/interface.rs:21:5
+kablam!    |
+kablam! 21 |       pub fn destroy(self, flags: u32) -> Result<(), VirError> {
+kablam!    |  _____^ starting here...
+kablam! 22 | |         unsafe {
+kablam! 23 | |             match virt::virInterfaceDestroy(self.ptr, flags) == -1{
+kablam! 24 | |                 true => Err(VirError::new()),
+kablam! 25 | |                 false => Ok(())
+kablam! 26 | |             }
+kablam! 27 | |         }
+kablam! 28 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `is_active`
+kablam!   --> src/interface.rs:30:5
+kablam!    |
+kablam! 30 |       pub fn is_active(self) -> Result<(), VirError> {
+kablam!    |  _____^ starting here...
+kablam! 31 | |         unsafe {
+kablam! 32 | |             match virt::virInterfaceIsActive(self.ptr) == 1 {
+kablam! 33 | |                 true => Ok(()),
+kablam! 34 | |                 false => Err(VirError::new())
+kablam! 35 | |             }
+kablam! 36 | |         }
+kablam! 37 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `mac`
+kablam!   --> src/interface.rs:39:5
+kablam!    |
+kablam! 39 |       pub fn mac(self) -> Result<String, VirError> {
+kablam!    |  _____^ starting here...
+kablam! 40 | |         unsafe {
+kablam! 41 | |             let result = virt::virInterfaceGetMACString(self.ptr);
+kablam! 42 | |             match result.is_null() {
+kablam! 43 | |                 true => Err(VirError::new()),
+kablam! 44 | |                 false => Ok(String::from_utf8_lossy(CStr::from_ptr(result).to_bytes()).into_owned())
+kablam! 45 | |             }
+kablam! 46 | |         }
+kablam! 47 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `name`
+kablam!   --> src/interface.rs:49:5
+kablam!    |
+kablam! 49 |       pub fn name(self) -> Result<String, VirError> {
+kablam!    |  _____^ starting here...
+kablam! 50 | |         unsafe {
+kablam! 51 | |             let result = virt::virInterfaceGetName(self.ptr);
+kablam! 52 | |             match result.is_null() {
+kablam! 53 | |                 true => Err(VirError::new()),
+kablam! 54 | |                 false => Ok(String::from_utf8_lossy(CStr::from_ptr(result).to_bytes()).into_owned())
+kablam! 55 | |             }
+kablam! 56 | |         }
+kablam! 57 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `xml_desc`
+kablam!   --> src/interface.rs:59:5
+kablam!    |
+kablam! 59 |       pub fn xml_desc(self, flags: u32) -> Result<String, VirError>{
+kablam!    |  _____^ starting here...
+kablam! 60 | |         unsafe {
+kablam! 61 | |             let results = virt::virInterfaceGetXMLDesc(self.ptr, flags);
+kablam! 62 | |             match results.is_null() {
+kablam! 63 | |                 true => Err(VirError::new()),
+kablam! 64 | |                 false => Ok(String::from_utf8_lossy(CStr::from_ptr(results).to_bytes()).into_owned())
+kablam! 65 | |             }
+kablam! 66 | |         }
+kablam! 67 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `undefine`
+kablam!   --> src/interface.rs:69:5
+kablam!    |
+kablam! 69 |       pub fn undefine(self) -> Result<(), VirError>{
+kablam!    |  _____^ starting here...
+kablam! 70 | |         unsafe {
+kablam! 71 | |             match virt::virInterfaceUndefine(self.ptr) != -1 {
+kablam! 72 | |                 false => Err(VirError::new()),
+kablam! 73 | |                 true => Ok(())
+kablam! 74 | |             }
+kablam! 75 | |         }
+kablam! 76 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `free`
+kablam!   --> src/interface.rs:78:5
+kablam!    |
+kablam! 78 |       pub fn free(self) -> Result<(), VirError> {
+kablam!    |  _____^ starting here...
+kablam! 79 | |         unsafe {
+kablam! 80 | |             match virt::virInterfaceFree(self.ptr) != -1 {
+kablam! 81 | |                 false => Err(VirError::new()),
+kablam! 82 | |                 true => Ok(())
+kablam! 83 | |             }
+kablam! 84 | |         }
+kablam! 85 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/examples/hellolibvirt-8a1ba036cbecdec2.0.o" "-o" "/target/debug/examples/hellolibvirt-8a1ba036cbecdec2" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/liblibvirt-b1693a701bacdab9.rlib" "/target/debug/deps/liblibvirt_sys-0b432a09a1274893.rlib" "/target/debug/deps/liblibc-75e9a9d6ae05fbe7.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-9a66b6a343d52844.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-9d79f761aa668a33.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-2beb731af7a6faec.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-6bc49e032a89c77d.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-a2a467c3ca3b6479.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-ce7b9706e1719f27.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-4b74d6f2808677d3.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-95af4192ed69a1c8.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-e54225ff8f33e08f.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-cd0ca85e71f914ca.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-0bf24067248742a8.rlib" "-l" "virt" "-l" "virt" "-l" "c" "-l" "m" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lvirt
+kablam!           /usr/bin/ld: cannot find -lvirt
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/libvirt-09e6bf1dd5abbb6c.0.o" "-o" "/target/debug/deps/libvirt-09e6bf1dd5abbb6c" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/liblibvirt_sys-0b432a09a1274893.rlib" "/target/debug/deps/liblibc-75e9a9d6ae05fbe7.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-b48219465f029877.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-78c30e2133d07853.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-73f5a5c68bc00f38.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-9a66b6a343d52844.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-9d79f761aa668a33.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-2beb731af7a6faec.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-6bc49e032a89c77d.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-a2a467c3ca3b6479.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-ce7b9706e1719f27.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-4b74d6f2808677d3.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-95af4192ed69a1c8.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-e54225ff8f33e08f.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-cd0ca85e71f914ca.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-0bf24067248742a8.rlib" "-l" "virt" "-l" "virt" "-l" "c" "-l" "m" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lvirt
+kablam!           /usr/bin/ld: cannot find -lvirt
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `libvirt`.
+kablam! error: build failed
+boom! running `docker rm -f 560d07ea91c8e6674a7b7acff80491484b834e1b2321b76965769c1b83426205`
+blam! 560d07ea91c8e6674a7b7acff80491484b834e1b2321b76965769c1b83426205

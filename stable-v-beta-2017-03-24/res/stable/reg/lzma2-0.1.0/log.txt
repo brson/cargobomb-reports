@@ -1,0 +1,54 @@
+boom! testing lzma2-0.1.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! d52973d363b83d4a9cb3005ecdd88818e6d8469fcbd2de3a96b548b46686f826
+boom! running `docker start -a d52973d363b83d4a9cb3005ecdd88818e6d8469fcbd2de3a96b548b46686f826`
+kablam!    Compiling lzma v0.2.2
+kablam!    Compiling lzma2 v0.1.0 (file:///source)
+kablam! error[E0412]: type name `byteorder::Error` is undefined or not in scope
+kablam!   --> src/error.rs:14:12
+kablam!    |
+kablam! 14 | 	ByteOrder(byteorder::Error),
+kablam!    | 	          ^^^^^^^^^^^^^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: you can import several candidates into scope (`use ...;`):
+kablam!    = help:   `error::Error`
+kablam!    = help:   `lzma::Error`
+kablam!    = help:   `std::error::Error`
+kablam!    = help:   `std::fmt::Error`
+kablam!    = help:   `std::io::Error`
+kablam! 
+kablam! error[E0412]: type name `byteorder::Error` is undefined or not in scope
+kablam!   --> src/error.rs:35:11
+kablam!    |
+kablam! 35 | impl From<byteorder::Error> for Error {
+kablam!    |           ^^^^^^^^^^^^^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: you can import several candidates into scope (`use ...;`):
+kablam!    = help:   `error::Error`
+kablam!    = help:   `lzma::Error`
+kablam!    = help:   `std::error::Error`
+kablam!    = help:   `std::fmt::Error`
+kablam!    = help:   `std::io::Error`
+kablam! 
+kablam! error[E0412]: type name `byteorder::Error` is undefined or not in scope
+kablam!   --> src/error.rs:36:17
+kablam!    |
+kablam! 36 | 	fn from(value: byteorder::Error) -> Self {
+kablam!    | 	               ^^^^^^^^^^^^^^^^ undefined or not in scope
+kablam!    |
+kablam!    = help: you can import several candidates into scope (`use ...;`):
+kablam!    = help:   `error::Error`
+kablam!    = help:   `lzma::Error`
+kablam!    = help:   `std::error::Error`
+kablam!    = help:   `std::fmt::Error`
+kablam!    = help:   `std::io::Error`
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `lzma2`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f d52973d363b83d4a9cb3005ecdd88818e6d8469fcbd2de3a96b548b46686f826`
+blam! d52973d363b83d4a9cb3005ecdd88818e6d8469fcbd2de3a96b548b46686f826

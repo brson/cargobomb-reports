@@ -1,0 +1,94 @@
+boom! testing coroutine-rs-0.0.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 1e9648b3cc2f0834ed767a608f2a26784ef85ffeb91a74547f1fbbe4988b232d
+boom! running `docker start -a 1e9648b3cc2f0834ed767a608f2a26784ef85ffeb91a74547f1fbbe4988b232d`
+kablam!    Compiling coroutine-rs v0.0.1 (file:///source)
+kablam! error[E0432]: unresolved import `std::simd`
+kablam!   --> src/context.rs:15:5
+kablam!    |
+kablam! 15 | use std::simd;
+kablam!    |     ^^^^^^^^^ no `simd` in the root
+kablam! 
+kablam! error[E0432]: unresolved import `std::rt::util::min_stack`
+kablam!   --> src/coroutine.rs:48:5
+kablam!    |
+kablam! 48 | use std::rt::util::min_stack;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `util` in `rt`
+kablam! 
+kablam! error[E0432]: unresolved import `std::rt::unwind::try`
+kablam!   --> src/coroutine.rs:51:5
+kablam!    |
+kablam! 51 | use std::rt::unwind::try;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^ Could not find `unwind` in `rt`
+kablam! 
+kablam! error[E0432]: unresolved import `std::env::page_size`
+kablam!   --> src/stack.rs:13:22
+kablam!    |
+kablam! 13 | use std::env::{self, page_size};
+kablam!    |                      ^^^^^^^^^ no `page_size` in `env`
+kablam! 
+kablam! error: use of unstable library feature 'as_unsafe_cell' (see issue #27708)
+kablam!    --> src/coroutine.rs:130:70
+kablam!     |
+kablam! 130 |                 let c: &mut Box<Coroutine> = transmute(from_coro_hdl.as_unsafe_cell().get());
+kablam!     |                                                                      ^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: add #![feature(as_unsafe_cell)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'as_unsafe_cell' (see issue #27708)
+kablam!    --> src/coroutine.rs:135:32
+kablam!     |
+kablam! 135 |                 transmute(self.as_unsafe_cell().get())
+kablam!     |                                ^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: add #![feature(as_unsafe_cell)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'as_unsafe_cell' (see issue #27708)
+kablam!    --> src/coroutine.rs:181:57
+kablam!     |
+kablam! 181 |             let c: &mut Box<Coroutine> = transmute(self.as_unsafe_cell().get());
+kablam!     |                                                         ^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: add #![feature(as_unsafe_cell)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'as_unsafe_cell' (see issue #27708)
+kablam!    --> src/coroutine.rs:190:57
+kablam!     |
+kablam! 190 |             let c: &mut Box<Coroutine> = transmute(self.as_unsafe_cell().get());
+kablam!     |                                                         ^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: add #![feature(as_unsafe_cell)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'as_unsafe_cell' (see issue #27708)
+kablam!    --> src/coroutine.rs:256:43
+kablam!     |
+kablam! 256 |             transmute(env.current_running.as_unsafe_cell().get())
+kablam!     |                                           ^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: add #![feature(as_unsafe_cell)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'as_unsafe_cell' (see issue #27708)
+kablam!    --> src/coroutine.rs:347:47
+kablam!     |
+kablam! 347 |                 transmute(env.current_running.as_unsafe_cell().get())
+kablam!     |                                               ^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: add #![feature(as_unsafe_cell)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'as_unsafe_cell' (see issue #27708)
+kablam!    --> src/coroutine.rs:408:66
+kablam!     |
+kablam! 408 |                 let itself: &mut Box<Coroutine> = transmute(coro.as_unsafe_cell().get());
+kablam!     |                                                                  ^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: add #![feature(as_unsafe_cell)] to the crate attributes to enable
+kablam! 
+kablam! error: aborting due to 7 previous errors
+kablam! 
+kablam! error: Could not compile `coroutine-rs`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 1e9648b3cc2f0834ed767a608f2a26784ef85ffeb91a74547f1fbbe4988b232d`
+blam! 1e9648b3cc2f0834ed767a608f2a26784ef85ffeb91a74547f1fbbe4988b232d

@@ -1,0 +1,324 @@
+boom! testing https://github.com/Peekmo/rust-xslgen#97a8c1c096ce79e5b63e21cff0451075f5a91366 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! faf9e55084047d1e08a38dc8cb216b6b28a38f7244cc701791d99b2e8504b82b
+boom! running `docker start -a faf9e55084047d1e08a38dc8cb216b6b28a38f7244cc701791d99b2e8504b82b`
+kablam!    Compiling xslgen v0.0.1 (file:///source)
+kablam! error[E0432]: unresolved import `std::io::fs::File`
+kablam!  --> src/process.rs:2:5
+kablam!   |
+kablam! 2 | use std::io::fs::File;
+kablam!   |     ^^^^^^^^^^^^^^^^^ Could not find `fs` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::path::posix::Path`
+kablam!  --> src/process.rs:3:5
+kablam!   |
+kablam! 3 | use std::path::posix::Path;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^ Could not find `posix` in `path`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::IoError`
+kablam!  --> src/process.rs:4:5
+kablam!   |
+kablam! 4 | use std::io::IoError;
+kablam!   |     ^^^^^^^^^^^^^^^^ no `IoError` in `io`. Did you mean to use `Error`?
+kablam! 
+kablam! error[E0425]: cannot find function `range` in this scope
+kablam!   --> src/xsl.rs:75:14
+kablam!    |
+kablam! 75 |     for _ in range(0, *nb) {
+kablam!    |              ^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `args` in module `os`
+kablam!   --> src/main.rs:14:20
+kablam!    |
+kablam! 14 |     let mut args = os::args();
+kablam!    |                    ^^^^^^^^ not found in `os`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::env::args;`
+kablam! 
+kablam! error: stability attributes may not be used outside of the standard library
+kablam!  --> src/process.rs:8:3
+kablam!   |
+kablam! 8 | #[stable]
+kablam!   |   ^^^^^^
+kablam! 
+kablam! error: stability attributes may not be used outside of the standard library
+kablam!   --> src/process.rs:18:3
+kablam!    |
+kablam! 18 | #[unstable]
+kablam!    |   ^^^^^^^^
+kablam! 
+kablam! error: stability attributes may not be used outside of the standard library
+kablam!   --> src/process.rs:27:7
+kablam!    |
+kablam! 27 |     #[stable]
+kablam!    |       ^^^^^^
+kablam! 
+kablam! error: stability attributes may not be used outside of the standard library
+kablam!   --> src/process.rs:40:7
+kablam!    |
+kablam! 40 |     #[unstable]
+kablam!    |       ^^^^^^^^
+kablam! 
+kablam! error: stability attributes may not be used outside of the standard library
+kablam!   --> src/process.rs:54:7
+kablam!    |
+kablam! 54 |     #[stable]
+kablam!    |       ^^^^^^
+kablam! 
+kablam! error[E0277]: the trait bound `std::vec::Vec<&str>: core::ops::Index<&{integer}>` is not satisfied
+kablam!   --> src/main.rs:26:25
+kablam!    |
+kablam! 26 |         match *argument.index(&0) {
+kablam!    |                         ^^^^^ the trait `core::ops::Index<&{integer}>` is not implemented for `std::vec::Vec<&str>`
+kablam!    |
+kablam!    = note: the type `std::vec::Vec<&str>` cannot be indexed by `&{integer}`
+kablam! 
+kablam! error: no associated item named `from_str` found for type `std::string::String` in the current scope
+kablam!   --> src/main.rs:28:37
+kablam!    |
+kablam! 28 |                 process.input_arg = String::from_str(argument.index(&1).clone());
+kablam!    |                                     ^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!    = help: candidate #1: `use core::str::FromStr;`
+kablam! 
+kablam! error[E0277]: the trait bound `std::vec::Vec<&str>: core::ops::Index<&{integer}>` is not satisfied
+kablam!   --> src/main.rs:28:63
+kablam!    |
+kablam! 28 |                 process.input_arg = String::from_str(argument.index(&1).clone());
+kablam!    |                                                               ^^^^^ the trait `core::ops::Index<&{integer}>` is not implemented for `std::vec::Vec<&str>`
+kablam!    |
+kablam!    = note: the type `std::vec::Vec<&str>` cannot be indexed by `&{integer}`
+kablam! 
+kablam! error: no associated item named `from_str` found for type `std::string::String` in the current scope
+kablam!   --> src/main.rs:32:44
+kablam!    |
+kablam! 32 |                 process.output_arg  = Some(String::from_str(argument.index(&1).clone()));
+kablam!    |                                            ^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!    = help: candidate #1: `use core::str::FromStr;`
+kablam! 
+kablam! error[E0277]: the trait bound `std::vec::Vec<&str>: core::ops::Index<&{integer}>` is not satisfied
+kablam!   --> src/main.rs:32:70
+kablam!    |
+kablam! 32 |                 process.output_arg  = Some(String::from_str(argument.index(&1).clone()));
+kablam!    |                                                                      ^^^^^ the trait `core::ops::Index<&{integer}>` is not implemented for `std::vec::Vec<&str>`
+kablam!    |
+kablam!    = note: the type `std::vec::Vec<&str>` cannot be indexed by `&{integer}`
+kablam! 
+kablam! error[E0277]: the trait bound `std::vec::Vec<&str>: core::ops::Index<&{integer}>` is not satisfied
+kablam!   --> src/main.rs:34:57
+kablam!    |
+kablam! 34 |             _ => panic!("Unknown argument {}", argument.index(&0))
+kablam!    |                                                         ^^^^^ the trait `core::ops::Index<&{integer}>` is not implemented for `std::vec::Vec<&str>`
+kablam!    |
+kablam!    = note: the type `std::vec::Vec<&str>` cannot be indexed by `&{integer}`
+kablam! 
+kablam! error: no associated item named `from_str` found for type `std::string::String` in the current scope
+kablam!   --> src/process.rs:30:24
+kablam!    |
+kablam! 30 |             input_arg: String::from_str(""),
+kablam!    |                        ^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!    = help: candidate #1: `use core::str::FromStr;`
+kablam! 
+kablam! error: no associated item named `from_str` found for type `std::string::String` in the current scope
+kablam!   --> src/process.rs:43:24
+kablam!    |
+kablam! 43 |             return Err(String::from_str("No input file found (option --file=path/to/file.xslg)"));
+kablam!    |                        ^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!    = help: candidate #1: `use core::str::FromStr;`
+kablam! 
+kablam! error: no method named `as_slice` found for type `std::string::String` in the current scope
+kablam!   --> src/process.rs:56:66
+kablam!    |
+kablam! 56 |         let mut file = try!(File::open(&Path::new(self.input_arg.as_slice())));
+kablam!    |                                                                  ^^^^^^^^
+kablam! 
+kablam! error: no associated item named `from_str` found for type `std::string::String` in the current scope
+kablam!   --> src/process.rs:67:36
+kablam!    |
+kablam! 67 |                         lines.push(String::from_str(line.trim()));
+kablam!    |                                    ^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!    = help: candidate #1: `use core::str::FromStr;`
+kablam! 
+kablam! error: no method named `as_slice` found for type `std::string::String` in the current scope
+kablam!    --> src/parser.rs:153:144
+kablam!     |
+kablam! 153 |                         Some (ref attribute) => { self.parsing_error(format!("Unexpected new line. Attribute {} is not closed", attribute.key).as_slice()); }
+kablam!     |                                                                                                                                                ^^^^^^^^
+kablam! 
+kablam! error: no associated item named `from_str` found for type `std::string::String` in the current scope
+kablam!    --> src/parser.rs:226:59
+kablam!     |
+kablam! 226 |                                         let mut content = String::from_str(self.buffer.trim());
+kablam!     |                                                           ^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use core::str::FromStr;`
+kablam! 
+kablam! error: no associated item named `from_str` found for type `std::string::String` in the current scope
+kablam!    --> src/parser.rs:231:93
+kablam!     |
+kablam! 231 |                                                 let mut attribute = Box::new(Attribute::new(String::from_str("test")));
+kablam!     |                                                                                             ^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use core::str::FromStr;`
+kablam! 
+kablam! error: no associated item named `from_str` found for type `std::string::String` in the current scope
+kablam!    --> src/parser.rs:236:93
+kablam!     |
+kablam! 236 |                                                 let mut attribute = Box::new(Attribute::new(String::from_str("select")));
+kablam!     |                                                                                             ^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use core::str::FromStr;`
+kablam! 
+kablam! error[E0277]: the trait bound `std::string::String: core::ops::Index<&core::ops::RangeFrom<usize>>` is not satisfied
+kablam!    --> src/parser.rs:273:76
+kablam!     |
+kablam! 273 |                                 if !self.buffer.is_empty() && (self.buffer.index(&RangeFrom {start: self.buffer.len() - 1}) == "\\") {
+kablam!     |                                                                            ^^^^^ the trait `core::ops::Index<&core::ops::RangeFrom<usize>>` is not implemented for `std::string::String`
+kablam!     |
+kablam!     = note: the type `std::string::String` cannot be indexed by `&core::ops::RangeFrom<usize>`
+kablam! 
+kablam! error: no associated item named `from_str` found for type `std::string::String` in the current scope
+kablam!    --> src/parser.rs:310:35
+kablam!     |
+kablam! 310 |                     '@' => { Some(String::from_str("xsl")) },
+kablam!     |                                   ^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use core::str::FromStr;`
+kablam! 
+kablam! error: no method named `as_slice` found for type `std::string::String` in the current scope
+kablam!    --> src/parser.rs:323:35
+kablam!     |
+kablam! 323 |                 match self.buffer.as_slice() {
+kablam!     |                                   ^^^^^^^^
+kablam! 
+kablam! error: no method named `as_slice` found for type `std::string::String` in the current scope
+kablam!    --> src/parser.rs:330:40
+kablam!     |
+kablam! 330 |                         if self.buffer.as_slice() == "if" {
+kablam!     |                                        ^^^^^^^^
+kablam! 
+kablam! error: no associated item named `from_str` found for type `std::string::String` in the current scope
+kablam!    --> src/parser.rs:331:68
+kablam!     |
+kablam! 331 |                             let node_choose = Node::new(self, Some(String::from_str("xsl")), Some(String::from_str("choose")));
+kablam!     |                                                                    ^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use core::str::FromStr;`
+kablam! 
+kablam! error: no associated item named `from_str` found for type `std::string::String` in the current scope
+kablam!    --> src/parser.rs:331:99
+kablam!     |
+kablam! 331 |                             let node_choose = Node::new(self, Some(String::from_str("xsl")), Some(String::from_str("choose")));
+kablam!     |                                                                                                   ^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use core::str::FromStr;`
+kablam! 
+kablam! error: no associated item named `from_str` found for type `std::string::String` in the current scope
+kablam!    --> src/parser.rs:335:62
+kablam!     |
+kablam! 335 |                         let node_when = Node::new(self, Some(String::from_str("xsl")), Some(String::from_str("when")));
+kablam!     |                                                              ^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use core::str::FromStr;`
+kablam! 
+kablam! error: no associated item named `from_str` found for type `std::string::String` in the current scope
+kablam!    --> src/parser.rs:335:93
+kablam!     |
+kablam! 335 |                         let node_when = Node::new(self, Some(String::from_str("xsl")), Some(String::from_str("when")));
+kablam!     |                                                                                             ^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use core::str::FromStr;`
+kablam! 
+kablam! error: no associated item named `from_str` found for type `std::string::String` in the current scope
+kablam!    --> src/parser.rs:344:67
+kablam!     |
+kablam! 344 |                         let node_otherwise = Node::new(self, Some(String::from_str("xsl")), Some(String::from_str("otherwise")));
+kablam!     |                                                                   ^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use core::str::FromStr;`
+kablam! 
+kablam! error: no associated item named `from_str` found for type `std::string::String` in the current scope
+kablam!    --> src/parser.rs:344:98
+kablam!     |
+kablam! 344 |                         let node_otherwise = Node::new(self, Some(String::from_str("xsl")), Some(String::from_str("otherwise")));
+kablam!     |                                                                                                  ^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use core::str::FromStr;`
+kablam! 
+kablam! error: no associated item named `from_str` found for type `std::string::String` in the current scope
+kablam!    --> src/parser.rs:352:65
+kablam!     |
+kablam! 352 |                         let node_foreach = Node::new(self, Some(String::from_str("xsl")), Some(String::from_str("for-each")));
+kablam!     |                                                                 ^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use core::str::FromStr;`
+kablam! 
+kablam! error: no associated item named `from_str` found for type `std::string::String` in the current scope
+kablam!    --> src/parser.rs:352:96
+kablam!     |
+kablam! 352 |                         let node_foreach = Node::new(self, Some(String::from_str("xsl")), Some(String::from_str("for-each")));
+kablam!     |                                                                                                ^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is in scope; the following trait is implemented but not in scope, perhaps add a `use` for it:
+kablam!     = help: candidate #1: `use core::str::FromStr;`
+kablam! 
+kablam! error: no method named `as_slice` found for type `std::string::String` in the current scope
+kablam!    --> src/parser.rs:428:108
+kablam!     |
+kablam! 428 |                             self.parsing_error(format!("Unexpected character - Expected '[' or '{}'", "{").as_slice());
+kablam!     |                                                                                                            ^^^^^^^^
+kablam! 
+kablam! error: no method named `as_slice` found for type `std::string::String` in the current scope
+kablam!   --> src/xsl.rs:29:69
+kablam!    |
+kablam! 29 |             string.push_str(format!(" {}={}", attr.key, attr.value).as_slice());
+kablam!    |                                                                     ^^^^^^^^
+kablam! 
+kablam! error: no method named `as_slice` found for type `&std::string::String` in the current scope
+kablam!   --> src/xsl.rs:39:47
+kablam!    |
+kablam! 39 |                         string.push_str(value.as_slice());
+kablam!    |                                               ^^^^^^^^
+kablam! 
+kablam! error: no method named `as_slice` found for type `std::string::String` in the current scope
+kablam!   --> src/xsl.rs:66:74
+kablam!    |
+kablam! 66 |         Some(ref namespace) => string.push_str(format!("{}:", namespace).as_slice()),
+kablam!    |                                                                          ^^^^^^^^
+kablam! 
+kablam! error: no method named `as_slice` found for type `std::string::String` in the current scope
+kablam!   --> src/xsl.rs:70:31
+kablam!    |
+kablam! 70 |     string.push_str(node.name.as_slice());
+kablam!    |                               ^^^^^^^^
+kablam! 
+kablam! error: aborting due to 31 previous errors
+kablam! 
+kablam! error: Could not compile `xslgen`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f faf9e55084047d1e08a38dc8cb216b6b28a38f7244cc701791d99b2e8504b82b`
+blam! faf9e55084047d1e08a38dc8cb216b6b28a38f7244cc701791d99b2e8504b82b

@@ -1,0 +1,56 @@
+boom! testing jsx-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! c25a3110ab36fe46b473c7dfb755fc44a8e5b29f5b3b5970588fbfca53b1b654
+boom! running `docker start -a c25a3110ab36fe46b473c7dfb755fc44a8e5b29f5b3b5970588fbfca53b1b654`
+kablam!    Compiling jsx v0.1.0 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::ast::TokenTree`
+kablam!  --> src/lib.rs:9:19
+kablam!   |
+kablam! 9 | use syntax::ast::{TokenTree, Ident, PathSegment, PathParameters, Path, Field};
+kablam!   |                   ^^^^^^^^^ no `TokenTree` in `ast`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::intern`
+kablam!   --> src/lib.rs:12:35
+kablam!    |
+kablam! 12 | use syntax::parse::token::{Token, intern};
+kablam!    |                                   ^^^^^^ no `intern` in `parse::token`
+kablam! 
+kablam! error[E0432]: unresolved import `rustc::plugin::Registry`
+kablam!   --> src/lib.rs:13:5
+kablam!    |
+kablam! 13 | use rustc::plugin::Registry;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `plugin` in `rustc`
+kablam! 
+kablam! error[E0023]: this pattern has 2 fields, but the corresponding tuple variant has 1 field
+kablam!   --> src/lib.rs:53:17
+kablam!    |
+kablam! 53 |                 Token::Ident(ident, _) => Ok(ident),
+kablam!    |                 ^^^^^^^^^^^^^^^^^^^^^^ expected 1 field, found 2
+kablam! 
+kablam! error: no associated item named `none` found for type `syntax::ast::PathParameters` in the current scope
+kablam!   --> src/lib.rs:63:74
+kablam!    |
+kablam! 63 |     let name_segment = PathSegment { identifier: identifier, parameters: PathParameters::none() };
+kablam!    |                                                                          ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0560]: struct `syntax::ast::Path` has no field named `global`
+kablam!   --> src/lib.rs:64:23
+kablam!    |
+kablam! 64 |     Path { span: *sp, global: false, segments: vec![name_segment] }
+kablam!    |                       ^^^^^^^ `syntax::ast::Path` does not have this field
+kablam! 
+kablam! error[E0063]: missing fields `attrs`, `is_shorthand` in initializer of `syntax::ast::Field`
+kablam!   --> src/lib.rs:70:5
+kablam!    |
+kablam! 70 |     Field { ident: identifier, expr: expression, span: *sp }
+kablam!    |     ^^^^^ missing `attrs`, `is_shorthand`
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `jsx`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f c25a3110ab36fe46b473c7dfb755fc44a8e5b29f5b3b5970588fbfca53b1b654`
+blam! c25a3110ab36fe46b473c7dfb755fc44a8e5b29f5b3b5970588fbfca53b1b654

@@ -1,0 +1,119 @@
+boom! testing leet-converter-0.0.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 204f0516f01d1f06726abac25076472d0ced2c1f3bddae5cf5c21340b70a323d
+boom! running `docker start -a 204f0516f01d1f06726abac25076472d0ced2c1f3bddae5cf5c21340b70a323d`
+kablam!    Compiling leet-converter v0.0.1 (file:///source)
+kablam! error[E0432]: unresolved import `std::io::BufferedReader`
+kablam!  --> src/main.rs:5:22
+kablam!   |
+kablam! 5 | use std::io::{stdio, BufferedReader, LineBufferedWriter};
+kablam!   |                      ^^^^^^^^^^^^^^ no `BufferedReader` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::LineBufferedWriter`
+kablam!  --> src/main.rs:5:38
+kablam!   |
+kablam! 5 | use std::io::{stdio, BufferedReader, LineBufferedWriter};
+kablam!   |                                      ^^^^^^^^^^^^^^^^^^ no `LineBufferedWriter` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::File`
+kablam!  --> src/main.rs:7:15
+kablam!   |
+kablam! 7 | use std::io::{File, Open, ReadWrite};
+kablam!   |               ^^^^ no `File` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::Open`
+kablam!  --> src/main.rs:7:21
+kablam!   |
+kablam! 7 | use std::io::{File, Open, ReadWrite};
+kablam!   |                     ^^^^ no `Open` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::ReadWrite`
+kablam!  --> src/main.rs:7:27
+kablam!   |
+kablam! 7 | use std::io::{File, Open, ReadWrite};
+kablam!   |                           ^^^^^^^^^ no `ReadWrite` in `io`
+kablam! 
+kablam! error[E0412]: cannot find type `Writer` in this scope
+kablam!   --> src/main.rs:36:69
+kablam!    |
+kablam! 36 | fn leetification(input: &mut BufferedReader<File>, output: &mut Box<Writer>) {
+kablam!    |                                                                     ^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `args` in module `os`
+kablam!   --> src/main.rs:46:29
+kablam!    |
+kablam! 46 |     let args: Vec<String> = os::args();
+kablam!    |                             ^^^^^^^^ not found in `os`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::env::args;`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> src/main.rs:65:26
+kablam!    |
+kablam! 65 |         let input_path = Path::new(matches.free[0].clone());
+kablam!    |                          ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> src/main.rs:74:35
+kablam!    |
+kablam! 74 |                 let output_path = Path::new(output_file);
+kablam!    |                                   ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error[E0412]: cannot find type `Writer` in this scope
+kablam!   --> src/main.rs:76:78
+kablam!    |
+kablam! 76 |                     Ok(output) => box LineBufferedWriter::new(output) as Box<Writer>,
+kablam!    |                                                                              ^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `Writer` in this scope
+kablam!   --> src/main.rs:77:58
+kablam!    |
+kablam! 77 |                     Err(_) => box stdio::stdout() as Box<Writer>
+kablam!    |                                                          ^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `Writer` in this scope
+kablam!   --> src/main.rs:79:48
+kablam!    |
+kablam! 79 |             None => box stdio::stdout() as Box<Writer>
+kablam!    |                                                ^^^^^^ not found in this scope
+kablam! 
+kablam! error: module `stdio` is private
+kablam!  --> src/main.rs:5:15
+kablam!   |
+kablam! 5 | use std::io::{stdio, BufferedReader, LineBufferedWriter};
+kablam!   |               ^^^^^
+kablam! 
+kablam! error: box expression syntax is experimental; you can call `Box::new` instead. (see issue #27779)
+kablam!   --> src/main.rs:76:35
+kablam!    |
+kablam! 76 |                     Ok(output) => box LineBufferedWriter::new(output) as Box<Writer>,
+kablam!    |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: add #![feature(box_syntax)] to the crate attributes to enable
+kablam! 
+kablam! error: box expression syntax is experimental; you can call `Box::new` instead. (see issue #27779)
+kablam!   --> src/main.rs:77:31
+kablam!    |
+kablam! 77 |                     Err(_) => box stdio::stdout() as Box<Writer>
+kablam!    |                               ^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: add #![feature(box_syntax)] to the crate attributes to enable
+kablam! 
+kablam! error: box expression syntax is experimental; you can call `Box::new` instead. (see issue #27779)
+kablam!   --> src/main.rs:79:21
+kablam!    |
+kablam! 79 |             None => box stdio::stdout() as Box<Writer>
+kablam!    |                     ^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: add #![feature(box_syntax)] to the crate attributes to enable
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `leet-converter`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 204f0516f01d1f06726abac25076472d0ced2c1f3bddae5cf5c21340b70a323d`
+blam! 204f0516f01d1f06726abac25076472d0ced2c1f3bddae5cf5c21340b70a323d

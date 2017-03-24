@@ -1,0 +1,27 @@
+boom! testing lsiotemplate-0.1.6 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! f5d0e8696618284f1165051ef43c2b3bb1d733fddb83482096acb3a27a403f3b
+boom! running `docker start -a f5d0e8696618284f1165051ef43c2b3bb1d733fddb83482096acb3a27a403f3b`
+kablam!    Compiling rust-ini v0.10.0
+kablam!    Compiling lsiotemplate v0.1.6 (file:///source)
+kablam! error[E0277]: the trait bound `handlebars::Context: rustc_serialize::json::ToJson` is not satisfied
+kablam!    --> src/commands.rs:295:37
+kablam!     |
+kablam! 295 |             match client.handlebars.template_renderw2(&mut template, &data, &mut output) {
+kablam!     |                                     ^^^^^^^^^^^^^^^^^ the trait `rustc_serialize::json::ToJson` is not implemented for `handlebars::Context`
+kablam! 
+kablam! error[E0277]: the trait bound `handlebars::Context: rustc_serialize::json::ToJson` is not satisfied
+kablam!    --> src/commands.rs:306:37
+kablam!     |
+kablam! 306 |             match client.handlebars.template_renderw(&mut template, &data, &mut output) {
+kablam!     |                                     ^^^^^^^^^^^^^^^^ the trait `rustc_serialize::json::ToJson` is not implemented for `handlebars::Context`
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `lsiotemplate`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f5d0e8696618284f1165051ef43c2b3bb1d733fddb83482096acb3a27a403f3b`
+blam! f5d0e8696618284f1165051ef43c2b3bb1d733fddb83482096acb3a27a403f3b

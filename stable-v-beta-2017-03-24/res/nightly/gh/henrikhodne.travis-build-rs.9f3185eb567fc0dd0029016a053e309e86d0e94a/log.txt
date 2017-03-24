@@ -1,0 +1,24 @@
+boom! testing https://github.com/henrikhodne/travis-build-rs#9f3185eb567fc0dd0029016a053e309e86d0e94a against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 80d48a9c13deb8772981f376305dd275d4b449ebdad67b7bc7e6cc66e9080147
+boom! running `docker start -a 80d48a9c13deb8772981f376305dd275d4b449ebdad67b7bc7e6cc66e9080147`
+kablam!    Compiling travis_build v0.0.1 (file:///source)
+kablam! error: macros that expand to items must either be surrounded with braces or followed by a semicolon
+kablam!   --> src/ast/mod.rs:53:21
+kablam!    |
+kablam! 53 |   macro_rules! ast_if (
+kablam!    |  _____________________^ starting here...
+kablam! 54 | |     ($cond:expr { $($body:expr;)* }) => (::ast::If($cond, box ast_block! { $($body);* }, box ::ast::Noop));
+kablam! 55 | |     ($cond:expr { $($body:expr;)* } else { $($elsebody:expr;)* }) => (::ast::If($cond, box ast_block!{ $($body);* }, box ast_block! { $($elsebody);* }))
+kablam! 56 | | )
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `travis_build`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 80d48a9c13deb8772981f376305dd275d4b449ebdad67b7bc7e6cc66e9080147`
+blam! 80d48a9c13deb8772981f376305dd275d4b449ebdad67b7bc7e6cc66e9080147

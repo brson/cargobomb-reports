@@ -1,0 +1,64 @@
+boom! testing pabst-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 3bef3baf8e6a80558e6c3bc4d9017f6e0070a9c732e15170e5f7b83ff19cc04b
+boom! running `docker start -a 3bef3baf8e6a80558e6c3bc4d9017f6e0070a9c732e15170e5f7b83ff19cc04b`
+kablam!    Compiling las v0.3.4
+kablam!    Compiling sdc v0.1.1
+kablam!    Compiling pabst v0.1.0 (file:///source)
+kablam! error: module `point` is private
+kablam!   --> src/source/las.rs:57:17
+kablam!    |
+kablam! 57 |                 las::point::ScanDirection::Forward => ScanDirection::Forward,
+kablam!    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: module `point` is private
+kablam!   --> src/source/las.rs:58:17
+kablam!    |
+kablam! 58 |                 las::point::ScanDirection::Backward => ScanDirection::Backward,
+kablam!    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: module `writer` is private
+kablam!   --> src/sink/las.rs:13:32
+kablam!    |
+kablam! 13 | impl<W: Write + Seek> Sink for las::writer::OpenWriter<W> {
+kablam!    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: module `point` is private
+kablam!   --> src/sink/las.rs:30:29
+kablam!    |
+kablam! 30 |         return_number: try!(las::point::ReturnNumber::from_u8(point.return_number.unwrap_or(0) as u8)),
+kablam!    |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: module `point` is private
+kablam!   --> src/sink/las.rs:31:33
+kablam!    |
+kablam! 31 |         number_of_returns: try!(las::point::NumberOfReturns::from_u8(point.number_of_returns.unwrap_or(0) as u8)),
+kablam!    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: module `point` is private
+kablam!   --> src/sink/las.rs:33:64
+kablam!    |
+kablam! 33 |             ScanDirection::Forward | ScanDirection::Unknown => las::point::ScanDirection::Forward,
+kablam!    |                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: module `point` is private
+kablam!   --> src/sink/las.rs:34:40
+kablam!    |
+kablam! 34 |             ScanDirection::Backward => las::point::ScanDirection::Backward
+kablam!    |                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: module `point` is private
+kablam!   --> src/sink/las.rs:37:30
+kablam!    |
+kablam! 37 |         classification: try!(las::point::Classification::from_u8(point.classification)),
+kablam!    |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 8 previous errors
+kablam! 
+kablam! error: Could not compile `pabst`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 3bef3baf8e6a80558e6c3bc4d9017f6e0070a9c732e15170e5f7b83ff19cc04b`
+blam! 3bef3baf8e6a80558e6c3bc4d9017f6e0070a9c732e15170e5f7b83ff19cc04b

@@ -1,0 +1,33 @@
+boom! testing rsoundio-0.1.6 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 158a170bc9638b533025e1f0b69ba53293d370d7919bf17503b1c0c875f1956c
+boom! running `docker start -a 158a170bc9638b533025e1f0b69ba53293d370d7919bf17503b1c0c875f1956c`
+kablam!    Compiling rsoundio v0.1.6 (file:///source)
+kablam! warning: unused variable: `target`, #[warn(unused_variables)] on by default
+kablam!   --> build.rs:77:10
+kablam!    |
+kablam! 77 | fn build(target: String) {
+kablam!    |          ^^^^^^
+kablam! 
+kablam! warning: unused variable: `host`, #[warn(unused_variables)] on by default
+kablam!   --> build.rs:78:9
+kablam!    |
+kablam! 78 |     let host = env::var("HOST").unwrap();
+kablam!    |         ^^^^
+kablam! 
+kablam! error: failed to run custom build command for `rsoundio v0.1.6 (file:///source)`
+kablam! process didn't exit successfully: `/target/debug/build/rsoundio-5048c3be16d4e0e2/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! cargo:rustc-link-lib=dylib=soundio
+kablam! cargo:rustc-link-search=native=/target/debug/build/rsoundio-14f840a83b91f82f/out/lib
+kablam! cargo:include=/target/debug/build/rsoundio-14f840a83b91f82f/out/include
+kablam! cargo:root=/target/debug/build/rsoundio-14f840a83b91f82f/out
+kablam! 
+kablam! --- stderr
+kablam! thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: Error { repr: Os { code: 2, message: "No such file or directory" } }', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:837
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f 158a170bc9638b533025e1f0b69ba53293d370d7919bf17503b1c0c875f1956c`
+blam! 158a170bc9638b533025e1f0b69ba53293d370d7919bf17503b1c0c875f1956c

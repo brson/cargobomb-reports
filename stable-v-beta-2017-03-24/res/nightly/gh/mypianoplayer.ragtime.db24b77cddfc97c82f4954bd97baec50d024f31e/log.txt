@@ -1,0 +1,32 @@
+boom! testing https://github.com/mypianoplayer/ragtime#db24b77cddfc97c82f4954bd97baec50d024f31e against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 6a0b7fe338d9737d46cbe1c359e1c84fc11c8908e5f14b4b4b16e0c24feb7f7a
+boom! running `docker start -a 6a0b7fe338d9737d46cbe1c359e1c84fc11c8908e5f14b4b4b16e0c24feb7f7a`
+kablam!    Compiling ragtime v0.1.0 (file:///source)
+kablam! error[E0133]: use of mutable static requires unsafe function or block
+kablam!   --> src/entity_component/system.rs:12:8
+kablam!    |
+kablam! 12 |     if next_entity_id == i32::max_value() {
+kablam!    |        ^^^^^^^^^^^^^^ use of mutable static
+kablam! 
+kablam! error[E0133]: use of mutable static requires unsafe function or block
+kablam!   --> src/entity_component/system.rs:15:14
+kablam!    |
+kablam! 15 |     let id = next_entity_id;
+kablam!    |              ^^^^^^^^^^^^^^ use of mutable static
+kablam! 
+kablam! error[E0133]: use of mutable static requires unsafe function or block
+kablam!   --> src/entity_component/system.rs:16:5
+kablam!    |
+kablam! 16 |     next_entity_id += 1;
+kablam!    |     ^^^^^^^^^^^^^^ use of mutable static
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `ragtime`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 6a0b7fe338d9737d46cbe1c359e1c84fc11c8908e5f14b4b4b16e0c24feb7f7a`
+blam! 6a0b7fe338d9737d46cbe1c359e1c84fc11c8908e5f14b4b4b16e0c24feb7f7a

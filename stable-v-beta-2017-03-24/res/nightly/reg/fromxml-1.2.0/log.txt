@@ -1,0 +1,58 @@
+boom! testing fromxml-1.2.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! ed87b6feeb41ad4a9b957620141e132db6510e918917e75039f9e12689726a6b
+boom! running `docker start -a ed87b6feeb41ad4a9b957620141e132db6510e918917e75039f9e12689726a6b`
+kablam!    Compiling fromxml v1.2.0 (file:///source)
+kablam! warning: macro_escape is a deprecated synonym for macro_use
+kablam!  --> src/lib.rs:2:1
+kablam!   |
+kablam! 2 | #![macro_escape]
+kablam!   | ^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = help: consider an outer attribute, #[macro_use] mod ...
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::Buffer`
+kablam!  --> src/lib.rs:6:5
+kablam!   |
+kablam! 6 | use std::io::Buffer;
+kablam!   |     ^^^^^^^^^^^^^^^ no `Buffer` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::num::FromStrRadix`
+kablam!  --> src/lib.rs:7:5
+kablam!   |
+kablam! 7 | use std::num::FromStrRadix;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^ no `FromStrRadix` in `num`
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!    --> src/lib.rs:137:22
+kablam!     |
+kablam! 137 | impl Placeholder for uint {
+kablam!     |                      ^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!    --> src/lib.rs:169:19
+kablam!     |
+kablam! 169 |     let mut depth:uint = 1;
+kablam!     |                   ^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!    --> src/lib.rs:210:18
+kablam!     |
+kablam! 210 | impl FromXml for uint {
+kablam!     |                  ^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!    --> src/lib.rs:211:93
+kablam!     |
+kablam! 211 |     fn from_xml<'a, B:Buffer>(iter:&'a mut XmlIter<B>, attributes:Vec<Attribute>) -> Option<uint> {
+kablam!     |                                                                                             ^^^^ not found in this scope
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `fromxml`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f ed87b6feeb41ad4a9b957620141e132db6510e918917e75039f9e12689726a6b`
+blam! ed87b6feeb41ad4a9b957620141e132db6510e918917e75039f9e12689726a6b

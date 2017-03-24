@@ -1,0 +1,56 @@
+boom! testing erguotou-0.0.3 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! d58d67e4b690fc2d71dbedd6a0512b14fa126a7b1a5e9f254b59c3e0e97a5e41
+boom! running `docker start -a d58d67e4b690fc2d71dbedd6a0512b14fa126a7b1a5e9f254b59c3e0e97a5e41`
+kablam!    Compiling erguotou v0.0.3 (file:///source)
+kablam! error[E0432]: unresolved import `url::form_urlencoded::serialize`
+kablam!  --> src/form.rs:4:5
+kablam!   |
+kablam! 4 | use url::form_urlencoded::serialize;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `serialize` in `form_urlencoded`. Did you mean to use `Serializer`?
+kablam! 
+kablam! error[E0244]: wrong number of type arguments: expected 0, found 1
+kablam!   --> src/json.rs:23:55
+kablam!    |
+kablam! 23 |     fn json(mut self, data: &'a mut JsonParam<'a>) -> RequestBuilder<'a, U>;
+kablam!    |                                                       ^^^^^^^^^^^^^^^^^^^^^ expected no type arguments
+kablam! 
+kablam! error[E0244]: wrong number of type arguments: expected 0, found 1
+kablam!   --> src/json.rs:26:41
+kablam!    |
+kablam! 26 | impl<'a, U: IntoUrl> JsonRPC<'a, U> for RequestBuilder<'a, U> {
+kablam!    |                                         ^^^^^^^^^^^^^^^^^^^^^ expected no type arguments
+kablam! 
+kablam! error[E0244]: wrong number of type arguments: expected 0, found 1
+kablam!   --> src/form.rs:33:55
+kablam!    |
+kablam! 33 |     fn form(mut self, data: &'a mut FormParam<'a>) -> RequestBuilder<'a, U>;
+kablam!    |                                                       ^^^^^^^^^^^^^^^^^^^^^ expected no type arguments
+kablam! 
+kablam! error[E0244]: wrong number of type arguments: expected 0, found 1
+kablam!   --> src/form.rs:36:42
+kablam!    |
+kablam! 36 | impl<'a, U: IntoUrl> FormBody<'a, U> for RequestBuilder<'a, U> {
+kablam!    |                                          ^^^^^^^^^^^^^^^^^^^^^ expected no type arguments
+kablam! 
+kablam! error[E0244]: wrong number of type arguments: expected 0, found 1
+kablam!   --> src/json.rs:27:51
+kablam!    |
+kablam! 27 |     fn json(self, data: &'a mut JsonParam<'a>) -> RequestBuilder<'a, U> {
+kablam!    |                                                   ^^^^^^^^^^^^^^^^^^^^^ expected no type arguments
+kablam! 
+kablam! error[E0244]: wrong number of type arguments: expected 0, found 1
+kablam!   --> src/form.rs:37:51
+kablam!    |
+kablam! 37 |     fn form(self, data: &'a mut FormParam<'a>) -> RequestBuilder<'a, U> {
+kablam!    |                                                   ^^^^^^^^^^^^^^^^^^^^^ expected no type arguments
+kablam! 
+kablam! error: aborting due to 6 previous errors
+kablam! 
+kablam! error: Could not compile `erguotou`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f d58d67e4b690fc2d71dbedd6a0512b14fa126a7b1a5e9f254b59c3e0e97a5e41`
+blam! d58d67e4b690fc2d71dbedd6a0512b14fa126a7b1a5e9f254b59c3e0e97a5e41

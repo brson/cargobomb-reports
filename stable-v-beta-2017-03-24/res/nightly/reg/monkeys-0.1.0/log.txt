@@ -1,0 +1,38 @@
+boom! testing monkeys-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 770f2af53caa080408d216493ca293323f4bc78e2be7dc193015425a57f54a03
+boom! running `docker start -a 770f2af53caa080408d216493ca293323f4bc78e2be7dc193015425a57f54a03`
+kablam!    Compiling monkeys v0.1.0 (file:///source)
+kablam! error[E0432]: unresolved import `std::marker::Reflect`
+kablam!   --> src/lib.rs:10:32
+kablam!    |
+kablam! 10 | use std::marker::{PhantomData, Reflect};
+kablam!    |                                ^^^^^^^ no `Reflect` in `marker`
+kablam! 
+kablam! error[E0432]: unresolved import `std::panic::AssertRecoverSafe`
+kablam!   --> src/lib.rs:15:24
+kablam!    |
+kablam! 15 | use std::panic::{self, AssertRecoverSafe};
+kablam!    |                        ^^^^^^^^^^^^^^^^^ no `AssertRecoverSafe` in `panic`
+kablam! 
+kablam! error[E0423]: expected function, found macro `panic::propagate`
+kablam!   --> src/lib.rs:90:5
+kablam!    |
+kablam! 90 |     panic::propagate(Box::new(ForceUnwind));
+kablam!    |     ^^^^^^^^^^^^^^^^ did you mean `panic::propagate!(...)`?
+kablam! 
+kablam! error[E0423]: expected function, found macro `panic::recover`
+kablam!    --> src/lib.rs:124:22
+kablam!     |
+kablam! 124 |         let result = panic::recover(move || {
+kablam!     |                      ^^^^^^^^^^^^^^ did you mean `panic::recover!(...)`?
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `monkeys`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 770f2af53caa080408d216493ca293323f4bc78e2be7dc193015425a57f54a03`
+blam! 770f2af53caa080408d216493ca293323f4bc78e2be7dc193015425a57f54a03

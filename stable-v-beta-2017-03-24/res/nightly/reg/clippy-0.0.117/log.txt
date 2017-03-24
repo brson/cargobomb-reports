@@ -1,0 +1,23 @@
+boom! testing clippy-0.0.117 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 62f7970160bb987a6c9ba95aa863291328ec29cf9018c403f30adfb952ee951d
+boom! running `docker start -a 62f7970160bb987a6c9ba95aa863291328ec29cf9018c403f30adfb952ee951d`
+kablam!    Compiling clippy_lints v0.0.117
+kablam! error[E0308]: mismatched types
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/clippy_lints-0.0.117/src/cyclomatic_complexity.rs:49:36
+kablam!    |
+kablam! 49 |         let cfg = CFG::new(cx.tcx, expr);
+kablam!    |                                    ^^^^ expected struct `rustc::hir::Body`, found struct `rustc::hir::Expr`
+kablam!    |
+kablam!    = note: expected type `&rustc::hir::Body`
+kablam!               found type `&'tcx rustc::hir::Expr`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `clippy_lints`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 62f7970160bb987a6c9ba95aa863291328ec29cf9018c403f30adfb952ee951d`
+blam! 62f7970160bb987a6c9ba95aa863291328ec29cf9018c403f30adfb952ee951d

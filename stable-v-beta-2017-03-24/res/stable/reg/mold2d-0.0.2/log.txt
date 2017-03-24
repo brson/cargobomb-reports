@@ -1,0 +1,136 @@
+boom! testing mold2d-0.0.2 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! a593184106314a2d7f91952cdcf3242717c1df3ac7adad65b1b74a1772d40618
+boom! running `docker start -a a593184106314a2d7f91952cdcf3242717c1df3ac7adad65b1b74a1772d40618`
+kablam!    Compiling sdl2-sys v0.6.2
+kablam!    Compiling sdl2 v0.9.1
+kablam!    Compiling sdl2_ttf v0.9.1
+kablam!    Compiling sdl2_image v0.3.0
+kablam!    Compiling mold2d v0.0.2 (file:///source)
+kablam! warning: method is never used: `set_frame_delay`, #[warn(dead_code)] on by default
+kablam!    --> src/sprite.rs:179:5
+kablam!     |
+kablam! 179 |       fn set_frame_delay(&mut self, frame_delay: f64) {
+kablam!     |  _____^ starting here...
+kablam! 180 | |         self.frame_delay = frame_delay;
+kablam! 181 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `set_fps`, #[warn(dead_code)] on by default
+kablam!    --> src/sprite.rs:183:5
+kablam!     |
+kablam! 183 |       fn set_fps(&mut self, fps: f64) {
+kablam!     |  _____^ starting here...
+kablam! 184 | |         if fps == 0.0 {
+kablam! 185 | |             panic!("Passed 0 to AnimatedSprite::set_fps");
+kablam! 186 | |         }
+kablam! 187 | |
+kablam! 188 | |         self.set_frame_delay(1.0 / fps);
+kablam! 189 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 10.9 secs
+boom! running `docker rm -f a593184106314a2d7f91952cdcf3242717c1df3ac7adad65b1b74a1772d40618`
+blam! a593184106314a2d7f91952cdcf3242717c1df3ac7adad65b1b74a1772d40618
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 12780df432008937d142b7510dfea51af43fff45f0711a4349697639ac097d6a
+boom! running `docker start -a 12780df432008937d142b7510dfea51af43fff45f0711a4349697639ac097d6a`
+kablam!    Compiling mold2d v0.0.2 (file:///source)
+kablam! warning: unused variable: `side`, #[warn(unused_variables)] on by default
+kablam!    --> src/raycast.rs:234:13
+kablam!     |
+kablam! 234 |         let side = shorten_ray(&mut segment, &rect);
+kablam!     |             ^^^^
+kablam! 
+kablam! warning: method is never used: `set_frame_delay`, #[warn(dead_code)] on by default
+kablam!    --> src/sprite.rs:179:5
+kablam!     |
+kablam! 179 |       fn set_frame_delay(&mut self, frame_delay: f64) {
+kablam!     |  _____^ starting here...
+kablam! 180 | |         self.frame_delay = frame_delay;
+kablam! 181 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `set_fps`, #[warn(dead_code)] on by default
+kablam!    --> src/sprite.rs:183:5
+kablam!     |
+kablam! 183 |       fn set_fps(&mut self, fps: f64) {
+kablam!     |  _____^ starting here...
+kablam! 184 | |         if fps == 0.0 {
+kablam! 185 | |             panic!("Passed 0 to AnimatedSprite::set_fps");
+kablam! 186 | |         }
+kablam! 187 | |
+kablam! 188 | |         self.set_frame_delay(1.0 / fps);
+kablam! 189 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/mold2d-78d88a28f041bfe2.0.o" "-o" "/target/debug/deps/mold2d-78d88a28f041bfe2" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libsdl2_ttf-0f595d5ec115d47f.rlib" "/target/debug/deps/libsdl2_image-11162244391386c9.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-dd7007be8bc832b7.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-58bde84252e1d985.rlib" "/target/debug/deps/libsdl2-0f398440ca4cf40b.rlib" "/target/debug/deps/libbitflags-313393b835abce9d.rlib" "/target/debug/deps/libsdl2_sys-f1e0c56fa1683efe.rlib" "/target/debug/deps/liblibc-46e3f3685e5149b2.rlib" "/target/debug/deps/libnum-f44a14571a14efdb.rlib" "/target/debug/deps/libnum_rational-c4d565d840e49ddd.rlib" "/target/debug/deps/libnum_bigint-b6cf8179f4f7457e.rlib" "/target/debug/deps/librand-26cfd8d095643d5f.rlib" "/target/debug/deps/liblibc-6451aa7d8103c93e.rlib" "/target/debug/deps/libnum_complex-7a8f662618d32193.rlib" "/target/debug/deps/librustc_serialize-03b62901d97343ea.rlib" "/target/debug/deps/libnum_iter-f48a79cea69f0b4a.rlib" "/target/debug/deps/libnum_integer-5359a9ecb109fd5e.rlib" "/target/debug/deps/libnum_traits-e71ec950eb575a4e.rlib" "/target/debug/deps/libbitflags-03cc0f3dcb089e0c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-19e7cee83d8001c7.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-2ddb28df747fcb8c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-21709492a058d9ce.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-e19aa6725ab01bfd.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-99ff2e008613b591.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-e2513aecb8fbb70c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-f3200ab7e7fe644c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-dba58b8da674d203.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-6d4348bcabf40a71.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-9f45c45fdcba4301.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-b4ef8c9d93bc879a.rlib" "-l" "SDL2_ttf" "-l" "SDL2_image" "-l" "SDL2" "-l" "c" "-l" "m" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lSDL2_ttf
+kablam! /usr/bin/ld: cannot find -lSDL2_image
+kablam! /usr/bin/ld: cannot find -lSDL2
+kablam! collect2: error: ld returned 1 exit status
+kablam! 
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `mold2d`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 12780df432008937d142b7510dfea51af43fff45f0711a4349697639ac097d6a`
+blam! 12780df432008937d142b7510dfea51af43fff45f0711a4349697639ac097d6a
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! dbc0bf61471a0e0b755251b40b318a6d9af8f7e5eb3aba10105a55229312691e
+boom! running `docker start -a dbc0bf61471a0e0b755251b40b318a6d9af8f7e5eb3aba10105a55229312691e`
+kablam!    Compiling mold2d v0.0.2 (file:///source)
+kablam! warning: unused variable: `side`, #[warn(unused_variables)] on by default
+kablam!    --> src/raycast.rs:234:13
+kablam!     |
+kablam! 234 |         let side = shorten_ray(&mut segment, &rect);
+kablam!     |             ^^^^
+kablam! 
+kablam! warning: method is never used: `set_frame_delay`, #[warn(dead_code)] on by default
+kablam!    --> src/sprite.rs:179:5
+kablam!     |
+kablam! 179 |       fn set_frame_delay(&mut self, frame_delay: f64) {
+kablam!     |  _____^ starting here...
+kablam! 180 | |         self.frame_delay = frame_delay;
+kablam! 181 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `set_fps`, #[warn(dead_code)] on by default
+kablam!    --> src/sprite.rs:183:5
+kablam!     |
+kablam! 183 |       fn set_fps(&mut self, fps: f64) {
+kablam!     |  _____^ starting here...
+kablam! 184 | |         if fps == 0.0 {
+kablam! 185 | |             panic!("Passed 0 to AnimatedSprite::set_fps");
+kablam! 186 | |         }
+kablam! 187 | |
+kablam! 188 | |         self.set_frame_delay(1.0 / fps);
+kablam! 189 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/mold2d-78d88a28f041bfe2.0.o" "-o" "/target/debug/deps/mold2d-78d88a28f041bfe2" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libsdl2_ttf-0f595d5ec115d47f.rlib" "/target/debug/deps/libsdl2_image-11162244391386c9.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-dd7007be8bc832b7.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-58bde84252e1d985.rlib" "/target/debug/deps/libsdl2-0f398440ca4cf40b.rlib" "/target/debug/deps/libbitflags-313393b835abce9d.rlib" "/target/debug/deps/libsdl2_sys-f1e0c56fa1683efe.rlib" "/target/debug/deps/liblibc-46e3f3685e5149b2.rlib" "/target/debug/deps/libnum-f44a14571a14efdb.rlib" "/target/debug/deps/libnum_rational-c4d565d840e49ddd.rlib" "/target/debug/deps/libnum_bigint-b6cf8179f4f7457e.rlib" "/target/debug/deps/librand-26cfd8d095643d5f.rlib" "/target/debug/deps/liblibc-6451aa7d8103c93e.rlib" "/target/debug/deps/libnum_complex-7a8f662618d32193.rlib" "/target/debug/deps/librustc_serialize-03b62901d97343ea.rlib" "/target/debug/deps/libnum_iter-f48a79cea69f0b4a.rlib" "/target/debug/deps/libnum_integer-5359a9ecb109fd5e.rlib" "/target/debug/deps/libnum_traits-e71ec950eb575a4e.rlib" "/target/debug/deps/libbitflags-03cc0f3dcb089e0c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-19e7cee83d8001c7.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-2ddb28df747fcb8c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-21709492a058d9ce.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-e19aa6725ab01bfd.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-99ff2e008613b591.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-e2513aecb8fbb70c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-f3200ab7e7fe644c.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-e83ac2302b5439a3.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-dba58b8da674d203.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-6d4348bcabf40a71.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-9f45c45fdcba4301.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-b4ef8c9d93bc879a.rlib" "-l" "SDL2_ttf" "-l" "SDL2_image" "-l" "SDL2" "-l" "c" "-l" "m" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lSDL2_ttf
+kablam! /usr/bin/ld: cannot find -lSDL2_image
+kablam! /usr/bin/ld: cannot find -lSDL2
+kablam! collect2: error: ld returned 1 exit status
+kablam! 
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `mold2d`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f dbc0bf61471a0e0b755251b40b318a6d9af8f7e5eb3aba10105a55229312691e`
+blam! dbc0bf61471a0e0b755251b40b318a6d9af8f7e5eb3aba10105a55229312691e

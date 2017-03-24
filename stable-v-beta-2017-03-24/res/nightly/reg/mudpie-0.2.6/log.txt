@@ -1,0 +1,92 @@
+boom! testing mudpie-0.2.6 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! a7b5c0f7dab7cc6e6cdfebedab7b0a4c8f82d7d022e7db3c88d1bdf2b5730025
+boom! running `docker start -a a7b5c0f7dab7cc6e6cdfebedab7b0a4c8f82d7d022e7db3c88d1bdf2b5730025`
+kablam!    Compiling mudpie v0.2.6 (file:///source)
+kablam! error[E0432]: unresolved import `std::ascii::OwnedAsciiExt`
+kablam!  --> src/utils/http_request.rs:5:5
+kablam!   |
+kablam! 5 | use std::ascii::OwnedAsciiExt; // the magic for into_ascii_lowercase
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^ no `OwnedAsciiExt` in `ascii`
+kablam! 
+kablam! error[E0432]: unresolved import `std::ascii::OwnedAsciiExt`
+kablam!  --> src/webserver/read_request.rs:5:5
+kablam!   |
+kablam! 5 | use std::ascii::OwnedAsciiExt; 
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^ no `OwnedAsciiExt` in `ascii`
+kablam! 
+kablam! error[E0432]: unresolved import `std::ascii::OwnedAsciiExt`
+kablam!  --> src/webserver/router.rs:2:5
+kablam!   |
+kablam! 2 | use std::ascii::OwnedAsciiExt;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^ no `OwnedAsciiExt` in `ascii`
+kablam! 
+kablam! error: no method named `into_ascii_lowercase` found for type `std::vec::Vec<u8>` in the current scope
+kablam!   --> src/utils/http_request.rs:60:44
+kablam!    |
+kablam! 60 |     let method = request_parts[0].to_vec().into_ascii_lowercase();
+kablam!    |                                            ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `into_ascii_lowercase` found for type `std::vec::Vec<u8>` in the current scope
+kablam!   --> src/utils/http_request.rs:62:46
+kablam!    |
+kablam! 62 |     let protocol = request_parts[2].to_vec().into_ascii_lowercase();
+kablam!    |                                              ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `push_all` found for type `std::vec::Vec<u8>` in the current scope
+kablam!    --> src/utils/http_request.rs:126:26
+kablam!     |
+kablam! 126 |         nice_header_name.push_all(header_parts[0]);
+kablam!     |                          ^^^^^^^^
+kablam! 
+kablam! error: no method named `into_ascii_lowercase` found for type `std::vec::Vec<u8>` in the current scope
+kablam!    --> src/utils/http_request.rs:127:49
+kablam!     |
+kablam! 127 |         let nice_header_name = nice_header_name.into_ascii_lowercase();
+kablam!     |                                                 ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `push_all` found for type `std::vec::Vec<u8>` in the current scope
+kablam!    --> src/utils/http_request.rs:139:36
+kablam!     |
+kablam! 139 |                 (*entry.get_mut()).push_all(b",");
+kablam!     |                                    ^^^^^^^^
+kablam! 
+kablam! error: no method named `push_all` found for type `std::vec::Vec<u8>` in the current scope
+kablam!    --> src/utils/http_request.rs:140:36
+kablam!     |
+kablam! 140 |                 (*entry.get_mut()).push_all(&header_value);
+kablam!     |                                    ^^^^^^^^
+kablam! 
+kablam! error: no method named `into_ascii_lowercase` found for type `std::vec::Vec<u8>` in the current scope
+kablam!    --> src/webserver/read_request.rs:113:36
+kablam!     |
+kablam! 113 |     let val = val.unwrap().clone().into_ascii_lowercase();
+kablam!     |                                    ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `push_all` found for type `&mut std::vec::Vec<u8>` in the current scope
+kablam!    --> src/webserver/read_request.rs:143:16
+kablam!     |
+kablam! 143 |         buffer.push_all(&chunk_buff[0..size]);
+kablam!     |                ^^^^^^^^
+kablam! 
+kablam! error: no method named `push_all` found for type `&mut std::vec::Vec<u8>` in the current scope
+kablam!    --> src/webserver/read_request.rs:170:16
+kablam!     |
+kablam! 170 |         buffer.push_all(&chunk_buff[0..size]);
+kablam!     |                ^^^^^^^^
+kablam! 
+kablam! error: no method named `into_ascii_lowercase` found for type `std::string::String` in the current scope
+kablam!   --> src/webserver/router.rs:89:43
+kablam!    |
+kablam! 89 |         let method = p.trim().to_string().into_ascii_lowercase();
+kablam!    |                                           ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 10 previous errors
+kablam! 
+kablam! error: Could not compile `mudpie`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f a7b5c0f7dab7cc6e6cdfebedab7b0a4c8f82d7d022e7db3c88d1bdf2b5730025`
+blam! a7b5c0f7dab7cc6e6cdfebedab7b0a4c8f82d7d022e7db3c88d1bdf2b5730025

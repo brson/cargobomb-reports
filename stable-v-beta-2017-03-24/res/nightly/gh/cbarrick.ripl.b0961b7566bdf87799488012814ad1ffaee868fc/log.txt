@@ -1,0 +1,80 @@
+boom! testing https://github.com/cbarrick/ripl#b0961b7566bdf87799488012814ad1ffaee868fc against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! f7d9cf07e390de5ad183df4240334f4476ad710ac15e8a1b9a62d274b90ef807
+boom! running `docker start -a f7d9cf07e390de5ad183df4240334f4476ad710ac15e8a1b9a62d274b90ef807`
+kablam!    Compiling ripl v0.1.0 (file:///source)
+kablam! warning: method is never used: `new`
+kablam!   --> src/lexer.rs:48:5
+kablam!    |
+kablam! 48 |       pub fn new(chars: I, ns: &'ns NameSpace) -> Lexer<'ns, I> {
+kablam!    |  _____^ starting here...
+kablam! 49 | |         Lexer {
+kablam! 50 | |             inner: chars,
+kablam! 51 | |             ns: ns,
+kablam! 52 | |             buf: String::with_capacity(32),
+kablam! 53 | |             line: 1,
+kablam! 54 | |             col: 1,
+kablam! 55 | |         }
+kablam! 56 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `new`
+kablam!   --> src/namespace.rs:9:5
+kablam!    |
+kablam! 9  |       pub fn new() -> NameSpace {
+kablam!    |  _____^ starting here...
+kablam! 10 | |         NameSpace { strings: RefCell::new(Vec::with_capacity(256)) }
+kablam! 11 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `lookup`
+kablam!   --> src/namespace.rs:24:5
+kablam!    |
+kablam! 24 |     pub fn lookup(&self, idx: usize) -> Option<&str> {
+kablam!    |     ^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.87 secs
+boom! running `docker rm -f f7d9cf07e390de5ad183df4240334f4476ad710ac15e8a1b9a62d274b90ef807`
+blam! f7d9cf07e390de5ad183df4240334f4476ad710ac15e8a1b9a62d274b90ef807
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 394a503729777a3b71cafe8b8c00fc77621072f8f6aaae7c85399fd723a0b267
+boom! running `docker start -a 394a503729777a3b71cafe8b8c00fc77621072f8f6aaae7c85399fd723a0b267`
+kablam!    Compiling ripl v0.1.0 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 2.1 secs
+boom! running `docker rm -f 394a503729777a3b71cafe8b8c00fc77621072f8f6aaae7c85399fd723a0b267`
+blam! 394a503729777a3b71cafe8b8c00fc77621072f8f6aaae7c85399fd723a0b267
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! c94e1069cec85412b7e09fe2735cad1452e115c765163a6e2cc92cd6d7f5c06a
+boom! running `docker start -a c94e1069cec85412b7e09fe2735cad1452e115c765163a6e2cc92cd6d7f5c06a`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/ripl-5a76a399f6bfab21
+blam! 
+blam! running 5 tests
+blam! test namespace::test::basic ... ok
+blam! test namespace::test::dedupe ... ok
+blam! test lexer::test::realistic ... ok
+blam! test lexer::test::basic ... ok
+blam! test namespace::test::index ... ok
+blam! 
+blam! test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!    Doc-tests ripl
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f c94e1069cec85412b7e09fe2735cad1452e115c765163a6e2cc92cd6d7f5c06a`
+blam! c94e1069cec85412b7e09fe2735cad1452e115c765163a6e2cc92cd6d7f5c06a

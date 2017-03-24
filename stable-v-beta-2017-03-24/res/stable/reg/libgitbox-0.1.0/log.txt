@@ -1,0 +1,25 @@
+boom! testing libgitbox-0.1.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! c2b84f6a08d39203268c001029cf56102676939764928f1dad13b48acb087656
+boom! running `docker start -a c2b84f6a08d39203268c001029cf56102676939764928f1dad13b48acb087656`
+kablam!    Compiling libgitbox v0.1.0 (file:///source)
+kablam!    Compiling openssl-sys v0.9.7
+blam! Build failed, waiting for other jobs to finish...
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Flags`
+kablam!  --> build.rs:7:21
+kablam!   |
+kablam! 7 |     let mut flags = Flags::all();
+kablam!   |                     ^^^^^^^^^^ Use of undeclared type or module `Flags`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: failed to run custom build command for `openssl-sys v0.9.7`
+kablam! process didn't exit successfully: `/target/debug/build/openssl-sys-163218bc361b6137/build-script-build` (exit code: 101)
+kablam! --- stderr
+kablam! thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: "Failed to run `\"pkg-config\" \"--libs\" \"--cflags\" \"openssl\"`: No such file or directory (os error 2)"', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:837
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f c2b84f6a08d39203268c001029cf56102676939764928f1dad13b48acb087656`
+blam! c2b84f6a08d39203268c001029cf56102676939764928f1dad13b48acb087656

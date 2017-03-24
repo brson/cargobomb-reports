@@ -1,0 +1,32 @@
+boom! testing init-0.2.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 0b229e3f6e849104495058701131935c8312d0e364a50c3228df0f7cacedbc5b
+boom! running `docker start -a 0b229e3f6e849104495058701131935c8312d0e364a50c3228df0f7cacedbc5b`
+kablam!    Compiling init_codegen v0.2.0
+kablam! error: `proc-macro` crate types cannot export any items other than functions tagged with `#[proc_macro_derive]` currently
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/init_codegen-0.2.0/src/lib.rs:22:1
+kablam!    |
+kablam! 22 | pub fn init(_: TokenStream, target: TokenStream) -> TokenStream {
+kablam!    | ^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/init_codegen-0.2.0/src/lib.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(proc_macro)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: The attribute `proc_macro_attribute` is currently unknown to the compiler and may have meaning added to it in the future (see issue #29642)
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/init_codegen-0.2.0/src/lib.rs:21:1
+kablam!    |
+kablam! 21 | #[proc_macro_attribute]
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `init_codegen`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 0b229e3f6e849104495058701131935c8312d0e364a50c3228df0f7cacedbc5b`
+blam! 0b229e3f6e849104495058701131935c8312d0e364a50c3228df0f7cacedbc5b

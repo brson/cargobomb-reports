@@ -1,0 +1,63 @@
+boom! testing pippin-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! db124d568b36054681dd52c93581c16394a41ce4cf1de750a53d562e29a9b15d
+boom! running `docker start -a db124d568b36054681dd52c93581c16394a41ce4cf1de750a53d562e29a9b15d`
+kablam!    Compiling hashindexed v0.1.1
+kablam!    Compiling pippin v0.1.0 (file:///source)
+kablam! error[E0195]: lifetime parameters or bounds on method `read_ss` do not match the trait declaration
+kablam!    --> src/fileio.rs:161:5
+kablam!     |
+kablam! 161 |     fn read_ss<'a>(&self, ss_num: usize) -> Result<Option<Box<Read+'a>>> {
+kablam!     |     ^ lifetimes do not match trait
+kablam! 
+kablam! error[E0195]: lifetime parameters or bounds on method `read_ss_cl` do not match the trait declaration
+kablam!    --> src/fileio.rs:176:5
+kablam!     |
+kablam! 176 |       fn read_ss_cl<'a>(&self, ss_num: usize, cl_num: usize) -> Result<Option<Box<Read+'a>>> {
+kablam!     |  _____^ starting here...
+kablam! 177 | |         Ok(match self.paths.paths.get(ss_num).and_then(|&(_, ref logs)| logs.get(cl_num)) {
+kablam! 178 | |             Some(p) => {
+kablam! 179 | |                 trace!("Reading log file: {}", p.display());
+kablam! 180 | |                 Some(box try!(File::open(p)))
+kablam! 181 | |             },
+kablam! 182 | |             None => None,
+kablam! 183 | |         })
+kablam! 184 | |     }
+kablam!     | |_____^ ...ending here: lifetimes do not match trait
+kablam! 
+kablam! error[E0195]: lifetime parameters or bounds on method `new_ss` do not match the trait declaration
+kablam!    --> src/fileio.rs:186:5
+kablam!     |
+kablam! 186 |     fn new_ss<'a>(&mut self, ss_num: usize) -> Result<Option<Box<Write+'a>>> {
+kablam!     |     ^ lifetimes do not match trait
+kablam! 
+kablam! error[E0195]: lifetime parameters or bounds on method `append_ss_cl` do not match the trait declaration
+kablam!    --> src/fileio.rs:203:5
+kablam!     |
+kablam! 203 |       fn append_ss_cl<'a>(&mut self, ss_num: usize, cl_num: usize) -> Result<Option<Box<Write+'a>>> {
+kablam!     |  _____^ starting here...
+kablam! 204 | |         Ok(match self.paths.paths.get(ss_num).and_then(|&(_, ref logs)| logs.get(cl_num)) {
+kablam! 205 | |             Some(p) => {
+kablam! 206 | |                 trace!("Appending to log file: {}", p.display());
+kablam! 207 | |                 Some(box try!(OpenOptions::new().write(true).append(true).open(p)))
+kablam! 208 | |             },
+kablam! 209 | |             None => None
+kablam! 210 | |         })
+kablam! 211 | |     }
+kablam!     | |_____^ ...ending here: lifetimes do not match trait
+kablam! 
+kablam! error[E0195]: lifetime parameters or bounds on method `new_ss_cl` do not match the trait declaration
+kablam!    --> src/fileio.rs:212:5
+kablam!     |
+kablam! 212 |     fn new_ss_cl<'a>(&mut self, ss_num: usize, cl_num: usize) -> Result<Option<Box<Write+'a>>> {
+kablam!     |     ^ lifetimes do not match trait
+kablam! 
+kablam! error: aborting due to 5 previous errors
+kablam! 
+kablam! error: Could not compile `pippin`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f db124d568b36054681dd52c93581c16394a41ce4cf1de750a53d562e29a9b15d`
+blam! db124d568b36054681dd52c93581c16394a41ce4cf1de750a53d562e29a9b15d

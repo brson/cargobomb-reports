@@ -1,0 +1,216 @@
+boom! testing clipboard-win-1.8.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 308d15ba775ab610beb48a6261ce6f9ca31f11585ca0583c6c2b521e76337e45
+boom! running `docker start -a 308d15ba775ab610beb48a6261ce6f9ca31f11585ca0583c6c2b521e76337e45`
+kablam!    Compiling clipboard-win v1.8.1 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.29 secs
+boom! running `docker rm -f 308d15ba775ab610beb48a6261ce6f9ca31f11585ca0583c6c2b521e76337e45`
+blam! 308d15ba775ab610beb48a6261ce6f9ca31f11585ca0583c6c2b521e76337e45
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! d33567043c3c1a0790a11365de62f37e864f799b849d901b352aafac91079e60
+boom! running `docker start -a d33567043c3c1a0790a11365de62f37e864f799b849d901b352aafac91079e60`
+kablam!    Compiling clipboard-win v1.8.1 (file:///source)
+kablam! error[E0432]: unresolved import `clipboard_win::wrapper::open_clipboard`
+kablam!  --> tests/clipboard.rs:4:30
+kablam!   |
+kablam! 4 | use clipboard_win::wrapper::{open_clipboard, close_clipboard, set_clipboard_raw, get_clipboard_seq_num};
+kablam!   |                              ^^^^^^^^^^^^^^ Could not find `wrapper` in `clipboard_win`
+kablam! 
+kablam! error[E0432]: unresolved import `clipboard_win::wrapper::close_clipboard`
+kablam!  --> tests/clipboard.rs:4:46
+kablam!   |
+kablam! 4 | use clipboard_win::wrapper::{open_clipboard, close_clipboard, set_clipboard_raw, get_clipboard_seq_num};
+kablam!   |                                              ^^^^^^^^^^^^^^^ Could not find `wrapper` in `clipboard_win`
+kablam! 
+kablam! error[E0432]: unresolved import `clipboard_win::wrapper::set_clipboard_raw`
+kablam!  --> tests/clipboard.rs:4:63
+kablam!   |
+kablam! 4 | use clipboard_win::wrapper::{open_clipboard, close_clipboard, set_clipboard_raw, get_clipboard_seq_num};
+kablam!   |                                                               ^^^^^^^^^^^^^^^^^ Could not find `wrapper` in `clipboard_win`
+kablam! 
+kablam! error[E0432]: unresolved import `clipboard_win::wrapper::get_clipboard_seq_num`
+kablam!  --> tests/clipboard.rs:4:82
+kablam!   |
+kablam! 4 | use clipboard_win::wrapper::{open_clipboard, close_clipboard, set_clipboard_raw, get_clipboard_seq_num};
+kablam!   |                                                                                  ^^^^^^^^^^^^^^^^^^^^^ Could not find `wrapper` in `clipboard_win`
+kablam! 
+kablam! error[E0425]: cannot find function `get_clipboard_formats` in this scope
+kablam!   --> tests/clipboard.rs:10:29
+kablam!    |
+kablam! 10 |     let clipboard_formats = get_clipboard_formats();
+kablam!    |                             ^^^^^^^^^^^^^^^^^^^^^ did you mean `get_clipboard_formats_test`?
+kablam! 
+kablam! error[E0425]: cannot find function `get_format_name` in this scope
+kablam!   --> tests/clipboard.rs:17:36
+kablam!    |
+kablam! 17 |         if let Some(format_name) = get_format_name(format) {
+kablam!    |                                    ^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `set_clipboard` in this scope
+kablam!   --> tests/clipboard.rs:32:17
+kablam!    |
+kablam! 32 |         assert!(set_clipboard(expected_string).is_ok());
+kablam!    |                 ^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `get_clipboard_string` in this scope
+kablam!   --> tests/clipboard.rs:34:22
+kablam!    |
+kablam! 34 |         let result = get_clipboard_string();
+kablam!    |                      ^^^^^^^^^^^^^^^^^^^^ did you mean `get_clipboard_test`?
+kablam! 
+kablam! error[E0425]: cannot find function `get_clipboard_string` in this scope
+kablam!   --> tests/clipboard.rs:46:18
+kablam!    |
+kablam! 46 |     let result = get_clipboard_string();
+kablam!    |                  ^^^^^^^^^^^^^^^^^^^^ did you mean `get_clipboard_test`?
+kablam! 
+kablam! error[E0425]: cannot find function `is_format_avail` in this scope
+kablam!   --> tests/clipboard.rs:55:13
+kablam!    |
+kablam! 55 |     assert!(is_format_avail(13)); //default unicode format
+kablam!    |             ^^^^^^^^^^^^^^^ did you mean `is_format_avail_test`?
+kablam! 
+kablam! error[E0425]: cannot find function `is_format_avail` in this scope
+kablam!   --> tests/clipboard.rs:56:14
+kablam!    |
+kablam! 56 |     assert!(!is_format_avail(66613666));
+kablam!    |              ^^^^^^^^^^^^^^^ did you mean `is_format_avail_test`?
+kablam! 
+kablam! error[E0425]: cannot find function `count_formats` in this scope
+kablam!   --> tests/clipboard.rs:61:18
+kablam!    |
+kablam! 61 |     let result = count_formats();
+kablam!    |                  ^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `register_format` in this scope
+kablam!   --> tests/clipboard.rs:72:22
+kablam!    |
+kablam! 72 |     let new_format = register_format("text");
+kablam!    |                      ^^^^^^^^^^^^^^^ did you mean `register_format_test`?
+kablam! 
+kablam! error[E0425]: cannot find function `is_format_avail` in this scope
+kablam!   --> tests/clipboard.rs:83:13
+kablam!    |
+kablam! 83 |     assert!(is_format_avail(new_format));
+kablam!    |             ^^^^^^^^^^^^^^^ did you mean `is_format_avail_test`?
+kablam! 
+kablam! error[E0425]: cannot find function `get_clipboard` in this scope
+kablam!   --> tests/clipboard.rs:85:18
+kablam!    |
+kablam! 85 |     let result = get_clipboard(new_format);
+kablam!    |                  ^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error: aborting due to 15 previous errors
+kablam! 
+kablam! error: Could not compile `clipboard-win`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f d33567043c3c1a0790a11365de62f37e864f799b849d901b352aafac91079e60`
+blam! d33567043c3c1a0790a11365de62f37e864f799b849d901b352aafac91079e60
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 2709cffecc8f900e265958b0aea40039d72b6d9ebaeb804c00440140f0153117
+boom! running `docker start -a 2709cffecc8f900e265958b0aea40039d72b6d9ebaeb804c00440140f0153117`
+kablam!    Compiling clipboard-win v1.8.1 (file:///source)
+kablam! error[E0432]: unresolved import `clipboard_win::wrapper::open_clipboard`
+kablam!  --> tests/clipboard.rs:4:30
+kablam!   |
+kablam! 4 | use clipboard_win::wrapper::{open_clipboard, close_clipboard, set_clipboard_raw, get_clipboard_seq_num};
+kablam!   |                              ^^^^^^^^^^^^^^ Could not find `wrapper` in `clipboard_win`
+kablam! 
+kablam! error[E0432]: unresolved import `clipboard_win::wrapper::close_clipboard`
+kablam!  --> tests/clipboard.rs:4:46
+kablam!   |
+kablam! 4 | use clipboard_win::wrapper::{open_clipboard, close_clipboard, set_clipboard_raw, get_clipboard_seq_num};
+kablam!   |                                              ^^^^^^^^^^^^^^^ Could not find `wrapper` in `clipboard_win`
+kablam! 
+kablam! error[E0432]: unresolved import `clipboard_win::wrapper::set_clipboard_raw`
+kablam!  --> tests/clipboard.rs:4:63
+kablam!   |
+kablam! 4 | use clipboard_win::wrapper::{open_clipboard, close_clipboard, set_clipboard_raw, get_clipboard_seq_num};
+kablam!   |                                                               ^^^^^^^^^^^^^^^^^ Could not find `wrapper` in `clipboard_win`
+kablam! 
+kablam! error[E0432]: unresolved import `clipboard_win::wrapper::get_clipboard_seq_num`
+kablam!  --> tests/clipboard.rs:4:82
+kablam!   |
+kablam! 4 | use clipboard_win::wrapper::{open_clipboard, close_clipboard, set_clipboard_raw, get_clipboard_seq_num};
+kablam!   |                                                                                  ^^^^^^^^^^^^^^^^^^^^^ Could not find `wrapper` in `clipboard_win`
+kablam! 
+kablam! error[E0425]: cannot find function `get_clipboard_formats` in this scope
+kablam!   --> tests/clipboard.rs:10:29
+kablam!    |
+kablam! 10 |     let clipboard_formats = get_clipboard_formats();
+kablam!    |                             ^^^^^^^^^^^^^^^^^^^^^ did you mean `get_clipboard_formats_test`?
+kablam! 
+kablam! error[E0425]: cannot find function `get_format_name` in this scope
+kablam!   --> tests/clipboard.rs:17:36
+kablam!    |
+kablam! 17 |         if let Some(format_name) = get_format_name(format) {
+kablam!    |                                    ^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `set_clipboard` in this scope
+kablam!   --> tests/clipboard.rs:32:17
+kablam!    |
+kablam! 32 |         assert!(set_clipboard(expected_string).is_ok());
+kablam!    |                 ^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `get_clipboard_string` in this scope
+kablam!   --> tests/clipboard.rs:34:22
+kablam!    |
+kablam! 34 |         let result = get_clipboard_string();
+kablam!    |                      ^^^^^^^^^^^^^^^^^^^^ did you mean `get_clipboard_test`?
+kablam! 
+kablam! error[E0425]: cannot find function `get_clipboard_string` in this scope
+kablam!   --> tests/clipboard.rs:46:18
+kablam!    |
+kablam! 46 |     let result = get_clipboard_string();
+kablam!    |                  ^^^^^^^^^^^^^^^^^^^^ did you mean `get_clipboard_test`?
+kablam! 
+kablam! error[E0425]: cannot find function `is_format_avail` in this scope
+kablam!   --> tests/clipboard.rs:55:13
+kablam!    |
+kablam! 55 |     assert!(is_format_avail(13)); //default unicode format
+kablam!    |             ^^^^^^^^^^^^^^^ did you mean `is_format_avail_test`?
+kablam! 
+kablam! error[E0425]: cannot find function `is_format_avail` in this scope
+kablam!   --> tests/clipboard.rs:56:14
+kablam!    |
+kablam! 56 |     assert!(!is_format_avail(66613666));
+kablam!    |              ^^^^^^^^^^^^^^^ did you mean `is_format_avail_test`?
+kablam! 
+kablam! error[E0425]: cannot find function `count_formats` in this scope
+kablam!   --> tests/clipboard.rs:61:18
+kablam!    |
+kablam! 61 |     let result = count_formats();
+kablam!    |                  ^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `register_format` in this scope
+kablam!   --> tests/clipboard.rs:72:22
+kablam!    |
+kablam! 72 |     let new_format = register_format("text");
+kablam!    |                      ^^^^^^^^^^^^^^^ did you mean `register_format_test`?
+kablam! 
+kablam! error[E0425]: cannot find function `is_format_avail` in this scope
+kablam!   --> tests/clipboard.rs:83:13
+kablam!    |
+kablam! 83 |     assert!(is_format_avail(new_format));
+kablam!    |             ^^^^^^^^^^^^^^^ did you mean `is_format_avail_test`?
+kablam! 
+kablam! error[E0425]: cannot find function `get_clipboard` in this scope
+kablam!   --> tests/clipboard.rs:85:18
+kablam!    |
+kablam! 85 |     let result = get_clipboard(new_format);
+kablam!    |                  ^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error: aborting due to 15 previous errors
+kablam! 
+kablam! error: Could not compile `clipboard-win`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 2709cffecc8f900e265958b0aea40039d72b6d9ebaeb804c00440140f0153117`
+blam! 2709cffecc8f900e265958b0aea40039d72b6d9ebaeb804c00440140f0153117

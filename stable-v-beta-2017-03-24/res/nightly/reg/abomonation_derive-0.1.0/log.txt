@@ -1,0 +1,175 @@
+boom! testing abomonation_derive-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! db7288bf46d72d58bdab301c886eb145a378b2acb68e540a638ff7c918cd981e
+boom! running `docker start -a db7288bf46d72d58bdab301c886eb145a378b2acb68e540a638ff7c918cd981e`
+kablam!    Compiling unicode-xid v0.0.3
+kablam!    Compiling quote v0.3.15
+kablam!    Compiling syn v0.9.2
+kablam!    Compiling synstructure v0.2.1
+kablam!    Compiling abomonation_derive v0.1.0 (file:///source)
+kablam! warning: this feature has been stable since 1.15.0. Attribute no longer needed
+kablam!  --> src/lib.rs:1:24
+kablam!   |
+kablam! 1 | #![feature(proc_macro, proc_macro_lib)]
+kablam!   |                        ^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(stable_features)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 9.33 secs
+boom! running `docker rm -f db7288bf46d72d58bdab301c886eb145a378b2acb68e540a638ff7c918cd981e`
+blam! db7288bf46d72d58bdab301c886eb145a378b2acb68e540a638ff7c918cd981e
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! d69fde58ff9f0e078fa5c1232aa6a73831d564dc22284953cf0e507829c3e809
+boom! running `docker start -a d69fde58ff9f0e078fa5c1232aa6a73831d564dc22284953cf0e507829c3e809`
+kablam!    Compiling abomonation v0.4.4
+kablam!    Compiling abomonation_derive v0.1.0 (file:///source)
+kablam! error[E0428]: a type named `Struct` has already been defined in this module
+kablam!   --> tests/test.rs:12:5
+kablam!    |
+kablam! 11 |       #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |                               ----------- previous definition of `Struct` here
+kablam! 12 |       pub struct Struct {
+kablam!    |  _____^ starting here...
+kablam! 13 | |         a: String,
+kablam! 14 | |         b: u64,
+kablam! 15 | |         c: Vec<u8>,
+kablam! 16 | |     }
+kablam!    | |_____^ ...ending here: `Struct` already defined
+kablam! 
+kablam! error[E0428]: a type named `EmptyStruct` has already been defined in this module
+kablam!   --> tests/test.rs:35:5
+kablam!    |
+kablam! 34 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |                             ----------- previous definition of `EmptyStruct` here
+kablam! 35 |     pub struct EmptyStruct;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^ `EmptyStruct` already defined
+kablam! 
+kablam! error[E0428]: a type named `TupleStruct` has already been defined in this module
+kablam!   --> tests/test.rs:54:5
+kablam!    |
+kablam! 53 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |                             ----------- previous definition of `TupleStruct` here
+kablam! 54 |     pub struct TupleStruct(String, u64, Vec<u8>);
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `TupleStruct` already defined
+kablam! 
+kablam! error[E0428]: a type named `GenericStruct` has already been defined in this module
+kablam!   --> tests/test.rs:73:5
+kablam!    |
+kablam! 72 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |                             ----------- previous definition of `GenericStruct` here
+kablam! 73 |     pub struct GenericStruct<T: ::abomonation::Abomonation, U: ::abomonation::Abomonation>(T, u64, U);
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `GenericStruct` already defined
+kablam! 
+kablam! error[E0428]: a type named `BasicEnum` has already been defined in this module
+kablam!   --> tests/test.rs:93:5
+kablam!    |
+kablam! 92 |       #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |                               ----------- previous definition of `BasicEnum` here
+kablam! 93 |       pub enum BasicEnum {
+kablam!    |  _____^ starting here...
+kablam! 94 | |         Apples,
+kablam! 95 | |         Pears,
+kablam! 96 | |         Chicken
+kablam! 97 | |     }
+kablam!    | |_____^ ...ending here: `BasicEnum` already defined
+kablam! 
+kablam! error[E0428]: a type named `DataEnum` has already been defined in this module
+kablam!    --> tests/test.rs:117:5
+kablam!     |
+kablam! 116 |       #[derive(Eq, PartialEq, Abomonation)]
+kablam!     |                               ----------- previous definition of `DataEnum` here
+kablam! 117 |       pub enum DataEnum {
+kablam!     |  _____^ starting here...
+kablam! 118 | |         A(String, u64, Vec<u8>),
+kablam! 119 | |         B,
+kablam! 120 | |         C(String, String, String)
+kablam! 121 | |     }
+kablam!     | |_____^ ...ending here: `DataEnum` already defined
+kablam! 
+kablam! error: aborting due to 6 previous errors
+kablam! 
+kablam! error: Could not compile `abomonation_derive`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f d69fde58ff9f0e078fa5c1232aa6a73831d564dc22284953cf0e507829c3e809`
+blam! d69fde58ff9f0e078fa5c1232aa6a73831d564dc22284953cf0e507829c3e809
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! e8b15b0cc3cfd757e664191539ea470c8d1be0562277866e5830229f68425d42
+boom! running `docker start -a e8b15b0cc3cfd757e664191539ea470c8d1be0562277866e5830229f68425d42`
+kablam!    Compiling abomonation_derive v0.1.0 (file:///source)
+kablam! error[E0428]: a type named `Struct` has already been defined in this module
+kablam!   --> tests/test.rs:12:5
+kablam!    |
+kablam! 11 |       #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |                               ----------- previous definition of `Struct` here
+kablam! 12 |       pub struct Struct {
+kablam!    |  _____^ starting here...
+kablam! 13 | |         a: String,
+kablam! 14 | |         b: u64,
+kablam! 15 | |         c: Vec<u8>,
+kablam! 16 | |     }
+kablam!    | |_____^ ...ending here: `Struct` already defined
+kablam! 
+kablam! error[E0428]: a type named `EmptyStruct` has already been defined in this module
+kablam!   --> tests/test.rs:35:5
+kablam!    |
+kablam! 34 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |                             ----------- previous definition of `EmptyStruct` here
+kablam! 35 |     pub struct EmptyStruct;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^ `EmptyStruct` already defined
+kablam! 
+kablam! error[E0428]: a type named `TupleStruct` has already been defined in this module
+kablam!   --> tests/test.rs:54:5
+kablam!    |
+kablam! 53 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |                             ----------- previous definition of `TupleStruct` here
+kablam! 54 |     pub struct TupleStruct(String, u64, Vec<u8>);
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `TupleStruct` already defined
+kablam! 
+kablam! error[E0428]: a type named `GenericStruct` has already been defined in this module
+kablam!   --> tests/test.rs:73:5
+kablam!    |
+kablam! 72 |     #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |                             ----------- previous definition of `GenericStruct` here
+kablam! 73 |     pub struct GenericStruct<T: ::abomonation::Abomonation, U: ::abomonation::Abomonation>(T, u64, U);
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `GenericStruct` already defined
+kablam! 
+kablam! error[E0428]: a type named `BasicEnum` has already been defined in this module
+kablam!   --> tests/test.rs:93:5
+kablam!    |
+kablam! 92 |       #[derive(Eq, PartialEq, Abomonation)]
+kablam!    |                               ----------- previous definition of `BasicEnum` here
+kablam! 93 |       pub enum BasicEnum {
+kablam!    |  _____^ starting here...
+kablam! 94 | |         Apples,
+kablam! 95 | |         Pears,
+kablam! 96 | |         Chicken
+kablam! 97 | |     }
+kablam!    | |_____^ ...ending here: `BasicEnum` already defined
+kablam! 
+kablam! error[E0428]: a type named `DataEnum` has already been defined in this module
+kablam!    --> tests/test.rs:117:5
+kablam!     |
+kablam! 116 |       #[derive(Eq, PartialEq, Abomonation)]
+kablam!     |                               ----------- previous definition of `DataEnum` here
+kablam! 117 |       pub enum DataEnum {
+kablam!     |  _____^ starting here...
+kablam! 118 | |         A(String, u64, Vec<u8>),
+kablam! 119 | |         B,
+kablam! 120 | |         C(String, String, String)
+kablam! 121 | |     }
+kablam!     | |_____^ ...ending here: `DataEnum` already defined
+kablam! 
+kablam! error: aborting due to 6 previous errors
+kablam! 
+kablam! error: Could not compile `abomonation_derive`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f e8b15b0cc3cfd757e664191539ea470c8d1be0562277866e5830229f68425d42`
+blam! e8b15b0cc3cfd757e664191539ea470c8d1be0562277866e5830229f68425d42

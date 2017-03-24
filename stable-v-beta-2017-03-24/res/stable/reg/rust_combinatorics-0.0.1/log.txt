@@ -1,0 +1,41 @@
+boom! testing rust_combinatorics-0.0.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 6afe1a086d8faf6dc4b511733e515a400860d7a3b716b73ff31c98634496721f
+boom! running `docker start -a 6afe1a086d8faf6dc4b511733e515a400860d7a3b716b73ff31c98634496721f`
+kablam!    Compiling rust_combinatorics v0.0.1 (file:///source)
+kablam! error[E0425]: unresolved name `range`
+kablam!   --> src/combinatorics/binomial.rs:12:27
+kablam!    |
+kablam! 12 |                  indices: range(0, k).collect(),
+kablam!    |                           ^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `range`
+kablam!   --> src/combinatorics/binomial.rs:37:35
+kablam!    |
+kablam! 37 |                 let first_thing = range(0, self.k).rev().filter(|&_i| *self.indices.get(_i).unwrap() != _i + self.n() - self.k).take(1).collect::<Vec<usize>>();
+kablam!    |                                   ^^^^^ unresolved name
+kablam! 
+kablam! error[E0425]: unresolved name `range`
+kablam!   --> src/combinatorics/binomial.rs:43:34
+kablam!    |
+kablam! 43 |                         for j in range(i+1, self.k) {
+kablam!    |                                  ^^^^^ unresolved name
+kablam! 
+kablam! error[E0277]: the trait bound `T: std::marker::Copy` is not satisfied
+kablam!   --> src/combinatorics/binomial.rs:55:5
+kablam!    |
+kablam! 55 |     fn choose(self, k: usize) -> Choose<T>;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::marker::Copy` is not implemented for `T`
+kablam!    |
+kablam!    = help: consider adding a `where T: std::marker::Copy` bound
+kablam!    = note: required by `combinatorics::binomial::Choose`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `rust_combinatorics`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 6afe1a086d8faf6dc4b511733e515a400860d7a3b716b73ff31c98634496721f`
+blam! 6afe1a086d8faf6dc4b511733e515a400860d7a3b716b73ff31c98634496721f

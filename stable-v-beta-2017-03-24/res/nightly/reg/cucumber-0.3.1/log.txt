@@ -1,0 +1,232 @@
+boom! testing cucumber-0.3.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 57ef5117c04e2310a4c3988d2b5d7a7564689474ddf72755e65ab7172f946955
+boom! running `docker start -a 57ef5117c04e2310a4c3988d2b5d7a7564689474ddf72755e65ab7172f946955`
+kablam!    Compiling cucumber v0.3.1 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 5.91 secs
+boom! running `docker rm -f 57ef5117c04e2310a4c3988d2b5d7a7564689474ddf72755e65ab7172f946955`
+blam! 57ef5117c04e2310a4c3988d2b5d7a7564689474ddf72755e65ab7172f946955
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! a78ba18b6f7fdc62183f84a572069726aeeb2ce2b8c55014103425de8cca7c0d
+boom! running `docker start -a a78ba18b6f7fdc62183f84a572069726aeeb2ce2b8c55014103425de8cca7c0d`
+kablam!    Compiling cucumber v0.3.1 (file:///source)
+kablam! warning: code relies on type inference rules which are likely to change
+kablam!   --> features/step_definitions/project_steps.rs:7:3
+kablam!    |
+kablam! 7  |     Given!(c, "^a project$", |_, world: &mut CucumberWorld, _| {
+kablam!    |  ___^ starting here...
+kablam! 8  | |     match fs::create_project() {
+kablam! 9  | |       Ok(current_project) => {
+kablam! 10 | |         world.current_project = Some(current_project);
+kablam! 11 | |       },
+kablam! 12 | |       Err(ref err) => panic!("Failed to create project {}", err),
+kablam! 13 | |     }
+kablam! 14 | |   });
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(resolve_trait_on_defaulted_unit)] on by default
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #39216 <https://github.com/rust-lang/rust/issues/39216>
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: code relies on type inference rules which are likely to change
+kablam!   --> features/step_definitions/project_steps.rs:16:3
+kablam!    |
+kablam! 16 |     Given!(c,
+kablam!    |  ___^ starting here...
+kablam! 17 | |          "^a project if I don't already have one$",
+kablam! 18 | |          |cuke: &Cucumber<CucumberWorld>, world: &mut CucumberWorld, _| {
+kablam! 19 | |            match world.current_project {
+kablam! 20 | |              None => cuke.invoke("a project", world, None),
+kablam! 21 | |              _ => {},
+kablam! 22 | |            }
+kablam! 23 | |          });
+kablam!    | |____________^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(resolve_trait_on_defaulted_unit)] on by default
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #39216 <https://github.com/rust-lang/rust/issues/39216>
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unreachable expression
+kablam!   --> features/step_definitions/project_steps.rs:29:15
+kablam!    |
+kablam! 29 |       None => return panic!("There was no project to add steps to"),
+kablam!    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unreachable_code)] on by default
+kablam! 
+kablam! warning: code relies on type inference rules which are likely to change
+kablam!   --> features/step_definitions/project_steps.rs:36:3
+kablam!    |
+kablam! 36 |   Then!(c,
+kablam!    |   ^
+kablam!    |
+kablam!    = note: #[warn(resolve_trait_on_defaulted_unit)] on by default
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #39216 <https://github.com/rust-lang/rust/issues/39216>
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unreachable expression
+kablam!   --> features/step_definitions/project_steps.rs:40:15
+kablam!    |
+kablam! 40 |       None => return panic!("There was no project to compile"),
+kablam!    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unreachable_code)] on by default
+kablam! 
+kablam! warning: unreachable expression
+kablam!   --> features/step_definitions/project_steps.rs:62:15
+kablam!    |
+kablam! 62 |       None => return panic!("There was no project to compile"),
+kablam!    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unreachable_code)] on by default
+kablam! 
+kablam! warning: code relies on type inference rules which are likely to change
+kablam!   --> features/step_definitions/project_steps.rs:72:3
+kablam!    |
+kablam! 72 |     Then!(c,
+kablam!    |  ___^ starting here...
+kablam! 73 | |         "^the feature passes with no undefined steps$",
+kablam! 74 | |         |cuke: &Cucumber<CucumberWorld>, world: &mut CucumberWorld, _| {
+kablam! 75 | |           cuke.invoke("the feature passes", world, None);
+kablam! 76 | |           cuke.invoke("the feature reports no undefined steps", world, None);
+kablam! 77 | |         });
+kablam!    | |___________^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(resolve_trait_on_defaulted_unit)] on by default
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #39216 <https://github.com/rust-lang/rust/issues/39216>
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: code relies on type inference rules which are likely to change
+kablam!   --> features/step_definitions/project_steps.rs:79:3
+kablam!    |
+kablam! 79 |     Then!(c,
+kablam!    |  ___^ starting here...
+kablam! 80 | |         "^the feature passes$",
+kablam! 81 | |         |_, world: &mut CucumberWorld, _| {
+kablam! 82 | |     match world.execute_result {
+kablam! 83 | |       None => panic!("Expected there to be an execute result but there wasn't one"),
+kablam! 84 | |       Some(Err(ref err)) => panic!("Expected scenario to pass but it failed with {}", err),
+kablam! 85 | |       _ => {},
+kablam! 86 | |     }
+kablam! 87 | |   });
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(resolve_trait_on_defaulted_unit)] on by default
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #39216 <https://github.com/rust-lang/rust/issues/39216>
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: code relies on type inference rules which are likely to change
+kablam!    --> features/step_definitions/project_steps.rs:99:3
+kablam!     |
+kablam! 99  |   Then!(c,
+kablam!     |   ^
+kablam!     |
+kablam!     = note: #[warn(resolve_trait_on_defaulted_unit)] on by default
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #39216 <https://github.com/rust-lang/rust/issues/39216>
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: code relies on type inference rules which are likely to change
+kablam!    --> features/step_definitions/project_steps.rs:111:3
+kablam!     |
+kablam! 111 |   Then!(c,
+kablam!     |   ^
+kablam!     |
+kablam!     = note: #[warn(resolve_trait_on_defaulted_unit)] on by default
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #39216 <https://github.com/rust-lang/rust/issues/39216>
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: code relies on type inference rules which are likely to change
+kablam!    --> features/step_definitions/project_steps.rs:123:3
+kablam!     |
+kablam! 123 |   Then!(c,
+kablam!     |   ^
+kablam!     |
+kablam!     = note: #[warn(resolve_trait_on_defaulted_unit)] on by default
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #39216 <https://github.com/rust-lang/rust/issues/39216>
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused import: `PathBuf`
+kablam!  --> features/support/fs.rs:6:23
+kablam!   |
+kablam! 6 | use std::path::{Path, PathBuf};
+kablam!   |                       ^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 14.10 secs
+boom! running `docker rm -f a78ba18b6f7fdc62183f84a572069726aeeb2ce2b8c55014103425de8cca7c0d`
+blam! a78ba18b6f7fdc62183f84a572069726aeeb2ce2b8c55014103425de8cca7c0d
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! e279f128fb7fdc5a7b98cfbc3b19ea188ff1f3b81356fc584c61b4ceaaf2b03b
+boom! running `docker start -a e279f128fb7fdc5a7b98cfbc3b19ea188ff1f3b81356fc584c61b4ceaaf2b03b`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/cucumber-751f89159ed3d362
+blam! 
+blam! running 44 tests
+blam! test definitions::destructuring::invoke_arg::test::bool::bool_doesnt_parse_from_table ... ok
+blam! test definitions::destructuring::invoke_arg::test::bool::bool_is_false_from_none ... ok
+blam! test definitions::destructuring::invoke_arg::test::string_can_be_destructured ... ok
+blam! test cucumber_regex::test::it_makes_a_regex ... ok
+blam! test definitions::destructuring::invoke_arg::test::wrong_type_destructure_fails_correctly ... ok
+blam! test definitions::destructuring::invoke_arg::test::bool::bool_is_false_string_false ... ok
+blam! test definitions::destructuring::invoke_arg::test::bool::bool_is_true_from_other_strings ... ok
+blam! test definitions::destructuring::invoke_arg::test::table_can_be_destructured ... ok
+blam! test definitions::destructuring::invoke_arg_set::test::tuple_1_bool_can_be_destructured ... ok
+blam! test definitions::destructuring::invoke_arg_set::test::destructure_for_type_mismatch_fails_correctly ... ok
+blam! test definitions::destructuring::invoke_arg_set::test::tuple_3_can_be_destructured ... ok
+blam! test definitions::destructuring::invoke_arg_set::test::tuple_1_string_can_be_destructured ... ok
+blam! test event::request::test::read_begin_scenario_empty ... ok
+blam! test event::request::test::read_end_scenario_empty ... ok
+blam! test event::request::test::read_invoke_complicated_args ... ok
+blam! test definitions::destructuring::invoke_arg_set::test::destructure_for_element_count_fails_correctly ... ok
+blam! test event::request::test::read_end_scenario ... ok
+blam! test event::request::test::read_begin_scenario ... ok
+blam! test event::request::test::read_invoke_no_args ... ok
+blam! test event::request::test::read_step_matches ... ok
+blam! test event::request::test::read_invoke_string_arg ... ok
+blam! test event::request::test::read_snippet_text ... ok
+blam! test event::response::test::invoke_response_and ... ok
+blam! test event::response::test::invoke_response_check_not_eq ... ok
+blam! test event::response::test::invoke_response_check ... ok
+blam! test event::response::test::invoke_response_check_eq ... ok
+blam! test event::response::test::it_serializes_end_scenario ... ok
+blam! test event::response::test::it_serializes_begin_scenario ... ok
+blam! test event::response::test::invoke_response_or ... ok
+blam! test event::response::test::invoke_response_expect ... ok
+blam! test event::response::test::it_serializes_invoke_fail ... ok
+blam! test event::response::test::it_serializes_invoke_pending ... ok
+blam! test event::response::test::it_serializes_step_matches_match ... ok
+blam! test event::response::test::it_serializes_step_matches_no_match ... ok
+blam! test event::response::test::it_serializes_snippet_text ... ok
+blam! test event::response::test::it_serializes_invoke_success ... ok
+blam! test server::test::it_makes_a_server ... ok
+blam! test state::test::cuke_instantiates ... ok
+blam! test state::test::cuke_inserts_step ... ok
+blam! test state::test::cuke_invoke_fails_on_no_match ... ok
+blam! test state::test::cuke_invokes ... ok
+blam! test state::test::cuke_invoke_fails_on_multiple_match ... ok
+blam! test state::test::find_match_optional_args_work ... ok
+blam! test server::test::it_relays_commands_to_the_runner ... ok
+blam! 
+blam! test result: ok. 44 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/cuke-c9734c78a253aaab
+kablam! thread 'main' panicked at 'failed to execute process: No such file or directory (os error 2). Is Cucumber on path?', src/launcher.rs:111
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! error: test failed
+boom! running `docker rm -f e279f128fb7fdc5a7b98cfbc3b19ea188ff1f3b81356fc584c61b4ceaaf2b03b`
+blam! e279f128fb7fdc5a7b98cfbc3b19ea188ff1f3b81356fc584c61b4ceaaf2b03b

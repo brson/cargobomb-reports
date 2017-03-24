@@ -1,0 +1,25 @@
+boom! testing graphy_module-0.3.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 13aa058de320371a5b7cb1dc3ea2a4536f74ead165526309dabc1c14810c9a18
+boom! running `docker start -a 13aa058de320371a5b7cb1dc3ea2a4536f74ead165526309dabc1c14810c9a18`
+kablam!    Compiling syntex_syntax v0.32.0
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/syntex_syntax-0.32.0/src/ext/base.rs:487:33
+kablam!     |
+kablam! 487 |                                 ext::quote::expand_quote_item));
+kablam!     |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected concrete lifetime, found bound lifetime parameter 'cx
+kablam!     |
+kablam!     = note: expected type `fn(&'cx mut ext::base::ExtCtxt<'_>, codemap::Span, &[ast::TokenTree]) -> std::boxed::Box<ext::base::MacResult + 'cx>`
+kablam!                found type `fn(&mut ext::base::ExtCtxt<'_>, codemap::Span, &[ast::TokenTree]) -> std::boxed::Box<ext::base::MacResult> {ext::quote::expand_quote_item::<'_>}`
+kablam!     = note: lifetime parameter `'cx` declared on fn `ext::quote::expand_quote_item` appears only in the return type, but here is required to be higher-ranked, which means that `'cx` must appear in both argument and return types
+kablam!     = note: this error is the result of a recent bug fix; for more information, see issue #33685 <https://github.com/rust-lang/rust/issues/33685>
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `syntex_syntax`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 13aa058de320371a5b7cb1dc3ea2a4536f74ead165526309dabc1c14810c9a18`
+blam! 13aa058de320371a5b7cb1dc3ea2a4536f74ead165526309dabc1c14810c9a18

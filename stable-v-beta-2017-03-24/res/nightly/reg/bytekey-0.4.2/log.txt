@@ -1,0 +1,68 @@
+boom! testing bytekey-0.4.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! b187f32ef2f44147a2c56404c6756966146ef0f92206cd5be71e8ef9cb46d36b
+boom! running `docker start -a b187f32ef2f44147a2c56404c6756966146ef0f92206cd5be71e8ef9cb46d36b`
+kablam!    Compiling bytekey v0.4.2 (file:///source)
+kablam! error[E0432]: unresolved import `std::iter::range_inclusive`
+kablam!  --> src/decoder.rs:3:5
+kablam!   |
+kablam! 3 | use std::iter::range_inclusive;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^ no `range_inclusive` in `iter`
+kablam! 
+kablam! error[E0432]: unresolved import `std::num::wrapping::OverflowingOps`
+kablam!  --> src/decoder.rs:5:5
+kablam!   |
+kablam! 5 | use std::num::wrapping::OverflowingOps;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `wrapping` in `num`
+kablam! 
+kablam! error[E0412]: cannot find type `Error` in module `byteorder`
+kablam!    --> src/lib.rs:146:11
+kablam!     |
+kablam! 146 | impl From<byteorder::Error> for Error {
+kablam!     |           ^^^^^^^^^^^^^^^^ not found in `byteorder`
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use Error;`
+kablam!               `use std::error::Error;`
+kablam!               `use std::fmt::Error;`
+kablam!               `use std::io::Error;`
+kablam! 
+kablam! error[E0412]: cannot find type `Error` in module `byteorder`
+kablam!    --> src/lib.rs:147:20
+kablam!     |
+kablam! 147 |     fn from(error: byteorder::Error) -> Error {
+kablam!     |                    ^^^^^^^^^^^^^^^^ not found in `byteorder`
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use Error;`
+kablam!               `use std::error::Error;`
+kablam!               `use std::fmt::Error;`
+kablam!               `use std::io::Error;`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Error` in `byteorder`
+kablam!    --> src/lib.rs:149:13
+kablam!     |
+kablam! 149 |             byteorder::Error::UnexpectedEOF => Error::UnexpectedEof,
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `Error` in `byteorder`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Error` in `byteorder`
+kablam!    --> src/lib.rs:150:13
+kablam!     |
+kablam! 150 |             byteorder::Error::Io(error) => Error::Io(error),
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^ Could not find `Error` in `byteorder`
+kablam! 
+kablam! error: no method named `unwrap_or` found for type `&mut str` in the current scope
+kablam!    --> src/encoder.rs:364:41
+kablam!     |
+kablam! 364 |         let n = v.encode_utf8(&mut buf).unwrap_or(0);
+kablam!     |                                         ^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `bytekey`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f b187f32ef2f44147a2c56404c6756966146ef0f92206cd5be71e8ef9cb46d36b`
+blam! b187f32ef2f44147a2c56404c6756966146ef0f92206cd5be71e8ef9cb46d36b

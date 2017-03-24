@@ -1,0 +1,33 @@
+boom! testing clear-coat-0.0.3 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 76ffc20f723b8b4a37c9f573c4b59726e386726efdbe3b62bea1e5d7bf40b863
+boom! running `docker start -a 76ffc20f723b8b4a37c9f573c4b59726e386726efdbe3b62bea1e5d7bf40b863`
+kablam!    Compiling iup-sys v0.0.3
+kablam!    Compiling clear-coat v0.0.3 (file:///source)
+kablam! error[E0432]: unresolved import `std::panic::RecoverSafe`
+kablam!   --> src/callbacks.rs:14:24
+kablam!    |
+kablam! 14 | use std::panic::{self, RecoverSafe};
+kablam!    |                        ^^^^^^^^^^^ no `RecoverSafe` in `panic`
+kablam! 
+kablam! error[E0423]: expected function, found macro `panic::recover`
+kablam!    --> src/callbacks.rs:205:18
+kablam!     |
+kablam! 205 |     let result = panic::recover(move || {
+kablam!     |                  ^^^^^^^^^^^^^^ did you mean `panic::recover!(...)`?
+kablam! 
+kablam! error[E0425]: cannot find function `get_thread_id` in this scope
+kablam!    --> src/lib.rs:172:21
+kablam!     |
+kablam! 172 |     let thread_id = get_thread_id();
+kablam!     |                     ^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `clear-coat`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 76ffc20f723b8b4a37c9f573c4b59726e386726efdbe3b62bea1e5d7bf40b863`
+blam! 76ffc20f723b8b4a37c9f573c4b59726e386726efdbe3b62bea1e5d7bf40b863

@@ -1,0 +1,86 @@
+boom! testing confy-0.2.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 74147be387c7cc2a801c8d579029797c01cf0f296f64127ac42a4b610d891f02
+boom! running `docker start -a 74147be387c7cc2a801c8d579029797c01cf0f296f64127ac42a4b610d891f02`
+kablam!    Compiling confy v0.2.0 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::parse::token::intern`
+kablam!   --> src/lib.rs:15:5
+kablam!    |
+kablam! 15 | use syntax::parse::token::intern;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `intern` in `parse::token`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::InternedString`
+kablam!  --> src/config.rs:7:5
+kablam!   |
+kablam! 7 | use syntax::parse::token::InternedString;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `InternedString` in `parse::token`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::ast::TokenTree`
+kablam!  --> src/config.rs:9:5
+kablam!   |
+kablam! 9 | use syntax::ast::TokenTree;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^ no `TokenTree` in `ast`
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!    --> src/config.rs:155:28
+kablam!     |
+kablam! 155 |                 let istr = token::intern(&value.to_string()).as_str();
+kablam!     |                            ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0412]: cannot find type `InternedString` in module `token`
+kablam!   --> src/lib.rs:32:90
+kablam!    |
+kablam! 32 | fn check_arguments(args: &[syntax::ptr::P<Spanned<MetaItemKind>>], session: &Session) -> token::InternedString {
+kablam!    |                                                                                          ^^^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use syntax::symbol::InternedString;`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `InternedString` in `token`
+kablam!   --> src/lib.rs:50:12
+kablam!    |
+kablam! 50 |     return token::InternedString::new("");
+kablam!    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `InternedString` in `token`
+kablam! 
+kablam! error[E0023]: this pattern has 2 fields, but the corresponding tuple variant has 1 field
+kablam!   --> src/lib.rs:37:12
+kablam!    |
+kablam! 37 |     if let MetaItemKind::NameValue(name, lit) = args[0].clone().unwrap().node {
+kablam!    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 1 field, found 2
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/lib.rs:55:32
+kablam!    |
+kablam! 55 |     let file = check_arguments(reg.args(), reg.sess);
+kablam!    |                                ^^^^^^^^^^ expected struct `syntax::ptr::P`, found struct `syntax::codemap::Spanned`
+kablam!    |
+kablam!    = note: expected type `&[syntax::ptr::P<syntax::codemap::Spanned<syntax::ast::MetaItemKind>>]`
+kablam!               found type `&[syntax::codemap::Spanned<syntax::ast::NestedMetaItemKind>]`
+kablam! 
+kablam! error[E0277]: the trait bound `syntax::ext::base::TTMacroExpander: std::marker::Sized` is not satisfied
+kablam!   --> src/lib.rs:57:9
+kablam!    |
+kablam! 57 |     let config = match Config::new(file.clone()) {
+kablam!    |         ^^^^^^ the trait `std::marker::Sized` is not implemented for `syntax::ext::base::TTMacroExpander`
+kablam!    |
+kablam!    = note: `syntax::ext::base::TTMacroExpander` does not have a constant size known at compile-time
+kablam!    = note: all local variables must have a statically known size
+kablam! 
+kablam! error[E0277]: the trait bound `syntax::ext::base::TTMacroExpander: std::marker::Sized` is not satisfied
+kablam!   --> src/lib.rs:64:47
+kablam!    |
+kablam! 64 |     let extension = SyntaxExtension::NormalTT(Box::new(config), None, false);
+kablam!    |                                               ^^^^^^^^ the trait `std::marker::Sized` is not implemented for `syntax::ext::base::TTMacroExpander`
+kablam!    |
+kablam!    = note: `syntax::ext::base::TTMacroExpander` does not have a constant size known at compile-time
+kablam!    = note: required by `<std::boxed::Box<T>>::new`
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `confy`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 74147be387c7cc2a801c8d579029797c01cf0f296f64127ac42a4b610d891f02`
+blam! 74147be387c7cc2a801c8d579029797c01cf0f296f64127ac42a4b610d891f02

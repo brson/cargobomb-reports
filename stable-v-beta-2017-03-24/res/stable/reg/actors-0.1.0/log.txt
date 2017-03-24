@@ -1,0 +1,29 @@
+boom! testing actors-0.1.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 0226136f3da02427bb91ee62b1f8e41549ae33a56e981a78d0b82a2928152234
+boom! running `docker start -a 0226136f3da02427bb91ee62b1f8e41549ae33a56e981a78d0b82a2928152234`
+kablam! warning: only one of `license` or `license-file` is necessary
+kablam!    Compiling actors v0.1.0 (file:///source)
+kablam! error[E0277]: the trait bound `Message: std::marker::Send` is not satisfied
+kablam!   --> src/channel/mod.rs:18:1
+kablam!    |
+kablam! 18 |   pub struct ActorCell<Message, A: Actor<Message>> {
+kablam!    |  _^ starting here...
+kablam! 19 | | 	tx: Mutex<Sender<Option<Message>>>,
+kablam! 20 | | 	actor: Mutex<Option<A>>,
+kablam! 21 | | 	actor_var_change: Condvar
+kablam! 22 | | }
+kablam!    | |_^ ...ending here: the trait `std::marker::Send` is not implemented for `Message`
+kablam!    |
+kablam!    = help: consider adding a `where Message: std::marker::Send` bound
+kablam!    = note: required by `Actor`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `actors`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 0226136f3da02427bb91ee62b1f8e41549ae33a56e981a78d0b82a2928152234`
+blam! 0226136f3da02427bb91ee62b1f8e41549ae33a56e981a78d0b82a2928152234

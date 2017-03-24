@@ -1,0 +1,83 @@
+boom! testing ox-0.0.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 887ddbd9244c4f688493a96efa25ea6ec4f794e8b0f38628d042363c4f6f4d30
+boom! running `docker start -a 887ddbd9244c4f688493a96efa25ea6ec4f794e8b0f38628d042363c4f6f4d30`
+kablam!    Compiling peg v0.3.18
+kablam!    Compiling docopt_macros v0.6.88
+kablam! error[E0432]: unresolved import `syntax::parse::token::str_to_ident`
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/peg-0.3.18/src/rustast.rs:9:9
+kablam!   |
+kablam! 9 | pub use syntax::parse::token::str_to_ident;
+kablam!   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `str_to_ident` in `parse::token`
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/peg-0.3.18/src/peg_syntax_ext.rs:29:13
+kablam!    |
+kablam! 29 |             token::intern("peg"),
+kablam!    |             ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/peg-0.3.18/src/peg_syntax_ext.rs:33:13
+kablam!    |
+kablam! 33 |             token::intern("peg_file"),
+kablam!    |             ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `InternedString` in `token`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/peg-0.3.18/src/peg_syntax_ext.rs:79:63
+kablam!    |
+kablam! 79 |     let allow = cx.attribute(DUMMY_SP, cx.meta_list(DUMMY_SP, token::InternedString::new("allow"), vec![
+kablam!    |                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `InternedString` in `token`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `InternedString` in `token`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/peg-0.3.18/src/peg_syntax_ext.rs:80:42
+kablam!    |
+kablam! 80 |         cx.meta_list_item_word(DUMMY_SP, token::InternedString::new("non_snake_case")),
+kablam!    |                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `InternedString` in `token`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `InternedString` in `token`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/peg-0.3.18/src/peg_syntax_ext.rs:81:42
+kablam!    |
+kablam! 81 |         cx.meta_list_item_word(DUMMY_SP, token::InternedString::new("unused")),
+kablam!    |                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `InternedString` in `token`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/docopt_macros-0.6.88/src/macro.rs:316:16
+kablam!     |
+kablam! 316 |         types: P::from_vec(vec![cx.ty_ident(sp, ident("String"))]),
+kablam!     |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `std::vec::Vec`, found struct `syntax::ptr::P`
+kablam!     |
+kablam!     = note: expected type `std::vec::Vec<syntax::ptr::P<syntax::ast::Ty>>`
+kablam!                found type `syntax::ptr::P<[syntax::ptr::P<syntax::ast::Ty>]>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .into_vec()
+kablam!             - .to_vec()
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/docopt_macros-0.6.88/src/macro.rs:317:19
+kablam!     |
+kablam! 317 |         bindings: P::new(),
+kablam!     |                   ^^^^^^^^ expected struct `std::vec::Vec`, found struct `syntax::ptr::P`
+kablam!     |
+kablam!     = note: expected type `std::vec::Vec<syntax::ast::TypeBinding>`
+kablam!                found type `syntax::ptr::P<[_]>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .into_vec()
+kablam!             - .to_vec()
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `docopt_macros`.
+kablam! error[E0061]: this function takes 3 parameters but 2 parameters were supplied
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/peg-0.3.18/src/translate.rs:427:8
+kablam!     |
+kablam! 427 | 							ctxt.expr_lit(DUMMY_SP, rustast::ast::LitKind::Char(case.start)),
+kablam!     | 							^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 3 parameters
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f 887ddbd9244c4f688493a96efa25ea6ec4f794e8b0f38628d042363c4f6f4d30`
+blam! 887ddbd9244c4f688493a96efa25ea6ec4f794e8b0f38628d042363c4f6f4d30

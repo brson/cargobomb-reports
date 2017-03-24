@@ -1,0 +1,59 @@
+boom! testing hyperdex-1.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 6099aae08ea26c508eb60497eac2930fb69f2110bf762838d7337343db106c6b
+boom! running `docker start -a 6099aae08ea26c508eb60497eac2930fb69f2110bf762838d7337343db106c6b`
+kablam!    Compiling hyperdex v1.1.0 (file:///source)
+kablam! error[E0432]: unresolved import `std::sync::Future`
+kablam!   --> src/client.rs:16:5
+kablam!    |
+kablam! 16 | use std::sync::Future;
+kablam!    |     ^^^^^^^^^^^^^^^^^ no `Future` in `sync`
+kablam! 
+kablam! error[E0432]: unresolved import `std::sync::Future`
+kablam!  --> src/admin.rs:3:5
+kablam!   |
+kablam! 3 | use std::sync::Future;
+kablam!   |     ^^^^^^^^^^^^^^^^^ no `Future` in `sync`
+kablam! 
+kablam! error[E0432]: unresolved import `std::thunk::Thunk`
+kablam!  --> src/admin.rs:4:5
+kablam!   |
+kablam! 4 | use std::thunk::Thunk;
+kablam!   |     ^^^^^^^^^^^^^^^^^ Could not find `thunk` in `std`
+kablam! 
+kablam! error: use of unstable library feature 'mpsc_select': This implementation, while likely sufficient, is unsafe and likely to be error prone. At some point in the future this module will likely be replaced, and it is currently unknown how much API breakage that will cause. The ability to select over a number of channels will remain forever, but no guarantees beyond this are being made (see issue #27800)
+kablam!    --> src/admin.rs:99:21
+kablam!     |
+kablam! 99  |                     select!(
+kablam!     |                     ^
+kablam!     |
+kablam!     = help: add #![feature(mpsc_select)] to the crate attributes to enable
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error: use of unstable library feature 'mpsc_select': This implementation, while likely sufficient, is unsafe and likely to be error prone. At some point in the future this module will likely be replaced, and it is currently unknown how much API breakage that will cause. The ability to select over a number of channels will remain forever, but no guarantees beyond this are being made (see issue #27800)
+kablam!    --> src/admin.rs:99:21
+kablam!     |
+kablam! 99  |                     select!(
+kablam!     |                     ^
+kablam!     |
+kablam!     = help: add #![feature(mpsc_select)] to the crate attributes to enable
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error[E0277]: the trait bound `Self: std::marker::Sized` is not satisfied
+kablam!    --> src/client_types.rs:141:5
+kablam!     |
+kablam! 141 |     fn from_hyper(val: HyperValue) -> Result<Self, HyperObjectKeyError>;
+kablam!     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::marker::Sized` is not implemented for `Self`
+kablam!     |
+kablam!     = help: consider adding a `where Self: std::marker::Sized` bound
+kablam!     = note: required by `std::result::Result`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `hyperdex`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 6099aae08ea26c508eb60497eac2930fb69f2110bf762838d7337343db106c6b`
+blam! 6099aae08ea26c508eb60497eac2930fb69f2110bf762838d7337343db106c6b

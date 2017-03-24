@@ -1,0 +1,71 @@
+boom! testing defrag-0.1.3 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! e725323de5683f770e2a7d8b0226255d17156133a16bd55fb89faab9e9490d6b
+boom! running `docker start -a e725323de5683f770e2a7d8b0226255d17156133a16bd55fb89faab9e9490d6b`
+kablam!    Compiling cbuf v0.1.1
+kablam!    Compiling defrag v0.1.3 (file:///source)
+kablam! error[E0309]: the parameter type `T` may not live long enough
+kablam!    --> src/pool.rs:366:5
+kablam!     |
+kablam! 366 |       fn deref_mut(&mut self) -> &mut T {
+kablam!     |  _____^ starting here...
+kablam! 367 | |         unsafe {
+kablam! 368 | |             let pool = &*self.__lock.pool.raw;
+kablam! 369 | |             let index = &pool.index(self.__lock.index);
+kablam! 370 | |             &mut *(pool.data(index.block()) as *mut T)
+kablam! 371 | |         }
+kablam! 372 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = help: consider adding an explicit lifetime bound `T: 'mutex`...
+kablam! note: ...so that the type `T` will meet its required lifetime bounds
+kablam!    --> src/pool.rs:366:5
+kablam!     |
+kablam! 366 |       fn deref_mut(&mut self) -> &mut T {
+kablam!     |  _____^ starting here...
+kablam! 367 | |         unsafe {
+kablam! 368 | |             let pool = &*self.__lock.pool.raw;
+kablam! 369 | |             let index = &pool.index(self.__lock.index);
+kablam! 370 | |             &mut *(pool.data(index.block()) as *mut T)
+kablam! 371 | |         }
+kablam! 372 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! error[E0309]: the parameter type `T` may not live long enough
+kablam!    --> src/pool.rs:450:5
+kablam!     |
+kablam! 450 |       fn deref_mut(&mut self) -> &mut [T] {
+kablam!     |  _____^ starting here...
+kablam! 451 | |         unsafe {
+kablam! 452 | |             let pool = &*self.__lock.pool.raw;
+kablam! 453 | |             let index = &pool.index(self.__lock.index);
+kablam! 454 | |             let t: *mut T = mem::transmute(pool.data(index.block()));
+kablam! 455 | |             slice::from_raw_parts_mut(t, self.__lock.len as usize)
+kablam! 456 | |         }
+kablam! 457 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = help: consider adding an explicit lifetime bound `T: 'mutex`...
+kablam! note: ...so that the type `T` will meet its required lifetime bounds
+kablam!    --> src/pool.rs:450:5
+kablam!     |
+kablam! 450 |       fn deref_mut(&mut self) -> &mut [T] {
+kablam!     |  _____^ starting here...
+kablam! 451 | |         unsafe {
+kablam! 452 | |             let pool = &*self.__lock.pool.raw;
+kablam! 453 | |             let index = &pool.index(self.__lock.index);
+kablam! 454 | |             let t: *mut T = mem::transmute(pool.data(index.block()));
+kablam! 455 | |             slice::from_raw_parts_mut(t, self.__lock.len as usize)
+kablam! 456 | |         }
+kablam! 457 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `defrag`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f e725323de5683f770e2a7d8b0226255d17156133a16bd55fb89faab9e9490d6b`
+blam! e725323de5683f770e2a7d8b0226255d17156133a16bd55fb89faab9e9490d6b

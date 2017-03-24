@@ -1,0 +1,112 @@
+boom! testing https://github.com/aleics/pathtracer#f7edc4c5e95d23096b08b3db2b4ce9f6cf1870b3 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 1e0f70ccc0e50242b20ddd17c5e2e114125616a7a0953a6273422204c884d734
+boom! running `docker start -a 1e0f70ccc0e50242b20ddd17c5e2e114125616a7a0953a6273422204c884d734`
+kablam!    Compiling rand v0.3.15
+kablam!    Compiling time v0.1.36
+kablam!    Compiling num-bigint v0.1.35
+kablam!    Compiling num-rational v0.1.35
+kablam!    Compiling num v0.1.36
+kablam!    Compiling rsmath v0.1.6
+kablam!    Compiling pathtracer v0.1.0 (file:///source)
+kablam! error: no method named `scale` found for type `()` in the current scope
+kablam!   --> src/camera.rs:31:42
+kablam!    |
+kablam! 31 |                                         .scale(2f32 * dist * (hfov/(width as f32)).tan());
+kablam!    |                                          ^^^^^
+kablam! 
+kablam! error: no method named `scale` found for type `()` in the current scope
+kablam!   --> src/camera.rs:35:42
+kablam!    |
+kablam! 35 |                                         .scale(2f32 * dist * (hfov/(height as f32)).tan());
+kablam!    |                                          ^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/camera.rs:37:41
+kablam!    |
+kablam! 37 |         let mut move_x: Vector3D<f32> = scrnx.scale((width as f32)/2f32);
+kablam!    |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `r::linspace::vector::Vector3D`, found ()
+kablam!    |
+kablam!    = note: expected type `r::linspace::vector::Vector3D<f32>`
+kablam!    = note:    found type `()`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/camera.rs:57:37
+kablam!    |
+kablam! 57 |         let move_x: Vector3D<f32> = self.scrnx.scale(x as f32);
+kablam!    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `r::linspace::vector::Vector3D`, found ()
+kablam!    |
+kablam!    = note: expected type `r::linspace::vector::Vector3D<f32>`
+kablam!    = note:    found type `()`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/camera.rs:58:37
+kablam!    |
+kablam! 58 |         let move_y: Vector3D<f32> = self.scrny.scale(y as f32);
+kablam!    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `r::linspace::vector::Vector3D`, found ()
+kablam!    |
+kablam!    = note: expected type `r::linspace::vector::Vector3D<f32>`
+kablam!    = note:    found type `()`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/camera.rs:60:38
+kablam!    |
+kablam! 60 |         let dir_ray: Vector3D<f32> = ((self.initial_ray.clone() + move_x) - move_y).norm();
+kablam!    |                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `r::linspace::vector::Vector3D`, found ()
+kablam!    |
+kablam!    = note: expected type `r::linspace::vector::Vector3D<f32>`
+kablam!    = note:    found type `()`
+kablam! 
+kablam! error: no method named `max` found for type `r::linspace::vector::Vector3D<f64>` in the current scope
+kablam!   --> src/scene.rs:74:35
+kablam!    |
+kablam! 74 |                 let p = obj.color.max(); // get maximum value of color
+kablam!    |                                   ^^^
+kablam!    |
+kablam!    = note: the method `max` exists but the following trait bounds were not satisfied: `r::linspace::vector::Vector3D<f64> : std::iter::Iterator`
+kablam! 
+kablam! error[E0369]: binary operation `/` cannot be applied to type `r::linspace::vector::Vector3D<f64>`
+kablam!   --> src/scene.rs:78:29
+kablam!    |
+kablam! 78 |                         f = f / p;
+kablam!    |                             ^
+kablam!    |
+kablam! note: an implementation of `std::ops::Div` might be missing for `r::linspace::vector::Vector3D<f64>`
+kablam!   --> src/scene.rs:78:29
+kablam!    |
+kablam! 78 |                         f = f / p;
+kablam!    |                             ^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/scene.rs:84:49
+kablam!    |
+kablam! 84 |                 let mut normal: Vector3D<f32> = (inters - obj.position).norm();
+kablam!    |                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `r::linspace::vector::Vector3D`, found ()
+kablam!    |
+kablam!    = note: expected type `r::linspace::vector::Vector3D<f32>`
+kablam!    = note:    found type `()`
+kablam! 
+kablam! error: cannot apply unary operator `-` to type `r::linspace::vector::Vector3D<f32>`
+kablam!   --> src/scene.rs:89:21
+kablam!    |
+kablam! 89 |                     -normal
+kablam!    |                     ^^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/scene.rs:105:29
+kablam!     |
+kablam! 105 |                         u = Vector3D::<f32>::cross(&u, &w).norm();
+kablam!     |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `r::linspace::vector::Vector3D`, found ()
+kablam!     |
+kablam!     = note: expected type `r::linspace::vector::Vector3D<f32>`
+kablam!     = note:    found type `()`
+kablam! 
+kablam! error: aborting due to 11 previous errors
+kablam! 
+kablam! error: Could not compile `pathtracer`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 1e0f70ccc0e50242b20ddd17c5e2e114125616a7a0953a6273422204c884d734`
+blam! 1e0f70ccc0e50242b20ddd17c5e2e114125616a7a0953a6273422204c884d734

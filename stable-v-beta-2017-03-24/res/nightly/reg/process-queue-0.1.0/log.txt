@@ -1,0 +1,20 @@
+boom! testing process-queue-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! ed529cd497ec3c45d232d3fb9cf57d09c5989e22fd70a92756fc7ce0c766a07f
+boom! running `docker start -a ed529cd497ec3c45d232d3fb9cf57d09c5989e22fd70a92756fc7ce0c766a07f`
+kablam!    Compiling slog-serde v1.0.0-alpha9
+kablam!    Compiling slog-extra v0.1.2
+kablam!    Compiling dbus v0.5.1
+kablam!    Compiling process-queue v0.1.0 (file:///source)
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: failed to run custom build command for `dbus v0.5.1`
+kablam! process didn't exit successfully: `/target/debug/build/dbus-f220368fc15651cf/build-script-build` (exit code: 101)
+kablam! --- stderr
+kablam! thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: Error(PkgConfig(Command { command: "\"pkg-config\" \"--libs\" \"--cflags\" \"dbus-1 >= 1.6\"", cause: Error { repr: Os { code: 2, message: "No such file or directory" } } }), State { next_error: None })', /checkout/src/libcore/result.rs:860
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f ed529cd497ec3c45d232d3fb9cf57d09c5989e22fd70a92756fc7ce0c766a07f`
+blam! ed529cd497ec3c45d232d3fb9cf57d09c5989e22fd70a92756fc7ce0c766a07f

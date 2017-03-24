@@ -1,0 +1,62 @@
+boom! testing objc-0.1.8 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 65c924db0fc97d1c49655b36f9f1881856a241ef0a2d511238100146d4226a08
+boom! running `docker start -a 65c924db0fc97d1c49655b36f9f1881856a241ef0a2d511238100146d4226a08`
+kablam!    Compiling objc v0.1.8 (file:///source)
+kablam! error[E0591]: `unsafe extern "C" fn(*mut runtime::Object, runtime::Sel, ...) -> *mut runtime::Object {runtime::::objc_msgSend}` is zero-sized and can't be transmuted to `unsafe extern "C" fn(*mut runtime::Object, runtime::Sel, ...) -> R`
+kablam!   --> src/message.rs:52:18
+kablam!    |
+kablam! 52 |         unsafe { mem::transmute(runtime::objc_msgSend) }
+kablam!    |                  ^^^^^^^^^^^^^^
+kablam!    |
+kablam! note: cast with `as` to a pointer instead
+kablam!   --> src/message.rs:52:18
+kablam!    |
+kablam! 52 |         unsafe { mem::transmute(runtime::objc_msgSend) }
+kablam!    |                  ^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0591]: `unsafe extern "C" fn(*mut runtime::Object, runtime::Sel, ...) {runtime::::objc_msgSend_stret}` is zero-sized and can't be transmuted to `unsafe extern "C" fn(*mut runtime::Object, runtime::Sel, ...) -> R`
+kablam!   --> src/message.rs:54:18
+kablam!    |
+kablam! 54 |         unsafe { mem::transmute(runtime::objc_msgSend_stret) }
+kablam!    |                  ^^^^^^^^^^^^^^
+kablam!    |
+kablam! note: cast with `as` to a pointer instead
+kablam!   --> src/message.rs:54:18
+kablam!    |
+kablam! 54 |         unsafe { mem::transmute(runtime::objc_msgSend_stret) }
+kablam!    |                  ^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0591]: `unsafe extern "C" fn(*const runtime::Super, runtime::Sel, ...) -> *mut runtime::Object {runtime::::objc_msgSendSuper}` is zero-sized and can't be transmuted to `unsafe extern "C" fn(*const runtime::Super, runtime::Sel, ...) -> R`
+kablam!   --> src/message.rs:61:18
+kablam!    |
+kablam! 61 |         unsafe { mem::transmute(runtime::objc_msgSendSuper) }
+kablam!    |                  ^^^^^^^^^^^^^^
+kablam!    |
+kablam! note: cast with `as` to a pointer instead
+kablam!   --> src/message.rs:61:18
+kablam!    |
+kablam! 61 |         unsafe { mem::transmute(runtime::objc_msgSendSuper) }
+kablam!    |                  ^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0591]: `unsafe extern "C" fn(*const runtime::Super, runtime::Sel, ...) {runtime::::objc_msgSendSuper_stret}` is zero-sized and can't be transmuted to `unsafe extern "C" fn(*const runtime::Super, runtime::Sel, ...) -> R`
+kablam!   --> src/message.rs:63:18
+kablam!    |
+kablam! 63 |         unsafe { mem::transmute(runtime::objc_msgSendSuper_stret) }
+kablam!    |                  ^^^^^^^^^^^^^^
+kablam!    |
+kablam! note: cast with `as` to a pointer instead
+kablam!   --> src/message.rs:63:18
+kablam!    |
+kablam! 63 |         unsafe { mem::transmute(runtime::objc_msgSendSuper_stret) }
+kablam!    |                  ^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `objc`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 65c924db0fc97d1c49655b36f9f1881856a241ef0a2d511238100146d4226a08`
+blam! 65c924db0fc97d1c49655b36f9f1881856a241ef0a2d511238100146d4226a08

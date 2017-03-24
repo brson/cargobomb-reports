@@ -1,0 +1,18 @@
+boom! testing openblas-provider-0.4.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 2038c70b470e405c2cc35172a5d79062e175f92444952b4d53fd045127c17945
+boom! running `docker start -a 2038c70b470e405c2cc35172a5d79062e175f92444952b4d53fd045127c17945`
+kablam!    Compiling openblas-provider v0.4.1 (file:///source)
+kablam! error: failed to run custom build command for `openblas-provider v0.4.1 (file:///source)`
+kablam! process didn't exit successfully: `/target/debug/build/openblas-provider-435078c0a23bd629/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! Running: "make" "libs" "netlib" "shared" "YES_CBLAS=1" "-j4"
+kablam! 
+kablam! --- stderr
+kablam! thread 'main' panicked at 'failed to execute `"make" "libs" "netlib" "shared" "YES_CBLAS=1" "-j4"`: No such file or directory (os error 2)', build.rs:53
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f 2038c70b470e405c2cc35172a5d79062e175f92444952b4d53fd045127c17945`
+blam! 2038c70b470e405c2cc35172a5d79062e175f92444952b4d53fd045127c17945

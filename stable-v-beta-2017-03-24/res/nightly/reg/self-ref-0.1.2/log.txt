@@ -1,0 +1,58 @@
+boom! testing self-ref-0.1.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 2709cabb601bf5f54f2572dc7b3036fa6e71774296154c3bde41c9502c010926
+boom! running `docker start -a 2709cabb601bf5f54f2572dc7b3036fa6e71774296154c3bde41c9502c010926`
+kablam!    Compiling self-ref v0.1.2 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.46 secs
+boom! running `docker rm -f 2709cabb601bf5f54f2572dc7b3036fa6e71774296154c3bde41c9502c010926`
+blam! 2709cabb601bf5f54f2572dc7b3036fa6e71774296154c3bde41c9502c010926
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 08ae4c9bb0309e16ca14852c85df8b010e096967f8edd457e86420ced9c33539
+boom! running `docker start -a 08ae4c9bb0309e16ca14852c85df8b010e096967f8edd457e86420ced9c33539`
+kablam!    Compiling self-ref v0.1.2 (file:///source)
+kablam! warning: unreachable statement
+kablam!    --> src/lib.rs:88:13
+kablam!     |
+kablam! 88  |               unsafe { ptr::write(&mut (*pointer).$field, $field); }
+kablam!     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! ...
+kablam! 136 |           self_referencing!(S1, {
+kablam!     |  _________- starting here...
+kablam! 137 | |             s2 = S2 { v: 2 };
+kablam! 138 | |             s3 = panic!("assignment for s3 panicked");
+kablam! 139 | |             s4 = S4 { v: 4, };
+kablam! 140 | |         });
+kablam!     | |___________- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: #[warn(unreachable_code)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.83 secs
+boom! running `docker rm -f 08ae4c9bb0309e16ca14852c85df8b010e096967f8edd457e86420ced9c33539`
+blam! 08ae4c9bb0309e16ca14852c85df8b010e096967f8edd457e86420ced9c33539
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! bc2390c899e4011dc79aed099ff3c90861288bbc79c7f316ace6b174f8e29c7d
+boom! running `docker start -a bc2390c899e4011dc79aed099ff3c90861288bbc79c7f316ace6b174f8e29c7d`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/self_ref-f79315396774c11e
+blam! 
+blam! running 2 tests
+blam! test tests::struct_names ... ok
+blam! test tests::panicking_and_dropping ... ok
+blam! 
+blam! test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!    Doc-tests self-ref
+blam! 
+blam! running 1 test
+blam! test src/lib.rs - self_referencing (line 31) ... ok
+blam! 
+blam! test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f bc2390c899e4011dc79aed099ff3c90861288bbc79c7f316ace6b174f8e29c7d`
+blam! bc2390c899e4011dc79aed099ff3c90861288bbc79c7f316ace6b174f8e29c7d

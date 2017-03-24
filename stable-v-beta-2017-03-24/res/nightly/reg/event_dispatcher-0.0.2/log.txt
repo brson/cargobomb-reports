@@ -1,0 +1,36 @@
+boom! testing event_dispatcher-0.0.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! b1be0385c67ce248988ee70c6c6ab7065c351eb2d01e9375d9484518db6bc342
+boom! running `docker start -a b1be0385c67ce248988ee70c6c6ab7065c351eb2d01e9375d9484518db6bc342`
+kablam!    Compiling event_dispatcher v0.0.2 (file:///source)
+kablam! error[E0432]: unresolved import `std::intrinsics::TypeId`
+kablam!  --> src/dispatcher.rs:5:5
+kablam!   |
+kablam! 5 | use std::intrinsics::TypeId;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^ no `TypeId` in `intrinsics`
+kablam! 
+kablam! error[E0392]: parameter `T` is never used
+kablam!    --> src/dispatcher.rs:107:36
+kablam!     |
+kablam! 107 | pub struct Dispatcher<E: Event<T>, T: ?Sized> {
+kablam!     |                                    ^ unused type parameter
+kablam!     |
+kablam!     = help: consider removing `T` or using a marker such as `std::marker::PhantomData`
+kablam! 
+kablam! error[E0392]: parameter `T` is never used
+kablam!  --> src/listener.rs:3:34
+kablam!   |
+kablam! 3 | pub struct Listener<E: Event<T>, T: ?Sized>{
+kablam!   |                                  ^ unused type parameter
+kablam!   |
+kablam!   = help: consider removing `T` or using a marker such as `std::marker::PhantomData`
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `event_dispatcher`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f b1be0385c67ce248988ee70c6c6ab7065c351eb2d01e9375d9484518db6bc342`
+blam! b1be0385c67ce248988ee70c6c6ab7065c351eb2d01e9375d9484518db6bc342

@@ -1,0 +1,180 @@
+boom! testing https://github.com/bkoropoff/rust-viewbox#ea87ebcc5eb70d8f04645a85a8cf61f07d929f07 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! e1e30b58d4eb83770c618b5d09aa5a6daf23977c50cfe51b4140decb85d5824d
+boom! running `docker start -a e1e30b58d4eb83770c618b5d09aa5a6daf23977c50cfe51b4140decb85d5824d`
+kablam!    Compiling viewbox v0.0.1 (file:///source)
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 0.36 secs
+boom! running `docker rm -f e1e30b58d4eb83770c618b5d09aa5a6daf23977c50cfe51b4140decb85d5824d`
+blam! e1e30b58d4eb83770c618b5d09aa5a6daf23977c50cfe51b4140decb85d5824d
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 244a98b2e3a0a819e84a20ec903de32d62624e05d3ac9d3a27672b7183cb3406
+boom! running `docker start -a 244a98b2e3a0a819e84a20ec903de32d62624e05d3ac9d3a27672b7183cb3406`
+kablam!    Compiling viewbox v0.0.1 (file:///source)
+kablam! error: box expression syntax is experimental; you can call `Box::new` instead. (see issue #27779)
+kablam!   --> src/lib.rs:20:29
+kablam!    |
+kablam! 20 |                   let mut d = box data;
+kablam!    |                               ^^^^^^^^
+kablam! ...
+kablam! 87 |       viewbox! {
+kablam!    |  _____- starting here...
+kablam! 88 | |         struct TestBox<TestData,TestView>;
+kablam! 89 | |     }
+kablam!    | |_____- ...ending here: in this macro invocation
+kablam! 
+kablam! error: box expression syntax is experimental; you can call `Box::new` instead. (see issue #27779)
+kablam!   --> src/lib.rs:30:29
+kablam!    |
+kablam! 30 |                   let mut d = box data;
+kablam!    |                               ^^^^^^^^
+kablam! ...
+kablam! 87 |       viewbox! {
+kablam!    |  _____- starting here...
+kablam! 88 | |         struct TestBox<TestData,TestView>;
+kablam! 89 | |     }
+kablam!    | |_____- ...ending here: in this macro invocation
+kablam! 
+kablam! error: box pattern syntax is experimental (see issue #29641)
+kablam!   --> src/lib.rs:38:35
+kablam!    |
+kablam! 38 |                   let $name { data: box data, .. } = self;
+kablam!    |                                     ^^^^^^^^
+kablam! ...
+kablam! 87 |       viewbox! {
+kablam!    |  _____- starting here...
+kablam! 88 | |         struct TestBox<TestData,TestView>;
+kablam! 89 | |     }
+kablam!    | |_____- ...ending here: in this macro invocation
+kablam! 
+kablam! error: box expression syntax is experimental; you can call `Box::new` instead. (see issue #27779)
+kablam!    --> src/lib.rs:20:29
+kablam!     |
+kablam! 20  |                   let mut d = box data;
+kablam!     |                               ^^^^^^^^
+kablam! ...
+kablam! 98  |       viewbox! {
+kablam!     |  _____- starting here...
+kablam! 99  | |         struct MutBox<TestData, MutView>;
+kablam! 100 | |     }
+kablam!     | |_____- ...ending here: in this macro invocation
+kablam! 
+kablam! error: box expression syntax is experimental; you can call `Box::new` instead. (see issue #27779)
+kablam!    --> src/lib.rs:30:29
+kablam!     |
+kablam! 30  |                   let mut d = box data;
+kablam!     |                               ^^^^^^^^
+kablam! ...
+kablam! 98  |       viewbox! {
+kablam!     |  _____- starting here...
+kablam! 99  | |         struct MutBox<TestData, MutView>;
+kablam! 100 | |     }
+kablam!     | |_____- ...ending here: in this macro invocation
+kablam! 
+kablam! error: box pattern syntax is experimental (see issue #29641)
+kablam!    --> src/lib.rs:38:35
+kablam!     |
+kablam! 38  |                   let $name { data: box data, .. } = self;
+kablam!     |                                     ^^^^^^^^
+kablam! ...
+kablam! 98  |       viewbox! {
+kablam!     |  _____- starting here...
+kablam! 99  | |         struct MutBox<TestData, MutView>;
+kablam! 100 | |     }
+kablam!     | |_____- ...ending here: in this macro invocation
+kablam! 
+kablam! error: aborting due to 6 previous errors
+kablam! 
+kablam! error: Could not compile `viewbox`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 244a98b2e3a0a819e84a20ec903de32d62624e05d3ac9d3a27672b7183cb3406`
+blam! 244a98b2e3a0a819e84a20ec903de32d62624e05d3ac9d3a27672b7183cb3406
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! fe3ddeec701d2605b559accb0a61a078312f1983edc8cf12e8fb295861c1b33a
+boom! running `docker start -a fe3ddeec701d2605b559accb0a61a078312f1983edc8cf12e8fb295861c1b33a`
+kablam!    Compiling viewbox v0.0.1 (file:///source)
+kablam! error: box expression syntax is experimental; you can call `Box::new` instead. (see issue #27779)
+kablam!   --> src/lib.rs:20:29
+kablam!    |
+kablam! 20 |                   let mut d = box data;
+kablam!    |                               ^^^^^^^^
+kablam! ...
+kablam! 87 |       viewbox! {
+kablam!    |  _____- starting here...
+kablam! 88 | |         struct TestBox<TestData,TestView>;
+kablam! 89 | |     }
+kablam!    | |_____- ...ending here: in this macro invocation
+kablam! 
+kablam! error: box expression syntax is experimental; you can call `Box::new` instead. (see issue #27779)
+kablam!   --> src/lib.rs:30:29
+kablam!    |
+kablam! 30 |                   let mut d = box data;
+kablam!    |                               ^^^^^^^^
+kablam! ...
+kablam! 87 |       viewbox! {
+kablam!    |  _____- starting here...
+kablam! 88 | |         struct TestBox<TestData,TestView>;
+kablam! 89 | |     }
+kablam!    | |_____- ...ending here: in this macro invocation
+kablam! 
+kablam! error: box pattern syntax is experimental (see issue #29641)
+kablam!   --> src/lib.rs:38:35
+kablam!    |
+kablam! 38 |                   let $name { data: box data, .. } = self;
+kablam!    |                                     ^^^^^^^^
+kablam! ...
+kablam! 87 |       viewbox! {
+kablam!    |  _____- starting here...
+kablam! 88 | |         struct TestBox<TestData,TestView>;
+kablam! 89 | |     }
+kablam!    | |_____- ...ending here: in this macro invocation
+kablam! 
+kablam! error: box expression syntax is experimental; you can call `Box::new` instead. (see issue #27779)
+kablam!    --> src/lib.rs:20:29
+kablam!     |
+kablam! 20  |                   let mut d = box data;
+kablam!     |                               ^^^^^^^^
+kablam! ...
+kablam! 98  |       viewbox! {
+kablam!     |  _____- starting here...
+kablam! 99  | |         struct MutBox<TestData, MutView>;
+kablam! 100 | |     }
+kablam!     | |_____- ...ending here: in this macro invocation
+kablam! 
+kablam! error: box expression syntax is experimental; you can call `Box::new` instead. (see issue #27779)
+kablam!    --> src/lib.rs:30:29
+kablam!     |
+kablam! 30  |                   let mut d = box data;
+kablam!     |                               ^^^^^^^^
+kablam! ...
+kablam! 98  |       viewbox! {
+kablam!     |  _____- starting here...
+kablam! 99  | |         struct MutBox<TestData, MutView>;
+kablam! 100 | |     }
+kablam!     | |_____- ...ending here: in this macro invocation
+kablam! 
+kablam! error: box pattern syntax is experimental (see issue #29641)
+kablam!    --> src/lib.rs:38:35
+kablam!     |
+kablam! 38  |                   let $name { data: box data, .. } = self;
+kablam!     |                                     ^^^^^^^^
+kablam! ...
+kablam! 98  |       viewbox! {
+kablam!     |  _____- starting here...
+kablam! 99  | |         struct MutBox<TestData, MutView>;
+kablam! 100 | |     }
+kablam!     | |_____- ...ending here: in this macro invocation
+kablam! 
+kablam! error: aborting due to 6 previous errors
+kablam! 
+kablam! error: Could not compile `viewbox`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f fe3ddeec701d2605b559accb0a61a078312f1983edc8cf12e8fb295861c1b33a`
+blam! fe3ddeec701d2605b559accb0a61a078312f1983edc8cf12e8fb295861c1b33a

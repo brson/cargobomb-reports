@@ -1,0 +1,35 @@
+boom! testing plague-0.6.3 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! e714ff49165f6342fb920c2a8bbffe58f419e5f39d77e01418b1ae1e19a80d67
+boom! running `docker start -a e714ff49165f6342fb920c2a8bbffe58f419e5f39d77e01418b1ae1e19a80d67`
+kablam!    Compiling plague v0.6.3 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::parse::token::keywords`
+kablam!   --> src/lib.rs:21:5
+kablam!    |
+kablam! 21 | use syntax::parse::token::keywords;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `keywords` in `parse::token`
+kablam! 
+kablam! error: no method named `parse_opt_lifetime` found for type `&mut syntax::parse::parser::Parser<'a>` in the current scope
+kablam!   --> src/lib.rs:94:28
+kablam!    |
+kablam! 94 |     let name = try!(parser.parse_opt_lifetime());
+kablam!    |                            ^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:132:55
+kablam!     |
+kablam! 132 |         Ok(test_ident) if test_ident.name.as_str() == kw => Ok(()),
+kablam!     |                                                       ^^ expected struct `syntax::symbol::InternedString`, found &str
+kablam!     |
+kablam!     = note: expected type `syntax::symbol::InternedString`
+kablam!                found type `&str`
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `plague`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f e714ff49165f6342fb920c2a8bbffe58f419e5f39d77e01418b1ae1e19a80d67`
+blam! e714ff49165f6342fb920c2a8bbffe58f419e5f39d77e01418b1ae1e19a80d67

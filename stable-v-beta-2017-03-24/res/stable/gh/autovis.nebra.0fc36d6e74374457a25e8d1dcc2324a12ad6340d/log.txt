@@ -1,0 +1,56 @@
+boom! testing https://github.com/autovis/nebra#0fc36d6e74374457a25e8d1dcc2324a12ad6340d against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! cf042600d25b186806ded87ea98977090f4e1c406d01a856fac9fe4253b68c3f
+boom! running `docker start -a cf042600d25b186806ded87ea98977090f4e1c406d01a856fac9fe4253b68c3f`
+kablam!    Compiling nebra v0.1.0 (file:///source)
+kablam! error: `bor` does not live long enough
+kablam!   --> src/stream.rs:91:22
+kablam!    |
+kablam! 91 |             retval = bor.get_unchecked(((self.index() as usize) - bars_ago) % size);
+kablam!    |                      ^^^ does not live long enough
+kablam! ...
+kablam! 94 | 	}
+kablam!    |  - borrowed value only lives until here
+kablam!    |
+kablam! note: borrowed value must be valid for the anonymous lifetime #1 defined on the body at 86:42...
+kablam!   --> src/stream.rs:86:43
+kablam!    |
+kablam! 86 |   	pub fn get(&self, bars_ago: usize) -> &T {
+kablam!    |  ___________________________________________^ starting here...
+kablam! 87 | | 	    let bor = self.buffer.borrow();
+kablam! 88 | | 	    let retval : &T;
+kablam! 89 | | 	    unsafe {
+kablam! 90 | | 	           let size = bor.capacity();
+kablam! 91 | | 	           retval = bor.get_unchecked(((self.index() as usize) - bars_ago) % size);
+kablam! 92 | | 	       }
+kablam! 93 | | 	       retval
+kablam! 94 | | 	}
+kablam!    | |__^ ...ending here
+kablam! 
+kablam! error: cannot borrow immutable borrowed content as mutable
+kablam!   --> src/stream.rs:99:9
+kablam!    |
+kablam! 99 |         self.buffer.borrow()[idx % size] = value;
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: cannot borrow immutable borrowed content as mutable
+kablam!    --> src/stream.rs:105:13
+kablam!     |
+kablam! 105 |             self.buffer.borrow().push(Default::default());
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: cannot borrow immutable borrowed content as mutable
+kablam!    --> src/stream.rs:108:13
+kablam!     |
+kablam! 108 |             self.buffer.borrow()[(self.index.get() as usize) % size] = Default::default();
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `nebra`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f cf042600d25b186806ded87ea98977090f4e1c406d01a856fac9fe4253b68c3f`
+blam! cf042600d25b186806ded87ea98977090f4e1c406d01a856fac9fe4253b68c3f

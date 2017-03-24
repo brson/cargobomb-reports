@@ -1,0 +1,25 @@
+boom! testing sel4-sys-0.0.27 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 04baeab93b61bd7cdfd2729de903cd674d80bd870dd5ce3f3b72d8a114c2c97e
+boom! running `docker start -a 04baeab93b61bd7cdfd2729de903cd674d80bd870dd5ce3f3b72d8a114c2c97e`
+kablam!    Compiling sel4-sys v0.0.27 (file:///source)
+kablam! warning: unused variable: `word_size`, #[warn(unused_variables)] on by default
+kablam!   --> build.rs:35:26
+kablam!    |
+kablam! 35 |     for &(arch, archdir, word_size) in &arches {
+kablam!    |                          ^^^^^^^^^
+kablam! 
+kablam! error: failed to run custom build command for `sel4-sys v0.0.27 (file:///source)`
+kablam! process didn't exit successfully: `/target/debug/build/sel4-sys-a3ed3f94e5fc4f94/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! Running: "/usr/bin/env" "python" "tools/syscall_stub_gen.py" "-a" "ia32" "-w" "32" "--buffer" "-o" "/target/debug/build/sel4-sys-b9fe15ecfb4dde5d/out/ia32_syscall_stub.rs" "seL4/libsel4/include/interfaces/sel4.xml" "seL4/libsel4/arch_include/x86/interfaces/sel4arch.xml" "seL4/libsel4/sel4_arch_include/ia32/interfaces/sel4arch.xml"
+kablam! 
+kablam! --- stderr
+kablam! /usr/bin/env: python: No such file or directory
+kablam! thread 'main' panicked at 'assertion failed: cmd.status().unwrap().success()', build.rs:32
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f 04baeab93b61bd7cdfd2729de903cd674d80bd870dd5ce3f3b72d8a114c2c97e`
+blam! 04baeab93b61bd7cdfd2729de903cd674d80bd870dd5ce3f3b72d8a114c2c97e

@@ -1,0 +1,466 @@
+boom! testing tls-0.0.3 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! b2aac802a0f5cc56a41f0a6d6bc3da53f48fe31f5f0b3e7525d0c46af9db0973
+boom! running `docker start -a b2aac802a0f5cc56a41f0a6d6bc3da53f48fe31f5f0b3e7525d0c46af9db0973`
+kablam!    Compiling tls v0.0.3 (file:///source)
+kablam! error[E0432]: unresolved import `std::io::TcpListener`
+kablam!  --> src/lib.rs:4:15
+kablam!   |
+kablam! 4 | use std::io::{TcpListener, TcpStream};
+kablam!   |               ^^^^^^^^^^^ no `TcpListener` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::TcpStream`
+kablam!  --> src/lib.rs:4:28
+kablam!   |
+kablam! 4 | use std::io::{TcpListener, TcpStream};
+kablam!   |                            ^^^^^^^^^ no `TcpStream` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::Acceptor`
+kablam!  --> src/lib.rs:5:15
+kablam!   |
+kablam! 5 | use std::io::{Acceptor, Listener};
+kablam!   |               ^^^^^^^^ no `Acceptor` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::Listener`
+kablam!  --> src/lib.rs:5:25
+kablam!   |
+kablam! 5 | use std::io::{Acceptor, Listener};
+kablam!   |                         ^^^^^^^^ no `Listener` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::c_str::ToCStr`
+kablam!  --> src/tls.rs:8:5
+kablam!   |
+kablam! 8 | use std::c_str::ToCStr;
+kablam!   |     ^^^^^^^^^^^^^^^^^^ Could not find `c_str` in `std`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::IoResult`
+kablam!   --> src/tls.rs:11:15
+kablam!    |
+kablam! 11 | use std::io::{IoResult,IoError,IoErrorKind};
+kablam!    |               ^^^^^^^^ no `IoResult` in `io`. Did you mean to use `Result`?
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::IoError`
+kablam!   --> src/tls.rs:11:24
+kablam!    |
+kablam! 11 | use std::io::{IoResult,IoError,IoErrorKind};
+kablam!    |                        ^^^^^^^ no `IoError` in `io`. Did you mean to use `Error`?
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::IoErrorKind`
+kablam!   --> src/tls.rs:11:32
+kablam!    |
+kablam! 11 | use std::io::{IoResult,IoError,IoErrorKind};
+kablam!    |                                ^^^^^^^^^^^ no `IoErrorKind` in `io`. Did you mean to use `ErrorKind`?
+kablam! 
+kablam! error[E0425]: unresolved name `std::str::from_c_str`
+kablam!    --> src/tls.rs:183:4
+kablam!     |
+kablam! 183 | 			std::str::from_c_str(s)
+kablam!     | 			^^^^^^^^^^^^^^^^^^^^ unresolved name
+kablam! 
+kablam! error[E0405]: trait `Reader` is not in scope
+kablam!    --> src/tls.rs:253:6
+kablam!     |
+kablam! 253 | impl Reader for TLS {
+kablam!     |      ^^^^^^ `Reader` is not in scope
+kablam!     |
+kablam!     = help: no candidates by the name of `Reader` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0412]: type name `uint` is undefined or not in scope
+kablam!    --> src/tls.rs:254:49
+kablam!     |
+kablam! 254 | 	fn read(&mut self, buf: &mut [u8]) -> IoResult<uint> {
+kablam!     | 	                                               ^^^^ undefined or not in scope
+kablam!     |
+kablam!     = help: no candidates by the name of `uint` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0412]: type name `uint` is undefined or not in scope
+kablam!    --> src/tls.rs:264:18
+kablam!     |
+kablam! 264 | 				Ok(outlen as uint)
+kablam!     | 				             ^^^^ undefined or not in scope
+kablam!     |
+kablam!     = help: no candidates by the name of `uint` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error[E0405]: trait `Writer` is not in scope
+kablam!    --> src/tls.rs:282:6
+kablam!     |
+kablam! 282 | impl Writer for TLS {
+kablam!     |      ^^^^^^ `Writer` is not in scope
+kablam!     |
+kablam!     = help: no candidates by the name of `Writer` found in your project; maybe you misspelled the name or forgot to import an external crate?
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!  --> src/bindings.rs:1:1
+kablam!   |
+kablam! 1 | extern crate libc;
+kablam!   | ^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/bindings.rs:10:23
+kablam!    |
+kablam! 10 | 	pub fn tls_init() -> libc::c_int;
+kablam!    | 	                     ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/bindings.rs:20:44
+kablam!    |
+kablam! 20 | 	pub fn tls_error(ctx: *mut tls) -> *const libc::c_char;
+kablam!    | 	                                          ^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/bindings.rs:50:73
+kablam!    |
+kablam! 50 | 	pub fn tls_config_set_ca_file(config: *mut tls_config, ca_file: *const libc::c_char) -> libc::c_int;
+kablam!    | 	                                                                       ^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/bindings.rs:50:90
+kablam!    |
+kablam! 50 | 	pub fn tls_config_set_ca_file(config: *mut tls_config, ca_file: *const libc::c_char) -> libc::c_int;
+kablam!    | 	                                                                                        ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/bindings.rs:61:73
+kablam!    |
+kablam! 61 | 	pub fn tls_config_set_ca_path(config: *mut tls_config, ca_path: *const libc::c_char) -> libc::c_int;
+kablam!    | 	                                                                       ^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/bindings.rs:61:90
+kablam!    |
+kablam! 61 | 	pub fn tls_config_set_ca_path(config: *mut tls_config, ca_path: *const libc::c_char) -> libc::c_int;
+kablam!    | 	                                                                                        ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/bindings.rs:72:77
+kablam!    |
+kablam! 72 | 	pub fn tls_config_set_cert_file(config: *mut tls_config, cert_file: *const libc::c_char) -> libc::c_int;
+kablam!    | 	                                                                           ^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/bindings.rs:72:94
+kablam!    |
+kablam! 72 | 	pub fn tls_config_set_cert_file(config: *mut tls_config, cert_file: *const libc::c_char) -> libc::c_int;
+kablam!    | 	                                                                                            ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/bindings.rs:84:71
+kablam!    |
+kablam! 84 | 	pub fn tls_config_set_cert_mem(config: *mut tls_config, cert: *const libc::c_int, len: libc::c_int) -> libc::c_int;
+kablam!    | 	                                                                     ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/bindings.rs:84:89
+kablam!    |
+kablam! 84 | 	pub fn tls_config_set_cert_mem(config: *mut tls_config, cert: *const libc::c_int, len: libc::c_int) -> libc::c_int;
+kablam!    | 	                                                                                       ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/bindings.rs:84:105
+kablam!    |
+kablam! 84 | 	pub fn tls_config_set_cert_mem(config: *mut tls_config, cert: *const libc::c_int, len: libc::c_int) -> libc::c_int;
+kablam!    | 	                                                                                                       ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/bindings.rs:95:73
+kablam!    |
+kablam! 95 | 	pub fn tls_config_set_ciphers(config: *mut tls_config, ciphers: *const libc::c_char) -> libc::c_int;
+kablam!    | 	                                                                       ^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/bindings.rs:95:90
+kablam!    |
+kablam! 95 | 	pub fn tls_config_set_ciphers(config: *mut tls_config, ciphers: *const libc::c_char) -> libc::c_int;
+kablam!    | 	                                                                                        ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/bindings.rs:106:72
+kablam!     |
+kablam! 106 | 	pub fn tls_config_set_ecdhcurve(config: *mut tls_config, name: *const libc::c_char) -> libc::c_int;
+kablam!     | 	                                                                      ^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/bindings.rs:106:89
+kablam!     |
+kablam! 106 | 	pub fn tls_config_set_ecdhcurve(config: *mut tls_config, name: *const libc::c_char) -> libc::c_int;
+kablam!     | 	                                                                                       ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/bindings.rs:117:75
+kablam!     |
+kablam! 117 | 	pub fn tls_config_set_key_file(config: *mut tls_config, key_file: *const libc::c_char) -> libc::c_int;
+kablam!     | 	                                                                         ^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/bindings.rs:117:92
+kablam!     |
+kablam! 117 | 	pub fn tls_config_set_key_file(config: *mut tls_config, key_file: *const libc::c_char) -> libc::c_int;
+kablam!     | 	                                                                                          ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/bindings.rs:129:69
+kablam!     |
+kablam! 129 | 	pub fn tls_config_set_key_mem(config: *mut tls_config, key: *const libc::c_int, len: libc::c_int) -> libc::c_int;
+kablam!     | 	                                                                   ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/bindings.rs:129:87
+kablam!     |
+kablam! 129 | 	pub fn tls_config_set_key_mem(config: *mut tls_config, key: *const libc::c_int, len: libc::c_int) -> libc::c_int;
+kablam!     | 	                                                                                     ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/bindings.rs:129:103
+kablam!     |
+kablam! 129 | 	pub fn tls_config_set_key_mem(config: *mut tls_config, key: *const libc::c_int, len: libc::c_int) -> libc::c_int;
+kablam!     | 	                                                                                                     ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/bindings.rs:140:70
+kablam!     |
+kablam! 140 | 	pub fn tls_config_set_protocols(config: *mut tls_config, protocols: libc::c_int);
+kablam!     | 	                                                                    ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/bindings.rs:151:76
+kablam!     |
+kablam! 151 | 	pub fn tls_config_set_verify_depth(config: *mut tls_config, verify_depth: libc::c_int);
+kablam!     | 	                                                                          ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/bindings.rs:220:66
+kablam!     |
+kablam! 220 | 	pub fn tls_configure(ctx: *mut tls, config: *mut tls_config) -> libc::c_int;
+kablam!     | 	                                                                ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/bindings.rs:252:71
+kablam!     |
+kablam! 252 | 	pub fn tls_accept_socket(ctx: *mut tls, cctx: *mut *mut tls, socket: libc::c_int) -> libc::c_int;
+kablam!     | 	                                                                     ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/bindings.rs:252:87
+kablam!     |
+kablam! 252 | 	pub fn tls_accept_socket(ctx: *mut tls, cctx: *mut *mut tls, socket: libc::c_int) -> libc::c_int;
+kablam!     | 	                                                                                     ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/bindings.rs:264:49
+kablam!     |
+kablam! 264 | 	pub fn tls_connect(ctx: *mut tls, host: *const libc::c_char, port: *const libc::c_char) -> libc::c_int;
+kablam!     | 	                                               ^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/bindings.rs:264:76
+kablam!     |
+kablam! 264 | 	pub fn tls_connect(ctx: *mut tls, host: *const libc::c_char, port: *const libc::c_char) -> libc::c_int;
+kablam!     | 	                                                                          ^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/bindings.rs:264:93
+kablam!     |
+kablam! 264 | 	pub fn tls_connect(ctx: *mut tls, host: *const libc::c_char, port: *const libc::c_char) -> libc::c_int;
+kablam!     | 	                                                                                           ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/bindings.rs:277:49
+kablam!     |
+kablam! 277 | 	pub fn tls_connect_fds(ctx: *mut tls, fd_read: libc::c_int, fd_write: libc::c_int, hostname: *const libc::c_char) -> libc::c_int;
+kablam!     | 	                                               ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/bindings.rs:277:72
+kablam!     |
+kablam! 277 | 	pub fn tls_connect_fds(ctx: *mut tls, fd_read: libc::c_int, fd_write: libc::c_int, hostname: *const libc::c_char) -> libc::c_int;
+kablam!     | 	                                                                      ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/bindings.rs:277:102
+kablam!     |
+kablam! 277 | 	pub fn tls_connect_fds(ctx: *mut tls, fd_read: libc::c_int, fd_write: libc::c_int, hostname: *const libc::c_char) -> libc::c_int;
+kablam!     | 	                                                                                                    ^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/bindings.rs:277:119
+kablam!     |
+kablam! 277 | 	pub fn tls_connect_fds(ctx: *mut tls, fd_read: libc::c_int, fd_write: libc::c_int, hostname: *const libc::c_char) -> libc::c_int;
+kablam!     | 	                                                                                                                     ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/bindings.rs:289:46
+kablam!     |
+kablam! 289 | 	pub fn tls_connect_socket(ctx: *mut tls, s: libc::c_int, hostname: *const libc::c_char) -> libc::c_int;
+kablam!     | 	                                            ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/bindings.rs:289:76
+kablam!     |
+kablam! 289 | 	pub fn tls_connect_socket(ctx: *mut tls, s: libc::c_int, hostname: *const libc::c_char) -> libc::c_int;
+kablam!     | 	                                                                          ^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/bindings.rs:289:93
+kablam!     |
+kablam! 289 | 	pub fn tls_connect_socket(ctx: *mut tls, s: libc::c_int, hostname: *const libc::c_char) -> libc::c_int;
+kablam!     | 	                                                                                           ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/bindings.rs:302:43
+kablam!     |
+kablam! 302 | 	pub fn tls_read(ctx: *mut tls, buf: *mut libc::c_void, buflen: libc::c_int, outlen: *mut libc::size_t) -> libc::c_int;
+kablam!     | 	                                         ^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/bindings.rs:302:65
+kablam!     |
+kablam! 302 | 	pub fn tls_read(ctx: *mut tls, buf: *mut libc::c_void, buflen: libc::c_int, outlen: *mut libc::size_t) -> libc::c_int;
+kablam!     | 	                                                               ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/bindings.rs:302:91
+kablam!     |
+kablam! 302 | 	pub fn tls_read(ctx: *mut tls, buf: *mut libc::c_void, buflen: libc::c_int, outlen: *mut libc::size_t) -> libc::c_int;
+kablam!     | 	                                                                                         ^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/bindings.rs:302:108
+kablam!     |
+kablam! 302 | 	pub fn tls_read(ctx: *mut tls, buf: *mut libc::c_void, buflen: libc::c_int, outlen: *mut libc::size_t) -> libc::c_int;
+kablam!     | 	                                                                                                          ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/bindings.rs:315:46
+kablam!     |
+kablam! 315 | 	pub fn tls_write(ctx: *mut tls, buf: *const libc::c_void, buflen: libc::c_int, outlen: *mut libc::size_t) -> libc::c_int;
+kablam!     | 	                                            ^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/bindings.rs:315:68
+kablam!     |
+kablam! 315 | 	pub fn tls_write(ctx: *mut tls, buf: *const libc::c_void, buflen: libc::c_int, outlen: *mut libc::size_t) -> libc::c_int;
+kablam!     | 	                                                                  ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/bindings.rs:315:94
+kablam!     |
+kablam! 315 | 	pub fn tls_write(ctx: *mut tls, buf: *const libc::c_void, buflen: libc::c_int, outlen: *mut libc::size_t) -> libc::c_int;
+kablam!     | 	                                                                                            ^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/bindings.rs:315:111
+kablam!     |
+kablam! 315 | 	pub fn tls_write(ctx: *mut tls, buf: *const libc::c_void, buflen: libc::c_int, outlen: *mut libc::size_t) -> libc::c_int;
+kablam!     | 	                                                                                                             ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/bindings.rs:325:37
+kablam!     |
+kablam! 325 | 	pub fn tls_close(ctx: *mut tls) -> libc::c_int;
+kablam!     | 	                                   ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!  --> src/tls.rs:3:1
+kablam!   |
+kablam! 3 | extern crate libc;
+kablam!   | ^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/tls.rs:69:42
+kablam!    |
+kablam! 69 | 	pub fn set_cert_mem(&self, cert: *const libc::c_int, len: libc::c_int)
+kablam!    | 	                                        ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/tls.rs:69:60
+kablam!    |
+kablam! 69 | 	pub fn set_cert_mem(&self, cert: *const libc::c_int, len: libc::c_int)
+kablam!    | 	                                                          ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/tls.rs:97:40
+kablam!    |
+kablam! 97 | 	pub fn set_key_mem(&self, key: *const libc::c_int, len: libc::c_int)
+kablam!    | 	                                      ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!   --> src/tls.rs:97:58
+kablam!    |
+kablam! 97 | 	pub fn set_key_mem(&self, key: *const libc::c_int, len: libc::c_int)
+kablam!    | 	                                                        ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/tls.rs:113:41
+kablam!     |
+kablam! 113 | 	pub fn set_protocols(&self, protocols: libc::c_int) {
+kablam!     | 	                                       ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/tls.rs:118:47
+kablam!     |
+kablam! 118 | 	pub fn set_verify_depth(&self, verify_depth: libc::c_int) {
+kablam!     | 	                                             ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/tls.rs:191:38
+kablam!     |
+kablam! 191 | 	pub fn accept_socket(&self, socket: libc::c_int) -> Result<TLS,&'static str> {
+kablam!     | 	                                    ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/tls.rs:217:37
+kablam!     |
+kablam! 217 | 	pub fn connect_fds(&self, fd_read: libc::c_int, fd_write: libc::c_int, hostname: &str)
+kablam!     | 	                                   ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/tls.rs:217:60
+kablam!     |
+kablam! 217 | 	pub fn connect_fds(&self, fd_read: libc::c_int, fd_write: libc::c_int, hostname: &str)
+kablam!     | 	                                                          ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/tls.rs:231:37
+kablam!     |
+kablam! 231 | 	pub fn connect_socket(&self, sock: libc::c_int, hostname: &str) -> Result<(), &'static str> {
+kablam!     | 	                                   ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/tls.rs:255:25
+kablam!     |
+kablam! 255 | 		let mut outlen = 0 as libc::size_t;
+kablam!     | 		                      ^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/tls.rs:258:58
+kablam!     |
+kablam! 258 | 			bindings::tls_read(self.ptr, buf.as_mut_ptr() as *mut libc::c_void,
+kablam!     | 			                                                      ^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/tls.rs:259:18
+kablam!     |
+kablam! 259 | 				buf.len() as libc::c_int, &mut outlen)
+kablam!     | 				             ^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/tls.rs:284:25
+kablam!     |
+kablam! 284 | 		let mut outlen = 0 as libc::size_t;
+kablam!     | 		                      ^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'libc': use `libc` from crates.io (see issue #27783)
+kablam!    --> src/tls.rs:287:57
+kablam!     |
+kablam! 287 | 			bindings::tls_write(self.ptr, buf.as_ptr() as *const libc::c_void,
+kablam!     | 			                                                     ^^^^^^^^^^^^
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `tls`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f b2aac802a0f5cc56a41f0a6d6bc3da53f48fe31f5f0b3e7525d0c46af9db0973`
+blam! b2aac802a0f5cc56a41f0a6d6bc3da53f48fe31f5f0b3e7525d0c46af9db0973

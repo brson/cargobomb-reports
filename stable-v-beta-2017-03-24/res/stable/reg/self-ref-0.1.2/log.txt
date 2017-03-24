@@ -1,0 +1,56 @@
+boom! testing self-ref-0.1.2 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 34f80fa056effb30856da45d50c89f7317348ea76ad1f964cf55997d46267771
+boom! running `docker start -a 34f80fa056effb30856da45d50c89f7317348ea76ad1f964cf55997d46267771`
+kablam!    Compiling self-ref v0.1.2 (file:///source)
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 0.59 secs
+boom! running `docker rm -f 34f80fa056effb30856da45d50c89f7317348ea76ad1f964cf55997d46267771`
+blam! 34f80fa056effb30856da45d50c89f7317348ea76ad1f964cf55997d46267771
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! e25568394ef2997334def42af19f7726c9007fc628256c6e4c36fb4665f8d368
+boom! running `docker start -a e25568394ef2997334def42af19f7726c9007fc628256c6e4c36fb4665f8d368`
+kablam!    Compiling self-ref v0.1.2 (file:///source)
+kablam! warning: unreachable statement, #[warn(unreachable_code)] on by default
+kablam!    --> src/lib.rs:88:13
+kablam!     |
+kablam! 88  |               unsafe { ptr::write(&mut (*pointer).$field, $field); }
+kablam!     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! ...
+kablam! 136 |           self_referencing!(S1, {
+kablam!     |  _________- starting here...
+kablam! 137 | |             s2 = S2 { v: 2 };
+kablam! 138 | |             s3 = panic!("assignment for s3 panicked");
+kablam! 139 | |             s4 = S4 { v: 4, };
+kablam! 140 | |         });
+kablam!     | |___________- ...ending here: in this macro invocation
+kablam! 
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 0.78 secs
+boom! running `docker rm -f e25568394ef2997334def42af19f7726c9007fc628256c6e4c36fb4665f8d368`
+blam! e25568394ef2997334def42af19f7726c9007fc628256c6e4c36fb4665f8d368
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! 854927a48bcf700dda138e51a34b992333fdadc8df0dc1097a4843fe161bdd73
+boom! running `docker start -a 854927a48bcf700dda138e51a34b992333fdadc8df0dc1097a4843fe161bdd73`
+kablam!     Finished debug [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/self_ref-302863d4663e7054
+blam! 
+blam! running 2 tests
+blam! test tests::struct_names ... ok
+blam! test tests::panicking_and_dropping ... ok
+blam! 
+kablam!    Doc-tests self-ref
+blam! test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+blam! 
+blam! running 1 test
+blam! test self_referencing_0 ... ok
+blam! 
+blam! test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f 854927a48bcf700dda138e51a34b992333fdadc8df0dc1097a4843fe161bdd73`
+blam! 854927a48bcf700dda138e51a34b992333fdadc8df0dc1097a4843fe161bdd73

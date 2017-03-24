@@ -1,0 +1,23 @@
+boom! testing cortex-0.1.5 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 5392c15fa035de5942ec1da4f90ac833ea219b099a3b2660b510faff942d3f4f
+boom! running `docker start -a 5392c15fa035de5942ec1da4f90ac833ea219b099a3b2660b510faff942d3f4f`
+kablam!    Compiling cortex v0.1.5 (file:///source)
+kablam! error[E0277]: the trait bound `Self: std::marker::Sized` is not satisfied
+kablam!   --> src/cortex/mod.rs:24:2
+kablam!    |
+kablam! 24 | 	fn register(&mut self, cortex: Box<Cortex<T, Self>>) { }
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::marker::Sized` is not implemented for `Self`
+kablam!    |
+kablam!    = help: consider adding a `where Self: std::marker::Sized` bound
+kablam!    = note: required by `cortex::Cortex`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `cortex`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 5392c15fa035de5942ec1da4f90ac833ea219b099a3b2660b510faff942d3f4f`
+blam! 5392c15fa035de5942ec1da4f90ac833ea219b099a3b2660b510faff942d3f4f
