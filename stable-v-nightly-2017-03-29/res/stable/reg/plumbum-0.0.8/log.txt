@@ -1,0 +1,86 @@
+boom! testing plumbum-0.0.8 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 64a72b90b36ffb41b375e67269d96f1b5db00f7ae427403ff82a343cf3f8746e
+boom! running `docker start -a 64a72b90b36ffb41b375e67269d96f1b5db00f7ae427403ff82a343cf3f8746e`
+kablam!    Compiling plumbum v0.0.8 (file:///source)
+kablam! warning: private type `Void` in public interface (error E0446), #[warn(private_in_public)] on by default
+kablam!    --> src/lib.rs:165:5
+kablam!     |
+kablam! 165 |     pub fn connect<A>(mut self, mut sink: Sink<'a, O, A>) -> A where O: 'static {
+kablam!     |     ^
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #34537 <https://github.com/rust-lang/rust/issues/34537>
+kablam! 
+kablam! warning: private type `Void` in public interface (error E0446), #[warn(private_in_public)] on by default
+kablam!    --> src/lib.rs:281:1
+kablam!     |
+kablam! 281 | pub type Sink<'a, I, A> = ConduitM<'a, I, Void, A>;
+kablam!     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #34537 <https://github.com/rust-lang/rust/issues/34537>
+kablam! 
+kablam! error[E0276]: impl has stricter requirements than trait, #[deny(extra_requirement_in_impl)] on by default
+kablam!    --> src/lib.rs:265:5
+kablam!     |
+kablam! 265 |       fn extend<T: IntoIterator<Item=O>>(&mut self, iterator: T)
+kablam!     |  _____^ starting here...
+kablam! 266 | |         where I: 'a, T::IntoIter: 'a {
+kablam! 267 | |         let mut other = replace(self, ().into()).extend_iter(iterator.into_iter());
+kablam! 268 | |         swap(self, &mut other);
+kablam! 269 | |     }
+kablam!     | |_____^ ...ending here: impl has extra requirement `I: 'a`
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #37166 <https://github.com/rust-lang/rust/issues/37166>
+kablam! 
+kablam! error[E0276]: impl has stricter requirements than trait, #[deny(extra_requirement_in_impl)] on by default
+kablam!    --> src/lib.rs:265:5
+kablam!     |
+kablam! 265 |       fn extend<T: IntoIterator<Item=O>>(&mut self, iterator: T)
+kablam!     |  _____^ starting here...
+kablam! 266 | |         where I: 'a, T::IntoIter: 'a {
+kablam! 267 | |         let mut other = replace(self, ().into()).extend_iter(iterator.into_iter());
+kablam! 268 | |         swap(self, &mut other);
+kablam! 269 | |     }
+kablam!     | |_____^ ...ending here: impl has extra requirement `<T as std::iter::IntoIterator>::IntoIter: 'a`
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #37166 <https://github.com/rust-lang/rust/issues/37166>
+kablam! 
+kablam! error[E0276]: impl has stricter requirements than trait, #[deny(extra_requirement_in_impl)] on by default
+kablam!    --> src/lib.rs:273:5
+kablam!     |
+kablam! 273 |       fn from_iter<T: IntoIterator<Item=O>>(iterator: T) -> Self
+kablam!     |  _____^ starting here...
+kablam! 274 | |         where I: 'a, T::IntoIter: 'a {
+kablam! 275 | |         ConduitM::extend_iter(().into(), iterator.into_iter())
+kablam! 276 | |     }
+kablam!     | |_____^ ...ending here: impl has extra requirement `I: 'a`
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #37166 <https://github.com/rust-lang/rust/issues/37166>
+kablam! 
+kablam! error[E0276]: impl has stricter requirements than trait, #[deny(extra_requirement_in_impl)] on by default
+kablam!    --> src/lib.rs:273:5
+kablam!     |
+kablam! 273 |       fn from_iter<T: IntoIterator<Item=O>>(iterator: T) -> Self
+kablam!     |  _____^ starting here...
+kablam! 274 | |         where I: 'a, T::IntoIter: 'a {
+kablam! 275 | |         ConduitM::extend_iter(().into(), iterator.into_iter())
+kablam! 276 | |     }
+kablam!     | |_____^ ...ending here: impl has extra requirement `<T as std::iter::IntoIterator>::IntoIter: 'a`
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #37166 <https://github.com/rust-lang/rust/issues/37166>
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `plumbum`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 64a72b90b36ffb41b375e67269d96f1b5db00f7ae427403ff82a343cf3f8746e`
+blam! 64a72b90b36ffb41b375e67269d96f1b5db00f7ae427403ff82a343cf3f8746e

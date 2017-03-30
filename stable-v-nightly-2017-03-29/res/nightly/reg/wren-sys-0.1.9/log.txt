@@ -1,0 +1,21 @@
+boom! testing wren-sys-0.1.9 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 2ed3109378279b41d1346efb6a05d34566ed8cf9782b716154561e7826b73f73
+boom! running `docker start -a 2ed3109378279b41d1346efb6a05d34566ed8cf9782b716154561e7826b73f73`
+kablam!    Compiling wren-sys v0.1.9 (file:///source)
+kablam! error: failed to run custom build command for `wren-sys v0.1.9 (file:///source)`
+kablam! process didn't exit successfully: `/target/debug/build/wren-sys-2e75fd7c24e91a5d/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! Makefile:26: recipe for target 'prep' failed
+kablam! 
+kablam! --- stderr
+kablam! mkdir: cannot create directory 'build': Read-only file system
+kablam! mkdir: cannot create directory 'build': Read-only file system
+kablam! make: *** [prep] Error 1
+kablam! thread 'main' panicked at 'assertion failed: make.current_dir(&Path::new("src/wren")).arg("release").stdout(Stdio::inherit()).stderr(Stdio::inherit()).status().unwrap().success()', build.rs:13
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f 2ed3109378279b41d1346efb6a05d34566ed8cf9782b716154561e7826b73f73`
+blam! 2ed3109378279b41d1346efb6a05d34566ed8cf9782b716154561e7826b73f73

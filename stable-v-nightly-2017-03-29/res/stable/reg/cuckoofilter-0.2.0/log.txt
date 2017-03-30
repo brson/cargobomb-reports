@@ -1,0 +1,21 @@
+boom! testing cuckoofilter-0.2.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! c5db63dc66e0e87b2dedd4b1ca944f5e06573827b0891f10ac1d429017549f3e
+boom! running `docker start -a c5db63dc66e0e87b2dedd4b1ca944f5e06573827b0891f10ac1d429017549f3e`
+kablam!    Compiling farmhash v1.1.5
+kablam!    Compiling cuckoofilter v0.2.0 (file:///source)
+kablam! error[E0432]: unresolved import `std::hash::hash`
+kablam!  --> src/util.rs:1:31
+kablam!   |
+kablam! 1 | use std::hash::{Hasher, Hash, hash};
+kablam!   |                               ^^^^ no `hash` in `hash`. Did you mean to use `Hash`?
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `cuckoofilter`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f c5db63dc66e0e87b2dedd4b1ca944f5e06573827b0891f10ac1d429017549f3e`
+blam! c5db63dc66e0e87b2dedd4b1ca944f5e06573827b0891f10ac1d429017549f3e

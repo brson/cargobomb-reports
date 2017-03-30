@@ -1,0 +1,51 @@
+boom! testing hotspot-0.6.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 6881282e788fa34d0b98c730a96fce2d620afd55006bae2060ebaa37a479d440
+boom! running `docker start -a 6881282e788fa34d0b98c730a96fce2d620afd55006bae2060ebaa37a479d440`
+kablam!    Compiling hotspot v0.6.0 (file:///source)
+kablam! error: failed to run custom build command for `hotspot v0.6.0 (file:///source)`
+kablam! process didn't exit successfully: `/target/debug/build/hotspot-7347774b915ba2f8/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! make -C /source/build/source -j4 EXTRAFLAGS='-fPIC -O3'
+kablam! make[1]: Entering directory '/source/build/source'
+kablam! gcc -O3 -fPIC -O3   -DVERBOSE=1 -DMATHACCEL=0 -DDEBUG3D=0 -DSUPERLU=0 -g -c hotspot.c
+kablam! gcc -O3 -fPIC -O3   -DVERBOSE=1 -DMATHACCEL=0 -DDEBUG3D=0 -DSUPERLU=0 -g -c temperature.c
+kablam! gcc -O3 -fPIC -O3   -DVERBOSE=1 -DMATHACCEL=0 -DDEBUG3D=0 -DSUPERLU=0 -g -c RCutil.c
+kablam! gcc -O3 -fPIC -O3   -DVERBOSE=1 -DMATHACCEL=0 -DDEBUG3D=0 -DSUPERLU=0 -g -c package.c
+kablam! Makefile:203: recipe for target 'package.o' failed
+kablam! Makefile:203: recipe for target 'temperature.o' failed
+kablam! Makefile:203: recipe for target 'hotspot.o' failed
+kablam! Makefile:203: recipe for target 'RCutil.o' failed
+kablam! make[1]: Leaving directory '/source/build/source'
+kablam! Makefile:13: recipe for target '/target/debug/build/hotspot-0a0b1020fadecbb8/out/libhotspot.a' failed
+kablam! 
+kablam! --- stderr
+kablam! hotspot.c: In function 'read_names':
+kablam! hotspot.c:167:7: warning: ignoring return value of 'fgets', declared with attribute warn_unused_result [-Wunused-result]
+kablam!        fgets(line, LINE_SIZE, fp);
+kablam!        ^
+kablam! hotspot.c: In function 'read_vals':
+kablam! hotspot.c:201:7: warning: ignoring return value of 'fgets', declared with attribute warn_unused_result [-Wunused-result]
+kablam!        fgets(line, LINE_SIZE, fp);
+kablam!        ^
+kablam! Assembler messages:
+kablam! Fatal error: can't create package.o: Read-only file system
+kablam! make[1]: *** [package.o] Error 1
+kablam! make[1]: *** Waiting for unfinished jobs....
+kablam! Assembler messages:
+kablam! Fatal error: can't create temperature.o: Read-only file system
+kablam! make[1]: *** [temperature.o] Error 1
+kablam! Assembler messages:
+kablam! Fatal error: can't create hotspot.o: Read-only file system
+kablam! make[1]: *** [hotspot.o] Error 1
+kablam! Assembler messages:
+kablam! Fatal error: can't create RCutil.o: Read-only file system
+kablam! make[1]: *** [RCutil.o] Error 1
+kablam! make: *** [/target/debug/build/hotspot-0a0b1020fadecbb8/out/libhotspot.a] Error 2
+kablam! thread 'main' panicked at 'assertion failed: cmd!("make").current_dir(&build).stdout(process::Stdio::inherit()).stderr(process::Stdio::inherit()).status().unwrap().success()', build.rs:24
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f 6881282e788fa34d0b98c730a96fce2d620afd55006bae2060ebaa37a479d440`
+blam! 6881282e788fa34d0b98c730a96fce2d620afd55006bae2060ebaa37a479d440

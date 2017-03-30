@@ -1,0 +1,44 @@
+boom! testing yamlette-0.0.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 182f607fbfaf1707217b2c7ac077b568f477e9d000b94e32f99d3fff03149456
+boom! running `docker start -a 182f607fbfaf1707217b2c7ac077b568f477e9d000b94e32f99d3fff03149456`
+kablam!    Compiling twine v0.0.1
+kablam!    Compiling skimmer v0.0.1
+kablam!    Compiling fraction v0.3.4
+kablam!    Compiling yamlette v0.0.2 (file:///source)
+kablam! error[E0495]: cannot infer an appropriate lifetime for lifetime parameter 'c in function call due to conflicting requirements
+kablam!    --> src/orchestra/conductor.rs:635:22
+kablam!     |
+kablam! 635 |                 self.do_the_music (music, performer_buffers, volumes) ?;
+kablam!     |                      ^^^^^^^^^^^^
+kablam!     |
+kablam! note: first, the lifetime cannot outlive the anonymous lifetime #5 defined on the body at 573:31...
+kablam!    --> src/orchestra/conductor.rs:573:32
+kablam!     |
+kablam! 573 |     ) -> Result<(), OrchError> {
+kablam!     |                                ^
+kablam! note: ...so that reference does not outlive borrowed content
+kablam!    --> src/orchestra/conductor.rs:635:62
+kablam!     |
+kablam! 635 |                 self.do_the_music (music, performer_buffers, volumes) ?;
+kablam!     |                                                              ^^^^^^^
+kablam! note: but, the lifetime must be valid for the anonymous lifetime #3 defined on the body at 573:31...
+kablam!    --> src/orchestra/conductor.rs:573:32
+kablam!     |
+kablam! 573 |     ) -> Result<(), OrchError> {
+kablam!     |                                ^
+kablam! note: ...so that types are compatible (expected &[model::renderer::Node], found &[model::renderer::Node])
+kablam!    --> src/orchestra/conductor.rs:635:43
+kablam!     |
+kablam! 635 |                 self.do_the_music (music, performer_buffers, volumes) ?;
+kablam!     |                                           ^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `yamlette`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 182f607fbfaf1707217b2c7ac077b568f477e9d000b94e32f99d3fff03149456`
+blam! 182f607fbfaf1707217b2c7ac077b568f477e9d000b94e32f99d3fff03149456

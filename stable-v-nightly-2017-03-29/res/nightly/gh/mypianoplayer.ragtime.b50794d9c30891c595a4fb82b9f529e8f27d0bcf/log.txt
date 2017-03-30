@@ -1,0 +1,589 @@
+boom! testing https://github.com/mypianoplayer/ragtime#b50794d9c30891c595a4fb82b9f529e8f27d0bcf against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! fdb76a6a271da006200805bcdc16f37574c8b91e9e51c103750bba9d4b910467
+boom! running `docker start -a fdb76a6a271da006200805bcdc16f37574c8b91e9e51c103750bba9d4b910467`
+kablam!    Compiling ragtime v0.1.0 (file:///source)
+kablam! warning: unused `#[macro_use]` import
+kablam!  --> src/main.rs:1:1
+kablam!   |
+kablam! 1 | #[macro_use]
+kablam!   | ^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `entity_component::component::SubComponent`
+kablam!  --> src/main.rs:4:5
+kablam!   |
+kablam! 4 | use entity_component::component::SubComponent;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused imports: `thread`, `time`
+kablam!  --> src/main.rs:5:11
+kablam!   |
+kablam! 5 | use std::{thread, time};
+kablam!   |           ^^^^^^  ^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: type alias is never used: `EntityID`
+kablam!  --> src/entity_component/entity.rs:5:1
+kablam!   |
+kablam! 5 | pub type EntityID = i32;
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: struct is never used: `Entity`
+kablam!   --> src/entity_component/entity.rs:7:1
+kablam!    |
+kablam! 7  |   pub struct Entity<T> where T:SubComponent {
+kablam!    |  _^ starting here...
+kablam! 8  | |     id:EntityID,
+kablam! 9  | |     components:HashMap<UpdateOrder, Weak<Component<T>>>,
+kablam! 10 | | }
+kablam!    | |_^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `new`
+kablam!   --> src/entity_component/entity.rs:13:5
+kablam!    |
+kablam! 13 |       pub fn new(id:EntityID) -> Self {
+kablam!    |  _____^ starting here...
+kablam! 14 | |         Entity::<T> {
+kablam! 15 | |             id:id,
+kablam! 16 | |             components:HashMap::new(),
+kablam! 17 | |         }
+kablam! 18 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `id`
+kablam!   --> src/entity_component/entity.rs:19:5
+kablam!    |
+kablam! 19 |       pub fn id(&self) -> EntityID {
+kablam!    |  _____^ starting here...
+kablam! 20 | |         self.id
+kablam! 21 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `add_component`
+kablam!   --> src/entity_component/entity.rs:22:5
+kablam!    |
+kablam! 22 |       pub fn add_component<'a>(&'a mut self, order:UpdateOrder, c:Weak<Component<T>>) -> &'a mut Self {
+kablam!    |  _____^ starting here...
+kablam! 23 | |         self.components.insert(order,c);
+kablam! 24 | |         self
+kablam! 25 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: type alias is never used: `UpdateOrder`
+kablam!  --> src/entity_component/component.rs:3:1
+kablam!   |
+kablam! 3 | pub type UpdateOrder = i32;
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: field is never used: `entity_id`
+kablam!   --> src/entity_component/component.rs:11:5
+kablam!    |
+kablam! 11 |     entity_id:EntityID,
+kablam!    |     ^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `new`
+kablam!   --> src/entity_component/component.rs:18:5
+kablam!    |
+kablam! 18 |       pub fn new(id:EntityID, sub:T) -> Self {
+kablam!    |  _____^ starting here...
+kablam! 19 | |         Component::<T> {
+kablam! 20 | |             entity_id:id,
+kablam! 21 | |             first_call:false,
+kablam! 22 | |             sub_component:sub,
+kablam! 23 | |         }
+kablam! 24 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `entity_id`
+kablam!   --> src/entity_component/component.rs:26:5
+kablam!    |
+kablam! 26 |       pub fn entity_id(&self) -> EntityID {
+kablam!    |  _____^ starting here...
+kablam! 27 | |         self.entity_id
+kablam! 28 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `sub_component`
+kablam!   --> src/entity_component/component.rs:29:5
+kablam!    |
+kablam! 29 |       pub fn sub_component(&self) -> &T {
+kablam!    |  _____^ starting here...
+kablam! 30 | |         &self.sub_component
+kablam! 31 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: field is never used: `next_entity_id`
+kablam!   --> src/entity_component/system.rs:10:5
+kablam!    |
+kablam! 10 |     next_entity_id:i32,
+kablam!    |     ^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: field is never used: `entities`
+kablam!   --> src/entity_component/system.rs:12:5
+kablam!    |
+kablam! 12 |     entities:HashMap<EntityID,Entity<T>>,
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `new`
+kablam!   --> src/entity_component/system.rs:17:5
+kablam!    |
+kablam! 17 |       pub fn new() -> System<T> {
+kablam!    |  _____^ starting here...
+kablam! 18 | |         System::<T> {
+kablam! 19 | |             next_entity_id:0,
+kablam! 20 | |             components:BTreeMap::new(),
+kablam! 21 | |             entities:HashMap::new(),
+kablam! 22 | |         }
+kablam! 23 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `generate_entity_id`
+kablam!   --> src/entity_component/system.rs:25:5
+kablam!    |
+kablam! 25 |       pub fn generate_entity_id(&mut self) -> EntityID {
+kablam!    |  _____^ starting here...
+kablam! 26 | |         if self.next_entity_id == i32::max_value() {
+kablam! 27 | |             panic!("entity id max");
+kablam! 28 | |         }
+kablam! 29 | |         let id = self.next_entity_id;
+kablam! 30 | |         self.next_entity_id += 1;
+kablam! 31 | |         id
+kablam! 32 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `add_component`
+kablam!   --> src/entity_component/system.rs:44:5
+kablam!    |
+kablam! 44 |     pub fn add_component(&mut self, order:UpdateOrder, c:Component<T>) -> Weak<Component<T>> {
+kablam!    |     ^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused import: `VecDeque`
+kablam!  --> src/sub_component/game_logic/connection_manager.rs:5:32
+kablam!   |
+kablam! 5 | use std::collections::{HashMap,VecDeque};
+kablam!   |                                ^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused imports: `Receiver`, `Sender`, `channel`
+kablam!  --> src/sub_component/game_logic/connection_manager.rs:6:23
+kablam!   |
+kablam! 6 | use std::sync::mpsc::{Sender,Receiver,channel};
+kablam!   |                       ^^^^^^ ^^^^^^^^ ^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `std::sync::Arc`
+kablam!  --> src/sub_component/game_logic/connection_manager.rs:7:5
+kablam!   |
+kablam! 7 | use std::sync::Arc;
+kablam!   |     ^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `std::thread`
+kablam!  --> src/sub_component/game_logic/connection_manager.rs:8:5
+kablam!   |
+kablam! 8 | use std::thread;
+kablam!   |     ^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `std::net::ToSocketAddrs`
+kablam!  --> src/sub_component/game_logic/connection_manager.rs:9:5
+kablam!   |
+kablam! 9 | use std::net::ToSocketAddrs;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `std::net::SocketAddr`
+kablam!   --> src/sub_component/game_logic/connection_manager.rs:10:5
+kablam!    |
+kablam! 10 | use std::net::SocketAddr;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `Read`
+kablam!   --> src/sub_component/game_logic/connection_manager.rs:11:21
+kablam!    |
+kablam! 11 | use std::io::{Write,Read,BufReader,BufRead};
+kablam!    |                     ^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused imports: `BigEndian`, `ByteOrder`
+kablam!   --> src/sub_component/game_logic/connection_manager.rs:12:23
+kablam!    |
+kablam! 12 | use self::byteorder::{BigEndian,ByteOrder};
+kablam!    |                       ^^^^^^^^^ ^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: type alias is never used: `ConnectionID`
+kablam!   --> src/sub_component/game_logic/connection_manager.rs:15:1
+kablam!    |
+kablam! 15 | type ConnectionID = u32;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: enum is never used: `EventCtoS`
+kablam!   --> src/sub_component/game_logic/connection_manager.rs:17:1
+kablam!    |
+kablam! 17 |   enum EventCtoS {
+kablam!    |  _^ starting here...
+kablam! 18 | |     Accept(TcpStream),
+kablam! 19 | | }
+kablam!    | |_^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: enum is never used: `EventStoC`
+kablam!   --> src/sub_component/game_logic/connection_manager.rs:21:1
+kablam!    |
+kablam! 21 |   enum EventStoC {
+kablam!    |  _^ starting here...
+kablam! 22 | |     SendTo((TcpStream,Vec<u8>)),
+kablam! 23 | | }
+kablam!    | |_^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: field is never used: `body_len`
+kablam!   --> src/sub_component/game_logic/connection_manager.rs:26:5
+kablam!    |
+kablam! 26 |     body_len:i32,
+kablam!    |     ^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: field is never used: `send_stream`
+kablam!   --> src/sub_component/game_logic/connection_manager.rs:38:5
+kablam!    |
+kablam! 38 |     send_stream:TcpStream,
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: field is never used: `recv_header`
+kablam!   --> src/sub_component/game_logic/connection_manager.rs:40:5
+kablam!    |
+kablam! 40 |     recv_header:DataHeader,
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> src/sub_component/game_logic/connection_manager.rs:54:9
+kablam!    |
+kablam! 54 |         self.recv_buffer.read_line(&mut msg);
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: method is never used: `send`
+kablam!   --> src/sub_component/game_logic/connection_manager.rs:76:5
+kablam!    |
+kablam! 76 |       fn send(&mut self, data:&[u8]) {
+kablam!    |  _____^ starting here...
+kablam! 77 | |         self.send_stream.write_all(data);
+kablam! 78 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> src/sub_component/game_logic/connection_manager.rs:77:9
+kablam!    |
+kablam! 77 |         self.send_stream.write_all(data);
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: type alias is never used: `MsgHandler`
+kablam!   --> src/sub_component/game_logic/connection_manager.rs:81:1
+kablam!    |
+kablam! 81 | type MsgHandler = fn(ConnectionID, String);
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: struct is never used: `ConnectionManager`
+kablam!   --> src/sub_component/game_logic/connection_manager.rs:83:1
+kablam!    |
+kablam! 83 |   pub struct ConnectionManager {
+kablam!    |  _^ starting here...
+kablam! 84 | |     next_conn_id:ConnectionID,
+kablam! 85 | |     listener:TcpListener,
+kablam! 86 | |     connections:HashMap<ConnectionID, Connection>,
+kablam! 87 | |     msg_handler:MsgHandler,
+kablam! 88 | | }
+kablam!    | |_^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `new`
+kablam!    --> src/sub_component/game_logic/connection_manager.rs:91:5
+kablam!     |
+kablam! 91  |     pub fn new(addr:String, handler:MsgHandler) -> ConnectionManager {
+kablam!     |     ^
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `send_to`
+kablam!    --> src/sub_component/game_logic/connection_manager.rs:101:5
+kablam!     |
+kablam! 101 |       pub fn send_to(&mut self, conn_id:ConnectionID, data:Vec<u8>) {
+kablam!     |  _____^ starting here...
+kablam! 102 | |         if let Some(val) = self.connections.get_mut(&conn_id) {
+kablam! 103 | |             val.send(data.as_slice());
+kablam! 104 | |         }
+kablam! 105 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!    --> src/sub_component/game_logic/connection_manager.rs:115:17
+kablam!     |
+kablam! 115 |                 stream.set_nonblocking(true);
+kablam!     |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused variable: `e`
+kablam!    --> src/sub_component/game_logic/connection_manager.rs:120:17
+kablam!     |
+kablam! 120 |             Err(e) => {
+kablam!     |                 ^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused import: `entity_component::entity::*;`
+kablam!  --> src/sub_component/game_logic/game_object_manager.rs:2:5
+kablam!   |
+kablam! 2 | use entity_component::entity::*;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: struct is never used: `GameObjectManager`
+kablam!  --> src/sub_component/game_logic/game_object_manager.rs:5:1
+kablam!   |
+kablam! 5 |   pub struct GameObjectManager<T> where T : SubComponent {
+kablam!   |  _^ starting here...
+kablam! 6 | |     system:System<T>,
+kablam! 7 | | }
+kablam!   | |_^ ...ending here
+kablam!   |
+kablam!   = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: struct is never used: `DBManager`
+kablam!  --> src/sub_component/game_logic/db_manager.rs:4:1
+kablam!   |
+kablam! 4 |   pub struct DBManager {
+kablam!   |  _^ starting here...
+kablam! 5 | |
+kablam! 6 | | }
+kablam!   | |_^ ...ending here
+kablam!   |
+kablam!   = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: struct is never used: `Position`
+kablam!  --> src/sub_component/game_object/position.rs:4:1
+kablam!   |
+kablam! 4 |   pub struct Position {
+kablam!   |  _^ starting here...
+kablam! 5 | |     pos:(f32,f32),
+kablam! 6 | |     move_per_frame:(f32,f32),
+kablam! 7 | | }
+kablam!   | |_^ ...ending here
+kablam!   |
+kablam!   = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `move_to`
+kablam!   --> src/sub_component/game_object/position.rs:20:5
+kablam!    |
+kablam! 20 |       fn move_to(&mut self, tgt_pos:(f32,f32), after_msec:i32) {
+kablam!    |  _____^ starting here...
+kablam! 21 | |
+kablam! 22 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused variable: `tgt_pos`
+kablam!   --> src/sub_component/game_object/position.rs:20:27
+kablam!    |
+kablam! 20 |     fn move_to(&mut self, tgt_pos:(f32,f32), after_msec:i32) {
+kablam!    |                           ^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `after_msec`
+kablam!   --> src/sub_component/game_object/position.rs:20:46
+kablam!    |
+kablam! 20 |     fn move_to(&mut self, tgt_pos:(f32,f32), after_msec:i32) {
+kablam!    |                                              ^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused import: `entity_component::entity::*;`
+kablam!  --> src/sample1/mod.rs:2:5
+kablam!   |
+kablam! 2 | use entity_component::entity::*;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: enum is never used: `GameLogicComponents`
+kablam!   --> src/sample1/mod.rs:9:1
+kablam!    |
+kablam! 9  |   enum GameLogicComponents {
+kablam!    |  _^ starting here...
+kablam! 10 | |     ConnectionManagerSC(ConnectionManager),
+kablam! 11 | |     DBManagerSC(DBManager),
+kablam! 12 | |     GameObjectManagerSC(GameObjectManager<GameObjectComponents>),
+kablam! 13 | | }
+kablam!    | |_^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: enum is never used: `GameObjectComponents`
+kablam!   --> src/sample1/mod.rs:24:1
+kablam!    |
+kablam! 24 |   enum GameObjectComponents {
+kablam!    |  _^ starting here...
+kablam! 25 | |     PositionSC(Position),
+kablam! 26 | | }
+kablam!    | |_^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: struct is never used: `Sample1Game`
+kablam!   --> src/sample1/mod.rs:37:1
+kablam!    |
+kablam! 37 |   struct Sample1Game {
+kablam!    |  _^ starting here...
+kablam! 38 | |     system:System<GameLogicComponents>,
+kablam! 39 | | }
+kablam!    | |_^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: function is never used: `sample1_start`
+kablam!   --> src/sample1/mod.rs:41:1
+kablam!    |
+kablam! 41 |   pub fn sample1_start() {
+kablam!    |  _^ starting here...
+kablam! 42 | |     //make game AsMut
+kablam! 43 | |     //add connection manager
+kablam! 44 | |     //add game object manager
+kablam! 45 | |
+kablam! 46 | | }
+kablam!    | |_^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.35 secs
+boom! running `docker rm -f fdb76a6a271da006200805bcdc16f37574c8b91e9e51c103750bba9d4b910467`
+blam! fdb76a6a271da006200805bcdc16f37574c8b91e9e51c103750bba9d4b910467
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! aaaaf8eba104861ad7715723597f2955cd8307e0c11ebf5d2a5f5ef981bab913
+boom! running `docker start -a aaaaf8eba104861ad7715723597f2955cd8307e0c11ebf5d2a5f5ef981bab913`
+kablam!    Compiling ragtime v0.1.0 (file:///source)
+kablam! error: non-capturing closure to fn coercion is experimental (see issue #39817)
+kablam!   --> src/main.rs:21:127
+kablam!    |
+kablam! 21 |     let mut conn_manager = sub_component::game_logic::connection_manager::ConnectionManager::new("0.0.0.0:53000".to_string(), |id:i32,msg:String|{println!("recv---{}",msg);});
+kablam!    |                                                                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: add #![feature(closure_to_fn_coercion)] to the crate attributes to enable
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/main.rs:21:127
+kablam!    |
+kablam! 21 |     let mut conn_manager = sub_component::game_logic::connection_manager::ConnectionManager::new("0.0.0.0:53000".to_string(), |id:i32,msg:String|{println!("recv---{}",msg);});
+kablam!    |                                                                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected fn pointer, found closure
+kablam!    |
+kablam!    = note: expected type `fn(u32, std::string::String)`
+kablam!               found type `[closure@src/main.rs:21:127: 21:174]`
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `ragtime`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f aaaaf8eba104861ad7715723597f2955cd8307e0c11ebf5d2a5f5ef981bab913`
+blam! aaaaf8eba104861ad7715723597f2955cd8307e0c11ebf5d2a5f5ef981bab913
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 4de481c4e0942f12a5cc7c044d72ae026a435ffda464e55f9c015d2a240c9f27
+boom! running `docker start -a 4de481c4e0942f12a5cc7c044d72ae026a435ffda464e55f9c015d2a240c9f27`
+kablam!    Compiling ragtime v0.1.0 (file:///source)
+kablam! error: non-capturing closure to fn coercion is experimental (see issue #39817)
+kablam!   --> src/main.rs:21:127
+kablam!    |
+kablam! 21 |     let mut conn_manager = sub_component::game_logic::connection_manager::ConnectionManager::new("0.0.0.0:53000".to_string(), |id:i32,msg:String|{println!("recv---{}",msg);});
+kablam!    |                                                                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: add #![feature(closure_to_fn_coercion)] to the crate attributes to enable
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/main.rs:21:127
+kablam!    |
+kablam! 21 |     let mut conn_manager = sub_component::game_logic::connection_manager::ConnectionManager::new("0.0.0.0:53000".to_string(), |id:i32,msg:String|{println!("recv---{}",msg);});
+kablam!    |                                                                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected fn pointer, found closure
+kablam!    |
+kablam!    = note: expected type `fn(u32, std::string::String)`
+kablam!               found type `[closure@src/main.rs:21:127: 21:174]`
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `ragtime`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 4de481c4e0942f12a5cc7c044d72ae026a435ffda464e55f9c015d2a240c9f27`
+blam! 4de481c4e0942f12a5cc7c044d72ae026a435ffda464e55f9c015d2a240c9f27

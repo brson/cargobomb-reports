@@ -1,0 +1,852 @@
+boom! testing bswap-0.4.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! c39dddfe086d3d20ec02e549ca61ba63c349fa5bba7c097fb0a6fa7f52853470
+boom! running `docker start -a c39dddfe086d3d20ec02e549ca61ba63c349fa5bba7c097fb0a6fa7f52853470`
+kablam!    Compiling bswap v0.4.0 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.82 secs
+boom! running `docker rm -f c39dddfe086d3d20ec02e549ca61ba63c349fa5bba7c097fb0a6fa7f52853470`
+blam! c39dddfe086d3d20ec02e549ca61ba63c349fa5bba7c097fb0a6fa7f52853470
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 02d37157076cc5503cc5ac1f4e391f2d5ac8a2c470aac069f3d189b30d9ac67c
+boom! running `docker start -a 02d37157076cc5503cc5ac1f4e391f2d5ac8a2c470aac069f3d189b30d9ac67c`
+kablam!    Compiling bswap v0.4.0 (file:///source)
+kablam! error[E0432]: unresolved import `test::Bencher`
+kablam!  --> src/tests.rs:2:5
+kablam!   |
+kablam! 2 | use test::Bencher;
+kablam!   |     ^^^^^^^^^^^^^ Did you mean `__test::test`?
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `bytes` in `slice`
+kablam!    --> src/tests.rs:159:5
+kablam!     |
+kablam! 159 |     ::std::slice::bytes::copy_memory(&mut dst, src);
+kablam!     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `bytes` in `slice`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `bytes` in `slice`
+kablam!    --> src/tests.rs:188:5
+kablam!     |
+kablam! 188 |     ::std::slice::bytes::copy_memory(&mut dst, src);
+kablam!     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `bytes` in `slice`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `bytes` in `slice`
+kablam!    --> src/tests.rs:218:5
+kablam!     |
+kablam! 218 |     ::std::slice::bytes::copy_memory(&mut dst, src);
+kablam!     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `bytes` in `slice`
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::u16`
+kablam!    --> src/tests.rs:282:81
+kablam!     |
+kablam! 282 |                     super::super::$bemod::encode(&mut buf[(8 - (::std::$ty_int::BYTES as usize))..], n as $ty_uint);
+kablam!     |                                                                                 ^^^^^ not found in `std::u16`
+kablam! ...
+kablam! 303 | qc_byte_order!(prop_u16, u16, u16, beu16, leu16);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::u16`
+kablam!    --> src/tests.rs:283:86
+kablam!     |
+kablam! 283 |                     n == super::super::$bemod::decode(&mut buf[(8 - (::std::$ty_int::BYTES as usize))..]) as $ty_int
+kablam!     |                                                                                      ^^^^^ not found in `std::u16`
+kablam! ...
+kablam! 303 | qc_byte_order!(prop_u16, u16, u16, beu16, leu16);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::u16`
+kablam!    --> src/tests.rs:293:79
+kablam!     |
+kablam! 293 |                     super::super::$lemod::encode(&mut buf[..((::std::$ty_int::BYTES as usize))], n as $ty_uint);
+kablam!     |                                                                               ^^^^^ not found in `std::u16`
+kablam! ...
+kablam! 303 | qc_byte_order!(prop_u16, u16, u16, beu16, leu16);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::u16`
+kablam!    --> src/tests.rs:294:84
+kablam!     |
+kablam! 294 |                     n == super::super::$lemod::decode(&mut buf[..((::std::$ty_int::BYTES as usize))]) as $ty_int
+kablam!     |                                                                                    ^^^^^ not found in `std::u16`
+kablam! ...
+kablam! 303 | qc_byte_order!(prop_u16, u16, u16, beu16, leu16);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::i16`
+kablam!    --> src/tests.rs:282:81
+kablam!     |
+kablam! 282 |                     super::super::$bemod::encode(&mut buf[(8 - (::std::$ty_int::BYTES as usize))..], n as $ty_uint);
+kablam!     |                                                                                 ^^^^^ not found in `std::i16`
+kablam! ...
+kablam! 304 | qc_byte_order!(prop_i16, i16, u16, beu16, leu16);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::i16`
+kablam!    --> src/tests.rs:283:86
+kablam!     |
+kablam! 283 |                     n == super::super::$bemod::decode(&mut buf[(8 - (::std::$ty_int::BYTES as usize))..]) as $ty_int
+kablam!     |                                                                                      ^^^^^ not found in `std::i16`
+kablam! ...
+kablam! 304 | qc_byte_order!(prop_i16, i16, u16, beu16, leu16);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::i16`
+kablam!    --> src/tests.rs:293:79
+kablam!     |
+kablam! 293 |                     super::super::$lemod::encode(&mut buf[..((::std::$ty_int::BYTES as usize))], n as $ty_uint);
+kablam!     |                                                                               ^^^^^ not found in `std::i16`
+kablam! ...
+kablam! 304 | qc_byte_order!(prop_i16, i16, u16, beu16, leu16);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::i16`
+kablam!    --> src/tests.rs:294:84
+kablam!     |
+kablam! 294 |                     n == super::super::$lemod::decode(&mut buf[..((::std::$ty_int::BYTES as usize))]) as $ty_int
+kablam!     |                                                                                    ^^^^^ not found in `std::i16`
+kablam! ...
+kablam! 304 | qc_byte_order!(prop_i16, i16, u16, beu16, leu16);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::u32`
+kablam!    --> src/tests.rs:282:81
+kablam!     |
+kablam! 282 |                     super::super::$bemod::encode(&mut buf[(8 - (::std::$ty_int::BYTES as usize))..], n as $ty_uint);
+kablam!     |                                                                                 ^^^^^ not found in `std::u32`
+kablam! ...
+kablam! 305 | qc_byte_order!(prop_u32, u32, u32, beu32, leu32);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::u32`
+kablam!    --> src/tests.rs:283:86
+kablam!     |
+kablam! 283 |                     n == super::super::$bemod::decode(&mut buf[(8 - (::std::$ty_int::BYTES as usize))..]) as $ty_int
+kablam!     |                                                                                      ^^^^^ not found in `std::u32`
+kablam! ...
+kablam! 305 | qc_byte_order!(prop_u32, u32, u32, beu32, leu32);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::u32`
+kablam!    --> src/tests.rs:293:79
+kablam!     |
+kablam! 293 |                     super::super::$lemod::encode(&mut buf[..((::std::$ty_int::BYTES as usize))], n as $ty_uint);
+kablam!     |                                                                               ^^^^^ not found in `std::u32`
+kablam! ...
+kablam! 305 | qc_byte_order!(prop_u32, u32, u32, beu32, leu32);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::u32`
+kablam!    --> src/tests.rs:294:84
+kablam!     |
+kablam! 294 |                     n == super::super::$lemod::decode(&mut buf[..((::std::$ty_int::BYTES as usize))]) as $ty_int
+kablam!     |                                                                                    ^^^^^ not found in `std::u32`
+kablam! ...
+kablam! 305 | qc_byte_order!(prop_u32, u32, u32, beu32, leu32);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::i32`
+kablam!    --> src/tests.rs:282:81
+kablam!     |
+kablam! 282 |                     super::super::$bemod::encode(&mut buf[(8 - (::std::$ty_int::BYTES as usize))..], n as $ty_uint);
+kablam!     |                                                                                 ^^^^^ not found in `std::i32`
+kablam! ...
+kablam! 306 | qc_byte_order!(prop_i32, i32, u32, beu32, leu32);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::i32`
+kablam!    --> src/tests.rs:283:86
+kablam!     |
+kablam! 283 |                     n == super::super::$bemod::decode(&mut buf[(8 - (::std::$ty_int::BYTES as usize))..]) as $ty_int
+kablam!     |                                                                                      ^^^^^ not found in `std::i32`
+kablam! ...
+kablam! 306 | qc_byte_order!(prop_i32, i32, u32, beu32, leu32);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::i32`
+kablam!    --> src/tests.rs:293:79
+kablam!     |
+kablam! 293 |                     super::super::$lemod::encode(&mut buf[..((::std::$ty_int::BYTES as usize))], n as $ty_uint);
+kablam!     |                                                                               ^^^^^ not found in `std::i32`
+kablam! ...
+kablam! 306 | qc_byte_order!(prop_i32, i32, u32, beu32, leu32);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::i32`
+kablam!    --> src/tests.rs:294:84
+kablam!     |
+kablam! 294 |                     n == super::super::$lemod::decode(&mut buf[..((::std::$ty_int::BYTES as usize))]) as $ty_int
+kablam!     |                                                                                    ^^^^^ not found in `std::i32`
+kablam! ...
+kablam! 306 | qc_byte_order!(prop_i32, i32, u32, beu32, leu32);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::u64`
+kablam!    --> src/tests.rs:282:81
+kablam!     |
+kablam! 282 |                     super::super::$bemod::encode(&mut buf[(8 - (::std::$ty_int::BYTES as usize))..], n as $ty_uint);
+kablam!     |                                                                                 ^^^^^ not found in `std::u64`
+kablam! ...
+kablam! 307 | qc_byte_order!(prop_u64, u64, u64, beu64, leu64);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::u64`
+kablam!    --> src/tests.rs:283:86
+kablam!     |
+kablam! 283 |                     n == super::super::$bemod::decode(&mut buf[(8 - (::std::$ty_int::BYTES as usize))..]) as $ty_int
+kablam!     |                                                                                      ^^^^^ not found in `std::u64`
+kablam! ...
+kablam! 307 | qc_byte_order!(prop_u64, u64, u64, beu64, leu64);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::u64`
+kablam!    --> src/tests.rs:293:79
+kablam!     |
+kablam! 293 |                     super::super::$lemod::encode(&mut buf[..((::std::$ty_int::BYTES as usize))], n as $ty_uint);
+kablam!     |                                                                               ^^^^^ not found in `std::u64`
+kablam! ...
+kablam! 307 | qc_byte_order!(prop_u64, u64, u64, beu64, leu64);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::u64`
+kablam!    --> src/tests.rs:294:84
+kablam!     |
+kablam! 294 |                     n == super::super::$lemod::decode(&mut buf[..((::std::$ty_int::BYTES as usize))]) as $ty_int
+kablam!     |                                                                                    ^^^^^ not found in `std::u64`
+kablam! ...
+kablam! 307 | qc_byte_order!(prop_u64, u64, u64, beu64, leu64);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::i64`
+kablam!    --> src/tests.rs:282:81
+kablam!     |
+kablam! 282 |                     super::super::$bemod::encode(&mut buf[(8 - (::std::$ty_int::BYTES as usize))..], n as $ty_uint);
+kablam!     |                                                                                 ^^^^^ not found in `std::i64`
+kablam! ...
+kablam! 308 | qc_byte_order!(prop_i64, i64, u64, beu64, leu64);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::i64`
+kablam!    --> src/tests.rs:283:86
+kablam!     |
+kablam! 283 |                     n == super::super::$bemod::decode(&mut buf[(8 - (::std::$ty_int::BYTES as usize))..]) as $ty_int
+kablam!     |                                                                                      ^^^^^ not found in `std::i64`
+kablam! ...
+kablam! 308 | qc_byte_order!(prop_i64, i64, u64, beu64, leu64);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::i64`
+kablam!    --> src/tests.rs:293:79
+kablam!     |
+kablam! 293 |                     super::super::$lemod::encode(&mut buf[..((::std::$ty_int::BYTES as usize))], n as $ty_uint);
+kablam!     |                                                                               ^^^^^ not found in `std::i64`
+kablam! ...
+kablam! 308 | qc_byte_order!(prop_i64, i64, u64, beu64, leu64);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::i64`
+kablam!    --> src/tests.rs:294:84
+kablam!     |
+kablam! 294 |                     n == super::super::$lemod::decode(&mut buf[..((::std::$ty_int::BYTES as usize))]) as $ty_int
+kablam!     |                                                                                    ^^^^^ not found in `std::i64`
+kablam! ...
+kablam! 308 | qc_byte_order!(prop_i64, i64, u64, beu64, leu64);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error: aborting due to 28 previous errors
+kablam! 
+kablam! error: Could not compile `bswap`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 02d37157076cc5503cc5ac1f4e391f2d5ac8a2c470aac069f3d189b30d9ac67c`
+blam! 02d37157076cc5503cc5ac1f4e391f2d5ac8a2c470aac069f3d189b30d9ac67c
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 92fb9f6c046f986fc54259c0af776702e78606fbc8a4da0fe5d30b0b6eb6d734
+boom! running `docker start -a 92fb9f6c046f986fc54259c0af776702e78606fbc8a4da0fe5d30b0b6eb6d734`
+kablam!    Compiling bswap v0.4.0 (file:///source)
+kablam! error[E0432]: unresolved import `test::Bencher`
+kablam!  --> src/tests.rs:2:5
+kablam!   |
+kablam! 2 | use test::Bencher;
+kablam!   |     ^^^^^^^^^^^^^ Did you mean `__test::test`?
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `bytes` in `slice`
+kablam!    --> src/tests.rs:159:5
+kablam!     |
+kablam! 159 |     ::std::slice::bytes::copy_memory(&mut dst, src);
+kablam!     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `bytes` in `slice`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `bytes` in `slice`
+kablam!    --> src/tests.rs:188:5
+kablam!     |
+kablam! 188 |     ::std::slice::bytes::copy_memory(&mut dst, src);
+kablam!     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `bytes` in `slice`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `bytes` in `slice`
+kablam!    --> src/tests.rs:218:5
+kablam!     |
+kablam! 218 |     ::std::slice::bytes::copy_memory(&mut dst, src);
+kablam!     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `bytes` in `slice`
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::u16`
+kablam!    --> src/tests.rs:282:81
+kablam!     |
+kablam! 282 |                     super::super::$bemod::encode(&mut buf[(8 - (::std::$ty_int::BYTES as usize))..], n as $ty_uint);
+kablam!     |                                                                                 ^^^^^ not found in `std::u16`
+kablam! ...
+kablam! 303 | qc_byte_order!(prop_u16, u16, u16, beu16, leu16);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::u16`
+kablam!    --> src/tests.rs:283:86
+kablam!     |
+kablam! 283 |                     n == super::super::$bemod::decode(&mut buf[(8 - (::std::$ty_int::BYTES as usize))..]) as $ty_int
+kablam!     |                                                                                      ^^^^^ not found in `std::u16`
+kablam! ...
+kablam! 303 | qc_byte_order!(prop_u16, u16, u16, beu16, leu16);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::u16`
+kablam!    --> src/tests.rs:293:79
+kablam!     |
+kablam! 293 |                     super::super::$lemod::encode(&mut buf[..((::std::$ty_int::BYTES as usize))], n as $ty_uint);
+kablam!     |                                                                               ^^^^^ not found in `std::u16`
+kablam! ...
+kablam! 303 | qc_byte_order!(prop_u16, u16, u16, beu16, leu16);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::u16`
+kablam!    --> src/tests.rs:294:84
+kablam!     |
+kablam! 294 |                     n == super::super::$lemod::decode(&mut buf[..((::std::$ty_int::BYTES as usize))]) as $ty_int
+kablam!     |                                                                                    ^^^^^ not found in `std::u16`
+kablam! ...
+kablam! 303 | qc_byte_order!(prop_u16, u16, u16, beu16, leu16);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::i16`
+kablam!    --> src/tests.rs:282:81
+kablam!     |
+kablam! 282 |                     super::super::$bemod::encode(&mut buf[(8 - (::std::$ty_int::BYTES as usize))..], n as $ty_uint);
+kablam!     |                                                                                 ^^^^^ not found in `std::i16`
+kablam! ...
+kablam! 304 | qc_byte_order!(prop_i16, i16, u16, beu16, leu16);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::i16`
+kablam!    --> src/tests.rs:283:86
+kablam!     |
+kablam! 283 |                     n == super::super::$bemod::decode(&mut buf[(8 - (::std::$ty_int::BYTES as usize))..]) as $ty_int
+kablam!     |                                                                                      ^^^^^ not found in `std::i16`
+kablam! ...
+kablam! 304 | qc_byte_order!(prop_i16, i16, u16, beu16, leu16);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::i16`
+kablam!    --> src/tests.rs:293:79
+kablam!     |
+kablam! 293 |                     super::super::$lemod::encode(&mut buf[..((::std::$ty_int::BYTES as usize))], n as $ty_uint);
+kablam!     |                                                                               ^^^^^ not found in `std::i16`
+kablam! ...
+kablam! 304 | qc_byte_order!(prop_i16, i16, u16, beu16, leu16);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::i16`
+kablam!    --> src/tests.rs:294:84
+kablam!     |
+kablam! 294 |                     n == super::super::$lemod::decode(&mut buf[..((::std::$ty_int::BYTES as usize))]) as $ty_int
+kablam!     |                                                                                    ^^^^^ not found in `std::i16`
+kablam! ...
+kablam! 304 | qc_byte_order!(prop_i16, i16, u16, beu16, leu16);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::u32`
+kablam!    --> src/tests.rs:282:81
+kablam!     |
+kablam! 282 |                     super::super::$bemod::encode(&mut buf[(8 - (::std::$ty_int::BYTES as usize))..], n as $ty_uint);
+kablam!     |                                                                                 ^^^^^ not found in `std::u32`
+kablam! ...
+kablam! 305 | qc_byte_order!(prop_u32, u32, u32, beu32, leu32);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::u32`
+kablam!    --> src/tests.rs:283:86
+kablam!     |
+kablam! 283 |                     n == super::super::$bemod::decode(&mut buf[(8 - (::std::$ty_int::BYTES as usize))..]) as $ty_int
+kablam!     |                                                                                      ^^^^^ not found in `std::u32`
+kablam! ...
+kablam! 305 | qc_byte_order!(prop_u32, u32, u32, beu32, leu32);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::u32`
+kablam!    --> src/tests.rs:293:79
+kablam!     |
+kablam! 293 |                     super::super::$lemod::encode(&mut buf[..((::std::$ty_int::BYTES as usize))], n as $ty_uint);
+kablam!     |                                                                               ^^^^^ not found in `std::u32`
+kablam! ...
+kablam! 305 | qc_byte_order!(prop_u32, u32, u32, beu32, leu32);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::u32`
+kablam!    --> src/tests.rs:294:84
+kablam!     |
+kablam! 294 |                     n == super::super::$lemod::decode(&mut buf[..((::std::$ty_int::BYTES as usize))]) as $ty_int
+kablam!     |                                                                                    ^^^^^ not found in `std::u32`
+kablam! ...
+kablam! 305 | qc_byte_order!(prop_u32, u32, u32, beu32, leu32);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::i32`
+kablam!    --> src/tests.rs:282:81
+kablam!     |
+kablam! 282 |                     super::super::$bemod::encode(&mut buf[(8 - (::std::$ty_int::BYTES as usize))..], n as $ty_uint);
+kablam!     |                                                                                 ^^^^^ not found in `std::i32`
+kablam! ...
+kablam! 306 | qc_byte_order!(prop_i32, i32, u32, beu32, leu32);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::i32`
+kablam!    --> src/tests.rs:283:86
+kablam!     |
+kablam! 283 |                     n == super::super::$bemod::decode(&mut buf[(8 - (::std::$ty_int::BYTES as usize))..]) as $ty_int
+kablam!     |                                                                                      ^^^^^ not found in `std::i32`
+kablam! ...
+kablam! 306 | qc_byte_order!(prop_i32, i32, u32, beu32, leu32);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::i32`
+kablam!    --> src/tests.rs:293:79
+kablam!     |
+kablam! 293 |                     super::super::$lemod::encode(&mut buf[..((::std::$ty_int::BYTES as usize))], n as $ty_uint);
+kablam!     |                                                                               ^^^^^ not found in `std::i32`
+kablam! ...
+kablam! 306 | qc_byte_order!(prop_i32, i32, u32, beu32, leu32);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::i32`
+kablam!    --> src/tests.rs:294:84
+kablam!     |
+kablam! 294 |                     n == super::super::$lemod::decode(&mut buf[..((::std::$ty_int::BYTES as usize))]) as $ty_int
+kablam!     |                                                                                    ^^^^^ not found in `std::i32`
+kablam! ...
+kablam! 306 | qc_byte_order!(prop_i32, i32, u32, beu32, leu32);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::u64`
+kablam!    --> src/tests.rs:282:81
+kablam!     |
+kablam! 282 |                     super::super::$bemod::encode(&mut buf[(8 - (::std::$ty_int::BYTES as usize))..], n as $ty_uint);
+kablam!     |                                                                                 ^^^^^ not found in `std::u64`
+kablam! ...
+kablam! 307 | qc_byte_order!(prop_u64, u64, u64, beu64, leu64);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::u64`
+kablam!    --> src/tests.rs:283:86
+kablam!     |
+kablam! 283 |                     n == super::super::$bemod::decode(&mut buf[(8 - (::std::$ty_int::BYTES as usize))..]) as $ty_int
+kablam!     |                                                                                      ^^^^^ not found in `std::u64`
+kablam! ...
+kablam! 307 | qc_byte_order!(prop_u64, u64, u64, beu64, leu64);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::u64`
+kablam!    --> src/tests.rs:293:79
+kablam!     |
+kablam! 293 |                     super::super::$lemod::encode(&mut buf[..((::std::$ty_int::BYTES as usize))], n as $ty_uint);
+kablam!     |                                                                               ^^^^^ not found in `std::u64`
+kablam! ...
+kablam! 307 | qc_byte_order!(prop_u64, u64, u64, beu64, leu64);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::u64`
+kablam!    --> src/tests.rs:294:84
+kablam!     |
+kablam! 294 |                     n == super::super::$lemod::decode(&mut buf[..((::std::$ty_int::BYTES as usize))]) as $ty_int
+kablam!     |                                                                                    ^^^^^ not found in `std::u64`
+kablam! ...
+kablam! 307 | qc_byte_order!(prop_u64, u64, u64, beu64, leu64);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::i64`
+kablam!    --> src/tests.rs:282:81
+kablam!     |
+kablam! 282 |                     super::super::$bemod::encode(&mut buf[(8 - (::std::$ty_int::BYTES as usize))..], n as $ty_uint);
+kablam!     |                                                                                 ^^^^^ not found in `std::i64`
+kablam! ...
+kablam! 308 | qc_byte_order!(prop_i64, i64, u64, beu64, leu64);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::i64`
+kablam!    --> src/tests.rs:283:86
+kablam!     |
+kablam! 283 |                     n == super::super::$bemod::decode(&mut buf[(8 - (::std::$ty_int::BYTES as usize))..]) as $ty_int
+kablam!     |                                                                                      ^^^^^ not found in `std::i64`
+kablam! ...
+kablam! 308 | qc_byte_order!(prop_i64, i64, u64, beu64, leu64);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::i64`
+kablam!    --> src/tests.rs:293:79
+kablam!     |
+kablam! 293 |                     super::super::$lemod::encode(&mut buf[..((::std::$ty_int::BYTES as usize))], n as $ty_uint);
+kablam!     |                                                                               ^^^^^ not found in `std::i64`
+kablam! ...
+kablam! 308 | qc_byte_order!(prop_i64, i64, u64, beu64, leu64);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0425]: cannot find value `BYTES` in module `std::i64`
+kablam!    --> src/tests.rs:294:84
+kablam!     |
+kablam! 294 |                     n == super::super::$lemod::decode(&mut buf[..((::std::$ty_int::BYTES as usize))]) as $ty_int
+kablam!     |                                                                                    ^^^^^ not found in `std::i64`
+kablam! ...
+kablam! 308 | qc_byte_order!(prop_i64, i64, u64, beu64, leu64);
+kablam!     | ------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use u16::BYTES;`
+kablam!               `use u24::BYTES;`
+kablam!               `use u32::BYTES;`
+kablam!               `use u40::BYTES;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error: aborting due to 28 previous errors
+kablam! 
+kablam! error: Could not compile `bswap`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 92fb9f6c046f986fc54259c0af776702e78606fbc8a4da0fe5d30b0b6eb6d734`
+blam! 92fb9f6c046f986fc54259c0af776702e78606fbc8a4da0fe5d30b0b6eb6d734

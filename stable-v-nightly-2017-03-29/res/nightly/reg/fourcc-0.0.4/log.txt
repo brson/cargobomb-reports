@@ -1,0 +1,122 @@
+boom! testing fourcc-0.0.4 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! cc87677527cbe96c03e80f63eaf158453cadc43a18862c54b25fcfb50b20d13d
+boom! running `docker start -a cc87677527cbe96c03e80f63eaf158453cadc43a18862c54b25fcfb50b20d13d`
+kablam!    Compiling fourcc v0.0.4 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::attr::contains`
+kablam!   --> src/lib.rs:48:5
+kablam!    |
+kablam! 48 | use syntax::attr::contains;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^ no `contains` in `attr`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::InternedString`
+kablam!   --> src/lib.rs:54:5
+kablam!    |
+kablam! 54 | use syntax::parse::token::InternedString;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `InternedString` in `parse::token`
+kablam! 
+kablam! error[E0432]: unresolved import `rustc::plugin::Registry`
+kablam!   --> src/lib.rs:56:5
+kablam!    |
+kablam! 56 | use rustc::plugin::Registry;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `plugin` in `rustc`
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!   --> src/lib.rs:64:66
+kablam!    |
+kablam! 64 | pub fn expand_syntax_ext(cx: &mut ExtCtxt, sp: Span, tts: &[ast::TokenTree])
+kablam!    |                                                                  ^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use syntax::ext::tt::quoted::TokenTree;`
+kablam!              `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `ExprLit` in module `ast`
+kablam!   --> src/lib.rs:83:14
+kablam!    |
+kablam! 83 |         ast::ExprLit(ref lit) => match lit.node {
+kablam!    |              ^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use rustc::hir::ExprLit;`
+kablam!              `use rustc::hir::Expr_::ExprLit;`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `LitStr` in module `ast`
+kablam!   --> src/lib.rs:85:18
+kablam!    |
+kablam! 85 |             ast::LitStr(ref s, _) => {
+kablam!    |                  ^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0425]: cannot find function `LitInt` in module `ast`
+kablam!    --> src/lib.rs:117:34
+kablam!     |
+kablam! 117 |     let e = cx.expr_lit(sp, ast::LitInt(val as u64, ast::UnsignedIntLit(ast::TyU32)));
+kablam!     |                                  ^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0425]: cannot find function `UnsignedIntLit` in module `ast`
+kablam!    --> src/lib.rs:117:58
+kablam!     |
+kablam! 117 |     let e = cx.expr_lit(sp, ast::LitInt(val as u64, ast::UnsignedIntLit(ast::TyU32)));
+kablam!     |                                                          ^^^^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0425]: cannot find value `TyU32` in module `ast`
+kablam!    --> src/lib.rs:117:78
+kablam!     |
+kablam! 117 |     let e = cx.expr_lit(sp, ast::LitInt(val as u64, ast::UnsignedIntLit(ast::TyU32)));
+kablam!     |                                                                              ^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!    --> src/lib.rs:127:26
+kablam!     |
+kablam! 127 |              tts: &[ast::TokenTree]) -> (P<ast::Expr>, Option<Ident>) {
+kablam!     |                          ^^^^^^^^^ not found in `ast`
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use syntax::ext::tt::quoted::TokenTree;`
+kablam!               `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0425]: cannot find function `LitStr` in module `ast`
+kablam!    --> src/lib.rs:147:14
+kablam!     |
+kablam! 147 |         ast::LitStr(InternedString::new("little"), ast::CookedStr));
+kablam!     |              ^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0425]: cannot find value `CookedStr` in module `ast`
+kablam!    --> src/lib.rs:147:57
+kablam!     |
+kablam! 147 |         ast::LitStr(InternedString::new("little"), ast::CookedStr));
+kablam!     |                                                         ^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error: no field `last_span` on type `&mut syntax::parse::parser::Parser<'_>`
+kablam!    --> src/lib.rs:136:20
+kablam!     |
+kablam! 136 |         let hi = p.last_span.hi;
+kablam!     |                    ^^^^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:142:6
+kablam!     |
+kablam! 142 |     (ex, id)
+kablam!     |      ^^ expected struct `syntax::ptr::P`, found enum `std::result::Result`
+kablam!     |
+kablam!     = note: expected type `syntax::ptr::P<syntax::ast::Expr>`
+kablam!                found type `std::result::Result<syntax::ptr::P<syntax::ast::Expr>, syntax::<unnamed>::DiagnosticBuilder<'_>>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .unwrap()
+kablam!             - .unwrap_err()
+kablam! 
+kablam! error: type `syntax::ast::MetaItem` cannot be dereferenced
+kablam!    --> src/lib.rs:148:26
+kablam!     |
+kablam! 148 |     contains(&cx.cfg(), &*meta)
+kablam!     |                          ^^^^^
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `fourcc`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f cc87677527cbe96c03e80f63eaf158453cadc43a18862c54b25fcfb50b20d13d`
+blam! cc87677527cbe96c03e80f63eaf158453cadc43a18862c54b25fcfb50b20d13d

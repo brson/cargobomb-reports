@@ -1,0 +1,23 @@
+boom! testing wai-0.1.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 7442a309b414c47f4f5d11a05757da63e842d0888df01335aad672dfdfca5639
+boom! running `docker start -a 7442a309b414c47f4f5d11a05757da63e842d0888df01335aad672dfdfca5639`
+kablam!    Compiling xcb v0.7.6
+kablam!    Compiling x11 v2.12.1
+kablam!    Compiling libudev-sys v0.1.3
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: failed to run custom build command for `libudev-sys v0.1.3`
+kablam! process didn't exit successfully: `/target/debug/build/libudev-sys-8bc12221a2461026/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! cargo:rustc-link-search=native=/usr/lib/x86_64-linux-gnu
+kablam! cargo:rustc-link-lib=udev
+kablam! 
+kablam! --- stderr
+kablam! thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: Error { repr: Os { code: 30, message: "Read-only file system" } }', /checkout/src/libcore/result.rs:859
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f 7442a309b414c47f4f5d11a05757da63e842d0888df01335aad672dfdfca5639`
+blam! 7442a309b414c47f4f5d11a05757da63e842d0888df01335aad672dfdfca5639

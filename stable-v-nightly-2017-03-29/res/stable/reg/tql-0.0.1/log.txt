@@ -1,0 +1,159 @@
+boom! testing tql-0.0.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 1ca22161a31421359415e726de515372b21ab3e6062886266cc575accb83e32d
+boom! running `docker start -a 1ca22161a31421359415e726de515372b21ab3e6062886266cc575accb83e32d`
+kablam!    Compiling phf_generator v0.7.21
+kablam!    Compiling chrono v0.2.25
+kablam!    Compiling phf_codegen v0.7.21
+kablam!    Compiling postgres v0.10.2
+kablam!    Compiling tql v0.0.1 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 11.86 secs
+boom! running `docker rm -f 1ca22161a31421359415e726de515372b21ab3e6062886266cc575accb83e32d`
+blam! 1ca22161a31421359415e726de515372b21ab3e6062886266cc575accb83e32d
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 8efbc81eb6c056087ade1e1fa199fe3aaa5f2172d8acad4a371f408ad38e9c10
+boom! running `docker start -a 8efbc81eb6c056087ade1e1fa199fe3aaa5f2172d8acad4a371f408ad38e9c10`
+kablam! warning: parsed version requirement `0.2*` is no longer valid
+kablam! 
+kablam! Previous versions of Cargo accepted this malformed requirement,
+kablam! but it is being deprecated. This was found when parsing the manifest
+kablam! of iron 0.2.6, and the correct version requirement is `0.2.*`.
+kablam! 
+kablam! This will soon become a hard error, so it's either recommended to
+kablam! update to a fixed version or contact the upstream maintainer about
+kablam! this warning.
+kablam! 
+kablam!    Compiling clippy v0.0.33
+kablam!    Compiling compiletest_rs v0.0.11
+kablam!    Compiling urlencoded v0.2.1
+kablam!    Compiling handlebars-iron v0.9.1
+kablam! error[E0463]: can't find crate for `rustc_front`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/clippy-0.0.33/src/lib.rs:15:1
+kablam!    |
+kablam! 15 | extern crate rustc_front;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^ can't find crate
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `clippy`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error[E0432]: unresolved import `std::dynamic_lib::DynamicLibrary`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/procsrv.rs:16:5
+kablam!    |
+kablam! 16 | use std::dynamic_lib::DynamicLibrary;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `dynamic_lib` in `std`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/compiletest.rs:13:1
+kablam!    |
+kablam! 13 | #![feature(rustc_private)]
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/compiletest.rs:14:1
+kablam!    |
+kablam! 14 | #![feature(test)]
+kablam!    | ^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/compiletest.rs:15:1
+kablam!    |
+kablam! 15 | #![feature(str_char)]
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/compiletest.rs:16:1
+kablam!    |
+kablam! 16 | #![feature(dynamic_lib)]
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `compiletest_rs`.
+kablam! error[E0277]: the trait bound `bodyparser::Raw: plugin::Plugin<iron::Request<'_, '_>>` is not satisfied
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/urlencoded-0.2.1/src/lib.rs:98:13
+kablam!    |
+kablam! 98 |         req.get::<bodyparser::Raw>()
+kablam!    |             ^^^ the trait `plugin::Plugin<iron::Request<'_, '_>>` is not implemented for `bodyparser::Raw`
+kablam!    |
+kablam!    = help: the following implementations were found:
+kablam!              <bodyparser::Raw as plugin::Plugin<iron::request::Request<'a, 'b>>>
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `urlencoded`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f 8efbc81eb6c056087ade1e1fa199fe3aaa5f2172d8acad4a371f408ad38e9c10`
+blam! 8efbc81eb6c056087ade1e1fa199fe3aaa5f2172d8acad4a371f408ad38e9c10
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! 7d5f08a97eb96f2d5a9dd3ff50befb73b6f80da72c2bc972bbd1a0e18865bb0b
+boom! running `docker start -a 7d5f08a97eb96f2d5a9dd3ff50befb73b6f80da72c2bc972bbd1a0e18865bb0b`
+kablam! warning: parsed version requirement `0.2*` is no longer valid
+kablam! 
+kablam! Previous versions of Cargo accepted this malformed requirement,
+kablam! but it is being deprecated. This was found when parsing the manifest
+kablam! of iron 0.2.6, and the correct version requirement is `0.2.*`.
+kablam! 
+kablam! This will soon become a hard error, so it's either recommended to
+kablam! update to a fixed version or contact the upstream maintainer about
+kablam! this warning.
+kablam! 
+kablam!    Compiling clippy v0.0.33
+kablam!    Compiling compiletest_rs v0.0.11
+kablam!    Compiling r2d2_postgres v0.9.3
+kablam!    Compiling persistent v0.0.8
+kablam! error[E0432]: unresolved import `std::dynamic_lib::DynamicLibrary`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/procsrv.rs:16:5
+kablam!    |
+kablam! 16 | use std::dynamic_lib::DynamicLibrary;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `dynamic_lib` in `std`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/compiletest.rs:13:1
+kablam!    |
+kablam! 13 | #![feature(rustc_private)]
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/compiletest.rs:14:1
+kablam!    |
+kablam! 14 | #![feature(test)]
+kablam!    | ^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/compiletest.rs:15:1
+kablam!    |
+kablam! 15 | #![feature(str_char)]
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/compiletest.rs:16:1
+kablam!    |
+kablam! 16 | #![feature(dynamic_lib)]
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `compiletest_rs`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error[E0463]: can't find crate for `rustc_front`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/clippy-0.0.33/src/lib.rs:15:1
+kablam!    |
+kablam! 15 | extern crate rustc_front;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^ can't find crate
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `clippy`.
+kablam! error: build failed
+boom! running `docker rm -f 7d5f08a97eb96f2d5a9dd3ff50befb73b6f80da72c2bc972bbd1a0e18865bb0b`
+blam! 7d5f08a97eb96f2d5a9dd3ff50befb73b6f80da72c2bc972bbd1a0e18865bb0b

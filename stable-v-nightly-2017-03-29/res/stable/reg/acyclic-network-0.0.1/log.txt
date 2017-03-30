@@ -1,0 +1,33 @@
+boom! testing acyclic-network-0.0.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 7f3ff08d53ad2f01171d83e088108709eff88e8f7cc796750bf842e2f8ed7755
+boom! running `docker start -a 7f3ff08d53ad2f01171d83e088108709eff88e8f7cc796750bf842e2f8ed7755`
+kablam!    Compiling fixedbitset v0.1.5
+kablam!    Compiling acyclic-network v0.0.1 (file:///source)
+kablam! error: defaults for type parameters are only allowed in `struct`, `enum`, `type`, or `trait` definitions., #[deny(invalid_type_param_default)] on by default
+kablam!    --> src/lib.rs:276:19
+kablam!     |
+kablam! 276 | impl<N: NodeType, EXTID: Copy + Debug + Send + Sized + Ord = ExternalId> Node<N, EXTID> {
+kablam!     |                   ^^^^^
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #36887 <https://github.com/rust-lang/rust/issues/36887>
+kablam! 
+kablam! error: defaults for type parameters are only allowed in `struct`, `enum`, `type`, or `trait` definitions., #[deny(invalid_type_param_default)] on by default
+kablam!    --> src/lib.rs:318:51
+kablam!     |
+kablam! 318 | impl<N: NodeType, L: Copy + Debug + Send + Sized, EXTID: Copy + Debug + Send + Sized + Ord = ExternalId> Network<N, L, EXTID> {
+kablam!     |                                                   ^^^^^
+kablam!     |
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #36887 <https://github.com/rust-lang/rust/issues/36887>
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `acyclic-network`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 7f3ff08d53ad2f01171d83e088108709eff88e8f7cc796750bf842e2f8ed7755`
+blam! 7f3ff08d53ad2f01171d83e088108709eff88e8f7cc796750bf842e2f8ed7755

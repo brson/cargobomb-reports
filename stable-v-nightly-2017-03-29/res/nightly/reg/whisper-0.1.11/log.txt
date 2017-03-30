@@ -1,0 +1,50 @@
+boom! testing whisper-0.1.11 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! cf54c1cdc1ff734558f1528afe0912697dbbd7dd29269463de7fa87103ee6e25
+boom! running `docker start -a cf54c1cdc1ff734558f1528afe0912697dbbd7dd29269463de7fa87103ee6e25`
+kablam!    Compiling whisper v0.1.11 (file:///source)
+kablam! error[E0432]: unresolved import `self::libc::funcs::posix01::unistd::ftruncate`
+kablam!   --> src/whisper/file/mod.rs:19:5
+kablam!    |
+kablam! 19 | use self::libc::funcs::posix01::unistd::ftruncate;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `funcs` in `libc`
+kablam! 
+kablam! error[E0432]: unresolved import `std::fs::PathExt`
+kablam!  --> src/whisper/cache/mod.rs:6:16
+kablam!   |
+kablam! 6 | use std::fs::{ PathExt, DirBuilder };
+kablam!   |                ^^^^^^^ no `PathExt` in `fs`
+kablam! 
+kablam! error: no method named `at` found for type `regex::Captures<'_>` in the current scope
+kablam!   --> src/whisper/schema/retention_policy.rs:63:37
+kablam!    |
+kablam! 63 |     let precision_opt = regex_match.at(1);
+kablam!    |                                     ^^
+kablam! 
+kablam! error: no method named `at` found for type `regex::Captures<'_>` in the current scope
+kablam!   --> src/whisper/schema/retention_policy.rs:64:38
+kablam!    |
+kablam! 64 |     let precision_mult = regex_match.at(2).unwrap_or("s");
+kablam!    |                                      ^^
+kablam! 
+kablam! error: no method named `at` found for type `regex::Captures<'_>` in the current scope
+kablam!   --> src/whisper/schema/retention_policy.rs:65:37
+kablam!    |
+kablam! 65 |     let retention_opt = regex_match.at(3);
+kablam!    |                                     ^^
+kablam! 
+kablam! error: no method named `at` found for type `regex::Captures<'_>` in the current scope
+kablam!   --> src/whisper/schema/retention_policy.rs:66:38
+kablam!    |
+kablam! 66 |     let retention_mult = regex_match.at(4);
+kablam!    |                                      ^^
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `whisper`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f cf54c1cdc1ff734558f1528afe0912697dbbd7dd29269463de7fa87103ee6e25`
+blam! cf54c1cdc1ff734558f1528afe0912697dbbd7dd29269463de7fa87103ee6e25

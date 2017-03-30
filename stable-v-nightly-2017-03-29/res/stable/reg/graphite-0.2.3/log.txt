@@ -1,0 +1,32 @@
+boom! testing graphite-0.2.3 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 51a6a49803af5a6e5a7490240863c04353aee54af2701f45a388ba6bf2c1ef78
+boom! running `docker start -a 51a6a49803af5a6e5a7490240863c04353aee54af2701f45a388ba6bf2c1ef78`
+kablam!    Compiling whisper v0.1.11
+kablam! error[E0432]: unresolved import `self::libc::funcs::posix01::unistd::ftruncate`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/whisper-0.1.11/src/whisper/file/mod.rs:19:5
+kablam!    |
+kablam! 19 | use self::libc::funcs::posix01::unistd::ftruncate;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `funcs` in `libc`
+kablam! 
+kablam! error[E0432]: unresolved import `std::fs::PathExt`
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/whisper-0.1.11/src/whisper/cache/mod.rs:6:16
+kablam!   |
+kablam! 6 | use std::fs::{ PathExt, DirBuilder };
+kablam!   |                ^^^^^^^ no `PathExt` in `fs`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/whisper-0.1.11/src/lib.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(test, path_ext, dir_builder)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `whisper`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 51a6a49803af5a6e5a7490240863c04353aee54af2701f45a388ba6bf2c1ef78`
+blam! 51a6a49803af5a6e5a7490240863c04353aee54af2701f45a388ba6bf2c1ef78

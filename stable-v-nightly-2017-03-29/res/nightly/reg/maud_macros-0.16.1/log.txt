@@ -1,0 +1,31 @@
+boom! testing maud_macros-0.16.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 2768d2ee543d8119e04a209ea3c76e5d77ef62a2f70a6c48170caae5ff055753
+boom! running `docker start -a 2768d2ee543d8119e04a209ea3c76e5d77ef62a2f70a6c48170caae5ff055753`
+kablam!    Compiling maud v0.16.2
+kablam!    Compiling if_chain v0.1.2
+kablam!    Compiling maud_macros v0.16.1 (file:///source)
+kablam! error[E0425]: cannot find function `tts_to_parser` in module `parse`
+kablam!    --> src/parse.rs:126:33
+kablam!     |
+kablam! 126 |         let mut parser = parse::tts_to_parser(self.render.cx.parse_sess, tts);
+kablam!     |                                 ^^^^^^^^^^^^^ not found in `parse`
+kablam! 
+kablam! error[E0053]: method `fold_tt` has an incompatible type for trait
+kablam!    --> src/parse.rs:91:5
+kablam!     |
+kablam! 91  |     fn fold_tt(&mut self, mut tt: &TokenTree) -> TokenTree {
+kablam!     |     ^ expected enum `syntax::tokenstream::TokenTree`, found reference
+kablam!     |
+kablam!     = note: expected type `fn(&mut parse::FlattenNtFolder, syntax::tokenstream::TokenTree) -> syntax::tokenstream::TokenTree`
+kablam!                found type `fn(&mut parse::FlattenNtFolder, &syntax::tokenstream::TokenTree) -> syntax::tokenstream::TokenTree`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `maud_macros`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 2768d2ee543d8119e04a209ea3c76e5d77ef62a2f70a6c48170caae5ff055753`
+blam! 2768d2ee543d8119e04a209ea3c76e5d77ef62a2f70a6c48170caae5ff055753

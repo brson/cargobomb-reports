@@ -1,0 +1,27 @@
+boom! testing civet-0.9.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 5d69dce88274814ba38cf0a0941c6f5f468840670fcde37f8c9f43b6fbfc2445
+boom! running `docker start -a 5d69dce88274814ba38cf0a0941c6f5f468840670fcde37f8c9f43b6fbfc2445`
+kablam!    Compiling civet-sys v0.1.4
+kablam!    Compiling conduit v0.8.1
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: failed to run custom build command for `civet-sys v0.1.4`
+kablam! process didn't exit successfully: `/target/debug/build/civet-sys-823a8b89f14de1f3/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! ar cq libcivetweb.a /target/debug/build/civet-sys-6e1066cf35382e69/out/src/civetweb.o
+kablam! Makefile:213: recipe for target 'libcivetweb.a' failed
+kablam! 
+kablam! --- stderr
+kablam! ar: libcivetweb.a: Read-only file system
+kablam! make: *** [libcivetweb.a] Error 1
+kablam! thread 'main' panicked at 'assertion failed: Command::new("make").current_dir("civetweb").arg("lib").arg(&format!("BUILD_DIR={}"
+kablam!                                                                      ,
+kablam!                                                                      dst)).env("COPT",
+kablam!                                                                                "-fPIC").status().unwrap().success()', /cargo-home/registry/src/github.com-1ecc6299db9ec823/civet-sys-0.1.4/build.rs:9
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f 5d69dce88274814ba38cf0a0941c6f5f468840670fcde37f8c9f43b6fbfc2445`
+blam! 5d69dce88274814ba38cf0a0941c6f5f468840670fcde37f8c9f43b6fbfc2445

@@ -1,0 +1,40 @@
+boom! testing genetic-0.2.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 2d1d2108f1bbb22f693bdba245d4373e7e49eed21b70f55993462de4a7caef62
+boom! running `docker start -a 2d1d2108f1bbb22f693bdba245d4373e7e49eed21b70f55993462de4a7caef62`
+kablam!    Compiling genetic v0.2.1 (file:///source)
+kablam! error[E0309]: the parameter type `T` may not live long enough
+kablam!   --> src/universe.rs:22:2
+kablam!    |
+kablam! 22 | 	evaluator: &'a mut Evaluator<T>,
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: consider adding an explicit lifetime bound `T: 'a`...
+kablam! note: ...so that the reference type `&'a mut evaluator::Evaluator<T> + 'a` does not outlive the data it points at
+kablam!   --> src/universe.rs:22:2
+kablam!    |
+kablam! 22 | 	evaluator: &'a mut Evaluator<T>,
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0309]: the parameter type `T` may not live long enough
+kablam!   --> src/universe.rs:23:2
+kablam!    |
+kablam! 23 | 	reproducer: &'b mut Reproducer<T>,
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: consider adding an explicit lifetime bound `T: 'b`...
+kablam! note: ...so that the reference type `&'b mut reproducer::Reproducer<T> + 'b` does not outlive the data it points at
+kablam!   --> src/universe.rs:23:2
+kablam!    |
+kablam! 23 | 	reproducer: &'b mut Reproducer<T>,
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `genetic`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 2d1d2108f1bbb22f693bdba245d4373e7e49eed21b70f55993462de4a7caef62`
+blam! 2d1d2108f1bbb22f693bdba245d4373e7e49eed21b70f55993462de4a7caef62

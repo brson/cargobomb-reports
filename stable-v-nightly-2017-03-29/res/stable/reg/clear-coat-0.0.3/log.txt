@@ -1,0 +1,51 @@
+boom! testing clear-coat-0.0.3 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! ff3972053d1a327bc364c1855c38a923b265347ae8f76e4f43b26cf13327263f
+boom! running `docker start -a ff3972053d1a327bc364c1855c38a923b265347ae8f76e4f43b26cf13327263f`
+kablam!    Compiling iup-sys v0.0.3
+kablam!    Compiling clear-coat v0.0.3 (file:///source)
+kablam! error[E0432]: unresolved import `std::panic::RecoverSafe`
+kablam!   --> src/callbacks.rs:14:24
+kablam!    |
+kablam! 14 | use std::panic::{self, RecoverSafe};
+kablam!    |                        ^^^^^^^^^^^ no `RecoverSafe` in `panic`
+kablam! 
+kablam! error[E0425]: cannot find function `recover` in module `panic`
+kablam!    --> src/callbacks.rs:205:18
+kablam!     |
+kablam! 205 |     let result = panic::recover(move || {
+kablam!     |                  ^^^^^^^^^^^^^^ not found in `panic`
+kablam! 
+kablam! error[E0425]: cannot find function `get_thread_id` in this scope
+kablam!    --> src/lib.rs:172:21
+kablam!     |
+kablam! 172 |     let thread_id = get_thread_id();
+kablam!     |                     ^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/lib.rs:8:1
+kablam!   |
+kablam! 8 | #![feature(coerce_unsized)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/lib.rs:9:1
+kablam!   |
+kablam! 9 | #![feature(std_panic)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!   --> src/lib.rs:10:1
+kablam!    |
+kablam! 10 | #![feature(recover)]
+kablam!    | ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `clear-coat`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f ff3972053d1a327bc364c1855c38a923b265347ae8f76e4f43b26cf13327263f`
+blam! ff3972053d1a327bc364c1855c38a923b265347ae8f76e4f43b26cf13327263f

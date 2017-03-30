@@ -1,0 +1,79 @@
+boom! testing kairosdb-0.2.9 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 43e96cca9b35902b4b5c405d861e157c97f0c836376fde3f346b89fbf68eaf3e
+boom! running `docker start -a 43e96cca9b35902b4b5c405d861e157c97f0c836376fde3f346b89fbf68eaf3e`
+kablam!    Compiling kairosdb v0.2.9 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 11.47 secs
+boom! running `docker rm -f 43e96cca9b35902b4b5c405d861e157c97f0c836376fde3f346b89fbf68eaf3e`
+blam! 43e96cca9b35902b4b5c405d861e157c97f0c836376fde3f346b89fbf68eaf3e
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! b87c9cce238edf751a54375d2084276137b34aecc13e096161c6ce709356ae79
+boom! running `docker start -a b87c9cce238edf751a54375d2084276137b34aecc13e096161c6ce709356ae79`
+kablam!    Compiling kairosdb v0.2.9 (file:///source)
+kablam! warning: unused `#[macro_use]` import
+kablam!  --> tests/integration_test.rs:5:1
+kablam!   |
+kablam! 5 | #[macro_use]
+kablam!   | ^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 8.22 secs
+boom! running `docker rm -f b87c9cce238edf751a54375d2084276137b34aecc13e096161c6ce709356ae79`
+blam! b87c9cce238edf751a54375d2084276137b34aecc13e096161c6ce709356ae79
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 9f7ff4a4bc8eb32d68f5f0d06c332c101c2d8dabe8e6fe30c1bc0800f4b52556
+boom! running `docker start -a 9f7ff4a4bc8eb32d68f5f0d06c332c101c2d8dabe8e6fe30c1bc0800f4b52556`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/integration_test-acc838d7ef839ec4
+blam! 
+blam! running 7 tests
+blam! test add_datapoints ... FAILED
+blam! test get_version ... FAILED
+blam! test add_datapoints_ns ... FAILED
+blam! test simple_query_with_delete ... FAILED
+blam! test simple_query ... FAILED
+blam! test get_version_wrong_host ... ok
+blam! test metrics_average_query ... FAILED
+blam! 
+blam! failures:
+blam! 
+blam! ---- add_datapoints stdout ----
+blam! 	thread 'add_datapoints' panicked at 'assertion failed: result.is_ok()', tests/integration_test.rs:49
+blam! 
+blam! ---- get_version stdout ----
+blam! 	thread 'get_version' panicked at 'called `Result::unwrap()` on an `Err` value: Http(Io(Error { repr: Os { code: 111, message: "Connection refused" } }))', /checkout/src/libcore/result.rs:859
+blam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+blam! 
+blam! ---- add_datapoints_ns stdout ----
+blam! 	thread 'add_datapoints_ns' panicked at 'assertion failed: result.is_ok()', tests/integration_test.rs:37
+blam! 
+blam! ---- simple_query_with_delete stdout ----
+blam! 	thread 'simple_query_with_delete' panicked at 'assertion failed: result.is_ok()', tests/integration_test.rs:128
+blam! 
+blam! ---- simple_query stdout ----
+blam! 	thread 'simple_query' panicked at 'called `Result::unwrap()` on an `Err` value: Http(Io(Error { repr: Os { code: 111, message: "Connection refused" } }))', /checkout/src/libcore/result.rs:859
+blam! 
+blam! ---- metrics_average_query stdout ----
+blam! 	thread 'metrics_average_query' panicked at 'called `Result::unwrap()` on an `Err` value: Http(Io(Error { repr: Os { code: 111, message: "Connection refused" } }))', /checkout/src/libcore/result.rs:859
+blam! 
+blam! 
+blam! failures:
+blam!     add_datapoints
+blam!     add_datapoints_ns
+blam!     get_version
+blam!     metrics_average_query
+blam!     simple_query
+blam!     simple_query_with_delete
+blam! 
+blam! test result: FAILED. 1 passed; 6 failed; 0 ignored; 0 measured
+blam! 
+kablam! error: test failed
+boom! running `docker rm -f 9f7ff4a4bc8eb32d68f5f0d06c332c101c2d8dabe8e6fe30c1bc0800f4b52556`
+blam! 9f7ff4a4bc8eb32d68f5f0d06c332c101c2d8dabe8e6fe30c1bc0800f4b52556

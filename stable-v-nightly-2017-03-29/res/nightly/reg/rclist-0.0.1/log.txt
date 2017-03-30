@@ -1,0 +1,23 @@
+boom! testing rclist-0.0.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 0422e760282af6505dbc819f127cf7cbd36bd3861c324ebf8cc54dee1f3641ae
+boom! running `docker start -a 0422e760282af6505dbc819f127cf7cbd36bd3861c324ebf8cc54dee1f3641ae`
+kablam!    Compiling rclist v0.0.1 (file:///source)
+kablam! error: no method named `downgrade` found for type `&std::rc::Rc<T>` in the current scope
+kablam!   --> src/lib.rs:31:50
+kablam!    |
+kablam! 31 |             &Link::Strong(ref x) => Link::Weak(x.downgrade()),
+kablam!    |                                                  ^^^^^^^^^
+kablam!    |
+kablam!    = note: found the following associated functions; to be used as methods, functions must have a `self` parameter
+kablam!    = note: candidate #1 is defined in an impl for the type `std::rc::Rc<_>`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `rclist`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 0422e760282af6505dbc819f127cf7cbd36bd3861c324ebf8cc54dee1f3641ae`
+blam! 0422e760282af6505dbc819f127cf7cbd36bd3861c324ebf8cc54dee1f3641ae

@@ -1,0 +1,175 @@
+boom! testing curl-0.3.11 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 2738aeadd0696708a7663432d3bc545bc0fc1f881b7444282f408bca962dbc15
+boom! running `docker start -a 2738aeadd0696708a7663432d3bc545bc0fc1f881b7444282f408bca962dbc15`
+kablam!    Compiling curl v0.3.11 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 2.53 secs
+boom! running `docker rm -f 2738aeadd0696708a7663432d3bc545bc0fc1f881b7444282f408bca962dbc15`
+blam! 2738aeadd0696708a7663432d3bc545bc0fc1f881b7444282f408bca962dbc15
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! edf12ddc84e17b42b254e29fd2e8c61691cad3a0fd9bc75592c2ba06abf3cc2d
+boom! running `docker start -a edf12ddc84e17b42b254e29fd2e8c61691cad3a0fd9bc75592c2ba06abf3cc2d`
+kablam!    Compiling curl v0.3.11 (file:///source)
+kablam! warning: use of deprecated item: use mio-more instead, #[warn(deprecated)] on by default
+kablam!   --> tests/multi.rs:94:20
+kablam!    |
+kablam! 94 |     let (tx, rx) = mio::channel::channel();
+kablam!    |                    ^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: use of deprecated item: use mio-more instead, #[warn(deprecated)] on by default
+kablam!   --> tests/multi.rs:97:16
+kablam!    |
+kablam! 96 |       t!(m.socket_function(move |socket, events, token| {
+kablam!    |  _____- starting here...
+kablam! 97 | |         t!(tx2.send(Message::Wait(socket, events, token)));
+kablam!    | |                ^^^^
+kablam! 98 | |     }));
+kablam!    | |________- ...ending here: in this macro invocation
+kablam! 
+kablam! warning: use of deprecated item: use mio-more instead, #[warn(deprecated)] on by default
+kablam!    --> tests/multi.rs:100:15
+kablam!     |
+kablam! 99  |       t!(m.timer_function(move |dur| {
+kablam!     |  _____- starting here...
+kablam! 100 | |         t!(tx.send(Message::Timeout(dur)));
+kablam!     | |               ^^^^
+kablam! 101 | |         true
+kablam! 102 | |     }));
+kablam!     | |________- ...ending here: in this macro invocation
+kablam! 
+kablam! warning: use of deprecated item: removed, #[warn(deprecated)] on by default
+kablam!    --> tests/multi.rs:133:22
+kablam!     |
+kablam! 131 |       t!(poll.register(&rx,
+kablam!     |  _____- starting here...
+kablam! 132 | |                      mio::Token(0),
+kablam! 133 | |                      mio::Ready::all(),
+kablam!     | |                      ^^^^^^^^^^^^^^^
+kablam! 134 | |                      mio::PollOpt::level()));
+kablam!     | |_____________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! warning: use of deprecated item: use mio-more instead, #[warn(deprecated)] on by default
+kablam!    --> tests/multi.rs:156:26
+kablam!     |
+kablam! 156 |                 match rx.try_recv() {
+kablam!     |                          ^^^^^^^^
+kablam! 
+kablam! warning: use of deprecated item: use Ready::empty instead, #[warn(deprecated)] on by default
+kablam!    --> tests/multi.rs:163:41
+kablam!     |
+kablam! 163 |                             let mut e = mio::Ready::none();
+kablam!     |                                         ^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: use of deprecated item: use Event::readiness(), #[warn(deprecated)] on by default
+kablam!    --> tests/multi.rs:198:22
+kablam!     |
+kablam! 198 |             if event.kind().is_readable() {
+kablam!     |                      ^^^^
+kablam! 
+kablam! warning: use of deprecated item: use Event::readiness(), #[warn(deprecated)] on by default
+kablam!    --> tests/multi.rs:201:22
+kablam!     |
+kablam! 201 |             if event.kind().is_writable() {
+kablam!     |                      ^^^^
+kablam! 
+kablam! warning: use of deprecated item: use UnixReady instead, #[warn(deprecated)] on by default
+kablam!    --> tests/multi.rs:204:29
+kablam!     |
+kablam! 204 |             if event.kind().is_error() {
+kablam!     |                             ^^^^^^^^
+kablam! 
+kablam! warning: use of deprecated item: use Event::readiness(), #[warn(deprecated)] on by default
+kablam!    --> tests/multi.rs:204:22
+kablam!     |
+kablam! 204 |             if event.kind().is_error() {
+kablam!     |                      ^^^^
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 6.45 secs
+boom! running `docker rm -f edf12ddc84e17b42b254e29fd2e8c61691cad3a0fd9bc75592c2ba06abf3cc2d`
+blam! edf12ddc84e17b42b254e29fd2e8c61691cad3a0fd9bc75592c2ba06abf3cc2d
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! cc5186c4c4b51546b919858391e0b6599fb87fa34e3dea66bd074121b2d06b06
+boom! running `docker start -a cc5186c4c4b51546b919858391e0b6599fb87fa34e3dea66bd074121b2d06b06`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/curl-381c8f10ccf61d76
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+kablam!      Running /target/debug/deps/easy-2955e1c7636b8484
+blam! 
+blam! 
+blam! running 27 tests
+blam! test abort_read ... ok
+blam! test accept_encoding ... ok
+blam! test custom_headers ... ok
+blam! test cookie ... ok
+blam! test get_path ... ok
+blam! test get_smoke ... ok
+blam! test follow_location ... ok
+blam! test misc ... ok
+blam! test headers ... ok
+blam! test noproxy ... ok
+blam! test fail_on_error ... ok
+blam! test getters ... ok
+blam! test panic_in_callback ... ok
+blam! test pause_write_then_resume ... ok
+blam! test post1 ... ok
+blam! test perform_in_perform_is_bad ... ok
+blam! test post2 ... ok
+blam! test post3 ... ok
+blam! test port ... ok
+blam! test proxy ... ok
+blam! test url_encoding ... ok
+blam! test progress ... ok
+blam! test useragent ... ok
+blam! test put ... ok
+blam! test referer ... ok
+blam! test userpass ... ok
+blam! test write_callback ... ok
+blam! 
+blam! test result: ok. 27 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/multi-768e6d29dc50bccc
+blam! 
+blam! running 3 tests
+blam! test smoke ... ok
+blam! test smoke2 ... ok
+blam! test upload_lots ... ok
+blam! 
+blam! test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/post-d6e4fb4ac8b2a340
+blam! 
+blam! running 3 tests
+blam! test custom ... ok
+blam! test buffer ... ok
+blam! test file ... ok
+blam! 
+blam! test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!    Doc-tests curl
+blam! 
+blam! running 11 tests
+blam! test _0 ... ok
+blam! test easy::Easy::read_function_0 ... ok
+blam! test easy::Easy::read_function_1 ... ok
+blam! test easy::Easy::header_function_0 ... ok
+blam! test easy::Easy::http_headers_0 ... ok
+blam! test easy::Easy::header_function_1 ... ok
+blam! test easy::Easy::write_function_0 ... ok
+blam! test easy::Easy_0 ... ok
+blam! test easy::Easy::write_function_1 ... ok
+blam! test easy::Easy_1 ... ok
+blam! test easy::Easy_2 ... ok
+blam! 
+blam! test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f cc5186c4c4b51546b919858391e0b6599fb87fa34e3dea66bd074121b2d06b06`
+blam! cc5186c4c4b51546b919858391e0b6599fb87fa34e3dea66bd074121b2d06b06

@@ -1,0 +1,110 @@
+boom! testing clippy_lints-0.0.117 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 45549f33568b594156f08f08d8cd9e40335ec4f6cecb374fde4c493efb80315f
+boom! running `docker start -a 45549f33568b594156f08f08d8cd9e40335ec4f6cecb374fde4c493efb80315f`
+kablam!    Compiling clippy_lints v0.0.117 (file:///source)
+kablam! error: no field `value` on type `&syntax::ast::Attribute`
+kablam!    --> src/utils/mod.rs:669:63
+kablam!     |
+kablam! 669 |         if let ast::MetaItemKind::NameValue(ref value) = attr.value.node {
+kablam!     |                                                               ^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/utils/mod.rs:670:31
+kablam!     |
+kablam! 670 |             if attr.name() == name {
+kablam!     |                               ^^^^ expected enum `core::option::Option`, found reference
+kablam!     |
+kablam!     = note: expected type `core::option::Option<syntax::ast::Symbol>`
+kablam!                found type `&'static str`
+kablam! 
+kablam! error: no field `value` on type `&'tcx syntax::ast::Attribute`
+kablam!   --> src/attrs.rs:89:53
+kablam!    |
+kablam! 89 |         if let MetaItemKind::List(ref items) = attr.value.node {
+kablam!    |                                                     ^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/attrs.rs:90:51
+kablam!    |
+kablam! 90 |             if items.is_empty() || attr.name() != "deprecated" {
+kablam!    |                                                   ^^^^^^^^^^^^ expected enum `core::option::Option`, found reference
+kablam!    |
+kablam!    = note: expected type `core::option::Option<syntax::ast::Symbol>`
+kablam!               found type `&'static str`
+kablam! 
+kablam! error: no field `value` on type `&syntax::ast::Attribute`
+kablam!    --> src/attrs.rs:113:69
+kablam!     |
+kablam! 113 |                     if let MetaItemKind::List(ref lint_list) = attr.value.node {
+kablam!     |                                                                     ^^^^^
+kablam! 
+kablam! error: no method named `as_str` found for type `core::option::Option<syntax::ast::Symbol>` in the current scope
+kablam!    --> src/attrs.rs:114:45
+kablam!     |
+kablam! 114 |                         match &*attr.name().as_str() {
+kablam!     |                                             ^^^^^^
+kablam! 
+kablam! error: no field `value` on type `&syntax::ast::Attribute`
+kablam!    --> src/attrs.rs:221:54
+kablam!     |
+kablam! 221 |         if let MetaItemKind::List(ref values) = attr.value.node {
+kablam!     |                                                      ^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/attrs.rs:222:52
+kablam!     |
+kablam! 222 |             if values.len() != 1 || attr.name() != "inline" {
+kablam!     |                                                    ^^^^^^^^ expected enum `core::option::Option`, found reference
+kablam!     |
+kablam!     = note: expected type `core::option::Option<syntax::ast::Symbol>`
+kablam!                found type `&'static str`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/cyclomatic_complexity.rs:49:36
+kablam!    |
+kablam! 49 |         let cfg = CFG::new(cx.tcx, expr);
+kablam!    |                                    ^^^^ expected struct `rustc::hir::Body`, found struct `rustc::hir::Expr`
+kablam!    |
+kablam!    = note: expected type `&rustc::hir::Body`
+kablam!               found type `&'tcx rustc::hir::Expr`
+kablam! 
+kablam! error: no field `value` on type `&syntax::ast::Attribute`
+kablam!   --> src/doc.rs:92:65
+kablam!    |
+kablam! 92 |             if let ast::MetaItemKind::NameValue(ref doc) = attr.value.node {
+kablam!    |                                                                 ^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/missing_doc.rs:80:76
+kablam!    |
+kablam! 80 |         let has_doc = attrs.iter().any(|a| a.is_value_str() && a.name() == "doc");
+kablam!    |                                                                            ^^^^^ expected enum `core::option::Option`, found reference
+kablam!    |
+kablam!    = note: expected type `core::option::Option<syntax::ast::Symbol>`
+kablam!               found type `&'static str`
+kablam! 
+kablam! error: no field `value` on type `&syntax::ast::Attribute`
+kablam!    --> src/returns.rs:153:46
+kablam!     |
+kablam! 153 |     if let ast::MetaItemKind::List(_) = attr.value.node {
+kablam!     |                                              ^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/returns.rs:154:24
+kablam!     |
+kablam! 154 |         attr.name() == "cfg"
+kablam!     |                        ^^^^^ expected enum `core::option::Option`, found reference
+kablam!     |
+kablam!     = note: expected type `core::option::Option<syntax::ast::Symbol>`
+kablam!                found type `&'static str`
+kablam! 
+kablam! error: aborting due to 13 previous errors
+kablam! 
+kablam! error: Could not compile `clippy_lints`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 45549f33568b594156f08f08d8cd9e40335ec4f6cecb374fde4c493efb80315f`
+blam! 45549f33568b594156f08f08d8cd9e40335ec4f6cecb374fde4c493efb80315f

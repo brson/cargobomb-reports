@@ -1,0 +1,34 @@
+boom! testing bip_handshake-0.2.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! c609b38aa857917a339e763b7873294fb7b5bb4ea02c7526364b28eb0812736a
+boom! running `docker start -a c609b38aa857917a339e763b7873294fb7b5bb4ea02c7526364b28eb0812736a`
+kablam!    Compiling bip_handshake v0.2.0 (file:///source)
+kablam! error[E0276]: impl has stricter requirements than trait
+kablam!   --> src/bittorrent/mod.rs:88:5
+kablam!    |
+kablam! 88 |       fn filter<F>(&mut self, process: Box<F>) where F: Fn(&SocketAddr) -> bool + Send + 'static {
+kablam!    |  _____^ starting here...
+kablam! 89 | |         if self.inner.send.send(HandlerTask::RegisterFilter(process)).is_err() {
+kablam! 90 | |             error!("bip_handshake: Error sending a filter peer message to event loop...");
+kablam! 91 | |         }
+kablam! 92 | |     }
+kablam!    | |_____^ ...ending here: impl has extra requirement `F: 'static`
+kablam!    | 
+kablam!   ::: src/handshaker.rs
+kablam!    |
+kablam! 23 |       fn filter<F>(&mut self, process: Box<F>) where F: Fn(&SocketAddr) -> bool + Send;
+kablam!    |       --------------------------------------------------------------------------------- definition of `filter` from trait
+kablam!    |
+kablam!    = note: #[deny(extra_requirement_in_impl)] on by default
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #37166 <https://github.com/rust-lang/rust/issues/37166>
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `bip_handshake`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f c609b38aa857917a339e763b7873294fb7b5bb4ea02c7526364b28eb0812736a`
+blam! c609b38aa857917a339e763b7873294fb7b5bb4ea02c7526364b28eb0812736a

@@ -1,0 +1,439 @@
+boom! testing https://github.com/Darksecond/rust-jit#89af6356f9d41f0f7a271cf2cead756585537fd2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! c417d9b8217e9e21ecd7f6396b3b0173c4dd0ca0763ce7788454dd1759620f23
+boom! running `docker start -a c417d9b8217e9e21ecd7f6396b3b0173c4dd0ca0763ce7788454dd1759620f23`
+kablam!    Compiling jit v0.1.0 (file:///source)
+kablam! warning: method is never used: `mov_rax_u32`
+kablam!   --> src/jit/backend.rs:18:5
+kablam!    |
+kablam! 18 |       pub fn mov_rax_u32(&mut self, value: u32) -> isize {
+kablam!    |  _____^ starting here...
+kablam! 19 | |         let offset = self.mem.offset();
+kablam! 20 | |         self.mem.push_u8(0x48);
+kablam! 21 | |         self.mem.push_u8(0xc7);
+kablam! 22 | |         self.mem.push_u8(0xc0);
+kablam! 23 | |         self.mem.push_u32(value);
+kablam! 24 | |         offset
+kablam! 25 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `mov_rdi_u32`
+kablam!   --> src/jit/backend.rs:28:5
+kablam!    |
+kablam! 28 |       pub fn mov_rdi_u32(&mut self, value: u32) -> isize {
+kablam!    |  _____^ starting here...
+kablam! 29 | |         let offset = self.mem.offset();
+kablam! 30 | |         self.mem.push_u8(0x48);
+kablam! 31 | |         self.mem.push_u8(0xc7);
+kablam! 32 | |         self.mem.push_u8(0xc7);
+kablam! 33 | |         self.mem.push_u32(value);
+kablam! 34 | |         offset
+kablam! 35 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `mov_rdi_u64`
+kablam!   --> src/jit/backend.rs:47:5
+kablam!    |
+kablam! 47 |       pub fn mov_rdi_u64(&mut self, value: u64) -> isize {
+kablam!    |  _____^ starting here...
+kablam! 48 | |         let offset = self.mem.offset();
+kablam! 49 | |         self.mem.push_u8(0x48);
+kablam! 50 | |         self.mem.push_u8(0xBF);
+kablam! 51 | |         self.mem.push_u64(value);
+kablam! 52 | |         offset
+kablam! 53 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `inc_rax`
+kablam!   --> src/jit/backend.rs:64:5
+kablam!    |
+kablam! 64 |       pub fn inc_rax(&mut self) -> isize {
+kablam!    |  _____^ starting here...
+kablam! 65 | |         let offset = self.mem.offset();
+kablam! 66 | |         self.mem.push_u8(0x48);
+kablam! 67 | |         self.mem.push_u8(0xff);
+kablam! 68 | |         self.mem.push_u8(0xc0);
+kablam! 69 | |         offset
+kablam! 70 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `movsd_xmm0_ptr_rdi`
+kablam!    --> src/jit/backend.rs:190:5
+kablam!     |
+kablam! 190 |       pub fn movsd_xmm0_ptr_rdi(&mut self) -> isize {
+kablam!     |  _____^ starting here...
+kablam! 191 | |         let offset = self.mem.offset();
+kablam! 192 | |         self.mem.push_u8(0xf2);
+kablam! 193 | |         self.mem.push_u8(0x0f);
+kablam! 194 | |         self.mem.push_u8(0x10);
+kablam! 195 | |         self.mem.push_u8(0x07);
+kablam! 196 | |         offset
+kablam! 197 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `movsd_xmm0_ptr_rdi_offset_u8`
+kablam!    --> src/jit/backend.rs:200:5
+kablam!     |
+kablam! 200 |       pub fn movsd_xmm0_ptr_rdi_offset_u8(&mut self, value: u8) -> isize {
+kablam!     |  _____^ starting here...
+kablam! 201 | |         let offset = self.mem.offset();
+kablam! 202 | |         self.mem.push_u8(0xf2);
+kablam! 203 | |         self.mem.push_u8(0x0f);
+kablam! 204 | |         self.mem.push_u8(0x10);
+kablam! 205 | |         self.mem.push_u8(0x47);
+kablam! 206 | |         self.mem.push_u8(value);
+kablam! 207 | |         offset
+kablam! 208 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `movsd_xmm1_ptr_rdi_offset_u8`
+kablam!    --> src/jit/backend.rs:211:5
+kablam!     |
+kablam! 211 |       pub fn movsd_xmm1_ptr_rdi_offset_u8(&mut self, value: u8) -> isize {
+kablam!     |  _____^ starting here...
+kablam! 212 | |         let offset = self.mem.offset();
+kablam! 213 | |         self.mem.push_u8(0xf2);
+kablam! 214 | |         self.mem.push_u8(0x0f);
+kablam! 215 | |         self.mem.push_u8(0x10);
+kablam! 216 | |         self.mem.push_u8(0x4f);
+kablam! 217 | |         self.mem.push_u8(value);
+kablam! 218 | |         offset
+kablam! 219 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `movsd_xmm1_ptr_rsp_offset_u8`
+kablam!    --> src/jit/backend.rs:244:5
+kablam!     |
+kablam! 244 |     pub fn movsd_xmm1_ptr_rsp_offset_u8(&mut self, value: i8) -> isize {
+kablam!     |     ^
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `movsd_xmm0_ptr_rsp_offset_u8`
+kablam!    --> src/jit/backend.rs:256:5
+kablam!     |
+kablam! 256 |     pub fn movsd_xmm0_ptr_rsp_offset_u8(&mut self, value: i8) -> isize {
+kablam!     |     ^
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `offset`
+kablam!    --> src/jit/backend.rs:288:5
+kablam!     |
+kablam! 288 |       pub fn offset(&self) -> isize {
+kablam!     |  _____^ starting here...
+kablam! 289 | |         self.mem.offset()
+kablam! 290 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: variant is never used: `Param1`
+kablam!  --> src/jit/opcodes.rs:7:5
+kablam!   |
+kablam! 7 |     Param1,
+kablam!   |     ^^^^^^
+kablam!   |
+kablam!   = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: variant is never used: `Nop`
+kablam!   --> src/jit/opcodes.rs:23:5
+kablam!    |
+kablam! 23 |     Nop,
+kablam!    |     ^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: variant is never used: `LoadConst`
+kablam!   --> src/jit/opcodes.rs:25:5
+kablam!    |
+kablam! 25 |     LoadConst(Register, f64),
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: variant is never used: `SaveVar`
+kablam!   --> src/jit/opcodes.rs:26:5
+kablam!    |
+kablam! 26 |     SaveVar(Variable, Register),
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: variant is never used: `PushVar`
+kablam!   --> src/jit/opcodes.rs:27:5
+kablam!    |
+kablam! 27 |     PushVar(Variable),
+kablam!    |     ^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: variant is never used: `PopVar`
+kablam!   --> src/jit/opcodes.rs:28:5
+kablam!    |
+kablam! 28 |     PopVar(Variable),
+kablam!    |     ^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: variant is never used: `PushReg`
+kablam!   --> src/jit/opcodes.rs:29:5
+kablam!    |
+kablam! 29 |     PushReg(Register),
+kablam!    |     ^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: variant is never used: `PopReg`
+kablam!   --> src/jit/opcodes.rs:30:5
+kablam!    |
+kablam! 30 |     PopReg(Register),
+kablam!    |     ^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.90 secs
+boom! running `docker rm -f c417d9b8217e9e21ecd7f6396b3b0173c4dd0ca0763ce7788454dd1759620f23`
+blam! c417d9b8217e9e21ecd7f6396b3b0173c4dd0ca0763ce7788454dd1759620f23
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 51c19b8a2f81b32d4d97602f4a557d572cab6be9855a90333cfa055535594704
+boom! running `docker start -a 51c19b8a2f81b32d4d97602f4a557d572cab6be9855a90333cfa055535594704`
+kablam!    Compiling jit v0.1.0 (file:///source)
+kablam! warning: method is never used: `mov_rax_u32`
+kablam!   --> src/jit/backend.rs:18:5
+kablam!    |
+kablam! 18 |       pub fn mov_rax_u32(&mut self, value: u32) -> isize {
+kablam!    |  _____^ starting here...
+kablam! 19 | |         let offset = self.mem.offset();
+kablam! 20 | |         self.mem.push_u8(0x48);
+kablam! 21 | |         self.mem.push_u8(0xc7);
+kablam! 22 | |         self.mem.push_u8(0xc0);
+kablam! 23 | |         self.mem.push_u32(value);
+kablam! 24 | |         offset
+kablam! 25 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `mov_rdi_u32`
+kablam!   --> src/jit/backend.rs:28:5
+kablam!    |
+kablam! 28 |       pub fn mov_rdi_u32(&mut self, value: u32) -> isize {
+kablam!    |  _____^ starting here...
+kablam! 29 | |         let offset = self.mem.offset();
+kablam! 30 | |         self.mem.push_u8(0x48);
+kablam! 31 | |         self.mem.push_u8(0xc7);
+kablam! 32 | |         self.mem.push_u8(0xc7);
+kablam! 33 | |         self.mem.push_u32(value);
+kablam! 34 | |         offset
+kablam! 35 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `mov_rdi_u64`
+kablam!   --> src/jit/backend.rs:47:5
+kablam!    |
+kablam! 47 |       pub fn mov_rdi_u64(&mut self, value: u64) -> isize {
+kablam!    |  _____^ starting here...
+kablam! 48 | |         let offset = self.mem.offset();
+kablam! 49 | |         self.mem.push_u8(0x48);
+kablam! 50 | |         self.mem.push_u8(0xBF);
+kablam! 51 | |         self.mem.push_u64(value);
+kablam! 52 | |         offset
+kablam! 53 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `inc_rax`
+kablam!   --> src/jit/backend.rs:64:5
+kablam!    |
+kablam! 64 |       pub fn inc_rax(&mut self) -> isize {
+kablam!    |  _____^ starting here...
+kablam! 65 | |         let offset = self.mem.offset();
+kablam! 66 | |         self.mem.push_u8(0x48);
+kablam! 67 | |         self.mem.push_u8(0xff);
+kablam! 68 | |         self.mem.push_u8(0xc0);
+kablam! 69 | |         offset
+kablam! 70 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `movsd_xmm0_ptr_rdi`
+kablam!    --> src/jit/backend.rs:190:5
+kablam!     |
+kablam! 190 |       pub fn movsd_xmm0_ptr_rdi(&mut self) -> isize {
+kablam!     |  _____^ starting here...
+kablam! 191 | |         let offset = self.mem.offset();
+kablam! 192 | |         self.mem.push_u8(0xf2);
+kablam! 193 | |         self.mem.push_u8(0x0f);
+kablam! 194 | |         self.mem.push_u8(0x10);
+kablam! 195 | |         self.mem.push_u8(0x07);
+kablam! 196 | |         offset
+kablam! 197 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `movsd_xmm0_ptr_rdi_offset_u8`
+kablam!    --> src/jit/backend.rs:200:5
+kablam!     |
+kablam! 200 |       pub fn movsd_xmm0_ptr_rdi_offset_u8(&mut self, value: u8) -> isize {
+kablam!     |  _____^ starting here...
+kablam! 201 | |         let offset = self.mem.offset();
+kablam! 202 | |         self.mem.push_u8(0xf2);
+kablam! 203 | |         self.mem.push_u8(0x0f);
+kablam! 204 | |         self.mem.push_u8(0x10);
+kablam! 205 | |         self.mem.push_u8(0x47);
+kablam! 206 | |         self.mem.push_u8(value);
+kablam! 207 | |         offset
+kablam! 208 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `movsd_xmm1_ptr_rdi_offset_u8`
+kablam!    --> src/jit/backend.rs:211:5
+kablam!     |
+kablam! 211 |       pub fn movsd_xmm1_ptr_rdi_offset_u8(&mut self, value: u8) -> isize {
+kablam!     |  _____^ starting here...
+kablam! 212 | |         let offset = self.mem.offset();
+kablam! 213 | |         self.mem.push_u8(0xf2);
+kablam! 214 | |         self.mem.push_u8(0x0f);
+kablam! 215 | |         self.mem.push_u8(0x10);
+kablam! 216 | |         self.mem.push_u8(0x4f);
+kablam! 217 | |         self.mem.push_u8(value);
+kablam! 218 | |         offset
+kablam! 219 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `movsd_xmm1_ptr_rsp_offset_u8`
+kablam!    --> src/jit/backend.rs:244:5
+kablam!     |
+kablam! 244 |     pub fn movsd_xmm1_ptr_rsp_offset_u8(&mut self, value: i8) -> isize {
+kablam!     |     ^
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `movsd_xmm0_ptr_rsp_offset_u8`
+kablam!    --> src/jit/backend.rs:256:5
+kablam!     |
+kablam! 256 |     pub fn movsd_xmm0_ptr_rsp_offset_u8(&mut self, value: i8) -> isize {
+kablam!     |     ^
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `offset`
+kablam!    --> src/jit/backend.rs:288:5
+kablam!     |
+kablam! 288 |       pub fn offset(&self) -> isize {
+kablam!     |  _____^ starting here...
+kablam! 289 | |         self.mem.offset()
+kablam! 290 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: variant is never used: `Param1`
+kablam!  --> src/jit/opcodes.rs:7:5
+kablam!   |
+kablam! 7 |     Param1,
+kablam!   |     ^^^^^^
+kablam!   |
+kablam!   = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: variant is never used: `Nop`
+kablam!   --> src/jit/opcodes.rs:23:5
+kablam!    |
+kablam! 23 |     Nop,
+kablam!    |     ^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: variant is never used: `LoadConst`
+kablam!   --> src/jit/opcodes.rs:25:5
+kablam!    |
+kablam! 25 |     LoadConst(Register, f64),
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: variant is never used: `SaveVar`
+kablam!   --> src/jit/opcodes.rs:26:5
+kablam!    |
+kablam! 26 |     SaveVar(Variable, Register),
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: variant is never used: `PushVar`
+kablam!   --> src/jit/opcodes.rs:27:5
+kablam!    |
+kablam! 27 |     PushVar(Variable),
+kablam!    |     ^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: variant is never used: `PopVar`
+kablam!   --> src/jit/opcodes.rs:28:5
+kablam!    |
+kablam! 28 |     PopVar(Variable),
+kablam!    |     ^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: variant is never used: `PushReg`
+kablam!   --> src/jit/opcodes.rs:29:5
+kablam!    |
+kablam! 29 |     PushReg(Register),
+kablam!    |     ^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: variant is never used: `PopReg`
+kablam!   --> src/jit/opcodes.rs:30:5
+kablam!    |
+kablam! 30 |     PopReg(Register),
+kablam!    |     ^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.99 secs
+boom! running `docker rm -f 51c19b8a2f81b32d4d97602f4a557d572cab6be9855a90333cfa055535594704`
+blam! 51c19b8a2f81b32d4d97602f4a557d572cab6be9855a90333cfa055535594704
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! f94436982f84107b7cd5040daf92dc781b1906abf6ee8f7ae179672dd48a6043
+boom! running `docker start -a f94436982f84107b7cd5040daf92dc781b1906abf6ee8f7ae179672dd48a6043`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/jit-c6404b2f313649db
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f f94436982f84107b7cd5040daf92dc781b1906abf6ee8f7ae179672dd48a6043`
+blam! f94436982f84107b7cd5040daf92dc781b1906abf6ee8f7ae179672dd48a6043

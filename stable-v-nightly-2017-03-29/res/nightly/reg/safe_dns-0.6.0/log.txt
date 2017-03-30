@@ -1,0 +1,29 @@
+boom! testing safe_dns-0.6.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! a8fce70bb1db88720fcdc03dda6ad718773838b67954f66cda6e8b85e1786b16
+boom! running `docker start -a a8fce70bb1db88720fcdc03dda6ad718773838b67954f66cda6e8b85e1786b16`
+kablam!    Compiling crossbeam v0.1.6
+kablam!    Compiling c_linked_list v0.1.0
+kablam!    Compiling libsodium-sys v0.0.14
+kablam! error: failed to run custom build command for `libsodium-sys v0.0.14`
+kablam! process didn't exit successfully: `/target/debug/build/libsodium-sys-c81c2aab8a6cece2/build-script-build` (exit code: 101)
+kablam! --- stderr
+kablam! thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: "`\"pkg-config\" \"--libs\" \"--cflags\" \"libsodium\"` did not exit successfully: exit code: 1\n--- stderr\nPackage libsodium was not found in the pkg-config search path.\nPerhaps you should add the directory containing `libsodium.pc\'\nto the PKG_CONFIG_PATH environment variable\nNo package \'libsodium\' found\n"', /checkout/src/libcore/result.rs:859
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error[E0512]: transmute called with differently sized types: [usize; 32] (2048 bits) to [std::sync::atomic::AtomicBool; 32] (256 bits)
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/crossbeam-0.1.6/src/sync/seg_queue.rs:34:29
+kablam!    |
+kablam! 34 |             ready: unsafe { mem::transmute([0usize; SEG_SIZE]) },
+kablam!    |                             ^^^^^^^^^^^^^^ transmuting between 2048 bits and 256 bits
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `crossbeam`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f a8fce70bb1db88720fcdc03dda6ad718773838b67954f66cda6e8b85e1786b16`
+blam! a8fce70bb1db88720fcdc03dda6ad718773838b67954f66cda6e8b85e1786b16

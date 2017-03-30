@@ -1,0 +1,104 @@
+boom! testing tofu-0.1.11 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! b3149f9c5652312a8a3a3ec797b52670383ebcaae528c577d379a799a767394e
+boom! running `docker start -a b3149f9c5652312a8a3a3ec797b52670383ebcaae528c577d379a799a767394e`
+kablam!    Compiling tofu v0.1.11 (file:///source)
+kablam! error[E0432]: unresolved import `openssl::crypto::pkey::PKey`
+kablam!   --> src/lib.rs:15:9
+kablam!    |
+kablam! 15 | pub use openssl::crypto::pkey::PKey as Key;
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `pkey` in `crypto`
+kablam! 
+kablam! error[E0432]: unresolved import `openssl::ssl::error::SslError`
+kablam!   --> src/lib.rs:18:9
+kablam!    |
+kablam! 18 | pub use openssl::ssl::error::SslError;
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `SslError` in `ssl::error`
+kablam! 
+kablam! error[E0432]: unresolved import `openssl::crypto::hash::Type`
+kablam!    --> src/lib.rs:204:13
+kablam!     |
+kablam! 204 |         use openssl::crypto::hash::Type;
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `hash` in `crypto`
+kablam! 
+kablam! error[E0432]: unresolved import `openssl::crypto::hash::Type`
+kablam!    --> src/lib.rs:239:13
+kablam!     |
+kablam! 239 |         use openssl::crypto::hash::Type;
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `hash` in `crypto`
+kablam! 
+kablam! error[E0412]: cannot find type `SslError` in this scope
+kablam!    --> src/lib.rs:137:17
+kablam!     |
+kablam! 137 |         LoadKey(SslError),
+kablam!     |                 ^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `SslError` in this scope
+kablam!    --> src/lib.rs:141:18
+kablam!     |
+kablam! 141 |         StoreKey(SslError),
+kablam!     |                  ^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `SslError` in this scope
+kablam!    --> src/lib.rs:152:18
+kablam!     |
+kablam! 152 |         LoadCert(SslError),
+kablam!     |                  ^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `SslError` in this scope
+kablam!    --> src/lib.rs:159:19
+kablam!     |
+kablam! 159 |         StoreCert(SslError),
+kablam!     |                   ^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `SslError` in this scope
+kablam!    --> src/lib.rs:168:19
+kablam!     |
+kablam! 168 |         CtxCreate(SslError),
+kablam!     |                   ^^^^^^^^ not found in this scope
+kablam! 
+kablam! error: module `error` is private
+kablam!   --> src/lib.rs:18:9
+kablam!    |
+kablam! 18 | pub use openssl::ssl::error::SslError;
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0107]: wrong number of lifetime parameters: expected 0, found 1
+kablam!   --> src/lib.rs:14:22
+kablam!    |
+kablam! 14 | pub type CertOwned = Cert<'static>;
+kablam!    |                      ^^^^^^^^^^^^^ unexpected lifetime parameter
+kablam! 
+kablam! error[E0107]: wrong number of lifetime parameters: expected 0, found 1
+kablam!    --> src/lib.rs:199:15
+kablam!     |
+kablam! 199 |     pub cert: Cert<'cert>,
+kablam!     |               ^^^^^^^^^^^ unexpected lifetime parameter
+kablam! 
+kablam! error[E0107]: wrong number of lifetime parameters: expected 0, found 1
+kablam!    --> src/lib.rs:250:37
+kablam!     |
+kablam! 250 |     pub fn from(name: String, cert: Cert<'a>) -> Self {
+kablam!     |                                     ^^^^^^^^ unexpected lifetime parameter
+kablam! 
+kablam! error[E0107]: wrong number of lifetime parameters: expected 0, found 1
+kablam!    --> src/lib.rs:305:37
+kablam!     |
+kablam! 305 |     pub fn from(name: String, cert: Cert<'a>, key: Key) -> Self {
+kablam!     |                                     ^^^^^^^^ unexpected lifetime parameter
+kablam! 
+kablam! error[E0107]: wrong number of lifetime parameters: expected 0, found 1
+kablam!    --> src/lib.rs:643:37
+kablam!     |
+kablam! 643 |     fn ctx_create<'a>(&self, cert: &Cert<'a>, key: &Key) -> Result<SslContext, SslError>
+kablam!     |                                     ^^^^^^^^ unexpected lifetime parameter
+kablam! 
+kablam! error: aborting due to 5 previous errors
+kablam! 
+kablam! error: Could not compile `tofu`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f b3149f9c5652312a8a3a3ec797b52670383ebcaae528c577d379a799a767394e`
+blam! b3149f9c5652312a8a3a3ec797b52670383ebcaae528c577d379a799a767394e

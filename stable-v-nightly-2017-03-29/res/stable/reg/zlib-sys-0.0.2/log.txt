@@ -1,0 +1,36 @@
+boom! testing zlib-sys-0.0.2 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! c9b393259746795a0724618a013d7461277ab1d2ece9021ded3612008d8d7b36
+boom! running `docker start -a c9b393259746795a0724618a013d7461277ab1d2ece9021ded3612008d8d7b36`
+kablam!    Compiling zlib-sys v0.0.2 (file:///source)
+kablam! error: --crate-name and #[crate_name] are required to match, but `zlib_sys` != `zlib-sys`
+kablam!  --> src/lib.rs:1:1
+kablam!   |
+kablam! 1 | #![crate_name="zlib-sys"]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0277]: the trait bound `gz_header: std::clone::Clone` is not satisfied
+kablam!   --> src/lib.rs:44:10
+kablam!    |
+kablam! 44 | #[derive(Copy)]
+kablam!    |          ^^^^ the trait `std::clone::Clone` is not implemented for `gz_header`
+kablam!    |
+kablam!    = note: required by `std::marker::Copy`
+kablam! 
+kablam! error[E0277]: the trait bound `z_stream: std::clone::Clone` is not satisfied
+kablam!   --> src/lib.rs:69:10
+kablam!    |
+kablam! 69 | #[derive(Copy)]
+kablam!    |          ^^^^ the trait `std::clone::Clone` is not implemented for `z_stream`
+kablam!    |
+kablam!    = note: required by `std::marker::Copy`
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `zlib-sys`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f c9b393259746795a0724618a013d7461277ab1d2ece9021ded3612008d8d7b36`
+blam! c9b393259746795a0724618a013d7461277ab1d2ece9021ded3612008d8d7b36

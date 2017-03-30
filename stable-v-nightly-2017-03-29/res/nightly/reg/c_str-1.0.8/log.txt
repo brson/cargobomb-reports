@@ -1,0 +1,62 @@
+boom! testing c_str-1.0.8 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 78efb5f9c571825955786db94020041a1b9845f48abc841924510293be8e1904
+boom! running `docker start -a 78efb5f9c571825955786db94020041a1b9845f48abc841924510293be8e1904`
+kablam!    Compiling c_str v1.0.8 (file:///source)
+kablam! error[E0433]: failed to resolve. Could not find `bytes` in `slice`
+kablam!    --> src/c_str.rs:278:9
+kablam!     |
+kablam! 278 |         slice::bytes::copy_memory(&mut buf, copy_.as_mut_slice());
+kablam!     |         ^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `bytes` in `slice`
+kablam! 
+kablam! error: use of unstable library feature 'core_intrinsics': intrinsics are unlikely to ever be stabilized, instead they should be used through stabilized interfaces in the rest of the standard library (see issue #0)
+kablam!    --> src/c_str.rs:357:29
+kablam!     |
+kablam! 357 |             let tmp : u8 = *::std::intrinsics::offset(curr_ptr as *const libc::c_uchar, decal);
+kablam!     |                             ^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: add #![feature(core_intrinsics)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'core_intrinsics': intrinsics are unlikely to ever be stabilized, instead they should be used through stabilized interfaces in the rest of the standard library (see issue #0)
+kablam!    --> src/c_str.rs:167:23
+kablam!     |
+kablam! 167 |             let tmp = ::std::intrinsics::offset(c_str, count);
+kablam!     |                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: add #![feature(core_intrinsics)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'core_intrinsics': intrinsics are unlikely to ever be stabilized, instead they should be used through stabilized interfaces in the rest of the standard library (see issue #0)
+kablam!    --> src/c_str.rs:195:23
+kablam!     |
+kablam! 195 |             let tmp = ::std::intrinsics::offset(c_str, count);
+kablam!     |                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: add #![feature(core_intrinsics)] to the crate attributes to enable
+kablam! 
+kablam! error: no associated item named `from_raw_buf` found for type `std::vec::Vec<_>` in the current scope
+kablam!    --> src/c_str.rs:177:31
+kablam!     |
+kablam! 177 |             let v : Vec<u8> = Vec::from_raw_buf(c_str as *const u8, count as usize);
+kablam!     |                               ^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is implemented and in scope; the following trait defines an item `from_raw_buf`, perhaps you need to implement it:
+kablam!     = help: candidate #1: `FromCStr`
+kablam! 
+kablam! error: no associated item named `from_raw_buf` found for type `std::vec::Vec<_>` in the current scope
+kablam!    --> src/c_str.rs:205:31
+kablam!     |
+kablam! 205 |             let v : Vec<u8> = Vec::from_raw_buf(c_str as *const u8, count as usize);
+kablam!     |                               ^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is implemented and in scope; the following trait defines an item `from_raw_buf`, perhaps you need to implement it:
+kablam!     = help: candidate #1: `FromCStr`
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `c_str`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 78efb5f9c571825955786db94020041a1b9845f48abc841924510293be8e1904`
+blam! 78efb5f9c571825955786db94020041a1b9845f48abc841924510293be8e1904

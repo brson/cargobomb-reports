@@ -1,0 +1,36 @@
+boom! testing event_dispatcher-0.0.2 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 78c2666fcc30f93ae80d6900fc943508548bbcec45fa295f501d81735432e71b
+boom! running `docker start -a 78c2666fcc30f93ae80d6900fc943508548bbcec45fa295f501d81735432e71b`
+kablam!    Compiling event_dispatcher v0.0.2 (file:///source)
+kablam! error[E0432]: unresolved import `std::intrinsics::TypeId`
+kablam!  --> src/dispatcher.rs:5:5
+kablam!   |
+kablam! 5 | use std::intrinsics::TypeId;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^ no `TypeId` in `intrinsics`
+kablam! 
+kablam! error[E0392]: parameter `T` is never used
+kablam!    --> src/dispatcher.rs:107:36
+kablam!     |
+kablam! 107 | pub struct Dispatcher<E: Event<T>, T: ?Sized> {
+kablam!     |                                    ^ unused type parameter
+kablam!     |
+kablam!     = help: consider removing `T` or using a marker such as `std::marker::PhantomData`
+kablam! 
+kablam! error[E0392]: parameter `T` is never used
+kablam!  --> src/listener.rs:3:34
+kablam!   |
+kablam! 3 | pub struct Listener<E: Event<T>, T: ?Sized>{
+kablam!   |                                  ^ unused type parameter
+kablam!   |
+kablam!   = help: consider removing `T` or using a marker such as `std::marker::PhantomData`
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `event_dispatcher`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 78c2666fcc30f93ae80d6900fc943508548bbcec45fa295f501d81735432e71b`
+blam! 78c2666fcc30f93ae80d6900fc943508548bbcec45fa295f501d81735432e71b

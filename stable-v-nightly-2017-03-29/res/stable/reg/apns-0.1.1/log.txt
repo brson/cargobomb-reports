@@ -1,0 +1,68 @@
+boom! testing apns-0.1.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! bf30561beab95e2b06e520eb5a834a472c233c2c18286f1c3b425ae75ad20402
+boom! running `docker start -a bf30561beab95e2b06e520eb5a834a472c233c2c18286f1c3b425ae75ad20402`
+kablam!    Compiling apns v0.1.1 (file:///source)
+kablam! error[E0432]: unresolved import `openssl::ssl::error::SslError`
+kablam!   --> src/apns/mod.rs:10:5
+kablam!    |
+kablam! 10 | use openssl::ssl::error::SslError;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `SslError` in `ssl::error`
+kablam! 
+kablam! error: module `error` is private
+kablam!   --> src/apns/mod.rs:10:5
+kablam!    |
+kablam! 10 | use openssl::ssl::error::SslError;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no associated item named `new` found for type `openssl::ssl::SslContext` in the current scope
+kablam!    --> src/apns/mod.rs:368:28
+kablam!     |
+kablam! 368 |     let mut context = try!(ssl::SslContext::new(ssl::SslMethod::Sslv23));
+kablam!     |                            ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no associated item named `Sslv23` found for type `openssl::ssl::SslMethod` in the current scope
+kablam!    --> src/apns/mod.rs:368:49
+kablam!     |
+kablam! 368 |     let mut context = try!(ssl::SslContext::new(ssl::SslMethod::Sslv23));
+kablam!     |                                                 ^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no associated item named `PEM` found for type `openssl::x509::X509FileType` in the current scope
+kablam!    --> src/apns/mod.rs:373:65
+kablam!     |
+kablam! 373 |     if let Err(error) = context.set_certificate_file(cert_file, openssl::x509::X509FileType::PEM) {
+kablam!     |                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no associated item named `PEM` found for type `openssl::x509::X509FileType` in the current scope
+kablam!    --> src/apns/mod.rs:376:72
+kablam!     |
+kablam! 376 |     if let Err(error) = context.set_private_key_file(private_key_file, openssl::x509::X509FileType::PEM) {
+kablam!     |                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no associated item named `connect` found for type `openssl::ssl::SslStream<_>` in the current scope
+kablam!    --> src/apns/mod.rs:390:9
+kablam!     |
+kablam! 390 | 	return SslStream::connect(&context, tcp_conn);
+kablam!     | 	       ^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: the type of this value must be known in this context
+kablam!    --> src/apns/mod.rs:207:19
+kablam!     |
+kablam! 207 |             match stream.ssl_read(&mut read_buffer) {
+kablam!     |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: the type of this value must be known in this context
+kablam!    --> src/apns/mod.rs:244:37
+kablam!     |
+kablam! 244 |                 if let Err(error) = ssls.ssl_write(&notification_bytes) {
+kablam!     |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 7 previous errors
+kablam! 
+kablam! error: Could not compile `apns`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f bf30561beab95e2b06e520eb5a834a472c233c2c18286f1c3b425ae75ad20402`
+blam! bf30561beab95e2b06e520eb5a834a472c233c2c18286f1c3b425ae75ad20402

@@ -1,0 +1,33 @@
+boom! testing vobsub2png-0.1.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! f58b63803dace36ea098dfbe08dd81076f59d52d92062028fc8d91376b1c302d
+boom! running `docker start -a f58b63803dace36ea098dfbe08dd81076f59d52d92062028fc8d91376b1c302d`
+kablam!    Compiling cast v0.2.0
+kablam!    Compiling vobsub v0.1.2
+kablam! error[E0277]: the trait bound `u8: nom::FindToken<&[u8; 22]>` is not satisfied
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/vobsub-0.1.2/src/idx.rs:15:1
+kablam!    |
+kablam! 15 |   named!(hex_digit<u8>,
+kablam!    |  _^ starting here...
+kablam! 16 | |     map!(one_of!(b"0123456789abcdefABCDEF"), |c: char| -> u8 {
+kablam! 17 | |         cast::u8(c.to_digit(16).unwrap()).unwrap()
+kablam! 18 | |     })
+kablam! 19 | | );
+kablam!    | |__^ ...ending here: the trait `nom::FindToken<&[u8; 22]>` is not implemented for `u8`
+kablam!    |
+kablam!    = help: the following implementations were found:
+kablam!              <u8 as nom::FindToken<&'a [u8]>>
+kablam!              <u8 as nom::FindToken<&'a str>>
+kablam!              <&'b u8 as nom::FindToken<&'a [u8]>>
+kablam!              <&'b u8 as nom::FindToken<&'a str>>
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `vobsub`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f58b63803dace36ea098dfbe08dd81076f59d52d92062028fc8d91376b1c302d`
+blam! f58b63803dace36ea098dfbe08dd81076f59d52d92062028fc8d91376b1c302d

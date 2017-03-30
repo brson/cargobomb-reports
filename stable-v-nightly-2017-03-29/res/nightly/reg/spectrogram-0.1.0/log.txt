@@ -1,0 +1,27 @@
+boom! testing spectrogram-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 244d5b80db8f5b13a1837240ae1d350e8b5b2909c9774b25964c18c27042a43d
+boom! running `docker start -a 244d5b80db8f5b13a1837240ae1d350e8b5b2909c9774b25964c18c27042a43d`
+kablam!    Compiling goertzel v0.2.0
+kablam!    Compiling spectrogram v0.1.0 (file:///source)
+kablam! error[E0308]: mismatched types
+kablam!   --> src/lib.rs:13:52
+kablam!    |
+kablam! 13 |             let p = goertzel::Parameters::new(bin, sample_rate, 256);
+kablam!    |                                                    ^^^^^^^^^^^ expected u32, found f32
+kablam! 
+kablam! error: non-scalar cast: `{integer}` as `f32`
+kablam!   --> src/lib.rs:12:38
+kablam!    |
+kablam! 12 |         for bin in (0 .. 30).map(|x| (x * 256) as f32) {
+kablam!    |                                      ^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `spectrogram`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 244d5b80db8f5b13a1837240ae1d350e8b5b2909c9774b25964c18c27042a43d`
+blam! 244d5b80db8f5b13a1837240ae1d350e8b5b2909c9774b25964c18c27042a43d

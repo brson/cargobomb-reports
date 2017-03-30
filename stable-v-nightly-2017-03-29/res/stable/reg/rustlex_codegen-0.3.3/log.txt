@@ -1,0 +1,158 @@
+boom! testing rustlex_codegen-0.3.3 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! c0f6ccee090c8d5a2eca2015e240f40e3b5452adde80142f7e55aa4f57f1e10b
+boom! running `docker start -a c0f6ccee090c8d5a2eca2015e240f40e3b5452adde80142f7e55aa4f57f1e10b`
+kablam!    Compiling rustlex_codegen v0.3.3 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::ast::TokenTree`
+kablam!   --> lib.rs:14:26
+kablam!    |
+kablam! 14 | use syntax::ast::{Ident, TokenTree};
+kablam!    |                          ^^^^^^^^^ no `TokenTree` in `ast`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::keywords`
+kablam!   --> parser.rs:18:5
+kablam!    |
+kablam! 18 | use syntax::parse::token::keywords;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `keywords` in `parse::token`
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!   --> codegen.in.rs:77:49
+kablam!    |
+kablam! 77 |         ident: Some(ast::Ident::with_empty_ctxt(token::intern("_input"))),
+kablam!    |                                                 ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!   --> codegen.in.rs:86:49
+kablam!    |
+kablam! 86 |         ident: Some(ast::Ident::with_empty_ctxt(token::intern("_state"))),
+kablam!    |                                                 ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `InternedString` in `token`
+kablam!   --> codegen.in.rs:94:9
+kablam!    |
+kablam! 94 |         token::InternedString::new("allow"),
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `InternedString` in `token`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `InternedString` in `token`
+kablam!   --> codegen.in.rs:96:32
+kablam!    |
+kablam! 96 |             attr::mk_word_item(token::InternedString::new("missing_docs"))
+kablam!    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `InternedString` in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!    --> codegen.in.rs:109:64
+kablam!     |
+kablam! 109 |                     cx.typaram(sp, ast::Ident::with_empty_ctxt(token::intern("R")),
+kablam!     |                                                                ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!    --> codegen.in.rs:112:57
+kablam!     |
+kablam! 112 |                             ast::Ident::with_empty_ctxt(token::intern("std")),
+kablam!     |                                                         ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!    --> codegen.in.rs:113:57
+kablam!     |
+kablam! 113 |                             ast::Ident::with_empty_ctxt(token::intern("io")),
+kablam!     |                                                         ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!    --> codegen.in.rs:114:57
+kablam!     |
+kablam! 114 |                             ast::Ident::with_empty_ctxt(token::intern("Read"))
+kablam!     |                                                         ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!    --> codegen.in.rs:256:62
+kablam!     |
+kablam! 256 |     fields.push(cx.field_imm(sp, ast::Ident::with_empty_ctxt(token::intern("_input")),
+kablam!     |                                                              ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!    --> codegen.in.rs:258:62
+kablam!     |
+kablam! 258 |     fields.push(cx.field_imm(sp, ast::Ident::with_empty_ctxt(token::intern("_state")),
+kablam!     |                                                              ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `keywords` in `token`
+kablam!   --> parser.rs:38:36
+kablam!    |
+kablam! 38 |     fn eat_keyword(&mut self, kwd: token::keywords::Keyword) -> bool;
+kablam!    |                                    ^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `keywords` in `token`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `keywords` in `token`
+kablam!   --> parser.rs:43:38
+kablam!    |
+kablam! 43 |     fn check_keyword(&mut self, kwd: token::keywords::Keyword) -> bool;
+kablam!    |                                      ^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `keywords` in `token`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `keywords` in `token`
+kablam!   --> parser.rs:70:36
+kablam!    |
+kablam! 70 |     fn eat_keyword(&mut self, kwd: token::keywords::Keyword) -> bool {
+kablam!    |                                    ^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `keywords` in `token`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `keywords` in `token`
+kablam!   --> parser.rs:76:38
+kablam!    |
+kablam! 76 |     fn check_keyword(&mut self, kwd: token::keywords::Keyword) -> bool {
+kablam!    |                                      ^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `keywords` in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!   --> parser.rs:97:17
+kablam!    |
+kablam! 97 |     let token = token::intern("token");
+kablam!    |                 ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!    --> parser.rs:105:40
+kablam!     |
+kablam! 105 |         _ => Ok(Ident::with_empty_ctxt(token::intern("Token")))
+kablam!     |                                        ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!    --> parser.rs:112:16
+kablam!     |
+kablam! 112 |     let prop = token::intern("property");
+kablam!     |                ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `keywords` in `token`
+kablam!    --> parser.rs:267:30
+kablam!     |
+kablam! 267 |         parser.check_keyword(token::keywords::As) ||
+kablam!     |                              ^^^^^^^^^^^^^^^^^^^ Could not find `keywords` in `token`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `keywords` in `token`
+kablam!    --> parser.rs:280:27
+kablam!     |
+kablam! 280 |     if parser.eat_keyword(token::keywords::As) {
+kablam!     |                           ^^^^^^^^^^^^^^^^^^^ Could not find `keywords` in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `token`
+kablam!    --> parser.rs:364:15
+kablam!     |
+kablam! 364 |         name: token::intern("INITIAL"),
+kablam!     |               ^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `intern` in module `syntax::parse::token`
+kablam!   --> lib.rs:51:9
+kablam!    |
+kablam! 51 |         syntax::parse::token::intern("rustlex"),
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `syntax::parse::token`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> lib.rs:1:43
+kablam!   |
+kablam! 1 | #![cfg_attr(not(feature = "with-syntex"), feature(plugin_registrar,rustc_private,quote))]
+kablam!   |                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `rustlex_codegen`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f c0f6ccee090c8d5a2eca2015e240f40e3b5452adde80142f7e55aa4f57f1e10b`
+blam! c0f6ccee090c8d5a2eca2015e240f40e3b5452adde80142f7e55aa4f57f1e10b

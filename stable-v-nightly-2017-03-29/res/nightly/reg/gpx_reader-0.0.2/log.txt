@@ -1,0 +1,186 @@
+boom! testing gpx_reader-0.0.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 6010d27759b13f4290881a957a070420b14f0a60b1a85f46690512b856a5db3c
+boom! running `docker start -a 6010d27759b13f4290881a957a070420b14f0a60b1a85f46690512b856a5db3c`
+kablam!    Compiling gpx_reader v0.0.2 (file:///source)
+kablam! error: invalid suffix `u` for numeric literal
+kablam!   --> src/bitbuffer.rs:37:20
+kablam!    |
+kablam! 37 |     let mut word = 0u;
+kablam!    |                    ^^
+kablam!    |
+kablam!    = help: the suffix must be one of the integral types (`u32`, `isize`, etc)
+kablam! 
+kablam! error: expected one of `!`, `(`, `)`, `+`, `,`, `::`, or `<`, found `-`
+kablam!   --> src/bitbuffer.rs:40:44
+kablam!    |
+kablam! 40 |       word = word | (bit as uint << (count - 1 - idx));
+kablam!    |                                            ^
+kablam! 
+kablam! error: invalid suffix `u` for numeric literal
+kablam!   --> src/bitbuffer.rs:46:20
+kablam!    |
+kablam! 46 |     let mut word = 0u;
+kablam!    |                    ^^
+kablam!    |
+kablam!    = help: the suffix must be one of the integral types (`u32`, `isize`, etc)
+kablam! 
+kablam! error: expected one of `!`, `(`, `+`, `::`, `<`, `>`, or `as`, found `)`
+kablam!   --> src/bitbuffer.rs:49:40
+kablam!    |
+kablam! 49 |       word = word | (bit as uint << idx);
+kablam!    |                                        ^
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::IoResult`
+kablam!  --> src/lib.rs:5:15
+kablam!   |
+kablam! 5 | use std::io::{IoResult, MemReader, SeekSet};
+kablam!   |               ^^^^^^^^ no `IoResult` in `io`. Did you mean to use `Result`?
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::MemReader`
+kablam!  --> src/lib.rs:5:25
+kablam!   |
+kablam! 5 | use std::io::{IoResult, MemReader, SeekSet};
+kablam!   |                         ^^^^^^^^^ no `MemReader` in `io`. Did you mean to use `BufReader`?
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::SeekSet`
+kablam!  --> src/lib.rs:5:36
+kablam!   |
+kablam! 5 | use std::io::{IoResult, MemReader, SeekSet};
+kablam!   |                                    ^^^^^^^ no `SeekSet` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::Reader`
+kablam!  --> src/bitbuffer.rs:1:15
+kablam!   |
+kablam! 1 | use std::io::{Reader, IoResult};
+kablam!   |               ^^^^^^ no `Reader` in `io`. Did you mean to use `Read`?
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::IoResult`
+kablam!  --> src/bitbuffer.rs:1:23
+kablam!   |
+kablam! 1 | use std::io::{Reader, IoResult};
+kablam!   |                       ^^^^^^^^ no `IoResult` in `io`. Did you mean to use `Result`?
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!   --> src/bitbuffer.rs:10:50
+kablam!    |
+kablam! 10 |   fn read(&mut self, buf: &mut [u8]) -> IoResult<uint> {
+kablam!    |                                                  ^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `range` in this scope
+kablam!   --> src/bitbuffer.rs:11:16
+kablam!    |
+kablam! 11 |     for pos in range(0, buf.len()){
+kablam!    |                ^^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!   --> src/bitbuffer.rs:30:60
+kablam!    |
+kablam! 30 |     let bit = (self.byte >> (8 - self.bit_position - 1) as uint) & 0x1; //MSB
+kablam!    |                                                            ^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!   --> src/bitbuffer.rs:36:38
+kablam!    |
+kablam! 36 |   pub fn read_bits(&mut self, count: uint) -> IoResult<uint> {
+kablam!    |                                      ^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!   --> src/bitbuffer.rs:36:56
+kablam!    |
+kablam! 36 |   pub fn read_bits(&mut self, count: uint) -> IoResult<uint> {
+kablam!    |                                                        ^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `range` in this scope
+kablam!   --> src/bitbuffer.rs:38:16
+kablam!    |
+kablam! 38 |     for idx in range(0, count) {
+kablam!    |                ^^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!   --> src/bitbuffer.rs:45:47
+kablam!    |
+kablam! 45 |   pub fn read_bits_reversed(&mut self, count: uint) -> IoResult<uint> {
+kablam!    |                                               ^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!   --> src/bitbuffer.rs:45:65
+kablam!    |
+kablam! 45 |   pub fn read_bits_reversed(&mut self, count: uint) -> IoResult<uint> {
+kablam!    |                                                                 ^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `range` in this scope
+kablam!   --> src/bitbuffer.rs:47:16
+kablam!    |
+kablam! 47 |     for idx in range(0, count) {
+kablam!    |                ^^^^^ not found in this scope
+kablam! 
+kablam! error: cannot find macro `debug!` in this scope
+kablam!   --> src/lib.rs:25:3
+kablam!    |
+kablam! 25 |   debug!("Reading file...");
+kablam!    |   ^^^^^
+kablam! 
+kablam! error: cannot find macro `debug!` in this scope
+kablam!   --> src/lib.rs:28:7
+kablam!    |
+kablam! 28 |       debug!("File type BCFZ");
+kablam!    |       ^^^^^
+kablam! 
+kablam! error: cannot find macro `debug!` in this scope
+kablam!   --> src/lib.rs:36:11
+kablam!    |
+kablam! 36 |           debug!("Decompressed BCFZ, found BCFS inside");
+kablam!    |           ^^^^^
+kablam! 
+kablam! error: cannot find macro `debug!` in this scope
+kablam!   --> src/lib.rs:44:7
+kablam!    |
+kablam! 44 |       debug!("File type BCFS");
+kablam!    |       ^^^^^
+kablam! 
+kablam! error: cannot find macro `debug!` in this scope
+kablam!   --> src/lib.rs:64:3
+kablam!    |
+kablam! 64 |   debug!("Expected decomressed_data len: {}", expected_decomressed_data_len);
+kablam!    |   ^^^^^
+kablam! 
+kablam! error: cannot find macro `debug!` in this scope
+kablam!   --> src/lib.rs:96:3
+kablam!    |
+kablam! 96 |   debug!("Successfully decompressed data. Len: {}, Expected len: {}", decomressed_data.len(), expected_decomressed_data_len);
+kablam!    |   ^^^^^
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!   --> src/lib.rs:62:65
+kablam!    |
+kablam! 62 |   let expected_decomressed_data_len = try!(bb.read_le_i32()) as uint;
+kablam!    |                                                                 ^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `range` in this scope
+kablam!   --> src/lib.rs:69:14
+kablam!    |
+kablam! 69 |     for _ in range(0,len) {
+kablam!    |              ^^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!    --> src/lib.rs:129:64
+kablam!     |
+kablam! 129 |         file_data.extend(try!(reader.read_exact(sector_size as uint)).into_iter());
+kablam!     |                                                                ^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `uint` in this scope
+kablam!    --> src/lib.rs:134:53
+kablam!     |
+kablam! 134 |       let file_size = try!(reader.read_le_i32()) as uint;
+kablam!     |                                                     ^^^^ not found in this scope
+kablam! 
+kablam! error: aborting due to 28 previous errors
+kablam! 
+kablam! error: Could not compile `gpx_reader`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 6010d27759b13f4290881a957a070420b14f0a60b1a85f46690512b856a5db3c`
+blam! 6010d27759b13f4290881a957a070420b14f0a60b1a85f46690512b856a5db3c

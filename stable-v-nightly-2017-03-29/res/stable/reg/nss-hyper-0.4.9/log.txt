@@ -1,0 +1,24 @@
+boom! testing nss-hyper-0.4.9 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 79078a6e45be737128f13dfdfd08950dbb04b295a8beae1e2baa69d2fe7fc153
+boom! running `docker start -a 79078a6e45be737128f13dfdfd08950dbb04b295a8beae1e2baa69d2fe7fc153`
+kablam!    Compiling ring v0.4.3
+kablam!    Compiling nss v0.7.1
+kablam! error[E0277]: the trait bound `&&std::vec::Vec<std::string::String>: std::iter::Iterator` is not satisfied
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/ring-0.4.3/build.rs:206:14
+kablam!     |
+kablam! 206 |             .args(&args)
+kablam!     |              ^^^^ the trait `std::iter::Iterator` is not implemented for `&&std::vec::Vec<std::string::String>`
+kablam!     |
+kablam!     = note: `&&std::vec::Vec<std::string::String>` is not an iterator; maybe try calling `.iter()` or a similar method
+kablam!     = note: required because of the requirements on the impl of `std::iter::IntoIterator` for `&&std::vec::Vec<std::string::String>`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `ring`.
+kablam! error: build failed
+boom! running `docker rm -f 79078a6e45be737128f13dfdfd08950dbb04b295a8beae1e2baa69d2fe7fc153`
+blam! 79078a6e45be737128f13dfdfd08950dbb04b295a8beae1e2baa69d2fe7fc153

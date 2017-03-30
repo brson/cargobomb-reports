@@ -1,0 +1,89 @@
+boom! testing synthax-0.4.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! c6265bdd1a136d1fababacd24e718670344b610b8f876b3383ad155d3847f40e
+boom! running `docker start -a c6265bdd1a136d1fababacd24e718670344b610b8f876b3383ad155d3847f40e`
+kablam!    Compiling synthax v0.4.0 (file:///source)
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:232:63
+kablam!     |
+kablam! 232 |                 expr = expand_var_sequence_tts(context, span, &delimited.tts, expr);
+kablam!     |                                                               ^^^^^^^^^^^^^^ expected slice, found struct `syntax::tokenstream::ThinTokenStream`
+kablam!     |
+kablam!     = note: expected type `&[syntax::tokenstream::TokenTree]`
+kablam!                found type `&syntax::tokenstream::ThinTokenStream`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:286:39
+kablam!     |
+kablam! 286 |             parse_expr(context, span, &delimited.tts).unwrap(),
+kablam!     |                                       ^^^^^^^^^^^^^^ expected slice, found struct `syntax::tokenstream::ThinTokenStream`
+kablam!     |
+kablam!     = note: expected type `&[syntax::tokenstream::TokenTree]`
+kablam!                found type `&syntax::tokenstream::ThinTokenStream`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:288:53
+kablam!     |
+kablam! 288 |             expand_var_sequence(context, span, tts, &delimited.tts),
+kablam!     |                                                     ^^^^^^^^^^^^^^ expected slice, found struct `syntax::tokenstream::ThinTokenStream`
+kablam!     |
+kablam!     = note: expected type `&[syntax::tokenstream::TokenTree]`
+kablam!                found type `&syntax::tokenstream::ThinTokenStream`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:303:64
+kablam!     |
+kablam! 303 |     etts.push(ExpandedTokenTree::Vec(expand_tts(context, span, &delimited.tts, source)));
+kablam!     |                                                                ^^^^^^^^^^^^^^ expected slice, found struct `syntax::tokenstream::ThinTokenStream`
+kablam!     |
+kablam!     = note: expected type `&[syntax::tokenstream::TokenTree]`
+kablam!                found type `&syntax::tokenstream::ThinTokenStream`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:322:61
+kablam!     |
+kablam! 322 |                 etts.extend(expand_delimited(context, span, delimited, source).into_iter()),
+kablam!     |                                                             ^^^^^^^^^ expected struct `std::rc::Rc`, found struct `syntax::tokenstream::Delimited`
+kablam!     |
+kablam!     = note: expected type `&std::rc::Rc<syntax::tokenstream::Delimited>`
+kablam!                found type `&syntax::tokenstream::Delimited`
+kablam! 
+kablam! error: no associated item named `MatchNt` found for type `syntax::parse::token::Token` in the current scope
+kablam!    --> src/expr.rs:173:13
+kablam!     |
+kablam! 173 |             Token::MatchNt(_, _) |
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `to_expr` found for type `syntax::tokenstream::ThinTokenStream` in the current scope
+kablam!    --> src/expr.rs:50:78
+kablam!     |
+kablam! 50  |         vec![$(mk_field($context, $span, stringify!($field), $struct_.$field.to_expr($context, $span))), +]
+kablam!     |                                                                              ^^^^^^^
+kablam! ...
+kablam! 186 |         let fields = fields!(context, span, self, [delim, tts]);
+kablam!     |                      ------------------------------------------ in this macro invocation
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is implemented and in scope; the following trait defines an item `to_expr`, perhaps you need to implement it:
+kablam!     = help: candidate #1: `expr::ToExpr`
+kablam! 
+kablam! error: no associated item named `Sequence` found for type `syntax::tokenstream::TokenTree` in the current scope
+kablam!    --> src/expr.rs:241:9
+kablam!     |
+kablam! 241 |         TokenTree::Sequence(..) => unreachable!(),
+kablam!     |         ^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `eat_lifetime` found for type `syntax::parse::parser::Parser<'_>` in the current scope
+kablam!    --> src/parse.rs:100:36
+kablam!     |
+kablam! 100 |     if let Some(lifetime) = parser.eat_lifetime() {
+kablam!     |                                    ^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 9 previous errors
+kablam! 
+kablam! error: Could not compile `synthax`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f c6265bdd1a136d1fababacd24e718670344b610b8f876b3383ad155d3847f40e`
+blam! c6265bdd1a136d1fababacd24e718670344b610b8f876b3383ad155d3847f40e

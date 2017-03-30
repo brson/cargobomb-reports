@@ -1,0 +1,26 @@
+boom! testing liblmdb-sys-0.1.9 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 097abb5971c53a229dc4233fd2bf2b11d672c73c06faa12e0748ec51a8477c52
+boom! running `docker start -a 097abb5971c53a229dc4233fd2bf2b11d672c73c06faa12e0748ec51a8477c52`
+kablam!    Compiling liblmdb-sys v0.1.9 (file:///source)
+kablam! error: failed to run custom build command for `liblmdb-sys v0.1.9 (file:///source)`
+kablam! process didn't exit successfully: `/target/debug/build/liblmdb-sys-ca16df672a1cccc8/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! running: "make" "-C" "/source/mdb/libraries/liblmdb" "clean"
+kablam! make: Entering directory '/source/mdb/libraries/liblmdb'
+kablam! rm -rf mdb_stat mdb_copy mdb_dump mdb_load mtest mtest2 mtest3 mtest4 mtest5 *.[ao] *.[ls]o *~ testdb
+kablam! Makefile:57: recipe for target 'clean' failed
+kablam! make: Leaving directory '/source/mdb/libraries/liblmdb'
+kablam! 
+kablam! --- stderr
+kablam! rm: cannot remove 'liblmdb.a': Read-only file system
+kablam! rm: cannot remove 'mdb.o': Read-only file system
+kablam! rm: cannot remove 'midl.o': Read-only file system
+kablam! make: *** [clean] Error 1
+kablam! thread 'main' panicked at 'assertion failed: res', build.rs:14
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f 097abb5971c53a229dc4233fd2bf2b11d672c73c06faa12e0748ec51a8477c52`
+blam! 097abb5971c53a229dc4233fd2bf2b11d672c73c06faa12e0748ec51a8477c52

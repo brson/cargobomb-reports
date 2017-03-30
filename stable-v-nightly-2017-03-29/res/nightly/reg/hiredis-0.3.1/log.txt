@@ -1,0 +1,27 @@
+boom! testing hiredis-0.3.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 5eca8ee2fe72e77f0a9f1783479c454d76e8c523741a745226356f6f49caf86e
+boom! running `docker start -a 5eca8ee2fe72e77f0a9f1783479c454d76e8c523741a745226356f6f49caf86e`
+kablam!    Compiling hiredis-sys v0.4.1
+kablam! error: failed to run custom build command for `hiredis-sys v0.4.1`
+kablam! process didn't exit successfully: `/target/debug/build/hiredis-sys-f0dcee04b48259de/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! cc -std=c99 -pedantic -c -O3 -fPIC  -Wall -W -Wstrict-prototypes -Wwrite-strings   net.c
+kablam! Makefile:156: recipe for target 'net.o' failed
+kablam! 
+kablam! --- stderr
+kablam! Assembler messages:
+kablam! Fatal error: can't create net.o: Read-only file system
+kablam! make: *** [net.o] Error 1
+kablam! thread 'main' panicked at 'assertion failed: cmd!("make").arg("install").arg("DEBUG=").arg("PREFIX=").arg(&format!("DESTDIR={}"
+kablam!                                                                       , output
+kablam!                                                                       .
+kablam!                                                                       display
+kablam!                                                                       (
+kablam!                                                                       ))).current_dir(&source).stdout(process::Stdio::inherit()).stderr(process::Stdio::inherit()).status().unwrap().success()', /cargo-home/registry/src/github.com-1ecc6299db9ec823/hiredis-sys-0.4.1/build.rs:28
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f 5eca8ee2fe72e77f0a9f1783479c454d76e8c523741a745226356f6f49caf86e`
+blam! 5eca8ee2fe72e77f0a9f1783479c454d76e8c523741a745226356f6f49caf86e

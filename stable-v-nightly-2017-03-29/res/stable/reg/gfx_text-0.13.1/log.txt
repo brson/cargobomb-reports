@@ -1,0 +1,29 @@
+boom! testing gfx_text-0.13.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 8f0e5acb20ba18370ed2a2d06640c2110674c5254d632f2b3df8075253e0144d
+boom! running `docker start -a 8f0e5acb20ba18370ed2a2d06640c2110674c5254d632f2b3df8075253e0144d`
+kablam!    Compiling gfx_text v0.13.1 (file:///source)
+kablam! error[E0432]: unresolved import `super::gfx`
+kablam!    --> src/lib.rs:567:5
+kablam!     |
+kablam! 567 |       gfx_pipeline_base!( pipe {
+kablam!     |  _____^ starting here...
+kablam! 568 | |         vbuf: ::gfx::VertexBuffer<Vertex>,
+kablam! 569 | |         screen_size: ::gfx::Global<[f32; 2]>,
+kablam! 570 | |         proj: ::gfx::Global<[[f32; 4]; 4]>,
+kablam! 571 | |         color: ::gfx::TextureSampler<f32>,
+kablam! 572 | |         out_color: ::gfx::RawRenderTarget,
+kablam! 573 | |     });
+kablam!     | |_______^ ...ending here: no `gfx` in `shader_structs`
+kablam!     |
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `gfx_text`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 8f0e5acb20ba18370ed2a2d06640c2110674c5254d632f2b3df8075253e0144d`
+blam! 8f0e5acb20ba18370ed2a2d06640c2110674c5254d632f2b3df8075253e0144d

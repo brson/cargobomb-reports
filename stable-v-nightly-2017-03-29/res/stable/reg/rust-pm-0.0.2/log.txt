@@ -1,0 +1,32 @@
+boom! testing rust-pm-0.0.2 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! ad8c754a99c0512f4bb67ac8e97c1a4ecab399a17a4eb8228402a3a1f5ff3e47
+boom! running `docker start -a ad8c754a99c0512f4bb67ac8e97c1a4ecab399a17a4eb8228402a3a1f5ff3e47`
+kablam!    Compiling rust-pm v0.0.2 (file:///source)
+kablam! error[E0432]: unresolved import `toml::Parser`
+kablam!  --> src/main.rs:8:12
+kablam!   |
+kablam! 8 | use toml::{Parser, Value};
+kablam!   |            ^^^^^^ no `Parser` in the root
+kablam! 
+kablam! error[E0425]: cannot find function `scoped` in module `thread`
+kablam!   --> src/logger.rs:35:21
+kablam!    |
+kablam! 35 |             let _ = thread::scoped(move || {
+kablam!    |                     ^^^^^^^^^^^^^^ not found in `thread`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/main.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(scoped)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `rust-pm`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f ad8c754a99c0512f4bb67ac8e97c1a4ecab399a17a4eb8228402a3a1f5ff3e47`
+blam! ad8c754a99c0512f4bb67ac8e97c1a4ecab399a17a4eb8228402a3a1f5ff3e47

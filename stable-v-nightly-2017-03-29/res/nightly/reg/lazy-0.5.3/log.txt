@@ -1,0 +1,33 @@
+boom! testing lazy-0.5.3 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! f6a2094e60559c79d7917b8d623253175fef408c605d6211eb228dba2bd41416
+boom! running `docker start -a f6a2094e60559c79d7917b8d623253175fef408c605d6211eb228dba2bd41416`
+kablam!    Compiling oncemutex v0.1.1
+kablam!    Compiling lazy v0.5.3 (file:///source)
+kablam! error[E0432]: unresolved import `std::thunk::Invoke`
+kablam!  --> src/single.rs:4:5
+kablam!   |
+kablam! 4 | use std::thunk::Invoke;
+kablam!   |     ^^^^^^^^^^^^^^^^^^ Could not find `thunk` in `std`
+kablam! 
+kablam! error[E0432]: unresolved import `std::thunk::Invoke`
+kablam!  --> src/sync.rs:4:5
+kablam!   |
+kablam! 4 | use std::thunk::Invoke;
+kablam!   |     ^^^^^^^^^^^^^^^^^^ Could not find `thunk` in `std`
+kablam! 
+kablam! error[E0425]: cannot find function `copy_lifetime` in module `mem`
+kablam!    --> src/sync.rs:103:49
+kablam!     |
+kablam! 103 |             Evaluated(ref val) => unsafe { mem::copy_lifetime(self, val) },
+kablam!     |                                                 ^^^^^^^^^^^^^ not found in `mem`
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `lazy`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f6a2094e60559c79d7917b8d623253175fef408c605d6211eb228dba2bd41416`
+blam! f6a2094e60559c79d7917b8d623253175fef408c605d6211eb228dba2bd41416

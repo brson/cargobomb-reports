@@ -1,0 +1,50 @@
+boom! testing appcore_plugin-0.0.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! fef9f56292c396589380e22bdf282149198cbb8dbb7e4e167bf4db305b75560d
+boom! running `docker start -a fef9f56292c396589380e22bdf282149198cbb8dbb7e4e167bf4db305b75560d`
+kablam!    Compiling appcore_plugin v0.0.1 (file:///source)
+kablam! error[E0432]: unresolved import `rustc::plugin::Registry`
+kablam!   --> src/lib.rs:14:5
+kablam!    |
+kablam! 14 | use rustc::plugin::Registry;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `plugin` in `rustc`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::ext::base::Decorator`
+kablam!   --> src/lib.rs:15:25
+kablam!    |
+kablam! 15 | use syntax::ext::base::{Decorator, Modifier};
+kablam!    |                         ^^^^^^^^^ no `Decorator` in `ext::base`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::ext::base::Modifier`
+kablam!   --> src/lib.rs:15:36
+kablam!    |
+kablam! 15 | use syntax::ext::base::{Decorator, Modifier};
+kablam!    |                                    ^^^^^^^^ no `Modifier` in `ext::base`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::intern`
+kablam!   --> src/lib.rs:17:5
+kablam!    |
+kablam! 17 | use syntax::parse::token::intern;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `intern` in `parse::token`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/lib.rs:3:1
+kablam!   |
+kablam! 3 | #![feature(rustc_private, plugin_registrar)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/lib.rs:4:1
+kablam!   |
+kablam! 4 | #![feature(convert, quote, plugin, box_syntax, slice_patterns)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `appcore_plugin`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f fef9f56292c396589380e22bdf282149198cbb8dbb7e4e167bf4db305b75560d`
+blam! fef9f56292c396589380e22bdf282149198cbb8dbb7e4e167bf4db305b75560d

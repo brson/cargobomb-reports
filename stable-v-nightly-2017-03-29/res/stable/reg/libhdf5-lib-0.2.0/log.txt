@@ -1,0 +1,50 @@
+boom! testing libhdf5-lib-0.2.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 462871f180042820c6e4e0108fd7a583f987b01585375c27b3c5bd47b9511db7
+boom! running `docker start -a 462871f180042820c6e4e0108fd7a583f987b01585375c27b3c5bd47b9511db7`
+kablam!    Compiling libhdf5-lib v0.2.0 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 2.16 secs
+boom! running `docker rm -f 462871f180042820c6e4e0108fd7a583f987b01585375c27b3c5bd47b9511db7`
+blam! 462871f180042820c6e4e0108fd7a583f987b01585375c27b3c5bd47b9511db7
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 937e4237a80fef50e2e2c1899714993c4f8f42ee748d0d47adbb1a3c33c1a302
+boom! running `docker start -a 937e4237a80fef50e2e2c1899714993c4f8f42ee748d0d47adbb1a3c33c1a302`
+kablam!    Compiling libhdf5-lib v0.2.0 (file:///source)
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/libhdf5_lib-7b74dc8e330a9a7f.0.o" "-o" "/target/debug/deps/libhdf5_lib-7b74dc8e330a9a7f" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "-l" "hdf5" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-2efd40164e9eb949.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-b979e1c23fc9ba25.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-0ed6e2f3d67b4012.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-13f36e2630c2d79b.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-3b9d178f1de89528.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-93bb403c9fc56f72.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-a2ef7979b4b3e1d5.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-d22754c8c52de3a1.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-c53f99154bf815c4.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-f1bb04f5989dcb98.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-739908a2e215dd88.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-1cc5fcd37568ebc4.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-3f4289353c600297.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-07bfb3bcb2a51da0.rlib" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lhdf5
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `libhdf5-lib`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 937e4237a80fef50e2e2c1899714993c4f8f42ee748d0d47adbb1a3c33c1a302`
+blam! 937e4237a80fef50e2e2c1899714993c4f8f42ee748d0d47adbb1a3c33c1a302
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! f31c4fbf27d8a52e43f0dc47768a951b0d404aae3422dd55c49d2381e00f4106
+boom! running `docker start -a f31c4fbf27d8a52e43f0dc47768a951b0d404aae3422dd55c49d2381e00f4106`
+kablam!    Compiling libhdf5-lib v0.2.0 (file:///source)
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/libhdf5_lib-7b74dc8e330a9a7f.0.o" "-o" "/target/debug/deps/libhdf5_lib-7b74dc8e330a9a7f" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "-l" "hdf5" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-2efd40164e9eb949.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-b979e1c23fc9ba25.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-0ed6e2f3d67b4012.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-13f36e2630c2d79b.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-3b9d178f1de89528.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-93bb403c9fc56f72.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-a2ef7979b4b3e1d5.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-d22754c8c52de3a1.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-c53f99154bf815c4.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-f1bb04f5989dcb98.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-739908a2e215dd88.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-1cc5fcd37568ebc4.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-3f4289353c600297.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-07bfb3bcb2a51da0.rlib" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lhdf5
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `libhdf5-lib`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f31c4fbf27d8a52e43f0dc47768a951b0d404aae3422dd55c49d2381e00f4106`
+blam! f31c4fbf27d8a52e43f0dc47768a951b0d404aae3422dd55c49d2381e00f4106

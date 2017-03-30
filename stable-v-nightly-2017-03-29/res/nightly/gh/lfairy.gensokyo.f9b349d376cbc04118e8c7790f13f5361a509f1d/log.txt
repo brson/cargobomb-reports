@@ -1,0 +1,42 @@
+boom! testing https://github.com/lfairy/gensokyo#f9b349d376cbc04118e8c7790f13f5361a509f1d against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! cbd4c7cb05a7566cd7408af72c219307099d33be35d4fe7400d181473700c839
+boom! running `docker start -a cbd4c7cb05a7566cd7408af72c219307099d33be35d4fe7400d181473700c839`
+kablam!    Compiling x86 v0.7.1
+kablam!    Compiling spin v0.4.3
+kablam!    Compiling efi-sys v0.1.0 (file:///source/efi-sys)
+kablam! error[E0437]: type `Err` is not a member of trait `TryFrom`
+kablam!    --> efi-sys/src/lib.rs:105:5
+kablam!     |
+kablam! 105 |     type Err = usize;
+kablam!     |     ^^^^^^^^^^^^^^^^^ not a member of trait `TryFrom`
+kablam! 
+kablam! warning[E0566]: conflicting representation hints
+kablam!    --> efi-sys/src/lib.rs:412:1
+kablam!     |
+kablam! 412 | #[repr(C, u32)]
+kablam!     | ^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning[E0566]: conflicting representation hints
+kablam!    --> efi-sys/src/lib.rs:516:1
+kablam!     |
+kablam! 516 | #[repr(C, u32)]
+kablam!     | ^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0046]: not all trait items implemented, missing: `Error`
+kablam!    --> efi-sys/src/lib.rs:104:1
+kablam!     |
+kablam! 104 | impl TryFrom<usize> for KnownStatus {
+kablam!     | ^ missing `Error` in implementation
+kablam!     |
+kablam!     = note: `Error` from trait: `type Error;`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `efi-sys`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f cbd4c7cb05a7566cd7408af72c219307099d33be35d4fe7400d181473700c839`
+blam! cbd4c7cb05a7566cd7408af72c219307099d33be35d4fe7400d181473700c839

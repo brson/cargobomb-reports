@@ -1,0 +1,122 @@
+boom! testing iota-0.1.3 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 95d9bb79c873be1d281d5eb0f74d6743fa1f3859c100046d8920942d2c80ff2c
+boom! running `docker start -a 95d9bb79c873be1d281d5eb0f74d6743fa1f3859c100046d8920942d2c80ff2c`
+kablam!    Compiling iota v0.1.3 (file:///source)
+kablam! error[E0432]: unresolved import `Flags`
+kablam!   --> src/msg.rs:28:24
+kablam!    |
+kablam! 28 | use ::{Client,MAX_DATA,Flags,flags};
+kablam!    |                        ^^^^^ no `Flags` in the root. Did you mean to use `flags`?
+kablam! 
+kablam! error: struct `Flags` is private
+kablam!   --> src/lib.rs:17:9
+kablam!    |
+kablam! 17 | pub use flags::Flags;
+kablam!    |         ^^^^^^^^^^^^
+kablam! 
+kablam! error: constant `Ping` is private
+kablam!   --> src/comm.rs:64:31
+kablam!    |
+kablam! 64 |             if flags.contains(flags::Ping|flags::Req) { // send a ping reply
+kablam!    |                               ^^^^^^^^^^^
+kablam! 
+kablam! error: constant `Req` is private
+kablam!   --> src/comm.rs:64:43
+kablam!    |
+kablam! 64 |             if flags.contains(flags::Ping|flags::Req) { // send a ping reply
+kablam!    |                                           ^^^^^^^^^^
+kablam! 
+kablam! error: constant `G1` is private
+kablam!   --> src/comm.rs:67:35
+kablam!    |
+kablam! 67 |                 if flags.contains(flags::G1) { println!("guarantee unimpl"); }
+kablam!    |                                   ^^^^^^^^^
+kablam! 
+kablam! error: constant `Ping` is private
+kablam!   --> src/comm.rs:69:36
+kablam!    |
+kablam! 69 |             else if flags.contains(flags::Ping|flags::Resp) {
+kablam!    |                                    ^^^^^^^^^^^
+kablam! 
+kablam! error: constant `Resp` is private
+kablam!   --> src/comm.rs:69:48
+kablam!    |
+kablam! 69 |             else if flags.contains(flags::Ping|flags::Resp) {
+kablam!    |                                                ^^^^^^^^^^^
+kablam! 
+kablam! error: constant `Req` is private
+kablam!   --> src/comm.rs:73:30
+kablam!    |
+kablam! 73 |             else if flags == flags::Req { //FIXME: should probably use intersect
+kablam!    |                              ^^^^^^^^^^
+kablam! 
+kablam! error: constant `Resp` is private
+kablam!   --> src/comm.rs:79:26
+kablam!    |
+kablam! 79 |                     flag(flags::Resp).route(rt).build();
+kablam!    |                          ^^^^^^^^^^^
+kablam! 
+kablam! error: constant `Pub` is private
+kablam!   --> src/comm.rs:83:30
+kablam!    |
+kablam! 83 |             else if flags == flags::Pub {
+kablam!    |                              ^^^^^^^^^^
+kablam! 
+kablam! error: constant `Ping` is private
+kablam!    --> src/comm.rs:125:14
+kablam!     |
+kablam! 125 |         flag(flags::Ping).flag(flags::Req).build();
+kablam!     |              ^^^^^^^^^^^
+kablam! 
+kablam! error: constant `Req` is private
+kablam!    --> src/comm.rs:125:32
+kablam!     |
+kablam! 125 |         flag(flags::Ping).flag(flags::Req).build();
+kablam!     |                                ^^^^^^^^^^
+kablam! 
+kablam! error: constant `Ping` is private
+kablam!    --> src/comm.rs:134:14
+kablam!     |
+kablam! 134 |         flag(flags::Ping).flag(flags::Resp).build();
+kablam!     |              ^^^^^^^^^^^
+kablam! 
+kablam! error: constant `Resp` is private
+kablam!    --> src/comm.rs:134:32
+kablam!     |
+kablam! 134 |         flag(flags::Ping).flag(flags::Resp).build();
+kablam!     |                                ^^^^^^^^^^^
+kablam! 
+kablam! error: constant `Alg` is private
+kablam!    --> src/msg.rs:188:23
+kablam!     |
+kablam! 188 |             .contains(flags::Alg) {
+kablam!     |                       ^^^^^^^^^^
+kablam! 
+kablam! error: the type of this value must be known in this context
+kablam!   --> src/comm.rs:42:12
+kablam!    |
+kablam! 42 |         if flags.is_empty() {
+kablam!    |            ^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: the type of this value must be known in this context
+kablam!    --> src/comm.rs:127:5
+kablam!     |
+kablam! 127 |     m.into_vec()
+kablam!     |     ^^^^^^^^^^^^
+kablam! 
+kablam! error: the type of this value must be known in this context
+kablam!    --> src/comm.rs:135:5
+kablam!     |
+kablam! 135 |     m.into_vec()
+kablam!     |     ^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `iota`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 95d9bb79c873be1d281d5eb0f74d6743fa1f3859c100046d8920942d2c80ff2c`
+blam! 95d9bb79c873be1d281d5eb0f74d6743fa1f3859c100046d8920942d2c80ff2c

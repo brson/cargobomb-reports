@@ -1,0 +1,58 @@
+boom! testing self-ref-0.1.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 14c54200fef04f153ac489810c07b6490ccff7ee2fd8993bea69a24e7b9afb69
+boom! running `docker start -a 14c54200fef04f153ac489810c07b6490ccff7ee2fd8993bea69a24e7b9afb69`
+kablam!    Compiling self-ref v0.1.2 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.65 secs
+boom! running `docker rm -f 14c54200fef04f153ac489810c07b6490ccff7ee2fd8993bea69a24e7b9afb69`
+blam! 14c54200fef04f153ac489810c07b6490ccff7ee2fd8993bea69a24e7b9afb69
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! c283c8c08868887c53a6e2f2f516f00687179000a5ef915695d11e6a9fe1c677
+boom! running `docker start -a c283c8c08868887c53a6e2f2f516f00687179000a5ef915695d11e6a9fe1c677`
+kablam!    Compiling self-ref v0.1.2 (file:///source)
+kablam! warning: unreachable statement
+kablam!    --> src/lib.rs:88:13
+kablam!     |
+kablam! 88  |               unsafe { ptr::write(&mut (*pointer).$field, $field); }
+kablam!     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! ...
+kablam! 136 |           self_referencing!(S1, {
+kablam!     |  _________- starting here...
+kablam! 137 | |             s2 = S2 { v: 2 };
+kablam! 138 | |             s3 = panic!("assignment for s3 panicked");
+kablam! 139 | |             s4 = S4 { v: 4, };
+kablam! 140 | |         });
+kablam!     | |___________- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: #[warn(unreachable_code)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.16 secs
+boom! running `docker rm -f c283c8c08868887c53a6e2f2f516f00687179000a5ef915695d11e6a9fe1c677`
+blam! c283c8c08868887c53a6e2f2f516f00687179000a5ef915695d11e6a9fe1c677
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 148c234d828b2a2b918e47ca707e623a121906b6247b47070e387c840c507438
+boom! running `docker start -a 148c234d828b2a2b918e47ca707e623a121906b6247b47070e387c840c507438`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/self_ref-f79315396774c11e
+blam! 
+blam! running 2 tests
+blam! test tests::struct_names ... ok
+blam! test tests::panicking_and_dropping ... ok
+blam! 
+blam! test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!    Doc-tests self-ref
+blam! 
+blam! running 1 test
+blam! test src/lib.rs - self_referencing (line 31) ... ok
+blam! 
+blam! test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f 148c234d828b2a2b918e47ca707e623a121906b6247b47070e387c840c507438`
+blam! 148c234d828b2a2b918e47ca707e623a121906b6247b47070e387c840c507438

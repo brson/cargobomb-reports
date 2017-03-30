@@ -1,0 +1,95 @@
+boom! testing cargo_rub-0.0.4 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! c69172b9f17c302dfe4316260c73517cf4dc50ae17782e30b47ffef123dd3f15
+boom! running `docker start -a c69172b9f17c302dfe4316260c73517cf4dc50ae17782e30b47ffef123dd3f15`
+kablam!    Compiling buildable v0.0.5
+kablam!    Compiling commandext v0.1.0
+kablam!    Compiling cargo_rub v0.0.4 (file:///source)
+kablam! error: cannot find derive macro `Show` in this scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/buildable-0.0.5/src/lib.rs:214:47
+kablam!     |
+kablam! 214 | #[derive(Copy,PartialEq, Eq, PartialOrd, Ord, Show)]
+kablam!     |                                               ^^^^
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::File`
+kablam!  --> build.rs:6:5
+kablam!   |
+kablam! 6 | use std::io::File;
+kablam!   |     ^^^^^^^^^^^^^ no `File` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::process::Command`
+kablam!  --> build.rs:7:5
+kablam!   |
+kablam! 7 | use std::io::process::Command;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `process` in `io`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> build.rs:58:15
+kablam!    |
+kablam! 58 |     let dst = Path::new(os::getenv("OUT_DIR").unwrap());
+kablam!    |               ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error[E0412]: cannot find type `Path` in this scope
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/buildable-0.0.5/src/lib.rs:23:17
+kablam!    |
+kablam! 23 |     dir: Option<Path>,
+kablam!    |                 ^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::path::Path;`
+kablam! 
+kablam! error[E0425]: cannot find function `getenv` in module `std::os`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/buildable-0.0.5/src/lib.rs:41:43
+kablam!    |
+kablam! 41 |                 let home = match std::os::getenv("HOME") {
+kablam!    |                                           ^^^^^^ not found in `std::os`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/buildable-0.0.5/src/lib.rs:45:28
+kablam!    |
+kablam! error[E0425]: cannot find function `getenv` in module `os`
+kablam!   --> build.rs:58:29
+kablam!    |
+kablam! 58 |     let dst = Path::new(os::getenv("OUT_DIR").unwrap());
+kablam!    |                             ^^^^^^ not found in `os`
+kablam! 
+kablam! 45 |                 let path = Path::new(home);
+kablam!    |                            ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error[E0412]: cannot find type `Path` in this scope
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/buildable-0.0.5/src/lib.rs:69:32
+kablam!    |
+kablam! 69 |     pub fn dir(&mut self, dir: Path) -> &mut BuildConfig {
+kablam!    |                                ^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::path::Path;`
+kablam! 
+kablam! error[E0412]: cannot find type `Path` in this scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/buildable-0.0.5/src/lib.rs:155:41
+kablam!     |
+kablam! 155 |     pub fn get_dir<'a>(&'a self) -> &'a Path {
+kablam!     |                                         ^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidate is found in another module, you can import it into scope:
+kablam!               `use std::path::Path;`
+kablam! 
+kablam! error: aborting due to 6 previous errors
+kablam! 
+kablam! error: Could not compile `buildable`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: no method named `as_slice` found for type `std::string::String` in the current scope
+kablam!   --> build.rs:60:25
+kablam!    |
+kablam! 60 |     f.write_str(version.as_slice()).unwrap();
+kablam!    |                         ^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `cargo_rub`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f c69172b9f17c302dfe4316260c73517cf4dc50ae17782e30b47ffef123dd3f15`
+blam! c69172b9f17c302dfe4316260c73517cf4dc50ae17782e30b47ffef123dd3f15

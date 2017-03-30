@@ -1,0 +1,32 @@
+boom! testing rust-netmap-0.0.7 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 370c7c63fb47de5565838af7de147f5611e1657b09f8695b44a4e451641f261a
+boom! running `docker start -a 370c7c63fb47de5565838af7de147f5611e1657b09f8695b44a4e451641f261a`
+kablam!    Compiling rust-netmap v0.0.7 (file:///source)
+kablam! error[E0432]: unresolved import `std::old_io::Command`
+kablam!  --> build.rs:5:5
+kablam!   |
+kablam! 5 | use std::old_io::Command;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^ Could not find `old_io` in `std`
+kablam! 
+kablam! error[E0425]: cannot find function `getenv` in module `os`
+kablam!  --> build.rs:9:23
+kablam!   |
+kablam! 9 |     let out_dir = os::getenv("OUT_DIR").unwrap();
+kablam!   |                       ^^^^^^ not found in `os`
+kablam! 
+kablam! error[E0425]: cannot find function `getenv` in module `os`
+kablam!   --> build.rs:11:26
+kablam!    |
+kablam! 11 |     if let Some(_) = os::getenv("CARGO_FEATURE_NETMAP_WITH_LIBS") {
+kablam!    |                          ^^^^^^ not found in `os`
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `rust-netmap`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 370c7c63fb47de5565838af7de147f5611e1657b09f8695b44a4e451641f261a`
+blam! 370c7c63fb47de5565838af7de147f5611e1657b09f8695b44a4e451641f261a

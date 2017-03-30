@@ -1,0 +1,92 @@
+boom! testing encoding_literals-0.1.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 74bf37515f2ae61f5395f35a86c3f4111f90a8f116829c5e04c34d835084ca2a
+boom! running `docker start -a 74bf37515f2ae61f5395f35a86c3f4111f90a8f116829c5e04c34d835084ca2a`
+kablam!    Compiling encoding_literals v0.1.2 (file:///source)
+kablam! error[E0432]: unresolved import `rustc::plugin`
+kablam!   --> src/lib.rs:16:5
+kablam!    |
+kablam! 16 | use rustc::plugin;
+kablam!    |     ^^^^^^^^^^^^^ no `plugin` in the root
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!   --> src/lib.rs:18:78
+kablam!    |
+kablam! 18 | fn expand<T>(encoding: &T, ct: &mut ExtCtxt, sp: codemap::Span, args: &[ast::TokenTree], c_str: bool, size_in_bytes: isize) -> Box<MacResult> where T: Encoding {
+kablam!    |                                                                              ^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use syntax::ext::tt::quoted::TokenTree;`
+kablam!              `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `TtToken` in module `ast`
+kablam!   --> src/lib.rs:20:15
+kablam!    |
+kablam! 20 |         [ast::TtToken(_, token::Token::Literal(token::Lit::Str_(s), _))] => parse::str_lit(&(s.as_str())),
+kablam!    |               ^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Expr_` in `ast`
+kablam!   --> src/lib.rs:47:28
+kablam!    |
+kablam! 47 |     let expr = ct.expr(sp, ast::Expr_::ExprVec(bytes));
+kablam!    |                            ^^^^^^^^^^^^^^^^^^^ Could not find `Expr_` in `ast`
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!   --> src/lib.rs:51:68
+kablam!    |
+kablam! 51 | fn expand_c_utf8(ct: &mut ExtCtxt, sp: codemap::Span, args: &[ast::TokenTree]) -> Box<MacResult> {
+kablam!    |                                                                    ^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use syntax::ext::tt::quoted::TokenTree;`
+kablam!              `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!   --> src/lib.rs:55:69
+kablam!    |
+kablam! 55 | fn expand_c_utf16(ct: &mut ExtCtxt, sp: codemap::Span, args: &[ast::TokenTree]) -> Box<MacResult> {
+kablam!    |                                                                     ^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use syntax::ext::tt::quoted::TokenTree;`
+kablam!              `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!   --> src/lib.rs:59:71
+kablam!    |
+kablam! 59 | fn expand_c_utf16be(ct: &mut ExtCtxt, sp: codemap::Span, args: &[ast::TokenTree]) -> Box<MacResult> {
+kablam!    |                                                                       ^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use syntax::ext::tt::quoted::TokenTree;`
+kablam!              `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!   --> src/lib.rs:63:67
+kablam!    |
+kablam! 63 | fn expand_utf16(ct: &mut ExtCtxt, sp: codemap::Span, args: &[ast::TokenTree]) -> Box<MacResult> {
+kablam!    |                                                                   ^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use syntax::ext::tt::quoted::TokenTree;`
+kablam!              `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!   --> src/lib.rs:67:69
+kablam!    |
+kablam! 67 | fn expand_utf16be(ct: &mut ExtCtxt, sp: codemap::Span, args: &[ast::TokenTree]) -> Box<MacResult> {
+kablam!    |                                                                     ^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use syntax::ext::tt::quoted::TokenTree;`
+kablam!              `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error: aborting due to 9 previous errors
+kablam! 
+kablam! error: Could not compile `encoding_literals`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 74bf37515f2ae61f5395f35a86c3f4111f90a8f116829c5e04c34d835084ca2a`
+blam! 74bf37515f2ae61f5395f35a86c3f4111f90a8f116829c5e04c34d835084ca2a

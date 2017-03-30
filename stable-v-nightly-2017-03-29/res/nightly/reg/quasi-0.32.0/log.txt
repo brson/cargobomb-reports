@@ -1,0 +1,75 @@
+boom! testing quasi-0.32.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 6761dad0ca8322175a3ac8ebe31e3d462ee415f2db96de664db3512b510cbd7c
+boom! running `docker start -a 6761dad0ca8322175a3ac8ebe31e3d462ee415f2db96de664db3512b510cbd7c`
+kablam!    Compiling quasi v0.32.0 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::parse::parse_tts_from_source_str`
+kablam!   --> src/lib.rs:36:37
+kablam!    |
+kablam! 36 | use syntax::parse::{self, classify, parse_tts_from_source_str, token};
+kablam!    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^ no `parse_tts_from_source_str` in `parse`. Did you mean to use `parse_meta_from_source_str`?
+kablam! 
+kablam! error[E0425]: cannot find function `parse_tts_from_source_str` in module `parse`
+kablam!    --> src/lib.rs:394:26
+kablam!     |
+kablam! 394 |         panictry!(parse::parse_tts_from_source_str(
+kablam!     |                          ^^^^^^^^^^^^^^^^^^^^^^^^^ did you mean `parse_item_from_source_str`?
+kablam! 
+kablam! error: no field `value` on type `&syntax::ast::Attribute`
+kablam!    --> src/lib.rs:249:23
+kablam!     |
+kablam! 249 |             tts: self.value.to_tokens(cx),
+kablam!     |                       ^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:247:48
+kablam!     |
+kablam! 247 |           r.push(TokenTree::Delimited(self.span, Rc::new(tokenstream::Delimited {
+kablam!     |  ________________________________________________^ starting here...
+kablam! 248 | |             delim: token::Bracket,
+kablam! 249 | |             tts: self.value.to_tokens(cx),
+kablam! 250 | |         })));
+kablam!     | |__________^ ...ending here: expected struct `syntax::tokenstream::Delimited`, found struct `std::rc::Rc`
+kablam!     |
+kablam!     = note: expected type `syntax::tokenstream::Delimited`
+kablam!                found type `std::rc::Rc<syntax::tokenstream::Delimited>`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:275:9
+kablam!     |
+kablam! 275 |           vec![TokenTree::Delimited(DUMMY_SP, Rc::new(tokenstream::Delimited {
+kablam!     |  _________^ starting here...
+kablam! 276 | |             delim: token::Paren,
+kablam! 277 | |             tts: vec![],
+kablam! 278 | |         }))]
+kablam!     | |____________^ ...ending here: expected struct `syntax::tokenstream::ThinTokenStream`, found struct `std::vec::Vec`
+kablam!     |
+kablam!     = note: expected type `syntax::tokenstream::ThinTokenStream`
+kablam!                found type `std::vec::Vec<_>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .remove(...)
+kablam!             - .swap_remove(...)
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:275:45
+kablam!     |
+kablam! 275 |           vec![TokenTree::Delimited(DUMMY_SP, Rc::new(tokenstream::Delimited {
+kablam!     |  _____________________________________________^ starting here...
+kablam! 276 | |             delim: token::Paren,
+kablam! 277 | |             tts: vec![],
+kablam! 278 | |         }))]
+kablam!     | |__________^ ...ending here: expected struct `syntax::tokenstream::Delimited`, found struct `std::rc::Rc`
+kablam!     |
+kablam!     = note: expected type `syntax::tokenstream::Delimited`
+kablam!                found type `std::rc::Rc<syntax::tokenstream::Delimited>`
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `quasi`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 6761dad0ca8322175a3ac8ebe31e3d462ee415f2db96de664db3512b510cbd7c`
+blam! 6761dad0ca8322175a3ac8ebe31e3d462ee415f2db96de664db3512b510cbd7c

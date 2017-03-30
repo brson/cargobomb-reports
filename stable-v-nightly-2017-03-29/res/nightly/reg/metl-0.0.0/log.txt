@@ -1,0 +1,85 @@
+boom! testing metl-0.0.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! ac4138c2b93aca6ad1adc2e849da135b7df0838b64a429688789c8386c595c65
+boom! running `docker start -a ac4138c2b93aca6ad1adc2e849da135b7df0838b64a429688789c8386c595c65`
+kablam!    Compiling metal-sys v0.0.0
+kablam!    Compiling core-foundation-sys v0.3.1
+kablam!    Compiling objc v0.1.8
+kablam!    Compiling core-foundation-sys v0.2.3
+kablam! error[E0463]: can't find crate for `bitflags`
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/metal-sys-0.0.0/src/lib.rs:6:1
+kablam!   |
+kablam! 6 | extern crate bitflags;
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^ can't find crate
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `metal-sys`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: native frameworks are only available on macOS targets
+kablam! 
+kablam! error: native frameworks are only available on macOS targets
+kablam! 
+kablam! error[E0591]: `unsafe extern "C" fn(*mut runtime::Object, runtime::Sel, ...) -> *mut runtime::Object {runtime::::objc_msgSend}` is zero-sized and can't be transmuted to `unsafe extern "C" fn(*mut runtime::Object, runtime::Sel, ...) -> R`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/objc-0.1.8/src/message.rs:52:18
+kablam!    |
+kablam! 52 |         unsafe { mem::transmute(runtime::objc_msgSend) }
+kablam!    |                  ^^^^^^^^^^^^^^
+kablam!    |
+kablam! note: cast with `as` to a pointer instead
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/objc-0.1.8/src/message.rs:52:18
+kablam!    |
+kablam! 52 |         unsafe { mem::transmute(runtime::objc_msgSend) }
+kablam!    |                  ^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0591]: `unsafe extern "C" fn(*mut runtime::Object, runtime::Sel, ...) {runtime::::objc_msgSend_stret}` is zero-sized and can't be transmuted to `unsafe extern "C" fn(*mut runtime::Object, runtime::Sel, ...) -> R`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/objc-0.1.8/src/message.rs:54:18
+kablam!    |
+kablam! 54 |         unsafe { mem::transmute(runtime::objc_msgSend_stret) }
+kablam!    |                  ^^^^^^^^^^^^^^
+kablam!    |
+kablam! note: cast with `as` to a pointer instead
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/objc-0.1.8/src/message.rs:54:18
+kablam!    |
+kablam! 54 |         unsafe { mem::transmute(runtime::objc_msgSend_stret) }
+kablam!    |                  ^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0591]: `unsafe extern "C" fn(*const runtime::Super, runtime::Sel, ...) -> *mut runtime::Object {runtime::::objc_msgSendSuper}` is zero-sized and can't be transmuted to `unsafe extern "C" fn(*const runtime::Super, runtime::Sel, ...) -> R`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/objc-0.1.8/src/message.rs:61:18
+kablam!    |
+kablam! 61 |         unsafe { mem::transmute(runtime::objc_msgSendSuper) }
+kablam!    |                  ^^^^^^^^^^^^^^
+kablam!    |
+kablam! note: cast with `as` to a pointer instead
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/objc-0.1.8/src/message.rs:61:18
+kablam!    |
+kablam! 61 |         unsafe { mem::transmute(runtime::objc_msgSendSuper) }
+kablam!    |                  ^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0591]: `unsafe extern "C" fn(*const runtime::Super, runtime::Sel, ...) {runtime::::objc_msgSendSuper_stret}` is zero-sized and can't be transmuted to `unsafe extern "C" fn(*const runtime::Super, runtime::Sel, ...) -> R`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/objc-0.1.8/src/message.rs:63:18
+kablam!    |
+kablam! 63 |         unsafe { mem::transmute(runtime::objc_msgSendSuper_stret) }
+kablam!    |                  ^^^^^^^^^^^^^^
+kablam!    |
+kablam! note: cast with `as` to a pointer instead
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/objc-0.1.8/src/message.rs:63:18
+kablam!    |
+kablam! 63 |         unsafe { mem::transmute(runtime::objc_msgSendSuper_stret) }
+kablam!    |                  ^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `objc`.
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `core-foundation-sys`.
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f ac4138c2b93aca6ad1adc2e849da135b7df0838b64a429688789c8386c595c65`
+blam! ac4138c2b93aca6ad1adc2e849da135b7df0838b64a429688789c8386c595c65

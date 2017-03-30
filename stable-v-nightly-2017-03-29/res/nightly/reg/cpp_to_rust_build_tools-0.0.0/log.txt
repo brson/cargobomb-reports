@@ -1,0 +1,72 @@
+boom! testing cpp_to_rust_build_tools-0.0.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! f2518afd5515f6587d0690a1d3c8023b3e0305b8837e75713560a520b9d8b96f
+boom! running `docker start -a f2518afd5515f6587d0690a1d3c8023b3e0305b8837e75713560a520b9d8b96f`
+kablam!    Compiling cpp_to_rust_common v0.0.1
+kablam!    Compiling cpp_to_rust_build_tools v0.0.0 (file:///source)
+kablam! error[E0412]: cannot find type `CppBuildPaths` in this scope
+kablam!  --> src/lib.rs:6:27
+kablam!   |
+kablam! 6 |   cpp_build_paths: Option<CppBuildPaths>,
+kablam!   |                           ^^^^^^^^^^^^^ not found in this scope
+kablam!   |
+kablam!   = help: possible candidate is found in another module, you can import it into scope:
+kablam!             `use common::cpp_build_config::CppBuildPaths;`
+kablam! 
+kablam! error[E0412]: cannot find type `CppBuildConfig` in this scope
+kablam!  --> src/lib.rs:7:28
+kablam!   |
+kablam! 7 |   cpp_build_config: Option<CppBuildConfig>,
+kablam!   |                            ^^^^^^^^^^^^^^ not found in this scope
+kablam!   |
+kablam!   = help: possible candidate is found in another module, you can import it into scope:
+kablam!             `use common::cpp_build_config::CppBuildConfig;`
+kablam! 
+kablam! error[E0412]: cannot find type `CppBuildConfig` in this scope
+kablam!   --> src/lib.rs:14:55
+kablam!    |
+kablam! 14 |   pub fn override_cpp_build_config(&mut self, config: CppBuildConfig) {
+kablam!    |                                                       ^^^^^^^^^^^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use common::cpp_build_config::CppBuildConfig;`
+kablam! 
+kablam! error[E0425]: cannot find value `CppBuildConfig` in this scope
+kablam!   --> src/lib.rs:15:34
+kablam!    |
+kablam! 15 |     self.cpp_build_config = Some(CppBuildConfig);
+kablam!    |                                  ^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `CppBuildPaths` in this scope
+kablam!   --> src/lib.rs:17:49
+kablam!    |
+kablam! 17 |   pub fn set_cpp_build_paths(&mut self, config: CppBuildPaths) {
+kablam!    |                                                 ^^^^^^^^^^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use common::cpp_build_config::CppBuildPaths;`
+kablam! 
+kablam! error[E0425]: cannot find value `CppBuildConfig` in this scope
+kablam!   --> src/lib.rs:18:33
+kablam!    |
+kablam! 18 |     self.cpp_build_paths = Some(CppBuildConfig);
+kablam!    |                                 ^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/lib.rs:46:3
+kablam!    |
+kablam! 46 |   Config::default().run()
+kablam!    |   ^^^^^^^^^^^^^^^^^^^^^^^ expected !, found ()
+kablam!    |
+kablam!    = note: expected type `!`
+kablam!               found type `()`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `cpp_to_rust_build_tools`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f2518afd5515f6587d0690a1d3c8023b3e0305b8837e75713560a520b9d8b96f`
+blam! f2518afd5515f6587d0690a1d3c8023b3e0305b8837e75713560a520b9d8b96f

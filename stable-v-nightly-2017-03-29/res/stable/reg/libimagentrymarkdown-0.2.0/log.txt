@@ -1,0 +1,47 @@
+boom! testing libimagentrymarkdown-0.2.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 7d9db571333978224e577bd1556a6354b76cc6b3e107736b30c1c67198a62779
+boom! running `docker start -a 7d9db571333978224e577bd1556a6354b76cc6b3e107736b30c1c67198a62779`
+kablam!    Compiling libimagentrymarkdown v0.2.0 (file:///source)
+kablam! error: unused `#[macro_use]` import
+kablam!   --> src/lib.rs:34:1
+kablam!    |
+kablam! 34 | #[macro_use] extern crate log;
+kablam!    | ^^^^^^^^^^^^
+kablam!    |
+kablam! note: lint level defined here
+kablam!   --> src/lib.rs:28:5
+kablam!    |
+kablam! 28 |     unused_imports,
+kablam!    |     ^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: method is never used: `new`, #[warn(dead_code)] on by default
+kablam!   --> src/html.rs:83:9
+kablam!    |
+kablam! 83 |           fn new(i: I) -> WithHtmlIterator<I> {
+kablam!    |  _________^ starting here...
+kablam! 84 | |             WithHtmlIterator { i: i }
+kablam! 85 | |         }
+kablam!    | |_________^ ...ending here
+kablam! 
+kablam! warning: method is never used: `into_urllink`, #[warn(dead_code)] on by default
+kablam!   --> src/link.rs:39:5
+kablam!    |
+kablam! 39 |       fn into_urllink(self) -> Result<UrlLink> {
+kablam!    |  _____^ starting here...
+kablam! 40 | |         Url::parse(&self.link[..])
+kablam! 41 | |             .map(move |link| UrlLink { title: self.title, link: link, })
+kablam! 42 | |             .map_err(Box::new)
+kablam! 43 | |             .map_err(|e| MEK::LinkParsingError.into_error_with_cause(e))
+kablam! 44 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `libimagentrymarkdown`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 7d9db571333978224e577bd1556a6354b76cc6b3e107736b30c1c67198a62779`
+blam! 7d9db571333978224e577bd1556a6354b76cc6b3e107736b30c1c67198a62779

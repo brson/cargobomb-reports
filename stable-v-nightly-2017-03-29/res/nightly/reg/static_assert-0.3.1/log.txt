@@ -1,0 +1,38 @@
+boom! testing static_assert-0.3.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! d5c90b773b076021c2b03770eaa1f40dc52e66bb3c465a213d1b27228753545e
+boom! running `docker start -a d5c90b773b076021c2b03770eaa1f40dc52e66bb3c465a213d1b27228753545e`
+kablam!    Compiling static_assert v0.3.1 (file:///source)
+kablam! error[E0432]: unresolved import `rustc_const_eval::eval_const_expr`
+kablam!  --> src/lib.rs:9:5
+kablam!   |
+kablam! 9 | use rustc_const_eval::eval_const_expr;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `eval_const_expr` in the root
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::intern`
+kablam!   --> src/lib.rs:17:28
+kablam!    |
+kablam! 17 | use syntax::parse::token::{intern, gensym_ident};
+kablam!    |                            ^^^^^^ no `intern` in `parse::token`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::gensym_ident`
+kablam!   --> src/lib.rs:17:36
+kablam!    |
+kablam! 17 | use syntax::parse::token::{intern, gensym_ident};
+kablam!    |                                    ^^^^^^^^^^^^ no `gensym_ident` in `parse::token`
+kablam! 
+kablam! error[E0106]: missing lifetime specifiers
+kablam!   --> src/lib.rs:33:6
+kablam!    |
+kablam! 33 | impl LateLintPass for StaticAssertPass {
+kablam!    |      ^^^^^^^^^^^^ expected 2 lifetime parameters
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `static_assert`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f d5c90b773b076021c2b03770eaa1f40dc52e66bb3c465a213d1b27228753545e`
+blam! d5c90b773b076021c2b03770eaa1f40dc52e66bb3c465a213d1b27228753545e

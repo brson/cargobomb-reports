@@ -1,0 +1,50 @@
+boom! testing domain-0.1.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 173f09fee1a9742c43c770557b09235f6ce9909ab533451337106d6fa87a7349
+boom! running `docker start -a 173f09fee1a9742c43c770557b09235f6ce9909ab533451337106d6fa87a7349`
+kablam!    Compiling domain v0.1.0 (file:///source)
+kablam! error[E0432]: unresolved import `tokio_core::channel::Receiver`
+kablam!   --> src/resolv/request.rs:33:27
+kablam!    |
+kablam! 33 | use tokio_core::channel::{Receiver, Sender};
+kablam!    |                           ^^^^^^^^ Could not find `channel` in `tokio_core`
+kablam! 
+kablam! error[E0432]: unresolved import `tokio_core::channel::Sender`
+kablam!   --> src/resolv/request.rs:33:37
+kablam!    |
+kablam! 33 | use tokio_core::channel::{Receiver, Sender};
+kablam!    |                                     ^^^^^^ Could not find `channel` in `tokio_core`
+kablam! 
+kablam! error[E0432]: unresolved import `tokio_core::channel::channel`
+kablam!   --> src/resolv/service/mod.rs:21:5
+kablam!    |
+kablam! 21 | use tokio_core::channel::channel;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `channel` in `tokio_core`
+kablam! 
+kablam! error: the type of this value must be known in this context
+kablam!   --> src/resolv/service/sequential.rs:72:61
+kablam!    |
+kablam! 72 |             State::Reading(mut fut) => fut.take().map(|res| res.2),
+kablam!    |                                                             ^^^^^
+kablam! 
+kablam! error: the type of this value must be known in this context
+kablam!   --> src/resolv/service/sequential.rs:90:21
+kablam!    |
+kablam! 90 |                     request.set_id(rand::random());
+kablam!    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: the type of this value must be known in this context
+kablam!    --> src/resolv/service/mod.rs:255:33
+kablam!     |
+kablam! 255 |                     State::Idle(receiver.into())
+kablam!     |                                 ^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `domain`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 173f09fee1a9742c43c770557b09235f6ce9909ab533451337106d6fa87a7349`
+blam! 173f09fee1a9742c43c770557b09235f6ce9909ab533451337106d6fa87a7349

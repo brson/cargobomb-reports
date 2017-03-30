@@ -1,0 +1,83 @@
+boom! testing iota-rs-0.1.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 5e15994486be3b50f8a2a3567732c049612b02c953006471cf8ed4648b5ee40c
+boom! running `docker start -a 5e15994486be3b50f8a2a3567732c049612b02c953006471cf8ed4648b5ee40c`
+kablam!    Compiling iota-rs v0.1.2 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::ast::MacroDef`
+kablam!  --> src/lib.rs:9:89
+kablam!   |
+kablam! 9 | use syntax::ast::{Expr, Name, Ident, LitKind, Ty, LitIntType, Visibility, NodeId, Item, MacroDef, Attribute, Path};
+kablam!   |                                                                                         ^^^^^^^^ no `MacroDef` in `ast`
+kablam! 
+kablam! error[E0407]: method `add_macro` is not a member of trait `Resolver`
+kablam!   --> src/lib.rs:73:2
+kablam!    |
+kablam! 73 | 	fn add_macro(&mut self, scope: Mark, def: MacroDef, export: bool) { self.resolver.add_macro(scope, def, export) }
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not a member of trait `Resolver`
+kablam! 
+kablam! error[E0407]: method `add_ext` is not a member of trait `Resolver`
+kablam!   --> src/lib.rs:74:2
+kablam!    |
+kablam! 74 | 	fn add_ext(&mut self, ident: Ident, ext: Rc<SyntaxExtension>) { self.resolver.add_ext(ident, ext) }
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not a member of trait `Resolver`
+kablam! 
+kablam! error[E0407]: method `add_expansions_at_stmt` is not a member of trait `Resolver`
+kablam!   --> src/lib.rs:75:2
+kablam!    |
+kablam! 75 | 	fn add_expansions_at_stmt(&mut self, id: NodeId, macros: Vec<Mark>) { self.resolver.add_expansions_at_stmt(id, macros) }
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not a member of trait `Resolver`
+kablam! 
+kablam! error[E0407]: method `find_attr_invoc` is not a member of trait `Resolver`
+kablam!   --> src/lib.rs:77:2
+kablam!    |
+kablam! 77 | 	fn find_attr_invoc(&mut self, attrs: &mut Vec<Attribute>) -> Option<Attribute> { self.resolver.find_attr_invoc(attrs) }
+kablam!    | 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not a member of trait `Resolver`
+kablam! 
+kablam! error[E0053]: method `expand` has an incompatible type for trait
+kablam!   --> src/lib.rs:35:2
+kablam!    |
+kablam! 35 |   	fn expand<'cx>(&self, cx: &'cx mut ExtCtxt, sp: Span, token_tree: &[TokenTree]) -> Box<MacResult + 'cx> {
+kablam!    |  __^ starting here...
+kablam! 36 | | 		if token_tree.len() > 0 {
+kablam! 37 | | 			cx.span_err(sp, "unexpected tokens");
+kablam! 38 | | 			return DummyResult::any(sp);
+kablam! 39 | | 		}
+kablam! 40 | | 		MacEager::expr(cx.expr_lit(sp, LitKind::Int(self.0, LitIntType::Unsuffixed)))
+kablam! 41 | | 	}
+kablam!    | |__^ ...ending here: expected struct `syntax::tokenstream::TokenStream`, found reference
+kablam!    |
+kablam!    = note: expected type `fn(&Iota, &'cx mut syntax::ext::base::ExtCtxt<'_>, syntax::codemap::Span, syntax::tokenstream::TokenStream) -> alloc::boxed::Box<syntax::ext::base::MacResult + 'cx>`
+kablam!               found type `fn(&Iota, &mut syntax::ext::base::ExtCtxt<'_>, syntax::codemap::Span, &[syntax::tokenstream::TokenTree]) -> alloc::boxed::Box<syntax::ext::base::MacResult>`
+kablam! 
+kablam! error[E0050]: method `visit_expansion` has 3 parameters but the declaration in trait `syntax::ext::base::Resolver::visit_expansion` has 4
+kablam!   --> src/lib.rs:72:55
+kablam!    |
+kablam! 72 | 	fn visit_expansion(&mut self, mark: Mark, expansion: &Expansion) { self.resolver.visit_expansion(mark, expansion) }
+kablam!    | 	                                                     ^^^^^^^^^^ expected 4 parameters, found 3
+kablam! 
+kablam! error[E0050]: method `resolve_macro` has 4 parameters but the declaration in trait `syntax::ext::base::Resolver::resolve_macro` has 5
+kablam!   --> src/lib.rs:78:63
+kablam!    |
+kablam! 78 | 	fn resolve_macro(&mut self, scope: Mark, path: &Path, force: bool) -> Result<Rc<SyntaxExtension>, Determinacy> {
+kablam!    | 	                                                             ^^^^ expected 5 parameters, found 4
+kablam! 
+kablam! error[E0046]: not all trait items implemented, missing: `is_whitelisted_legacy_custom_derive`, `add_builtin`, `find_legacy_attr_invoc`, `resolve_invoc`
+kablam!   --> src/lib.rs:68:1
+kablam!    |
+kablam! 68 | impl<'a, F: FnOnce() -> Rc<SyntaxExtension>> Resolver for IotaResolver<'a, F> {
+kablam!    | ^ missing `is_whitelisted_legacy_custom_derive`, `add_builtin`, `find_legacy_attr_invoc`, `resolve_invoc` in implementation
+kablam!    |
+kablam!    = note: `is_whitelisted_legacy_custom_derive` from trait: `fn(&Self, syntax::ast::Symbol) -> bool`
+kablam!    = note: `add_builtin` from trait: `fn(&mut Self, syntax::ast::Ident, alloc::rc::Rc<syntax::ext::base::SyntaxExtension>)`
+kablam!    = note: `find_legacy_attr_invoc` from trait: `fn(&mut Self, &mut std::vec::Vec<syntax::ast::Attribute>) -> std::option::Option<syntax::ast::Attribute>`
+kablam!    = note: `resolve_invoc` from trait: `fn(&mut Self, &mut syntax::ext::expand::Invocation, syntax::ext::hygiene::Mark, bool) -> std::result::Result<std::option::Option<alloc::rc::Rc<syntax::ext::base::SyntaxExtension>>, syntax::ext::base::Determinacy>`
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `iota-rs`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 5e15994486be3b50f8a2a3567732c049612b02c953006471cf8ed4648b5ee40c`
+blam! 5e15994486be3b50f8a2a3567732c049612b02c953006471cf8ed4648b5ee40c

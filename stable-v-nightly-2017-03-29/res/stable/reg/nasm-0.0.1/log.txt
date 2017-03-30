@@ -1,0 +1,87 @@
+boom! testing nasm-0.0.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 8b4b0328df684b187caec43c6fed4e62806437adcb9c9625f02a6e448531472b
+boom! running `docker start -a 8b4b0328df684b187caec43c6fed4e62806437adcb9c9625f02a6e448531472b`
+kablam! warning: only one of `license` or `license-file` is necessary
+kablam!    Compiling nasm v0.0.1 (file:///source)
+kablam! error[E0432]: unresolved import `std::io::Command`
+kablam!  --> src/lib.rs:4:5
+kablam!   |
+kablam! 4 | use std::io::Command;
+kablam!   |     ^^^^^^^^^^^^^^^^ no `Command` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::process::InheritFd`
+kablam!  --> src/lib.rs:5:5
+kablam!   |
+kablam! 5 | use std::io::process::InheritFd;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `process` in `io`
+kablam! 
+kablam! error[E0425]: cannot find function `getenv` in module `os`
+kablam!   --> src/lib.rs:17:18
+kablam!    |
+kablam! 17 |     let target = os::getenv("TARGET").unwrap();
+kablam!    |                  ^^^^^^^^^^ not found in `os`
+kablam! 
+kablam! error[E0425]: cannot find function `getenv` in module `os`
+kablam!   --> src/lib.rs:19:21
+kablam!    |
+kablam! 19 |     let opt_level = os::getenv("OPT_LEVEL").unwrap();
+kablam!    |                     ^^^^^^^^^^ not found in `os`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> src/lib.rs:25:15
+kablam!    |
+kablam! 25 |     let src = Path::new(os::getenv("CARGO_MANIFEST_DIR").unwrap());
+kablam!    |               ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error[E0425]: cannot find function `getenv` in module `os`
+kablam!   --> src/lib.rs:25:25
+kablam!    |
+kablam! 25 |     let src = Path::new(os::getenv("CARGO_MANIFEST_DIR").unwrap());
+kablam!    |                         ^^^^^^^^^^ not found in `os`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> src/lib.rs:27:15
+kablam!    |
+kablam! 27 |     let dst = Path::new(os::getenv("OUT_DIR").unwrap());
+kablam!    |               ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error[E0425]: cannot find function `getenv` in module `os`
+kablam!   --> src/lib.rs:27:25
+kablam!    |
+kablam! 27 |     let dst = Path::new(os::getenv("OUT_DIR").unwrap());
+kablam!    |                         ^^^^^^^^^^ not found in `os`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `fs` in `io`
+kablam!   --> src/lib.rs:34:9
+kablam!    |
+kablam! 34 |         std::io::fs::mkdir_recursive(&obj.dir_path(), std::io::USER_RWX).unwrap();
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `fs` in `io`
+kablam! 
+kablam! error[E0425]: cannot find value `USER_RWX` in module `std::io`
+kablam!   --> src/lib.rs:34:55
+kablam!    |
+kablam! 34 |         std::io::fs::mkdir_recursive(&obj.dir_path(), std::io::USER_RWX).unwrap();
+kablam!    |                                                       ^^^^^^^^^^^^^^^^^ not found in `std::io`
+kablam! 
+kablam! error[E0425]: cannot find function `getenv` in module `os`
+kablam!   --> src/lib.rs:63:5
+kablam!    |
+kablam! 63 |     os::getenv("AR").unwrap_or("ar".to_string())
+kablam!    |     ^^^^^^^^^^ not found in `os`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/lib.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(if_let)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `nasm`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 8b4b0328df684b187caec43c6fed4e62806437adcb9c9625f02a6e448531472b`
+blam! 8b4b0328df684b187caec43c6fed4e62806437adcb9c9625f02a6e448531472b

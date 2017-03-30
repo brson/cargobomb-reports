@@ -1,0 +1,18 @@
+boom! testing fitsio-0.5.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 960b63f8e6900e1ef4f83591e01c3b70da7841f9da972e0a1e6fde38d43f9d5a
+boom! running `docker start -a 960b63f8e6900e1ef4f83591e01c3b70da7841f9da972e0a1e6fde38d43f9d5a`
+kablam!    Compiling fitsio-sys v0.2.3
+kablam! error: failed to run custom build command for `fitsio-sys v0.2.3`
+kablam! process didn't exit successfully: `/target/debug/build/fitsio-sys-ddf3d89d4b1135dd/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! cargo:rerun-if-changed=build.rs
+kablam! 
+kablam! --- stderr
+kablam! thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: Failure { command: "\"pkg-config\" \"--libs\" \"--cflags\" \"cfitsio\"", output: Output { status: ExitStatus(ExitStatus(256)), stdout: "", stderr: "Package cfitsio was not found in the pkg-config search path.\nPerhaps you should add the directory containing `cfitsio.pc\'\nto the PKG_CONFIG_PATH environment variable\nNo package \'cfitsio\' found\n" } }', /checkout/src/libcore/result.rs:859
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f 960b63f8e6900e1ef4f83591e01c3b70da7841f9da972e0a1e6fde38d43f9d5a`
+blam! 960b63f8e6900e1ef4f83591e01c3b70da7841f9da972e0a1e6fde38d43f9d5a

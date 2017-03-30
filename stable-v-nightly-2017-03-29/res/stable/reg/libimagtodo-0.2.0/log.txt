@@ -1,0 +1,83 @@
+boom! testing libimagtodo-0.2.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! ef59c096f2f10a523487a65625b38f3cbfe61abdcc26bb200514b0220b97f821
+boom! running `docker start -a ef59c096f2f10a523487a65625b38f3cbfe61abdcc26bb200514b0220b97f821`
+kablam!    Compiling libimagtodo v0.2.0 (file:///source)
+kablam! error[E0308]: mismatched types
+kablam!   --> src/task.rs:54:9
+kablam!    |
+kablam! 54 |           import_task(&line.as_str())
+kablam!    |  _________^ starting here...
+kablam! 55 | |             .map_err_into(TodoErrorKind::ImportError)
+kablam! 56 | |             .map_dbg_err_str("Error while importing task")
+kablam! 57 | |             .map_err_dbg_trace()
+kablam! 58 | |             .and_then(|t| {
+kablam! 59 | |                 let uuid = t.uuid().clone();
+kablam! 60 | |                 t.into_task(store).map(|t| (t, line, uuid))
+kablam! 61 | |             })
+kablam!    | |______________^ ...ending here: expected struct `uuid::Uuid`, found a different struct `uuid::Uuid`
+kablam!    |
+kablam!    = note: expected type `std::result::Result<(task::Task<'a>, std::string::String, uuid::Uuid), error::error::TodoError>`
+kablam!               found type `std::result::Result<(task::Task<'_>, std::string::String, uuid::Uuid), error::error::TodoError>`
+kablam! note: Perhaps two different versions of crate `uuid` are being used?
+kablam!   --> src/task.rs:54:9
+kablam!    |
+kablam! 54 |           import_task(&line.as_str())
+kablam!    |  _________^ starting here...
+kablam! 55 | |             .map_err_into(TodoErrorKind::ImportError)
+kablam! 56 | |             .map_dbg_err_str("Error while importing task")
+kablam! 57 | |             .map_err_dbg_trace()
+kablam! 58 | |             .and_then(|t| {
+kablam! 59 | |                 let uuid = t.uuid().clone();
+kablam! 60 | |                 t.into_task(store).map(|t| (t, line, uuid))
+kablam! 61 | |             })
+kablam!    | |______________^ ...ending here
+kablam!    = help: here are some functions which might fulfill your needs:
+kablam!            - .unwrap()
+kablam!            - .unwrap_err()
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/task.rs:90:57
+kablam!    |
+kablam! 90 |             .and_then(|uuid| Task::get_from_uuid(store, uuid))
+kablam!    |                                                         ^^^^ expected struct `uuid::Uuid`, found a different struct `uuid::Uuid`
+kablam!    |
+kablam!    = note: expected type `uuid::Uuid` (struct `uuid::Uuid`)
+kablam!               found type `uuid::Uuid` (struct `uuid::Uuid`)
+kablam! note: Perhaps two different versions of crate `uuid` are being used?
+kablam!   --> src/task.rs:90:57
+kablam!    |
+kablam! 90 |             .and_then(|uuid| Task::get_from_uuid(store, uuid))
+kablam!    |                                                         ^^^^
+kablam! 
+kablam! error[E0277]: the trait bound `task_hookrs::task::Task: serde::ser::Serialize` is not satisfied
+kablam!    --> src/task.rs:142:31
+kablam!     |
+kablam! 142 |                         match serde_to_string(&ttask).map_err_into(TodoErrorKind::ImportError) {
+kablam!     |                               ^^^^^^^^^^^^^^^ the trait `serde::ser::Serialize` is not implemented for `task_hookrs::task::Task`
+kablam!     |
+kablam!     = note: required by `serde_json::to_string`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/task.rs:154:63
+kablam!     |
+kablam! 154 |                             match Task::delete_by_uuid(store, *ttask.uuid()) {
+kablam!     |                                                               ^^^^^^^^^^^^^ expected struct `uuid::Uuid`, found a different struct `uuid::Uuid`
+kablam!     |
+kablam!     = note: expected type `uuid::Uuid` (struct `uuid::Uuid`)
+kablam!                found type `uuid::Uuid` (struct `uuid::Uuid`)
+kablam! note: Perhaps two different versions of crate `uuid` are being used?
+kablam!    --> src/task.rs:154:63
+kablam!     |
+kablam! 154 |                             match Task::delete_by_uuid(store, *ttask.uuid()) {
+kablam!     |                                                               ^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `libimagtodo`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f ef59c096f2f10a523487a65625b38f3cbfe61abdcc26bb200514b0220b97f821`
+blam! ef59c096f2f10a523487a65625b38f3cbfe61abdcc26bb200514b0220b97f821

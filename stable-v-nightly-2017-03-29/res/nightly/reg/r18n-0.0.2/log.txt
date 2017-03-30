@@ -1,0 +1,38 @@
+boom! testing r18n-0.0.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 2c35f69eac65a32d0b8a26cac4fada34c93eb3b44eed472bb106036989dd1b4c
+boom! running `docker start -a 2c35f69eac65a32d0b8a26cac4fada34c93eb3b44eed472bb106036989dd1b4c`
+kablam!    Compiling r18n v0.0.2 (file:///source)
+kablam! error[E0432]: unresolved import `std::path::AsPath`
+kablam!   --> src/lib.rs:14:5
+kablam!    |
+kablam! 14 | use std::path::AsPath;
+kablam!    |     ^^^^^^^^^^^^^^^^^ no `AsPath` in `path`. Did you mean to use `Path`?
+kablam! 
+kablam! error[E0432]: unresolved import `std::error::FromError`
+kablam!   --> src/lib.rs:16:5
+kablam!    |
+kablam! 16 | use std::error::FromError;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^ no `FromError` in `error`
+kablam! 
+kablam! error[E0412]: cannot find type `ParserError` in module `toml`
+kablam!    --> src/lib.rs:101:26
+kablam!     |
+kablam! 101 | impl FromError<Vec<toml::ParserError>> for Error{
+kablam!     |                          ^^^^^^^^^^^ not found in `toml`
+kablam! 
+kablam! error[E0412]: cannot find type `ParserError` in module `toml`
+kablam!    --> src/lib.rs:102:34
+kablam!     |
+kablam! 102 |     fn from_error(err: Vec<toml::ParserError>) -> Error {
+kablam!     |                                  ^^^^^^^^^^^ not found in `toml`
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `r18n`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 2c35f69eac65a32d0b8a26cac4fada34c93eb3b44eed472bb106036989dd1b4c`
+blam! 2c35f69eac65a32d0b8a26cac4fada34c93eb3b44eed472bb106036989dd1b4c

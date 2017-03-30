@@ -1,0 +1,41 @@
+boom! testing nanomsg-0.5.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 1ce6141a046d205d3f712985d398c96c9a3d860d01ab1a6fab89f90258fb4f79
+boom! running `docker start -a 1ce6141a046d205d3f712985d398c96c9a3d860d01ab1a6fab89f90258fb4f79`
+kablam!    Compiling nanomsg-sys v0.5.0
+kablam!    Compiling nanomsg v0.5.0 (file:///source)
+kablam! error[E0425]: cannot find value `ENOTSUP` in module `nanomsg_sys`
+kablam!   --> src/result.rs:19:34
+kablam!    |
+kablam! 19 |     OperationNotSupported      = nanomsg_sys::ENOTSUP          as isize,
+kablam!    |                                  ^^^^^^^^^^^^^^^^^^^^ not found in `nanomsg_sys`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use libc::ENOTSUP;`
+kablam!              `use nanomsg_sys::posix_consts::ENOTSUP;`
+kablam! 
+kablam! error[E0531]: cannot find unit struct/variant or constant `ENOTSUP` in module `nanomsg_sys`
+kablam!   --> src/result.rs:61:13
+kablam!    |
+kablam! 61 |             nanomsg_sys::ENOTSUP         => Error::OperationNotSupported    ,
+kablam!    |             ^^^^^^^^^^^^^^^^^^^^ not found in `nanomsg_sys`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use libc::ENOTSUP;`
+kablam!              `use nanomsg_sys::posix_consts::ENOTSUP;`
+kablam! 
+kablam! error[E0080]: constant evaluation error
+kablam!   --> src/result.rs:19:34
+kablam!    |
+kablam! 19 |     OperationNotSupported      = nanomsg_sys::ENOTSUP          as isize,
+kablam!    |                                  ^^^^^^^^^^^^^^^^^^^^ unresolved path in constant expression
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `nanomsg`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 1ce6141a046d205d3f712985d398c96c9a3d860d01ab1a6fab89f90258fb4f79`
+blam! 1ce6141a046d205d3f712985d398c96c9a3d860d01ab1a6fab89f90258fb4f79

@@ -1,0 +1,38 @@
+boom! testing mime_multipart-0.4.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 47584f31ebdf4c2b573b671f710c1c2678484b6ad8d1ba726efc7370defa5160
+boom! running `docker start -a 47584f31ebdf4c2b573b671f710c1c2678484b6ad8d1ba726efc7370defa5160`
+kablam!    Compiling mime_multipart v0.4.0 (file:///source)
+kablam! error[E0502]: cannot borrow `buf` as mutable because it is also borrowed as immutable
+kablam!    --> src/lib.rs:317:13
+kablam!     |
+kablam! 260 |         let part_headers = try!(match httparse::parse_headers(&buf, &mut header_memory) {
+kablam!     |                                                                --- immutable borrow occurs here
+kablam! ...
+kablam! 317 |             buf.truncate(0); // start fresh
+kablam!     |             ^^^ mutable borrow occurs here
+kablam! ...
+kablam! 326 |     }
+kablam!     |     - immutable borrow ends here
+kablam! 
+kablam! error[E0502]: cannot borrow `buf` as mutable because it is also borrowed as immutable
+kablam!    --> src/lib.rs:318:80
+kablam!     |
+kablam! 260 |         let part_headers = try!(match httparse::parse_headers(&buf, &mut header_memory) {
+kablam!     |                                                                --- immutable borrow occurs here
+kablam! ...
+kablam! 318 |             let (_, found) = try!(reader.stream_until_token(&lt_boundary, &mut buf));
+kablam!     |                                                                                ^^^ mutable borrow occurs here
+kablam! ...
+kablam! 326 |     }
+kablam!     |     - immutable borrow ends here
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `mime_multipart`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 47584f31ebdf4c2b573b671f710c1c2678484b6ad8d1ba726efc7370defa5160`
+blam! 47584f31ebdf4c2b573b671f710c1c2678484b6ad8d1ba726efc7370defa5160

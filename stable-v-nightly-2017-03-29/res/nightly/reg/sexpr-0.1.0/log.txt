@@ -1,0 +1,33 @@
+boom! testing sexpr-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 730b02b10635ff62e1df6c1cf289192336f279097300912699acacff97412747
+boom! running `docker start -a 730b02b10635ff62e1df6c1cf289192336f279097300912699acacff97412747`
+kablam!    Compiling gc v0.2.1
+kablam!    Compiling gc_derive v0.2.1
+kablam! error[E0308]: mismatched types
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/gc-0.2.1/src/gc.rs:33:42
+kablam!    |
+kablam! 33 |                 let node = Box::from_raw(*node);
+kablam!    |                                          ^^^^^ types differ in mutability
+kablam!    |
+kablam!    = note: expected type `*mut _`
+kablam!               found type `*const gc::GcBox<trace::Trace>`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/gc-0.2.1/src/gc.rs:197:42
+kablam!     |
+kablam! 197 |             let mut node = Box::from_raw(*node.this);
+kablam!     |                                          ^^^^^^^^^^ types differ in mutability
+kablam!     |
+kablam!     = note: expected type `*mut _`
+kablam!                found type `*const gc::GcBox<trace::Trace + 'static>`
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `gc`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f 730b02b10635ff62e1df6c1cf289192336f279097300912699acacff97412747`
+blam! 730b02b10635ff62e1df6c1cf289192336f279097300912699acacff97412747

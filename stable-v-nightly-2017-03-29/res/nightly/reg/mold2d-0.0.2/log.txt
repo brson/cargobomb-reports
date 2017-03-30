@@ -1,0 +1,154 @@
+boom! testing mold2d-0.0.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 064c69105d5ffd6f74a178c59bb2163631e6c5b867c12e2806259777122ad21d
+boom! running `docker start -a 064c69105d5ffd6f74a178c59bb2163631e6c5b867c12e2806259777122ad21d`
+kablam!    Compiling sdl2-sys v0.6.2
+kablam! warning: redundant linker flag specified for library `SDL2`
+kablam! 
+kablam!    Compiling sdl2 v0.9.1
+kablam!    Compiling sdl2_ttf v0.9.1
+kablam!    Compiling sdl2_image v0.3.0
+kablam!    Compiling mold2d v0.0.2 (file:///source)
+kablam! warning: method is never used: `set_frame_delay`
+kablam!    --> src/sprite.rs:179:5
+kablam!     |
+kablam! 179 |       fn set_frame_delay(&mut self, frame_delay: f64) {
+kablam!     |  _____^ starting here...
+kablam! 180 | |         self.frame_delay = frame_delay;
+kablam! 181 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `set_fps`
+kablam!    --> src/sprite.rs:183:5
+kablam!     |
+kablam! 183 |       fn set_fps(&mut self, fps: f64) {
+kablam!     |  _____^ starting here...
+kablam! 184 | |         if fps == 0.0 {
+kablam! 185 | |             panic!("Passed 0 to AnimatedSprite::set_fps");
+kablam! 186 | |         }
+kablam! 187 | |
+kablam! 188 | |         self.set_frame_delay(1.0 / fps);
+kablam! 189 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 21.76 secs
+boom! running `docker rm -f 064c69105d5ffd6f74a178c59bb2163631e6c5b867c12e2806259777122ad21d`
+blam! 064c69105d5ffd6f74a178c59bb2163631e6c5b867c12e2806259777122ad21d
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 27ae5e483fd71921b55eee05b2741a319ef18613a5c90c287b9f12b763188e73
+boom! running `docker start -a 27ae5e483fd71921b55eee05b2741a319ef18613a5c90c287b9f12b763188e73`
+kablam!    Compiling mold2d v0.0.2 (file:///source)
+kablam! warning: unused variable: `side`
+kablam!    --> src/raycast.rs:234:13
+kablam!     |
+kablam! 234 |         let side = shorten_ray(&mut segment, &rect);
+kablam!     |             ^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: method is never used: `set_frame_delay`
+kablam!    --> src/sprite.rs:179:5
+kablam!     |
+kablam! 179 |       fn set_frame_delay(&mut self, frame_delay: f64) {
+kablam!     |  _____^ starting here...
+kablam! 180 | |         self.frame_delay = frame_delay;
+kablam! 181 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `set_fps`
+kablam!    --> src/sprite.rs:183:5
+kablam!     |
+kablam! 183 |       fn set_fps(&mut self, fps: f64) {
+kablam!     |  _____^ starting here...
+kablam! 184 | |         if fps == 0.0 {
+kablam! 185 | |             panic!("Passed 0 to AnimatedSprite::set_fps");
+kablam! 186 | |         }
+kablam! 187 | |
+kablam! 188 | |         self.set_frame_delay(1.0 / fps);
+kablam! 189 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/mold2d-a677ac3db9371dc1.0.o" "-o" "/target/debug/deps/mold2d-a677ac3db9371dc1" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libsdl2_ttf-cc1d61fdbf1185e1.rlib" "/target/debug/deps/libsdl2_image-d563368a8bf241a9.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-6c35a477e7bec8d3.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-a80f7c589731de53.rlib" "/target/debug/deps/libsdl2-eb465f5465392511.rlib" "/target/debug/deps/libbitflags-500f5f87e6ab8395.rlib" "/target/debug/deps/libsdl2_sys-834c3677fdc0e2a0.rlib" "/target/debug/deps/liblibc-75e9a9d6ae05fbe7.rlib" "/target/debug/deps/libnum-6ce289b56f32382f.rlib" "/target/debug/deps/libnum_rational-0162ef58e267dc13.rlib" "/target/debug/deps/libnum_bigint-95c46fa16cd15b9e.rlib" "/target/debug/deps/librand-c9d9fbdab2355ee4.rlib" "/target/debug/deps/liblibc-5dc7b85e748840b4.rlib" "/target/debug/deps/libnum_complex-57a11a875ce86980.rlib" "/target/debug/deps/librustc_serialize-54d2bf33b1d4b0b0.rlib" "/target/debug/deps/libnum_iter-e3d53b72a44dd492.rlib" "/target/debug/deps/libnum_integer-bbbfaf8dce75e1b6.rlib" "/target/debug/deps/libnum_traits-69f4129d46397118.rlib" "/target/debug/deps/libbitflags-f9d9db6f5990f494.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-fa872424129019f5.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-f4594d3e53dcb114.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-a0157c0ca919c364.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-488b4ab4bd53a138.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-1efbcfd8938372b6.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-532a3dbf317eff86.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-ca07b617414dd0fa.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-492d8ea7fa3384ff.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-88c194c15fdb6521.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-cfbd6648f7db2ee5.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-687e6a964d22cbb4.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-987729be881d4d32.rlib" "-l" "SDL2_ttf" "-l" "SDL2_image" "-l" "SDL2" "-l" "c" "-l" "m" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lSDL2_ttf
+kablam!           /usr/bin/ld: cannot find -lSDL2_image
+kablam!           /usr/bin/ld: cannot find -lSDL2
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `mold2d`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 27ae5e483fd71921b55eee05b2741a319ef18613a5c90c287b9f12b763188e73`
+blam! 27ae5e483fd71921b55eee05b2741a319ef18613a5c90c287b9f12b763188e73
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 6470c20803cb513e40dc871942357d0e246238b577d6cd21ee932339a8fd292b
+boom! running `docker start -a 6470c20803cb513e40dc871942357d0e246238b577d6cd21ee932339a8fd292b`
+kablam!    Compiling mold2d v0.0.2 (file:///source)
+kablam! warning: unused variable: `side`
+kablam!    --> src/raycast.rs:234:13
+kablam!     |
+kablam! 234 |         let side = shorten_ray(&mut segment, &rect);
+kablam!     |             ^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: method is never used: `set_frame_delay`
+kablam!    --> src/sprite.rs:179:5
+kablam!     |
+kablam! 179 |       fn set_frame_delay(&mut self, frame_delay: f64) {
+kablam!     |  _____^ starting here...
+kablam! 180 | |         self.frame_delay = frame_delay;
+kablam! 181 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `set_fps`
+kablam!    --> src/sprite.rs:183:5
+kablam!     |
+kablam! 183 |       fn set_fps(&mut self, fps: f64) {
+kablam!     |  _____^ starting here...
+kablam! 184 | |         if fps == 0.0 {
+kablam! 185 | |             panic!("Passed 0 to AnimatedSprite::set_fps");
+kablam! 186 | |         }
+kablam! 187 | |
+kablam! 188 | |         self.set_frame_delay(1.0 / fps);
+kablam! 189 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/mold2d-a677ac3db9371dc1.0.o" "-o" "/target/debug/deps/mold2d-a677ac3db9371dc1" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libsdl2_ttf-cc1d61fdbf1185e1.rlib" "/target/debug/deps/libsdl2_image-d563368a8bf241a9.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-6c35a477e7bec8d3.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-a80f7c589731de53.rlib" "/target/debug/deps/libsdl2-eb465f5465392511.rlib" "/target/debug/deps/libbitflags-500f5f87e6ab8395.rlib" "/target/debug/deps/libsdl2_sys-834c3677fdc0e2a0.rlib" "/target/debug/deps/liblibc-75e9a9d6ae05fbe7.rlib" "/target/debug/deps/libnum-6ce289b56f32382f.rlib" "/target/debug/deps/libnum_rational-0162ef58e267dc13.rlib" "/target/debug/deps/libnum_bigint-95c46fa16cd15b9e.rlib" "/target/debug/deps/librand-c9d9fbdab2355ee4.rlib" "/target/debug/deps/liblibc-5dc7b85e748840b4.rlib" "/target/debug/deps/libnum_complex-57a11a875ce86980.rlib" "/target/debug/deps/librustc_serialize-54d2bf33b1d4b0b0.rlib" "/target/debug/deps/libnum_iter-e3d53b72a44dd492.rlib" "/target/debug/deps/libnum_integer-bbbfaf8dce75e1b6.rlib" "/target/debug/deps/libnum_traits-69f4129d46397118.rlib" "/target/debug/deps/libbitflags-f9d9db6f5990f494.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-fa872424129019f5.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-f4594d3e53dcb114.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-a0157c0ca919c364.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-488b4ab4bd53a138.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-1efbcfd8938372b6.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-532a3dbf317eff86.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-ca07b617414dd0fa.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-492d8ea7fa3384ff.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-88c194c15fdb6521.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-cfbd6648f7db2ee5.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-687e6a964d22cbb4.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-987729be881d4d32.rlib" "-l" "SDL2_ttf" "-l" "SDL2_image" "-l" "SDL2" "-l" "c" "-l" "m" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lSDL2_ttf
+kablam!           /usr/bin/ld: cannot find -lSDL2_image
+kablam!           /usr/bin/ld: cannot find -lSDL2
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `mold2d`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 6470c20803cb513e40dc871942357d0e246238b577d6cd21ee932339a8fd292b`
+blam! 6470c20803cb513e40dc871942357d0e246238b577d6cd21ee932339a8fd292b

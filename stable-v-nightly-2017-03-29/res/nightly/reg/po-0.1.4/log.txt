@@ -1,0 +1,26 @@
+boom! testing po-0.1.4 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 83bb6b779ec35e4f66ed67381f275f218d55798be2d5560f73f92b788b379d12
+boom! running `docker start -a 83bb6b779ec35e4f66ed67381f275f218d55798be2d5560f73f92b788b379d12`
+kablam!    Compiling po v0.1.4 (file:///source)
+kablam! error[E0432]: unresolved import `curl::http`
+kablam!   --> src/lib.rs:11:5
+kablam!    |
+kablam! 11 | use curl::http;
+kablam!    |     ^^^^^^^^^^ no `http` in the root
+kablam! 
+kablam! error[E0425]: cannot find function `serialize` in module `form_urlencoded`
+kablam!    --> src/lib.rs:145:33
+kablam!     |
+kablam! 145 |     let body = form_urlencoded::serialize(notification.into_iter());
+kablam!     |                                 ^^^^^^^^^ not found in `form_urlencoded`
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `po`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 83bb6b779ec35e4f66ed67381f275f218d55798be2d5560f73f92b788b379d12`
+blam! 83bb6b779ec35e4f66ed67381f275f218d55798be2d5560f73f92b788b379d12

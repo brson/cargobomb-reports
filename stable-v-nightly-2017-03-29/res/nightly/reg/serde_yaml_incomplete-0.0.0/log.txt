@@ -1,0 +1,26 @@
+boom! testing serde_yaml_incomplete-0.0.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! c6bef5d4910db069cb95b31c19ecfb1829fe2eafed9f6fef43f35d7f297d7e3e
+boom! running `docker start -a c6bef5d4910db069cb95b31c19ecfb1829fe2eafed9f6fef43f35d7f297d7e3e`
+kablam!    Compiling quasi_codegen v0.32.0
+kablam!    Compiling serde v0.4.3
+kablam! error[E0277]: the trait bound `Self: std::marker::Sized` is not satisfied
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde-0.4.3/src/de/mod.rs:22:5
+kablam!    |
+kablam! 22 |       fn deserialize<D>(deserializer: &mut D) -> Result<Self, D::Error>
+kablam!    |  _____^ starting here...
+kablam! 23 | |         where D: Deserializer;
+kablam!    | |______________________________^ ...ending here: the trait `std::marker::Sized` is not implemented for `Self`
+kablam!    |
+kablam!    = help: consider adding a `where Self: std::marker::Sized` bound
+kablam!    = note: required by `std::result::Result`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `serde`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f c6bef5d4910db069cb95b31c19ecfb1829fe2eafed9f6fef43f35d7f297d7e3e`
+blam! c6bef5d4910db069cb95b31c19ecfb1829fe2eafed9f6fef43f35d7f297d7e3e

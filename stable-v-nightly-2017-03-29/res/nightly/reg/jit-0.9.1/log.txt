@@ -1,0 +1,64 @@
+boom! testing jit-0.9.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! d6886639d473a051700d0e813f12e20e0167661975f7c6019daba2caba848708
+boom! running `docker start -a d6886639d473a051700d0e813f12e20e0167661975f7c6019daba2caba848708`
+kablam!    Compiling jit v0.9.1 (file:///source)
+kablam! error[E0432]: unresolved import `std::raw::Repr`
+kablam!   --> src/compile.rs:68:17
+kablam!    |
+kablam! 68 |             use std::raw::Repr;
+kablam!    |                 ^^^^^^^^^^^^^^ no `Repr` in `raw`
+kablam! 
+kablam! error[E0432]: unresolved import `std::raw::Slice`
+kablam!   --> src/compile.rs:82:13
+kablam!    |
+kablam! 82 |         use std::raw::Slice;
+kablam!    |             ^^^^^^^^^^^^^^^ no `Slice` in `raw`
+kablam! 
+kablam! error: use of unstable library feature 'rustc_private' (see issue #27812)
+kablam!   --> src/jit.rs:52:1
+kablam!    |
+kablam! 52 | extern crate rustc_bitflags;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: add #![feature(rustc_private)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'oom': not a scrutinized interface (see issue #27700)
+kablam!   --> src/util.rs:46:9
+kablam!    |
+kablam! 46 |         oom();
+kablam!    |         ^^^
+kablam!    |
+kablam!    = help: add #![feature(oom)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'oom': not a scrutinized interface (see issue #27700)
+kablam!   --> src/context.rs:57:21
+kablam!    |
+kablam! 57 |                     oom()
+kablam!    |                     ^^^
+kablam!    |
+kablam!    = help: add #![feature(oom)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'oom': not a scrutinized interface (see issue #27700)
+kablam!    --> src/types.rs:456:17
+kablam!     |
+kablam! 456 |                 oom();
+kablam!     |                 ^^^
+kablam!     |
+kablam!     = help: add #![feature(oom)] to the crate attributes to enable
+kablam! 
+kablam! error: no method named `repr` found for type `&'a str` in the current scope
+kablam!   --> src/compile.rs:70:30
+kablam!    |
+kablam! 70 |             let slice = self.repr();
+kablam!    |                              ^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `jit`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f d6886639d473a051700d0e813f12e20e0167661975f7c6019daba2caba848708`
+blam! d6886639d473a051700d0e813f12e20e0167661975f7c6019daba2caba848708

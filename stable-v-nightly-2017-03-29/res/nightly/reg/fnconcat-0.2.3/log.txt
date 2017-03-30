@@ -1,0 +1,200 @@
+boom! testing fnconcat-0.2.3 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 407ac48eee8865547fd3ff756b19961ef9b155e6b644e64146c055eeaf877f1f
+boom! running `docker start -a 407ac48eee8865547fd3ff756b19961ef9b155e6b644e64146c055eeaf877f1f`
+kablam!    Compiling fnconcat v0.2.3 (file:///source)
+kablam! error: cannot index a value of type `syntax::tokenstream::ThinTokenStream`
+kablam!   --> src/lib.rs:88:56
+kablam!    |
+kablam! 88 |                 try!(build_string_from_idents(target, &delim.tts[..]));
+kablam!    |                                                        ^^^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `get_span` found for type `&&syntax::tokenstream::TokenTree` in the current scope
+kablam!   --> src/lib.rs:90:33
+kablam!    |
+kablam! 90 |             ref tt => fail!((tt.get_span(), "non-ident, non-comma token")),
+kablam!    |                       ----------^^^^^^^^---------------------------------- in this macro invocation
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:123:58
+kablam!     |
+kablam! 123 |         try!(build_string_from_idents(&mut concatenated, &delim.tts));
+kablam!     |                                                          ^^^^^^^^^^ expected slice, found struct `syntax::tokenstream::ThinTokenStream`
+kablam!     |
+kablam!     = note: expected type `&[syntax::tokenstream::TokenTree]`
+kablam!                found type `&syntax::tokenstream::ThinTokenStream`
+kablam! 
+kablam! error: no method named `get_span` found for type `syntax::tokenstream::TokenTree` in the current scope
+kablam!    --> src/lib.rs:129:43
+kablam!     |
+kablam! 129 |           fail!((fn_tokens[ident_token_pos].get_span(),
+kablam!     |  _________- starting here...                ^^^^^^^^
+kablam! 130 | |                "use square brackets (i.e. [..]) in place of the function name"));
+kablam!     | |_________________________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error: cannot index a value of type `syntax::tokenstream::ThinTokenStream`
+kablam!    --> src/lib.rs:153:47
+kablam!     |
+kablam! 153 |                 ret.push((delim_span, tt_vec(&delim.tts[..])));
+kablam!     |                                               ^^^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `get_span` found for type `&&syntax::tokenstream::TokenTree` in the current scope
+kablam!    --> src/lib.rs:156:33
+kablam!     |
+kablam! 156 |             ref tt => fail!((tt.get_span(), "parenthesized group expected")),
+kablam!     |                       ----------^^^^^^^^------------------------------------ in this macro invocation
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `open_span`
+kablam!    --> src/lib.rs:206:13
+kablam!     |
+kablam! 206 |             open_span: span,
+kablam!     |             ^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:202:5
+kablam!     |
+kablam! 202 |     vec![
+kablam!     |     ^ expected struct `syntax::tokenstream::ThinTokenStream`, found struct `std::vec::Vec`
+kablam!     |
+kablam!     = note: expected type `syntax::tokenstream::ThinTokenStream`
+kablam!                found type `std::vec::Vec<syntax::tokenstream::TokenTree>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .remove(...)
+kablam!             - .swap_remove(...)
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `close_span`
+kablam!    --> src/lib.rs:208:13
+kablam!     |
+kablam! 208 |             close_span: span,
+kablam!     |             ^^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:204:36
+kablam!     |
+kablam! 204 |           TokenTree::Delimited(span, Rc::new(Delimited {
+kablam!     |  ____________________________________^ starting here...
+kablam! 205 | |             delim: token::Bracket,
+kablam! 206 | |             open_span: span,
+kablam! 207 | |             tts: vec![ident_of_ctx_and_span(cx, span, "test")],
+kablam! 208 | |             close_span: span,
+kablam! 209 | |         })),
+kablam!     | |__________^ ...ending here: expected struct `syntax::tokenstream::Delimited`, found struct `std::rc::Rc`
+kablam!     |
+kablam!     = note: expected type `syntax::tokenstream::Delimited`
+kablam!                found type `std::rc::Rc<syntax::tokenstream::Delimited>`
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `open_span`
+kablam!    --> src/lib.rs:214:13
+kablam!     |
+kablam! 214 |             open_span: span,
+kablam!     |             ^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:215:18
+kablam!     |
+kablam! 215 |             tts: Vec::new(),
+kablam!     |                  ^^^^^^^^^^ expected struct `syntax::tokenstream::ThinTokenStream`, found struct `std::vec::Vec`
+kablam!     |
+kablam!     = note: expected type `syntax::tokenstream::ThinTokenStream`
+kablam!                found type `std::vec::Vec<_>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .remove(...)
+kablam!             - .swap_remove(...)
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `close_span`
+kablam!    --> src/lib.rs:216:13
+kablam!     |
+kablam! 216 |             close_span: span,
+kablam!     |             ^^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:212:36
+kablam!     |
+kablam! 212 |           TokenTree::Delimited(span, Rc::new(Delimited {
+kablam!     |  ____________________________________^ starting here...
+kablam! 213 | |             delim: token::Paren,
+kablam! 214 | |             open_span: span,
+kablam! 215 | |             tts: Vec::new(),
+kablam! 216 | |             close_span: span,
+kablam! 217 | |         })),
+kablam!     | |__________^ ...ending here: expected struct `syntax::tokenstream::Delimited`, found struct `std::rc::Rc`
+kablam!     |
+kablam!     = note: expected type `syntax::tokenstream::Delimited`
+kablam!                found type `std::rc::Rc<syntax::tokenstream::Delimited>`
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `open_span`
+kablam!    --> src/lib.rs:220:13
+kablam!     |
+kablam! 220 |             open_span: span,
+kablam!     |             ^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:221:18
+kablam!     |
+kablam! 221 |             tts: block,
+kablam!     |                  ^^^^^ expected struct `syntax::tokenstream::ThinTokenStream`, found struct `std::vec::Vec`
+kablam!     |
+kablam!     = note: expected type `syntax::tokenstream::ThinTokenStream`
+kablam!                found type `std::vec::Vec<syntax::tokenstream::TokenTree>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .remove(...)
+kablam!             - .swap_remove(...)
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `close_span`
+kablam!    --> src/lib.rs:222:13
+kablam!     |
+kablam! 222 |             close_span: span,
+kablam!     |             ^^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:218:36
+kablam!     |
+kablam! 218 |           TokenTree::Delimited(span, Rc::new(Delimited {
+kablam!     |  ____________________________________^ starting here...
+kablam! 219 | |             delim: token::Brace,
+kablam! 220 | |             open_span: span,
+kablam! 221 | |             tts: block,
+kablam! 222 | |             close_span: span,
+kablam! 223 | |         })),
+kablam!     | |__________^ ...ending here: expected struct `syntax::tokenstream::Delimited`, found struct `std::rc::Rc`
+kablam!     |
+kablam!     = note: expected type `syntax::tokenstream::Delimited`
+kablam!                found type `std::rc::Rc<syntax::tokenstream::Delimited>`
+kablam! 
+kablam! error: cannot index a value of type `syntax::tokenstream::ThinTokenStream`
+kablam!    --> src/lib.rs:230:55
+kablam!     |
+kablam! 230 |     let mut groups = try!(pull_tts_from_paren_groups(&params.tts[..]));
+kablam!     |                                                       ^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `len` found for type `syntax::tokenstream::ThinTokenStream` in the current scope
+kablam!    --> src/lib.rs:272:27
+kablam!     |
+kablam! 272 |             if params.tts.len() < 2 {
+kablam!     |                           ^^^
+kablam! 
+kablam! error: no method named `get_span` found for type `&syntax::tokenstream::TokenTree` in the current scope
+kablam!    --> src/lib.rs:278:29
+kablam!     |
+kablam! 278 |                 fail!((name.get_span(), "empty identifier"));
+kablam!     |                 ------------^^^^^^^^------------------------- in this macro invocation
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:280:62
+kablam!     |
+kablam! 280 |             do_parametrization(cx, sp, concatenated, params, block.tts.clone())
+kablam!     |                                                              ^^^^^^^^^^^^^^^^^ expected struct `std::vec::Vec`, found struct `syntax::tokenstream::ThinTokenStream`
+kablam!     |
+kablam!     = note: expected type `std::vec::Vec<syntax::tokenstream::TokenTree>`
+kablam!                found type `syntax::tokenstream::ThinTokenStream`
+kablam! 
+kablam! error: aborting due to 22 previous errors
+kablam! 
+kablam! error: Could not compile `fnconcat`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 407ac48eee8865547fd3ff756b19961ef9b155e6b644e64146c055eeaf877f1f`
+blam! 407ac48eee8865547fd3ff756b19961ef9b155e6b644e64146c055eeaf877f1f

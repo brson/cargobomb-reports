@@ -1,0 +1,44 @@
+boom! testing cairo-rs-0.1.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 448215e83abe887094f59f23630ef6187df122bde441a944003339033084d07d
+boom! running `docker start -a 448215e83abe887094f59f23630ef6187df122bde441a944003339033084d07d`
+kablam!    Compiling cairo-rs v0.1.1 (file:///source)
+kablam! error[E0405]: cannot find trait `FromGlibPtr` in this scope
+kablam!   --> src/context.rs:53:6
+kablam!    |
+kablam! 53 | impl FromGlibPtr<*mut ffi::cairo_t> for Context {
+kablam!    |      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ did you mean `FromGlib`?
+kablam! 
+kablam! error[E0405]: cannot find trait `FromGlibPtr` in this scope
+kablam!   --> src/image_surface.rs:96:6
+kablam!    |
+kablam! 96 | impl FromGlibPtr<*mut ffi::cairo_surface_t> for ImageSurface {
+kablam!    |      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ did you mean `FromGlib`?
+kablam! 
+kablam! error[E0405]: cannot find trait `FromGlibPtr` in this scope
+kablam!   --> src/rectangle.rs:45:6
+kablam!    |
+kablam! 45 | impl FromGlibPtr<*const ffi::cairo_rectangle_int_t> for RectangleInt {
+kablam!    |      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ did you mean `FromGlib`?
+kablam! 
+kablam! error[E0405]: cannot find trait `FromGlibPtr` in this scope
+kablam!   --> src/rectangle.rs:56:6
+kablam!    |
+kablam! 56 | impl FromGlibPtr<*mut ffi::cairo_rectangle_int_t> for RectangleInt {
+kablam!    |      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ did you mean `FromGlib`?
+kablam! 
+kablam! error[E0405]: cannot find trait `FromGlibPtr` in this scope
+kablam!   --> src/surface.rs:33:6
+kablam!    |
+kablam! 33 | impl FromGlibPtr<*mut ffi::cairo_surface_t> for Surface {
+kablam!    |      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ did you mean `FromGlib`?
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `cairo-rs`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 448215e83abe887094f59f23630ef6187df122bde441a944003339033084d07d`
+blam! 448215e83abe887094f59f23630ef6187df122bde441a944003339033084d07d

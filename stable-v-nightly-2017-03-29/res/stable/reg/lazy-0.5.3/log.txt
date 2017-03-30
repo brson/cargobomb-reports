@@ -1,0 +1,39 @@
+boom! testing lazy-0.5.3 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 9a7604b5fd5e89681a882ffba409c7514fc0aaf227ff1a4c0c91266078acbb37
+boom! running `docker start -a 9a7604b5fd5e89681a882ffba409c7514fc0aaf227ff1a4c0c91266078acbb37`
+kablam!    Compiling oncemutex v0.1.1
+kablam!    Compiling lazy v0.5.3 (file:///source)
+kablam! error[E0432]: unresolved import `std::thunk::Invoke`
+kablam!  --> src/single.rs:4:5
+kablam!   |
+kablam! 4 | use std::thunk::Invoke;
+kablam!   |     ^^^^^^^^^^^^^^^^^^ Could not find `thunk` in `std`
+kablam! 
+kablam! error[E0432]: unresolved import `std::thunk::Invoke`
+kablam!  --> src/sync.rs:4:5
+kablam!   |
+kablam! 4 | use std::thunk::Invoke;
+kablam!   |     ^^^^^^^^^^^^^^^^^^ Could not find `thunk` in `std`
+kablam! 
+kablam! error[E0425]: cannot find function `copy_lifetime` in module `mem`
+kablam!    --> src/sync.rs:103:44
+kablam!     |
+kablam! 103 |             Evaluated(ref val) => unsafe { mem::copy_lifetime(self, val) },
+kablam!     |                                            ^^^^^^^^^^^^^^^^^^ not found in `mem`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/lib.rs:2:1
+kablam!   |
+kablam! 2 | #![feature(core, std_misc, unsafe_destructor, optin_builtin_traits)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `lazy`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 9a7604b5fd5e89681a882ffba409c7514fc0aaf227ff1a4c0c91266078acbb37`
+blam! 9a7604b5fd5e89681a882ffba409c7514fc0aaf227ff1a4c0c91266078acbb37

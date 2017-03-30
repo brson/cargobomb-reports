@@ -1,0 +1,28 @@
+boom! testing canonical_json-0.8.4 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! f24c33b4678e4479be9143d4f692c9490a1bcfd50543170303f1cd0e4a0a6a0c
+boom! running `docker start -a f24c33b4678e4479be9143d4f692c9490a1bcfd50543170303f1cd0e4a0a6a0c`
+kablam!    Compiling canonical_json v0.8.4 (file:///source)
+kablam! error[E0437]: type `Err` is not a member of trait `TryFrom`
+kablam!     --> src/value.rs:1146:5
+kablam!      |
+kablam! 1146 |     type Err = SyntaxError;
+kablam!      |     ^^^^^^^^^^^^^^^^^^^^^^^ not a member of trait `TryFrom`
+kablam! 
+kablam! error[E0046]: not all trait items implemented, missing: `Error`
+kablam!     --> src/value.rs:1145:1
+kablam!      |
+kablam! 1145 | impl TryFrom<serde_json::Value> for Value {
+kablam!      | ^ missing `Error` in implementation
+kablam!      |
+kablam!      = note: `Error` from trait: `type Error;`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `canonical_json`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f24c33b4678e4479be9143d4f692c9490a1bcfd50543170303f1cd0e4a0a6a0c`
+blam! f24c33b4678e4479be9143d4f692c9490a1bcfd50543170303f1cd0e4a0a6a0c

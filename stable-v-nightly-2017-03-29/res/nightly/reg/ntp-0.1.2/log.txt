@@ -1,0 +1,29 @@
+boom! testing ntp-0.1.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 4b08ddc11d39f924777fc7c9fefe21523b1750263494727eb2e77321b3a78e1b
+boom! running `docker start -a 4b08ddc11d39f924777fc7c9fefe21523b1750263494727eb2e77321b3a78e1b`
+kablam!    Compiling conv v0.3.3
+kablam!    Compiling ntp v0.1.2 (file:///source)
+kablam! error[E0437]: type `Err` is not a member of trait `convert::TryFrom`
+kablam!   --> src/packet.rs:72:5
+kablam!    |
+kablam! 72 |     type Err = Error;
+kablam!    |     ^^^^^^^^^^^^^^^^^ not a member of trait `convert::TryFrom`
+kablam! 
+kablam! error[E0046]: not all trait items implemented, missing: `Error`
+kablam!    --> src/packet.rs:71:1
+kablam!     |
+kablam! 71  | impl<T: ReadBytesExt> convert::TryFrom<T> for Packet {
+kablam!     | ^ missing `Error` in implementation
+kablam!     |
+kablam!     = note: `Error` from trait: `type Error;`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `ntp`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 4b08ddc11d39f924777fc7c9fefe21523b1750263494727eb2e77321b3a78e1b`
+blam! 4b08ddc11d39f924777fc7c9fefe21523b1750263494727eb2e77321b3a78e1b

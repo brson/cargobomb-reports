@@ -1,0 +1,113 @@
+boom! testing carp-0.1.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 8c7c754d92e8c864d1ce4f2a9673fd7236995a37291e5662374072306537207d
+boom! running `docker start -a 8c7c754d92e8c864d1ce4f2a9673fd7236995a37291e5662374072306537207d`
+kablam!    Compiling pcap v0.5.7
+kablam!    Compiling carp v0.1.0 (file:///source)
+kablam! warning: unused import: `crypto::digest::Digest`, #[warn(unused_imports)] on by default
+kablam!   --> src/carp.rs:42:5
+kablam!    |
+kablam! 42 | use crypto::digest::Digest;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: static variable `received_signal` should have an upper case name such as `RECEIVED_SIGNAL`, #[warn(non_upper_case_globals)] on by default
+kablam!   --> src/carp.rs:60:1
+kablam!    |
+kablam! 60 | static mut received_signal: usize = 0;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 3.3 secs
+boom! running `docker rm -f 8c7c754d92e8c864d1ce4f2a9673fd7236995a37291e5662374072306537207d`
+blam! 8c7c754d92e8c864d1ce4f2a9673fd7236995a37291e5662374072306537207d
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 419258b4d01c933c578ef320dd97431ee6d867a96487b32bcaecfd582fa7da1e
+boom! running `docker start -a 419258b4d01c933c578ef320dd97431ee6d867a96487b32bcaecfd582fa7da1e`
+kablam!    Compiling carp v0.1.0 (file:///source)
+kablam! warning: unused `#[macro_use]` import, #[warn(unused_imports)] on by default
+kablam!  --> tests/lib.rs:3:1
+kablam!   |
+kablam! 3 | #[macro_use] extern crate log;
+kablam!   | ^^^^^^^^^^^^
+kablam! 
+kablam! error[E0284]: type annotations required: cannot resolve `<_ as std::str::FromStr>::Err == _`
+kablam!    --> src/ip.rs:350:61
+kablam!     |
+kablam! 350 |         assert_eq!(Ipv4Addr::from(iph.saddr()), "10.0.2.30".parse().unwrap());
+kablam!     |                                                             ^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `carp`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/lib-2d356f49ba19a1d1.0.o" "-o" "/target/debug/deps/lib-2d356f49ba19a1d1" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/target/debug/build/rust-crypto-1726770e89591a2e/out" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libcarp-451aec66358be611.rlib" "/target/debug/deps/libnix-2d1be38b2b345d12.rlib" "/target/debug/deps/libpcap-9ba37a1b730973d2.rlib" "/target/debug/deps/libenv_logger-25d6e02029b27322.rlib" "/target/debug/deps/libregex-bf57a839db75dbae.rlib" "/target/debug/deps/libutf8_ranges-142806e76d52d8c6.rlib" "/target/debug/deps/libthread_local-a561abce7ea185f1.rlib" "/target/debug/deps/liblog-d4c0e5c2504fbbea.rlib" "/target/debug/deps/libregex_syntax-8b74a2985735b213.rlib" "/target/debug/deps/libbitflags-6c0c42f1f858d67c.rlib" "/target/debug/deps/libcrypto-2d12c53d797abb19.rlib" "/target/debug/deps/libtime-cd5e3a346d1a17b6.rlib" "/target/debug/deps/librustc_serialize-54d2bf33b1d4b0b0.rlib" "/target/debug/deps/librand-c9d9fbdab2355ee4.rlib" "/target/debug/deps/libbyteorder-35109819e11170bf.rlib" "/target/debug/deps/libaho_corasick-c795bbd3a96f4a35.rlib" "/target/debug/deps/libmemchr-4c3682d5f0e14581.rlib" "/target/debug/deps/libthread_id-e41c347f28e6505f.rlib" "/target/debug/deps/liblibc-5dc7b85e748840b4.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-2efd40164e9eb949.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-0ed6e2f3d67b4012.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-b979e1c23fc9ba25.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-13f36e2630c2d79b.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-3b9d178f1de89528.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-93bb403c9fc56f72.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-a2ef7979b4b3e1d5.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-d22754c8c52de3a1.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-c53f99154bf815c4.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-f1bb04f5989dcb98.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-739908a2e215dd88.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-1cc5fcd37568ebc4.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-3f4289353c600297.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-07bfb3bcb2a51da0.rlib" "-l" "pcap" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lpcap
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `carp`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/examples/basic-797ac879399b53f3.0.o" "-o" "/target/debug/examples/basic-797ac879399b53f3" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/target/debug/build/rust-crypto-1726770e89591a2e/out" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libcarp-451aec66358be611.rlib" "/target/debug/deps/libnix-2d1be38b2b345d12.rlib" "/target/debug/deps/libpcap-9ba37a1b730973d2.rlib" "/target/debug/deps/libenv_logger-25d6e02029b27322.rlib" "/target/debug/deps/liblog-d4c0e5c2504fbbea.rlib" "/target/debug/deps/libgetopts-3facdbd0235704b0.rlib" "/target/debug/deps/libbitflags-6c0c42f1f858d67c.rlib" "/target/debug/deps/libcrypto-2d12c53d797abb19.rlib" "/target/debug/deps/libtime-cd5e3a346d1a17b6.rlib" "/target/debug/deps/librustc_serialize-54d2bf33b1d4b0b0.rlib" "/target/debug/deps/librand-c9d9fbdab2355ee4.rlib" "/target/debug/deps/libbyteorder-35109819e11170bf.rlib" "/target/debug/deps/libregex-bf57a839db75dbae.rlib" "/target/debug/deps/libregex_syntax-8b74a2985735b213.rlib" "/target/debug/deps/libaho_corasick-c795bbd3a96f4a35.rlib" "/target/debug/deps/libmemchr-4c3682d5f0e14581.rlib" "/target/debug/deps/libthread_local-a561abce7ea185f1.rlib" "/target/debug/deps/libthread_id-e41c347f28e6505f.rlib" "/target/debug/deps/liblibc-5dc7b85e748840b4.rlib" "/target/debug/deps/libutf8_ranges-142806e76d52d8c6.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-13f36e2630c2d79b.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-3b9d178f1de89528.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-93bb403c9fc56f72.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-a2ef7979b4b3e1d5.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-d22754c8c52de3a1.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-c53f99154bf815c4.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-f1bb04f5989dcb98.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-739908a2e215dd88.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-1cc5fcd37568ebc4.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-3f4289353c600297.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-07bfb3bcb2a51da0.rlib" "-l" "pcap" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lpcap
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f 419258b4d01c933c578ef320dd97431ee6d867a96487b32bcaecfd582fa7da1e`
+blam! 419258b4d01c933c578ef320dd97431ee6d867a96487b32bcaecfd582fa7da1e
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! 0646b8cc0901ec66b4c05793c6a2b2570beb84738540c06f8450f109a440100b
+boom! running `docker start -a 0646b8cc0901ec66b4c05793c6a2b2570beb84738540c06f8450f109a440100b`
+kablam!    Compiling carp v0.1.0 (file:///source)
+kablam! warning: unused `#[macro_use]` import, #[warn(unused_imports)] on by default
+kablam!  --> tests/lib.rs:3:1
+kablam!   |
+kablam! 3 | #[macro_use] extern crate log;
+kablam!   | ^^^^^^^^^^^^
+kablam! 
+kablam! error[E0284]: type annotations required: cannot resolve `<_ as std::str::FromStr>::Err == _`
+kablam!    --> src/ip.rs:350:61
+kablam!     |
+kablam! 350 |         assert_eq!(Ipv4Addr::from(iph.saddr()), "10.0.2.30".parse().unwrap());
+kablam!     |                                                             ^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `carp`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/lib-2d356f49ba19a1d1.0.o" "-o" "/target/debug/deps/lib-2d356f49ba19a1d1" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/target/debug/build/rust-crypto-1726770e89591a2e/out" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libcarp-451aec66358be611.rlib" "/target/debug/deps/libnix-2d1be38b2b345d12.rlib" "/target/debug/deps/libpcap-9ba37a1b730973d2.rlib" "/target/debug/deps/libenv_logger-25d6e02029b27322.rlib" "/target/debug/deps/libregex-bf57a839db75dbae.rlib" "/target/debug/deps/libutf8_ranges-142806e76d52d8c6.rlib" "/target/debug/deps/libthread_local-a561abce7ea185f1.rlib" "/target/debug/deps/liblog-d4c0e5c2504fbbea.rlib" "/target/debug/deps/libregex_syntax-8b74a2985735b213.rlib" "/target/debug/deps/libbitflags-6c0c42f1f858d67c.rlib" "/target/debug/deps/libcrypto-2d12c53d797abb19.rlib" "/target/debug/deps/libtime-cd5e3a346d1a17b6.rlib" "/target/debug/deps/librustc_serialize-54d2bf33b1d4b0b0.rlib" "/target/debug/deps/librand-c9d9fbdab2355ee4.rlib" "/target/debug/deps/libbyteorder-35109819e11170bf.rlib" "/target/debug/deps/libaho_corasick-c795bbd3a96f4a35.rlib" "/target/debug/deps/libmemchr-4c3682d5f0e14581.rlib" "/target/debug/deps/libthread_id-e41c347f28e6505f.rlib" "/target/debug/deps/liblibc-5dc7b85e748840b4.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-2efd40164e9eb949.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-0ed6e2f3d67b4012.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-b979e1c23fc9ba25.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-13f36e2630c2d79b.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-3b9d178f1de89528.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-93bb403c9fc56f72.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-a2ef7979b4b3e1d5.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-d22754c8c52de3a1.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-c53f99154bf815c4.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-f1bb04f5989dcb98.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-739908a2e215dd88.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-1cc5fcd37568ebc4.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-3f4289353c600297.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-07bfb3bcb2a51da0.rlib" "-l" "pcap" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lpcap
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `carp`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/examples/basic-797ac879399b53f3.0.o" "-o" "/target/debug/examples/basic-797ac879399b53f3" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/target/debug/build/rust-crypto-1726770e89591a2e/out" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libcarp-451aec66358be611.rlib" "/target/debug/deps/libnix-2d1be38b2b345d12.rlib" "/target/debug/deps/libpcap-9ba37a1b730973d2.rlib" "/target/debug/deps/libenv_logger-25d6e02029b27322.rlib" "/target/debug/deps/liblog-d4c0e5c2504fbbea.rlib" "/target/debug/deps/libgetopts-3facdbd0235704b0.rlib" "/target/debug/deps/libbitflags-6c0c42f1f858d67c.rlib" "/target/debug/deps/libcrypto-2d12c53d797abb19.rlib" "/target/debug/deps/libtime-cd5e3a346d1a17b6.rlib" "/target/debug/deps/librustc_serialize-54d2bf33b1d4b0b0.rlib" "/target/debug/deps/librand-c9d9fbdab2355ee4.rlib" "/target/debug/deps/libbyteorder-35109819e11170bf.rlib" "/target/debug/deps/libregex-bf57a839db75dbae.rlib" "/target/debug/deps/libregex_syntax-8b74a2985735b213.rlib" "/target/debug/deps/libaho_corasick-c795bbd3a96f4a35.rlib" "/target/debug/deps/libmemchr-4c3682d5f0e14581.rlib" "/target/debug/deps/libthread_local-a561abce7ea185f1.rlib" "/target/debug/deps/libthread_id-e41c347f28e6505f.rlib" "/target/debug/deps/liblibc-5dc7b85e748840b4.rlib" "/target/debug/deps/libutf8_ranges-142806e76d52d8c6.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-13f36e2630c2d79b.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-3b9d178f1de89528.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-93bb403c9fc56f72.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-a2ef7979b4b3e1d5.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-d22754c8c52de3a1.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-c53f99154bf815c4.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-f1bb04f5989dcb98.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-739908a2e215dd88.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-1cc5fcd37568ebc4.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-3f4289353c600297.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-07bfb3bcb2a51da0.rlib" "-l" "pcap" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lpcap
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f 0646b8cc0901ec66b4c05793c6a2b2570beb84738540c06f8450f109a440100b`
+blam! 0646b8cc0901ec66b4c05793c6a2b2570beb84738540c06f8450f109a440100b

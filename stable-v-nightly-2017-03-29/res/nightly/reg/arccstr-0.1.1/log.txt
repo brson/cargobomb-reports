@@ -1,0 +1,23 @@
+boom! testing arccstr-0.1.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! efcf5e185962b6118108663f80d3272aae7f5c4d858e59249474b04721a83f5c
+boom! running `docker start -a efcf5e185962b6118108663f80d3272aae7f5c4d858e59249474b04721a83f5c`
+kablam!    Compiling arccstr v0.1.1 (file:///source)
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:244:26
+kablam!     |
+kablam! 244 |         heap::deallocate(self.ptr.offset(0),
+kablam!     |                          ^^^^^^^^^^^^^^^^^^ types differ in mutability
+kablam!     |
+kablam!     = note: expected type `*mut u8`
+kablam!                found type `*const u8`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `arccstr`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f efcf5e185962b6118108663f80d3272aae7f5c4d858e59249474b04721a83f5c`
+blam! efcf5e185962b6118108663f80d3272aae7f5c4d858e59249474b04721a83f5c

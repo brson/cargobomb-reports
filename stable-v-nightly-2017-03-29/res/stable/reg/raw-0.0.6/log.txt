@@ -1,0 +1,50 @@
+boom! testing raw-0.0.6 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! fc14a3d8f783693ebe38b1159320e07cbcdeacd2fa6abe407ed1b6ffc8125412
+boom! running `docker start -a fc14a3d8f783693ebe38b1159320e07cbcdeacd2fa6abe407ed1b6ffc8125412`
+kablam!    Compiling raw v0.0.6 (file:///source)
+kablam! error[E0432]: unresolved import `std::raw::Slice`
+kablam!   --> src/rawptr.rs:13:5
+kablam!    |
+kablam! 13 | use std::raw::Slice;
+kablam!    |     ^^^^^^^^^^^^^^^ no `Slice` in `raw`
+kablam! 
+kablam! error[E0432]: unresolved import `std::rt::heap`
+kablam!  --> src/alloc/plain.rs:1:21
+kablam!   |
+kablam! 1 | use std::rt::heap::{self, usable_size, EMPTY};
+kablam!   |                     ^^^^ no `heap` in `rt`
+kablam! 
+kablam! error[E0432]: unresolved import `std::rt::heap::usable_size`
+kablam!  --> src/alloc/plain.rs:1:27
+kablam!   |
+kablam! 1 | use std::rt::heap::{self, usable_size, EMPTY};
+kablam!   |                           ^^^^^^^^^^^ Could not find `heap` in `rt`
+kablam! 
+kablam! error[E0432]: unresolved import `std::rt::heap::EMPTY`
+kablam!  --> src/alloc/plain.rs:1:40
+kablam!   |
+kablam! 1 | use std::rt::heap::{self, usable_size, EMPTY};
+kablam!   |                                        ^^^^^ Could not find `heap` in `rt`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!   --> src/lib.rs:11:1
+kablam!    |
+kablam! 11 | #![feature(core)]
+kablam!    | ^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!   --> src/lib.rs:12:1
+kablam!    |
+kablam! 12 | #![feature(alloc)]
+kablam!    | ^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `raw`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f fc14a3d8f783693ebe38b1159320e07cbcdeacd2fa6abe407ed1b6ffc8125412`
+blam! fc14a3d8f783693ebe38b1159320e07cbcdeacd2fa6abe407ed1b6ffc8125412

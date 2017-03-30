@@ -1,0 +1,21 @@
+boom! testing futures-cpupool-0.1.3 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 6f6b82eef24f8e400a6e42e7d427235cde4266e3c276a73054d12d7e133d8911
+boom! running `docker start -a 6f6b82eef24f8e400a6e42e7d427235cde4266e3c276a73054d12d7e133d8911`
+kablam!    Compiling futures v0.1.11
+kablam!    Compiling futures-cpupool v0.1.3 (file:///source)
+kablam! error: no method named `complete` found for type `futures::sync::oneshot::Sender<std::result::Result<<F as futures::Future>::Item, <F as futures::Future>::Error>>` in the current scope
+kablam!    --> src/lib.rs:286:33
+kablam!     |
+kablam! 286 |         self.tx.take().unwrap().complete(res);
+kablam!     |                                 ^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `futures-cpupool`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 6f6b82eef24f8e400a6e42e7d427235cde4266e3c276a73054d12d7e133d8911`
+blam! 6f6b82eef24f8e400a6e42e7d427235cde4266e3c276a73054d12d7e133d8911

@@ -1,0 +1,34 @@
+boom! testing colerr-1.0.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 394d5561aa970d5769682c08f30e757b20550f38f34ac711d8b9512124611a70
+boom! running `docker start -a 394d5561aa970d5769682c08f30e757b20550f38f34ac711d8b9512124611a70`
+kablam!    Compiling context v1.0.0
+kablam!    Compiling spin v0.4.5
+kablam!    Compiling owning_ref v0.1.4
+kablam! error[E0207]: the lifetime parameter `'a` is not constrained by the impl trait, self type, or predicates
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/owning_ref-0.1.4/src/lib.rs:445:13
+kablam!     |
+kablam! 445 | unsafe impl<'a, T: 'a> IntoErased for Box<T> {
+kablam!     |             ^^ unconstrained lifetime parameter
+kablam! 
+kablam! error[E0207]: the lifetime parameter `'a` is not constrained by the impl trait, self type, or predicates
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/owning_ref-0.1.4/src/lib.rs:449:13
+kablam!     |
+kablam! 449 | unsafe impl<'a, T: 'a> IntoErased for Rc<T> {
+kablam!     |             ^^ unconstrained lifetime parameter
+kablam! 
+kablam! error[E0207]: the lifetime parameter `'a` is not constrained by the impl trait, self type, or predicates
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/owning_ref-0.1.4/src/lib.rs:453:13
+kablam!     |
+kablam! 453 | unsafe impl<'a, T: 'a> IntoErased for Arc<T> {
+kablam!     |             ^^ unconstrained lifetime parameter
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `owning_ref`.
+kablam! error: build failed
+boom! running `docker rm -f 394d5561aa970d5769682c08f30e757b20550f38f34ac711d8b9512124611a70`
+blam! 394d5561aa970d5769682c08f30e757b20550f38f34ac711d8b9512124611a70

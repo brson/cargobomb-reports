@@ -1,0 +1,38 @@
+boom! testing catt-core-0.1.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! bc3b23fca928c806aed613670d391464fc7527405d13844e81a31af9b2b62f1c
+boom! running `docker start -a bc3b23fca928c806aed613670d391464fc7527405d13844e81a31af9b2b62f1c`
+kablam!    Compiling catt-core v0.1.0 (file:///source)
+kablam! error[E0432]: unresolved import `tokio_core::channel::Receiver`
+kablam!  --> src/bus.rs:2:5
+kablam!   |
+kablam! 2 | use tokio_core::channel::Receiver;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `channel` in `tokio_core`
+kablam! 
+kablam! error[E0432]: unresolved import `tokio_core::channel::Receiver`
+kablam!  --> src/binding.rs:2:5
+kablam!   |
+kablam! 2 | use tokio_core::channel::Receiver;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `channel` in `tokio_core`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/lib.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(conservative_impl_trait)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/lib.rs:2:1
+kablam!   |
+kablam! 2 | #![feature(question_mark)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `catt-core`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f bc3b23fca928c806aed613670d391464fc7527405d13844e81a31af9b2b62f1c`
+blam! bc3b23fca928c806aed613670d391464fc7527405d13844e81a31af9b2b62f1c

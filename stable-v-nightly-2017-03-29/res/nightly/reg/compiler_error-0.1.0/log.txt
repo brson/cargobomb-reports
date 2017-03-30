@@ -1,0 +1,23 @@
+boom! testing compiler_error-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 84746469f452d61afd87d9f7fd61493b9a0ded3f92de7f60392961f78f70732c
+boom! running `docker start -a 84746469f452d61afd87d9f7fd61493b9a0ded3f92de7f60392961f78f70732c`
+kablam!    Compiling compiler_error v0.1.0 (file:///source)
+kablam! error[E0308]: mismatched types
+kablam!   --> src/lib.rs:26:29
+kablam!    |
+kablam! 26 |     let text = tt_to_string(&args[0]);
+kablam!    |                             ^^^^^^^^ expected enum `syntax::tokenstream::TokenTree`, found reference
+kablam!    |
+kablam!    = note: expected type `syntax::tokenstream::TokenTree`
+kablam!               found type `&syntax::tokenstream::TokenTree`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `compiler_error`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 84746469f452d61afd87d9f7fd61493b9a0ded3f92de7f60392961f78f70732c`
+blam! 84746469f452d61afd87d9f7fd61493b9a0ded3f92de7f60392961f78f70732c

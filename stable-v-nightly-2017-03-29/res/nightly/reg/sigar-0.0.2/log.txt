@@ -1,0 +1,30 @@
+boom! testing sigar-0.0.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! b28c48742ae7c277c3f5a532671f8730691afb4576025922e9292ff18e817b3e
+boom! running `docker start -a b28c48742ae7c277c3f5a532671f8730691afb4576025922e9292ff18e817b3e`
+kablam!    Compiling sigar v0.0.2 (file:///source)
+kablam! warning: use of deprecated item: renamed to join
+kablam!   --> build.rs:38:31
+kablam!    |
+kablam! 38 |             .arg(&config_opts.connect(" "))
+kablam!    |                               ^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! error: failed to run custom build command for `sigar v0.0.2 (file:///source)`
+kablam! process didn't exit successfully: `/target/debug/build/sigar-af91744699fb19c9/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! running: "sh" "-c" "/source/sigar/autogen.sh"
+kablam! /source/sigar/autogen.sh: running `libtoolize --copy --force' 
+kablam! libtoolize: putting auxiliary files in `.'.
+kablam! 
+kablam! --- stderr
+kablam! libtoolize: can not copy `/usr/share/libtool/config/ltmain.sh' to `./'
+kablam! libtoolize: Failed to create `m4'
+kablam! thread 'main' panicked at 'assertion failed: cmd.stdout(Stdio::inherit()).stderr(Stdio::inherit()).status().unwrap().success()', build.rs:63
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f b28c48742ae7c277c3f5a532671f8730691afb4576025922e9292ff18e817b3e`
+blam! b28c48742ae7c277c3f5a532671f8730691afb4576025922e9292ff18e817b3e

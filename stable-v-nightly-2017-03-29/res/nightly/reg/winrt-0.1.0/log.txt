@@ -1,0 +1,420 @@
+boom! testing winrt-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! fe34ca2b83c8a32386b1b7b86681ba561c0e70737b4c581a31b9b7b868ee041a
+boom! running `docker start -a fe34ca2b83c8a32386b1b7b86681ba561c0e70737b4c581a31b9b7b868ee041a`
+kablam!    Compiling winrt v0.1.0 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 2.53 secs
+boom! running `docker rm -f fe34ca2b83c8a32386b1b7b86681ba561c0e70737b4c581a31b9b7b868ee041a`
+blam! fe34ca2b83c8a32386b1b7b86681ba561c0e70737b4c581a31b9b7b868ee041a
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! f01bec0eab80e4356b1705bf93c03945114353183688922ac5db723f4bab4262
+boom! running `docker start -a f01bec0eab80e4356b1705bf93c03945114353183688922ac5db723f4bab4262`
+kablam!    Compiling winrt v0.1.0 (file:///source)
+kablam! error[E0432]: unresolved import `wrt::windows::foundation::*`
+kablam!  --> examples/test.rs:9:5
+kablam!   |
+kablam! 9 | use wrt::windows::foundation::*;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `windows` in `wrt`
+kablam! 
+kablam! error[E0432]: unresolved import `wrt::windows::devices::enumeration::*`
+kablam!   --> examples/test.rs:10:5
+kablam!    |
+kablam! 10 | use wrt::windows::devices::enumeration::*;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `windows` in `wrt`
+kablam! 
+kablam! error[E0432]: unresolved import `wrt::windows::devices::midi::*`
+kablam!   --> examples/test.rs:11:5
+kablam!    |
+kablam! 11 | use wrt::windows::devices::midi::*;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `windows` in `wrt`
+kablam! 
+kablam! error[E0432]: unresolved import `w::S_OK`
+kablam!   --> examples/test.rs:45:13
+kablam!    |
+kablam! 45 |         use ::w::S_OK;
+kablam!    |             ^^^^^^^^^ no `S_OK` in the root
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `RuntimeContext`
+kablam!   --> examples/test.rs:14:14
+kablam!    |
+kablam! 14 |     let rt = RuntimeContext::init();
+kablam!    |              ^^^^^^^^^^^^^^^^^^^^ Use of undeclared type or module `RuntimeContext`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Uri`
+kablam!   --> examples/test.rs:22:27
+kablam!    |
+kablam! 22 |     let mut uri_factory = Uri::factory();
+kablam!    |                           ^^^^^^^^^^^^ Use of undeclared type or module `Uri`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `FastHString`
+kablam!   --> examples/test.rs:23:16
+kablam!    |
+kablam! 23 |     let base = FastHString::new("https://github.com");
+kablam!    |                ^^^^^^^^^^^^^^^^ Use of undeclared type or module `FastHString`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `FastHString`
+kablam!   --> examples/test.rs:24:20
+kablam!    |
+kablam! 24 |     let relative = FastHString::new("contextfree/winrt-rust");
+kablam!    |                    ^^^^^^^^^^^^^^^^ Use of undeclared type or module `FastHString`
+kablam! 
+kablam! error[E0412]: cannot find type `IStringable` in this scope
+kablam!   --> examples/test.rs:26:52
+kablam!    |
+kablam! 26 |     let to_string = unsafe { uri.query_interface::<IStringable>().unwrap().to_string().unwrap() };
+kablam!    |                                                    ^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `IMidiOutPortStatics`
+kablam!   --> examples/test.rs:35:32
+kablam!    |
+kablam! 35 |     let mut out_port_statics = IMidiOutPortStatics::factory();
+kablam!    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Use of undeclared type or module `IMidiOutPortStatics`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `IDeviceInformationStatics`
+kablam!   --> examples/test.rs:41:42
+kablam!    |
+kablam! 41 |     let mut device_information_statics = IDeviceInformationStatics::factory();
+kablam!    |                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Use of undeclared type or module `IDeviceInformationStatics`
+kablam! 
+kablam! error[E0412]: cannot find type `FastHString` in this scope
+kablam!   --> examples/test.rs:48:35
+kablam!    |
+kablam! 48 |         let wrong_deviceselector: FastHString = "Foobar".into();
+kablam!    |                                   ^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `GetRestrictedErrorInfo` in this scope
+kablam!   --> examples/test.rs:54:28
+kablam!    |
+kablam! 54 |                 assert_eq!(GetRestrictedErrorInfo(&mut res), S_OK);
+kablam!    |                            ^^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `ComPtr`
+kablam!   --> examples/test.rs:55:17
+kablam!    |
+kablam! 55 |                 ComPtr::wrap(res)
+kablam!    |                 ^^^^^^^^^^^^ Use of undeclared type or module `ComPtr`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `BStr`
+kablam!   --> examples/test.rs:63:18
+kablam!    |
+kablam! 63 |                 (BStr::wrap(description), error, BStr::wrap(restricted_description), BStr::wrap(capability_sid))
+kablam!    |                  ^^^^^^^^^^ Use of undeclared type or module `BStr`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `BStr`
+kablam!   --> examples/test.rs:63:50
+kablam!    |
+kablam! 63 |                 (BStr::wrap(description), error, BStr::wrap(restricted_description), BStr::wrap(capability_sid))
+kablam!    |                                                  ^^^^^^^^^^ Use of undeclared type or module `BStr`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `BStr`
+kablam!   --> examples/test.rs:63:86
+kablam!    |
+kablam! 63 |                 (BStr::wrap(description), error, BStr::wrap(restricted_description), BStr::wrap(capability_sid))
+kablam!    |                                                                                      ^^^^^^^^^^ Use of undeclared type or module `BStr`
+kablam! 
+kablam! error[E0412]: cannot find type `IAsyncInfo` in this scope
+kablam!   --> examples/test.rs:76:46
+kablam!    |
+kablam! 76 |     let mut asi = async_op.query_interface::<IAsyncInfo>().unwrap();
+kablam!    |                                              ^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `IUnknown` in this scope
+kablam!   --> examples/test.rs:79:46
+kablam!    |
+kablam! 79 |     let unknown = async_op.query_interface::<IUnknown>().unwrap();
+kablam!    |                                              ^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `IUnknown` in this scope
+kablam!   --> examples/test.rs:82:41
+kablam!    |
+kablam! 82 |     let unknown = asi.query_interface::<IUnknown>().unwrap();
+kablam!    |                                         ^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `AsyncOperationCompletedHandler`
+kablam!   --> examples/test.rs:94:30
+kablam!    |
+kablam! 94 |         let mut my_handler = AsyncOperationCompletedHandler::new(move |_op, status| {
+kablam!    |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Use of undeclared type or module `AsyncOperationCompletedHandler`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `IPropertyValueStatics`
+kablam!    --> examples/test.rs:154:32
+kablam!     |
+kablam! 154 |     let boxed_array = unsafe { IPropertyValueStatics::factory().create_boolean_array(array) };
+kablam!     |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Use of undeclared type or module `IPropertyValueStatics`
+kablam! 
+kablam! error[E0412]: cannot find type `IPropertyValue` in this scope
+kablam!    --> examples/test.rs:155:66
+kablam!     |
+kablam! 155 |     let mut boxed_array = boxed_array.unwrap().query_interface::<IPropertyValue>().unwrap();
+kablam!     |                                                                  ^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `PropertyType_BooleanArray` in this scope
+kablam!    --> examples/test.rs:156:60
+kablam!     |
+kablam! 156 |     assert_eq!(unsafe { boxed_array.get_type().unwrap() }, PropertyType_BooleanArray);
+kablam!     |                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `IReferenceArray` in this scope
+kablam!    --> examples/test.rs:157:57
+kablam!     |
+kablam! 157 |     let mut boxed_array = boxed_array.query_interface::<IReferenceArray<bool>>().unwrap();
+kablam!     |                                                         ^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `FastHString`
+kablam!    --> examples/test.rs:162:16
+kablam!     |
+kablam! 162 |     let str1 = FastHString::new("foo");
+kablam!     |                ^^^^^^^^^^^^^^^^ Use of undeclared type or module `FastHString`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `FastHString`
+kablam!    --> examples/test.rs:163:16
+kablam!     |
+kablam! 163 |     let str2 = FastHString::new("bar");
+kablam!     |                ^^^^^^^^^^^^^^^^ Use of undeclared type or module `FastHString`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `IPropertyValueStatics`
+kablam!    --> examples/test.rs:165:32
+kablam!     |
+kablam! 165 |     let boxed_array = unsafe { IPropertyValueStatics::factory().create_string_array(array) };
+kablam!     |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Use of undeclared type or module `IPropertyValueStatics`
+kablam! 
+kablam! error[E0412]: cannot find type `IPropertyValue` in this scope
+kablam!    --> examples/test.rs:166:66
+kablam!     |
+kablam! 166 |     let mut boxed_array = boxed_array.unwrap().query_interface::<IPropertyValue>().unwrap();
+kablam!     |                                                                  ^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `PropertyType_StringArray` in this scope
+kablam!    --> examples/test.rs:167:60
+kablam!     |
+kablam! 167 |     assert_eq!(unsafe { boxed_array.get_type().unwrap() }, PropertyType_StringArray);
+kablam!     |                                                            ^^^^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `IReferenceArray` in this scope
+kablam!    --> examples/test.rs:168:57
+kablam!     |
+kablam! 168 |     let mut boxed_array = boxed_array.query_interface::<IReferenceArray<HString>>().unwrap();
+kablam!     |                                                         ^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `HString` in this scope
+kablam!    --> examples/test.rs:168:73
+kablam!     |
+kablam! 168 |     let mut boxed_array = boxed_array.query_interface::<IReferenceArray<HString>>().unwrap();
+kablam!     |                                                                         ^^^^^^^ did you mean `String`?
+kablam! 
+kablam! error: aborting due to 32 previous errors
+kablam! 
+kablam! error: Could not compile `winrt`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f f01bec0eab80e4356b1705bf93c03945114353183688922ac5db723f4bab4262`
+blam! f01bec0eab80e4356b1705bf93c03945114353183688922ac5db723f4bab4262
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 3ea8632911395d14ad117308daf37c5fe105a1b1a45a0562177e1ae75ada6708
+boom! running `docker start -a 3ea8632911395d14ad117308daf37c5fe105a1b1a45a0562177e1ae75ada6708`
+kablam!    Compiling winrt v0.1.0 (file:///source)
+kablam! error[E0432]: unresolved import `wrt::windows::foundation::*`
+kablam!  --> examples/test.rs:9:5
+kablam!   |
+kablam! 9 | use wrt::windows::foundation::*;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `windows` in `wrt`
+kablam! 
+kablam! error[E0432]: unresolved import `wrt::windows::devices::enumeration::*`
+kablam!   --> examples/test.rs:10:5
+kablam!    |
+kablam! 10 | use wrt::windows::devices::enumeration::*;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `windows` in `wrt`
+kablam! 
+kablam! error[E0432]: unresolved import `wrt::windows::devices::midi::*`
+kablam!   --> examples/test.rs:11:5
+kablam!    |
+kablam! 11 | use wrt::windows::devices::midi::*;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `windows` in `wrt`
+kablam! 
+kablam! error[E0432]: unresolved import `w::S_OK`
+kablam!   --> examples/test.rs:45:13
+kablam!    |
+kablam! 45 |         use ::w::S_OK;
+kablam!    |             ^^^^^^^^^ no `S_OK` in the root
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `RuntimeContext`
+kablam!   --> examples/test.rs:14:14
+kablam!    |
+kablam! 14 |     let rt = RuntimeContext::init();
+kablam!    |              ^^^^^^^^^^^^^^^^^^^^ Use of undeclared type or module `RuntimeContext`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Uri`
+kablam!   --> examples/test.rs:22:27
+kablam!    |
+kablam! 22 |     let mut uri_factory = Uri::factory();
+kablam!    |                           ^^^^^^^^^^^^ Use of undeclared type or module `Uri`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `FastHString`
+kablam!   --> examples/test.rs:23:16
+kablam!    |
+kablam! 23 |     let base = FastHString::new("https://github.com");
+kablam!    |                ^^^^^^^^^^^^^^^^ Use of undeclared type or module `FastHString`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `FastHString`
+kablam!   --> examples/test.rs:24:20
+kablam!    |
+kablam! 24 |     let relative = FastHString::new("contextfree/winrt-rust");
+kablam!    |                    ^^^^^^^^^^^^^^^^ Use of undeclared type or module `FastHString`
+kablam! 
+kablam! error[E0412]: cannot find type `IStringable` in this scope
+kablam!   --> examples/test.rs:26:52
+kablam!    |
+kablam! 26 |     let to_string = unsafe { uri.query_interface::<IStringable>().unwrap().to_string().unwrap() };
+kablam!    |                                                    ^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `IMidiOutPortStatics`
+kablam!   --> examples/test.rs:35:32
+kablam!    |
+kablam! 35 |     let mut out_port_statics = IMidiOutPortStatics::factory();
+kablam!    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Use of undeclared type or module `IMidiOutPortStatics`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `IDeviceInformationStatics`
+kablam!   --> examples/test.rs:41:42
+kablam!    |
+kablam! 41 |     let mut device_information_statics = IDeviceInformationStatics::factory();
+kablam!    |                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Use of undeclared type or module `IDeviceInformationStatics`
+kablam! 
+kablam! error[E0412]: cannot find type `FastHString` in this scope
+kablam!   --> examples/test.rs:48:35
+kablam!    |
+kablam! 48 |         let wrong_deviceselector: FastHString = "Foobar".into();
+kablam!    |                                   ^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find function `GetRestrictedErrorInfo` in this scope
+kablam!   --> examples/test.rs:54:28
+kablam!    |
+kablam! 54 |                 assert_eq!(GetRestrictedErrorInfo(&mut res), S_OK);
+kablam!    |                            ^^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `ComPtr`
+kablam!   --> examples/test.rs:55:17
+kablam!    |
+kablam! 55 |                 ComPtr::wrap(res)
+kablam!    |                 ^^^^^^^^^^^^ Use of undeclared type or module `ComPtr`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `BStr`
+kablam!   --> examples/test.rs:63:18
+kablam!    |
+kablam! 63 |                 (BStr::wrap(description), error, BStr::wrap(restricted_description), BStr::wrap(capability_sid))
+kablam!    |                  ^^^^^^^^^^ Use of undeclared type or module `BStr`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `BStr`
+kablam!   --> examples/test.rs:63:50
+kablam!    |
+kablam! 63 |                 (BStr::wrap(description), error, BStr::wrap(restricted_description), BStr::wrap(capability_sid))
+kablam!    |                                                  ^^^^^^^^^^ Use of undeclared type or module `BStr`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `BStr`
+kablam!   --> examples/test.rs:63:86
+kablam!    |
+kablam! 63 |                 (BStr::wrap(description), error, BStr::wrap(restricted_description), BStr::wrap(capability_sid))
+kablam!    |                                                                                      ^^^^^^^^^^ Use of undeclared type or module `BStr`
+kablam! 
+kablam! error[E0412]: cannot find type `IAsyncInfo` in this scope
+kablam!   --> examples/test.rs:76:46
+kablam!    |
+kablam! 76 |     let mut asi = async_op.query_interface::<IAsyncInfo>().unwrap();
+kablam!    |                                              ^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `IUnknown` in this scope
+kablam!   --> examples/test.rs:79:46
+kablam!    |
+kablam! 79 |     let unknown = async_op.query_interface::<IUnknown>().unwrap();
+kablam!    |                                              ^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `IUnknown` in this scope
+kablam!   --> examples/test.rs:82:41
+kablam!    |
+kablam! 82 |     let unknown = asi.query_interface::<IUnknown>().unwrap();
+kablam!    |                                         ^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `AsyncOperationCompletedHandler`
+kablam!   --> examples/test.rs:94:30
+kablam!    |
+kablam! 94 |         let mut my_handler = AsyncOperationCompletedHandler::new(move |_op, status| {
+kablam!    |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Use of undeclared type or module `AsyncOperationCompletedHandler`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `IPropertyValueStatics`
+kablam!    --> examples/test.rs:154:32
+kablam!     |
+kablam! 154 |     let boxed_array = unsafe { IPropertyValueStatics::factory().create_boolean_array(array) };
+kablam!     |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Use of undeclared type or module `IPropertyValueStatics`
+kablam! 
+kablam! error[E0412]: cannot find type `IPropertyValue` in this scope
+kablam!    --> examples/test.rs:155:66
+kablam!     |
+kablam! 155 |     let mut boxed_array = boxed_array.unwrap().query_interface::<IPropertyValue>().unwrap();
+kablam!     |                                                                  ^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `PropertyType_BooleanArray` in this scope
+kablam!    --> examples/test.rs:156:60
+kablam!     |
+kablam! 156 |     assert_eq!(unsafe { boxed_array.get_type().unwrap() }, PropertyType_BooleanArray);
+kablam!     |                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `IReferenceArray` in this scope
+kablam!    --> examples/test.rs:157:57
+kablam!     |
+kablam! 157 |     let mut boxed_array = boxed_array.query_interface::<IReferenceArray<bool>>().unwrap();
+kablam!     |                                                         ^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `FastHString`
+kablam!    --> examples/test.rs:162:16
+kablam!     |
+kablam! 162 |     let str1 = FastHString::new("foo");
+kablam!     |                ^^^^^^^^^^^^^^^^ Use of undeclared type or module `FastHString`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `FastHString`
+kablam!    --> examples/test.rs:163:16
+kablam!     |
+kablam! 163 |     let str2 = FastHString::new("bar");
+kablam!     |                ^^^^^^^^^^^^^^^^ Use of undeclared type or module `FastHString`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `IPropertyValueStatics`
+kablam!    --> examples/test.rs:165:32
+kablam!     |
+kablam! 165 |     let boxed_array = unsafe { IPropertyValueStatics::factory().create_string_array(array) };
+kablam!     |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Use of undeclared type or module `IPropertyValueStatics`
+kablam! 
+kablam! error[E0412]: cannot find type `IPropertyValue` in this scope
+kablam!    --> examples/test.rs:166:66
+kablam!     |
+kablam! 166 |     let mut boxed_array = boxed_array.unwrap().query_interface::<IPropertyValue>().unwrap();
+kablam!     |                                                                  ^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `PropertyType_StringArray` in this scope
+kablam!    --> examples/test.rs:167:60
+kablam!     |
+kablam! 167 |     assert_eq!(unsafe { boxed_array.get_type().unwrap() }, PropertyType_StringArray);
+kablam!     |                                                            ^^^^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `IReferenceArray` in this scope
+kablam!    --> examples/test.rs:168:57
+kablam!     |
+kablam! 168 |     let mut boxed_array = boxed_array.query_interface::<IReferenceArray<HString>>().unwrap();
+kablam!     |                                                         ^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0412]: cannot find type `HString` in this scope
+kablam!    --> examples/test.rs:168:73
+kablam!     |
+kablam! 168 |     let mut boxed_array = boxed_array.query_interface::<IReferenceArray<HString>>().unwrap();
+kablam!     |                                                                         ^^^^^^^ did you mean `String`?
+kablam! 
+kablam! error: aborting due to 32 previous errors
+kablam! 
+kablam! error: Could not compile `winrt`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 3ea8632911395d14ad117308daf37c5fe105a1b1a45a0562177e1ae75ada6708`
+blam! 3ea8632911395d14ad117308daf37c5fe105a1b1a45a0562177e1ae75ada6708

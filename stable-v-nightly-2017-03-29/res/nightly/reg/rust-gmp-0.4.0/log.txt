@@ -1,0 +1,160 @@
+boom! testing rust-gmp-0.4.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 43dd735cd5c2902f432923d748324b039c4df464dbb8f716d79071fbc6df6d54
+boom! running `docker start -a 43dd735cd5c2902f432923d748324b039c4df464dbb8f716d79071fbc6df6d54`
+kablam!    Compiling rust-gmp v0.4.0 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.25 secs
+boom! running `docker rm -f 43dd735cd5c2902f432923d748324b039c4df464dbb8f716d79071fbc6df6d54`
+blam! 43dd735cd5c2902f432923d748324b039c4df464dbb8f716d79071fbc6df6d54
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 2c79fbc6ce7ffc53b9163582a9b3715bb3ddf0b42e501c779e8483bb56205e50
+boom! running `docker start -a 2c79fbc6ce7ffc53b9163582a9b3715bb3ddf0b42e501c779e8483bb56205e50`
+kablam!    Compiling rust-gmp v0.4.0 (file:///source)
+kablam! warning: use of extern static requires unsafe function or block (error E0133)
+kablam!   --> src/test.rs:13:54
+kablam!    |
+kablam! 13 |     assert_eq!(std::mem::size_of::<mp_limb_t>() * 8, __gmp_bits_per_limb as usize);
+kablam!    |                                                      ^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(safe_extern_statics)] on by default
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #36247 <https://github.com/rust-lang/rust/issues/35112>
+kablam! 
+kablam! warning: use of deprecated item: use `std::collections::hash_map::DefaultHasher` instead
+kablam!   --> src/test.rs:22:35
+kablam!    |
+kablam! 22 |     use std::hash::{Hash, Hasher, SipHasher};
+kablam!    |                                   ^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: use `std::collections::hash_map::DefaultHasher` instead
+kablam!    --> src/test.rs:455:30
+kablam!     |
+kablam! 455 |             let mut hasher = SipHasher::new();
+kablam!     |                              ^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: use `std::collections::hash_map::DefaultHasher` instead
+kablam!    --> src/test.rs:455:30
+kablam!     |
+kablam! 455 |             let mut hasher = SipHasher::new();
+kablam!     |                              ^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: use `std::collections::hash_map::DefaultHasher` instead
+kablam!    --> src/test.rs:473:30
+kablam!     |
+kablam! 473 |             let mut hasher = SipHasher::new();
+kablam!     |                              ^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: use `std::collections::hash_map::DefaultHasher` instead
+kablam!    --> src/test.rs:473:30
+kablam!     |
+kablam! 473 |             let mut hasher = SipHasher::new();
+kablam!     |                              ^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/gmp-d7ba7b23b3a266d6.0.o" "-o" "/target/debug/deps/gmp-d7ba7b23b3a266d6" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "-l" "gmp" "-l" "gmp" "-l" "gmp" "-l" "gmp" "-l" "gmp" "-l" "gmp" "/target/debug/deps/liblibc-5dc7b85e748840b4.rlib" "/target/debug/deps/libnum_traits-69f4129d46397118.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-6c35a477e7bec8d3.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-fa872424129019f5.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-a80f7c589731de53.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-f4594d3e53dcb114.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-a0157c0ca919c364.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-488b4ab4bd53a138.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-1efbcfd8938372b6.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-532a3dbf317eff86.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-ca07b617414dd0fa.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-492d8ea7fa3384ff.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-88c194c15fdb6521.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-cfbd6648f7db2ee5.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-687e6a964d22cbb4.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-987729be881d4d32.rlib" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lgmp
+kablam!           /usr/bin/ld: cannot find -lgmp
+kablam!           /usr/bin/ld: cannot find -lgmp
+kablam!           /usr/bin/ld: cannot find -lgmp
+kablam!           /usr/bin/ld: cannot find -lgmp
+kablam!           /usr/bin/ld: cannot find -lgmp
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `rust-gmp`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 2c79fbc6ce7ffc53b9163582a9b3715bb3ddf0b42e501c779e8483bb56205e50`
+blam! 2c79fbc6ce7ffc53b9163582a9b3715bb3ddf0b42e501c779e8483bb56205e50
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! c063af09cc8ea446d9148f1b8504d30d23024cacf11c3e6f0930bcb2fa66c826
+boom! running `docker start -a c063af09cc8ea446d9148f1b8504d30d23024cacf11c3e6f0930bcb2fa66c826`
+kablam!    Compiling rust-gmp v0.4.0 (file:///source)
+kablam! warning: use of extern static requires unsafe function or block (error E0133)
+kablam!   --> src/test.rs:13:54
+kablam!    |
+kablam! 13 |     assert_eq!(std::mem::size_of::<mp_limb_t>() * 8, __gmp_bits_per_limb as usize);
+kablam!    |                                                      ^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(safe_extern_statics)] on by default
+kablam!    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!    = note: for more information, see issue #36247 <https://github.com/rust-lang/rust/issues/35112>
+kablam! 
+kablam! warning: use of deprecated item: use `std::collections::hash_map::DefaultHasher` instead
+kablam!   --> src/test.rs:22:35
+kablam!    |
+kablam! 22 |     use std::hash::{Hash, Hasher, SipHasher};
+kablam!    |                                   ^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: use `std::collections::hash_map::DefaultHasher` instead
+kablam!    --> src/test.rs:455:30
+kablam!     |
+kablam! 455 |             let mut hasher = SipHasher::new();
+kablam!     |                              ^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: use `std::collections::hash_map::DefaultHasher` instead
+kablam!    --> src/test.rs:455:30
+kablam!     |
+kablam! 455 |             let mut hasher = SipHasher::new();
+kablam!     |                              ^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: use `std::collections::hash_map::DefaultHasher` instead
+kablam!    --> src/test.rs:473:30
+kablam!     |
+kablam! 473 |             let mut hasher = SipHasher::new();
+kablam!     |                              ^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: use `std::collections::hash_map::DefaultHasher` instead
+kablam!    --> src/test.rs:473:30
+kablam!     |
+kablam! 473 |             let mut hasher = SipHasher::new();
+kablam!     |                              ^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/gmp-d7ba7b23b3a266d6.0.o" "-o" "/target/debug/deps/gmp-d7ba7b23b3a266d6" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "-l" "gmp" "-l" "gmp" "-l" "gmp" "-l" "gmp" "-l" "gmp" "-l" "gmp" "/target/debug/deps/liblibc-5dc7b85e748840b4.rlib" "/target/debug/deps/libnum_traits-69f4129d46397118.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-6c35a477e7bec8d3.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-fa872424129019f5.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-a80f7c589731de53.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-f4594d3e53dcb114.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-a0157c0ca919c364.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-488b4ab4bd53a138.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-1efbcfd8938372b6.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-532a3dbf317eff86.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-ca07b617414dd0fa.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-492d8ea7fa3384ff.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-88c194c15fdb6521.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-cfbd6648f7db2ee5.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-687e6a964d22cbb4.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-987729be881d4d32.rlib" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lgmp
+kablam!           /usr/bin/ld: cannot find -lgmp
+kablam!           /usr/bin/ld: cannot find -lgmp
+kablam!           /usr/bin/ld: cannot find -lgmp
+kablam!           /usr/bin/ld: cannot find -lgmp
+kablam!           /usr/bin/ld: cannot find -lgmp
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `rust-gmp`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f c063af09cc8ea446d9148f1b8504d30d23024cacf11c3e6f0930bcb2fa66c826`
+blam! c063af09cc8ea446d9148f1b8504d30d23024cacf11c3e6f0930bcb2fa66c826

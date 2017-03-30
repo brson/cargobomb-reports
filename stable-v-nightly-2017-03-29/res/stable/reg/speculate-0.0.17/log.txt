@@ -1,0 +1,38 @@
+boom! testing speculate-0.0.17 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 2b4057ac6ce5247d59dbb54adc5d9d0e0645adb6c1dae77e9651d1aaad2c7814
+boom! running `docker start -a 2b4057ac6ce5247d59dbb54adc5d9d0e0645adb6c1dae77e9651d1aaad2c7814`
+kablam!    Compiling speculate v0.0.17 (file:///source)
+kablam! error[E0432]: unresolved import `rustc::plugin::Registry`
+kablam!  --> src/lib.rs:6:5
+kablam!   |
+kablam! 6 | use rustc::plugin::Registry;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `plugin` in `rustc`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::ast::TokenTree`
+kablam!  --> src/lib.rs:7:5
+kablam!   |
+kablam! 7 | use syntax::ast::TokenTree;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^ no `TokenTree` in `ast`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/lib.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(rustc_private)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/lib.rs:2:1
+kablam!   |
+kablam! 2 | #![feature(plugin_registrar, quote)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `speculate`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 2b4057ac6ce5247d59dbb54adc5d9d0e0645adb6c1dae77e9651d1aaad2c7814`
+blam! 2b4057ac6ce5247d59dbb54adc5d9d0e0645adb6c1dae77e9651d1aaad2c7814

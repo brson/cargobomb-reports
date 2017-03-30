@@ -1,0 +1,55 @@
+boom! testing steam-crypto-0.1.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 3dd606e51725bc5540d3be9f59144f2b7d7ab643dcf6c4678ed0fe8c8f52fe60
+boom! running `docker start -a 3dd606e51725bc5540d3be9f59144f2b7d7ab643dcf6c4678ed0fe8c8f52fe60`
+kablam!    Compiling pem-parser v0.1.1
+kablam!    Compiling steam-crypto v0.1.1 (file:///source)
+kablam! error[E0432]: unresolved import `self::openssl::crypto::pkey::PKey`
+kablam!  --> src/lib.rs:7:35
+kablam!   |
+kablam! 7 | use self::openssl::crypto::pkey::{PKey, EncryptionPadding};
+kablam!   |                                   ^^^^ Could not find `pkey` in `crypto`
+kablam! 
+kablam! error[E0432]: unresolved import `self::openssl::crypto::pkey::EncryptionPadding`
+kablam!  --> src/lib.rs:7:41
+kablam!   |
+kablam! 7 | use self::openssl::crypto::pkey::{PKey, EncryptionPadding};
+kablam!   |                                         ^^^^^^^^^^^^^^^^^ Could not find `pkey` in `crypto`
+kablam! 
+kablam! error[E0432]: unresolved import `openssl::crypto::symm::Crypter`
+kablam!  --> src/symm/mod.rs:1:29
+kablam!   |
+kablam! 1 | use openssl::crypto::symm::{Crypter, Mode, Type};
+kablam!   |                             ^^^^^^^ Could not find `symm` in `crypto`
+kablam! 
+kablam! error[E0432]: unresolved import `openssl::crypto::symm::Mode`
+kablam!  --> src/symm/mod.rs:1:38
+kablam!   |
+kablam! 1 | use openssl::crypto::symm::{Crypter, Mode, Type};
+kablam!   |                                      ^^^^ Could not find `symm` in `crypto`
+kablam! 
+kablam! error[E0432]: unresolved import `openssl::crypto::symm::Type`
+kablam!  --> src/symm/mod.rs:1:44
+kablam!   |
+kablam! 1 | use openssl::crypto::symm::{Crypter, Mode, Type};
+kablam!   |                                            ^^^^ Could not find `symm` in `crypto`
+kablam! 
+kablam! error: the type of this value must be known in this context
+kablam!   --> src/lib.rs:31:5
+kablam!    |
+kablam! 31 |       pk.encrypt_with_padding(
+kablam!    |  _____^ starting here...
+kablam! 32 | |       &session_key,
+kablam! 33 | |       EncryptionPadding::PKCS1v15
+kablam! 34 | |     )
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `steam-crypto`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 3dd606e51725bc5540d3be9f59144f2b7d7ab643dcf6c4678ed0fe8c8f52fe60`
+blam! 3dd606e51725bc5540d3be9f59144f2b7d7ab643dcf6c4678ed0fe8c8f52fe60

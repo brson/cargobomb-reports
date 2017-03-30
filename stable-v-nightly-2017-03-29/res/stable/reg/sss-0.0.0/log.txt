@@ -1,0 +1,50 @@
+boom! testing sss-0.0.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 998c5d6f8dff4d6aa21cb5ea8221746067b3867c4478b710dcf520e6beb81d07
+boom! running `docker start -a 998c5d6f8dff4d6aa21cb5ea8221746067b3867c4478b710dcf520e6beb81d07`
+kablam!    Compiling sss v0.0.0 (file:///source)
+kablam! error[E0432]: unresolved import `openssl::crypto::hash`
+kablam!   --> src/connection.rs:16:5
+kablam!    |
+kablam! 16 | use openssl::crypto::hash;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^ no `hash` in `crypto`
+kablam! 
+kablam! error[E0432]: unresolved import `openssl::crypto::hmac`
+kablam!   --> src/connection.rs:17:5
+kablam!    |
+kablam! 17 | use openssl::crypto::hmac;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^ no `hmac` in `crypto`
+kablam! 
+kablam! error: no method named `serialize_path` found for type `hyper::Url` in the current scope
+kablam!    --> src/connection.rs:150:42
+kablam!     |
+kablam! 150 |         let canonical_path = request.url.serialize_path().expect("require serializable path");
+kablam!     |                                          ^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/connection.rs:199:13
+kablam!     |
+kablam! 199 |             None => "".to_string(),
+kablam!     |             ^^^^ expected struct `url::form_urlencoded::Parse`, found enum `std::option::Option`
+kablam!     |
+kablam!     = note: expected type `url::form_urlencoded::Parse<'_>`
+kablam!                found type `std::option::Option<_>`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/connection.rs:200:13
+kablam!     |
+kablam! 200 |             Some(vec) => vec.iter()
+kablam!     |             ^^^^^^^^^ expected struct `url::form_urlencoded::Parse`, found enum `std::option::Option`
+kablam!     |
+kablam!     = note: expected type `url::form_urlencoded::Parse<'_>`
+kablam!                found type `std::option::Option<_>`
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `sss`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 998c5d6f8dff4d6aa21cb5ea8221746067b3867c4478b710dcf520e6beb81d07`
+blam! 998c5d6f8dff4d6aa21cb5ea8221746067b3867c4478b710dcf520e6beb81d07

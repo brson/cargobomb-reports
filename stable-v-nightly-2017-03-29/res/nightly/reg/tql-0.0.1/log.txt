@@ -1,0 +1,289 @@
+boom! testing tql-0.0.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! f4ab46ee73be6577da64bc65397d3a23edef7ccb7c7b2736b23a1e1744297b35
+boom! running `docker start -a f4ab46ee73be6577da64bc65397d3a23edef7ccb7c7b2736b23a1e1744297b35`
+kablam!    Compiling phf_generator v0.7.21
+kablam!    Compiling chrono v0.2.25
+kablam!    Compiling phf_codegen v0.7.21
+kablam!    Compiling postgres v0.10.2
+kablam!    Compiling tql v0.0.1 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 13.95 secs
+boom! running `docker rm -f f4ab46ee73be6577da64bc65397d3a23edef7ccb7c7b2736b23a1e1744297b35`
+blam! f4ab46ee73be6577da64bc65397d3a23edef7ccb7c7b2736b23a1e1744297b35
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 227c7f8693766c1e1dedb951caa2506f87d5c22fec762a76a508d9f862632476
+boom! running `docker start -a 227c7f8693766c1e1dedb951caa2506f87d5c22fec762a76a508d9f862632476`
+kablam! warning: parsed version requirement `0.2*` is no longer valid
+kablam! 
+kablam! Previous versions of Cargo accepted this malformed requirement,
+kablam! but it is being deprecated. This was found when parsing the manifest
+kablam! of iron 0.2.6, and the correct version requirement is `0.2.*`.
+kablam! 
+kablam! This will soon become a hard error, so it's either recommended to
+kablam! update to a fixed version or contact the upstream maintainer about
+kablam! this warning.
+kablam! 
+kablam!    Compiling compiletest_rs v0.0.11
+kablam!    Compiling clippy v0.0.33
+kablam!    Compiling r2d2_postgres v0.9.3
+kablam!    Compiling handlebars-iron v0.9.1
+kablam! error[E0463]: can't find crate for `rustc_front`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/clippy-0.0.33/src/lib.rs:15:1
+kablam!    |
+kablam! 15 | extern crate rustc_front;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^ can't find crate
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `clippy`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error[E0432]: unresolved import `std::dynamic_lib::DynamicLibrary`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/procsrv.rs:16:5
+kablam!    |
+kablam! 16 | use std::dynamic_lib::DynamicLibrary;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `dynamic_lib` in `std`
+kablam! 
+kablam! error[E0063]: missing fields `filter_exact`, `list`, `quiet` and 2 other fields in initializer of `test::TestOpts`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/compiletest.rs:122:5
+kablam!     |
+kablam! 122 |     test::TestOpts {
+kablam!     |     ^^^^^^^^^^^^^^ missing `filter_exact`, `list`, `quiet` and 2 other fields
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@/cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/compiletest.rs:201:30: 203:6 config:_, testfile:_]` implements the trait `std::ops::FnOnce<()>`, but the trait `std::ops::FnOnce<((),)>` is required (expected tuple, found ())
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/compiletest.rs:201:21
+kablam!     |
+kablam! 201 |       test::DynTestFn(Box::new(move || {
+kablam!     |  _____________________^ starting here...
+kablam! 202 | |         runtest::run(config, &testfile)
+kablam! 203 | |     }))
+kablam!     | |______^ ...ending here
+kablam!     |
+kablam!     = note: required because of the requirements on the impl of `test::FnBox<()>` for `[closure@/cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/compiletest.rs:201:30: 203:6 config:_, testfile:_]`
+kablam!     = note: required for the cast to the object type `test::FnBox<()>`
+kablam! 
+kablam! error: no method named `char_at` found for type `&str` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/compiletest.rs:225:38
+kablam!     |
+kablam! 225 |                 if full_version_line.char_at(pos + 1) != '.' { continue }
+kablam!     |                                      ^^^^^^^
+kablam! 
+kablam! error: no method named `char_at` found for type `&str` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/compiletest.rs:226:39
+kablam!     |
+kablam! 226 |                 if !full_version_line.char_at(pos + 2).is_digit(10) { continue }
+kablam!     |                                       ^^^^^^^
+kablam! 
+kablam! error: no method named `char_at_reverse` found for type `&str` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/compiletest.rs:227:49
+kablam!     |
+kablam! 227 |                 if pos > 0 && full_version_line.char_at_reverse(pos).is_digit(10) {
+kablam!     |                                                 ^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `char_at` found for type `&str` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/compiletest.rs:231:38
+kablam!     |
+kablam! 231 |                    full_version_line.char_at(pos + 3).is_digit(10) {
+kablam!     |                                      ^^^^^^^
+kablam! 
+kablam! error: no method named `char_at` found for type `&str` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/compiletest.rs:265:43
+kablam!     |
+kablam! 265 |                 let l = full_version_line.char_at(pos + 1);
+kablam!     |                                           ^^^^^^^
+kablam! 
+kablam! error: no method named `char_at` found for type `&str` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/compiletest.rs:267:43
+kablam!     |
+kablam! 267 |                 let d = full_version_line.char_at(pos + 2);
+kablam!     |                                           ^^^^^^^
+kablam! 
+kablam! error: no method named `char_at` found for type `&str` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/compiletest.rs:269:43
+kablam!     |
+kablam! 269 |                 let b = full_version_line.char_at(pos + 3);
+kablam!     |                                           ^^^^^^^
+kablam! 
+kablam! error: no method named `char_at` found for type `&str` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/compiletest.rs:271:46
+kablam!     |
+kablam! 271 |                 let dash = full_version_line.char_at(pos + 4);
+kablam!     |                                              ^^^^^^^
+kablam! 
+kablam! error: no method named `char_at` found for type `&str` in the current scope
+kablam!     --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/runtest.rs:1069:23
+kablam!      |
+kablam! 1069 |     let ch = haystack.char_at(*idx);
+kablam!      |                       ^^^^^^^
+kablam! 
+kablam! error: no method named `char_at` found for type `&str` in the current scope
+kablam!     --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/runtest.rs:1080:27
+kablam!      |
+kablam! 1080 |         let ch = haystack.char_at(i);
+kablam!      |                           ^^^^^^^
+kablam! 
+kablam! error: no method named `char_at` found for type `&str` in the current scope
+kablam!     --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/runtest.rs:1100:27
+kablam!      |
+kablam! 1100 |         let ch = haystack.char_at(haystack_i);
+kablam!      |                           ^^^^^^^
+kablam! 
+kablam! error: no method named `char_at` found for type `&str` in the current scope
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/errors.rs:65:37
+kablam!    |
+kablam! 65 |     let (follow, adjusts) = if line.char_at(start + 3) == '|' {
+kablam!    |                                     ^^^^^^^
+kablam! 
+kablam! error: aborting due to 14 previous errors
+kablam! 
+kablam! error: Could not compile `compiletest_rs`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f 227c7f8693766c1e1dedb951caa2506f87d5c22fec762a76a508d9f862632476`
+blam! 227c7f8693766c1e1dedb951caa2506f87d5c22fec762a76a508d9f862632476
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 6e1dd601e092a224eb646915a782c95ec48009da4400183373c4555bf4b8e654
+boom! running `docker start -a 6e1dd601e092a224eb646915a782c95ec48009da4400183373c4555bf4b8e654`
+kablam! warning: parsed version requirement `0.2*` is no longer valid
+kablam! 
+kablam! Previous versions of Cargo accepted this malformed requirement,
+kablam! but it is being deprecated. This was found when parsing the manifest
+kablam! of iron 0.2.6, and the correct version requirement is `0.2.*`.
+kablam! 
+kablam! This will soon become a hard error, so it's either recommended to
+kablam! update to a fixed version or contact the upstream maintainer about
+kablam! this warning.
+kablam! 
+kablam!    Compiling clippy v0.0.33
+kablam!    Compiling compiletest_rs v0.0.11
+kablam!    Compiling urlencoded v0.2.1
+kablam!    Compiling persistent v0.0.8
+kablam! error[E0432]: unresolved import `std::dynamic_lib::DynamicLibrary`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/procsrv.rs:16:5
+kablam!    |
+kablam! 16 | use std::dynamic_lib::DynamicLibrary;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `dynamic_lib` in `std`
+kablam! 
+kablam! error[E0463]: can't find crate for `rustc_front`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/clippy-0.0.33/src/lib.rs:15:1
+kablam!    |
+kablam! 15 | extern crate rustc_front;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^ can't find crate
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `clippy`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error[E0063]: missing fields `filter_exact`, `list`, `quiet` and 2 other fields in initializer of `test::TestOpts`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/compiletest.rs:122:5
+kablam!     |
+kablam! 122 |     test::TestOpts {
+kablam!     |     ^^^^^^^^^^^^^^ missing `filter_exact`, `list`, `quiet` and 2 other fields
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@/cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/compiletest.rs:201:30: 203:6 config:_, testfile:_]` implements the trait `std::ops::FnOnce<()>`, but the trait `std::ops::FnOnce<((),)>` is required (expected tuple, found ())
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/compiletest.rs:201:21
+kablam!     |
+kablam! 201 |       test::DynTestFn(Box::new(move || {
+kablam!     |  _____________________^ starting here...
+kablam! 202 | |         runtest::run(config, &testfile)
+kablam! 203 | |     }))
+kablam!     | |______^ ...ending here
+kablam!     |
+kablam!     = note: required because of the requirements on the impl of `test::FnBox<()>` for `[closure@/cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/compiletest.rs:201:30: 203:6 config:_, testfile:_]`
+kablam!     = note: required for the cast to the object type `test::FnBox<()>`
+kablam! 
+kablam! error: no method named `char_at` found for type `&str` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/compiletest.rs:225:38
+kablam!     |
+kablam! 225 |                 if full_version_line.char_at(pos + 1) != '.' { continue }
+kablam!     |                                      ^^^^^^^
+kablam! 
+kablam! error: no method named `char_at` found for type `&str` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/compiletest.rs:226:39
+kablam!     |
+kablam! 226 |                 if !full_version_line.char_at(pos + 2).is_digit(10) { continue }
+kablam!     |                                       ^^^^^^^
+kablam! 
+kablam! error: no method named `char_at_reverse` found for type `&str` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/compiletest.rs:227:49
+kablam!     |
+kablam! 227 |                 if pos > 0 && full_version_line.char_at_reverse(pos).is_digit(10) {
+kablam!     |                                                 ^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `char_at` found for type `&str` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/compiletest.rs:231:38
+kablam!     |
+kablam! 231 |                    full_version_line.char_at(pos + 3).is_digit(10) {
+kablam!     |                                      ^^^^^^^
+kablam! 
+kablam! error: no method named `char_at` found for type `&str` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/compiletest.rs:265:43
+kablam!     |
+kablam! 265 |                 let l = full_version_line.char_at(pos + 1);
+kablam!     |                                           ^^^^^^^
+kablam! 
+kablam! error: no method named `char_at` found for type `&str` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/compiletest.rs:267:43
+kablam!     |
+kablam! 267 |                 let d = full_version_line.char_at(pos + 2);
+kablam!     |                                           ^^^^^^^
+kablam! 
+kablam! error: no method named `char_at` found for type `&str` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/compiletest.rs:269:43
+kablam!     |
+kablam! 269 |                 let b = full_version_line.char_at(pos + 3);
+kablam!     |                                           ^^^^^^^
+kablam! 
+kablam! error: no method named `char_at` found for type `&str` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/compiletest.rs:271:46
+kablam!     |
+kablam! 271 |                 let dash = full_version_line.char_at(pos + 4);
+kablam!     |                                              ^^^^^^^
+kablam! 
+kablam! error: no method named `char_at` found for type `&str` in the current scope
+kablam!     --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/runtest.rs:1069:23
+kablam!      |
+kablam! 1069 |     let ch = haystack.char_at(*idx);
+kablam!      |                       ^^^^^^^
+kablam! 
+kablam! error: no method named `char_at` found for type `&str` in the current scope
+kablam!     --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/runtest.rs:1080:27
+kablam!      |
+kablam! 1080 |         let ch = haystack.char_at(i);
+kablam!      |                           ^^^^^^^
+kablam! 
+kablam! error: no method named `char_at` found for type `&str` in the current scope
+kablam!     --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/runtest.rs:1100:27
+kablam!      |
+kablam! 1100 |         let ch = haystack.char_at(haystack_i);
+kablam!      |                           ^^^^^^^
+kablam! 
+kablam! error: no method named `char_at` found for type `&str` in the current scope
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/compiletest_rs-0.0.11/src/errors.rs:65:37
+kablam!    |
+kablam! 65 |     let (follow, adjusts) = if line.char_at(start + 3) == '|' {
+kablam!    |                                     ^^^^^^^
+kablam! 
+kablam! error: aborting due to 14 previous errors
+kablam! 
+kablam! error: Could not compile `compiletest_rs`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error[E0277]: the trait bound `bodyparser::Raw: plugin::Plugin<iron::Request<'_, '_>>` is not satisfied
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/urlencoded-0.2.1/src/lib.rs:98:13
+kablam!    |
+kablam! 98 |         req.get::<bodyparser::Raw>()
+kablam!    |             ^^^ the trait `plugin::Plugin<iron::Request<'_, '_>>` is not implemented for `bodyparser::Raw`
+kablam!    |
+kablam!    = help: the following implementations were found:
+kablam!              <bodyparser::Raw as plugin::Plugin<iron::request::Request<'a, 'b>>>
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f 6e1dd601e092a224eb646915a782c95ec48009da4400183373c4555bf4b8e654`
+blam! 6e1dd601e092a224eb646915a782c95ec48009da4400183373c4555bf4b8e654

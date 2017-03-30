@@ -1,0 +1,32 @@
+boom! testing domain-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 0ec7302b6954190e1c843007ea00ae79af6b604046851171adb7156fe75f5115
+boom! running `docker start -a 0ec7302b6954190e1c843007ea00ae79af6b604046851171adb7156fe75f5115`
+kablam!    Compiling domain v0.1.0 (file:///source)
+kablam! error[E0432]: unresolved import `tokio_core::channel::Receiver`
+kablam!   --> src/resolv/request.rs:33:27
+kablam!    |
+kablam! 33 | use tokio_core::channel::{Receiver, Sender};
+kablam!    |                           ^^^^^^^^ Could not find `channel` in `tokio_core`
+kablam! 
+kablam! error[E0432]: unresolved import `tokio_core::channel::Sender`
+kablam!   --> src/resolv/request.rs:33:37
+kablam!    |
+kablam! 33 | use tokio_core::channel::{Receiver, Sender};
+kablam!    |                                     ^^^^^^ Could not find `channel` in `tokio_core`
+kablam! 
+kablam! error[E0432]: unresolved import `tokio_core::channel::channel`
+kablam!   --> src/resolv/service/mod.rs:21:5
+kablam!    |
+kablam! 21 | use tokio_core::channel::channel;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `channel` in `tokio_core`
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `domain`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 0ec7302b6954190e1c843007ea00ae79af6b604046851171adb7156fe75f5115`
+blam! 0ec7302b6954190e1c843007ea00ae79af6b604046851171adb7156fe75f5115

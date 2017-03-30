@@ -1,0 +1,50 @@
+boom! testing bounded-integer-plugin-0.1.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 18d07a2b95d64f3f5898b8d6784fa30b0c0fc5a299a6a652b9e24db5cba31d27
+boom! running `docker start -a 18d07a2b95d64f3f5898b8d6784fa30b0c0fc5a299a6a652b9e24db5cba31d27`
+kablam!    Compiling bounded-integer-plugin v0.1.1 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::ast::TokenTree`
+kablam!   --> src/integer_enum.rs:10:5
+kablam!    |
+kablam! 10 |     TokenTree,
+kablam!    |     ^^^^^^^^^ no `TokenTree` in `ast`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::InternedString`
+kablam!   --> src/integer_enum.rs:18:40
+kablam!    |
+kablam! 18 | use syntax::parse::token::{DelimToken, InternedString, Token};
+kablam!    |                                        ^^^^^^^^^^^^^^ no `InternedString` in `parse::token`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::keywords`
+kablam!   --> src/integer_enum.rs:19:5
+kablam!    |
+kablam! 19 | use syntax::parse::token::keywords;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `keywords` in `parse::token`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::ast::TokenTree`
+kablam!   --> src/lib.rs:56:5
+kablam!    |
+kablam! 56 | use syntax::ast::TokenTree;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^ no `TokenTree` in `ast`
+kablam! 
+kablam! error[E0425]: cannot find value `EMPTY_CTXT` in module `ast`
+kablam!    --> src/integer_enum.rs:195:19
+kablam!     |
+kablam! 195 |             ctxt: ast::EMPTY_CTXT,
+kablam!     |                   ^^^^^^^^^^^^^^^ not found in `ast`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!   --> src/lib.rs:31:1
+kablam!    |
+kablam! 31 | #![feature(plugin_registrar, rustc_private)]
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `bounded-integer-plugin`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 18d07a2b95d64f3f5898b8d6784fa30b0c0fc5a299a6a652b9e24db5cba31d27`
+blam! 18d07a2b95d64f3f5898b8d6784fa30b0c0fc5a299a6a652b9e24db5cba31d27

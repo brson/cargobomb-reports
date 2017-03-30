@@ -1,0 +1,35 @@
+boom! testing nanomsg-0.5.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 78096e124145667d48af3d392979dd5c357eedb4c474bf3f0407cd1145706e6b
+boom! running `docker start -a 78096e124145667d48af3d392979dd5c357eedb4c474bf3f0407cd1145706e6b`
+kablam!    Compiling nanomsg-sys v0.5.0
+kablam!    Compiling nanomsg v0.5.0 (file:///source)
+kablam! error[E0425]: cannot find value `ENOTSUP` in module `nanomsg_sys`
+kablam!   --> src/result.rs:19:47
+kablam!    |
+kablam! 19 |     OperationNotSupported      = nanomsg_sys::ENOTSUP          as isize,
+kablam!    |                                               ^^^^^^^ not found in `nanomsg_sys`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use libc::ENOTSUP;`
+kablam!              `use nanomsg_sys::posix_consts::ENOTSUP;`
+kablam! 
+kablam! error[E0531]: cannot find unit struct/variant or constant `ENOTSUP` in module `nanomsg_sys`
+kablam!   --> src/result.rs:61:26
+kablam!    |
+kablam! 61 |             nanomsg_sys::ENOTSUP         => Error::OperationNotSupported    ,
+kablam!    |                          ^^^^^^^ not found in `nanomsg_sys`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use libc::ENOTSUP;`
+kablam!              `use nanomsg_sys::posix_consts::ENOTSUP;`
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `nanomsg`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 78096e124145667d48af3d392979dd5c357eedb4c474bf3f0407cd1145706e6b`
+blam! 78096e124145667d48af3d392979dd5c357eedb4c474bf3f0407cd1145706e6b

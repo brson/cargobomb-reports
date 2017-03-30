@@ -1,0 +1,20 @@
+boom! testing https-1.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! b1d80c45e453f42825b7baeb429f353512dd0be377ef6404110f2515f684e431
+boom! running `docker start -a b1d80c45e453f42825b7baeb429f353512dd0be377ef6404110f2515f684e431`
+kablam!    Compiling trivial_colours v0.3.0
+kablam!    Compiling md6 v1.1.1
+kablam!    Compiling https v1.1.0 (file:///source)
+kablam!    Compiling mime_guess v1.8.1
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: failed to run custom build command for `mime_guess v1.8.1`
+kablam! process didn't exit successfully: `/target/debug/build/mime_guess-8b82f9f09a1852e6/build-script-gen_mime_types` (exit code: 101)
+kablam! --- stderr
+kablam! thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: Error { repr: Os { code: 30, message: "Read-only file system" } }', /checkout/src/libcore/result.rs:859
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f b1d80c45e453f42825b7baeb429f353512dd0be377ef6404110f2515f684e431`
+blam! b1d80c45e453f42825b7baeb429f353512dd0be377ef6404110f2515f684e431

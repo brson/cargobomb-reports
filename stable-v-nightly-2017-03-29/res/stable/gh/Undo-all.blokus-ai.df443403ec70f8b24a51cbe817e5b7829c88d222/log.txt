@@ -1,0 +1,1249 @@
+boom! testing https://github.com/Undo-all/blokus-ai#df443403ec70f8b24a51cbe817e5b7829c88d222 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 59cee58b5a740633d08527d84eab705fce72193e74bde70ebfb8f2233337011c
+boom! running `docker start -a 59cee58b5a740633d08527d84eab705fce72193e74bde70ebfb8f2233337011c`
+kablam!    Compiling blokus-ai v0.1.0 (file:///source)
+kablam! warning: field is never used: `maps`, #[warn(dead_code)] on by default
+kablam!  --> src/shape.rs:6:5
+kablam!   |
+kablam! 6 |     maps: [IntersectionMap; 400],
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: type alias is never used: `BitfieldIter`, #[warn(dead_code)] on by default
+kablam!  --> src/shape.rs:9:1
+kablam!   |
+kablam! 9 | type BitfieldIter<'a> = ::std::iter::Take<::std::slice::Iter<'a, (u8, u64)>>;
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: method is never used: `intersection_bitfields`, #[warn(dead_code)] on by default
+kablam!   --> src/shape.rs:33:5
+kablam!    |
+kablam! 33 |       pub fn intersection_bitfields(&self, index: usize) -> BitfieldIter {
+kablam!    |  _____^ starting here...
+kablam! 34 | |         let map = &self.maps[index];
+kablam! 35 | |         map.bits.iter().take(map.len as usize)
+kablam! 36 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: unused import: `::std::default`, #[warn(unused_imports)] on by default
+kablam!  --> src/bitboard.rs:2:5
+kablam!   |
+kablam! 2 | use ::std::default;
+kablam!   |     ^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `bits`, #[warn(dead_code)] on by default
+kablam!  --> src/bitboard.rs:6:5
+kablam!   |
+kablam! 6 |     bits: [u64; 7],
+kablam!   |     ^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: method is never used: `new`, #[warn(dead_code)] on by default
+kablam!   --> src/bitboard.rs:10:5
+kablam!    |
+kablam! 10 |       pub fn new() -> Self {
+kablam!    |  _____^ starting here...
+kablam! 11 | |         BitBoard { bits: [0; 7] }
+kablam! 12 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `index`, #[warn(dead_code)] on by default
+kablam!   --> src/bitboard.rs:15:5
+kablam!    |
+kablam! 15 |       pub fn index(&self, index: usize) -> bool {
+kablam!    |  _____^ starting here...
+kablam! 16 | |         let array_index = index / 64;
+kablam! 17 | |         let shift = index % 64;
+kablam! 18 | |
+kablam! 19 | |         ((self.bits[array_index] >> shift) & 1) == 1
+kablam! 20 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `index_xy`, #[warn(dead_code)] on by default
+kablam!   --> src/bitboard.rs:23:5
+kablam!    |
+kablam! 23 |       pub fn index_xy(&self, x: usize, y: usize) -> bool {
+kablam!    |  _____^ starting here...
+kablam! 24 | |         self.index(y * 20 + x)
+kablam! 25 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `set`, #[warn(dead_code)] on by default
+kablam!   --> src/bitboard.rs:28:5
+kablam!    |
+kablam! 28 |       pub fn set(&mut self, index: usize) {
+kablam!    |  _____^ starting here...
+kablam! 29 | |         let array_index = index / 64;
+kablam! 30 | |         let shift = index % 64;
+kablam! 31 | |
+kablam! 32 | |         self.bits[array_index] |= 1 << shift;
+kablam! 33 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `set_xy`, #[warn(dead_code)] on by default
+kablam!   --> src/bitboard.rs:36:5
+kablam!    |
+kablam! 36 |       pub fn set_xy(&mut self, x: usize, y: usize) {
+kablam!    |  _____^ starting here...
+kablam! 37 | |         self.set(y * 20 + x)
+kablam! 38 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `shape_intersects`, #[warn(dead_code)] on by default
+kablam!   --> src/bitboard.rs:41:5
+kablam!    |
+kablam! 41 |       pub fn shape_intersects(&self, shape: &Shape, index: usize) -> bool {
+kablam!    |  _____^ starting here...
+kablam! 42 | |         for &(i, bits) in shape.intersection_bitfields(index) {
+kablam! 43 | |             if bits & unsafe { self.bits.get_unchecked(i as usize) } != 0 {
+kablam! 44 | |                 return true;
+kablam! 45 | |             }
+kablam! 46 | |         }
+kablam! 47 | |
+kablam! 48 | |         false
+kablam! 49 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `place_shape`, #[warn(dead_code)] on by default
+kablam!   --> src/bitboard.rs:52:5
+kablam!    |
+kablam! 52 |       pub fn place_shape(&mut self, shape: &Shape, index: usize) {
+kablam!    |  _____^ starting here...
+kablam! 53 | |         for &(i, bits) in shape.intersection_bitfields(index) {
+kablam! 54 | |             unsafe { *self.bits.get_unchecked_mut(i as usize) |= bits };
+kablam! 55 | |         }
+kablam! 56 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: unused import: `direction::Direction`, #[warn(unused_imports)] on by default
+kablam!  --> src/board.rs:7:5
+kablam!   |
+kablam! 7 | use direction::Direction;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: method is never used: `new`, #[warn(dead_code)] on by default
+kablam!   --> src/board.rs:20:5
+kablam!    |
+kablam! 20 |       fn new() -> Self {
+kablam!    |  _____^ starting here...
+kablam! 21 | |         Default::default()
+kablam! 22 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `do_move_if_legal`, #[warn(dead_code)] on by default
+kablam!   --> src/board.rs:29:5
+kablam!    |
+kablam! 29 |     pub fn do_move_if_legal(&mut self, orientation: &Orientation, corner_index: usize, connect: Point, color: Color) -> bool {
+kablam!    |     ^
+kablam! 
+kablam! warning: method is never used: `do_move`, #[warn(dead_code)] on by default
+kablam!   --> src/board.rs:42:5
+kablam!    |
+kablam! 42 |       pub fn do_move(&mut self, corner_index: usize, orientation: &Orientation, index: usize, color: Color) {
+kablam!    |  _____^ starting here...
+kablam! 43 | |         self.occupied[color as usize].place_shape(&orientation.shape, index);
+kablam! 44 | |         self.auras[color as usize].place_shape(&orientation.shape, index);
+kablam! 45 | |
+kablam! 46 | |         let corners = &mut self.corners[color as usize];
+kablam! 47 | |         
+kablam! 48 | |         corners.extend(orientation.corners());
+kablam! 49 | |         corners.swap_remove(corner_index);
+kablam! 50 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `monomino_fits`, #[warn(dead_code)] on by default
+kablam!   --> src/board.rs:53:5
+kablam!    |
+kablam! 53 |       pub fn monomino_fits(&self, corner: usize, color: Color) -> bool {
+kablam!    |  _____^ starting here...
+kablam! 54 | |         let corner = self.get_corner(corner, color);
+kablam! 55 | |
+kablam! 56 | |         let orientation = &pieces::piece(0).orientation(0);
+kablam! 57 | |         let connect = orientation.get_corners(corner.direction.opposite())[0];
+kablam! 58 | |         let index = Board::get_index(corner, connect);
+kablam! 59 | |         !self.is_illegal(index, &orientation.shape, color)
+kablam! 60 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `is_illegal`, #[warn(dead_code)] on by default
+kablam!   --> src/board.rs:63:5
+kablam!    |
+kablam! 63 |       fn is_illegal(&self, index: usize, shape: &Shape, color: Color) -> bool {
+kablam!    |  _____^ starting here...
+kablam! 64 | |         // Tests if piece intersects one of its own pieces or one of its
+kablam! 65 | |         // own pieces' aura.
+kablam! 66 | |         let auras = &self.auras[color as usize];
+kablam! 67 | |         let aura_intersect = auras.shape_intersects(shape, index);
+kablam! 68 | |
+kablam! 69 | |         aura_intersect || self.intersects_others(index, shape, color)
+kablam! 70 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `intersects_others`, #[warn(dead_code)] on by default
+kablam!   --> src/board.rs:73:5
+kablam!    |
+kablam! 73 |     fn intersects_others(&self, index: usize, shape: &Shape, color: Color) -> bool {
+kablam!    |     ^
+kablam! 
+kablam! warning: method is never used: `get_index`, #[warn(dead_code)] on by default
+kablam!   --> src/board.rs:86:5
+kablam!    |
+kablam! 86 |       fn get_index(corner: Corner,
+kablam!    |  _____^ starting here...
+kablam! 87 | |                  connect: Point,
+kablam! 88 | |                  )
+kablam! 89 | |                  -> usize {
+kablam! 90 | |         (corner.coordinates + connect).to_index()
+kablam! 91 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `random_corner`, #[warn(dead_code)] on by default
+kablam!   --> src/board.rs:93:5
+kablam!    |
+kablam! 93 |       pub fn random_corner<R: rand::Rng>(&self, color: Color, rng: &mut R) -> Option<usize> {
+kablam!    |  _____^ starting here...
+kablam! 94 | |         if self.corners[color as usize].is_empty() {
+kablam! 95 | |             None
+kablam! 96 | |         } else {
+kablam! 97 | |             Some(rng.gen_range(0, self.corners[color as usize].len()))
+kablam! 98 | |         }
+kablam! 99 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `place_monomino`, #[warn(dead_code)] on by default
+kablam!    --> src/board.rs:101:5
+kablam!     |
+kablam! 101 |     pub fn place_monomino(&mut self, corner_index: usize, color: Color) -> Turn {
+kablam!     |     ^
+kablam! 
+kablam! warning: method is never used: `get_corner`, #[warn(dead_code)] on by default
+kablam!    --> src/board.rs:115:5
+kablam!     |
+kablam! 115 |       pub fn get_corner(&self, index: usize, color: Color) -> Corner {
+kablam!     |  _____^ starting here...
+kablam! 116 | |         self.corners[color as usize][index]
+kablam! 117 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: unused import: `intersection_map::IntersectionMap`, #[warn(unused_imports)] on by default
+kablam!  --> src/piece.rs:3:5
+kablam!   |
+kablam! 3 | use intersection_map::IntersectionMap;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused import: `rand`, #[warn(unused_imports)] on by default
+kablam!  --> src/piece.rs:8:5
+kablam!   |
+kablam! 8 | use rand;
+kablam!   |     ^^^^
+kablam! 
+kablam! warning: type alias is never used: `OrientationIterator`, #[warn(dead_code)] on by default
+kablam!   --> src/piece.rs:17:1
+kablam!    |
+kablam! 17 | type OrientationIterator<'a> = ::std::iter::Take<::std::slice::Iter<'a, Orientation>>;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused variable: `index`, #[warn(unused_variables)] on by default
+kablam!   --> src/piece.rs:20:33
+kablam!    |
+kablam! 20 |     pub fn new(piece: [u8; 49], index: usize) -> Self {
+kablam!    |                                 ^^^^^
+kablam! 
+kablam! warning: method is never used: `orientations`, #[warn(dead_code)] on by default
+kablam!   --> src/piece.rs:55:5
+kablam!    |
+kablam! 55 |       pub fn orientations(&self) -> OrientationIterator {
+kablam!    |  _____^ starting here...
+kablam! 56 | |         self.orientations.iter().take(self.num_orientations as usize)
+kablam! 57 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `get_orientations`, #[warn(dead_code)] on by default
+kablam!   --> src/piece.rs:60:5
+kablam!    |
+kablam! 60 |       pub fn get_orientations(&self) -> &[Orientation] {
+kablam!    |  _____^ starting here...
+kablam! 61 | |         &self.orientations[0..(self.num_orientations as usize)]
+kablam! 62 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `orientation`, #[warn(dead_code)] on by default
+kablam!   --> src/piece.rs:65:5
+kablam!    |
+kablam! 65 |       pub fn orientation(&self, index: usize) -> &Orientation {
+kablam!    |  _____^ starting here...
+kablam! 66 | |         &self.orientations[index]
+kablam! 67 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `corners`, #[warn(dead_code)] on by default
+kablam!   --> src/piece.rs:97:5
+kablam!    |
+kablam! 97 |       pub fn corners(&self) -> CornerIterator {
+kablam!    |  _____^ starting here...
+kablam! 98 | |         self.corners.iter()
+kablam! 99 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `get_corners`, #[warn(dead_code)] on by default
+kablam!    --> src/piece.rs:101:5
+kablam!     |
+kablam! 101 |       pub fn get_corners(&self, direction: Direction) -> &[Point] {
+kablam!     |  _____^ starting here...
+kablam! 102 | |         self.corners.get_corners(direction)
+kablam! 103 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: function is never used: `piece`, #[warn(dead_code)] on by default
+kablam!  --> src/pieces.rs:4:1
+kablam!   |
+kablam! 4 |   pub fn piece(which: usize) -> &'static Piece {
+kablam!   |  _^ starting here...
+kablam! 5 | |     &PIECES[which]
+kablam! 6 | | }
+kablam!   | |_^ ...ending here
+kablam! 
+kablam! warning: function is never used: `iter`, #[warn(dead_code)] on by default
+kablam!   --> src/pieces.rs:9:1
+kablam!    |
+kablam! 9  |   pub fn iter() -> ::std::slice::Iter<'static, Piece> {
+kablam!    |  _^ starting here...
+kablam! 10 | |     PIECES.iter()
+kablam! 11 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! warning: static item is never used: `PIECES`, #[warn(dead_code)] on by default
+kablam!   --> src/pieces.rs:13:1
+kablam!    |
+kablam! 13 | lazy_static! {
+kablam!    | ^
+kablam!    |
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused import: `corner::Corner`, #[warn(unused_imports)] on by default
+kablam!  --> src/turn.rs:6:5
+kablam!   |
+kablam! 6 | use corner::Corner;
+kablam!   |     ^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused import: `direction::Direction`, #[warn(unused_imports)] on by default
+kablam!  --> src/turn.rs:8:5
+kablam!   |
+kablam! 8 | use direction::Direction;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: struct is never used: `Turn`, #[warn(dead_code)] on by default
+kablam!   --> src/turn.rs:10:1
+kablam!    |
+kablam! 10 |   pub struct Turn {
+kablam!    |  _^ starting here...
+kablam! 11 | |     piece: u8,
+kablam! 12 | |     orientation: u8,
+kablam! 13 | |     corner: u16,
+kablam! 14 | |     connect: Point,
+kablam! 15 | |     color: Color,
+kablam! 16 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! warning: method is never used: `new`, #[warn(dead_code)] on by default
+kablam!   --> src/turn.rs:20:5
+kablam!    |
+kablam! 20 |       pub fn new(piece: u8, orientation: u8, corner: usize, connect: Point, color: Color) -> Self {
+kablam!    |  _____^ starting here...
+kablam! 21 | |         Turn {
+kablam! 22 | |             piece: piece,
+kablam! 23 | |             orientation: orientation,
+kablam! 24 | |             corner: corner as u16,
+kablam! 25 | |             connect: connect,
+kablam! 26 | |             color: color,
+kablam! 27 | |         }
+kablam! 28 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: variant is never used: `Blue`, #[warn(dead_code)] on by default
+kablam!  --> src/color.rs:3:5
+kablam!   |
+kablam! 3 |     Blue = 0,
+kablam!   |     ^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `Yellow`, #[warn(dead_code)] on by default
+kablam!  --> src/color.rs:4:5
+kablam!   |
+kablam! 4 |     Yellow,
+kablam!   |     ^^^^^^
+kablam! 
+kablam! warning: variant is never used: `Red`, #[warn(dead_code)] on by default
+kablam!  --> src/color.rs:5:5
+kablam!   |
+kablam! 5 |     Red,
+kablam!   |     ^^^
+kablam! 
+kablam! warning: variant is never used: `Green`, #[warn(dead_code)] on by default
+kablam!  --> src/color.rs:6:5
+kablam!   |
+kablam! 6 |     Green,
+kablam!   |     ^^^^^
+kablam! 
+kablam! warning: method is never used: `to_index`, #[warn(dead_code)] on by default
+kablam!   --> src/point.rs:20:5
+kablam!    |
+kablam! 20 |       pub fn to_index(&self) -> usize {
+kablam!    |  _____^ starting here...
+kablam! 21 | |         (self.y as usize) * 20 + (self.x as usize)
+kablam! 22 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: unused import: `rand::distributions`, #[warn(unused_imports)] on by default
+kablam!  --> src/game.rs:4:5
+kablam!   |
+kablam! 4 | use rand::distributions;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused import: `direction::Direction`, #[warn(unused_imports)] on by default
+kablam!  --> src/game.rs:6:5
+kablam!   |
+kablam! 6 | use direction::Direction;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused import: `corner::Corner`, #[warn(unused_imports)] on by default
+kablam!   --> src/game.rs:10:5
+kablam!    |
+kablam! 10 | use corner::Corner;
+kablam!    |     ^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused import: `point::Point`, #[warn(unused_imports)] on by default
+kablam!   --> src/game.rs:11:5
+kablam!    |
+kablam! 11 | use point::Point;
+kablam!    |     ^^^^^^^^^^^^
+kablam! 
+kablam! warning: struct is never used: `State`, #[warn(dead_code)] on by default
+kablam!   --> src/game.rs:13:1
+kablam!    |
+kablam! 13 |   pub struct State {
+kablam!    |  _^ starting here...
+kablam! 14 | |     board: Board,
+kablam! 15 | |     players: [Player; 4],
+kablam! 16 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! warning: method is never used: `do_random_move`, #[warn(dead_code)] on by default
+kablam!   --> src/game.rs:20:5
+kablam!    |
+kablam! 20 |     pub fn do_random_move<R: rand::Rng>(&mut self, color: Color, rng: &mut R) -> Option<Turn> {
+kablam!    |     ^
+kablam! 
+kablam! warning: method is never used: `do_random_move_at`, #[warn(dead_code)] on by default
+kablam!   --> src/game.rs:32:5
+kablam!    |
+kablam! 32 |     fn do_random_move_at<R: rand::Rng>(&mut self, corner: usize, color: Color, rng: &mut R) -> Turn {
+kablam!    |     ^
+kablam! 
+kablam! warning: method is never used: `try_piece`, #[warn(dead_code)] on by default
+kablam!   --> src/game.rs:52:5
+kablam!    |
+kablam! 52 |     fn try_piece<R: rand::Rng>(&mut self, piece: &Piece, corner: usize, color: Color, rng: &mut R) -> Option<Turn> {
+kablam!    |     ^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!   --> src/game.rs:57:13
+kablam!    |
+kablam! 57 |         let mut orientations = piece.get_orientations().iter().cycle().skip(start).take(num_orientations - start);
+kablam!    |             ^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: method is never used: `try_orientation`, #[warn(dead_code)] on by default
+kablam!   --> src/game.rs:68:5
+kablam!    |
+kablam! 68 |     fn try_orientation<R: rand::Rng>(&mut self, orientation: &Orientation, piece: &Piece, corner: usize, color: Color, rng: &mut R) -> Option<Turn> {
+kablam!    |     ^
+kablam! 
+kablam! warning: unused variable: `num_corners`, #[warn(unused_variables)] on by default
+kablam!   --> src/game.rs:71:13
+kablam!    |
+kablam! 71 |         let num_corners = corners.len();
+kablam!    |             ^^^^^^^^^^^
+kablam! 
+kablam! warning: method is never used: `monomino_fits`, #[warn(dead_code)] on by default
+kablam!   --> src/game.rs:90:5
+kablam!    |
+kablam! 90 |       fn monomino_fits(&self, corner: usize, color: Color) -> bool {
+kablam!    |  _____^ starting here...
+kablam! 91 | |         self.board.monomino_fits(corner, color)
+kablam! 92 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `place_monomino`, #[warn(dead_code)] on by default
+kablam!   --> src/game.rs:94:5
+kablam!    |
+kablam! 94 |       fn place_monomino(&mut self, corner: usize, color: Color) -> Turn {
+kablam!    |  _____^ starting here...
+kablam! 95 | |         self.board.place_monomino(corner, color)
+kablam! 96 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: struct is never used: `Player`, #[warn(dead_code)] on by default
+kablam!    --> src/game.rs:99:1
+kablam!     |
+kablam! 99  |   struct Player {
+kablam!     |  _^ starting here...
+kablam! 100 | |     pub bank: Bank,
+kablam! 101 | |     pub monomino_played_last: bool,
+kablam! 102 | | }
+kablam!     | |_^ ...ending here
+kablam! 
+kablam! warning: method is never used: `has_piece`, #[warn(dead_code)] on by default
+kablam!    --> src/game.rs:105:5
+kablam!     |
+kablam! 105 |       fn has_piece(&self, piece: usize) -> bool {
+kablam!     |  _____^ starting here...
+kablam! 106 | |         self.bank.has_piece(piece)
+kablam! 107 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `new`, #[warn(dead_code)] on by default
+kablam!    --> src/game.rs:118:5
+kablam!     |
+kablam! 118 |       fn new() -> Self {
+kablam!     |  _____^ starting here...
+kablam! 119 | |         Bank {
+kablam! 120 | |             pieces: [true; 21],
+kablam! 121 | |             remaining: 21,
+kablam! 122 | |         }
+kablam! 123 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `take_random`, #[warn(dead_code)] on by default
+kablam!    --> src/game.rs:125:5
+kablam!     |
+kablam! 125 |       fn take_random<R: rand::Rng>(&mut self, rng: &mut R) -> usize {
+kablam!     |  _____^ starting here...
+kablam! 126 | |         let random = rng.gen_range(0, self.remaining as usize);
+kablam! 127 | |         self.take(random);
+kablam! 128 | |         random
+kablam! 129 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `take`, #[warn(dead_code)] on by default
+kablam!    --> src/game.rs:131:5
+kablam!     |
+kablam! 131 |       fn take(&mut self, piece: usize) {
+kablam!     |  _____^ starting here...
+kablam! 132 | |         self.pieces[piece] = false;
+kablam! 133 | |         self.remaining -= 1;
+kablam! 134 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `has_piece`, #[warn(dead_code)] on by default
+kablam!    --> src/game.rs:136:5
+kablam!     |
+kablam! 136 |       fn has_piece(&self, piece: usize) -> bool {
+kablam!     |  _____^ starting here...
+kablam! 137 | |         self.pieces[piece]
+kablam! 138 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `is_empty`, #[warn(dead_code)] on by default
+kablam!    --> src/game.rs:140:5
+kablam!     |
+kablam! 140 |       fn is_empty(&self) -> bool {
+kablam!     |  _____^ starting here...
+kablam! 141 | |         self.remaining == 0
+kablam! 142 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `opposite`, #[warn(dead_code)] on by default
+kablam!   --> src/direction.rs:12:5
+kablam!    |
+kablam! 12 |       pub fn opposite(self) -> Direction {
+kablam!    |  _____^ starting here...
+kablam! 13 | |         unsafe {
+kablam! 14 | |             // I don't trust the optimizer.
+kablam! 15 | |             mem::transmute(3 - (self as u8))
+kablam! 16 | |         }
+kablam! 17 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `get_corners`, #[warn(dead_code)] on by default
+kablam!   --> src/corners.rs:19:5
+kablam!    |
+kablam! 19 |       pub fn get_corners(&self, direction: Direction) -> &[Point] {
+kablam!    |  _____^ starting here...
+kablam! 20 | |         self.corners[direction as usize].as_slice()
+kablam! 21 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `iter`, #[warn(dead_code)] on by default
+kablam!   --> src/corners.rs:23:5
+kablam!    |
+kablam! 23 |       pub fn iter(&self) -> CornerIterator {
+kablam!    |  _____^ starting here...
+kablam! 24 | |         CornerIterator {
+kablam! 25 | |             corners: [self.corners[0].as_slice().iter(),
+kablam! 26 | |                       self.corners[1].as_slice().iter(),
+kablam! 27 | |                       self.corners[2].as_slice().iter(),
+kablam! 28 | |                       self.corners[3].as_slice().iter()],
+kablam! 29 | |             which: Direction::NW,
+kablam! 30 | |         }
+kablam! 31 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `as_slice`, #[warn(dead_code)] on by default
+kablam!   --> src/corners.rs:48:5
+kablam!    |
+kablam! 48 |       fn as_slice(&self) -> &[Point] {
+kablam!    |  _____^ starting here...
+kablam! 49 | |         &self.corners[0..self.len as usize]
+kablam! 50 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: type alias is never used: `PointIterator`, #[warn(dead_code)] on by default
+kablam!   --> src/corners.rs:55:1
+kablam!    |
+kablam! 55 | type PointIterator<'a> = ::std::slice::Iter<'a, Point>;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: struct is never used: `CornerIterator`, #[warn(dead_code)] on by default
+kablam!   --> src/corners.rs:57:1
+kablam!    |
+kablam! 57 |   pub struct CornerIterator<'a> {
+kablam!    |  _^ starting here...
+kablam! 58 | |     corners: [PointIterator<'a>; 4],
+kablam! 59 | |     which: Direction,
+kablam! 60 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 2.7 secs
+boom! running `docker rm -f 59cee58b5a740633d08527d84eab705fce72193e74bde70ebfb8f2233337011c`
+blam! 59cee58b5a740633d08527d84eab705fce72193e74bde70ebfb8f2233337011c
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 0200ecceb2691a2f7f344488ae0e23662d1348733cb7f20fedeaea8d01b04d2d
+boom! running `docker start -a 0200ecceb2691a2f7f344488ae0e23662d1348733cb7f20fedeaea8d01b04d2d`
+kablam!    Compiling blokus-ai v0.1.0 (file:///source)
+kablam! warning: field is never used: `maps`, #[warn(dead_code)] on by default
+kablam!  --> src/shape.rs:6:5
+kablam!   |
+kablam! 6 |     maps: [IntersectionMap; 400],
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: type alias is never used: `BitfieldIter`, #[warn(dead_code)] on by default
+kablam!  --> src/shape.rs:9:1
+kablam!   |
+kablam! 9 | type BitfieldIter<'a> = ::std::iter::Take<::std::slice::Iter<'a, (u8, u64)>>;
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: method is never used: `intersection_bitfields`, #[warn(dead_code)] on by default
+kablam!   --> src/shape.rs:33:5
+kablam!    |
+kablam! 33 |       pub fn intersection_bitfields(&self, index: usize) -> BitfieldIter {
+kablam!    |  _____^ starting here...
+kablam! 34 | |         let map = &self.maps[index];
+kablam! 35 | |         map.bits.iter().take(map.len as usize)
+kablam! 36 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: unused import: `::std::default`, #[warn(unused_imports)] on by default
+kablam!  --> src/bitboard.rs:2:5
+kablam!   |
+kablam! 2 | use ::std::default;
+kablam!   |     ^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: field is never used: `bits`, #[warn(dead_code)] on by default
+kablam!  --> src/bitboard.rs:6:5
+kablam!   |
+kablam! 6 |     bits: [u64; 7],
+kablam!   |     ^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: method is never used: `new`, #[warn(dead_code)] on by default
+kablam!   --> src/bitboard.rs:10:5
+kablam!    |
+kablam! 10 |       pub fn new() -> Self {
+kablam!    |  _____^ starting here...
+kablam! 11 | |         BitBoard { bits: [0; 7] }
+kablam! 12 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `index`, #[warn(dead_code)] on by default
+kablam!   --> src/bitboard.rs:15:5
+kablam!    |
+kablam! 15 |       pub fn index(&self, index: usize) -> bool {
+kablam!    |  _____^ starting here...
+kablam! 16 | |         let array_index = index / 64;
+kablam! 17 | |         let shift = index % 64;
+kablam! 18 | |
+kablam! 19 | |         ((self.bits[array_index] >> shift) & 1) == 1
+kablam! 20 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `index_xy`, #[warn(dead_code)] on by default
+kablam!   --> src/bitboard.rs:23:5
+kablam!    |
+kablam! 23 |       pub fn index_xy(&self, x: usize, y: usize) -> bool {
+kablam!    |  _____^ starting here...
+kablam! 24 | |         self.index(y * 20 + x)
+kablam! 25 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `set`, #[warn(dead_code)] on by default
+kablam!   --> src/bitboard.rs:28:5
+kablam!    |
+kablam! 28 |       pub fn set(&mut self, index: usize) {
+kablam!    |  _____^ starting here...
+kablam! 29 | |         let array_index = index / 64;
+kablam! 30 | |         let shift = index % 64;
+kablam! 31 | |
+kablam! 32 | |         self.bits[array_index] |= 1 << shift;
+kablam! 33 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `set_xy`, #[warn(dead_code)] on by default
+kablam!   --> src/bitboard.rs:36:5
+kablam!    |
+kablam! 36 |       pub fn set_xy(&mut self, x: usize, y: usize) {
+kablam!    |  _____^ starting here...
+kablam! 37 | |         self.set(y * 20 + x)
+kablam! 38 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `shape_intersects`, #[warn(dead_code)] on by default
+kablam!   --> src/bitboard.rs:41:5
+kablam!    |
+kablam! 41 |       pub fn shape_intersects(&self, shape: &Shape, index: usize) -> bool {
+kablam!    |  _____^ starting here...
+kablam! 42 | |         for &(i, bits) in shape.intersection_bitfields(index) {
+kablam! 43 | |             if bits & unsafe { self.bits.get_unchecked(i as usize) } != 0 {
+kablam! 44 | |                 return true;
+kablam! 45 | |             }
+kablam! 46 | |         }
+kablam! 47 | |
+kablam! 48 | |         false
+kablam! 49 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `place_shape`, #[warn(dead_code)] on by default
+kablam!   --> src/bitboard.rs:52:5
+kablam!    |
+kablam! 52 |       pub fn place_shape(&mut self, shape: &Shape, index: usize) {
+kablam!    |  _____^ starting here...
+kablam! 53 | |         for &(i, bits) in shape.intersection_bitfields(index) {
+kablam! 54 | |             unsafe { *self.bits.get_unchecked_mut(i as usize) |= bits };
+kablam! 55 | |         }
+kablam! 56 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: unused import: `direction::Direction`, #[warn(unused_imports)] on by default
+kablam!  --> src/board.rs:7:5
+kablam!   |
+kablam! 7 | use direction::Direction;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: method is never used: `new`, #[warn(dead_code)] on by default
+kablam!   --> src/board.rs:20:5
+kablam!    |
+kablam! 20 |       fn new() -> Self {
+kablam!    |  _____^ starting here...
+kablam! 21 | |         Default::default()
+kablam! 22 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `do_move_if_legal`, #[warn(dead_code)] on by default
+kablam!   --> src/board.rs:29:5
+kablam!    |
+kablam! 29 |     pub fn do_move_if_legal(&mut self, orientation: &Orientation, corner_index: usize, connect: Point, color: Color) -> bool {
+kablam!    |     ^
+kablam! 
+kablam! warning: method is never used: `do_move`, #[warn(dead_code)] on by default
+kablam!   --> src/board.rs:42:5
+kablam!    |
+kablam! 42 |       pub fn do_move(&mut self, corner_index: usize, orientation: &Orientation, index: usize, color: Color) {
+kablam!    |  _____^ starting here...
+kablam! 43 | |         self.occupied[color as usize].place_shape(&orientation.shape, index);
+kablam! 44 | |         self.auras[color as usize].place_shape(&orientation.shape, index);
+kablam! 45 | |
+kablam! 46 | |         let corners = &mut self.corners[color as usize];
+kablam! 47 | |         
+kablam! 48 | |         corners.extend(orientation.corners());
+kablam! 49 | |         corners.swap_remove(corner_index);
+kablam! 50 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `monomino_fits`, #[warn(dead_code)] on by default
+kablam!   --> src/board.rs:53:5
+kablam!    |
+kablam! 53 |       pub fn monomino_fits(&self, corner: usize, color: Color) -> bool {
+kablam!    |  _____^ starting here...
+kablam! 54 | |         let corner = self.get_corner(corner, color);
+kablam! 55 | |
+kablam! 56 | |         let orientation = &pieces::piece(0).orientation(0);
+kablam! 57 | |         let connect = orientation.get_corners(corner.direction.opposite())[0];
+kablam! 58 | |         let index = Board::get_index(corner, connect);
+kablam! 59 | |         !self.is_illegal(index, &orientation.shape, color)
+kablam! 60 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `is_illegal`, #[warn(dead_code)] on by default
+kablam!   --> src/board.rs:63:5
+kablam!    |
+kablam! 63 |       fn is_illegal(&self, index: usize, shape: &Shape, color: Color) -> bool {
+kablam!    |  _____^ starting here...
+kablam! 64 | |         // Tests if piece intersects one of its own pieces or one of its
+kablam! 65 | |         // own pieces' aura.
+kablam! 66 | |         let auras = &self.auras[color as usize];
+kablam! 67 | |         let aura_intersect = auras.shape_intersects(shape, index);
+kablam! 68 | |
+kablam! 69 | |         aura_intersect || self.intersects_others(index, shape, color)
+kablam! 70 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `intersects_others`, #[warn(dead_code)] on by default
+kablam!   --> src/board.rs:73:5
+kablam!    |
+kablam! 73 |     fn intersects_others(&self, index: usize, shape: &Shape, color: Color) -> bool {
+kablam!    |     ^
+kablam! 
+kablam! warning: method is never used: `get_index`, #[warn(dead_code)] on by default
+kablam!   --> src/board.rs:86:5
+kablam!    |
+kablam! 86 |       fn get_index(corner: Corner,
+kablam!    |  _____^ starting here...
+kablam! 87 | |                  connect: Point,
+kablam! 88 | |                  )
+kablam! 89 | |                  -> usize {
+kablam! 90 | |         (corner.coordinates + connect).to_index()
+kablam! 91 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `random_corner`, #[warn(dead_code)] on by default
+kablam!   --> src/board.rs:93:5
+kablam!    |
+kablam! 93 |       pub fn random_corner<R: rand::Rng>(&self, color: Color, rng: &mut R) -> Option<usize> {
+kablam!    |  _____^ starting here...
+kablam! 94 | |         if self.corners[color as usize].is_empty() {
+kablam! 95 | |             None
+kablam! 96 | |         } else {
+kablam! 97 | |             Some(rng.gen_range(0, self.corners[color as usize].len()))
+kablam! 98 | |         }
+kablam! 99 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `place_monomino`, #[warn(dead_code)] on by default
+kablam!    --> src/board.rs:101:5
+kablam!     |
+kablam! 101 |     pub fn place_monomino(&mut self, corner_index: usize, color: Color) -> Turn {
+kablam!     |     ^
+kablam! 
+kablam! warning: method is never used: `get_corner`, #[warn(dead_code)] on by default
+kablam!    --> src/board.rs:115:5
+kablam!     |
+kablam! 115 |       pub fn get_corner(&self, index: usize, color: Color) -> Corner {
+kablam!     |  _____^ starting here...
+kablam! 116 | |         self.corners[color as usize][index]
+kablam! 117 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: unused import: `intersection_map::IntersectionMap`, #[warn(unused_imports)] on by default
+kablam!  --> src/piece.rs:3:5
+kablam!   |
+kablam! 3 | use intersection_map::IntersectionMap;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused import: `rand`, #[warn(unused_imports)] on by default
+kablam!  --> src/piece.rs:8:5
+kablam!   |
+kablam! 8 | use rand;
+kablam!   |     ^^^^
+kablam! 
+kablam! warning: type alias is never used: `OrientationIterator`, #[warn(dead_code)] on by default
+kablam!   --> src/piece.rs:17:1
+kablam!    |
+kablam! 17 | type OrientationIterator<'a> = ::std::iter::Take<::std::slice::Iter<'a, Orientation>>;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused variable: `index`, #[warn(unused_variables)] on by default
+kablam!   --> src/piece.rs:20:33
+kablam!    |
+kablam! 20 |     pub fn new(piece: [u8; 49], index: usize) -> Self {
+kablam!    |                                 ^^^^^
+kablam! 
+kablam! warning: method is never used: `orientations`, #[warn(dead_code)] on by default
+kablam!   --> src/piece.rs:55:5
+kablam!    |
+kablam! 55 |       pub fn orientations(&self) -> OrientationIterator {
+kablam!    |  _____^ starting here...
+kablam! 56 | |         self.orientations.iter().take(self.num_orientations as usize)
+kablam! 57 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `get_orientations`, #[warn(dead_code)] on by default
+kablam!   --> src/piece.rs:60:5
+kablam!    |
+kablam! 60 |       pub fn get_orientations(&self) -> &[Orientation] {
+kablam!    |  _____^ starting here...
+kablam! 61 | |         &self.orientations[0..(self.num_orientations as usize)]
+kablam! 62 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `orientation`, #[warn(dead_code)] on by default
+kablam!   --> src/piece.rs:65:5
+kablam!    |
+kablam! 65 |       pub fn orientation(&self, index: usize) -> &Orientation {
+kablam!    |  _____^ starting here...
+kablam! 66 | |         &self.orientations[index]
+kablam! 67 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `corners`, #[warn(dead_code)] on by default
+kablam!   --> src/piece.rs:97:5
+kablam!    |
+kablam! 97 |       pub fn corners(&self) -> CornerIterator {
+kablam!    |  _____^ starting here...
+kablam! 98 | |         self.corners.iter()
+kablam! 99 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `get_corners`, #[warn(dead_code)] on by default
+kablam!    --> src/piece.rs:101:5
+kablam!     |
+kablam! 101 |       pub fn get_corners(&self, direction: Direction) -> &[Point] {
+kablam!     |  _____^ starting here...
+kablam! 102 | |         self.corners.get_corners(direction)
+kablam! 103 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: function is never used: `piece`, #[warn(dead_code)] on by default
+kablam!  --> src/pieces.rs:4:1
+kablam!   |
+kablam! 4 |   pub fn piece(which: usize) -> &'static Piece {
+kablam!   |  _^ starting here...
+kablam! 5 | |     &PIECES[which]
+kablam! 6 | | }
+kablam!   | |_^ ...ending here
+kablam! 
+kablam! warning: function is never used: `iter`, #[warn(dead_code)] on by default
+kablam!   --> src/pieces.rs:9:1
+kablam!    |
+kablam! 9  |   pub fn iter() -> ::std::slice::Iter<'static, Piece> {
+kablam!    |  _^ starting here...
+kablam! 10 | |     PIECES.iter()
+kablam! 11 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! warning: static item is never used: `PIECES`, #[warn(dead_code)] on by default
+kablam!   --> src/pieces.rs:13:1
+kablam!    |
+kablam! 13 | lazy_static! {
+kablam!    | ^
+kablam!    |
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! warning: unused import: `corner::Corner`, #[warn(unused_imports)] on by default
+kablam!  --> src/turn.rs:6:5
+kablam!   |
+kablam! 6 | use corner::Corner;
+kablam!   |     ^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused import: `direction::Direction`, #[warn(unused_imports)] on by default
+kablam!  --> src/turn.rs:8:5
+kablam!   |
+kablam! 8 | use direction::Direction;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: struct is never used: `Turn`, #[warn(dead_code)] on by default
+kablam!   --> src/turn.rs:10:1
+kablam!    |
+kablam! 10 |   pub struct Turn {
+kablam!    |  _^ starting here...
+kablam! 11 | |     piece: u8,
+kablam! 12 | |     orientation: u8,
+kablam! 13 | |     corner: u16,
+kablam! 14 | |     connect: Point,
+kablam! 15 | |     color: Color,
+kablam! 16 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! warning: method is never used: `new`, #[warn(dead_code)] on by default
+kablam!   --> src/turn.rs:20:5
+kablam!    |
+kablam! 20 |       pub fn new(piece: u8, orientation: u8, corner: usize, connect: Point, color: Color) -> Self {
+kablam!    |  _____^ starting here...
+kablam! 21 | |         Turn {
+kablam! 22 | |             piece: piece,
+kablam! 23 | |             orientation: orientation,
+kablam! 24 | |             corner: corner as u16,
+kablam! 25 | |             connect: connect,
+kablam! 26 | |             color: color,
+kablam! 27 | |         }
+kablam! 28 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: variant is never used: `Blue`, #[warn(dead_code)] on by default
+kablam!  --> src/color.rs:3:5
+kablam!   |
+kablam! 3 |     Blue = 0,
+kablam!   |     ^^^^^^^^
+kablam! 
+kablam! warning: variant is never used: `Yellow`, #[warn(dead_code)] on by default
+kablam!  --> src/color.rs:4:5
+kablam!   |
+kablam! 4 |     Yellow,
+kablam!   |     ^^^^^^
+kablam! 
+kablam! warning: variant is never used: `Red`, #[warn(dead_code)] on by default
+kablam!  --> src/color.rs:5:5
+kablam!   |
+kablam! 5 |     Red,
+kablam!   |     ^^^
+kablam! 
+kablam! warning: variant is never used: `Green`, #[warn(dead_code)] on by default
+kablam!  --> src/color.rs:6:5
+kablam!   |
+kablam! 6 |     Green,
+kablam!   |     ^^^^^
+kablam! 
+kablam! warning: method is never used: `to_index`, #[warn(dead_code)] on by default
+kablam!   --> src/point.rs:20:5
+kablam!    |
+kablam! 20 |       pub fn to_index(&self) -> usize {
+kablam!    |  _____^ starting here...
+kablam! 21 | |         (self.y as usize) * 20 + (self.x as usize)
+kablam! 22 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: unused import: `rand::distributions`, #[warn(unused_imports)] on by default
+kablam!  --> src/game.rs:4:5
+kablam!   |
+kablam! 4 | use rand::distributions;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused import: `direction::Direction`, #[warn(unused_imports)] on by default
+kablam!  --> src/game.rs:6:5
+kablam!   |
+kablam! 6 | use direction::Direction;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused import: `corner::Corner`, #[warn(unused_imports)] on by default
+kablam!   --> src/game.rs:10:5
+kablam!    |
+kablam! 10 | use corner::Corner;
+kablam!    |     ^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: unused import: `point::Point`, #[warn(unused_imports)] on by default
+kablam!   --> src/game.rs:11:5
+kablam!    |
+kablam! 11 | use point::Point;
+kablam!    |     ^^^^^^^^^^^^
+kablam! 
+kablam! warning: struct is never used: `State`, #[warn(dead_code)] on by default
+kablam!   --> src/game.rs:13:1
+kablam!    |
+kablam! 13 |   pub struct State {
+kablam!    |  _^ starting here...
+kablam! 14 | |     board: Board,
+kablam! 15 | |     players: [Player; 4],
+kablam! 16 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! warning: method is never used: `do_random_move`, #[warn(dead_code)] on by default
+kablam!   --> src/game.rs:20:5
+kablam!    |
+kablam! 20 |     pub fn do_random_move<R: rand::Rng>(&mut self, color: Color, rng: &mut R) -> Option<Turn> {
+kablam!    |     ^
+kablam! 
+kablam! warning: method is never used: `do_random_move_at`, #[warn(dead_code)] on by default
+kablam!   --> src/game.rs:32:5
+kablam!    |
+kablam! 32 |     fn do_random_move_at<R: rand::Rng>(&mut self, corner: usize, color: Color, rng: &mut R) -> Turn {
+kablam!    |     ^
+kablam! 
+kablam! warning: method is never used: `try_piece`, #[warn(dead_code)] on by default
+kablam!   --> src/game.rs:52:5
+kablam!    |
+kablam! 52 |     fn try_piece<R: rand::Rng>(&mut self, piece: &Piece, corner: usize, color: Color, rng: &mut R) -> Option<Turn> {
+kablam!    |     ^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!   --> src/game.rs:57:13
+kablam!    |
+kablam! 57 |         let mut orientations = piece.get_orientations().iter().cycle().skip(start).take(num_orientations - start);
+kablam!    |             ^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: method is never used: `try_orientation`, #[warn(dead_code)] on by default
+kablam!   --> src/game.rs:68:5
+kablam!    |
+kablam! 68 |     fn try_orientation<R: rand::Rng>(&mut self, orientation: &Orientation, piece: &Piece, corner: usize, color: Color, rng: &mut R) -> Option<Turn> {
+kablam!    |     ^
+kablam! 
+kablam! warning: unused variable: `num_corners`, #[warn(unused_variables)] on by default
+kablam!   --> src/game.rs:71:13
+kablam!    |
+kablam! 71 |         let num_corners = corners.len();
+kablam!    |             ^^^^^^^^^^^
+kablam! 
+kablam! warning: method is never used: `monomino_fits`, #[warn(dead_code)] on by default
+kablam!   --> src/game.rs:90:5
+kablam!    |
+kablam! 90 |       fn monomino_fits(&self, corner: usize, color: Color) -> bool {
+kablam!    |  _____^ starting here...
+kablam! 91 | |         self.board.monomino_fits(corner, color)
+kablam! 92 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `place_monomino`, #[warn(dead_code)] on by default
+kablam!   --> src/game.rs:94:5
+kablam!    |
+kablam! 94 |       fn place_monomino(&mut self, corner: usize, color: Color) -> Turn {
+kablam!    |  _____^ starting here...
+kablam! 95 | |         self.board.place_monomino(corner, color)
+kablam! 96 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: struct is never used: `Player`, #[warn(dead_code)] on by default
+kablam!    --> src/game.rs:99:1
+kablam!     |
+kablam! 99  |   struct Player {
+kablam!     |  _^ starting here...
+kablam! 100 | |     pub bank: Bank,
+kablam! 101 | |     pub monomino_played_last: bool,
+kablam! 102 | | }
+kablam!     | |_^ ...ending here
+kablam! 
+kablam! warning: method is never used: `has_piece`, #[warn(dead_code)] on by default
+kablam!    --> src/game.rs:105:5
+kablam!     |
+kablam! 105 |       fn has_piece(&self, piece: usize) -> bool {
+kablam!     |  _____^ starting here...
+kablam! 106 | |         self.bank.has_piece(piece)
+kablam! 107 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `new`, #[warn(dead_code)] on by default
+kablam!    --> src/game.rs:118:5
+kablam!     |
+kablam! 118 |       fn new() -> Self {
+kablam!     |  _____^ starting here...
+kablam! 119 | |         Bank {
+kablam! 120 | |             pieces: [true; 21],
+kablam! 121 | |             remaining: 21,
+kablam! 122 | |         }
+kablam! 123 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `take_random`, #[warn(dead_code)] on by default
+kablam!    --> src/game.rs:125:5
+kablam!     |
+kablam! 125 |       fn take_random<R: rand::Rng>(&mut self, rng: &mut R) -> usize {
+kablam!     |  _____^ starting here...
+kablam! 126 | |         let random = rng.gen_range(0, self.remaining as usize);
+kablam! 127 | |         self.take(random);
+kablam! 128 | |         random
+kablam! 129 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `take`, #[warn(dead_code)] on by default
+kablam!    --> src/game.rs:131:5
+kablam!     |
+kablam! 131 |       fn take(&mut self, piece: usize) {
+kablam!     |  _____^ starting here...
+kablam! 132 | |         self.pieces[piece] = false;
+kablam! 133 | |         self.remaining -= 1;
+kablam! 134 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `has_piece`, #[warn(dead_code)] on by default
+kablam!    --> src/game.rs:136:5
+kablam!     |
+kablam! 136 |       fn has_piece(&self, piece: usize) -> bool {
+kablam!     |  _____^ starting here...
+kablam! 137 | |         self.pieces[piece]
+kablam! 138 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `is_empty`, #[warn(dead_code)] on by default
+kablam!    --> src/game.rs:140:5
+kablam!     |
+kablam! 140 |       fn is_empty(&self) -> bool {
+kablam!     |  _____^ starting here...
+kablam! 141 | |         self.remaining == 0
+kablam! 142 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `opposite`, #[warn(dead_code)] on by default
+kablam!   --> src/direction.rs:12:5
+kablam!    |
+kablam! 12 |       pub fn opposite(self) -> Direction {
+kablam!    |  _____^ starting here...
+kablam! 13 | |         unsafe {
+kablam! 14 | |             // I don't trust the optimizer.
+kablam! 15 | |             mem::transmute(3 - (self as u8))
+kablam! 16 | |         }
+kablam! 17 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `get_corners`, #[warn(dead_code)] on by default
+kablam!   --> src/corners.rs:19:5
+kablam!    |
+kablam! 19 |       pub fn get_corners(&self, direction: Direction) -> &[Point] {
+kablam!    |  _____^ starting here...
+kablam! 20 | |         self.corners[direction as usize].as_slice()
+kablam! 21 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `iter`, #[warn(dead_code)] on by default
+kablam!   --> src/corners.rs:23:5
+kablam!    |
+kablam! 23 |       pub fn iter(&self) -> CornerIterator {
+kablam!    |  _____^ starting here...
+kablam! 24 | |         CornerIterator {
+kablam! 25 | |             corners: [self.corners[0].as_slice().iter(),
+kablam! 26 | |                       self.corners[1].as_slice().iter(),
+kablam! 27 | |                       self.corners[2].as_slice().iter(),
+kablam! 28 | |                       self.corners[3].as_slice().iter()],
+kablam! 29 | |             which: Direction::NW,
+kablam! 30 | |         }
+kablam! 31 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `as_slice`, #[warn(dead_code)] on by default
+kablam!   --> src/corners.rs:48:5
+kablam!    |
+kablam! 48 |       fn as_slice(&self) -> &[Point] {
+kablam!    |  _____^ starting here...
+kablam! 49 | |         &self.corners[0..self.len as usize]
+kablam! 50 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: type alias is never used: `PointIterator`, #[warn(dead_code)] on by default
+kablam!   --> src/corners.rs:55:1
+kablam!    |
+kablam! 55 | type PointIterator<'a> = ::std::slice::Iter<'a, Point>;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: struct is never used: `CornerIterator`, #[warn(dead_code)] on by default
+kablam!   --> src/corners.rs:57:1
+kablam!    |
+kablam! 57 |   pub struct CornerIterator<'a> {
+kablam!    |  _^ starting here...
+kablam! 58 | |     corners: [PointIterator<'a>; 4],
+kablam! 59 | |     which: Direction,
+kablam! 60 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 3.19 secs
+boom! running `docker rm -f 0200ecceb2691a2f7f344488ae0e23662d1348733cb7f20fedeaea8d01b04d2d`
+blam! 0200ecceb2691a2f7f344488ae0e23662d1348733cb7f20fedeaea8d01b04d2d
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! 290436e2ef32d032196d5b41a7e4ee1fcfcff5a72168d015db05411b8bfe623e
+boom! running `docker start -a 290436e2ef32d032196d5b41a7e4ee1fcfcff5a72168d015db05411b8bfe623e`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/blokus_ai-c790255df6074012
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f 290436e2ef32d032196d5b41a7e4ee1fcfcff5a72168d015db05411b8bfe623e`
+blam! 290436e2ef32d032196d5b41a7e4ee1fcfcff5a72168d015db05411b8bfe623e

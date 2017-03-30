@@ -1,0 +1,33 @@
+boom! testing whitespacers-0.0.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! edcfb79ab7ada46a8b48d361b6b9b51c7e32c0c78ab10c7fe06d178f70e1cf1f
+boom! running `docker start -a edcfb79ab7ada46a8b48d361b6b9b51c7e32c0c78ab10c7fe06d178f70e1cf1f`
+kablam!    Compiling dynasm v0.1.0
+kablam!    Compiling dynasmrt v0.1.0
+kablam! error[E0308]: mismatched types
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/dynasm-0.1.0/src/lib.rs:94:46
+kablam!    |
+kablam! 94 |     let token_tree = ecx.expander().fold_tts(token_tree);
+kablam!    |                                              ^^^^^^^^^^ expected struct `syntax::tokenstream::TokenStream`, found reference
+kablam!    |
+kablam!    = note: expected type `syntax::tokenstream::TokenStream`
+kablam!               found type `&[syntax::tokenstream::TokenTree]`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/dynasm-0.1.0/src/lib.rs:96:46
+kablam!    |
+kablam! 96 |     let mut parser = ecx.new_parser_from_tts(&token_tree);
+kablam!    |                                              ^^^^^^^^^^^ expected slice, found struct `syntax::tokenstream::TokenStream`
+kablam!    |
+kablam!    = note: expected type `&[syntax::tokenstream::TokenTree]`
+kablam!               found type `&syntax::tokenstream::TokenStream`
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `dynasm`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f edcfb79ab7ada46a8b48d361b6b9b51c7e32c0c78ab10c7fe06d178f70e1cf1f`
+blam! edcfb79ab7ada46a8b48d361b6b9b51c7e32c0c78ab10c7fe06d178f70e1cf1f

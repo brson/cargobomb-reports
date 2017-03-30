@@ -1,0 +1,38 @@
+boom! testing dining_philosophers-0.11.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 4bd7c95694304450c0c7037fc018015be6d832f027aa59326bcdb59c8a8e1e75
+boom! running `docker start -a 4bd7c95694304450c0c7037fc018015be6d832f027aa59326bcdb59c8a8e1e75`
+kablam!    Compiling dining_philosophers v0.11.2 (file:///source)
+kablam! error[E0432]: unresolved import `std::old_io::timer::sleep`
+kablam!  --> src/main.rs:5:5
+kablam!   |
+kablam! 5 | use std::old_io::timer::sleep;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `old_io` in `std`
+kablam! 
+kablam! error[E0425]: cannot find function `range` in this scope
+kablam!   --> src/main.rs:57:18
+kablam!    |
+kablam! 57 |         for _ in range(1, 3) {
+kablam!    |                  ^^^^^ not found in this scope
+kablam! 
+kablam! error: no associated item named `microseconds` found for type `std::time::Duration` in the current scope
+kablam!   --> src/main.rs:59:19
+kablam!    |
+kablam! 59 |             sleep(Duration::microseconds(10));
+kablam!    |                   ^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no associated item named `microseconds` found for type `std::time::Duration` in the current scope
+kablam!   --> src/main.rs:66:19
+kablam!    |
+kablam! 66 |             sleep(Duration::microseconds(10));
+kablam!    |                   ^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `dining_philosophers`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 4bd7c95694304450c0c7037fc018015be6d832f027aa59326bcdb59c8a8e1e75`
+blam! 4bd7c95694304450c0c7037fc018015be6d832f027aa59326bcdb59c8a8e1e75

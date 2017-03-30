@@ -1,0 +1,48 @@
+boom! testing ucontext-0.0.5 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! a11bc60faeaf7e5e43049a303132d328103c98b0b2dbd772cb7d7874044c510a
+boom! running `docker start -a a11bc60faeaf7e5e43049a303132d328103c98b0b2dbd772cb7d7874044c510a`
+kablam!    Compiling ucontext v0.0.5 (file:///source)
+kablam! error: invalid suffix `us` for numeric literal
+kablam!   --> src/lib.rs:44:26
+kablam!    |
+kablam! 44 |     const NGREG: usize = 23us;
+kablam!    |                          ^^^^
+kablam!    |
+kablam!    = help: the suffix must be one of the integral types (`u32`, `isize`, etc)
+kablam! 
+kablam! error: invalid suffix `us` for numeric literal
+kablam!    --> src/lib.rs:152:26
+kablam!     |
+kablam! 152 |     const NGREG: usize = 19us;
+kablam!     |                          ^^^^
+kablam!     |
+kablam!     = help: the suffix must be one of the integral types (`u32`, `isize`, etc)
+kablam! 
+kablam! error[E0432]: unresolved import `std::thunk::Thunk`
+kablam!   --> src/lib.rs:21:9
+kablam!    |
+kablam! 21 |     use std::thunk::Thunk;
+kablam!    |         ^^^^^^^^^^^^^^^^^ Could not find `thunk` in `std`
+kablam! 
+kablam! error[E0432]: unresolved import `std::thunk::Thunk`
+kablam!   --> src/lib.rs:32:9
+kablam!    |
+kablam! 32 |     use std::thunk::Thunk;
+kablam!    |         ^^^^^^^^^^^^^^^^^ Could not find `thunk` in `std`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/lib.rs:3:1
+kablam!   |
+kablam! 3 | #![feature(asm)]
+kablam!   | ^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `ucontext`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f a11bc60faeaf7e5e43049a303132d328103c98b0b2dbd772cb7d7874044c510a`
+blam! a11bc60faeaf7e5e43049a303132d328103c98b0b2dbd772cb7d7874044c510a

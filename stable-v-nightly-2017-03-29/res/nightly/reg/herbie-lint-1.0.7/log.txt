@@ -1,0 +1,65 @@
+boom! testing herbie-lint-1.0.7 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! c5eff644059f1f2bae1a74b61285f5160a20bf56d54c64538d45316ca0261246
+boom! running `docker start -a c5eff644059f1f2bae1a74b61285f5160a20bf56d54c64538d45316ca0261246`
+kablam!    Compiling libsqlite3-sys v0.4.0
+kablam! warning: redundant linker flag specified for library `sqlite3`
+kablam! 
+kablam! warning: redundant linker flag specified for library `sqlite3`
+kablam! 
+kablam!    Compiling rusqlite v0.6.1
+kablam!    Compiling herbie-lint v1.0.7 (file:///source)
+kablam! error[E0532]: expected tuple struct/variant, found unit variant `MetaItemKind::Word`
+kablam!    --> src/lint.rs:124:20
+kablam!     |
+kablam! 124 |             if let MetaItemKind::Word(ref word) = attr.node.value.node {
+kablam!     |                    ^^^^^^^^^^^^^^^^^^ not a tuple struct/variant
+kablam! 
+kablam! error[E0412]: cannot find type `QSelf` in this scope
+kablam!   --> src/lisp.rs:71:18
+kablam!    |
+kablam! 71 |     Field(Option<QSelf>, Path, Spanned<Name>),
+kablam!    |                  ^^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use syntax::ast::QSelf;`
+kablam! 
+kablam! error[E0412]: cannot find type `QSelf` in this scope
+kablam!   --> src/lisp.rs:72:18
+kablam!    |
+kablam! 72 |     Ident(Option<QSelf>, Path),
+kablam!    |                  ^^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use syntax::ast::QSelf;`
+kablam! 
+kablam! error[E0412]: cannot find type `QSelf` in this scope
+kablam!   --> src/lisp.rs:75:21
+kablam!    |
+kablam! 75 |     TupField(Option<QSelf>, Path, Spanned<usize>),
+kablam!    |                     ^^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use syntax::ast::QSelf;`
+kablam! 
+kablam! error[E0106]: missing lifetime specifiers
+kablam!    --> src/lint.rs:121:6
+kablam!     |
+kablam! 121 | impl LateLintPass for Herbie {
+kablam!     |      ^^^^^^^^^^^^ expected 2 lifetime parameters
+kablam! 
+kablam! error[E0106]: missing lifetime specifier
+kablam!  --> src/utils.rs:8:23
+kablam!   |
+kablam! 8 | pub fn snippet<'a, T: LintContext>(cx: &T, span: Span, default: &'a str) -> Cow<'a, str> {
+kablam!   |                       ^^^^^^^^^^^ expected lifetime parameter
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `herbie-lint`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f c5eff644059f1f2bae1a74b61285f5160a20bf56d54c64538d45316ca0261246`
+blam! c5eff644059f1f2bae1a74b61285f5160a20bf56d54c64538d45316ca0261246

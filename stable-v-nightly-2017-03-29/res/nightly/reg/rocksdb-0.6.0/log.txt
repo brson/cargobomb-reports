@@ -1,0 +1,97 @@
+boom! testing rocksdb-0.6.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! ad7743b7db6f6e3ff47d1517df02c54d39fbc0f7ed3e3e574096b654f7b55c08
+boom! running `docker start -a ad7743b7db6f6e3ff47d1517df02c54d39fbc0f7ed3e3e574096b654f7b55c08`
+kablam!    Compiling librocksdb-sys v0.4.1
+kablam! warning: redundant linker flag specified for library `stdc++`
+kablam! 
+kablam!    Compiling rocksdb v0.6.0 (file:///source)
+kablam! warning: method is never used: `create_new_backup`
+kablam!   --> src/backup.rs:61:5
+kablam!    |
+kablam! 61 |       fn create_new_backup(&mut self, db: &DB) -> Result<(), Error> {
+kablam!    |  _____^ starting here...
+kablam! 62 | |         unsafe {
+kablam! 63 | |             ffi_try!(ffi::rocksdb_backup_engine_create_new_backup(self.inner, db.inner));
+kablam! 64 | |             Ok(())
+kablam! 65 | |         }
+kablam! 66 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `purge_old_backups`
+kablam!   --> src/backup.rs:68:5
+kablam!    |
+kablam! 68 |       fn purge_old_backups(&mut self, num_backups_to_keep: usize) -> Result<(), Error> {
+kablam!    |  _____^ starting here...
+kablam! 69 | |         unsafe {
+kablam! 70 | |             ffi_try!(ffi::rocksdb_backup_engine_purge_old_backups(self.inner,
+kablam! 71 | |                                                                   num_backups_to_keep as uint32_t));
+kablam! 72 | |             Ok(())
+kablam! 73 | |         }
+kablam! 74 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 240.74 secs
+boom! running `docker rm -f ad7743b7db6f6e3ff47d1517df02c54d39fbc0f7ed3e3e574096b654f7b55c08`
+blam! ad7743b7db6f6e3ff47d1517df02c54d39fbc0f7ed3e3e574096b654f7b55c08
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 9e333ae399d0b840bd5c5e5b48cbeb40b77d343f7d4809547c9eed5f491edb04
+boom! running `docker start -a 9e333ae399d0b840bd5c5e5b48cbeb40b77d343f7d4809547c9eed5f491edb04`
+kablam!    Compiling rocksdb v0.6.0 (file:///source)
+kablam! error: couldn't read "test/test.rs": No such file or directory (os error 2)
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `rocksdb`.
+kablam! warning: method is never used: `create_new_backup`
+kablam!   --> src/backup.rs:61:5
+kablam!    |
+kablam! 61 |       fn create_new_backup(&mut self, db: &DB) -> Result<(), Error> {
+kablam!    |  _____^ starting here...
+kablam! 62 | |         unsafe {
+kablam! 63 | |             ffi_try!(ffi::rocksdb_backup_engine_create_new_backup(self.inner, db.inner));
+kablam! 64 | |             Ok(())
+kablam! 65 | |         }
+kablam! 66 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `purge_old_backups`
+kablam!   --> src/backup.rs:68:5
+kablam!    |
+kablam! 68 |       fn purge_old_backups(&mut self, num_backups_to_keep: usize) -> Result<(), Error> {
+kablam!    |  _____^ starting here...
+kablam! 69 | |         unsafe {
+kablam! 70 | |             ffi_try!(ffi::rocksdb_backup_engine_purge_old_backups(self.inner,
+kablam! 71 | |                                                                   num_backups_to_keep as uint32_t));
+kablam! 72 | |             Ok(())
+kablam! 73 | |         }
+kablam! 74 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f 9e333ae399d0b840bd5c5e5b48cbeb40b77d343f7d4809547c9eed5f491edb04`
+blam! 9e333ae399d0b840bd5c5e5b48cbeb40b77d343f7d4809547c9eed5f491edb04
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 4637f78e84e97a1666a51f116a8fa506390521eb8a68f02d549d3595a26ea125
+boom! running `docker start -a 4637f78e84e97a1666a51f116a8fa506390521eb8a68f02d549d3595a26ea125`
+kablam!    Compiling rocksdb v0.6.0 (file:///source)
+kablam! error: couldn't read "test/test.rs": No such file or directory (os error 2)
+kablam! 
+kablam! error: Could not compile `rocksdb`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 4637f78e84e97a1666a51f116a8fa506390521eb8a68f02d549d3595a26ea125`
+blam! 4637f78e84e97a1666a51f116a8fa506390521eb8a68f02d549d3595a26ea125

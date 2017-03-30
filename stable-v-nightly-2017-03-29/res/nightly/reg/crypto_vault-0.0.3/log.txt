@@ -1,0 +1,38 @@
+boom! testing crypto_vault-0.0.3 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! a133245481159112b825f0eb9ec3877cf82b368f55982533fecc3d0003d50b78
+boom! running `docker start -a a133245481159112b825f0eb9ec3877cf82b368f55982533fecc3d0003d50b78`
+kablam!    Compiling crypto_vault v0.0.3 (file:///source)
+kablam! error[E0432]: unresolved import `openssl::crypto::pkcs5::pbkdf2_hmac_sha1`
+kablam!  --> src/crypto.rs:1:5
+kablam!   |
+kablam! 1 | use openssl::crypto::pkcs5::pbkdf2_hmac_sha1;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `pkcs5` in `crypto`
+kablam! 
+kablam! error[E0432]: unresolved import `openssl::crypto::symm`
+kablam!  --> src/crypto.rs:2:5
+kablam!   |
+kablam! 2 | use openssl::crypto::symm;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^ no `symm` in `crypto`
+kablam! 
+kablam! error: no method named `push_all` found for type `std::vec::Vec<_>` in the current scope
+kablam!   --> src/crypto.rs:11:18
+kablam!    |
+kablam! 11 |     final_result.push_all(&crypter.update(data));
+kablam!    |                  ^^^^^^^^
+kablam! 
+kablam! error: no method named `push_all` found for type `std::vec::Vec<_>` in the current scope
+kablam!   --> src/crypto.rs:12:18
+kablam!    |
+kablam! 12 |     final_result.push_all(&crypter.finalize());
+kablam!    |                  ^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `crypto_vault`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f a133245481159112b825f0eb9ec3877cf82b368f55982533fecc3d0003d50b78`
+blam! a133245481159112b825f0eb9ec3877cf82b368f55982533fecc3d0003d50b78

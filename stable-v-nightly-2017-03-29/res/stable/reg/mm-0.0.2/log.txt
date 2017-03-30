@@ -1,0 +1,86 @@
+boom! testing mm-0.0.2 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 1c2473315344e81dbf7dbc969d72d81c9a877f5e9800f47f4be76b3e204f6842
+boom! running `docker start -a 1c2473315344e81dbf7dbc969d72d81c9a877f5e9800f47f4be76b3e204f6842`
+kablam!    Compiling mm v0.0.2 (file:///source)
+kablam! error[E0432]: unresolved import `std::num::SignedInt`
+kablam!  --> src/image/mod.rs:5:5
+kablam!   |
+kablam! 5 | use std::num::SignedInt;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^ no `SignedInt` in `num`
+kablam! 
+kablam! error[E0432]: unresolved import `std::collections::RingBuf`
+kablam!  --> src/video/internal/x11/display.rs:7:3
+kablam!   |
+kablam! 7 |   RingBuf,
+kablam!   |   ^^^^^^^ no `RingBuf` in `collections`
+kablam! 
+kablam! error[E0425]: cannot find function `from_raw_buf` in module `std::slice`
+kablam!    --> src/video/internal/x11/window.rs:318:27
+kablam!     |
+kablam! 318 |         let title_slice = std::slice::from_raw_buf(&title_u8_ptr, strlen(title_ptr) as usize);
+kablam!     |                           ^^^^^^^^^^^^^^^^^^^^^^^^ not found in `std::slice`
+kablam! 
+kablam! error[E0425]: cannot find function `from_raw_buf` in module `std::slice`
+kablam!    --> src/ffi/xlib.rs:163:14
+kablam!     |
+kablam! 163 |       return std::slice::from_raw_buf(&ptr, 20)[index];
+kablam!     |              ^^^^^^^^^^^^^^^^^^^^^^^^ not found in `std::slice`
+kablam! 
+kablam! error[E0425]: cannot find function `from_raw_buf` in module `std::slice`
+kablam!    --> src/ffi/xlib.rs:174:14
+kablam!     |
+kablam! 174 |       return std::slice::from_raw_buf(&ptr, 10)[index];
+kablam!     |              ^^^^^^^^^^^^^^^^^^^^^^^^ not found in `std::slice`
+kablam! 
+kablam! error[E0425]: cannot find function `from_raw_mut_buf` in module `std::slice`
+kablam!    --> src/ffi/xlib.rs:181:7
+kablam!     |
+kablam! 181 |       std::slice::from_raw_mut_buf(&ptr, 20)[index] = value;
+kablam!     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `std::slice`
+kablam! 
+kablam! error[E0425]: cannot find function `from_raw_mut_buf` in module `std::slice`
+kablam!    --> src/ffi/xlib.rs:192:7
+kablam!     |
+kablam! 192 |       std::slice::from_raw_mut_buf(&ptr, 10)[index] = value;
+kablam!     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `std::slice`
+kablam! 
+kablam! error[E0425]: cannot find function `from_raw_buf` in module `std::slice`
+kablam!   --> src/internal/mod.rs:40:17
+kablam!    |
+kablam! 40 |     let slice = std::slice::from_raw_buf(&ptr, size_of::<T>());
+kablam!    |                 ^^^^^^^^^^^^^^^^^^^^^^^^ not found in `std::slice`
+kablam! 
+kablam! error[E0405]: cannot find trait `String` in module `std::fmt`
+kablam!   --> src/lib.rs:57:6
+kablam!    |
+kablam! 57 | impl std::fmt::String for MmError {
+kablam!    |      ^^^^^^^^^^^^^^^^ not found in `std::fmt`
+kablam! 
+kablam! error: module `range` is private
+kablam!   --> src/video/internal/x11/display.rs:11:5
+kablam!    |
+kablam! 11 | use std::iter::range;
+kablam!    |     ^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/lib.rs:8:1
+kablam!   |
+kablam! 8 | #![feature(unsafe_destructor)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: The attribute `unsafe_destructor` is currently unknown to the compiler and may have meaning added to it in the future (see issue #29642)
+kablam!    --> src/video/opengl.rs:141:1
+kablam!     |
+kablam! 141 | #[unsafe_destructor]
+kablam!     | ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `mm`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 1c2473315344e81dbf7dbc969d72d81c9a877f5e9800f47f4be76b3e204f6842`
+blam! 1c2473315344e81dbf7dbc969d72d81c9a877f5e9800f47f4be76b3e204f6842

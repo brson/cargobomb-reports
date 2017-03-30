@@ -1,0 +1,39 @@
+boom! testing fmod-0.9.22 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 4f579a38952226508699d612d48cf64acfd9092fa038a50a1039bafdbc09212e
+boom! running `docker start -a 4f579a38952226508699d612d48cf64acfd9092fa038a50a1039bafdbc09212e`
+kablam!    Compiling fmod v0.9.22 (file:///source)
+kablam! warning: unused import: `channel::Channel`, #[warn(unused_imports)] on by default
+kablam!   --> src/sound.rs:29:5
+kablam!    |
+kablam! 29 | use channel::Channel;
+kablam!    |     ^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: static variable `callback` should have an upper case name such as `CALLBACK`, #[warn(non_upper_case_globals)] on by default
+kablam!   --> src/fmod_sys.rs:50:5
+kablam!    |
+kablam! 50 |       static mut callback : SysCallback = SysCallback {
+kablam!    |  _____^ starting here...
+kablam! 51 | |             file_open: None,
+kablam! 52 | |             file_close: None,
+kablam! 53 | |             file_read: None,
+kablam! 54 | |             file_seek: None
+kablam! 55 | |         };
+kablam!    | |__________^ ...ending here
+kablam! 
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/rfmod.0.o" "-o" "/target/debug/deps/librfmod.so" "/target/debug/deps/rfmod.metadata.o" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "-l" "fmodex64" "-Wl,--whole-archive" "/tmp/rustc.NS3j3BaYRX8Y/liblibc-5dc7b85e748840b4.rlib" "-Wl,--no-whole-archive" "-Wl,--whole-archive" "/tmp/rustc.NS3j3BaYRX8Y/libc_vec-be496150d8557b7a.rlib" "-Wl,--no-whole-archive" "-Wl,--whole-archive" "/tmp/rustc.NS3j3BaYRX8Y/libbyteorder-35109819e11170bf.rlib" "-Wl,--no-whole-archive" "-Wl,--whole-archive" "/tmp/rustc.NS3j3BaYRX8Y/libstd-13f36e2630c2d79b.rlib" "-Wl,--no-whole-archive" "-Wl,--whole-archive" "/tmp/rustc.NS3j3BaYRX8Y/libpanic_unwind-3b9d178f1de89528.rlib" "-Wl,--no-whole-archive" "-Wl,--whole-archive" "/tmp/rustc.NS3j3BaYRX8Y/libunwind-93bb403c9fc56f72.rlib" "-Wl,--no-whole-archive" "-Wl,--whole-archive" "/tmp/rustc.NS3j3BaYRX8Y/librand-a2ef7979b4b3e1d5.rlib" "-Wl,--no-whole-archive" "-Wl,--whole-archive" "/tmp/rustc.NS3j3BaYRX8Y/libcollections-d22754c8c52de3a1.rlib" "-Wl,--no-whole-archive" "-Wl,--whole-archive" "/tmp/rustc.NS3j3BaYRX8Y/liballoc-c53f99154bf815c4.rlib" "-Wl,--no-whole-archive" "-Wl,--whole-archive" "/tmp/rustc.NS3j3BaYRX8Y/liballoc_system-17a71bb92a82956c.rlib" "-Wl,--no-whole-archive" "-Wl,--whole-archive" "/tmp/rustc.NS3j3BaYRX8Y/liblibc-739908a2e215dd88.rlib" "-Wl,--no-whole-archive" "-Wl,--whole-archive" "/tmp/rustc.NS3j3BaYRX8Y/libstd_unicode-1cc5fcd37568ebc4.rlib" "-Wl,--no-whole-archive" "-Wl,--whole-archive" "/tmp/rustc.NS3j3BaYRX8Y/libcore-3f4289353c600297.rlib" "-Wl,--no-whole-archive" "/tmp/rustc.NS3j3BaYRX8Y/libcompiler_builtins-07bfb3bcb2a51da0.rlib" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util" "-shared"
+kablam!   = note: /usr/bin/ld: cannot find -lfmodex64
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `fmod`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 4f579a38952226508699d612d48cf64acfd9092fa038a50a1039bafdbc09212e`
+blam! 4f579a38952226508699d612d48cf64acfd9092fa038a50a1039bafdbc09212e

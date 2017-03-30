@@ -1,0 +1,26 @@
+boom! testing hlua_master-0.1.8 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 26325bf38913832bc77fff23ca5bc32263634680de96a2271acc1ea73b40857c
+boom! running `docker start -a 26325bf38913832bc77fff23ca5bc32263634680de96a2271acc1ea73b40857c`
+kablam!    Compiling hlua_master v0.1.8 (file:///source)
+kablam! error[E0591]: `extern "C" fn(*mut ffi::lua_State) -> i32 {userdata::destructor_wrapper}` is zero-sized and can't be transmuted to `extern "C" fn(*mut ffi::lua_State) -> i32`
+kablam!   --> src/userdata.rs:79:55
+kablam!    |
+kablam! 79 |             ffi::lua_pushcclosure(lua.as_mut_lua().0, mem::transmute(destructor_wrapper), 1);
+kablam!    |                                                       ^^^^^^^^^^^^^^
+kablam!    |
+kablam! note: cast with `as` to a pointer instead
+kablam!   --> src/userdata.rs:79:55
+kablam!    |
+kablam! 79 |             ffi::lua_pushcclosure(lua.as_mut_lua().0, mem::transmute(destructor_wrapper), 1);
+kablam!    |                                                       ^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `hlua_master`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 26325bf38913832bc77fff23ca5bc32263634680de96a2271acc1ea73b40857c`
+blam! 26325bf38913832bc77fff23ca5bc32263634680de96a2271acc1ea73b40857c

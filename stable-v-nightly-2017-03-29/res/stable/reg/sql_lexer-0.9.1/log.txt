@@ -1,0 +1,204 @@
+boom! testing sql_lexer-0.9.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 6e777df3d1f7cb15cb0d7f952a7c76773e7e416bec3348635ebf290cf8362e6e
+boom! running `docker start -a 6e777df3d1f7cb15cb0d7f952a7c76773e7e416bec3348635ebf290cf8362e6e`
+kablam!    Compiling sql_lexer v0.9.1 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.79 secs
+boom! running `docker rm -f 6e777df3d1f7cb15cb0d7f952a7c76773e7e416bec3348635ebf290cf8362e6e`
+blam! 6e777df3d1f7cb15cb0d7f952a7c76773e7e416bec3348635ebf290cf8362e6e
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 98f8550ec26ad12c4cf39f477311352ac76c120ff288822f5da83dab89821f49
+boom! running `docker start -a 98f8550ec26ad12c4cf39f477311352ac76c120ff288822f5da83dab89821f49`
+kablam!    Compiling sql_lexer v0.9.1 (file:///source)
+kablam! error: use of unstable library feature 'test' (see issue #27812)
+kablam!  --> src/lib.rs:3:14
+kablam!   |
+kablam! 3 | #[cfg(test)] extern crate test;
+kablam!   |              ^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'test' (see issue #27812)
+kablam!    --> src/lib.rs:179:9
+kablam!     |
+kablam! 179 |     use test;
+kablam!     |         ^^^^
+kablam! 
+kablam! error: use of unstable library feature 'test' (see issue #27812)
+kablam!    --> src/lib.rs:299:44
+kablam!     |
+kablam! 299 |     fn bench_sanitize_string_quote(b: &mut test::Bencher) {
+kablam!     |                                            ^^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'test' (see issue #27812)
+kablam!    --> src/lib.rs:301:13
+kablam!     |
+kablam! 301 |             test::black_box(super::sanitize_string("SELECT `table`.* FROM `table` WHERE `id` = 'secret' LIMIT 1;".to_string()));
+kablam!     |             ^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'test' (see issue #27812)
+kablam!    --> src/lib.rs:306:46
+kablam!     |
+kablam! 306 |     fn bench_sanitize_string_numeric(b: &mut test::Bencher) {
+kablam!     |                                              ^^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'test' (see issue #27812)
+kablam!    --> src/lib.rs:308:13
+kablam!     |
+kablam! 308 |             test::black_box(super::sanitize_string("SELECT `table`.* FROM `table` WHERE `id` = 1 LIMIT 1;".to_string()));
+kablam!     |             ^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'test' (see issue #27812)
+kablam!    --> src/lib.rs:313:41
+kablam!     |
+kablam! 313 |     fn bench_sanitize_string_in(b: &mut test::Bencher) {
+kablam!     |                                         ^^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'test' (see issue #27812)
+kablam!    --> src/lib.rs:315:13
+kablam!     |
+kablam! 315 |             test::black_box(super::sanitize_string("SELECT `table`.* FROM `table` WHERE `id` IN (1, 2, 3) LIMIT 1;".to_string()));
+kablam!     |             ^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'test' (see issue #27812)
+kablam!    --> src/lib.rs:320:38
+kablam!     |
+kablam! 320 |     fn bench_sanitize_insert(b: &mut test::Bencher) {
+kablam!     |                                      ^^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'test' (see issue #27812)
+kablam!    --> src/lib.rs:322:13
+kablam!     |
+kablam! 322 |             test::black_box(super::sanitize_string("INSERT INTO \"table\" (\"field1\", \"field2\") VALUES ('value', 1);".to_string()));
+kablam!     |             ^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'test' (see issue #27812)
+kablam!    --> src/lib.rs:300:11
+kablam!     |
+kablam! 300 |         b.iter(|| {
+kablam!     |           ^^^^
+kablam! 
+kablam! error: use of unstable library feature 'test' (see issue #27812)
+kablam!    --> src/lib.rs:307:11
+kablam!     |
+kablam! 307 |         b.iter(|| {
+kablam!     |           ^^^^
+kablam! 
+kablam! error: use of unstable library feature 'test' (see issue #27812)
+kablam!    --> src/lib.rs:314:11
+kablam!     |
+kablam! 314 |         b.iter(|| {
+kablam!     |           ^^^^
+kablam! 
+kablam! error: use of unstable library feature 'test' (see issue #27812)
+kablam!    --> src/lib.rs:321:11
+kablam!     |
+kablam! 321 |         b.iter(|| {
+kablam!     |           ^^^^
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `sql_lexer`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f 98f8550ec26ad12c4cf39f477311352ac76c120ff288822f5da83dab89821f49`
+blam! 98f8550ec26ad12c4cf39f477311352ac76c120ff288822f5da83dab89821f49
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! 614af86468156e33a2643c68d69d3326844b7aee6108523c919327ff98105ebf
+boom! running `docker start -a 614af86468156e33a2643c68d69d3326844b7aee6108523c919327ff98105ebf`
+kablam!    Compiling sql_lexer v0.9.1 (file:///source)
+kablam! error: use of unstable library feature 'test' (see issue #27812)
+kablam!  --> src/lib.rs:3:14
+kablam!   |
+kablam! 3 | #[cfg(test)] extern crate test;
+kablam!   |              ^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'test' (see issue #27812)
+kablam!    --> src/lib.rs:179:9
+kablam!     |
+kablam! 179 |     use test;
+kablam!     |         ^^^^
+kablam! 
+kablam! error: use of unstable library feature 'test' (see issue #27812)
+kablam!    --> src/lib.rs:299:44
+kablam!     |
+kablam! 299 |     fn bench_sanitize_string_quote(b: &mut test::Bencher) {
+kablam!     |                                            ^^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'test' (see issue #27812)
+kablam!    --> src/lib.rs:301:13
+kablam!     |
+kablam! 301 |             test::black_box(super::sanitize_string("SELECT `table`.* FROM `table` WHERE `id` = 'secret' LIMIT 1;".to_string()));
+kablam!     |             ^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'test' (see issue #27812)
+kablam!    --> src/lib.rs:306:46
+kablam!     |
+kablam! 306 |     fn bench_sanitize_string_numeric(b: &mut test::Bencher) {
+kablam!     |                                              ^^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'test' (see issue #27812)
+kablam!    --> src/lib.rs:308:13
+kablam!     |
+kablam! 308 |             test::black_box(super::sanitize_string("SELECT `table`.* FROM `table` WHERE `id` = 1 LIMIT 1;".to_string()));
+kablam!     |             ^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'test' (see issue #27812)
+kablam!    --> src/lib.rs:313:41
+kablam!     |
+kablam! 313 |     fn bench_sanitize_string_in(b: &mut test::Bencher) {
+kablam!     |                                         ^^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'test' (see issue #27812)
+kablam!    --> src/lib.rs:315:13
+kablam!     |
+kablam! 315 |             test::black_box(super::sanitize_string("SELECT `table`.* FROM `table` WHERE `id` IN (1, 2, 3) LIMIT 1;".to_string()));
+kablam!     |             ^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'test' (see issue #27812)
+kablam!    --> src/lib.rs:320:38
+kablam!     |
+kablam! 320 |     fn bench_sanitize_insert(b: &mut test::Bencher) {
+kablam!     |                                      ^^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'test' (see issue #27812)
+kablam!    --> src/lib.rs:322:13
+kablam!     |
+kablam! 322 |             test::black_box(super::sanitize_string("INSERT INTO \"table\" (\"field1\", \"field2\") VALUES ('value', 1);".to_string()));
+kablam!     |             ^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: use of unstable library feature 'test' (see issue #27812)
+kablam!    --> src/lib.rs:300:11
+kablam!     |
+kablam! 300 |         b.iter(|| {
+kablam!     |           ^^^^
+kablam! 
+kablam! error: use of unstable library feature 'test' (see issue #27812)
+kablam!    --> src/lib.rs:307:11
+kablam!     |
+kablam! 307 |         b.iter(|| {
+kablam!     |           ^^^^
+kablam! 
+kablam! error: use of unstable library feature 'test' (see issue #27812)
+kablam!    --> src/lib.rs:314:11
+kablam!     |
+kablam! 314 |         b.iter(|| {
+kablam!     |           ^^^^
+kablam! 
+kablam! error: use of unstable library feature 'test' (see issue #27812)
+kablam!    --> src/lib.rs:321:11
+kablam!     |
+kablam! 321 |         b.iter(|| {
+kablam!     |           ^^^^
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `sql_lexer`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 614af86468156e33a2643c68d69d3326844b7aee6108523c919327ff98105ebf`
+blam! 614af86468156e33a2643c68d69d3326844b7aee6108523c919327ff98105ebf

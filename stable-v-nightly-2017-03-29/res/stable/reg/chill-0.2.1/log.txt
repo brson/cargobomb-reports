@@ -1,0 +1,26 @@
+boom! testing chill-0.2.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 438c81a7ceb39440ac1013dec5def90879fb768ab173cd5ae1718ce64c9ba06b
+boom! running `docker start -a 438c81a7ceb39440ac1013dec5def90879fb768ab173cd5ae1718ce64c9ba06b`
+kablam!    Compiling base64 v0.2.1
+kablam!    Compiling uuid v0.2.3
+kablam!    Compiling mime v0.2.3
+kablam!    Compiling hyper v0.9.18
+kablam!    Compiling chill v0.2.1 (file:///source)
+kablam! error[E0277]: the trait bound `mime::Mime: serde::Serialize` is not satisfied
+kablam!    --> src/attachment.rs:326:33
+kablam!     |
+kablam! 326 |                 try!(serializer.serialize_struct_elt("content_type", &content_type));
+kablam!     |                                 ^^^^^^^^^^^^^^^^^^^^ the trait `serde::Serialize` is not implemented for `mime::Mime`
+kablam!     |
+kablam!     = note: required because of the requirements on the impl of `serde::Serialize` for `&mime::Mime`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `chill`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 438c81a7ceb39440ac1013dec5def90879fb768ab173cd5ae1718ce64c9ba06b`
+blam! 438c81a7ceb39440ac1013dec5def90879fb768ab173cd5ae1718ce64c9ba06b

@@ -1,0 +1,26 @@
+boom! testing ccv-0.1.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 51fade3f1212b749c61cc02299e216505de48961c5bb6d724697f48ac6513ea5
+boom! running `docker start -a 51fade3f1212b749c61cc02299e216505de48961c5bb6d724697f48ac6513ea5`
+kablam!    Compiling ccv v0.1.0 (file:///source)
+kablam! error: failed to run custom build command for `ccv v0.1.0 (file:///source)`
+kablam! process didn't exit successfully: `/target/debug/build/ccv-47e0679c87c2c632/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! make: Entering directory '/source/ccv/lib'
+kablam! make: Leaving directory '/source/ccv/lib'
+kablam! cargo:rustc-link-search=native=/source/ccv/lib
+kablam! cargo:rustc-link-lib=static=ccv
+kablam! cargo:rustc-link-lib=ccv
+kablam! 
+kablam! --- stderr
+kablam! /source/ccv/lib/configure: line 1698: config.log: Read-only file system
+kablam! /source/ccv/lib/configure: line 1708: config.log: Read-only file system
+kablam! makefile:1: config.mk: No such file or directory
+kablam! make: *** No rule to make target 'config.mk'.  Stop.
+kablam! thread 'main' panicked at 'Could not find libpng: Failure { command: "\"pkg-config\" \"--libs\" \"--cflags\" \"libpng >= 1.6\"", output: Output { status: ExitStatus(ExitStatus(256)), stdout: "", stderr: "Requested \'libpng >= 1.6\' but version of libpng is 1.2.51\n" } }', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f 51fade3f1212b749c61cc02299e216505de48961c5bb6d724697f48ac6513ea5`
+blam! 51fade3f1212b749c61cc02299e216505de48961c5bb6d724697f48ac6513ea5

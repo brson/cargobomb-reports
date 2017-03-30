@@ -1,0 +1,44 @@
+boom! testing quasi_macros-0.32.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! b6e8ef8a3e88665530c046e3adf1a838a37e0a4ab88c78110837804244ecb715
+boom! running `docker start -a b6e8ef8a3e88665530c046e3adf1a838a37e0a4ab88c78110837804244ecb715`
+kablam!    Compiling aster v0.41.0
+kablam! error[E0560]: struct `syntax::ast::Attribute` has no field named `value`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/aster-0.41.0/src/attr.rs:59:13
+kablam!    |
+kablam! 59 |             value: item,
+kablam!    |             ^^^^^^ field does not exist - did you mean `path`?
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/aster-0.41.0/src/mac.rs:110:18
+kablam!     |
+kablam! 110 |             tts: self.tokens,
+kablam!     |                  ^^^^^^^^^^^ expected struct `syntax::tokenstream::ThinTokenStream`, found struct `std::vec::Vec`
+kablam!     |
+kablam!     = note: expected type `syntax::tokenstream::ThinTokenStream`
+kablam!                found type `std::vec::Vec<syntax::tokenstream::TokenTree>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .remove(...)
+kablam!             - .swap_remove(...)
+kablam! 
+kablam! error[E0063]: missing field `span` in initializer of `syntax::ast::PathSegment`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/aster-0.41.0/src/path.rs:303:30
+kablam!     |
+kablam! 303 |         self.callback.invoke(ast::PathSegment {
+kablam!     |                              ^^^^^^^^^^^^^^^^ missing `span`
+kablam! 
+kablam! error[E0063]: missing field `span` in initializer of `syntax::ast::PathSegment`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/aster-0.41.0/src/path.rs:324:30
+kablam!     |
+kablam! 324 |         self.callback.invoke(ast::PathSegment {
+kablam!     |                              ^^^^^^^^^^^^^^^^ missing `span`
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `aster`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f b6e8ef8a3e88665530c046e3adf1a838a37e0a4ab88c78110837804244ecb715`
+blam! b6e8ef8a3e88665530c046e3adf1a838a37e0a4ab88c78110837804244ecb715

@@ -1,0 +1,44 @@
+boom! testing win32-error-0.9.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 35eded7c3a96fa6648f7c68f55269b69ae3922795aed4b1a4a6cc44d72019f7b
+boom! running `docker start -a 35eded7c3a96fa6648f7c68f55269b69ae3922795aed4b1a4a6cc44d72019f7b`
+kablam!    Compiling win32-error v0.9.0 (file:///source)
+kablam! error[E0432]: unresolved import `kernel32::GetLastError`
+kablam!  --> src/lib.rs:9:16
+kablam!   |
+kablam! 9 | use kernel32::{GetLastError, FormatMessageW};
+kablam!   |                ^^^^^^^^^^^^ no `GetLastError` in the root
+kablam! 
+kablam! error[E0432]: unresolved import `kernel32::FormatMessageW`
+kablam!  --> src/lib.rs:9:30
+kablam!   |
+kablam! 9 | use kernel32::{GetLastError, FormatMessageW};
+kablam!   |                              ^^^^^^^^^^^^^^ no `FormatMessageW` in the root
+kablam! 
+kablam! error[E0432]: unresolved import `winapi::FORMAT_MESSAGE_IGNORE_INSERTS`
+kablam!   --> src/lib.rs:11:5
+kablam!    |
+kablam! 11 | use winapi::FORMAT_MESSAGE_IGNORE_INSERTS;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `FORMAT_MESSAGE_IGNORE_INSERTS` in the root
+kablam! 
+kablam! error[E0432]: unresolved import `winapi::FORMAT_MESSAGE_FROM_SYSTEM`
+kablam!   --> src/lib.rs:12:5
+kablam!    |
+kablam! 12 | use winapi::FORMAT_MESSAGE_FROM_SYSTEM;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `FORMAT_MESSAGE_FROM_SYSTEM` in the root
+kablam! 
+kablam! error[E0432]: unresolved import `winapi::FORMAT_MESSAGE_ARGUMENT_ARRAY`
+kablam!   --> src/lib.rs:13:5
+kablam!    |
+kablam! 13 | use winapi::FORMAT_MESSAGE_ARGUMENT_ARRAY;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `FORMAT_MESSAGE_ARGUMENT_ARRAY` in the root
+kablam! 
+kablam! error: aborting due to 5 previous errors
+kablam! 
+kablam! error: Could not compile `win32-error`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 35eded7c3a96fa6648f7c68f55269b69ae3922795aed4b1a4a6cc44d72019f7b`
+blam! 35eded7c3a96fa6648f7c68f55269b69ae3922795aed4b1a4a6cc44d72019f7b

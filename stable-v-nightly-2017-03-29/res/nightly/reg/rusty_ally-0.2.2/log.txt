@@ -1,0 +1,63 @@
+boom! testing rusty_ally-0.2.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 531e051ccb06eb096da9f7559528d529b41f3739c3aa2537c8dd162aa97b8266
+boom! running `docker start -a 531e051ccb06eb096da9f7559528d529b41f3739c3aa2537c8dd162aa97b8266`
+kablam!    Compiling diesel_codegen v0.5.4
+kablam!    Compiling dotenv_codegen v0.8.1
+kablam!    Compiling diesel v0.5.3
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/dotenv_codegen-0.8.1/src/dotenv_macro.rs:13:71
+kablam!    |
+kablam! 13 | pub fn expand_dotenv<'cx>(cx: &'cx mut ExtCtxt, sp: Span, tts: &[ast::TokenTree])
+kablam!    |                                                                       ^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use syntax::ext::tt::quoted::TokenTree;`
+kablam!              `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/dotenv_codegen-0.8.1/src/dotenv_macro.rs:25:55
+kablam!    |
+kablam! 25 | fn expand_env(cx: &mut ExtCtxt, sp: Span, tts: &[ast::TokenTree])
+kablam!    |                                                       ^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use syntax::ext::tt::quoted::TokenTree;`
+kablam!              `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0425]: cannot find function `intern_and_get_ident` in module `token`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/dotenv_codegen-0.8.1/src/dotenv_macro.rs:45:20
+kablam!    |
+kablam! 45 |             token::intern_and_get_ident(&format!("environment variable `{}` \
+kablam!    |                    ^^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `intern_and_get_ident` in module `token`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/dotenv_codegen-0.8.1/src/dotenv_macro.rs:70:41
+kablam!    |
+kablam! 70 |         Ok(s) => cx.expr_str(sp, token::intern_and_get_ident(&s))
+kablam!    |                                         ^^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error: cannot index a value of type `syntax::ast::Symbol`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/dotenv_codegen-0.8.1/src/dotenv_macro.rs:65:29
+kablam!    |
+kablam! 65 |     let e = match env::var(&var[..]) {
+kablam!    |                             ^^^^^^^
+kablam! 
+kablam! error[E0277]: the trait bound `str: std::marker::Sized` is not satisfied
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/dotenv_codegen-0.8.1/src/dotenv_macro.rs:43:9
+kablam!    |
+kablam! 43 |     let msg = match exprs.next() {
+kablam!    |         ^^^ the trait `std::marker::Sized` is not implemented for `str`
+kablam!    |
+kablam!    = note: `str` does not have a constant size known at compile-time
+kablam!    = note: all local variables must have a statically known size
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `dotenv_codegen`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f 531e051ccb06eb096da9f7559528d529b41f3739c3aa2537c8dd162aa97b8266`
+blam! 531e051ccb06eb096da9f7559528d529b41f3739c3aa2537c8dd162aa97b8266

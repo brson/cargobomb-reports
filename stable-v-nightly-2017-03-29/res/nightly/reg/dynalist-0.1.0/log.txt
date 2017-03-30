@@ -1,0 +1,84 @@
+boom! testing dynalist-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 20040e6387c58c28de721a47230a087cc5418a1d68d31f162b26214cdd43a44c
+boom! running `docker start -a 20040e6387c58c28de721a47230a087cc5418a1d68d31f162b26214cdd43a44c`
+kablam!    Compiling dynalist v0.1.0 (file:///source)
+kablam! error[E0432]: unresolved import `std::boxed::into_raw`
+kablam!  --> src/xorlist.rs:3:5
+kablam!   |
+kablam! 3 | use std::boxed::into_raw;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^ no `into_raw` in `boxed`
+kablam! 
+kablam! error: use of unstable library feature 'unsize' (see issue #27732)
+kablam!  --> src/xorlist.rs:1:32
+kablam!   |
+kablam! 1 | use std::marker::{PhantomData, Unsize};
+kablam!   |                                ^^^^^^
+kablam!   |
+kablam!   = help: add #![feature(unsize)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'unsize' (see issue #27732)
+kablam!    --> src/xorlist.rs:667:20
+kablam!     |
+kablam! 667 | impl<U: ?Sized, T: Unsize<U>> iter::FromIterator<T> for XorList<U> {
+kablam!     |                    ^^^^^^^^^
+kablam!     |
+kablam!     = help: add #![feature(unsize)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'unsize' (see issue #27732)
+kablam!    --> src/xorlist.rs:675:20
+kablam!     |
+kablam! 675 | impl<U: ?Sized, T: Unsize<U>> Extend<T> for XorList<U> {
+kablam!     |                    ^^^^^^^^^
+kablam!     |
+kablam!     = help: add #![feature(unsize)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'unsize' (see issue #27732)
+kablam!   --> src/xorlist.rs:14:15
+kablam!    |
+kablam! 14 |     fn new<U: Unsize<T>>(val: U) -> Box<Node<T>> {
+kablam!    |               ^^^^^^^^^
+kablam!    |
+kablam!    = help: add #![feature(unsize)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'unsize' (see issue #27732)
+kablam!   --> src/xorlist.rs:55:25
+kablam!    |
+kablam! 55 |     pub fn push_back<U: Unsize<T>>(&mut self, val: U) {
+kablam!    |                         ^^^^^^^^^
+kablam!    |
+kablam!    = help: add #![feature(unsize)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'unsize' (see issue #27732)
+kablam!   --> src/xorlist.rs:83:26
+kablam!    |
+kablam! 83 |     pub fn push_front<U: Unsize<T>>(&mut self, val: U) {
+kablam!    |                          ^^^^^^^^^
+kablam!    |
+kablam!    = help: add #![feature(unsize)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'unsize' (see issue #27732)
+kablam!    --> src/xorlist.rs:484:29
+kablam!     |
+kablam! 484 |     pub fn insert_before<U: Unsize<T>>(&self, val: U) {
+kablam!     |                             ^^^^^^^^^
+kablam!     |
+kablam!     = help: add #![feature(unsize)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'unsize' (see issue #27732)
+kablam!    --> src/xorlist.rs:514:28
+kablam!     |
+kablam! 514 |     pub fn insert_after<U: Unsize<T>>(&self, val: U) {
+kablam!     |                            ^^^^^^^^^
+kablam!     |
+kablam!     = help: add #![feature(unsize)] to the crate attributes to enable
+kablam! 
+kablam! error: aborting due to 9 previous errors
+kablam! 
+kablam! error: Could not compile `dynalist`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 20040e6387c58c28de721a47230a087cc5418a1d68d31f162b26214cdd43a44c`
+blam! 20040e6387c58c28de721a47230a087cc5418a1d68d31f162b26214cdd43a44c

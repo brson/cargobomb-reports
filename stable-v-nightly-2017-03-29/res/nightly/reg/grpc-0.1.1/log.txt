@@ -1,0 +1,174 @@
+boom! testing grpc-0.1.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 532fa060ce543c0a7d541b38aba1f33fe2add71ff7c37e2f8d31bb32236c3f06
+boom! running `docker start -a 532fa060ce543c0a7d541b38aba1f33fe2add71ff7c37e2f8d31bb32236c3f06`
+kablam!    Compiling hpack v0.3.0
+kablam!    Compiling tokio-tls v0.1.2
+kablam!    Compiling httpbis v0.1.1
+kablam!    Compiling grpc v0.1.1 (file:///source)
+kablam! warning: unused `#[macro_use]` import
+kablam!  --> src/lib.rs:1:1
+kablam!   |
+kablam! 1 | #[macro_use]
+kablam!   | ^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: use of deprecated item: renamed to `send`
+kablam!   --> src/client.rs:58:20
+kablam!    |
+kablam! 58 |         one_sender.complete((sender, receiver));
+kablam!    |                    ^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!   --> src/rt.rs:55:10
+kablam!    |
+kablam! 55 |     let (mut sender, receiver) = futures::sync::mpsc::unbounded();
+kablam!    |          ^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!   --> src/rt.rs:82:10
+kablam!    |
+kablam! 82 |     let (mut sender, receiver) = futures::sync::mpsc::unbounded();
+kablam!    |          ^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 19.2 secs
+boom! running `docker rm -f 532fa060ce543c0a7d541b38aba1f33fe2add71ff7c37e2f8d31bb32236c3f06`
+blam! 532fa060ce543c0a7d541b38aba1f33fe2add71ff7c37e2f8d31bb32236c3f06
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! b6acfb7fa01c696f61e69f24eb2b294f4424099f68bcb079a4fa3b091cabf60d
+boom! running `docker start -a b6acfb7fa01c696f61e69f24eb2b294f4424099f68bcb079a4fa3b091cabf60d`
+kablam!    Compiling grpc v0.1.1 (file:///source)
+kablam! warning: variable does not need to be mutable
+kablam!   --> tests/test_misc/stream_thread_spawn_iter.rs:20:10
+kablam!    |
+kablam! 20 |     let (mut sender, receiver) = futures::sync::mpsc::unbounded();
+kablam!    |          ^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: use of deprecated item: use sync::mpsc::channel instead
+kablam!    --> tests/simple.rs:167:24
+kablam!     |
+kablam! 167 |     fn call(&self) -> (stream::Sender<String, GrpcError>, GrpcFutureSend<String>) {
+kablam!     |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: use sync::mpsc::channel instead
+kablam!    --> tests/simple.rs:168:24
+kablam!     |
+kablam! 168 |         let (tx, rx) = stream::channel();
+kablam!     |                        ^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: function is never used: `panic_in_handler`
+kablam!    --> tests/simple.rs:201:1
+kablam!     |
+kablam! 201 |   fn panic_in_handler() {
+kablam!     |  _^ starting here...
+kablam! 202 | |     let tester = TesterUnary::new(|_| panic!("icnap"));
+kablam! 203 | |
+kablam! 204 | |     tester.call_expect_grpc_error("aa",
+kablam! 205 | |         |m| m.find("Panic").is_some() && m.find("icnap").is_some());
+kablam! 206 | | }
+kablam!     | |_^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: use of deprecated item: use sync::mpsc::channel instead
+kablam!    --> tests/simple.rs:244:17
+kablam!     |
+kablam! 244 |     let tx = tx.send(Ok("aa".to_owned())).wait().ok().expect("aa");
+kablam!     |                 ^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: use sync::mpsc::channel instead
+kablam!    --> tests/simple.rs:245:17
+kablam!     |
+kablam! 245 |     let tx = tx.send(Ok("bb".to_owned())).wait().ok().expect("bb");
+kablam!     |                 ^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: use sync::mpsc::channel instead
+kablam!    --> tests/simple.rs:246:17
+kablam!     |
+kablam! 246 |     let tx = tx.send(Ok("cc".to_owned())).wait().ok().expect("cc");
+kablam!     |                 ^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: unused `#[macro_use]` import
+kablam!  --> src/lib.rs:1:1
+kablam!   |
+kablam! 1 | #[macro_use]
+kablam!   | ^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: use of deprecated item: renamed to `send`
+kablam!   --> src/client.rs:58:20
+kablam!    |
+kablam! 58 |         one_sender.complete((sender, receiver));
+kablam!    |                    ^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!   --> src/rt.rs:55:10
+kablam!    |
+kablam! 55 |     let (mut sender, receiver) = futures::sync::mpsc::unbounded();
+kablam!    |          ^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!   --> src/rt.rs:82:10
+kablam!    |
+kablam! 82 |     let (mut sender, receiver) = futures::sync::mpsc::unbounded();
+kablam!    |          ^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 12.52 secs
+boom! running `docker rm -f b6acfb7fa01c696f61e69f24eb2b294f4424099f68bcb079a4fa3b091cabf60d`
+blam! b6acfb7fa01c696f61e69f24eb2b294f4424099f68bcb079a4fa3b091cabf60d
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 0a63d7d1a299a17fe15b53b5a09e4b502d8a7c9def072f2f67bcaf223f29fc61
+boom! running `docker start -a 0a63d7d1a299a17fe15b53b5a09e4b502d8a7c9def072f2f67bcaf223f29fc61`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/grpc-2ca1be4304ab6c93
+blam! 
+blam! running 1 test
+blam! test grpc_frame::test::test_parse_frame ... ok
+blam! 
+blam! test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/simple-bd755b5431822e82
+blam! 
+blam! running 5 tests
+blam! test server_is_not_running ... ok
+blam! test error_in_handler ... ok
+blam! test client_streaming ... ok
+blam! test server_streaming ... ok
+blam! test unary ... ok
+blam! 
+blam! test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f 0a63d7d1a299a17fe15b53b5a09e4b502d8a7c9def072f2f67bcaf223f29fc61`
+blam! 0a63d7d1a299a17fe15b53b5a09e4b502d8a7c9def072f2f67bcaf223f29fc61

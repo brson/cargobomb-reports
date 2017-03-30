@@ -1,0 +1,25 @@
+boom! testing imagequant-2.8.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! fc71fe003c4a4c2723369f0c8cef4d068e04155241768c5caa6620274e57976e
+boom! running `docker start -a fc71fe003c4a4c2723369f0c8cef4d068e04155241768c5caa6620274e57976e`
+kablam!    Compiling imagequant v2.8.2 (file:///source)
+kablam! error: failed to run custom build command for `imagequant v2.8.2 (file:///source)`
+kablam! process didn't exit successfully: `/target/debug/build/imagequant-be4b149641547084/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! curl -L https://pngquant.org/pngquant-2.8.2-src.tar.gz | tar xz -C /target/debug/build/imagequant-5257f3266c9b1483/out --strip-components=1
+kablam! Makefile:10: recipe for target '/target/debug/build/imagequant-5257f3266c9b1483/out/lib' failed
+kablam! 
+kablam! --- stderr
+kablam! /bin/sh: 1: curl: not found
+kablam! 
+kablam! gzip: stdin: unexpected end of file
+kablam! tar: Child returned status 1
+kablam! tar: Error is not recoverable: exiting now
+kablam! make: *** [/target/debug/build/imagequant-5257f3266c9b1483/out/lib] Error 2
+kablam! thread 'main' panicked at 'Script failed', build.rs:3
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f fc71fe003c4a4c2723369f0c8cef4d068e04155241768c5caa6620274e57976e`
+blam! fc71fe003c4a4c2723369f0c8cef4d068e04155241768c5caa6620274e57976e

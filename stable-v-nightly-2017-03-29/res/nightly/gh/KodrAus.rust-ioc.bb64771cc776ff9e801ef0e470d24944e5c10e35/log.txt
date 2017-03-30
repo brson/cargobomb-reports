@@ -1,0 +1,23 @@
+boom! testing https://github.com/KodrAus/rust-ioc#bb64771cc776ff9e801ef0e470d24944e5c10e35 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 4bc6505297bfb117629c7545b72f6278108de8f091004775242441b1038f3521
+boom! running `docker start -a 4bc6505297bfb117629c7545b72f6278108de8f091004775242441b1038f3521`
+kablam!    Compiling ioc v0.1.0 (file:///source)
+kablam! error[E0308]: mismatched types
+kablam!   --> src/container/brw_scope.rs:64:51
+kablam!    |
+kablam! 64 |         match self.refs.insert(Self::key::<T>(), (ptr, drop)) {
+kablam!    |                                                   ^^^ types differ in mutability
+kablam!    |
+kablam!    = note: expected type `*mut std::any::Any + 'static`
+kablam!               found type `*const T`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `ioc`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 4bc6505297bfb117629c7545b72f6278108de8f091004775242441b1038f3521`
+blam! 4bc6505297bfb117629c7545b72f6278108de8f091004775242441b1038f3521

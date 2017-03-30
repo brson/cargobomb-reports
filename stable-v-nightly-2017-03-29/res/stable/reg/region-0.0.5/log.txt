@@ -1,0 +1,73 @@
+boom! testing region-0.0.5 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! fbf40db320eebe6b94e8acb13ea45f73c1ca9b0ac0448822fab86b6e7106e26e
+boom! running `docker start -a fbf40db320eebe6b94e8acb13ea45f73c1ca9b0ac0448822fab86b6e7106e26e`
+kablam!    Compiling region v0.0.5 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 2.81 secs
+boom! running `docker rm -f fbf40db320eebe6b94e8acb13ea45f73c1ca9b0ac0448822fab86b6e7106e26e`
+blam! fbf40db320eebe6b94e8acb13ea45f73c1ca9b0ac0448822fab86b6e7106e26e
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 80b7d6e1436f5e74c1d67e7e56e16739e8b05cc0fc0c1809099c03012c77d73c
+boom! running `docker start -a 80b7d6e1436f5e74c1d67e7e56e16739e8b05cc0fc0c1809099c03012c77d73c`
+kablam!    Compiling region v0.0.5 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 3.50 secs
+boom! running `docker rm -f 80b7d6e1436f5e74c1d67e7e56e16739e8b05cc0fc0c1809099c03012c77d73c`
+blam! 80b7d6e1436f5e74c1d67e7e56e16739e8b05cc0fc0c1809099c03012c77d73c
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! a9e51edf10ce850adf0f74faa9588c5e4f1816818aefdf7bc732b7831d6ad26b
+boom! running `docker start -a a9e51edf10ce850adf0f74faa9588c5e4f1816818aefdf7bc732b7831d6ad26b`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/region-26f6bf46ee8c71e3
+blam! 
+blam! running 21 tests
+blam! test os::linux::tests::parse_flags ... ok
+blam! test lock::tests::lock_page ... ok
+blam! test lock::tests::lock_page_release ... ok
+blam! test os::tests::page_rounding ... ok
+blam! test os::tests::page_size_value ... ok
+blam! test tests::protect_code ... ok
+blam! test tests::protect_null ... ok
+blam! test tests::protect_alloc ... ok
+blam! test os::linux::tests::parse_region ... ok
+blam! test tests::protect_overlap ... ok
+blam! test tests::query_alloc ... ok
+blam! test tests::query_area_zero ... ok
+blam! test tests::query_null ... ok
+blam! test tests::query_code ... ok
+blam! test tests::query_area_alloc ... FAILED
+blam! test view::tests::view_exec_prot ... ok
+blam! test view::tests::view_get_prot ... ok
+blam! test tests::query_area_overlap ... ok
+blam! test view::tests::view_prot_initial ... ok
+blam! test view::tests::view_prot_prev ... FAILED
+blam! test view::tests::view_check_size ... FAILED
+blam! 
+blam! failures:
+blam! 
+blam! ---- tests::query_area_alloc stdout ----
+blam! 	thread 'tests::query_area_alloc' panicked at 'called `Result::unwrap()` on an `Err` value: Error(Freed, State { next_error: None, backtrace: None })', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+blam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+blam! 
+blam! ---- view::tests::view_prot_prev stdout ----
+blam! 	thread 'view::tests::view_prot_prev' panicked at 'called `Result::unwrap()` on an `Err` value: Error(Freed, State { next_error: None, backtrace: None })', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+blam! 
+blam! ---- view::tests::view_check_size stdout ----
+blam! 	thread 'view::tests::view_check_size' panicked at 'called `Result::unwrap()` on an `Err` value: Error(Freed, State { next_error: None, backtrace: None })', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+blam! 
+blam! 
+blam! failures:
+blam!     tests::query_area_alloc
+blam!     view::tests::view_check_size
+blam!     view::tests::view_prot_prev
+blam! 
+blam! test result: FAILED. 18 passed; 3 failed; 0 ignored; 0 measured
+blam! 
+kablam! error: test failed
+boom! running `docker rm -f a9e51edf10ce850adf0f74faa9588c5e4f1816818aefdf7bc732b7831d6ad26b`
+blam! a9e51edf10ce850adf0f74faa9588c5e4f1816818aefdf7bc732b7831d6ad26b

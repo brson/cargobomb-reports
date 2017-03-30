@@ -1,0 +1,359 @@
+boom! testing horrorshow-0.6.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 97cf8bd9a901e31e1bcf695bdbf010267e34da46a2cc591eaf903ee845dcb162
+boom! running `docker start -a 97cf8bd9a901e31e1bcf695bdbf010267e34da46a2cc591eaf903ee845dcb162`
+kablam!    Compiling horrorshow v0.6.1 (file:///source)
+kablam! warning: missing fragment specifier
+kablam!    --> src/macros.rs:223:79
+kablam!     |
+kablam! 223 |     ($tmpl:ident, ($($p:expr),*), $tag:ident($($attr:tt)+) : {$($code:tt)*} $($next)* ) => {
+kablam!     |                                                                               ^^^^^
+kablam!     |
+kablam!     = note: #[warn(missing_fragment_specifier)] on by default
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #40107 <https://github.com/rust-lang/rust/issues/40107>
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.89 secs
+boom! running `docker rm -f 97cf8bd9a901e31e1bcf695bdbf010267e34da46a2cc591eaf903ee845dcb162`
+blam! 97cf8bd9a901e31e1bcf695bdbf010267e34da46a2cc591eaf903ee845dcb162
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! ac07e5d6c37073496142d5dc61bab563be59640cf386b21f2413a247ae08b05a
+boom! running `docker start -a ac07e5d6c37073496142d5dc61bab563be59640cf386b21f2413a247ae08b05a`
+kablam!    Compiling maud v0.13.0
+kablam!    Compiling maud_macros v0.13.0
+kablam! error[E0432]: unresolved import `syntax::parse::token::keywords`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:11:5
+kablam!    |
+kablam! 11 | use syntax::parse::token::keywords;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `keywords` in `parse::token`
+kablam! 
+kablam! error[E0425]: cannot find function `tts_to_parser` in module `parse`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:109:33
+kablam!     |
+kablam! 109 |         let mut parser = parse::tts_to_parser(self.render.cx.parse_sess, tts);
+kablam!     |                                 ^^^^^^^^^^^^^ not found in `parse`
+kablam! 
+kablam! error[E0425]: cannot find function `gensym_ident` in module `token`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/render.rs:19:29
+kablam!    |
+kablam! 19 |         let writer = token::gensym_ident("__maud_writer");
+kablam!    |                             ^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:167:50
+kablam!     |
+kablam! 167 |                 let expr = self.with_rust_parser(d.tts.clone(), RustParser::parse_expr)?;
+kablam!     |                                                  ^^^^^^^^^^^^^ expected struct `std::vec::Vec`, found struct `syntax::tokenstream::ThinTokenStream`
+kablam!     |
+kablam!     = note: expected type `std::vec::Vec<syntax::tokenstream::TokenTree>`
+kablam!                found type `syntax::tokenstream::ThinTokenStream`
+kablam! 
+kablam! error: cannot index a value of type `syntax::tokenstream::ThinTokenStream`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:176:34
+kablam!     |
+kablam! 176 |                     let mut i = &d.tts[..];
+kablam!     |                                  ^^^^^^^^^
+kablam! 
+kablam! error: no method named `get_span` found for type `&syntax::tokenstream::TokenTree` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:185:43
+kablam!     |
+kablam! 185 |                     parse_error!(self, tt.get_span(), "invalid syntax");
+kablam!     |                     ----------------------^^^^^^^^---------------------- in this macro invocation
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:198:32
+kablam!     |
+kablam! 198 |             self.render.string(&s);
+kablam!     |                                ^^ expected str, found struct `syntax::ast::Symbol`
+kablam!     |
+kablam!     = note: expected type `&str`
+kablam!                found type `&syntax::ast::Symbol`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:215:42
+kablam!     |
+kablam! 215 |                 if_body = self.block(sp, &d.tts)?;
+kablam!     |                                          ^^^^^^ expected slice, found struct `syntax::tokenstream::ThinTokenStream`
+kablam!     |
+kablam!     = note: expected type `&[syntax::tokenstream::TokenTree]`
+kablam!                found type `&syntax::tokenstream::ThinTokenStream`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:244:45
+kablam!     |
+kablam! 244 |                         Some(self.block(sp, &d.tts)?)
+kablam!     |                                             ^^^^^^ expected slice, found struct `syntax::tokenstream::ThinTokenStream`
+kablam!     |
+kablam!     = note: expected type `&[syntax::tokenstream::TokenTree]`
+kablam!                found type `&syntax::tokenstream::ThinTokenStream`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:264:39
+kablam!     |
+kablam! 264 |                 body = self.block(sp, &d.tts)?;
+kablam!     |                                       ^^^^^^ expected slice, found struct `syntax::tokenstream::ThinTokenStream`
+kablam!     |
+kablam!     = note: expected type `&[syntax::tokenstream::TokenTree]`
+kablam!                found type `&syntax::tokenstream::ThinTokenStream`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:299:39
+kablam!     |
+kablam! 299 |                 body = self.block(sp, &d.tts)?;
+kablam!     |                                       ^^^^^^ expected slice, found struct `syntax::tokenstream::ThinTokenStream`
+kablam!     |
+kablam!     = note: expected type `&[syntax::tokenstream::TokenTree]`
+kablam!                found type `&syntax::tokenstream::ThinTokenStream`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:325:28
+kablam!     |
+kablam! 325 |                     input: &d.tts,
+kablam!     |                            ^^^^^^ expected slice, found struct `syntax::tokenstream::ThinTokenStream`
+kablam!     |
+kablam!     = note: expected type `&[syntax::tokenstream::TokenTree]`
+kablam!                found type `&syntax::tokenstream::ThinTokenStream`
+kablam! 
+kablam! error: no associated item named `Sequence` found for type `syntax::tokenstream::TokenTree` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:350:82
+kablam!     |
+kablam! 350 |             [TokenTree::Token(sp, _), ..] | [TokenTree::Delimited(sp, _), ..] | [TokenTree::Sequence(sp, _), ..] => {
+kablam!     |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:376:43
+kablam!     |
+kablam! 376 |                     expr = self.block(sp, &d.tts)?.to_tokens(self.render.cx);
+kablam!     |                                           ^^^^^^ expected slice, found struct `syntax::tokenstream::ThinTokenStream`
+kablam!     |
+kablam!     = note: expected type `&[syntax::tokenstream::TokenTree]`
+kablam!                found type `&syntax::tokenstream::ThinTokenStream`
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `open_span`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:398:13
+kablam!     |
+kablam! 398 |             open_span: sp,
+kablam!     |             ^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:399:18
+kablam!     |
+kablam! 399 |             tts: expr,
+kablam!     |                  ^^^^ expected struct `syntax::tokenstream::ThinTokenStream`, found struct `std::vec::Vec`
+kablam!     |
+kablam!     = note: expected type `syntax::tokenstream::ThinTokenStream`
+kablam!                found type `std::vec::Vec<syntax::tokenstream::TokenTree>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .remove(...)
+kablam!             - .swap_remove(...)
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `close_span`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:400:13
+kablam!     |
+kablam! 400 |             close_span: sp,
+kablam!     |             ^^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:396:44
+kablam!     |
+kablam! 396 |           body.push(TokenTree::Delimited(sp, Rc::new(Delimited {
+kablam!     |  ____________________________________________^ starting here...
+kablam! 397 | |             delim: DelimToken::Brace,
+kablam! 398 | |             open_span: sp,
+kablam! 399 | |             tts: expr,
+kablam! 400 | |             close_span: sp,
+kablam! 401 | |         })));
+kablam!     | |__________^ ...ending here: expected struct `syntax::tokenstream::Delimited`, found struct `std::rc::Rc`
+kablam!     |
+kablam!     = note: expected type `syntax::tokenstream::Delimited`
+kablam!                found type `std::rc::Rc<syntax::tokenstream::Delimited>`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:452:62
+kablam!     |
+kablam! 452 |                             let cond = self.with_rust_parser(d.tts.clone(), RustParser::parse_expr)?;
+kablam!     |                                                              ^^^^^^^^^^^^^ expected struct `std::vec::Vec`, found struct `syntax::tokenstream::ThinTokenStream`
+kablam!     |
+kablam!     = note: expected type `std::vec::Vec<syntax::tokenstream::TokenTree>`
+kablam!                found type `syntax::tokenstream::ThinTokenStream`
+kablam! 
+kablam! error: aborting due to 16 previous errors
+kablam! 
+kablam! error: Could not compile `maud_macros`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f ac07e5d6c37073496142d5dc61bab563be59640cf386b21f2413a247ae08b05a`
+blam! ac07e5d6c37073496142d5dc61bab563be59640cf386b21f2413a247ae08b05a
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 8c210223c72a5e168ba4c455a9d9a325cd1b17adfc8c177ae29dc365fccd5f6e
+boom! running `docker start -a 8c210223c72a5e168ba4c455a9d9a325cd1b17adfc8c177ae29dc365fccd5f6e`
+kablam!    Compiling maud_macros v0.13.0
+kablam! error[E0432]: unresolved import `syntax::parse::token::keywords`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:11:5
+kablam!    |
+kablam! 11 | use syntax::parse::token::keywords;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `keywords` in `parse::token`
+kablam! 
+kablam! error[E0425]: cannot find function `tts_to_parser` in module `parse`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:109:33
+kablam!     |
+kablam! 109 |         let mut parser = parse::tts_to_parser(self.render.cx.parse_sess, tts);
+kablam!     |                                 ^^^^^^^^^^^^^ not found in `parse`
+kablam! 
+kablam! error[E0425]: cannot find function `gensym_ident` in module `token`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/render.rs:19:29
+kablam!    |
+kablam! 19 |         let writer = token::gensym_ident("__maud_writer");
+kablam!    |                             ^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:167:50
+kablam!     |
+kablam! 167 |                 let expr = self.with_rust_parser(d.tts.clone(), RustParser::parse_expr)?;
+kablam!     |                                                  ^^^^^^^^^^^^^ expected struct `std::vec::Vec`, found struct `syntax::tokenstream::ThinTokenStream`
+kablam!     |
+kablam!     = note: expected type `std::vec::Vec<syntax::tokenstream::TokenTree>`
+kablam!                found type `syntax::tokenstream::ThinTokenStream`
+kablam! 
+kablam! error: cannot index a value of type `syntax::tokenstream::ThinTokenStream`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:176:34
+kablam!     |
+kablam! 176 |                     let mut i = &d.tts[..];
+kablam!     |                                  ^^^^^^^^^
+kablam! 
+kablam! error: no method named `get_span` found for type `&syntax::tokenstream::TokenTree` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:185:43
+kablam!     |
+kablam! 185 |                     parse_error!(self, tt.get_span(), "invalid syntax");
+kablam!     |                     ----------------------^^^^^^^^---------------------- in this macro invocation
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:198:32
+kablam!     |
+kablam! 198 |             self.render.string(&s);
+kablam!     |                                ^^ expected str, found struct `syntax::ast::Symbol`
+kablam!     |
+kablam!     = note: expected type `&str`
+kablam!                found type `&syntax::ast::Symbol`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:215:42
+kablam!     |
+kablam! 215 |                 if_body = self.block(sp, &d.tts)?;
+kablam!     |                                          ^^^^^^ expected slice, found struct `syntax::tokenstream::ThinTokenStream`
+kablam!     |
+kablam!     = note: expected type `&[syntax::tokenstream::TokenTree]`
+kablam!                found type `&syntax::tokenstream::ThinTokenStream`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:244:45
+kablam!     |
+kablam! 244 |                         Some(self.block(sp, &d.tts)?)
+kablam!     |                                             ^^^^^^ expected slice, found struct `syntax::tokenstream::ThinTokenStream`
+kablam!     |
+kablam!     = note: expected type `&[syntax::tokenstream::TokenTree]`
+kablam!                found type `&syntax::tokenstream::ThinTokenStream`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:264:39
+kablam!     |
+kablam! 264 |                 body = self.block(sp, &d.tts)?;
+kablam!     |                                       ^^^^^^ expected slice, found struct `syntax::tokenstream::ThinTokenStream`
+kablam!     |
+kablam!     = note: expected type `&[syntax::tokenstream::TokenTree]`
+kablam!                found type `&syntax::tokenstream::ThinTokenStream`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:299:39
+kablam!     |
+kablam! 299 |                 body = self.block(sp, &d.tts)?;
+kablam!     |                                       ^^^^^^ expected slice, found struct `syntax::tokenstream::ThinTokenStream`
+kablam!     |
+kablam!     = note: expected type `&[syntax::tokenstream::TokenTree]`
+kablam!                found type `&syntax::tokenstream::ThinTokenStream`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:325:28
+kablam!     |
+kablam! 325 |                     input: &d.tts,
+kablam!     |                            ^^^^^^ expected slice, found struct `syntax::tokenstream::ThinTokenStream`
+kablam!     |
+kablam!     = note: expected type `&[syntax::tokenstream::TokenTree]`
+kablam!                found type `&syntax::tokenstream::ThinTokenStream`
+kablam! 
+kablam! error: no associated item named `Sequence` found for type `syntax::tokenstream::TokenTree` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:350:82
+kablam!     |
+kablam! 350 |             [TokenTree::Token(sp, _), ..] | [TokenTree::Delimited(sp, _), ..] | [TokenTree::Sequence(sp, _), ..] => {
+kablam!     |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:376:43
+kablam!     |
+kablam! 376 |                     expr = self.block(sp, &d.tts)?.to_tokens(self.render.cx);
+kablam!     |                                           ^^^^^^ expected slice, found struct `syntax::tokenstream::ThinTokenStream`
+kablam!     |
+kablam!     = note: expected type `&[syntax::tokenstream::TokenTree]`
+kablam!                found type `&syntax::tokenstream::ThinTokenStream`
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `open_span`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:398:13
+kablam!     |
+kablam! 398 |             open_span: sp,
+kablam!     |             ^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:399:18
+kablam!     |
+kablam! 399 |             tts: expr,
+kablam!     |                  ^^^^ expected struct `syntax::tokenstream::ThinTokenStream`, found struct `std::vec::Vec`
+kablam!     |
+kablam!     = note: expected type `syntax::tokenstream::ThinTokenStream`
+kablam!                found type `std::vec::Vec<syntax::tokenstream::TokenTree>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .remove(...)
+kablam!             - .swap_remove(...)
+kablam! 
+kablam! error[E0560]: struct `syntax::tokenstream::Delimited` has no field named `close_span`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:400:13
+kablam!     |
+kablam! 400 |             close_span: sp,
+kablam!     |             ^^^^^^^^^^^ `syntax::tokenstream::Delimited` does not have this field
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:396:44
+kablam!     |
+kablam! 396 |           body.push(TokenTree::Delimited(sp, Rc::new(Delimited {
+kablam!     |  ____________________________________________^ starting here...
+kablam! 397 | |             delim: DelimToken::Brace,
+kablam! 398 | |             open_span: sp,
+kablam! 399 | |             tts: expr,
+kablam! 400 | |             close_span: sp,
+kablam! 401 | |         })));
+kablam!     | |__________^ ...ending here: expected struct `syntax::tokenstream::Delimited`, found struct `std::rc::Rc`
+kablam!     |
+kablam!     = note: expected type `syntax::tokenstream::Delimited`
+kablam!                found type `std::rc::Rc<syntax::tokenstream::Delimited>`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/maud_macros-0.13.0/src/parse.rs:452:62
+kablam!     |
+kablam! 452 |                             let cond = self.with_rust_parser(d.tts.clone(), RustParser::parse_expr)?;
+kablam!     |                                                              ^^^^^^^^^^^^^ expected struct `std::vec::Vec`, found struct `syntax::tokenstream::ThinTokenStream`
+kablam!     |
+kablam!     = note: expected type `std::vec::Vec<syntax::tokenstream::TokenTree>`
+kablam!                found type `syntax::tokenstream::ThinTokenStream`
+kablam! 
+kablam! error: aborting due to 16 previous errors
+kablam! 
+kablam! error: Could not compile `maud_macros`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 8c210223c72a5e168ba4c455a9d9a325cd1b17adfc8c177ae29dc365fccd5f6e`
+blam! 8c210223c72a5e168ba4c455a9d9a325cd1b17adfc8c177ae29dc365fccd5f6e

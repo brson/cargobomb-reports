@@ -1,0 +1,24 @@
+boom! testing rhq-0.2.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! e020ec214c0eee2515b126f53367d84ebbce14e0d6d51002f473716e541da357
+boom! running `docker start -a e020ec214c0eee2515b126f53367d84ebbce14e0d6d51002f473716e541da357`
+kablam!    Compiling shellexpand v1.0.0
+kablam!    Compiling rhq v0.2.0 (file:///source)
+kablam! error[E0277]: the trait bound `&&[S]: std::iter::Iterator` is not satisfied
+kablam!   --> src/vcs/git.rs:13:6
+kablam!    |
+kablam! 13 |     .args(&args)
+kablam!    |      ^^^^ the trait `std::iter::Iterator` is not implemented for `&&[S]`
+kablam!    |
+kablam!    = note: `&&[S]` is not an iterator; maybe try calling `.iter()` or a similar method
+kablam!    = note: required because of the requirements on the impl of `std::iter::IntoIterator` for `&&[S]`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `rhq`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f e020ec214c0eee2515b126f53367d84ebbce14e0d6d51002f473716e541da357`
+blam! e020ec214c0eee2515b126f53367d84ebbce14e0d6d51002f473716e541da357

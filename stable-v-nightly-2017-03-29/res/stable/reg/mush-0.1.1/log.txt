@@ -1,0 +1,121 @@
+boom! testing mush-0.1.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 8b636135c62dc9536689691a613f290302e78b6d4b36070f63b2fa30ae3aa54e
+boom! running `docker start -a 8b636135c62dc9536689691a613f290302e78b6d4b36070f63b2fa30ae3aa54e`
+kablam!    Compiling mush v0.1.1 (file:///source)
+kablam! error: struct `OpenFlags` is private
+kablam!    --> src/lib.rs:143:22
+kablam!     |
+kablam! 143 | pub use sftp::{Sftp, OpenFlags, READ, WRITE, APPEND, CREATE, TRUNCATE};
+kablam!     |                      ^^^^^^^^^
+kablam! 
+kablam! error: constant `READ` is private
+kablam!    --> src/lib.rs:143:33
+kablam!     |
+kablam! 143 | pub use sftp::{Sftp, OpenFlags, READ, WRITE, APPEND, CREATE, TRUNCATE};
+kablam!     |                                 ^^^^
+kablam! 
+kablam! error: constant `WRITE` is private
+kablam!    --> src/lib.rs:143:39
+kablam!     |
+kablam! 143 | pub use sftp::{Sftp, OpenFlags, READ, WRITE, APPEND, CREATE, TRUNCATE};
+kablam!     |                                       ^^^^^
+kablam! 
+kablam! error: constant `APPEND` is private
+kablam!    --> src/lib.rs:143:46
+kablam!     |
+kablam! 143 | pub use sftp::{Sftp, OpenFlags, READ, WRITE, APPEND, CREATE, TRUNCATE};
+kablam!     |                                              ^^^^^^
+kablam! 
+kablam! error: constant `CREATE` is private
+kablam!    --> src/lib.rs:143:54
+kablam!     |
+kablam! 143 | pub use sftp::{Sftp, OpenFlags, READ, WRITE, APPEND, CREATE, TRUNCATE};
+kablam!     |                                                      ^^^^^^
+kablam! 
+kablam! error: constant `TRUNCATE` is private
+kablam!    --> src/lib.rs:143:62
+kablam!     |
+kablam! 143 | pub use sftp::{Sftp, OpenFlags, READ, WRITE, APPEND, CREATE, TRUNCATE};
+kablam!     |                                                              ^^^^^^^^
+kablam! 
+kablam! error: constant `EXCLUSIVE` is private
+kablam!    --> src/lib.rs:144:16
+kablam!     |
+kablam! 144 | pub use sftp::{EXCLUSIVE, OpenType, File, FileStat};
+kablam!     |                ^^^^^^^^^
+kablam! 
+kablam! error: struct `RenameFlags` is private
+kablam!    --> src/lib.rs:145:16
+kablam!     |
+kablam! 145 | pub use sftp::{RenameFlags, ATOMIC, OVERWRITE, NATIVE};
+kablam!     |                ^^^^^^^^^^^
+kablam! 
+kablam! error: constant `ATOMIC` is private
+kablam!    --> src/lib.rs:145:29
+kablam!     |
+kablam! 145 | pub use sftp::{RenameFlags, ATOMIC, OVERWRITE, NATIVE};
+kablam!     |                             ^^^^^^
+kablam! 
+kablam! error: constant `OVERWRITE` is private
+kablam!    --> src/lib.rs:145:37
+kablam!     |
+kablam! 145 | pub use sftp::{RenameFlags, ATOMIC, OVERWRITE, NATIVE};
+kablam!     |                                     ^^^^^^^^^
+kablam! 
+kablam! error: constant `NATIVE` is private
+kablam!    --> src/lib.rs:145:48
+kablam!     |
+kablam! 145 | pub use sftp::{RenameFlags, ATOMIC, OVERWRITE, NATIVE};
+kablam!     |                                                ^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/channel.rs:282:57
+kablam!     |
+kablam! 282 |                                                         adjust as c_uint,
+kablam!     |                                                         ^^^^^^^^^^^^^^^^ expected u64, found u32
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/channel.rs:393:34
+kablam!     |
+kablam! 393 |             self.channel.sess.rc(rc).map(|()| rc as usize)
+kablam!     |                                  ^^ expected i32, found isize
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/channel.rs:414:34
+kablam!     |
+kablam! 414 |             self.channel.sess.rc(rc).map(|()| rc as usize)
+kablam!     |                                  ^^ expected i32, found isize
+kablam! 
+kablam! error[E0061]: this function takes 4 parameters but 3 parameters were supplied
+kablam!   --> src/session.rs:40:52
+kablam!    |
+kablam! 40 |             let ret = raw::libssh2_session_init_ex(None, None, None);
+kablam!    |                                                    ^^^^^^^^^^^^^^^^ expected 4 parameters
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/session.rs:458:47
+kablam!     |
+kablam! 458 |                                               size,
+kablam!     |                                               ^^^^ expected i64, found u64
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/session.rs:568:21
+kablam!     |
+kablam! 568 |               self.rc(raw::libssh2_keepalive_config(self.raw, want_reply as c_int,
+kablam!     |  _____________________^ starting here...
+kablam! 569 | |                                                   interval as c_uint))
+kablam!     | |_____________________________________________________________________^ ...ending here: expected i32, found ()
+kablam!     |
+kablam!     = note: expected type `i32`
+kablam!                found type `()`
+kablam! 
+kablam! error: aborting due to 6 previous errors
+kablam! 
+kablam! error: Could not compile `mush`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 8b636135c62dc9536689691a613f290302e78b6d4b36070f63b2fa30ae3aa54e`
+blam! 8b636135c62dc9536689691a613f290302e78b6d4b36070f63b2fa30ae3aa54e

@@ -1,0 +1,50 @@
+boom! testing winutil-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! cf3b7f3f2b4dfd11fd9ebde48215ee402656a7474443f1496b4c63563a035106
+boom! running `docker start -a cf3b7f3f2b4dfd11fd9ebde48215ee402656a7474443f1496b4c63563a035106`
+kablam!    Compiling winutil v0.1.0 (file:///source)
+kablam! error[E0425]: cannot find function `IsWow64Process` in module `kernel32`
+kablam!   --> src/lib.rs:52:25
+kablam!    |
+kablam! 52 |         match kernel32::IsWow64Process(kernel32::GetCurrentProcess(), is_wow_ptr) {
+kablam!    |                         ^^^^^^^^^^^^^^ not found in `kernel32`
+kablam! 
+kablam! error[E0425]: cannot find function `GetCurrentProcess` in module `kernel32`
+kablam!   --> src/lib.rs:52:50
+kablam!    |
+kablam! 52 |         match kernel32::IsWow64Process(kernel32::GetCurrentProcess(), is_wow_ptr) {
+kablam!    |                                                  ^^^^^^^^^^^^^^^^^ not found in `kernel32`
+kablam! 
+kablam! error[E0412]: cannot find type `CHAR` in module `winapi`
+kablam!   --> src/lib.rs:70:33
+kablam!    |
+kablam! 70 |     let mut buf = [0 as winapi::CHAR; MAX_COMPUTERNAME_LENGTH + 1];
+kablam!    |                                 ^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `GetComputerNameA` in module `kernel32`
+kablam!   --> src/lib.rs:74:22
+kablam!    |
+kablam! 74 |         if kernel32::GetComputerNameA(buf.as_mut_ptr(), &mut len) == 0 {
+kablam!    |                      ^^^^^^^^^^^^^^^^ not found in `kernel32`
+kablam! 
+kablam! error[E0412]: cannot find type `CHAR` in module `winapi`
+kablam!   --> src/lib.rs:95:33
+kablam!    |
+kablam! 95 |     let mut buf = [0 as winapi::CHAR; UNLEN + 1];
+kablam!    |                                 ^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `GetUserNameA` in module `advapi32`
+kablam!   --> src/lib.rs:99:22
+kablam!    |
+kablam! 99 |         if advapi32::GetUserNameA(buf.as_mut_ptr(), &mut len) == 0 {
+kablam!    |                      ^^^^^^^^^^^^ not found in `advapi32`
+kablam! 
+kablam! error: aborting due to 6 previous errors
+kablam! 
+kablam! error: Could not compile `winutil`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f cf3b7f3f2b4dfd11fd9ebde48215ee402656a7474443f1496b4c63563a035106`
+blam! cf3b7f3f2b4dfd11fd9ebde48215ee402656a7474443f1496b4c63563a035106

@@ -1,0 +1,128 @@
+boom! testing coroutine-0.6.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 69d1dca3823d8a41c38546e0a02ae36176a7597be544fd427bade4a771634d58
+boom! running `docker start -a 69d1dca3823d8a41c38546e0a02ae36176a7597be544fd427bade4a771634d58`
+kablam!    Compiling coroutine v0.6.0 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.68 secs
+boom! running `docker rm -f 69d1dca3823d8a41c38546e0a02ae36176a7597be544fd427bade4a771634d58`
+blam! 69d1dca3823d8a41c38546e0a02ae36176a7597be544fd427bade4a771634d58
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! c091d819533be86447b22bf22955c979f531f17771f358333b6ebc275b33063d
+boom! running `docker start -a c091d819533be86447b22bf22955c979f531f17771f358333b6ebc275b33063d`
+kablam!    Compiling coroutine v0.6.0 (file:///source)
+kablam! error[E0244]: wrong number of type arguments: expected 0, found 1
+kablam!   --> examples/multithreads.rs:17:27
+kablam!    |
+kablam! 17 |                 let coro: Coroutine<i32> = {
+kablam!    |                           ^^^^^^^^^^^^^^ expected no type arguments
+kablam! 
+kablam! error: no method named `resume` found for type `coroutine::asymmetric::Coroutine` in the current scope
+kablam!   --> examples/multithreads.rs:25:35
+kablam!    |
+kablam! 25 |                 let result = coro.resume().unwrap();
+kablam!    |                                   ^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> examples/multithreads.rs:41:13
+kablam!    |
+kablam! 41 |               for num in 0.. {
+kablam!    |  _____________^ starting here...
+kablam! 42 | |                 me.yield_with(num);
+kablam! 43 | |             }
+kablam!    | |_____________^ ...ending here: expected usize, found ()
+kablam!    |
+kablam!    = note: expected type `usize`
+kablam!               found type `()`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> examples/multithreads.rs:40:25
+kablam!    |
+kablam! 40 |           queue.push_back(Coroutine::spawn(|me| {
+kablam!    |  _________________________^ starting here...
+kablam! 41 | |             for num in 0.. {
+kablam! 42 | |                 me.yield_with(num);
+kablam! 43 | |             }
+kablam! 44 | |         }));
+kablam!    | |__________^ ...ending here: expected struct `coroutine::asymmetric::Coroutine`, found struct `coroutine::asymmetric::Handle`
+kablam!    |
+kablam!    = note: expected type `coroutine::asymmetric::Coroutine`
+kablam!               found type `coroutine::asymmetric::Handle`
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@examples/multithreads.rs:40:42: 44:10]` implements the trait `for<'r> std::ops::FnOnce<(&'r mut coroutine::asymmetric::Coroutine,)>`, but the trait `for<'r> std::ops::FnOnce<(&'r mut coroutine::asymmetric::Coroutine, usize)>` is required (expected a tuple with 2 elements, found one with 1 elements)
+kablam!   --> examples/multithreads.rs:40:25
+kablam!    |
+kablam! 40 |         queue.push_back(Coroutine::spawn(|me| {
+kablam!    |                         ^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: required by `coroutine::asymmetric::Coroutine::spawn`
+kablam! 
+kablam! error: aborting due to 5 previous errors
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `coroutine`.
+kablam! error: build failed
+boom! running `docker rm -f c091d819533be86447b22bf22955c979f531f17771f358333b6ebc275b33063d`
+blam! c091d819533be86447b22bf22955c979f531f17771f358333b6ebc275b33063d
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 01d337ba406f67378c70bb4f28a01d67df4b68d17e7d8062ff77de3289c0c734
+boom! running `docker start -a 01d337ba406f67378c70bb4f28a01d67df4b68d17e7d8062ff77de3289c0c734`
+kablam!    Compiling coroutine v0.6.0 (file:///source)
+kablam! error[E0244]: wrong number of type arguments: expected 0, found 1
+kablam!   --> examples/multithreads.rs:17:27
+kablam!    |
+kablam! 17 |                 let coro: Coroutine<i32> = {
+kablam!    |                           ^^^^^^^^^^^^^^ expected no type arguments
+kablam! 
+kablam! error: no method named `resume` found for type `coroutine::asymmetric::Coroutine` in the current scope
+kablam!   --> examples/multithreads.rs:25:35
+kablam!    |
+kablam! 25 |                 let result = coro.resume().unwrap();
+kablam!    |                                   ^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> examples/multithreads.rs:41:13
+kablam!    |
+kablam! 41 |               for num in 0.. {
+kablam!    |  _____________^ starting here...
+kablam! 42 | |                 me.yield_with(num);
+kablam! 43 | |             }
+kablam!    | |_____________^ ...ending here: expected usize, found ()
+kablam!    |
+kablam!    = note: expected type `usize`
+kablam!               found type `()`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> examples/multithreads.rs:40:25
+kablam!    |
+kablam! 40 |           queue.push_back(Coroutine::spawn(|me| {
+kablam!    |  _________________________^ starting here...
+kablam! 41 | |             for num in 0.. {
+kablam! 42 | |                 me.yield_with(num);
+kablam! 43 | |             }
+kablam! 44 | |         }));
+kablam!    | |__________^ ...ending here: expected struct `coroutine::asymmetric::Coroutine`, found struct `coroutine::asymmetric::Handle`
+kablam!    |
+kablam!    = note: expected type `coroutine::asymmetric::Coroutine`
+kablam!               found type `coroutine::asymmetric::Handle`
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@examples/multithreads.rs:40:42: 44:10]` implements the trait `for<'r> std::ops::FnOnce<(&'r mut coroutine::asymmetric::Coroutine,)>`, but the trait `for<'r> std::ops::FnOnce<(&'r mut coroutine::asymmetric::Coroutine, usize)>` is required (expected a tuple with 2 elements, found one with 1 elements)
+kablam!   --> examples/multithreads.rs:40:25
+kablam!    |
+kablam! 40 |         queue.push_back(Coroutine::spawn(|me| {
+kablam!    |                         ^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: required by `coroutine::asymmetric::Coroutine::spawn`
+kablam! 
+kablam! error: aborting due to 5 previous errors
+kablam! 
+kablam! error: Could not compile `coroutine`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f 01d337ba406f67378c70bb4f28a01d67df4b68d17e7d8062ff77de3289c0c734`
+blam! 01d337ba406f67378c70bb4f28a01d67df4b68d17e7d8062ff77de3289c0c734

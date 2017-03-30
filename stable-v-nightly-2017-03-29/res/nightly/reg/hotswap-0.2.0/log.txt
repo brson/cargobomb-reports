@@ -1,0 +1,35 @@
+boom! testing hotswap-0.2.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 6992aa588c133e517d16e0ccce8005726c27b16f41312b52feee7347676bdb1c
+boom! running `docker start -a 6992aa588c133e517d16e0ccce8005726c27b16f41312b52feee7347676bdb1c`
+kablam!    Compiling hotswap v0.2.0 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::parse::token::intern`
+kablam!   --> src/lib.rs:15:5
+kablam!    |
+kablam! 15 | use syntax::parse::token::intern;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `intern` in `parse::token`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::intern`
+kablam!  --> src/codegen.rs:3:5
+kablam!   |
+kablam! 3 | use syntax::parse::token::intern;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `intern` in `parse::token`
+kablam! 
+kablam! error[E0053]: method `expand` has an incompatible type for trait
+kablam!    --> src/lib.rs:116:5
+kablam!     |
+kablam! 116 |     fn expand(&self, cx: &mut ExtCtxt, _: Span, tt: &[TokenTree]) -> Box<MacResult> {
+kablam!     |     ^ expected struct `syntax::tokenstream::TokenStream`, found reference
+kablam!     |
+kablam!     = note: expected type `fn(&HotswapMacroExtension, &'cx mut syntax::ext::base::ExtCtxt<'_>, syntax::codemap::Span, syntax::tokenstream::TokenStream) -> std::boxed::Box<syntax::ext::base::MacResult + 'cx>`
+kablam!                found type `fn(&HotswapMacroExtension, &mut syntax::ext::base::ExtCtxt<'_>, syntax::codemap::Span, &[syntax::tokenstream::TokenTree]) -> std::boxed::Box<syntax::ext::base::MacResult + 'static>`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `hotswap`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 6992aa588c133e517d16e0ccce8005726c27b16f41312b52feee7347676bdb1c`
+blam! 6992aa588c133e517d16e0ccce8005726c27b16f41312b52feee7347676bdb1c

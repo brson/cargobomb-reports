@@ -1,0 +1,35 @@
+boom! testing enclave-0.1.4 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! d37a9d5282f5ce7902e506aa40354a0661ba14cefbcb3f48b7b838c866e28e49
+boom! running `docker start -a d37a9d5282f5ce7902e506aa40354a0661ba14cefbcb3f48b7b838c866e28e49`
+kablam!    Compiling spin v0.4.5
+kablam!    Compiling rlibc v1.0.0
+kablam!    Compiling bitflags v0.5.0
+kablam!    Compiling enclave v0.1.4 (file:///source)
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/spin-0.4.5/src/lib.rs:6:30
+kablam!   |
+kablam! 6 | #![cfg_attr(feature = "asm", feature(asm))]
+kablam!   |                              ^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/spin-0.4.5/src/lib.rs:7:42
+kablam!   |
+kablam! 7 | #![cfg_attr(feature = "core_intrinsics", feature(core_intrinsics))]
+kablam!   |                                          ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/spin-0.4.5/src/lib.rs:8:35
+kablam!   |
+kablam! 8 | #![cfg_attr(feature = "const_fn", feature(const_fn))]
+kablam!   |                                   ^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `spin`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f d37a9d5282f5ce7902e506aa40354a0661ba14cefbcb3f48b7b838c866e28e49`
+blam! d37a9d5282f5ce7902e506aa40354a0661ba14cefbcb3f48b7b838c866e28e49

@@ -1,0 +1,27 @@
+boom! testing assembunny_plus-0.0.3 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! f1b0360733a3891f10d42b3dd8ecf239ea5af667d4ec6351aa3fcc20e72e815c
+boom! running `docker start -a f1b0360733a3891f10d42b3dd8ecf239ea5af667d4ec6351aa3fcc20e72e815c`
+kablam!    Compiling unicode-segmentation v0.1.3
+kablam!    Compiling clap v2.19.3
+kablam!    Compiling assembunny_plus v0.0.3 (file:///source)
+kablam! error: borrowed value does not live long enough
+kablam!    --> src/parser.rs:306:98
+kablam!     |
+kablam! 306 |     let mut output: Vec<Token> = vec![Token::new(TokenType::KEYWORD, index_of(&KEYWORD_INDEX, &&*str_toks[0].to_lowercase()).unwrap() as i32)];
+kablam!     |                                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^                   - temporary value only lives until here
+kablam!     |                                                                                                  |
+kablam!     |                                                                                                  does not live long enough
+kablam!     |
+kablam!     = note: borrowed value must be valid for the static lifetime...
+kablam!     = note: consider using a `let` binding to increase its lifetime
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `assembunny_plus`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f1b0360733a3891f10d42b3dd8ecf239ea5af667d4ec6351aa3fcc20e72e815c`
+blam! f1b0360733a3891f10d42b3dd8ecf239ea5af667d4ec6351aa3fcc20e72e815c

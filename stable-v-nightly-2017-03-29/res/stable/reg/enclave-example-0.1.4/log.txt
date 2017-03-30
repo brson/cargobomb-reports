@@ -1,0 +1,42 @@
+boom! testing enclave-example-0.1.4 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! d9df080981a71768d0e7e8a72357870a527ecc86f8fbc7355c6cc967e9b1a803
+boom! running `docker start -a d9df080981a71768d0e7e8a72357870a527ecc86f8fbc7355c6cc967e9b1a803`
+kablam!    Compiling spin v0.4.5
+kablam!    Compiling enclave v0.1.4
+kablam!    Compiling sgx-isa v0.1.2
+kablam!    Compiling core_io v0.1.20161028
+kablam! error: failed to run custom build command for `core_io v0.1.20161028`
+kablam! process didn't exit successfully: `/target/debug/build/core_io-e5b7264248dd500f/build-script-build` (exit code: 101)
+kablam! --- stderr
+kablam! thread 'main' panicked at 'Unknown compiler version, upgrade core_io?', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/option.rs:715
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/spin-0.4.5/src/lib.rs:6:30
+kablam!   |
+kablam! 6 | #![cfg_attr(feature = "asm", feature(asm))]
+kablam!   |                              ^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/spin-0.4.5/src/lib.rs:7:42
+kablam!   |
+kablam! 7 | #![cfg_attr(feature = "core_intrinsics", feature(core_intrinsics))]
+kablam!   |                                          ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/spin-0.4.5/src/lib.rs:8:35
+kablam!   |
+kablam! 8 | #![cfg_attr(feature = "const_fn", feature(const_fn))]
+kablam!   |                                   ^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `spin`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f d9df080981a71768d0e7e8a72357870a527ecc86f8fbc7355c6cc967e9b1a803`
+blam! d9df080981a71768d0e7e8a72357870a527ecc86f8fbc7355c6cc967e9b1a803

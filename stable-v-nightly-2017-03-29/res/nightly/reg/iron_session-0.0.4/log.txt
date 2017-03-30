@@ -1,0 +1,81 @@
+boom! testing iron_session-0.0.4 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 86be15eea07d5a1fe12f84891689032700f78f078e42d82bc5b906683ab76264
+boom! running `docker start -a 86be15eea07d5a1fe12f84891689032700f78f078e42d82bc5b906683ab76264`
+kablam! warning: parsed version requirement `0.2*` is no longer valid
+kablam! 
+kablam! Previous versions of Cargo accepted this malformed requirement,
+kablam! but it is being deprecated. This was found when parsing the manifest
+kablam! of iron 0.2.6, and the correct version requirement is `0.2.*`.
+kablam! 
+kablam! This will soon become a hard error, so it's either recommended to
+kablam! update to a fixed version or contact the upstream maintainer about
+kablam! this warning.
+kablam! 
+kablam!    Compiling serde v0.6.15
+kablam!    Compiling hyper v0.8.1
+kablam!    Compiling mime v0.1.3
+kablam!    Compiling hyper v0.7.2
+kablam!    Compiling iron v0.3.1
+kablam!    Compiling oven v0.2.17
+kablam!    Compiling iron v0.2.6
+kablam!    Compiling iron_session v0.0.4 (file:///source)
+kablam! error: no method named `get_cookie` found for type `&mut iron::Request<'_, '_>` in the current scope
+kablam!    --> src/lib.rs:129:30
+kablam!     |
+kablam! 129 |         let mut cookie = req.get_cookie("session_key").map(|c| c.clone()).unwrap_or_else(|| {
+kablam!     |                              ^^^^^^^^^^
+kablam! 
+kablam! error: no method named `set_cookie` found for type `iron::Response` in the current scope
+kablam!    --> src/lib.rs:137:17
+kablam!     |
+kablam! 137 |             res.set_cookie(cookie);
+kablam!     |                 ^^^^^^^^^^
+kablam! 
+kablam! error: no method named `get_cookie` found for type `&mut iron::Request<'_, '_>` in the current scope
+kablam!    --> src/lib.rs:152:23
+kablam!     |
+kablam! 152 |         let key = req.get_cookie("session_key").and_then(|cookie| Uuid::parse_str(&cookie.value).ok()).unwrap_or(self.store.gen_key());
+kablam!     |                       ^^^^^^^^^^
+kablam! 
+kablam! error[E0277]: the trait bound `for<'r, 'r, 'r> oven::OvenAfter: std::ops::Fn<(&'r mut iron::Request<'r, 'r>, iron::Response)>` is not satisfied
+kablam!    --> src/lib.rs:176:15
+kablam!     |
+kablam! 176 |         chain.link(oven::new(key));
+kablam!     |               ^^^^ the trait `for<'r, 'r, 'r> std::ops::Fn<(&'r mut iron::Request<'r, 'r>, iron::Response)>` is not implemented for `oven::OvenAfter`
+kablam!     |
+kablam!     = note: required because of the requirements on the impl of `iron::AfterMiddleware` for `oven::OvenAfter`
+kablam! 
+kablam! error[E0277]: the trait bound `for<'r, 'r, 'r> oven::OvenBefore: std::ops::Fn<(&'r mut iron::Request<'r, 'r>,)>` is not satisfied
+kablam!    --> src/lib.rs:176:15
+kablam!     |
+kablam! 176 |         chain.link(oven::new(key));
+kablam!     |               ^^^^ the trait `for<'r, 'r, 'r> std::ops::Fn<(&'r mut iron::Request<'r, 'r>,)>` is not implemented for `oven::OvenBefore`
+kablam!     |
+kablam!     = note: required because of the requirements on the impl of `iron::BeforeMiddleware` for `oven::OvenBefore`
+kablam! 
+kablam! error[E0277]: the trait bound `for<'r, 'r, 'r> oven::OvenAfter: std::ops::FnOnce<(&'r mut iron::Request<'r, 'r>, iron::Response)>` is not satisfied
+kablam!    --> src/lib.rs:176:15
+kablam!     |
+kablam! 176 |         chain.link(oven::new(key));
+kablam!     |               ^^^^ the trait `for<'r, 'r, 'r> std::ops::FnOnce<(&'r mut iron::Request<'r, 'r>, iron::Response)>` is not implemented for `oven::OvenAfter`
+kablam!     |
+kablam!     = note: required because of the requirements on the impl of `iron::AfterMiddleware` for `oven::OvenAfter`
+kablam! 
+kablam! error[E0277]: the trait bound `for<'r, 'r, 'r> oven::OvenBefore: std::ops::FnOnce<(&'r mut iron::Request<'r, 'r>,)>` is not satisfied
+kablam!    --> src/lib.rs:176:15
+kablam!     |
+kablam! 176 |         chain.link(oven::new(key));
+kablam!     |               ^^^^ the trait `for<'r, 'r, 'r> std::ops::FnOnce<(&'r mut iron::Request<'r, 'r>,)>` is not implemented for `oven::OvenBefore`
+kablam!     |
+kablam!     = note: required because of the requirements on the impl of `iron::BeforeMiddleware` for `oven::OvenBefore`
+kablam! 
+kablam! error: aborting due to 7 previous errors
+kablam! 
+kablam! error: Could not compile `iron_session`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 86be15eea07d5a1fe12f84891689032700f78f078e42d82bc5b906683ab76264`
+blam! 86be15eea07d5a1fe12f84891689032700f78f078e42d82bc5b906683ab76264

@@ -1,0 +1,38 @@
+boom! testing peekable_reader-0.0.2 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 7f76ae7cd6177c7cb4bc23d09df7355406d68819f1098c123e5c53532ad9a00d
+boom! running `docker start -a 7f76ae7cd6177c7cb4bc23d09df7355406d68819f1098c123e5c53532ad9a00d`
+kablam!    Compiling peekable_reader v0.0.2 (file:///source)
+kablam! error[E0432]: unresolved import `std::old_io::IoResult`
+kablam!  --> src/lib.rs:1:5
+kablam!   |
+kablam! 1 | use std::old_io::IoResult;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^ Could not find `old_io` in `std`
+kablam! 
+kablam! error[E0405]: cannot find trait `Reader` in this scope
+kablam!   --> src/lib.rs:20:9
+kablam!    |
+kablam! 20 | impl<R: Reader> PeekableReader<R> {
+kablam!    |         ^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0405]: cannot find trait `Reader` in this scope
+kablam!   --> src/lib.rs:51:17
+kablam!    |
+kablam! 51 | impl<R: Reader> Reader for PeekableReader<R> {
+kablam!    |                 ^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0405]: cannot find trait `Reader` in this scope
+kablam!   --> src/lib.rs:51:9
+kablam!    |
+kablam! 51 | impl<R: Reader> Reader for PeekableReader<R> {
+kablam!    |         ^^^^^^ not found in this scope
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `peekable_reader`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 7f76ae7cd6177c7cb4bc23d09df7355406d68819f1098c123e5c53532ad9a00d`
+blam! 7f76ae7cd6177c7cb4bc23d09df7355406d68819f1098c123e5c53532ad9a00d

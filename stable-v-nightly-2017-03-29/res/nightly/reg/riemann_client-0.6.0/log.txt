@@ -1,0 +1,64 @@
+boom! testing riemann_client-0.6.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 763ed5c8ca027b415fc58f092124ac09674666865d1b992989eae621a7729172
+boom! running `docker start -a 763ed5c8ca027b415fc58f092124ac09674666865d1b992989eae621a7729172`
+kablam!    Compiling riemann_client v0.6.0 (file:///source)
+kablam! error[E0277]: the trait bound `std::cell::Cell<u32>: std::marker::Sync` is not satisfied in `proto::State`
+kablam!    --> src/proto/mod.rs:282:6
+kablam!     |
+kablam! 282 | impl ::protobuf::Message for State {
+kablam!     |      ^^^^^^^^^^^^^^^^^^^ within `proto::State`, the trait `std::marker::Sync` is not implemented for `std::cell::Cell<u32>`
+kablam!     |
+kablam!     = note: `std::cell::Cell<u32>` cannot be shared between threads safely
+kablam!     = note: required because it appears within the type `proto::State`
+kablam!     = note: required by `protobuf::Message`
+kablam! 
+kablam! error[E0277]: the trait bound `std::cell::Cell<u32>: std::marker::Sync` is not satisfied in `proto::Event`
+kablam!    --> src/proto/mod.rs:875:6
+kablam!     |
+kablam! 875 | impl ::protobuf::Message for Event {
+kablam!     |      ^^^^^^^^^^^^^^^^^^^ within `proto::Event`, the trait `std::marker::Sync` is not implemented for `std::cell::Cell<u32>`
+kablam!     |
+kablam!     = note: `std::cell::Cell<u32>` cannot be shared between threads safely
+kablam!     = note: required because it appears within the type `proto::Event`
+kablam!     = note: required by `protobuf::Message`
+kablam! 
+kablam! error[E0277]: the trait bound `std::cell::Cell<u32>: std::marker::Sync` is not satisfied in `proto::Query`
+kablam!     --> src/proto/mod.rs:1253:6
+kablam!      |
+kablam! 1253 | impl ::protobuf::Message for Query {
+kablam!      |      ^^^^^^^^^^^^^^^^^^^ within `proto::Query`, the trait `std::marker::Sync` is not implemented for `std::cell::Cell<u32>`
+kablam!      |
+kablam!      = note: `std::cell::Cell<u32>` cannot be shared between threads safely
+kablam!      = note: required because it appears within the type `proto::Query`
+kablam!      = note: required by `protobuf::Message`
+kablam! 
+kablam! error[E0277]: the trait bound `std::cell::Cell<u32>: std::marker::Sync` is not satisfied in `proto::Msg`
+kablam!     --> src/proto/mod.rs:1548:6
+kablam!      |
+kablam! 1548 | impl ::protobuf::Message for Msg {
+kablam!      |      ^^^^^^^^^^^^^^^^^^^ within `proto::Msg`, the trait `std::marker::Sync` is not implemented for `std::cell::Cell<u32>`
+kablam!      |
+kablam!      = note: `std::cell::Cell<u32>` cannot be shared between threads safely
+kablam!      = note: required because it appears within the type `proto::Msg`
+kablam!      = note: required by `protobuf::Message`
+kablam! 
+kablam! error[E0277]: the trait bound `std::cell::Cell<u32>: std::marker::Sync` is not satisfied in `proto::Attribute`
+kablam!     --> src/proto/mod.rs:1850:6
+kablam!      |
+kablam! 1850 | impl ::protobuf::Message for Attribute {
+kablam!      |      ^^^^^^^^^^^^^^^^^^^ within `proto::Attribute`, the trait `std::marker::Sync` is not implemented for `std::cell::Cell<u32>`
+kablam!      |
+kablam!      = note: `std::cell::Cell<u32>` cannot be shared between threads safely
+kablam!      = note: required because it appears within the type `proto::Attribute`
+kablam!      = note: required by `protobuf::Message`
+kablam! 
+kablam! error: aborting due to 5 previous errors
+kablam! 
+kablam! error: Could not compile `riemann_client`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 763ed5c8ca027b415fc58f092124ac09674666865d1b992989eae621a7729172`
+blam! 763ed5c8ca027b415fc58f092124ac09674666865d1b992989eae621a7729172

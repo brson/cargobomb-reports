@@ -1,0 +1,53 @@
+boom! testing bark-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 1a4810d37a75275afd025fa9309bbf44d65d2865798a093bf22a4e701a79a548
+boom! running `docker start -a 1a4810d37a75275afd025fa9309bbf44d65d2865798a093bf22a4e701a79a548`
+kablam!    Compiling bark v0.1.0 (file:///source)
+kablam! error: no method named `as_mut` found for type `std::ptr::Shared<std::cell::Cell<usize>>` in the current scope
+kablam!   --> src/lib.rs:70:25
+kablam!    |
+kablam! 70 |             self.thread.as_mut().unwrap().set(new);
+kablam!    |                         ^^^^^^
+kablam! 
+kablam! error: no method named `as_mut` found for type `std::ptr::Shared<std::cell::Cell<usize>>` in the current scope
+kablam!   --> src/lib.rs:79:25
+kablam!    |
+kablam! 79 |             self.thread.as_mut().unwrap().set(new);
+kablam!    |                         ^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:118:36
+kablam!     |
+kablam! 118 |                 drop(Box::from_raw(*self.thread));
+kablam!     |                                    ^^^^^^^^^^^^ types differ in mutability
+kablam!     |
+kablam!     = note: expected type `*mut _`
+kablam!                found type `*const std::cell::Cell<usize>`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:122:40
+kablam!     |
+kablam! 122 |                     drop(Box::from_raw(*self.inner));
+kablam!     |                                        ^^^^^^^^^^^ types differ in mutability
+kablam!     |
+kablam!     = note: expected type `*mut _`
+kablam!                found type `*const BarkInner<T>`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:134:36
+kablam!     |
+kablam! 134 |                 drop(Box::from_raw(*self.inner));
+kablam!     |                                    ^^^^^^^^^^^ types differ in mutability
+kablam!     |
+kablam!     = note: expected type `*mut _`
+kablam!                found type `*const BarkInner<T>`
+kablam! 
+kablam! error: aborting due to 5 previous errors
+kablam! 
+kablam! error: Could not compile `bark`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 1a4810d37a75275afd025fa9309bbf44d65d2865798a093bf22a4e701a79a548`
+blam! 1a4810d37a75275afd025fa9309bbf44d65d2865798a093bf22a4e701a79a548

@@ -1,0 +1,177 @@
+boom! testing amq-proto-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 8d1a4b6d4c206e619bdcf338200cca1f2ab24aaccb9ae61d2e1f225b3086517b
+boom! running `docker start -a 8d1a4b6d4c206e619bdcf338200cca1f2ab24aaccb9ae61d2e1f225b3086517b`
+kablam!    Compiling error-chain v0.10.0
+kablam!    Compiling amq-proto v0.1.0 (file:///source)
+kablam! warning: unused variable: `table_size`
+kablam!   --> src/codegen_macros.rs:59:53
+kablam!    |
+kablam! 59 |         decode_table(&mut self.cursor).map(|(table, table_size)| table)
+kablam!    |                                                     ^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!    --> src/codegen_macros.rs:141:13
+kablam!     |
+kablam! 141 |             self.flush_bits();
+kablam!     |             ^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!    --> src/codegen_macros.rs:158:9
+kablam!     |
+kablam! 158 |         self.flush_bits();
+kablam!     |         ^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: value assigned to `idx` is never read
+kablam!    --> src/codegen_macros.rs:305:21
+kablam!     |
+kablam! 305 |                     idx = idx + 1;
+kablam!     |                     ^^^
+kablam!     | 
+kablam!    ::: src/protocol.rs
+kablam!     |
+kablam! 390 |     properties_struct!(BasicProperties,
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: #[warn(unused_assignments)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 6.46 secs
+boom! running `docker rm -f 8d1a4b6d4c206e619bdcf338200cca1f2ab24aaccb9ae61d2e1f225b3086517b`
+blam! 8d1a4b6d4c206e619bdcf338200cca1f2ab24aaccb9ae61d2e1f225b3086517b
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 5455b5b3bde0952c39fffd17a51b4570d7a138bdd517236dd32c9b83c167bd46
+boom! running `docker start -a 5455b5b3bde0952c39fffd17a51b4570d7a138bdd517236dd32c9b83c167bd46`
+kablam!    Compiling amq-proto v0.1.0 (file:///source)
+kablam! warning: unused variable: `table_size`
+kablam!   --> src/codegen_macros.rs:59:53
+kablam!    |
+kablam! 59 |         decode_table(&mut self.cursor).map(|(table, table_size)| table)
+kablam!    |                                                     ^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!    --> src/codegen_macros.rs:141:13
+kablam!     |
+kablam! 141 |             self.flush_bits();
+kablam!     |             ^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!    --> src/codegen_macros.rs:158:9
+kablam!     |
+kablam! 158 |         self.flush_bits();
+kablam!     |         ^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam! warning: method is never used: `decode`
+kablam!    --> src/codegen_macros.rs:275:13
+kablam!     |
+kablam! 275 |             pub fn decode(content_header_frame: ContentHeaderFrame) -> Result<$struct_name> {
+kablam!     |             ^
+kablam! ...
+kablam! 325 |     properties_struct!(Test, a => octet, b => shortstr, c => longstr, d => bit, e => bit, f => long);
+kablam!     |     ------------------------------------------------------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `encode`
+kablam!    --> src/codegen_macros.rs:292:13
+kablam!     |
+kablam! 292 |               pub fn encode(self) -> Result<Vec<u8>> {
+kablam!     |  _____________^ starting here...
+kablam! 293 | |                 let mut writer = ArgumentsWriter::new();
+kablam! 294 | |                 $(if let Some(prop) = self.$arg_name {
+kablam! 295 | |                         write_type!(writer, $ty, &prop)?;
+kablam! 296 | |                 };)*
+kablam! 297 | |                 Ok(writer.as_bytes())
+kablam! 298 | |             }
+kablam!     | |_____________^ ...ending here
+kablam! ...
+kablam! 325 |       properties_struct!(Test, a => octet, b => shortstr, c => longstr, d => bit, e => bit, f => long);
+kablam!     |       ------------------------------------------------------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `flags`
+kablam!    --> src/codegen_macros.rs:300:13
+kablam!     |
+kablam! 300 |             pub fn flags(&self) -> u16 {
+kablam!     |             ^
+kablam! ...
+kablam! 325 |     properties_struct!(Test, a => octet, b => shortstr, c => longstr, d => bit, e => bit, f => long);
+kablam!     |     ------------------------------------------------------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: value assigned to `idx` is never read
+kablam!    --> src/codegen_macros.rs:305:21
+kablam!     |
+kablam! 305 |                     idx = idx + 1;
+kablam!     |                     ^^^
+kablam! ...
+kablam! 325 |     properties_struct!(Test, a => octet, b => shortstr, c => longstr, d => bit, e => bit, f => long);
+kablam!     |     ------------------------------------------------------------------------------------------------- in this macro invocation
+kablam!     |
+kablam!     = note: #[warn(unused_assignments)] on by default
+kablam! 
+kablam! warning: unused variable: `f`
+kablam!    --> src/codegen_macros.rs:358:13
+kablam!     |
+kablam! 358 |         let f = Foo { a: 1, b: "test".to_string(), c: "bar".to_string(), d: false, e: true, f: 0xDEADBEEF };
+kablam!     |             ^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: value assigned to `idx` is never read
+kablam!    --> src/codegen_macros.rs:305:21
+kablam!     |
+kablam! 305 |                     idx = idx + 1;
+kablam!     |                     ^^^
+kablam!     | 
+kablam!    ::: src/protocol.rs
+kablam!     |
+kablam! 390 |     properties_struct!(BasicProperties,
+kablam!     |     - in this macro invocation
+kablam!     |
+kablam!     = note: #[warn(unused_assignments)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 6.17 secs
+boom! running `docker rm -f 5455b5b3bde0952c39fffd17a51b4570d7a138bdd517236dd32c9b83c167bd46`
+blam! 5455b5b3bde0952c39fffd17a51b4570d7a138bdd517236dd32c9b83c167bd46
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 61d91c0712037b21026427615b70dd2b56b5f80b75618e03cba27719c9173316
+boom! running `docker start -a 61d91c0712037b21026427615b70dd2b56b5f80b75618e03cba27719c9173316`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/amq_proto-06981cab8700990d
+blam! 
+blam! running 4 tests
+blam! test codegen_macros::test::test_decoding ... ok
+blam! test codegen_macros::test::test_decoding_wrong_ids ... ok
+blam! test codegen_macros::test::test_encoding ... ok
+blam! test framing::test_encode_decode ... ok
+blam! 
+kablam!    Doc-tests amq-proto
+blam! test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f 61d91c0712037b21026427615b70dd2b56b5f80b75618e03cba27719c9173316`
+blam! 61d91c0712037b21026427615b70dd2b56b5f80b75618e03cba27719c9173316

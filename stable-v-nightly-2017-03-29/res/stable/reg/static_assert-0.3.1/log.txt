@@ -1,0 +1,38 @@
+boom! testing static_assert-0.3.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! ea60d7506e013b3ea0b8887fd8017b38a4052c8a9495211158b965404b37a430
+boom! running `docker start -a ea60d7506e013b3ea0b8887fd8017b38a4052c8a9495211158b965404b37a430`
+kablam!    Compiling static_assert v0.3.1 (file:///source)
+kablam! error[E0432]: unresolved import `rustc_const_eval::eval_const_expr`
+kablam!  --> src/lib.rs:9:5
+kablam!   |
+kablam! 9 | use rustc_const_eval::eval_const_expr;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `eval_const_expr` in the root
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::intern`
+kablam!   --> src/lib.rs:17:28
+kablam!    |
+kablam! 17 | use syntax::parse::token::{intern, gensym_ident};
+kablam!    |                            ^^^^^^ no `intern` in `parse::token`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::gensym_ident`
+kablam!   --> src/lib.rs:17:36
+kablam!    |
+kablam! 17 | use syntax::parse::token::{intern, gensym_ident};
+kablam!    |                                    ^^^^^^^^^^^^ no `gensym_ident` in `parse::token`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/lib.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(plugin_registrar, box_syntax, rustc_private)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `static_assert`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f ea60d7506e013b3ea0b8887fd8017b38a4052c8a9495211158b965404b37a430`
+blam! ea60d7506e013b3ea0b8887fd8017b38a4052c8a9495211158b965404b37a430

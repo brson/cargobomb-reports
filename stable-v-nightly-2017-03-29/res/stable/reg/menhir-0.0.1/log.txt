@@ -1,0 +1,23 @@
+boom! testing menhir-0.0.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! eae0d3a88776aa3e3511ee0ba0b08b3783ffa6fa37c7b02121082b4e79681a0d
+boom! running `docker start -a eae0d3a88776aa3e3511ee0ba0b08b3783ffa6fa37c7b02121082b4e79681a0d`
+kablam!    Compiling menhir v0.0.1 (file:///source)
+kablam! error: failed to run custom build command for `menhir v0.0.1 (file:///source)`
+kablam! process didn't exit successfully: `/target/debug/build/menhir-69189c2eb6d99b55/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! Makefile:116: recipe for target 'all' failed
+kablam! 
+kablam! --- stderr
+kablam! /bin/sh: 1: ocamlc: not found
+kablam! /bin/sh: 1: ocamlc: not found
+kablam! rm: cannot remove 'src/installation.ml': Read-only file system
+kablam! make: *** [all] Error 1
+kablam! thread 'main' panicked at 'assertion failed: Command::new("make").arg(format!("PREFIX={}" ,
+kablam!                                  out_dir)).stdout(Stdio::inherit()).stderr(Stdio::inherit()).status().unwrap().success()', src/rust/build.rs:8
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f eae0d3a88776aa3e3511ee0ba0b08b3783ffa6fa37c7b02121082b4e79681a0d`
+blam! eae0d3a88776aa3e3511ee0ba0b08b3783ffa6fa37c7b02121082b4e79681a0d

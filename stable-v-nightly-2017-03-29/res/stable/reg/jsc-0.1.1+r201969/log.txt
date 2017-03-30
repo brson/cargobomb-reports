@@ -1,0 +1,20 @@
+boom! testing jsc-0.1.1+r201969 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! b1f0540b4e11a12aea5ba98fd8c9d540b167aa687e500277c708d601ec778f22
+boom! running `docker start -a b1f0540b4e11a12aea5ba98fd8c9d540b167aa687e500277c708d601ec778f22`
+kablam!    Compiling jsc-sys v0.1.2+r201969
+kablam! error: failed to run custom build command for `jsc-sys v0.1.2+r201969`
+kablam! process didn't exit successfully: `/target/debug/build/jsc-sys-2813d57c13ede73d/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! makefile.cargo:2: recipe for target 'all' failed
+kablam! 
+kablam! --- stderr
+kablam! mkdir: cannot create directory 'WebKit/Source/WebCore': Read-only file system
+kablam! make: *** [all] Error 1
+kablam! thread 'main' panicked at 'assertion failed: result.success()', /cargo-home/registry/src/github.com-1ecc6299db9ec823/jsc-sys-0.1.2+r201969/build.rs:40
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f b1f0540b4e11a12aea5ba98fd8c9d540b167aa687e500277c708d601ec778f22`
+blam! b1f0540b4e11a12aea5ba98fd8c9d540b167aa687e500277c708d601ec778f22

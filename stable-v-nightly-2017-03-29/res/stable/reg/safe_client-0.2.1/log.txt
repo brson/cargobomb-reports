@@ -1,0 +1,30 @@
+boom! testing safe_client-0.2.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 88f10b3dfcc0116bc795b9a5cd0e517101d5177ae275b3639f1e526f40883f54
+boom! running `docker start -a 88f10b3dfcc0116bc795b9a5cd0e517101d5177ae275b3639f1e526f40883f54`
+kablam!    Compiling crossbeam v0.1.6
+kablam!    Compiling mime v0.1.3
+kablam!    Compiling libsodium-sys v0.0.14
+kablam!    Compiling maidsafe_utilities v0.1.5
+kablam! error[E0512]: transmute called with differently sized types: [usize; 32] (2048 bits) to [std::sync::atomic::AtomicBool; 32] (256 bits)
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/crossbeam-0.1.6/src/sync/seg_queue.rs:34:29
+kablam!    |
+kablam! 34 |             ready: unsafe { mem::transmute([0usize; SEG_SIZE]) },
+kablam!    |                             ^^^^^^^^^^^^^^ transmuting between 2048 bits and 256 bits
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `crossbeam`.
+blam! Build failed, waiting for other jobs to finish...
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: failed to run custom build command for `libsodium-sys v0.0.14`
+kablam! process didn't exit successfully: `/target/debug/build/libsodium-sys-c81c2aab8a6cece2/build-script-build` (exit code: 101)
+kablam! --- stderr
+kablam! thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: "`\"pkg-config\" \"--libs\" \"--cflags\" \"libsodium\"` did not exit successfully: exit code: 1\n--- stderr\nPackage libsodium was not found in the pkg-config search path.\nPerhaps you should add the directory containing `libsodium.pc\'\nto the PKG_CONFIG_PATH environment variable\nNo package \'libsodium\' found\n"', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f 88f10b3dfcc0116bc795b9a5cd0e517101d5177ae275b3639f1e526f40883f54`
+blam! 88f10b3dfcc0116bc795b9a5cd0e517101d5177ae275b3639f1e526f40883f54

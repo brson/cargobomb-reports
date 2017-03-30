@@ -1,0 +1,29 @@
+boom! testing crate-deps-0.1.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! ba44e437b5822a667b0137dff475ec0d93ec477bf032f34abb1216deb2a4d362
+boom! running `docker start -a ba44e437b5822a667b0137dff475ec0d93ec477bf032f34abb1216deb2a4d362`
+kablam!    Compiling chrono v0.2.25
+kablam!    Compiling crates-index v0.6.0
+kablam!    Compiling tiny_http v0.5.8
+kablam!    Compiling crate-deps v0.1.0 (file:///source)
+kablam! error[E0433]: failed to resolve. Could not find `CratesIndex` in `crates_index`
+kablam!   --> src/main.rs:99:17
+kablam!    |
+kablam! 99 |     let index = crates_index::CratesIndex::new(INDEX_LOCAL_PATH.into());
+kablam!    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `CratesIndex` in `crates_index`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `ServerBuilder` in `tiny_http`
+kablam!    --> src/main.rs:112:18
+kablam!     |
+kablam! 112 |     let server = tiny_http::ServerBuilder::new().with_port(port).build().unwrap();
+kablam!     |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `ServerBuilder` in `tiny_http`
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `crate-deps`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f ba44e437b5822a667b0137dff475ec0d93ec477bf032f34abb1216deb2a4d362`
+blam! ba44e437b5822a667b0137dff475ec0d93ec477bf032f34abb1216deb2a4d362

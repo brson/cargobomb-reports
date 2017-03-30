@@ -1,0 +1,29 @@
+boom! testing sufdb-0.1.7 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! c9845dd6d7d8812c5e81c26b7c0b1259c76104bb2fc6386499973dd565c25835
+boom! running `docker start -a c9845dd6d7d8812c5e81c26b7c0b1259c76104bb2fc6386499973dd565c25835`
+kablam!    Compiling sufdb v0.1.7 (file:///source)
+kablam! error[E0277]: the trait bound `std::borrow::Cow<'_, [u32]>: std::iter::Iterator` is not satisfied
+kablam!    --> src/btree.rs:216:9
+kablam!     |
+kablam! 216 |           for sufid in table {
+kablam!     |  _________^ starting here...
+kablam! 217 | |             self.insert_suffix(Suffix {
+kablam! 218 | |                 docid: docid,
+kablam! 219 | |                 sufid: sufid as usize,
+kablam! 220 | |             });
+kablam! 221 | |         }
+kablam!     | |_________^ ...ending here: the trait `std::iter::Iterator` is not implemented for `std::borrow::Cow<'_, [u32]>`
+kablam!     |
+kablam!     = note: `std::borrow::Cow<'_, [u32]>` is not an iterator; maybe try calling `.iter()` or a similar method
+kablam!     = note: required by `std::iter::IntoIterator::into_iter`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `sufdb`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f c9845dd6d7d8812c5e81c26b7c0b1259c76104bb2fc6386499973dd565c25835`
+blam! c9845dd6d7d8812c5e81c26b7c0b1259c76104bb2fc6386499973dd565c25835

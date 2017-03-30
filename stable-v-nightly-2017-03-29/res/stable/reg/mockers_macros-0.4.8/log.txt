@@ -1,0 +1,32 @@
+boom! testing mockers_macros-0.4.8 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 01acbd3d708b2160114ea6ea3205bb377738ca8d46ff16397429ecc93ab1d32a
+boom! running `docker start -a 01acbd3d708b2160114ea6ea3205bb377738ca8d46ff16397429ecc93ab1d32a`
+kablam!    Compiling mockers_macros v0.4.8 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::parse::token::keywords`
+kablam!   --> src/lib.rs:20:34
+kablam!    |
+kablam! 20 | use syntax::parse::token::{self, keywords, Token, intern};
+kablam!    |                                  ^^^^^^^^ no `keywords` in `parse::token`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::intern`
+kablam!   --> src/lib.rs:20:51
+kablam!    |
+kablam! 20 | use syntax::parse::token::{self, keywords, Token, intern};
+kablam!    |                                                   ^^^^^^ no `intern` in `parse::token`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/lib.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(quote, plugin_registrar, rustc_private, slice_patterns)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `mockers_macros`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 01acbd3d708b2160114ea6ea3205bb377738ca8d46ff16397429ecc93ab1d32a`
+blam! 01acbd3d708b2160114ea6ea3205bb377738ca8d46ff16397429ecc93ab1d32a

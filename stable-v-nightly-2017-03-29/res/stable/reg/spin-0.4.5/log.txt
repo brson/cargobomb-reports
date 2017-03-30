@@ -1,0 +1,32 @@
+boom! testing spin-0.4.5 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 2f309d6fcd0a726df4789674b8b1f15bc667614b3870b431d27b4490678d1c1c
+boom! running `docker start -a 2f309d6fcd0a726df4789674b8b1f15bc667614b3870b431d27b4490678d1c1c`
+kablam!    Compiling spin v0.4.5 (file:///source)
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/lib.rs:6:30
+kablam!   |
+kablam! 6 | #![cfg_attr(feature = "asm", feature(asm))]
+kablam!   |                              ^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/lib.rs:7:42
+kablam!   |
+kablam! 7 | #![cfg_attr(feature = "core_intrinsics", feature(core_intrinsics))]
+kablam!   |                                          ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/lib.rs:8:35
+kablam!   |
+kablam! 8 | #![cfg_attr(feature = "const_fn", feature(const_fn))]
+kablam!   |                                   ^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `spin`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 2f309d6fcd0a726df4789674b8b1f15bc667614b3870b431d27b4490678d1c1c`
+blam! 2f309d6fcd0a726df4789674b8b1f15bc667614b3870b431d27b4490678d1c1c

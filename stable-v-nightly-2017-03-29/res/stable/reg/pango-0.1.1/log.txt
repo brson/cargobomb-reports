@@ -1,0 +1,20 @@
+boom! testing pango-0.1.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 9aa60e9cbc763e40361831b95fc8a520ebc3b63d133b3e1a46746c96a5f98802
+boom! running `docker start -a 9aa60e9cbc763e40361831b95fc8a520ebc3b63d133b3e1a46746c96a5f98802`
+kablam!    Compiling pango v0.1.1 (file:///source)
+kablam! error[E0432]: unresolved import `glib::translate::FromGlibPtr`
+kablam!  --> src/widgets/font_description.rs:4:30
+kablam!   |
+kablam! 4 | use glib::translate::{Stash, FromGlibPtr, ToGlibPtr, from_glib_full, from_glib_none, from_glib};
+kablam!   |                              ^^^^^^^^^^^ no `FromGlibPtr` in `translate`. Did you mean to use `ToGlibPtr`?
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `pango`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 9aa60e9cbc763e40361831b95fc8a520ebc3b63d133b3e1a46746c96a5f98802`
+blam! 9aa60e9cbc763e40361831b95fc8a520ebc3b63d133b3e1a46746c96a5f98802

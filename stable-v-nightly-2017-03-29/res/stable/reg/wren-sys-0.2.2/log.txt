@@ -1,0 +1,30 @@
+boom! testing wren-sys-0.2.2 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! ef4381f670b57601097e716868c26e7eaf4621f3609a9012f18963a9171a3669
+boom! running `docker start -a ef4381f670b57601097e716868c26e7eaf4621f3609a9012f18963a9171a3669`
+kablam!    Compiling wren-sys v0.2.2 (file:///source)
+kablam! error: failed to run custom build command for `wren-sys v0.2.2 (file:///source)`
+kablam! process didn't exit successfully: `/target/debug/build/wren-sys-6eb04cf5453f81d1/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! make[1]: Entering directory '/source/src/wren'
+kablam!        str src/vm/wren_core.wren          
+kablam! util/wren.mk:223: recipe for target 'src/vm/wren_core.wren.inc' failed
+kablam! make[1]: Leaving directory '/source/src/wren'
+kablam! Makefile:26: recipe for target 'static' failed
+kablam! 
+kablam! --- stderr
+kablam! Traceback (most recent call last):
+kablam!   File "./util/wren_to_c_string.py", line 54, in <module>
+kablam!     main()
+kablam!   File "./util/wren_to_c_string.py", line 50, in main
+kablam!     with open(args.output, "w") as f:
+kablam! IOError: [Errno 30] Read-only file system: 'src/vm/wren_core.wren.inc'
+kablam! make[1]: *** [src/vm/wren_core.wren.inc] Error 1
+kablam! make: *** [static] Error 2
+kablam! thread 'main' panicked at 'assertion failed: make.current_dir(&Path::new(&wren_make_dir)).arg("static").stdout(Stdio::inherit()).stderr(Stdio::inherit()).status().unwrap().success()', build.rs:14
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f ef4381f670b57601097e716868c26e7eaf4621f3609a9012f18963a9171a3669`
+blam! ef4381f670b57601097e716868c26e7eaf4621f3609a9012f18963a9171a3669

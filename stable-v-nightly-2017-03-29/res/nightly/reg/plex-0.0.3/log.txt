@@ -1,0 +1,40 @@
+boom! testing plex-0.0.3 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! c6d309a3c869a967652a79fd06618f31f8be96a58284ba7166bab3ed5f53884a
+boom! running `docker start -a c6d309a3c869a967652a79fd06618f31f8be96a58284ba7166bab3ed5f53884a`
+kablam!    Compiling lalr v0.0.1
+kablam!    Compiling redfa v0.0.2
+kablam!    Compiling plex v0.0.3 (file:///source)
+kablam! error: no method named `eat_lifetime` found for type `syntax::parse::parser::Parser<'_>` in the current scope
+kablam!    --> src/lexer.rs:116:34
+kablam!     |
+kablam! 116 |         if let Some(lt) = parser.eat_lifetime() {
+kablam!     |                                  ^^^^^^^^^^^^
+kablam! 
+kablam! error: no field `value` on type `syntax::ast::Attribute`
+kablam!    --> src/parser.rs:549:28
+kablam!     |
+kablam! 549 |                 match attr.value.node {
+kablam!     |                            ^^^^^ did you mean `style`?
+kablam! 
+kablam! error: no field `value` on type `syntax::ast::Attribute`
+kablam!    --> src/parser.rs:550:65
+kablam!     |
+kablam! 550 |                     ast::MetaItemKind::List(ref tokens) if attr.value.name == "no_reduce" => {
+kablam!     |                                                                 ^^^^^ did you mean `style`?
+kablam! 
+kablam! error: no field `value` on type `syntax::ast::Attribute`
+kablam!    --> src/parser.rs:561:53
+kablam!     |
+kablam! 561 |                     ast::MetaItemKind::Word if attr.value.name == "overriding" => {
+kablam!     |                                                     ^^^^^ did you mean `style`?
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `plex`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f c6d309a3c869a967652a79fd06618f31f8be96a58284ba7166bab3ed5f53884a`
+blam! c6d309a3c869a967652a79fd06618f31f8be96a58284ba7166bab3ed5f53884a

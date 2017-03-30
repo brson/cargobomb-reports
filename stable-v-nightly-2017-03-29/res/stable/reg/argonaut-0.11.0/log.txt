@@ -1,0 +1,330 @@
+boom! testing argonaut-0.11.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 923eb8961b559c0da7d04a51eb52b01ecbae9858b3e325d7e7865a0e6f7c09ec
+boom! running `docker start -a 923eb8961b559c0da7d04a51eb52b01ecbae9858b3e325d7e7865a0e6f7c09ec`
+kablam!    Compiling argonaut v0.11.0 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.34 secs
+boom! running `docker rm -f 923eb8961b559c0da7d04a51eb52b01ecbae9858b3e325d7e7865a0e6f7c09ec`
+blam! 923eb8961b559c0da7d04a51eb52b01ecbae9858b3e325d7e7865a0e6f7c09ec
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! bd97f00f8d148b17a4e18d9ebc5a1018158c91d136f53232f53aca7c59c2303f
+boom! running `docker start -a bd97f00f8d148b17a4e18d9ebc5a1018158c91d136f53232f53aca7c59c2303f`
+kablam!    Compiling argonaut v0.11.0 (file:///source)
+kablam! error[E0422]: cannot find struct, variant or union type `Trail` in this scope
+kablam!    --> src/parse.rs:497:20
+kablam!     |
+kablam! 497 |                 Ok(Trail { value }) => {
+kablam!     |                    ^^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidate is found in another module, you can import it into scope:
+kablam!               `use parse::DefType::Trail;`
+kablam! 
+kablam! error[E0422]: cannot find struct, variant or union type `Trail` in this scope
+kablam!    --> src/parse.rs:551:42
+kablam!     |
+kablam! 551 |         assert_eq!(parse.next(), Some(Ok(Trail { value: "bar"})));
+kablam!     |                                          ^^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidate is found in another module, you can import it into scope:
+kablam!               `use parse::DefType::Trail;`
+kablam! 
+kablam! error[E0422]: cannot find struct, variant or union type `Trail` in this scope
+kablam!    --> src/parse.rs:555:42
+kablam!     |
+kablam! 555 |         assert_eq!(parse.next(), Some(Ok(Trail { value: "arg" })));
+kablam!     |                                          ^^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidate is found in another module, you can import it into scope:
+kablam!               `use parse::DefType::Trail;`
+kablam! 
+kablam! error[E0026]: variant `parse::Arg::Positional` does not have a field named `name`
+kablam!    --> src/parse.rs:494:33
+kablam!     |
+kablam! 494 |                 Ok(Positional { name: "foo", value }) => {
+kablam!     |                                 ^^^^^^^^^^^ variant `parse::Arg::Positional` does not have field `name`
+kablam! 
+kablam! error[E0026]: variant `parse::Arg::Positional` does not have a field named `value`
+kablam!    --> src/parse.rs:494:46
+kablam!     |
+kablam! 494 |                 Ok(Positional { name: "foo", value }) => {
+kablam!     |                                              ^^^^^ variant `parse::Arg::Positional` does not have field `value`
+kablam! 
+kablam! error[E0027]: pattern does not mention field `0`
+kablam!    --> src/parse.rs:494:20
+kablam!     |
+kablam! 494 |                 Ok(Positional { name: "foo", value }) => {
+kablam!     |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ missing field `0`
+kablam! 
+kablam! error[E0027]: pattern does not mention field `1`
+kablam!    --> src/parse.rs:494:20
+kablam!     |
+kablam! 494 |                 Ok(Positional { name: "foo", value }) => {
+kablam!     |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ missing field `1`
+kablam! 
+kablam! error[E0026]: variant `parse::Arg::Switch` does not have a field named `name`
+kablam!    --> src/parse.rs:500:29
+kablam!     |
+kablam! 500 |                 Ok(Switch { name: "verbose" }) => {
+kablam!     |                             ^^^^^^^^^^^^^^^ variant `parse::Arg::Switch` does not have field `name`
+kablam! 
+kablam! error[E0027]: pattern does not mention field `0`
+kablam!    --> src/parse.rs:500:20
+kablam!     |
+kablam! 500 |                 Ok(Switch { name: "verbose" }) => {
+kablam!     |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^ missing field `0`
+kablam! 
+kablam! error[E0026]: variant `parse::Arg::Option` does not have a field named `name`
+kablam!    --> src/parse.rs:503:29
+kablam!     |
+kablam! 503 |                 Ok(Option { name: "exclude", value }) => {
+kablam!     |                             ^^^^^^^^^^^^^^^ variant `parse::Arg::Option` does not have field `name`
+kablam! 
+kablam! error[E0026]: variant `parse::Arg::Option` does not have a field named `value`
+kablam!    --> src/parse.rs:503:46
+kablam!     |
+kablam! 503 |                 Ok(Option { name: "exclude", value }) => {
+kablam!     |                                              ^^^^^ variant `parse::Arg::Option` does not have field `value`
+kablam! 
+kablam! error[E0027]: pattern does not mention field `0`
+kablam!    --> src/parse.rs:503:20
+kablam!     |
+kablam! 503 |                 Ok(Option { name: "exclude", value }) => {
+kablam!     |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ missing field `0`
+kablam! 
+kablam! error[E0027]: pattern does not mention field `1`
+kablam!    --> src/parse.rs:503:20
+kablam!     |
+kablam! 503 |                 Ok(Option { name: "exclude", value }) => {
+kablam!     |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ missing field `1`
+kablam! 
+kablam! error[E0026]: variant `parse::Arg::Switch` does not have a field named `name`
+kablam!    --> src/parse.rs:506:29
+kablam!     |
+kablam! 506 |                 Ok(Switch { name: "" }) => {
+kablam!     |                             ^^^^^^^^ variant `parse::Arg::Switch` does not have field `name`
+kablam! 
+kablam! error[E0027]: pattern does not mention field `0`
+kablam!    --> src/parse.rs:506:20
+kablam!     |
+kablam! 506 |                 Ok(Switch { name: "" }) => {
+kablam!     |                    ^^^^^^^^^^^^^^^^^^^ missing field `0`
+kablam! 
+kablam! error[E0559]: variant `parse::Arg<'_, '_>::Positional` has no field named `name`
+kablam!    --> src/parse.rs:550:54
+kablam!     |
+kablam! 550 |         assert_eq!(parse.next(), Some(Ok(Positional{ name: "foo", value: "foo"})));
+kablam!     |                                                      ^^^^^ field does not exist - did you mean `0`?
+kablam! 
+kablam! error[E0559]: variant `parse::Arg<'_, '_>::Positional` has no field named `value`
+kablam!    --> src/parse.rs:550:67
+kablam!     |
+kablam! 550 |         assert_eq!(parse.next(), Some(Ok(Positional{ name: "foo", value: "foo"})));
+kablam!     |                                                                   ^^^^^^ field does not exist - did you mean `0`?
+kablam! 
+kablam! error[E0559]: variant `parse::Arg<'_, '_>::Option` has no field named `name`
+kablam!    --> src/parse.rs:552:51
+kablam!     |
+kablam! 552 |         assert_eq!(parse.next(), Some(Ok(Option { name: "exclude", value: "baz" })));
+kablam!     |                                                   ^^^^^ field does not exist - did you mean `0`?
+kablam! 
+kablam! error[E0559]: variant `parse::Arg<'_, '_>::Option` has no field named `value`
+kablam!    --> src/parse.rs:552:68
+kablam!     |
+kablam! 552 |         assert_eq!(parse.next(), Some(Ok(Option { name: "exclude", value: "baz" })));
+kablam!     |                                                                    ^^^^^^ field does not exist - did you mean `0`?
+kablam! 
+kablam! error[E0559]: variant `parse::Arg<'_, '_>::Switch` has no field named `name`
+kablam!    --> src/parse.rs:553:51
+kablam!     |
+kablam! 553 |         assert_eq!(parse.next(), Some(Ok(Switch { name: "verbose" })));
+kablam!     |                                                   ^^^^^ field does not exist - did you mean `0`?
+kablam! 
+kablam! error[E0559]: variant `parse::Arg<'_, '_>::Switch` has no field named `name`
+kablam!    --> src/parse.rs:554:51
+kablam!     |
+kablam! 554 |         assert_eq!(parse.next(), Some(Ok(Switch { name: "" })));
+kablam!     |                                                   ^^^^^ field does not exist - did you mean `0`?
+kablam! 
+kablam! error[E0559]: variant `parse::Arg<'_, '_>::Switch` has no field named `name`
+kablam!    --> src/parse.rs:556:51
+kablam!     |
+kablam! 556 |         assert_eq!(parse.next(), Some(Ok(Switch { name: "version" })));
+kablam!     |                                                   ^^^^^ field does not exist - did you mean `0`?
+kablam! 
+kablam! error[E0559]: variant `parse::Arg<'_, '_>::Switch` has no field named `name`
+kablam!    --> src/parse.rs:557:51
+kablam!     |
+kablam! 557 |         assert_eq!(parse.next(), Some(Ok(Switch { name: "help" })));
+kablam!     |                                                   ^^^^^ field does not exist - did you mean `0`?
+kablam! 
+kablam! error: aborting due to 20 previous errors
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `argonaut`.
+kablam! error: build failed
+boom! running `docker rm -f bd97f00f8d148b17a4e18d9ebc5a1018158c91d136f53232f53aca7c59c2303f`
+blam! bd97f00f8d148b17a4e18d9ebc5a1018158c91d136f53232f53aca7c59c2303f
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! 0cdbd335c77bcf2b82ffb96f6e70252e5f5a3c4eef67cb1f2a64aa1134a18826
+boom! running `docker start -a 0cdbd335c77bcf2b82ffb96f6e70252e5f5a3c4eef67cb1f2a64aa1134a18826`
+kablam!    Compiling argonaut v0.11.0 (file:///source)
+kablam! error[E0422]: cannot find struct, variant or union type `Trail` in this scope
+kablam!    --> src/parse.rs:497:20
+kablam!     |
+kablam! 497 |                 Ok(Trail { value }) => {
+kablam!     |                    ^^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidate is found in another module, you can import it into scope:
+kablam!               `use parse::DefType::Trail;`
+kablam! 
+kablam! error[E0422]: cannot find struct, variant or union type `Trail` in this scope
+kablam!    --> src/parse.rs:551:42
+kablam!     |
+kablam! 551 |         assert_eq!(parse.next(), Some(Ok(Trail { value: "bar"})));
+kablam!     |                                          ^^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidate is found in another module, you can import it into scope:
+kablam!               `use parse::DefType::Trail;`
+kablam! 
+kablam! error[E0422]: cannot find struct, variant or union type `Trail` in this scope
+kablam!    --> src/parse.rs:555:42
+kablam!     |
+kablam! 555 |         assert_eq!(parse.next(), Some(Ok(Trail { value: "arg" })));
+kablam!     |                                          ^^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidate is found in another module, you can import it into scope:
+kablam!               `use parse::DefType::Trail;`
+kablam! 
+kablam! error[E0026]: variant `parse::Arg::Positional` does not have a field named `name`
+kablam!    --> src/parse.rs:494:33
+kablam!     |
+kablam! 494 |                 Ok(Positional { name: "foo", value }) => {
+kablam!     |                                 ^^^^^^^^^^^ variant `parse::Arg::Positional` does not have field `name`
+kablam! 
+kablam! error[E0026]: variant `parse::Arg::Positional` does not have a field named `value`
+kablam!    --> src/parse.rs:494:46
+kablam!     |
+kablam! 494 |                 Ok(Positional { name: "foo", value }) => {
+kablam!     |                                              ^^^^^ variant `parse::Arg::Positional` does not have field `value`
+kablam! 
+kablam! error[E0027]: pattern does not mention field `0`
+kablam!    --> src/parse.rs:494:20
+kablam!     |
+kablam! 494 |                 Ok(Positional { name: "foo", value }) => {
+kablam!     |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ missing field `0`
+kablam! 
+kablam! error[E0027]: pattern does not mention field `1`
+kablam!    --> src/parse.rs:494:20
+kablam!     |
+kablam! 494 |                 Ok(Positional { name: "foo", value }) => {
+kablam!     |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ missing field `1`
+kablam! 
+kablam! error[E0026]: variant `parse::Arg::Switch` does not have a field named `name`
+kablam!    --> src/parse.rs:500:29
+kablam!     |
+kablam! 500 |                 Ok(Switch { name: "verbose" }) => {
+kablam!     |                             ^^^^^^^^^^^^^^^ variant `parse::Arg::Switch` does not have field `name`
+kablam! 
+kablam! error[E0027]: pattern does not mention field `0`
+kablam!    --> src/parse.rs:500:20
+kablam!     |
+kablam! 500 |                 Ok(Switch { name: "verbose" }) => {
+kablam!     |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^ missing field `0`
+kablam! 
+kablam! error[E0026]: variant `parse::Arg::Option` does not have a field named `name`
+kablam!    --> src/parse.rs:503:29
+kablam!     |
+kablam! 503 |                 Ok(Option { name: "exclude", value }) => {
+kablam!     |                             ^^^^^^^^^^^^^^^ variant `parse::Arg::Option` does not have field `name`
+kablam! 
+kablam! error[E0026]: variant `parse::Arg::Option` does not have a field named `value`
+kablam!    --> src/parse.rs:503:46
+kablam!     |
+kablam! 503 |                 Ok(Option { name: "exclude", value }) => {
+kablam!     |                                              ^^^^^ variant `parse::Arg::Option` does not have field `value`
+kablam! 
+kablam! error[E0027]: pattern does not mention field `0`
+kablam!    --> src/parse.rs:503:20
+kablam!     |
+kablam! 503 |                 Ok(Option { name: "exclude", value }) => {
+kablam!     |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ missing field `0`
+kablam! 
+kablam! error[E0027]: pattern does not mention field `1`
+kablam!    --> src/parse.rs:503:20
+kablam!     |
+kablam! 503 |                 Ok(Option { name: "exclude", value }) => {
+kablam!     |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ missing field `1`
+kablam! 
+kablam! error[E0026]: variant `parse::Arg::Switch` does not have a field named `name`
+kablam!    --> src/parse.rs:506:29
+kablam!     |
+kablam! 506 |                 Ok(Switch { name: "" }) => {
+kablam!     |                             ^^^^^^^^ variant `parse::Arg::Switch` does not have field `name`
+kablam! 
+kablam! error[E0027]: pattern does not mention field `0`
+kablam!    --> src/parse.rs:506:20
+kablam!     |
+kablam! 506 |                 Ok(Switch { name: "" }) => {
+kablam!     |                    ^^^^^^^^^^^^^^^^^^^ missing field `0`
+kablam! 
+kablam! error[E0559]: variant `parse::Arg<'_, '_>::Positional` has no field named `name`
+kablam!    --> src/parse.rs:550:54
+kablam!     |
+kablam! 550 |         assert_eq!(parse.next(), Some(Ok(Positional{ name: "foo", value: "foo"})));
+kablam!     |                                                      ^^^^^ field does not exist - did you mean `0`?
+kablam! 
+kablam! error[E0559]: variant `parse::Arg<'_, '_>::Positional` has no field named `value`
+kablam!    --> src/parse.rs:550:67
+kablam!     |
+kablam! 550 |         assert_eq!(parse.next(), Some(Ok(Positional{ name: "foo", value: "foo"})));
+kablam!     |                                                                   ^^^^^^ field does not exist - did you mean `0`?
+kablam! 
+kablam! error[E0559]: variant `parse::Arg<'_, '_>::Option` has no field named `name`
+kablam!    --> src/parse.rs:552:51
+kablam!     |
+kablam! 552 |         assert_eq!(parse.next(), Some(Ok(Option { name: "exclude", value: "baz" })));
+kablam!     |                                                   ^^^^^ field does not exist - did you mean `0`?
+kablam! 
+kablam! error[E0559]: variant `parse::Arg<'_, '_>::Option` has no field named `value`
+kablam!    --> src/parse.rs:552:68
+kablam!     |
+kablam! 552 |         assert_eq!(parse.next(), Some(Ok(Option { name: "exclude", value: "baz" })));
+kablam!     |                                                                    ^^^^^^ field does not exist - did you mean `0`?
+kablam! 
+kablam! error[E0559]: variant `parse::Arg<'_, '_>::Switch` has no field named `name`
+kablam!    --> src/parse.rs:553:51
+kablam!     |
+kablam! 553 |         assert_eq!(parse.next(), Some(Ok(Switch { name: "verbose" })));
+kablam!     |                                                   ^^^^^ field does not exist - did you mean `0`?
+kablam! 
+kablam! error[E0559]: variant `parse::Arg<'_, '_>::Switch` has no field named `name`
+kablam!    --> src/parse.rs:554:51
+kablam!     |
+kablam! 554 |         assert_eq!(parse.next(), Some(Ok(Switch { name: "" })));
+kablam!     |                                                   ^^^^^ field does not exist - did you mean `0`?
+kablam! 
+kablam! error[E0559]: variant `parse::Arg<'_, '_>::Switch` has no field named `name`
+kablam!    --> src/parse.rs:556:51
+kablam!     |
+kablam! 556 |         assert_eq!(parse.next(), Some(Ok(Switch { name: "version" })));
+kablam!     |                                                   ^^^^^ field does not exist - did you mean `0`?
+kablam! 
+kablam! error[E0559]: variant `parse::Arg<'_, '_>::Switch` has no field named `name`
+kablam!    --> src/parse.rs:557:51
+kablam!     |
+kablam! 557 |         assert_eq!(parse.next(), Some(Ok(Switch { name: "help" })));
+kablam!     |                                                   ^^^^^ field does not exist - did you mean `0`?
+kablam! 
+kablam! error: aborting due to 20 previous errors
+kablam! 
+kablam! error: Could not compile `argonaut`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 0cdbd335c77bcf2b82ffb96f6e70252e5f5a3c4eef67cb1f2a64aa1134a18826`
+blam! 0cdbd335c77bcf2b82ffb96f6e70252e5f5a3c4eef67cb1f2a64aa1134a18826

@@ -1,0 +1,38 @@
+boom! testing appcore_plugin-0.0.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! c954406b2833ce7b9aa2e00b39f5816814cf0371b6e4f60cdca8759a6ab90a3c
+boom! running `docker start -a c954406b2833ce7b9aa2e00b39f5816814cf0371b6e4f60cdca8759a6ab90a3c`
+kablam!    Compiling appcore_plugin v0.0.1 (file:///source)
+kablam! error[E0432]: unresolved import `rustc::plugin::Registry`
+kablam!   --> src/lib.rs:14:5
+kablam!    |
+kablam! 14 | use rustc::plugin::Registry;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `plugin` in `rustc`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::ext::base::Decorator`
+kablam!   --> src/lib.rs:15:25
+kablam!    |
+kablam! 15 | use syntax::ext::base::{Decorator, Modifier};
+kablam!    |                         ^^^^^^^^^ no `Decorator` in `ext::base`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::ext::base::Modifier`
+kablam!   --> src/lib.rs:15:36
+kablam!    |
+kablam! 15 | use syntax::ext::base::{Decorator, Modifier};
+kablam!    |                                    ^^^^^^^^ no `Modifier` in `ext::base`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::intern`
+kablam!   --> src/lib.rs:17:5
+kablam!    |
+kablam! 17 | use syntax::parse::token::intern;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `intern` in `parse::token`
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `appcore_plugin`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f c954406b2833ce7b9aa2e00b39f5816814cf0371b6e4f60cdca8759a6ab90a3c`
+blam! c954406b2833ce7b9aa2e00b39f5816814cf0371b6e4f60cdca8759a6ab90a3c

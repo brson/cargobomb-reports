@@ -1,0 +1,46 @@
+boom! testing string_cache_plugin-0.1.10 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 5347c4a90d9d7c0d8c917571f614a21b642f7f6b7e53ab304b65611366292f19
+boom! running `docker start -a 5347c4a90d9d7c0d8c917571f614a21b642f7f6b7e53ab304b65611366292f19`
+kablam!    Compiling debug_unreachable v0.0.6
+kablam!    Compiling string_cache_shared v0.1.12
+kablam!    Compiling string_cache_plugin v0.1.10 (file:///source)
+kablam! error[E0432]: unresolved import `rustc::plugin::Registry`
+kablam!   --> src/lib.rs:29:5
+kablam!    |
+kablam! 29 | use rustc::plugin::Registry;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `plugin` in `rustc`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::ast::TokenTree`
+kablam!   --> src/atom/mod.rs:12:5
+kablam!    |
+kablam! 12 | use syntax::ast::TokenTree;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^ no `TokenTree` in `ast`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::InternedString`
+kablam!   --> src/atom/mod.rs:15:28
+kablam!    |
+kablam! 15 | use syntax::parse::token::{InternedString, Ident, Literal, Lit};
+kablam!    |                            ^^^^^^^^^^^^^^ no `InternedString` in `parse::token`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!   --> src/lib.rs:13:1
+kablam!    |
+kablam! 13 | #![feature(plugin_registrar, quote, box_syntax)]
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!   --> src/lib.rs:14:1
+kablam!    |
+kablam! 14 | #![feature(rustc_private, slice_patterns)]
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `string_cache_plugin`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 5347c4a90d9d7c0d8c917571f614a21b642f7f6b7e53ab304b65611366292f19`
+blam! 5347c4a90d9d7c0d8c917571f614a21b642f7f6b7e53ab304b65611366292f19

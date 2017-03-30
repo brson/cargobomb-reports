@@ -1,0 +1,185 @@
+boom! testing inth-oauth2-0.6.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 37f93d4e7dff263fd5d44a6307cdb410c8539ff2b2704432e3e0dd7633800527
+boom! running `docker start -a 37f93d4e7dff263fd5d44a6307cdb410c8539ff2b2704432e3e0dd7633800527`
+kablam!    Compiling chrono v0.2.25
+kablam!    Compiling mime v0.1.3
+kablam!    Compiling hyper v0.7.2
+kablam!    Compiling inth-oauth2 v0.6.0 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 15.83 secs
+boom! running `docker rm -f 37f93d4e7dff263fd5d44a6307cdb410c8539ff2b2704432e3e0dd7633800527`
+blam! 37f93d4e7dff263fd5d44a6307cdb410c8539ff2b2704432e3e0dd7633800527
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 1926c03d6897281dd1eedc4d844a877c7646d1984b6a083a42f8bf4969a59b27
+boom! running `docker start -a 1926c03d6897281dd1eedc4d844a877c7646d1984b6a083a42f8bf4969a59b27`
+kablam!    Compiling inth-oauth2 v0.6.0 (file:///source)
+kablam! error[E0277]: the trait bound `yup_hyper_mock::MockStream: hyper::net::NetworkStream` is not satisfied
+kablam!   --> tests/mock.rs:35:5
+kablam!    |
+kablam! 35 |       mock_connector_in_order!(BearerStatic {
+kablam!    |  _____^ starting here...
+kablam! 36 | |         include_str!("response/request_token_bearer_static.http")
+kablam! 37 | |     });
+kablam!    | |_______^ ...ending here: the trait `hyper::net::NetworkStream` is not implemented for `yup_hyper_mock::MockStream`
+kablam!    |
+kablam!    = note: required because of the requirements on the impl of `std::convert::From<yup_hyper_mock::MockStream>` for `std::boxed::Box<hyper::net::NetworkStream + std::marker::Send + 'static>`
+kablam!    = note: required because of the requirements on the impl of `std::convert::Into<std::boxed::Box<hyper::net::NetworkStream + std::marker::Send + 'static>>` for `yup_hyper_mock::MockStream`
+kablam!    = note: required by `hyper::net::NetworkConnector`
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error[E0277]: the trait bound `yup_hyper_mock::MockStream: hyper::net::NetworkStream` is not satisfied
+kablam!   --> tests/mock.rs:39:5
+kablam!    |
+kablam! 39 |       mock_connector_in_order!(BearerExpiring {
+kablam!    |  _____^ starting here...
+kablam! 40 | |         include_str!("response/request_token_bearer_expiring.http")
+kablam! 41 | |         include_str!("response/refresh_token_bearer_full.http")
+kablam! 42 | |     });
+kablam!    | |_______^ ...ending here: the trait `hyper::net::NetworkStream` is not implemented for `yup_hyper_mock::MockStream`
+kablam!    |
+kablam!    = note: required because of the requirements on the impl of `std::convert::From<yup_hyper_mock::MockStream>` for `std::boxed::Box<hyper::net::NetworkStream + std::marker::Send + 'static>`
+kablam!    = note: required because of the requirements on the impl of `std::convert::Into<std::boxed::Box<hyper::net::NetworkStream + std::marker::Send + 'static>>` for `yup_hyper_mock::MockStream`
+kablam!    = note: required by `hyper::net::NetworkConnector`
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error[E0277]: the trait bound `yup_hyper_mock::MockStream: hyper::net::NetworkStream` is not satisfied
+kablam!   --> tests/mock.rs:44:5
+kablam!    |
+kablam! 44 |       mock_connector_in_order!(BearerExpiringPartial {
+kablam!    |  _____^ starting here...
+kablam! 45 | |         include_str!("response/request_token_bearer_expiring.http")
+kablam! 46 | |         include_str!("response/refresh_token_bearer_partial.http")
+kablam! 47 | |     });
+kablam!    | |_______^ ...ending here: the trait `hyper::net::NetworkStream` is not implemented for `yup_hyper_mock::MockStream`
+kablam!    |
+kablam!    = note: required because of the requirements on the impl of `std::convert::From<yup_hyper_mock::MockStream>` for `std::boxed::Box<hyper::net::NetworkStream + std::marker::Send + 'static>`
+kablam!    = note: required because of the requirements on the impl of `std::convert::Into<std::boxed::Box<hyper::net::NetworkStream + std::marker::Send + 'static>>` for `yup_hyper_mock::MockStream`
+kablam!    = note: required by `hyper::net::NetworkConnector`
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error[E0277]: the trait bound `yup_hyper_mock::MockStream: hyper::net::NetworkStream` is not satisfied
+kablam!   --> tests/mock.rs:49:5
+kablam!    |
+kablam! 49 |       mock_connector_in_order!(InvalidRequest {
+kablam!    |  _____^ starting here...
+kablam! 50 | |         include_str!("response/invalid_request.http")
+kablam! 51 | |     });
+kablam!    | |_______^ ...ending here: the trait `hyper::net::NetworkStream` is not implemented for `yup_hyper_mock::MockStream`
+kablam!    |
+kablam!    = note: required because of the requirements on the impl of `std::convert::From<yup_hyper_mock::MockStream>` for `std::boxed::Box<hyper::net::NetworkStream + std::marker::Send + 'static>`
+kablam!    = note: required because of the requirements on the impl of `std::convert::Into<std::boxed::Box<hyper::net::NetworkStream + std::marker::Send + 'static>>` for `yup_hyper_mock::MockStream`
+kablam!    = note: required by `hyper::net::NetworkConnector`
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error[E0277]: the trait bound `yup_hyper_mock::MockStream: hyper::net::NetworkStream` is not satisfied
+kablam!   --> tests/mock.rs:53:5
+kablam!    |
+kablam! 53 |       mock_connector_in_order!(RefreshInvalidRequest {
+kablam!    |  _____^ starting here...
+kablam! 54 | |         include_str!("response/request_token_bearer_expiring.http")
+kablam! 55 | |         include_str!("response/invalid_request.http")
+kablam! 56 | |     });
+kablam!    | |_______^ ...ending here: the trait `hyper::net::NetworkStream` is not implemented for `yup_hyper_mock::MockStream`
+kablam!    |
+kablam!    = note: required because of the requirements on the impl of `std::convert::From<yup_hyper_mock::MockStream>` for `std::boxed::Box<hyper::net::NetworkStream + std::marker::Send + 'static>`
+kablam!    = note: required because of the requirements on the impl of `std::convert::Into<std::boxed::Box<hyper::net::NetworkStream + std::marker::Send + 'static>>` for `yup_hyper_mock::MockStream`
+kablam!    = note: required by `hyper::net::NetworkConnector`
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error: aborting due to 5 previous errors
+kablam! 
+kablam! error: Could not compile `inth-oauth2`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f 1926c03d6897281dd1eedc4d844a877c7646d1984b6a083a42f8bf4969a59b27`
+blam! 1926c03d6897281dd1eedc4d844a877c7646d1984b6a083a42f8bf4969a59b27
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! 0ba8ef35d99d562332f7b5285834351792adf0c96cee4d240144a0218ba9242b
+boom! running `docker start -a 0ba8ef35d99d562332f7b5285834351792adf0c96cee4d240144a0218ba9242b`
+kablam!    Compiling inth-oauth2 v0.6.0 (file:///source)
+kablam! error[E0277]: the trait bound `yup_hyper_mock::MockStream: hyper::net::NetworkStream` is not satisfied
+kablam!   --> tests/mock.rs:35:5
+kablam!    |
+kablam! 35 |       mock_connector_in_order!(BearerStatic {
+kablam!    |  _____^ starting here...
+kablam! 36 | |         include_str!("response/request_token_bearer_static.http")
+kablam! 37 | |     });
+kablam!    | |_______^ ...ending here: the trait `hyper::net::NetworkStream` is not implemented for `yup_hyper_mock::MockStream`
+kablam!    |
+kablam!    = note: required because of the requirements on the impl of `std::convert::From<yup_hyper_mock::MockStream>` for `std::boxed::Box<hyper::net::NetworkStream + std::marker::Send + 'static>`
+kablam!    = note: required because of the requirements on the impl of `std::convert::Into<std::boxed::Box<hyper::net::NetworkStream + std::marker::Send + 'static>>` for `yup_hyper_mock::MockStream`
+kablam!    = note: required by `hyper::net::NetworkConnector`
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error[E0277]: the trait bound `yup_hyper_mock::MockStream: hyper::net::NetworkStream` is not satisfied
+kablam!   --> tests/mock.rs:39:5
+kablam!    |
+kablam! 39 |       mock_connector_in_order!(BearerExpiring {
+kablam!    |  _____^ starting here...
+kablam! 40 | |         include_str!("response/request_token_bearer_expiring.http")
+kablam! 41 | |         include_str!("response/refresh_token_bearer_full.http")
+kablam! 42 | |     });
+kablam!    | |_______^ ...ending here: the trait `hyper::net::NetworkStream` is not implemented for `yup_hyper_mock::MockStream`
+kablam!    |
+kablam!    = note: required because of the requirements on the impl of `std::convert::From<yup_hyper_mock::MockStream>` for `std::boxed::Box<hyper::net::NetworkStream + std::marker::Send + 'static>`
+kablam!    = note: required because of the requirements on the impl of `std::convert::Into<std::boxed::Box<hyper::net::NetworkStream + std::marker::Send + 'static>>` for `yup_hyper_mock::MockStream`
+kablam!    = note: required by `hyper::net::NetworkConnector`
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error[E0277]: the trait bound `yup_hyper_mock::MockStream: hyper::net::NetworkStream` is not satisfied
+kablam!   --> tests/mock.rs:44:5
+kablam!    |
+kablam! 44 |       mock_connector_in_order!(BearerExpiringPartial {
+kablam!    |  _____^ starting here...
+kablam! 45 | |         include_str!("response/request_token_bearer_expiring.http")
+kablam! 46 | |         include_str!("response/refresh_token_bearer_partial.http")
+kablam! 47 | |     });
+kablam!    | |_______^ ...ending here: the trait `hyper::net::NetworkStream` is not implemented for `yup_hyper_mock::MockStream`
+kablam!    |
+kablam!    = note: required because of the requirements on the impl of `std::convert::From<yup_hyper_mock::MockStream>` for `std::boxed::Box<hyper::net::NetworkStream + std::marker::Send + 'static>`
+kablam!    = note: required because of the requirements on the impl of `std::convert::Into<std::boxed::Box<hyper::net::NetworkStream + std::marker::Send + 'static>>` for `yup_hyper_mock::MockStream`
+kablam!    = note: required by `hyper::net::NetworkConnector`
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error[E0277]: the trait bound `yup_hyper_mock::MockStream: hyper::net::NetworkStream` is not satisfied
+kablam!   --> tests/mock.rs:49:5
+kablam!    |
+kablam! 49 |       mock_connector_in_order!(InvalidRequest {
+kablam!    |  _____^ starting here...
+kablam! 50 | |         include_str!("response/invalid_request.http")
+kablam! 51 | |     });
+kablam!    | |_______^ ...ending here: the trait `hyper::net::NetworkStream` is not implemented for `yup_hyper_mock::MockStream`
+kablam!    |
+kablam!    = note: required because of the requirements on the impl of `std::convert::From<yup_hyper_mock::MockStream>` for `std::boxed::Box<hyper::net::NetworkStream + std::marker::Send + 'static>`
+kablam!    = note: required because of the requirements on the impl of `std::convert::Into<std::boxed::Box<hyper::net::NetworkStream + std::marker::Send + 'static>>` for `yup_hyper_mock::MockStream`
+kablam!    = note: required by `hyper::net::NetworkConnector`
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error[E0277]: the trait bound `yup_hyper_mock::MockStream: hyper::net::NetworkStream` is not satisfied
+kablam!   --> tests/mock.rs:53:5
+kablam!    |
+kablam! 53 |       mock_connector_in_order!(RefreshInvalidRequest {
+kablam!    |  _____^ starting here...
+kablam! 54 | |         include_str!("response/request_token_bearer_expiring.http")
+kablam! 55 | |         include_str!("response/invalid_request.http")
+kablam! 56 | |     });
+kablam!    | |_______^ ...ending here: the trait `hyper::net::NetworkStream` is not implemented for `yup_hyper_mock::MockStream`
+kablam!    |
+kablam!    = note: required because of the requirements on the impl of `std::convert::From<yup_hyper_mock::MockStream>` for `std::boxed::Box<hyper::net::NetworkStream + std::marker::Send + 'static>`
+kablam!    = note: required because of the requirements on the impl of `std::convert::Into<std::boxed::Box<hyper::net::NetworkStream + std::marker::Send + 'static>>` for `yup_hyper_mock::MockStream`
+kablam!    = note: required by `hyper::net::NetworkConnector`
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error: aborting due to 5 previous errors
+kablam! 
+kablam! error: Could not compile `inth-oauth2`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 0ba8ef35d99d562332f7b5285834351792adf0c96cee4d240144a0218ba9242b`
+blam! 0ba8ef35d99d562332f7b5285834351792adf0c96cee4d240144a0218ba9242b

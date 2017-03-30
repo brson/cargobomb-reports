@@ -1,0 +1,198 @@
+boom! testing restructure-0.1.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 42f6a9fbaf456c659b6d32b07c392653061ebba954bac95e44009cd2f35b115c
+boom! running `docker start -a 42f6a9fbaf456c659b6d32b07c392653061ebba954bac95e44009cd2f35b115c`
+kablam!    Compiling restructure v0.1.1 (file:///source)
+kablam! warning: unused or unknown feature
+kablam!   --> src/lib.rs:19:12
+kablam!    |
+kablam! 19 | #![feature(cell_extras)]
+kablam!    |            ^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_features)] on by default
+kablam! 
+kablam! warning: unused import: `Error`
+kablam!   --> src/lib.rs:22:20
+kablam!    |
+kablam! 22 | use regex::{Regex, Error};
+kablam!    |                    ^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `RefCell`
+kablam!   --> src/lib.rs:23:17
+kablam!    |
+kablam! 23 | use std::cell::{RefCell, Ref};
+kablam!    |                 ^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.54 secs
+boom! running `docker rm -f 42f6a9fbaf456c659b6d32b07c392653061ebba954bac95e44009cd2f35b115c`
+blam! 42f6a9fbaf456c659b6d32b07c392653061ebba954bac95e44009cd2f35b115c
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 66a039523d60c43ceaf83ac9d36b422573668ff12dcab30f88bc6f5258b00550
+boom! running `docker start -a 66a039523d60c43ceaf83ac9d36b422573668ff12dcab30f88bc6f5258b00550`
+kablam!    Compiling restructure v0.1.1 (file:///source)
+kablam! error: no associated item named `filter_map` found for type `std::cell::Ref<'_, _>` in the current scope
+kablam!    --> src/lib.rs:126:36
+kablam!     |
+kablam! 126 |                 let re: Ref<Regex> = Ref::filter_map(self._regex.borrow(), |o| o.as_ref().ok()).unwrap();
+kablam!     |                                      ^^^^^^^^^^^^^^^
+kablam! ...
+kablam! 158 |           regexify!(SemVer {
+kablam!     |  _________- starting here...
+kablam! 159 | |         major, i32, r"\d+"
+kablam! 160 | |         _1, String, r"\."
+kablam! 161 | |         minor, i32, r"\d+"
+kablam! 162 | |         _2, String, r"\."
+kablam! 163 | |         patch, i32, r"\d+"
+kablam! 164 | |       });
+kablam!     | |_________- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: the method `filter_map` exists but the following trait bounds were not satisfied: `std::cell::Ref<'_, _> : std::iter::Iterator`
+kablam! 
+kablam! error: no associated item named `filter_map` found for type `std::cell::Ref<'_, _>` in the current scope
+kablam!    --> src/lib.rs:126:36
+kablam!     |
+kablam! 126 |                 let re: Ref<Regex> = Ref::filter_map(self._regex.borrow(), |o| o.as_ref().ok()).unwrap();
+kablam!     |                                      ^^^^^^^^^^^^^^^
+kablam! ...
+kablam! 175 |           regexify!(HostName {
+kablam!     |  _________- starting here...
+kablam! 176 | |         domain, String, r"\w+"
+kablam! 177 | |         _dot, String, r"\."
+kablam! 178 | |         tld, String, r"\w+"
+kablam! 179 | |       });
+kablam!     | |_________- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: the method `filter_map` exists but the following trait bounds were not satisfied: `std::cell::Ref<'_, _> : std::iter::Iterator`
+kablam! 
+kablam! error: no associated item named `filter_map` found for type `std::cell::Ref<'_, _>` in the current scope
+kablam!   --> tests/lib.rs:13:5
+kablam!    |
+kablam! 13 |       regexify!(FullName {
+kablam!    |  _____^ starting here...
+kablam! 14 | |         first, String, r"\w+"
+kablam! 15 | |         _1, String, r"\s+"
+kablam! 16 | |         middle, String, r"\w+"
+kablam! 17 | |         _2, String, r"\s+"
+kablam! 18 | |         last, String, r"\w+"
+kablam! 19 | |       });
+kablam!    | |_________^ ...ending here
+kablam!    |
+kablam!    = note: the method `filter_map` exists but the following trait bounds were not satisfied: `std::cell::Ref<'_, _> : std::iter::Iterator`
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error: no associated item named `filter_map` found for type `std::cell::Ref<'_, _>` in the current scope
+kablam!    --> src/lib.rs:126:36
+kablam!     |
+kablam! 126 |                 let re: Ref<Regex> = Ref::filter_map(self._regex.borrow(), |o| o.as_ref().ok()).unwrap();
+kablam!     |                                      ^^^^^^^^^^^^^^^
+kablam! ...
+kablam! 192 |           regexify!(Movies {
+kablam!     |  _________- starting here...
+kablam! 193 | |         title, String, r"'[^']+'"
+kablam! 194 | |         _1, String, r"\s+\("
+kablam! 195 | |         year, i32, r"\d+"
+kablam! 196 | |         _2, String, r"\)"
+kablam! 197 | |       });
+kablam!     | |_________- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: the method `filter_map` exists but the following trait bounds were not satisfied: `std::cell::Ref<'_, _> : std::iter::Iterator`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `restructure`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f 66a039523d60c43ceaf83ac9d36b422573668ff12dcab30f88bc6f5258b00550`
+blam! 66a039523d60c43ceaf83ac9d36b422573668ff12dcab30f88bc6f5258b00550
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 72eff83d401cb66f8990f3d07e84d4048bd7de806c75f65b08beac27e4bcf425
+boom! running `docker start -a 72eff83d401cb66f8990f3d07e84d4048bd7de806c75f65b08beac27e4bcf425`
+kablam!    Compiling restructure v0.1.1 (file:///source)
+kablam! error: no associated item named `filter_map` found for type `std::cell::Ref<'_, _>` in the current scope
+kablam!    --> src/lib.rs:126:36
+kablam!     |
+kablam! 126 |                 let re: Ref<Regex> = Ref::filter_map(self._regex.borrow(), |o| o.as_ref().ok()).unwrap();
+kablam!     |                                      ^^^^^^^^^^^^^^^
+kablam! ...
+kablam! 158 |           regexify!(SemVer {
+kablam!     |  _________- starting here...
+kablam! 159 | |         major, i32, r"\d+"
+kablam! 160 | |         _1, String, r"\."
+kablam! 161 | |         minor, i32, r"\d+"
+kablam! 162 | |         _2, String, r"\."
+kablam! 163 | |         patch, i32, r"\d+"
+kablam! 164 | |       });
+kablam!     | |_________- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: the method `filter_map` exists but the following trait bounds were not satisfied: `std::cell::Ref<'_, _> : std::iter::Iterator`
+kablam! 
+kablam! error: no associated item named `filter_map` found for type `std::cell::Ref<'_, _>` in the current scope
+kablam!    --> src/lib.rs:126:36
+kablam!     |
+kablam! 126 |                 let re: Ref<Regex> = Ref::filter_map(self._regex.borrow(), |o| o.as_ref().ok()).unwrap();
+kablam!     |                                      ^^^^^^^^^^^^^^^
+kablam! ...
+kablam! 175 |           regexify!(HostName {
+kablam!     |  _________- starting here...
+kablam! 176 | |         domain, String, r"\w+"
+kablam! 177 | |         _dot, String, r"\."
+kablam! 178 | |         tld, String, r"\w+"
+kablam! 179 | |       });
+kablam!     | |_________- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: the method `filter_map` exists but the following trait bounds were not satisfied: `std::cell::Ref<'_, _> : std::iter::Iterator`
+kablam! 
+kablam! error: no associated item named `filter_map` found for type `std::cell::Ref<'_, _>` in the current scope
+kablam!    --> src/lib.rs:126:36
+kablam!     |
+kablam! 126 |                 let re: Ref<Regex> = Ref::filter_map(self._regex.borrow(), |o| o.as_ref().ok()).unwrap();
+kablam!     |                                      ^^^^^^^^^^^^^^^
+kablam! ...
+kablam! 192 |           regexify!(Movies {
+kablam!     |  _________- starting here...
+kablam! 193 | |         title, String, r"'[^']+'"
+kablam! 194 | |         _1, String, r"\s+\("
+kablam! 195 | |         year, i32, r"\d+"
+kablam! 196 | |         _2, String, r"\)"
+kablam! 197 | |       });
+kablam!     | |_________- ...ending here: in this macro invocation
+kablam!     |
+kablam!     = note: the method `filter_map` exists but the following trait bounds were not satisfied: `std::cell::Ref<'_, _> : std::iter::Iterator`
+kablam! 
+kablam! error: no associated item named `filter_map` found for type `std::cell::Ref<'_, _>` in the current scope
+kablam!   --> tests/lib.rs:13:5
+kablam!    |
+kablam! 13 |       regexify!(FullName {
+kablam!    |  _____^ starting here...
+kablam! 14 | |         first, String, r"\w+"
+kablam! 15 | |         _1, String, r"\s+"
+kablam! 16 | |         middle, String, r"\w+"
+kablam! 17 | |         _2, String, r"\s+"
+kablam! 18 | |         last, String, r"\w+"
+kablam! 19 | |       });
+kablam!    | |_________^ ...ending here
+kablam!    |
+kablam!    = note: the method `filter_map` exists but the following trait bounds were not satisfied: `std::cell::Ref<'_, _> : std::iter::Iterator`
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `restructure`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f 72eff83d401cb66f8990f3d07e84d4048bd7de806c75f65b08beac27e4bcf425`
+blam! 72eff83d401cb66f8990f3d07e84d4048bd7de806c75f65b08beac27e4bcf425

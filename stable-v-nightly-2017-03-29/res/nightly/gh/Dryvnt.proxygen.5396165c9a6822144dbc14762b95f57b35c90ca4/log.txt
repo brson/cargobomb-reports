@@ -1,0 +1,77 @@
+boom! testing https://github.com/Dryvnt/proxygen#5396165c9a6822144dbc14762b95f57b35c90ca4 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 37e49e619be0bf7dde9399be9f8fe115a3c2717cbbdbbc167986ac4750b7db13
+boom! running `docker start -a 37e49e619be0bf7dde9399be9f8fe115a3c2717cbbdbbc167986ac4750b7db13`
+kablam!    Compiling serde v0.8.9
+kablam!    Compiling rand v0.3.14
+kablam!    Compiling openssl v0.7.14
+kablam!    Compiling serde_codegen_internals v0.8.9
+kablam! error[E0432]: unresolved import `syntax::parse::token::InternedString`
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_codegen_internals-0.8.9/src/attr.rs:9:34
+kablam!   |
+kablam! 9 | use syntax::parse::token::{self, InternedString};
+kablam!   |                                  ^^^^^^^^^^^^^^ no `InternedString` in `parse::token`
+kablam! 
+kablam! error[E0532]: expected tuple struct/variant, found unit variant `ast::MetaItemKind::Word`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_codegen_internals-0.8.9/src/attr.rs:143:21
+kablam!     |
+kablam! 143 |                     ast::MetaItemKind::Word(ref name) if name == &"deny_unknown_fields" => {
+kablam!     |                     ^^^^^^^^^^^^^^^^^^^^^^^ not a tuple struct/variant
+kablam! 
+kablam! error[E0425]: cannot find function `intern_and_get_ident` in module `token`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_codegen_internals-0.8.9/src/attr.rs:300:28
+kablam!     |
+kablam! 300 |             None => token::intern_and_get_ident(&index.to_string()),
+kablam!     |                            ^^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0532]: expected tuple struct/variant, found unit variant `ast::MetaItemKind::Word`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_codegen_internals-0.8.9/src/attr.rs:324:21
+kablam!     |
+kablam! 324 |                     ast::MetaItemKind::Word(ref name) if name == &"default" => {
+kablam!     |                     ^^^^^^^^^^^^^^^^^^^^^^^ not a tuple struct/variant
+kablam! 
+kablam! error[E0532]: expected tuple struct/variant, found unit variant `ast::MetaItemKind::Word`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_codegen_internals-0.8.9/src/attr.rs:336:21
+kablam!     |
+kablam! 336 |                     ast::MetaItemKind::Word(ref name) if name == &"skip_serializing" => {
+kablam!     |                     ^^^^^^^^^^^^^^^^^^^^^^^ not a tuple struct/variant
+kablam! 
+kablam! error[E0532]: expected tuple struct/variant, found unit variant `ast::MetaItemKind::Word`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_codegen_internals-0.8.9/src/attr.rs:341:21
+kablam!     |
+kablam! 341 |                     ast::MetaItemKind::Word(ref name) if name == &"skip_deserializing" => {
+kablam!     |                     ^^^^^^^^^^^^^^^^^^^^^^^ not a tuple struct/variant
+kablam! 
+kablam! error[E0422]: cannot find struct, variant or union type `SequenceRepetition` in module `tokenstream`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_codegen_internals-0.8.9/src/attr.rs:566:42
+kablam!     |
+kablam! 566 |                     Rc::new(tokenstream::SequenceRepetition {
+kablam!     |                                          ^^^^^^^^^^^^^^^^^^ not found in `tokenstream`
+kablam!     |
+kablam!     = help: possible candidate is found in another module, you can import it into scope:
+kablam!               `use syntax::ext::tt::quoted::SequenceRepetition;`
+kablam! 
+kablam! error[E0425]: cannot find function `parse_tts_from_source_str` in module `parse`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_codegen_internals-0.8.9/src/attr.rs:609:32
+kablam!     |
+kablam! 609 |     let tts = panictry!(parse::parse_tts_from_source_str(
+kablam!     |                                ^^^^^^^^^^^^^^^^^^^^^^^^^ did you mean `parse_item_from_source_str`?
+kablam! 
+kablam! error[E0053]: method `fold_tt` has an incompatible type for trait
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_codegen_internals-0.8.9/src/attr.rs:544:5
+kablam!     |
+kablam! 544 |     fn fold_tt(&mut self, tt: &TokenTree) -> TokenTree {
+kablam!     |     ^ expected enum `syntax::tokenstream::TokenTree`, found reference
+kablam!     |
+kablam!     = note: expected type `fn(&mut attr::Respanner<'a, 'b>, syntax::tokenstream::TokenTree) -> syntax::tokenstream::TokenTree`
+kablam!                found type `fn(&mut attr::Respanner<'a, 'b>, &syntax::tokenstream::TokenTree) -> syntax::tokenstream::TokenTree`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `serde_codegen_internals`.
+kablam! error: build failed
+boom! running `docker rm -f 37e49e619be0bf7dde9399be9f8fe115a3c2717cbbdbbc167986ac4750b7db13`
+blam! 37e49e619be0bf7dde9399be9f8fe115a3c2717cbbdbbc167986ac4750b7db13

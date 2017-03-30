@@ -1,0 +1,111 @@
+boom! testing https://github.com/taravancil/passkeeper#e29e60d7a84ed7c474d2127b9ff83a84fb0606d0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 199b889e33212024d0184dca540eea016ae5461308867529a6ed36320169a71a
+boom! running `docker start -a 199b889e33212024d0184dca540eea016ae5461308867529a6ed36320169a71a`
+kablam!    Compiling serde_codegen_internals v0.5.0
+kablam!    Compiling serde v0.8.0
+kablam!    Compiling quasi v0.16.0
+kablam!    Compiling serde_codegen v0.8.0
+kablam! error[E0432]: unresolved import `syntax::parse::token::InternedString`
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_codegen_internals-0.5.0/src/attr.rs:9:34
+kablam!   |
+kablam! 9 | use syntax::parse::token::{self, InternedString};
+kablam!   |                                  ^^^^^^^^^^^^^^ no `InternedString` in `parse::token`
+kablam! 
+kablam! error[E0425]: cannot find function `intern_and_get_ident` in module `token`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/quasi-0.16.0/src/lib.rs:244:13
+kablam!     |
+kablam! 244 |             token::intern_and_get_ident(self), ast::StrStyle::Cooked);
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0412]: cannot find type `Attribute_` in module `ast`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/quasi-0.16.0/src/lib.rs:559:21
+kablam!     |
+kablam! 559 | impl_wrap_repeat! { ast::Attribute_ }
+kablam!     | --------------------^^^^^^^^^^^^^^^--
+kablam!     | |                   |
+kablam!     | |                   did you mean `ast::Attribute`?
+kablam!     | in this macro invocation
+kablam! 
+kablam! error[E0412]: cannot find type `Attribute_` in module `ast`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/quasi-0.16.0/src/lib.rs:559:21
+kablam!     |
+kablam! 559 | impl_wrap_repeat! { ast::Attribute_ }
+kablam!     | --------------------^^^^^^^^^^^^^^^--
+kablam!     | |                   |
+kablam!     | |                   did you mean `ast::Attribute`?
+kablam!     | in this macro invocation
+kablam! 
+kablam! error[E0412]: cannot find type `Attribute_` in module `ast`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/quasi-0.16.0/src/lib.rs:559:21
+kablam!     |
+kablam! 559 | impl_wrap_repeat! { ast::Attribute_ }
+kablam!     | --------------------^^^^^^^^^^^^^^^--
+kablam!     | |                   |
+kablam!     | |                   did you mean `ast::Attribute`?
+kablam!     | in this macro invocation
+kablam! 
+kablam! error[E0532]error[E0412]: cannot find type `Attribute_` in module `ast`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/quasi-0.16.0/src/lib.rs:559:21
+kablam!     |
+kablam! 559 | impl_wrap_repeat! { ast::Attribute_ }
+kablam! : expected tuple struct/variant, found unit variant `ast::MetaItemKind::Word`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_codegen_internals-0.5.0/src/attr.rs:144:21
+kablam!     |
+kablam! 144 |                     ast::MetaItemKind::Word(ref name) if name == &"deny_unknown_fields" => {
+kablam!     |                     ^^^^^^^^^^^^^^^^^^^^^^^ not a tuple struct/variant
+kablam! 
+kablam!     | --------------------^^^^^^^^^^^^^^^--
+kablam!     | |                   |
+kablam!     | |                   did you mean `ast::Attribute`?
+kablam!     | in this macro invocation
+kablam! 
+kablam! error[E0425]: cannot find function `intern_and_get_ident` in module `token`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_codegen_internals-0.5.0/src/attr.rs:301:21
+kablam!     |
+kablam! 301 |             None => token::intern_and_get_ident(&index.to_string()),
+kablam!     |                     error[E0554]^^^^^^^^^^^^^^^^^^^^^^^^^^^ : #[feature] may not be used on the stable release channelnot found in `token`
+kablam!   
+kablam! --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/quasi-0.16.0/src/lib.rs:11:43
+kablam!    |
+kablam! 
+kablam! 11 | #![cfg_attr(not(feature = "with-syntex"), feature(rustc_private))]
+kablam!    |                                           ^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0532]: expected tuple struct/variant, found unit variant `ast::MetaItemKind::Word`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_codegen_internals-0.5.0/src/attr.rs:325:21
+kablam!     |
+kablam! 325 |                     ast::MetaItemKind::Word(ref name) if name == &"default" => {
+kablam!     |                     ^^^^^^^^^^^^^^^^^^^^^^^ not a tuple struct/variant
+kablam! 
+kablam! errorerror[E0532]: expected tuple struct/variant, found unit variant `ast::MetaItemKind::Word`
+kablam! : aborting due to previous error
+kablam! 
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_codegen_internals-0.5.0/src/attr.rs:337:21
+kablam!     |
+kablam! 337 |                     ast::MetaItemKind::Word(ref name) if name == &"skip_serializing" => {
+kablam!     |                     ^^^^^^^^^^^^^^^^^^^^^^^ not a tuple struct/variant
+kablam! 
+kablam! error[E0532]: expected tuple struct/variant, found unit variant `ast::MetaItemKind::Word`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_codegen_internals-0.5.0/src/attr.rs:342:21
+kablam!     |
+kablam! 342 |                     ast::MetaItemKind::Word(ref name) if name == &"skip_deserializing" => {
+kablam!     |                     ^^^^^^^^^^^^^^^^^^^^^^^ not a tuple struct/variant
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde_codegen_internals-0.5.0/src/lib.rs:3:43
+kablam!   |
+kablam! 3 | #![cfg_attr(not(feature = "with-syntex"), feature(rustc_private, plugin))]
+kablam!   |                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `quasi`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `serde_codegen_internals`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f 199b889e33212024d0184dca540eea016ae5461308867529a6ed36320169a71a`
+blam! 199b889e33212024d0184dca540eea016ae5461308867529a6ed36320169a71a

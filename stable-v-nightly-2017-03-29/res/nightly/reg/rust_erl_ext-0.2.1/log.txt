@@ -1,0 +1,102 @@
+boom! testing rust_erl_ext-0.2.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 38bd06a99c0b741184c1c1785c455755816ebc907614f12a24952c4374ac5329
+boom! running `docker start -a 38bd06a99c0b741184c1c1785c455755816ebc907614f12a24952c4374ac5329`
+kablam!    Compiling rust_erl_ext v0.2.1 (file:///source)
+kablam! error[E0412]: cannot find type `Error` in module `byteorder`
+kablam!    --> src/erl_ext.rs:182:22
+kablam!     |
+kablam! 182 | impl From<byteorder::Error> for Error {
+kablam!     |                      ^^^^^ not found in `byteorder`
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use Error;`
+kablam!               `use std::error::Error;`
+kablam!               `use std::fmt::Error;`
+kablam!               `use std::io::Error;`
+kablam! 
+kablam! error[E0412]: cannot find type `Error` in module `byteorder`
+kablam!    --> src/erl_ext.rs:183:30
+kablam!     |
+kablam! 183 |     fn from (err: byteorder::Error) -> Error {
+kablam!     |                              ^^^^^ not found in `byteorder`
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use Error;`
+kablam!               `use std::error::Error;`
+kablam!               `use std::fmt::Error;`
+kablam!               `use std::io::Error;`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Error` in `byteorder`
+kablam!    --> src/erl_ext.rs:185:13
+kablam!     |
+kablam! 185 |             byteorder::Error::Io(ioe) => Error::Io(ioe),
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^ Could not find `Error` in `byteorder`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Error` in `byteorder`
+kablam!    --> src/erl_ext.rs:186:13
+kablam!     |
+kablam! 186 |             byteorder::Error::UnexpectedEOF => Error::ByteorderUnexpectedEOF
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `Error` in `byteorder`
+kablam! 
+kablam! error[E0412]: cannot find type `Result` in module `byteorder`
+kablam!    --> src/erl_ext.rs:324:59
+kablam!     |
+kablam! 324 |     fn _decode_small_tuple_arity(&mut self) -> byteorder::Result<u8> {
+kablam!     |                                                           ^^^^^^ not found in `byteorder`
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use std::fmt::Result;`
+kablam!               `use std::io::Result;`
+kablam!               `use std::prelude::v1::Result;`
+kablam!               `use std::result::Result;`
+kablam!             and 1 other candidates
+kablam! 
+kablam! error[E0412]: cannot find type `Result` in module `byteorder`
+kablam!    --> src/erl_ext.rs:337:59
+kablam!     |
+kablam! 337 |     fn _decode_large_tuple_arity(&mut self) -> byteorder::Result<u32> {
+kablam!     |                                                           ^^^^^^ not found in `byteorder`
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use std::fmt::Result;`
+kablam!               `use std::io::Result;`
+kablam!               `use std::prelude::v1::Result;`
+kablam!               `use std::result::Result;`
+kablam!             and 1 other candidates
+kablam! 
+kablam! error[E0412]: cannot find type `Result` in module `byteorder`
+kablam!    --> src/erl_ext.rs:350:51
+kablam!     |
+kablam! 350 |     fn _decode_map_arity(&mut self) -> byteorder::Result<u32> {
+kablam!     |                                                   ^^^^^^ not found in `byteorder`
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use std::fmt::Result;`
+kablam!               `use std::io::Result;`
+kablam!               `use std::prelude::v1::Result;`
+kablam!               `use std::result::Result;`
+kablam!             and 1 other candidates
+kablam! 
+kablam! error[E0412]: cannot find type `Result` in module `byteorder`
+kablam!    --> src/erl_ext.rs:371:50
+kablam!     |
+kablam! 371 |     fn _decode_list_len(&mut self) -> byteorder::Result<u32> {
+kablam!     |                                                  ^^^^^^ not found in `byteorder`
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use std::fmt::Result;`
+kablam!               `use std::io::Result;`
+kablam!               `use std::prelude::v1::Result;`
+kablam!               `use std::result::Result;`
+kablam!             and 1 other candidates
+kablam! 
+kablam! error: aborting due to 8 previous errors
+kablam! 
+kablam! error: Could not compile `rust_erl_ext`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 38bd06a99c0b741184c1c1785c455755816ebc907614f12a24952c4374ac5329`
+blam! 38bd06a99c0b741184c1c1785c455755816ebc907614f12a24952c4374ac5329

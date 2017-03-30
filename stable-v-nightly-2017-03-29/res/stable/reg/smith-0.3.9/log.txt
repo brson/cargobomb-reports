@@ -1,0 +1,22 @@
+boom! testing smith-0.3.9 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! d312ff69e6d6891b3560636462bf263dc043e8ad8839f65caa0e2333e27aff45
+boom! running `docker start -a d312ff69e6d6891b3560636462bf263dc043e8ad8839f65caa0e2333e27aff45`
+kablam!    Compiling ropey v0.3.0
+kablam!    Compiling x11 v2.12.1
+kablam! error: failed to run custom build command for `x11 v2.12.1`
+blam! Build failed, waiting for other jobs to finish...
+kablam! process didn't exit successfully: `/target/debug/build/x11-a53f041ce4694060/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! cargo:rustc-link-search=native=/usr/lib/x86_64-linux-gnu
+kablam! cargo:rustc-link-lib=X11
+kablam! 
+kablam! --- stderr
+kablam! thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: Error(PkgConfig(Failure { command: "\"pkg-config\" \"--libs\" \"--cflags\" \"xmu >= 1.1\"", output: Output { status: ExitStatus(ExitStatus(256)), stdout: "", stderr: "Package xmu was not found in the pkg-config search path.\nPerhaps you should add the directory containing `xmu.pc\'\nto the PKG_CONFIG_PATH environment variable\nNo package \'xmu\' found\n" } }), State { next_error: None })', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f d312ff69e6d6891b3560636462bf263dc043e8ad8839f65caa0e2333e27aff45`
+blam! d312ff69e6d6891b3560636462bf263dc043e8ad8839f65caa0e2333e27aff45

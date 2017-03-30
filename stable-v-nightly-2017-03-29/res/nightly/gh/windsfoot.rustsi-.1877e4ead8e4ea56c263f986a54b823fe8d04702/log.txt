@@ -1,0 +1,58 @@
+boom! testing https://github.com/windsfoot/rustsi-#1877e4ead8e4ea56c263f986a54b823fe8d04702 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 0f314592efb87849111c720c261a8e37c3e506683a1dc57b3f70b7fa5fbd4f06
+boom! running `docker start -a 0f314592efb87849111c720c261a8e37c3e506683a1dc57b3f70b7fa5fbd4f06`
+kablam!    Compiling ring v0.7.1
+kablam!    Compiling serde_json v0.9.8
+kablam!    Compiling chrono v0.3.0
+kablam!    Compiling idna v0.1.0
+kablam!    Compiling url v1.4.0
+kablam!    Compiling hyper v0.10.4
+kablam!    Compiling si v0.1.0 (file:///source)
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `rand`
+kablam!   --> src/sina.rs:81:15
+kablam!    |
+kablam! 81 |     let rng = rand::SystemRandom::new();
+kablam!    |               ^^^^^^^^^^^^^^^^^^^^^^^ Use of undeclared type or module `rand`
+kablam! 
+kablam! error[E0425]: cannot find value `signing_state` in this scope
+kablam!   --> src/sina.rs:82:33
+kablam!    |
+kablam! 82 |     let mut signature = vec![0; signing_state.key_pair().public_modulus_len()];
+kablam!    |                                 ^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `signing_state` in this scope
+kablam!   --> src/sina.rs:83:10
+kablam!    |
+kablam! 83 |     try!(signing_state.sign(&signature::RSA_PKCS1_SHA256, &rng, MESSAGE, &mut signature));
+kablam!    |          ^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `signature`
+kablam!   --> src/sina.rs:83:30
+kablam!    |
+kablam! 83 |     try!(signing_state.sign(&signature::RSA_PKCS1_SHA256, &rng, MESSAGE, &mut signature));
+kablam!    |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^ Use of undeclared type or module `signature`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/sina.rs:83:5
+kablam!    |
+kablam! 83 |     try!(signing_state.sign(&signature::RSA_PKCS1_SHA256, &rng, MESSAGE, &mut signature));
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected (), found enum `std::result::Result`
+kablam!    |
+kablam!    = note: expected type `()`
+kablam!               found type `std::result::Result<_, _>`
+kablam!    = help: here are some functions which might fulfill your needs:
+kablam!            - .unwrap()
+kablam!            - .unwrap_err()
+kablam!            - .unwrap_or_default()
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `si`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 0f314592efb87849111c720c261a8e37c3e506683a1dc57b3f70b7fa5fbd4f06`
+blam! 0f314592efb87849111c720c261a8e37c3e506683a1dc57b3f70b7fa5fbd4f06

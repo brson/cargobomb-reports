@@ -1,0 +1,28 @@
+boom! testing sel4-start-0.0.27 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 1bc4228ef7d35a733b2983b9e4b90b35bc455d2f0490d476d4c0b5a6a31efe0c
+boom! running `docker start -a 1bc4228ef7d35a733b2983b9e4b90b35bc455d2f0490d476d4c0b5a6a31efe0c`
+kablam!    Compiling sel4-sys v0.0.27
+kablam!    Compiling sel4-start v0.0.27 (file:///source)
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: failed to run custom build command for `sel4-sys v0.0.27`
+kablam! process didn't exit successfully: `/target/debug/build/sel4-sys-870b3f697eebfd68/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! Running: "/usr/bin/env" "python" "tools/syscall_stub_gen.py" "-a" "ia32" "-w" "32" "--buffer" "-o" "/target/debug/build/sel4-sys-4dff2b1e92dd6c57/out/ia32_syscall_stub.rs" "seL4/libsel4/include/interfaces/sel4.xml" "seL4/libsel4/arch_include/x86/interfaces/sel4arch.xml" "seL4/libsel4/sel4_arch_include/ia32/interfaces/sel4arch.xml"
+kablam! Running: "/usr/bin/env" "python" "tools/syscall_stub_gen.py" "-a" "x86_64" "-w" "64" "--buffer" "-o" "/target/debug/build/sel4-sys-4dff2b1e92dd6c57/out/x86_64_syscall_stub.rs" "seL4/libsel4/include/interfaces/sel4.xml" "seL4/libsel4/arch_include/x86/interfaces/sel4arch.xml" "seL4/libsel4/sel4_arch_include/x86_64/interfaces/sel4arch.xml"
+kablam! Running: "/usr/bin/env" "python" "tools/syscall_stub_gen.py" "-a" "aarch32" "-w" "32" "--buffer" "-o" "/target/debug/build/sel4-sys-4dff2b1e92dd6c57/out/aarch32_syscall_stub.rs" "seL4/libsel4/include/interfaces/sel4.xml" "seL4/libsel4/arch_include/arm/interfaces/sel4arch.xml" "seL4/libsel4/sel4_arch_include/aarch32/interfaces/sel4arch.xml"
+kablam! Running "/usr/bin/env" "python" "tools/invocation_header_gen.py" "--dest" "/target/debug/build/sel4-sys-4dff2b1e92dd6c57/out/ia32_invocation.rs" "seL4/libsel4/include/interfaces/sel4.xml" "seL4/libsel4/arch_include/x86/interfaces/sel4arch.xml" "seL4/libsel4/sel4_arch_include/ia32/interfaces/sel4arch.xml"
+kablam! 
+kablam! --- stderr
+kablam! Traceback (most recent call last):
+kablam!   File "tools/invocation_header_gen.py", line 20, in <module>
+kablam!     import tempita
+kablam! ImportError: No module named tempita
+kablam! thread 'main' panicked at 'assertion failed: cmd.status().unwrap().success()', /cargo-home/registry/src/github.com-1ecc6299db9ec823/sel4-sys-0.0.27/build.rs:45
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f 1bc4228ef7d35a733b2983b9e4b90b35bc455d2f0490d476d4c0b5a6a31efe0c`
+blam! 1bc4228ef7d35a733b2983b9e4b90b35bc455d2f0490d476d4c0b5a6a31efe0c

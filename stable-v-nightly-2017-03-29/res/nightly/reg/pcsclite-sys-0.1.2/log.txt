@@ -1,0 +1,18 @@
+boom! testing pcsclite-sys-0.1.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! b3d27718b7999e71b0e4807804ea694715fd2021c6c74175f750862c633aad4e
+boom! running `docker start -a b3d27718b7999e71b0e4807804ea694715fd2021c6c74175f750862c633aad4e`
+kablam!    Compiling pcsclite-sys v0.1.2 (file:///source)
+kablam! error: failed to run custom build command for `pcsclite-sys v0.1.2 (file:///source)`
+kablam! process didn't exit successfully: `/target/debug/build/pcsclite-sys-aeebff73ada7c0da/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! cargo:rustc-link-lib=dylib=pcsclite
+kablam! 
+kablam! --- stderr
+kablam! thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: "`\"pkg-config\" \"--libs\" \"--cflags\" \"libpcsclite\"` did not exit successfully: exit code: 1\n--- stderr\nPackage libpcsclite was not found in the pkg-config search path.\nPerhaps you should add the directory containing `libpcsclite.pc\'\nto the PKG_CONFIG_PATH environment variable\nNo package \'libpcsclite\' found\n"', /checkout/src/libcore/result.rs:859
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f b3d27718b7999e71b0e4807804ea694715fd2021c6c74175f750862c633aad4e`
+blam! b3d27718b7999e71b0e4807804ea694715fd2021c6c74175f750862c633aad4e

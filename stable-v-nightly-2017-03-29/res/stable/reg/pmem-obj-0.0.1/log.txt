@@ -1,0 +1,97 @@
+boom! testing pmem-obj-0.0.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 9eae696b911d7921ebb9136c5882eb762c8ae1df233e777c3df00cdc15538352
+boom! running `docker start -a 9eae696b911d7921ebb9136c5882eb762c8ae1df233e777c3df00cdc15538352`
+kablam!    Compiling pmemobj-sys v0.0.1
+kablam!    Compiling pmem-obj v0.0.1 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.66 secs
+boom! running `docker rm -f 9eae696b911d7921ebb9136c5882eb762c8ae1df233e777c3df00cdc15538352`
+blam! 9eae696b911d7921ebb9136c5882eb762c8ae1df233e777c3df00cdc15538352
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! c6a605947bd8b7190c47202643582e5ba1b85555a56cd83508ae5e6cab338019
+boom! running `docker start -a c6a605947bd8b7190c47202643582e5ba1b85555a56cd83508ae5e6cab338019`
+kablam!    Compiling pmem-obj v0.0.1 (file:///source)
+kablam! warning: function is never used: `create`, #[warn(dead_code)] on by default
+kablam!   --> tests/basic.rs:10:1
+kablam!    |
+kablam! 10 |   fn create() {
+kablam!    |  _^ starting here...
+kablam! 11 | |     let path = Path::new("/tmp/test-create.pmemobj");
+kablam! 12 | |     if path.exists() {
+kablam! 13 | |         fs::remove_file(&path).unwrap();
+kablam! 14 | |     }
+kablam! 15 | |     File::create(&path).unwrap();
+kablam! 16 | |     let _p = ObjPool::create(path, "", 2*1024*1024).unwrap();
+kablam! 17 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/pmem_obj-506aa10108fa97b5.0.o" "-o" "/target/debug/deps/pmem_obj-506aa10108fa97b5" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libpmemobj_sys-4f3f1a95ebbee549.rlib" "/target/debug/deps/liblibc-5dc7b85e748840b4.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-2efd40164e9eb949.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-0ed6e2f3d67b4012.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-b979e1c23fc9ba25.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-13f36e2630c2d79b.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-3b9d178f1de89528.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-93bb403c9fc56f72.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-a2ef7979b4b3e1d5.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-d22754c8c52de3a1.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-c53f99154bf815c4.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-f1bb04f5989dcb98.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-739908a2e215dd88.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-1cc5fcd37568ebc4.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-3f4289353c600297.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-07bfb3bcb2a51da0.rlib" "-l" "pmemobj" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lpmemobj
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `pmem-obj`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/basic-247ebc1cb7481684.0.o" "-o" "/target/debug/deps/basic-247ebc1cb7481684" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libpmem_obj-b6344daeabab1da0.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-2efd40164e9eb949.rlib" "/target/debug/deps/libpmemobj_sys-4f3f1a95ebbee549.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-b979e1c23fc9ba25.rlib" "/target/debug/deps/liblibc-5dc7b85e748840b4.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-0ed6e2f3d67b4012.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-13f36e2630c2d79b.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-3b9d178f1de89528.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-93bb403c9fc56f72.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-a2ef7979b4b3e1d5.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-d22754c8c52de3a1.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-c53f99154bf815c4.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-f1bb04f5989dcb98.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-739908a2e215dd88.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-1cc5fcd37568ebc4.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-3f4289353c600297.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-07bfb3bcb2a51da0.rlib" "-l" "pmemobj" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lpmemobj
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f c6a605947bd8b7190c47202643582e5ba1b85555a56cd83508ae5e6cab338019`
+blam! c6a605947bd8b7190c47202643582e5ba1b85555a56cd83508ae5e6cab338019
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! d4d5eaa1787f32335f5662355ac86844f1c101064c60bc0fb5a096da38f67f75
+boom! running `docker start -a d4d5eaa1787f32335f5662355ac86844f1c101064c60bc0fb5a096da38f67f75`
+kablam!    Compiling pmem-obj v0.0.1 (file:///source)
+kablam! warning: function is never used: `create`, #[warn(dead_code)] on by default
+kablam!   --> tests/basic.rs:10:1
+kablam!    |
+kablam! 10 |   fn create() {
+kablam!    |  _^ starting here...
+kablam! 11 | |     let path = Path::new("/tmp/test-create.pmemobj");
+kablam! 12 | |     if path.exists() {
+kablam! 13 | |         fs::remove_file(&path).unwrap();
+kablam! 14 | |     }
+kablam! 15 | |     File::create(&path).unwrap();
+kablam! 16 | |     let _p = ObjPool::create(path, "", 2*1024*1024).unwrap();
+kablam! 17 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/pmem_obj-506aa10108fa97b5.0.o" "-o" "/target/debug/deps/pmem_obj-506aa10108fa97b5" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libpmemobj_sys-4f3f1a95ebbee549.rlib" "/target/debug/deps/liblibc-5dc7b85e748840b4.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-2efd40164e9eb949.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-0ed6e2f3d67b4012.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-b979e1c23fc9ba25.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-13f36e2630c2d79b.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-3b9d178f1de89528.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-93bb403c9fc56f72.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-a2ef7979b4b3e1d5.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-d22754c8c52de3a1.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-c53f99154bf815c4.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-f1bb04f5989dcb98.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-739908a2e215dd88.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-1cc5fcd37568ebc4.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-3f4289353c600297.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-07bfb3bcb2a51da0.rlib" "-l" "pmemobj" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lpmemobj
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `pmem-obj`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/basic-247ebc1cb7481684.0.o" "-o" "/target/debug/deps/basic-247ebc1cb7481684" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libpmem_obj-b6344daeabab1da0.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-2efd40164e9eb949.rlib" "/target/debug/deps/libpmemobj_sys-4f3f1a95ebbee549.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-b979e1c23fc9ba25.rlib" "/target/debug/deps/liblibc-5dc7b85e748840b4.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-0ed6e2f3d67b4012.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-13f36e2630c2d79b.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-3b9d178f1de89528.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-93bb403c9fc56f72.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-a2ef7979b4b3e1d5.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-d22754c8c52de3a1.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-c53f99154bf815c4.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-f1bb04f5989dcb98.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-739908a2e215dd88.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-1cc5fcd37568ebc4.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-3f4289353c600297.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-07bfb3bcb2a51da0.rlib" "-l" "pmemobj" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lpmemobj
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f d4d5eaa1787f32335f5662355ac86844f1c101064c60bc0fb5a096da38f67f75`
+blam! d4d5eaa1787f32335f5662355ac86844f1c101064c60bc0fb5a096da38f67f75

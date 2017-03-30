@@ -1,0 +1,77 @@
+boom! testing trackable-0.1.5 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 6a40699175e2c25935ee1c471935ff0b5cc0f185d51745180b7511732a50dc3e
+boom! running `docker start -a 6a40699175e2c25935ee1c471935ff0b5cc0f185d51745180b7511732a50dc3e`
+kablam!    Compiling trackable v0.1.5 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.6 secs
+boom! running `docker rm -f 6a40699175e2c25935ee1c471935ff0b5cc0f185d51745180b7511732a50dc3e`
+blam! 6a40699175e2c25935ee1c471935ff0b5cc0f185d51745180b7511732a50dc3e
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! b041bf43c65ef613532c26d00f3852383f1a41423d973e47070fd150ba670f1c
+boom! running `docker start -a b041bf43c65ef613532c26d00f3852383f1a41423d973e47070fd150ba670f1c`
+kablam!    Compiling trackable v0.1.5 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 2.12 secs
+boom! running `docker rm -f b041bf43c65ef613532c26d00f3852383f1a41423d973e47070fd150ba670f1c`
+blam! b041bf43c65ef613532c26d00f3852383f1a41423d973e47070fd150ba670f1c
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! f0c8082813d4214e748320ba56e14d1e9e61f48bd09e6e7b7456fa88dd9b2240
+boom! running `docker start -a f0c8082813d4214e748320ba56e14d1e9e61f48bd09e6e7b7456fa88dd9b2240`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/trackable-38030a7ae63c25ba
+kablam!    Doc-tests trackable
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+blam! 
+blam! running 19 tests
+blam! test src/error.rs - error::ErrorKindExt::error (line 133) ... ok
+blam! test src/error.rs - error::ErrorKindExt::takes_over (line 170) ... ok
+blam! test src/error.rs - error::ErrorKindExt::cause (line 148) ... ok
+blam! test src/error.rs - error::TrackableError (line 276) ... ok
+blam! test src/error.rs - error (line 5) ... ok
+blam! test src/lib.rs -  (line 6) ... ok
+blam! test src/error.rs - error::TrackableError (line 225) ... ok
+blam! test src/lib.rs - Location::new (line 267) ... ok
+blam! test src/lib.rs - History (line 203) ... ok
+blam! test src/lib.rs - Trackable (line 76) ... ok
+blam! test src/lib.rs - TrackingNumber (line 330) ... ok
+blam! test src/macros.rs - track (line 9) ... ok
+blam! test src/macros.rs - track_assert (line 174) ... ok
+blam! test src/macros.rs - track_err (line 124) ... ok
+blam! test src/macros.rs - track_panic (line 264) ... ok
+blam! test src/macros.rs - track_try (line 91) ... ok
+blam! test src/macros.rs - track_try (line 69) ... ok
+blam! test src/macros.rs - track_panic (line 285) ... FAILED
+blam! test src/macros.rs - track_try_unwrap (line 330) ... ok
+blam! 
+blam! failures:
+blam! 
+blam! ---- src/macros.rs - track_panic (line 285) stdout ----
+blam! 	error[E0282]: type annotations needed
+blam!  --> <anon>:9:40
+blam!   |
+blam! 9 | let e = foo(|| { track_panic!(Failed); Ok(()) }).err().unwrap();
+blam!   |                                        ^^ cannot infer type for `E`
+blam! 
+blam! error: aborting due to previous error(s)
+blam! 
+blam! thread 'rustc' panicked at 'Box<Any>', /checkout/src/librustc/session/mod.rs:203
+blam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+blam! 
+blam! 
+blam! failures:
+blam!     src/macros.rs - track_panic (line 285)
+blam! 
+blam! test result: FAILED. 18 passed; 1 failed; 0 ignored; 0 measured
+blam! 
+kablam! error: test failed
+boom! running `docker rm -f f0c8082813d4214e748320ba56e14d1e9e61f48bd09e6e7b7456fa88dd9b2240`
+blam! f0c8082813d4214e748320ba56e14d1e9e61f48bd09e6e7b7456fa88dd9b2240

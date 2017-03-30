@@ -1,0 +1,223 @@
+boom! testing ddp-0.0.3 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 0187557aac5d441ab13d66c8fb0c1864058c0298eb88d548db220dab212a8f38
+boom! running `docker start -a 0187557aac5d441ab13d66c8fb0c1864058c0298eb88d548db220dab212a8f38`
+kablam!    Compiling websocket v0.12.2
+kablam! error[E0432]: unresolved import `openssl::ssl::error::SslError`
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/websocket-0.12.2/src/result.rs:8:5
+kablam!   |
+kablam! 8 | use openssl::ssl::error::SslError;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `SslError` in `ssl::error`
+kablam! 
+kablam! error[E0432]: unresolved import `openssl::crypto::hash`
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/websocket-0.12.2/src/header/accept.rs:8:29
+kablam!   |
+kablam! 8 | use openssl::crypto::hash::{self, hash};
+kablam!   |                             ^^^^ no `hash` in `crypto`
+kablam! 
+kablam! error[E0432]: unresolved import `openssl::crypto::hash::hash`
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/websocket-0.12.2/src/header/accept.rs:8:35
+kablam!   |
+kablam! 8 | use openssl::crypto::hash::{self, hash};
+kablam!   |                                   ^^^^ Could not find `hash` in `crypto`
+kablam! 
+kablam! error[E0412]: cannot find type `Error` in module `byteorder`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/websocket-0.12.2/src/result.rs:111:22
+kablam!     |
+kablam! 111 | impl From<byteorder::Error> for WebSocketError {
+kablam!     |                      ^^^^^ not found in `byteorder`
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use bitflags::__core::fmt::Error;`
+kablam!               `use hyper::Error;`
+kablam!               `use hyper::error::Error;`
+kablam!               `use openssl::error::Error;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0412]: cannot find type `Error` in module `byteorder`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/websocket-0.12.2/src/result.rs:112:26
+kablam!     |
+kablam! 112 | 	fn from(err: byteorder::Error) -> WebSocketError {
+kablam!     | 	                        ^^^^^ not found in `byteorder`
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use bitflags::__core::fmt::Error;`
+kablam!               `use hyper::Error;`
+kablam!               `use hyper::error::Error;`
+kablam!               `use openssl::error::Error;`
+kablam!             and 4 other candidates
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Error` in `byteorder`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/websocket-0.12.2/src/result.rs:114:4
+kablam!     |
+kablam! 114 | 			byteorder::Error::UnexpectedEOF => WebSocketError::NoDataAvailable,
+kablam!     | 			^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `Error` in `byteorder`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Error` in `byteorder`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/websocket-0.12.2/src/result.rs:115:4
+kablam!     |
+kablam! 115 | 			byteorder::Error::Io(err) => From::from(err)
+kablam!     | 			^^^^^^^^^^^^^^^^^^^^ Could not find `Error` in `byteorder`
+kablam! 
+kablam! error: module `error` is private
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/websocket-0.12.2/src/result.rs:8:5
+kablam!   |
+kablam! 8 | use openssl::ssl::error::SslError;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: struct `DataFrameFlags` is private
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/websocket-0.12.2/src/ws/util/dataframe.rs:15:18
+kablam!    |
+kablam! 15 | 	let mut flags = dfh::DataFrameFlags::empty();
+kablam!    | 	                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: constant `FIN` is private
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/websocket-0.12.2/src/ws/util/dataframe.rs:16:39
+kablam!    |
+kablam! 16 | 	if dataframe.finished { flags.insert(dfh::FIN); }
+kablam!    | 	                                     ^^^^^^^^
+kablam! 
+kablam! error: constant `RSV1` is private
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/websocket-0.12.2/src/ws/util/dataframe.rs:17:42
+kablam!    |
+kablam! 17 | 	if dataframe.reserved[0] { flags.insert(dfh::RSV1); }
+kablam!    | 	                                        ^^^^^^^^^
+kablam! 
+kablam! error: constant `RSV2` is private
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/websocket-0.12.2/src/ws/util/dataframe.rs:18:42
+kablam!    |
+kablam! 18 | 	if dataframe.reserved[1] { flags.insert(dfh::RSV2); }
+kablam!    | 	                                        ^^^^^^^^^
+kablam! 
+kablam! error: constant `RSV3` is private
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/websocket-0.12.2/src/ws/util/dataframe.rs:19:42
+kablam!    |
+kablam! 19 | 	if dataframe.reserved[2] { flags.insert(dfh::RSV3); }
+kablam!    | 	                                        ^^^^^^^^^
+kablam! 
+kablam! error: constant `FIN` is private
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/websocket-0.12.2/src/ws/util/dataframe.rs:47:35
+kablam!    |
+kablam! 47 | 		finished: header.flags.contains(dfh::FIN),
+kablam!    | 		                                ^^^^^^^^
+kablam! 
+kablam! error: constant `RSV1` is private
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/websocket-0.12.2/src/ws/util/dataframe.rs:49:26
+kablam!    |
+kablam! 49 | 			header.flags.contains(dfh::RSV1),
+kablam!    | 			                      ^^^^^^^^^
+kablam! 
+kablam! error: constant `RSV2` is private
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/websocket-0.12.2/src/ws/util/dataframe.rs:50:26
+kablam!    |
+kablam! 50 | 			header.flags.contains(dfh::RSV2),
+kablam!    | 			                      ^^^^^^^^^
+kablam! 
+kablam! error: constant `RSV3` is private
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/websocket-0.12.2/src/ws/util/dataframe.rs:51:26
+kablam!    |
+kablam! 51 | 			header.flags.contains(dfh::RSV3)
+kablam!    | 			                      ^^^^^^^^^
+kablam! 
+kablam! error: no associated item named `new` found for type `openssl::ssl::SslContext` in the current scope
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/websocket-0.12.2/src/client/mod.rs:71:22
+kablam!    |
+kablam! 71 | 		let context = try!(SslContext::new(SslMethod::Tlsv1));
+kablam!    | 		                   ^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no associated item named `Tlsv1` found for type `openssl::ssl::SslMethod` in the current scope
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/websocket-0.12.2/src/client/mod.rs:71:38
+kablam!    |
+kablam! 71 | 		let context = try!(SslContext::new(SslMethod::Tlsv1));
+kablam!    | 		                                   ^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no associated item named `new` found for type `openssl::ssl::SslStream<_>` in the current scope
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/websocket-0.12.2/src/client/mod.rs:89:25
+kablam!    |
+kablam! 89 | 			let sslstream = try!(SslStream::new(context, connection));
+kablam!    | 			                     ^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no associated item named `new_server` found for type `openssl::ssl::SslStream<_>` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/websocket-0.12.2/src/server/mod.rs:120:27
+kablam!     |
+kablam! 120 | 				let sslstream = match SslStream::new_server(context, stream) {
+kablam!     | 				                      ^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `try_clone` found for type `&openssl::ssl::SslStream<std::net::TcpStream>` in the current scope
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/websocket-0.12.2/src/stream.rs:82:71
+kablam!    |
+kablam! 82 | 			WebSocketStream::Ssl(ref inner) => WebSocketStream::Ssl(try!(inner.try_clone())),
+kablam!    | 			                                                                   ^^^^^^^^^
+kablam! 
+kablam! error: no method named `serialize` found for type `url::Host` in the current scope
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/websocket-0.12.2/src/ws/util/url.rs:66:21
+kablam!    |
+kablam! 66 | 			hostname: self.0.serialize(),
+kablam!    | 			                 ^^^^^^^^^
+kablam! 
+kablam! error: no method named `serialize` found for type `url::Host` in the current scope
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/websocket-0.12.2/src/ws/util/url.rs:76:21
+kablam!    |
+kablam! 76 | 			hostname: self.0.serialize(),
+kablam!    | 			                 ^^^^^^^^^
+kablam! 
+kablam! error: attempted to take value of method `fragment` on type `&url::Url`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/websocket-0.12.2/src/ws/util/url.rs:101:12
+kablam!     |
+kablam! 101 |     if url.fragment != None {
+kablam!     |            ^^^^^^^^
+kablam!     |
+kablam!     = help: maybe a `()` to call it is missing? If not, try an anonymous function
+kablam! 
+kablam! error: attempted to take value of method `scheme` on type `&url::Url`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/websocket-0.12.2/src/ws/util/url.rs:105:28
+kablam!     |
+kablam! 105 |     let secure = match url.scheme.as_ref() {
+kablam!     |                            ^^^^^^
+kablam!     |
+kablam!     = help: maybe a `()` to call it is missing? If not, try an anonymous function
+kablam! 
+kablam! error: no method named `serialize` found for type `url::Host<&str>` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/websocket-0.12.2/src/ws/util/url.rs:113:36
+kablam!     |
+kablam! 113 |     let host = url.host().unwrap().serialize(); // Step 6
+kablam!     |                                    ^^^^^^^^^
+kablam! 
+kablam! error: no method named `port_or_default` found for type `&url::Url` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/websocket-0.12.2/src/ws/util/url.rs:114:20
+kablam!     |
+kablam! 114 |     let port = url.port_or_default(); // Steps 7 and 8
+kablam!     |                    ^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `unwrap` found for type `&str` in the current scope
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/websocket-0.12.2/src/ws/util/url.rs:117:34
+kablam!     |
+kablam! 117 |     resource.push_str(url.path().unwrap().connect("/").as_ref()); // step 9
+kablam!     |                                  ^^^^^^
+kablam! 
+kablam! error: attempted to take value of method `query` on type `&url::Url`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/websocket-0.12.2/src/ws/util/url.rs:120:34
+kablam!     |
+kablam! 120 |     if let Some(ref query) = url.query {
+kablam!     |                                  ^^^^^
+kablam!     |
+kablam!     = help: maybe a `()` to call it is missing? If not, try an anonymous function
+kablam! 
+kablam! error[E0277]: the trait bound `str: std::marker::Sized` is not satisfied
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/websocket-0.12.2/src/ws/util/url.rs:120:12
+kablam!     |
+kablam! 120 |     if let Some(ref query) = url.query {
+kablam!     |            ^^^^^^^^^^^^^^^ the trait `std::marker::Sized` is not implemented for `str`
+kablam!     |
+kablam!     = note: `str` does not have a constant size known at compile-time
+kablam!     = note: required by `std::prelude::v1::Some`
+kablam! 
+kablam! error: aborting due to 14 previous errors
+kablam! 
+kablam! error: Could not compile `websocket`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 0187557aac5d441ab13d66c8fb0c1864058c0298eb88d548db220dab212a8f38`
+blam! 0187557aac5d441ab13d66c8fb0c1864058c0298eb88d548db220dab212a8f38

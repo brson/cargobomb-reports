@@ -1,0 +1,173 @@
+boom! testing https://github.com/Gekkio/mooneye-gb#f72ba415e13490bd388d54c76229e17ed331471a against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! fa369a3f3a03424c131c54b982b8bd1674d01bc40d5e083e50b549906977fc3f
+boom! running `docker start -a fa369a3f3a03424c131c54b982b8bd1674d01bc40d5e083e50b549906977fc3f`
+kablam!    Compiling rand v0.3.15
+kablam!    Compiling num-complex v0.1.36
+kablam!    Compiling backtrace-sys v0.1.10
+kablam!    Compiling thread-id v3.0.0
+kablam!    Compiling thread_local v0.3.3
+kablam!    Compiling crc v1.4.0
+kablam!    Compiling imgui-sys v0.0.10
+kablam!    Compiling alga v0.5.1
+kablam!    Compiling sdl2 v0.27.3
+kablam!    Compiling gl_generator v0.5.2
+kablam!    Compiling nalgebra v0.11.1
+kablam!    Compiling glium v0.15.0
+kablam!    Compiling backtrace v0.2.3
+kablam!    Compiling time v0.1.36
+kablam!    Compiling memchr v1.0.1
+kablam!    Compiling aho-corasick v0.6.2
+kablam!    Compiling simplelog v0.4.2
+kablam!    Compiling regex v0.2.1
+kablam!    Compiling docopt v0.7.0
+kablam!    Compiling glium_sdl2 v0.13.0
+kablam!    Compiling imgui v0.0.10
+kablam!    Compiling mooneye-gb v0.2.0-pre (file:///source)
+kablam! warning: function is never used: `disasm`, #[warn(dead_code)] on by default
+kablam!    --> src/cpu/disasm.rs:383:1
+kablam!     |
+kablam! 383 |   pub fn disasm<'a, F: 'a+FnMut(u16) -> u8>(pc_start: u16, reader: &'a mut F) -> Instr {
+kablam!     |  _^ starting here...
+kablam! 384 | |   let mut disasm = Disasm {
+kablam! 385 | |     pc: pc_start,
+kablam! 386 | |     reader: reader
+kablam! 387 | |   };
+kablam! 388 | |   let op = disasm.next_u8();
+kablam! 389 | |   ops::decode(&mut disasm, op)
+kablam! 390 | | }
+kablam!     | |_^ ...ending here
+kablam! 
+kablam! warning: method is never used: `clock_cycles`, #[warn(dead_code)] on by default
+kablam!    --> src/cpu/mod.rs:145:3
+kablam!     |
+kablam! 145 |   pub fn clock_cycles(&self) -> u32 { self.time.as_duration().as_clock_edges() / 2 }
+kablam!     |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: method is never used: `get_pc`, #[warn(dead_code)] on by default
+kablam!    --> src/cpu/mod.rs:147:3
+kablam!     |
+kablam! 147 |     pub fn get_pc(&self) -> u16 {
+kablam!     |  ___^ starting here...
+kablam! 148 | |     self.regs.pc
+kablam! 149 | |   }
+kablam!     | |___^ ...ending here
+kablam! 
+kablam! warning: method is never used: `disasm_op`, #[warn(dead_code)] on by default
+kablam!    --> src/cpu/mod.rs:150:3
+kablam!     |
+kablam! 150 |     pub fn disasm_op(&self) -> DisasmStr {
+kablam!     |  ___^ starting here...
+kablam! 151 | |     let pc = self.regs.pc;
+kablam! 152 | |
+kablam! 153 | |     disasm::disasm(pc, &mut |addr| {
+kablam! 154 | |       self.hardware.read(addr)
+kablam! 155 | |     }).to_disasm_str()
+kablam! 156 | |   }
+kablam!     | |___^ ...ending here
+kablam! 
+kablam! warning: method is never used: `rewind_time`, #[warn(dead_code)] on by default
+kablam!    --> src/cpu/mod.rs:157:3
+kablam!     |
+kablam! 157 |     pub fn rewind_time(&mut self) {
+kablam!     |  ___^ starting here...
+kablam! 158 | |     self.time.rewind();
+kablam! 159 | |   }
+kablam!     | |___^ ...ending here
+kablam! 
+kablam! warning: constant item is never used: `REWIND_THRESHOLD`, #[warn(dead_code)] on by default
+kablam!   --> src/emulation/time.rs:26:1
+kablam!    |
+kablam! 26 | const REWIND_THRESHOLD: u32 = 0x80000000;
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: method is never used: `needs_rewind`, #[warn(dead_code)] on by default
+kablam!   --> src/emulation/time.rs:30:3
+kablam!    |
+kablam! 30 |     pub fn needs_rewind(&self) -> bool {
+kablam!    |  ___^ starting here...
+kablam! 31 | |     self.clock_edges >= REWIND_THRESHOLD
+kablam! 32 | |   }
+kablam!    | |___^ ...ending here
+kablam! 
+kablam! warning: method is never used: `rewind`, #[warn(dead_code)] on by default
+kablam!   --> src/emulation/time.rs:33:3
+kablam!    |
+kablam! 33 |     pub fn rewind(&mut self) {
+kablam!    |  ___^ starting here...
+kablam! 34 | |     assert!(self.needs_rewind());
+kablam! 35 | |     self.clock_edges -= REWIND_THRESHOLD;
+kablam! 36 | |   }
+kablam!    | |___^ ...ending here
+kablam! 
+kablam! warning: method is never used: `as_duration`, #[warn(dead_code)] on by default
+kablam!   --> src/emulation/time.rs:37:3
+kablam!    |
+kablam! 37 |   pub fn as_duration(&self) -> EmuDuration { EmuDuration::clock_edges(self.clock_edges) }
+kablam!    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: struct is never used: `WaitRomScreen`, #[warn(dead_code)] on by default
+kablam!   --> src/frontend/gui.rs:51:1
+kablam!    |
+kablam! 51 |   pub struct WaitRomScreen {
+kablam!    |  _^ starting here...
+kablam! 52 | |   title: ImStr<'static>,
+kablam! 53 | |   error: Option<ImStr<'static>>
+kablam! 54 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! warning: method is never used: `new`, #[warn(dead_code)] on by default
+kablam!   --> src/frontend/gui.rs:57:3
+kablam!    |
+kablam! 57 |     pub fn new() -> WaitRomScreen {
+kablam!    |  ___^ starting here...
+kablam! 58 | |     WaitRomScreen {
+kablam! 59 | |       title: im_str!("Mooneye GB v{}", ::VERSION),
+kablam! 60 | |       error: None
+kablam! 61 | |     }
+kablam! 62 | |   }
+kablam!    | |___^ ...ending here
+kablam! 
+kablam! warning: method is never used: `set_error`, #[warn(dead_code)] on by default
+kablam!   --> src/frontend/gui.rs:63:3
+kablam!    |
+kablam! 63 |     pub fn set_error(&mut self, text: String) {
+kablam!    |  ___^ starting here...
+kablam! 64 | |     self.error = Some(text.into());
+kablam! 65 | |   }
+kablam!    | |___^ ...ending here
+kablam! 
+kablam! warning: method is never used: `dump_mem`, #[warn(dead_code)] on by default
+kablam!    --> src/hardware/mod.rs:127:3
+kablam!     |
+kablam! 127 |   pub fn dump_mem(&self, addr: u16, chunks: usize) {
+kablam!     |   ^
+kablam! 
+kablam! warning: method is never used: `regs`, #[warn(dead_code)] on by default
+kablam!   --> src/machine/mod.rs:52:3
+kablam!    |
+kablam! 52 |   pub fn regs(&self) -> Registers { self.cpu.regs }
+kablam!    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: constant item is never used: `VERSION`, #[warn(dead_code)] on by default
+kablam!   --> src/main.rs:59:1
+kablam!    |
+kablam! 59 | const VERSION: &'static str = env!("CARGO_PKG_VERSION");
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/mooneye_gb-6ca5a62826021395.0.o" "-o" "/target/debug/deps/mooneye_gb-6ca5a62826021395" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/target/debug/build/backtrace-sys-c41044212322c9f2/out/.libs" "-L" "/target/debug/build/imgui-sys-f1fb777976154220/out" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/libapp_dirs-df6ce92cf18b814f.rlib" "/target/debug/deps/liburl-aa3392667e4f87a3.rlib" "/target/debug/deps/libdocopt-56dad2fa6a5a7297.rlib" "/target/debug/deps/libregex-59ef72234132697a.rlib" "/target/debug/deps/libstrsim-61ec477beacb0d4b.rlib" "/target/debug/deps/libimgui-24bcd0e3f40d52a8.rlib" "/target/debug/deps/libimgui_sys-1c61bf3e99fff61f.rlib" "/target/debug/deps/libthread_local-c8755f64dce6c8cd.rlib" "/target/debug/deps/libunreachable-ebcc746f6a526ccc.rlib" "/target/debug/deps/libthread_id-7c664cbece6d9f97.rlib" "/target/debug/deps/libcrc-b49a06aea6dddd05.rlib" "/target/debug/deps/libutf8_ranges-96b53fb879382c48.rlib" "/target/debug/deps/libglium_sdl2-141f48576ab01a23.rlib" "/target/debug/deps/libsdl2-3a8de8c5b412549b.rlib" "/target/debug/deps/libnum-1dc0cc712369fa49.rlib" "/target/debug/deps/libglium-67c6d36e8218ee34.rlib" "/target/debug/deps/liblazy_static-82c2efae9a7bf732.rlib" "/target/debug/deps/libsdl2_sys-ea93ed8d35645303.rlib" "/target/debug/deps/libsimplelog-ed14e5725cf08fba.rlib" "/target/debug/deps/libtime-cd5e3a346d1a17b6.rlib" "/target/debug/deps/libterm-dd8c12034267c7dc.rlib" "/target/debug/deps/libbitflags-65ddff5d2b91509e.rlib" "/target/debug/deps/libregex_syntax-21fcdc3a2a66b202.rlib" "/target/debug/deps/libsmallvec-aab31697ccb33d82.rlib" "/target/debug/deps/libnum_iter-e3d53b72a44dd492.rlib" "/target/debug/deps/libnalgebra-4da989fd0ae7771b.rlib" "/target/debug/deps/libgeneric_array-b5db6f131cc5092f.rlib" "/target/debug/deps/libtypenum-9b41dcbaf77f6ff6.rlib" "/target/debug/deps/librand-c9d9fbdab2355ee4.rlib" "/target/debug/deps/libpodio-4718ff1294b89d93.rlib" "/target/debug/deps/libidna-3bab7d99255950c3.rlib" "/target/debug/deps/libunicode_normalization-0297b14f098a4d93.rlib" "/target/debug/deps/libunicode_bidi-b21b1d9dc1833286.rlib" "/target/debug/deps/libxdg-562c396092f60268.rlib" "/target/debug/deps/libaho_corasick-5d225b4f7b02796c.rlib" "/target/debug/deps/libmemchr-2d0f309229d6f8c6.rlib" "/target/debug/deps/libvoid-408bd2d66dde02c1.rlib" "/target/debug/deps/libbacktrace-023ab51530bf0cb3.rlib" "/target/debug/deps/librustc_demangle-6cececca6b316bc5.rlib" "/target/debug/deps/libcfg_if-5cf5b4dd25466da1.rlib" "/target/debug/deps/libdbghelp-80abcaa2ef08d9db.rlib" "/target/debug/deps/libwinapi-a5898d7aceb63fac.rlib" "/target/debug/deps/libkernel32-835ed4d4f4dc2d3e.rlib" "/target/debug/deps/libbacktrace_sys-b27700d0bdfaa65d.rlib" "/target/debug/deps/liblibc-5dc7b85e748840b4.rlib" "/target/debug/deps/libnum_integer-bbbfaf8dce75e1b6.rlib" "/target/debug/deps/liblog-d4c0e5c2504fbbea.rlib" "/target/debug/deps/libalga-5c61eed79552c8fc.rlib" "/target/debug/deps/libapprox-7e5b6aca5f24d7b7.rlib" "/target/debug/deps/libnum_complex-57a11a875ce86980.rlib" "/target/debug/deps/librustc_serialize-2c0b16b7ceb9fdcb.rlib" "/target/debug/deps/libnum_traits-69f4129d46397118.rlib" "/target/debug/deps/libmatches-8f1598a59712d6cc.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-13f36e2630c2d79b.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-3b9d178f1de89528.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-93bb403c9fc56f72.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-a2ef7979b4b3e1d5.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-d22754c8c52de3a1.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-c53f99154bf815c4.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-f1bb04f5989dcb98.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-739908a2e215dd88.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-1cc5fcd37568ebc4.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-3f4289353c600297.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-07bfb3bcb2a51da0.rlib" "-l" "stdc++" "-l" "SDL2" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lSDL2
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `mooneye-gb`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f fa369a3f3a03424c131c54b982b8bd1674d01bc40d5e083e50b549906977fc3f`
+blam! fa369a3f3a03424c131c54b982b8bd1674d01bc40d5e083e50b549906977fc3f

@@ -1,0 +1,236 @@
+boom! testing tcp-loop-0.1.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! ad6386a909562e0195a29224d602d61afb0d1bef142f6d1f74aa609b49dc6b7b
+boom! running `docker start -a ad6386a909562e0195a29224d602d61afb0d1bef142f6d1f74aa609b49dc6b7b`
+kablam!    Compiling tcp-loop v0.1.1 (file:///source)
+kablam! error[E0432]: unresolved import `mio::TryRead`
+kablam!  --> src/loop_/handler/client.rs:1:11
+kablam!   |
+kablam! 1 | use mio::{TryRead, TryWrite};
+kablam!   |           ^^^^^^^ no `TryRead` in the root
+kablam! 
+kablam! error[E0432]: unresolved import `mio::TryWrite`
+kablam!  --> src/loop_/handler/client.rs:1:20
+kablam!   |
+kablam! 1 | use mio::{TryRead, TryWrite};
+kablam!   |                    ^^^^^^^^ no `TryWrite` in the root
+kablam! 
+kablam! error[E0412]: cannot find type `NonBlock` in module `mio`
+kablam!  --> src/loop_/handler/listener.rs:6:15
+kablam!   |
+kablam! 6 |     listener: mio::NonBlock<TcpListener>,
+kablam!   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `mio`
+kablam! 
+kablam! error[E0412]: cannot find type `NonBlock` in module `mio`
+kablam!   --> src/loop_/handler/listener.rs:10:27
+kablam!    |
+kablam! 10 |     pub fn new (listener: mio::NonBlock<TcpListener>) -> Listener {
+kablam!    |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `mio`
+kablam! 
+kablam! error[E0412]: cannot find type `NonBlock` in module `mio`
+kablam!   --> src/loop_/handler/listener.rs:18:19
+kablam!    |
+kablam! 18 |     type Target = mio::NonBlock<TcpListener>;
+kablam!    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `mio`
+kablam! 
+kablam! error[E0412]: cannot find type `NonBlock` in module `mio`
+kablam!   --> src/loop_/handler/listener.rs:20:26
+kablam!    |
+kablam! 20 |     fn deref (&self) -> &mio::NonBlock<TcpListener> {
+kablam!    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `mio`
+kablam! 
+kablam! error[E0412]: cannot find type `NonBlock` in module `mio`
+kablam!   --> src/loop_/handler/listener.rs:25:38
+kablam!    |
+kablam! 25 |     fn deref_mut (&mut self) -> &mut mio::NonBlock<TcpListener> {
+kablam!    |                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `mio`
+kablam! 
+kablam! error[E0412]: cannot find type `NonBlock` in module `mio`
+kablam!   --> src/loop_/handler/mod.rs:18:21
+kablam!    |
+kablam! 18 | pub type Stream   = mio::NonBlock<TcpStream>;
+kablam!    |                     ^^^^^^^^^^^^^^^^^^^^^^^^ not found in `mio`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Interest` in `mio`
+kablam!   --> src/loop_/handler/mod.rs:57:9
+kablam!    |
+kablam! 57 |         mio::Interest::readable() | mio::Interest::hup() | mio::Interest::error(),
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `Interest` in `mio`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Interest` in `mio`
+kablam!   --> src/loop_/handler/mod.rs:57:37
+kablam!    |
+kablam! 57 |         mio::Interest::readable() | mio::Interest::hup() | mio::Interest::error(),
+kablam!    |                                     ^^^^^^^^^^^^^^^^^^ Could not find `Interest` in `mio`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Interest` in `mio`
+kablam!   --> src/loop_/handler/mod.rs:57:60
+kablam!    |
+kablam! 57 |         mio::Interest::readable() | mio::Interest::hup() | mio::Interest::error(),
+kablam!    |                                                            ^^^^^^^^^^^^^^^^^^^^ Could not find `Interest` in `mio`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Interest` in `mio`
+kablam!    --> src/loop_/handler/mod.rs:114:29
+kablam!     |
+kablam! 114 |                             mio::Interest::readable() | mio::Interest::writable() | mio::Interest::hup() | mio::Interest::error(),
+kablam!     |                             ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `Interest` in `mio`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Interest` in `mio`
+kablam!    --> src/loop_/handler/mod.rs:114:57
+kablam!     |
+kablam! 114 |                             mio::Interest::readable() | mio::Interest::writable() | mio::Interest::hup() | mio::Interest::error(),
+kablam!     |                                                         ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `Interest` in `mio`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Interest` in `mio`
+kablam!    --> src/loop_/handler/mod.rs:114:85
+kablam!     |
+kablam! 114 |                             mio::Interest::readable() | mio::Interest::writable() | mio::Interest::hup() | mio::Interest::error(),
+kablam!     |                                                                                     ^^^^^^^^^^^^^^^^^^ Could not find `Interest` in `mio`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Interest` in `mio`
+kablam!    --> src/loop_/handler/mod.rs:114:108
+kablam!     |
+kablam! 114 |                             mio::Interest::readable() | mio::Interest::writable() | mio::Interest::hup() | mio::Interest::error(),
+kablam!     |                                                                                                            ^^^^^^^^^^^^^^^^^^^^ Could not find `Interest` in `mio`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Interest` in `mio`
+kablam!    --> src/loop_/handler/mod.rs:138:29
+kablam!     |
+kablam! 138 |                             mio::Interest::readable() | mio::Interest::hup() | mio::Interest::error(),
+kablam!     |                             ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `Interest` in `mio`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Interest` in `mio`
+kablam!    --> src/loop_/handler/mod.rs:138:57
+kablam!     |
+kablam! 138 |                             mio::Interest::readable() | mio::Interest::hup() | mio::Interest::error(),
+kablam!     |                                                         ^^^^^^^^^^^^^^^^^^ Could not find `Interest` in `mio`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Interest` in `mio`
+kablam!    --> src/loop_/handler/mod.rs:138:80
+kablam!     |
+kablam! 138 |                             mio::Interest::readable() | mio::Interest::hup() | mio::Interest::error(),
+kablam!     |                                                                                ^^^^^^^^^^^^^^^^^^^^ Could not find `Interest` in `mio`
+kablam! 
+kablam! error[E0425]: cannot find function `listen` in module `mio::tcp`
+kablam!    --> src/loop_/handler/mod.rs:160:29
+kablam!     |
+kablam! 160 |         let listener = try!(mio::tcp::listen(&addr));
+kablam!     |                             ^^^^^^^^^^^^^^^^ not found in `mio::tcp`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Interest` in `mio`
+kablam!    --> src/loop_/handler/mod.rs:166:13
+kablam!     |
+kablam! 166 |             mio::Interest::readable() | mio::Interest::hup() | mio::Interest::error(),
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `Interest` in `mio`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Interest` in `mio`
+kablam!    --> src/loop_/handler/mod.rs:166:41
+kablam!     |
+kablam! 166 |             mio::Interest::readable() | mio::Interest::hup() | mio::Interest::error(),
+kablam!     |                                         ^^^^^^^^^^^^^^^^^^ Could not find `Interest` in `mio`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Interest` in `mio`
+kablam!    --> src/loop_/handler/mod.rs:166:64
+kablam!     |
+kablam! 166 |             mio::Interest::readable() | mio::Interest::hup() | mio::Interest::error(),
+kablam!     |                                                                ^^^^^^^^^^^^^^^^^^^^ Could not find `Interest` in `mio`
+kablam! 
+kablam! error[E0425]: cannot find function `connect` in module `mio::tcp`
+kablam!    --> src/loop_/handler/mod.rs:191:38
+kablam!     |
+kablam! 191 |         let (stream, waiting) = try!(mio::tcp::connect(&addr));
+kablam!     |                                      ^^^^^^^^^^^^^^^^^ not found in `mio::tcp`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Interest` in `mio`
+kablam!    --> src/loop_/handler/mod.rs:198:17
+kablam!     |
+kablam! 198 |                 mio::Interest::writable() | mio::Interest::hup() | mio::Interest::error(),
+kablam!     |                 ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `Interest` in `mio`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Interest` in `mio`
+kablam!    --> src/loop_/handler/mod.rs:198:45
+kablam!     |
+kablam! 198 |                 mio::Interest::writable() | mio::Interest::hup() | mio::Interest::error(),
+kablam!     |                                             ^^^^^^^^^^^^^^^^^^ Could not find `Interest` in `mio`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Interest` in `mio`
+kablam!    --> src/loop_/handler/mod.rs:198:68
+kablam!     |
+kablam! 198 |                 mio::Interest::writable() | mio::Interest::hup() | mio::Interest::error(),
+kablam!     |                                                                    ^^^^^^^^^^^^^^^^^^^^ Could not find `Interest` in `mio`
+kablam! 
+kablam! error[E0412]: cannot find type `ReadHint` in module `mio`
+kablam!    --> src/loop_/handler/mod.rs:347:72
+kablam!     |
+kablam! 347 |     fn readable (&mut self, eloop: &mut EventLoop, token: Token, hint: mio::ReadHint) -> Result<Action, Error> {
+kablam!     |                                                                        ^^^^^^^^^^^^^ not found in `mio`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `ReadHint` in `mio`
+kablam!    --> src/loop_/handler/mod.rs:355:34
+kablam!     |
+kablam! 355 |                 if hint.contains(mio::ReadHint::error()) {
+kablam!     |                                  ^^^^^^^^^^^^^^^^^^^^ Could not find `ReadHint` in `mio`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `ReadHint` in `mio`
+kablam!    --> src/loop_/handler/mod.rs:391:34
+kablam!     |
+kablam! 391 |                 if hint.contains(mio::ReadHint::hup()) {
+kablam!     |                                  ^^^^^^^^^^^^^^^^^^ Could not find `ReadHint` in `mio`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Handler` in `mio`
+kablam!    --> src/loop_/handler/mod.rs:439:17
+kablam!     |
+kablam! 439 |                 mio::Handler::notify(self, eloop, InputMessage::Close { token: token, dirty: true });
+kablam!     |                 ^^^^^^^^^^^^^^^^^^^^ Could not find `Handler` in `mio`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Handler` in `mio`
+kablam!    --> src/loop_/handler/mod.rs:445:17
+kablam!     |
+kablam! 445 |                 mio::Handler::notify(self, eloop, InputMessage::Close { token: token, dirty: false });
+kablam!     |                 ^^^^^^^^^^^^^^^^^^^^ Could not find `Handler` in `mio`
+kablam! 
+kablam! error[E0405]: cannot find trait `Handler` in module `mio`
+kablam!    --> src/loop_/handler/mod.rs:461:6
+kablam!     |
+kablam! 461 | impl mio::Handler for Handler {
+kablam!     |      ^^^^^^^^^^^^ not found in `mio`
+kablam!     |
+kablam!     = help: possible candidate is found in another module, you can import it into scope:
+kablam!               `use mio::deprecated::Handler;`
+kablam! 
+kablam! error[E0412]: cannot find type `ReadHint` in module `mio`
+kablam!    --> src/loop_/handler/mod.rs:465:72
+kablam!     |
+kablam! 465 |     fn readable (&mut self, eloop: &mut EventLoop, token: Token, hint: mio::ReadHint) {
+kablam!     |                                                                        ^^^^^^^^^^^^^ not found in `mio`
+kablam! 
+kablam! error[E0412]: cannot find type `EventLoop` in module `mio`
+kablam!   --> src/loop_/mod.rs:11:22
+kablam!    |
+kablam! 11 | pub type EventLoop = mio::EventLoop<Handler>;
+kablam!    |                      ^^^^^^^^^^^^^^^^^^^^^^^ not found in `mio`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use loop_::EventLoop;`
+kablam!              `use mio::deprecated::EventLoop;`
+kablam! 
+kablam! error[E0412]: cannot find type `Sender` in module `mio`
+kablam!   --> src/loop_/mod.rs:31:31
+kablam!    |
+kablam! 31 |     pub fn channel (&self) -> mio::Sender<InputMessage> {
+kablam!    |                               ^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `mio`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use mio::channel::Sender;`
+kablam!              `use mio::deprecated::Sender;`
+kablam!              `use std::sync::mpsc::Sender;`
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `tcp-loop`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f ad6386a909562e0195a29224d602d61afb0d1bef142f6d1f74aa609b49dc6b7b`
+blam! ad6386a909562e0195a29224d602d61afb0d1bef142f6d1f74aa609b49dc6b7b

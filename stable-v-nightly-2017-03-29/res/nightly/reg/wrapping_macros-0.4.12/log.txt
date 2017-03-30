@@ -1,0 +1,45 @@
+boom! testing wrapping_macros-0.4.12 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 7f834d697311f91f196830387cef6f650b0d6cba2cd72a0608a0f7e626ef9d3f
+boom! running `docker start -a 7f834d697311f91f196830387cef6f650b0d6cba2cd72a0608a0f7e626ef9d3f`
+kablam!    Compiling wrapping_macros v0.4.12 (file:///source)
+kablam! error[E0425]: cannot find function `tts_to_parser` in module `parse`
+kablam!   --> src/lib.rs:96:29
+kablam!    |
+kablam! 96 |     let mut parser = parse::tts_to_parser(cx.parse_sess, vec![block]);
+kablam!    |                             ^^^^^^^^^^^^^ not found in `parse`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/lib.rs:94:14
+kablam!    |
+kablam! 94 |         tts: tts.to_owned(),
+kablam!    |              ^^^^^^^^^^^^^^ expected struct `syntax::tokenstream::ThinTokenStream`, found struct `std::vec::Vec`
+kablam!    |
+kablam!    = note: expected type `syntax::tokenstream::ThinTokenStream`
+kablam!               found type `std::vec::Vec<syntax::tokenstream::TokenTree>`
+kablam!    = help: here are some functions which might fulfill your needs:
+kablam!            - .remove(...)
+kablam!            - .swap_remove(...)
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/lib.rs:92:42
+kablam!    |
+kablam! 92 |       let block = TokenTree::Delimited(sp, Rc::new(Delimited {
+kablam!    |  __________________________________________^ starting here...
+kablam! 93 | |         delim: DelimToken::Brace,
+kablam! 94 | |         tts: tts.to_owned(),
+kablam! 95 | |     }));
+kablam!    | |______^ ...ending here: expected struct `syntax::tokenstream::Delimited`, found struct `std::rc::Rc`
+kablam!    |
+kablam!    = note: expected type `syntax::tokenstream::Delimited`
+kablam!               found type `std::rc::Rc<syntax::tokenstream::Delimited>`
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `wrapping_macros`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 7f834d697311f91f196830387cef6f650b0d6cba2cd72a0608a0f7e626ef9d3f`
+blam! 7f834d697311f91f196830387cef6f650b0d6cba2cd72a0608a0f7e626ef9d3f

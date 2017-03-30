@@ -1,0 +1,2277 @@
+boom! testing schannel-0.1.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 4fbbeeebd69b6362eba668eeeef81d4093c2d520dcf69a2c5680047fae08402c
+boom! running `docker start -a 4fbbeeebd69b6362eba668eeeef81d4093c2d520dcf69a2c5680047fae08402c`
+kablam!    Compiling secur32-sys v0.2.0
+kablam!    Compiling crypt32-sys v0.2.0
+kablam!    Compiling schannel v0.1.2 (file:///source)
+kablam! error[E0432]: unresolved import `std::os::windows::prelude::*`
+kablam!  --> src/cert_context.rs:6:5
+kablam!   |
+kablam! 6 | use std::os::windows::prelude::*;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `windows` in `os`
+kablam! 
+kablam! error[E0432]: unresolved import `std::os::windows::prelude::*`
+kablam!  --> src/cert_store.rs:9:5
+kablam!   |
+kablam! 9 | use std::os::windows::prelude::*;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `windows` in `os`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!   --> src/cert_context.rs:15:47
+kablam!    |
+kablam! 15 | const CRYPT_ACQUIRE_COMPARE_KEY_FLAG: winapi::DWORD = 0x4;
+kablam!    |                                               ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!   --> src/cert_context.rs:16:42
+kablam!    |
+kablam! 16 | const CRYPT_ACQUIRE_SILENT_FLAG: winapi::DWORD = 0x40;
+kablam!    |                                          ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!   --> src/cert_context.rs:17:52
+kablam!    |
+kablam! 17 | const CRYPT_ACQUIRE_ALLOW_NCRYPT_KEY_FLAG: winapi::DWORD = 0x10000;
+kablam!    |                                                    ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `PCCERT_CONTEXT` in module `winapi`
+kablam!   --> src/cert_context.rs:21:32
+kablam!    |
+kablam! 21 | pub struct CertContext(winapi::PCCERT_CONTEXT);
+kablam!    |                                ^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `CertCreateCertificateContext` in module `crypt32`
+kablam!   --> src/cert_context.rs:33:22
+kablam!    |
+kablam! 33 |             crypt32::CertCreateCertificateContext(
+kablam!    |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `crypt32`
+kablam! 
+kablam! error[E0425]: cannot find value `X509_ASN_ENCODING` in module `winapi`
+kablam!   --> src/cert_context.rs:34:25
+kablam!    |
+kablam! 34 |                 winapi::X509_ASN_ENCODING |
+kablam!    |                         ^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `PKCS_7_ASN_ENCODING` in module `winapi`
+kablam!   --> src/cert_context.rs:35:25
+kablam!    |
+kablam! 35 |                 winapi::PKCS_7_ASN_ENCODING,
+kablam!    |                         ^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!   --> src/cert_context.rs:37:39
+kablam!    |
+kablam! 37 |                 data.len() as winapi::DWORD)
+kablam!    |                                       ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!   --> src/cert_context.rs:53:48
+kablam!    |
+kablam! 53 |             let mut len = buf.len() as winapi::DWORD;
+kablam!    |                                                ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `CertGetCertificateContextProperty` in module `crypt32`
+kablam!   --> src/cert_context.rs:54:32
+kablam!    |
+kablam! 54 |             let ret = crypt32::CertGetCertificateContextProperty(
+kablam!    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `crypt32`
+kablam! 
+kablam! error[E0425]: cannot find value `CERT_SHA1_HASH_PROP_ID` in module `winapi`
+kablam!   --> src/cert_context.rs:56:33
+kablam!    |
+kablam! 56 |                         winapi::CERT_SHA1_HASH_PROP_ID,
+kablam!    |                                 ^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `c_void` in module `winapi`
+kablam!   --> src/cert_context.rs:57:58
+kablam!    |
+kablam! 57 |                         buf.as_mut_ptr() as *mut winapi::c_void,
+kablam!    |                                                          ^^^^^^ not found in `winapi`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::os::raw::c_void;`
+kablam! 
+kablam! error[E0425]: cannot find value `TRUE` in module `winapi`
+kablam!   --> src/cert_context.rs:59:31
+kablam!    |
+kablam! 59 |             if ret != winapi::TRUE {
+kablam!    |                               ^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CERT_SIGN_HASH_CNG_ALG_PROP_ID` in module `winapi`
+kablam!   --> src/cert_context.rs:78:33
+kablam!    |
+kablam! 78 |         self.get_string(winapi::CERT_SIGN_HASH_CNG_ALG_PROP_ID)
+kablam!    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CERT_SIGNATURE_HASH_PROP_ID` in module `winapi`
+kablam!   --> src/cert_context.rs:83:32
+kablam!    |
+kablam! 83 |         self.get_bytes(winapi::CERT_SIGNATURE_HASH_PROP_ID)
+kablam!    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CERT_DESCRIPTION_PROP_ID` in module `winapi`
+kablam!   --> src/cert_context.rs:89:32
+kablam!    |
+kablam! 89 |         self.get_bytes(winapi::CERT_DESCRIPTION_PROP_ID)
+kablam!    |                                ^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CERT_FRIENDLY_NAME_PROP_ID` in module `winapi`
+kablam!   --> src/cert_context.rs:94:33
+kablam!    |
+kablam! 94 |         self.get_string(winapi::CERT_FRIENDLY_NAME_PROP_ID)
+kablam!    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CERT_FRIENDLY_NAME_PROP_ID` in module `winapi`
+kablam!    --> src/cert_context.rs:100:33
+kablam!     |
+kablam! 100 |         self.set_string(winapi::CERT_FRIENDLY_NAME_PROP_ID, name)
+kablam!     |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `CertVerifyTimeValidity` in module `crypt32`
+kablam!    --> src/cert_context.rs:107:22
+kablam!     |
+kablam! 107 |             crypt32::CertVerifyTimeValidity(ptr::null_mut(), (*self.0).pCertInfo)
+kablam!     |                      ^^^^^^^^^^^^^^^^^^^^^^ not found in `crypt32`
+kablam! 
+kablam! error[E0425]: cannot find function `CertDeleteCertificateFromStore` in module `crypt32`
+kablam!    --> src/cert_context.rs:123:32
+kablam!     |
+kablam! 123 |             let ret = crypt32::CertDeleteCertificateFromStore(self.0);
+kablam!     |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `crypt32`
+kablam! 
+kablam! error[E0425]: cannot find value `TRUE` in module `winapi`
+kablam!    --> src/cert_context.rs:125:31
+kablam!     |
+kablam! 125 |             if ret == winapi::TRUE {
+kablam!     |                               ^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!    --> src/cert_context.rs:133:39
+kablam!     |
+kablam! 133 |     fn get_bytes(&self, prop: winapi::DWORD) -> io::Result<Vec<u8>> {
+kablam!     |                                       ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `CertGetCertificateContextProperty` in module `crypt32`
+kablam!    --> src/cert_context.rs:136:32
+kablam!     |
+kablam! 136 |             let ret = crypt32::CertGetCertificateContextProperty(
+kablam!     |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `crypt32`
+kablam! 
+kablam! error[E0425]: cannot find value `TRUE` in module `winapi`
+kablam!    --> src/cert_context.rs:141:31
+kablam!     |
+kablam! 141 |             if ret != winapi::TRUE {
+kablam!     |                               ^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `CertGetCertificateContextProperty` in module `crypt32`
+kablam!    --> src/cert_context.rs:146:32
+kablam!     |
+kablam! 146 |             let ret = crypt32::CertGetCertificateContextProperty(
+kablam!     |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `crypt32`
+kablam! 
+kablam! error[E0412]: cannot find type `c_void` in module `winapi`
+kablam!    --> src/cert_context.rs:149:58
+kablam!     |
+kablam! 149 |                         buf.as_mut_ptr() as *mut winapi::c_void,
+kablam!     |                                                          ^^^^^^ not found in `winapi`
+kablam!     |
+kablam!     = help: possible candidate is found in another module, you can import it into scope:
+kablam!               `use std::os::raw::c_void;`
+kablam! 
+kablam! error[E0425]: cannot find value `TRUE` in module `winapi`
+kablam!    --> src/cert_context.rs:151:31
+kablam!     |
+kablam! 151 |             if ret != winapi::TRUE {
+kablam!     |                               ^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!    --> src/cert_context.rs:158:40
+kablam!     |
+kablam! 158 |     fn get_string(&self, prop: winapi::DWORD) -> io::Result<String> {
+kablam!     |                                        ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `CertGetCertificateContextProperty` in module `crypt32`
+kablam!    --> src/cert_context.rs:161:32
+kablam!     |
+kablam! 161 |             let ret = crypt32::CertGetCertificateContextProperty(
+kablam!     |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `crypt32`
+kablam! 
+kablam! error[E0425]: cannot find value `TRUE` in module `winapi`
+kablam!    --> src/cert_context.rs:166:31
+kablam!     |
+kablam! 166 |             if ret != winapi::TRUE {
+kablam!     |                               ^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `CertGetCertificateContextProperty` in module `crypt32`
+kablam!    --> src/cert_context.rs:174:32
+kablam!     |
+kablam! 174 |             let ret = crypt32::CertGetCertificateContextProperty(
+kablam!     |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `crypt32`
+kablam! 
+kablam! error[E0412]: cannot find type `c_void` in module `winapi`
+kablam!    --> src/cert_context.rs:177:58
+kablam!     |
+kablam! 177 |                         buf.as_mut_ptr() as *mut winapi::c_void,
+kablam!     |                                                          ^^^^^^ not found in `winapi`
+kablam!     |
+kablam!     = help: possible candidate is found in another module, you can import it into scope:
+kablam!               `use std::os::raw::c_void;`
+kablam! 
+kablam! error[E0425]: cannot find value `TRUE` in module `winapi`
+kablam!    --> src/cert_context.rs:179:31
+kablam!     |
+kablam! 179 |             if ret != winapi::TRUE {
+kablam!     |                               ^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!    --> src/cert_context.rs:188:40
+kablam!     |
+kablam! 188 |     fn set_string(&self, prop: winapi::DWORD, s: &str) -> io::Result<()> {
+kablam!     |                                        ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0422]: cannot find struct, variant or union type `CRYPT_DATA_BLOB` in module `winapi`
+kablam!    --> src/cert_context.rs:191:32
+kablam!     |
+kablam! 191 |             let data = winapi::CRYPT_DATA_BLOB {
+kablam!     |                                ^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!    --> src/cert_context.rs:192:53
+kablam!     |
+kablam! 192 |                 cbData: (data.len() * 2) as winapi::DWORD,
+kablam!     |                                                     ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `CertSetCertificateContextProperty` in module `crypt32`
+kablam!    --> src/cert_context.rs:195:32
+kablam!     |
+kablam! 195 |             let ret = crypt32::CertSetCertificateContextProperty(
+kablam!     |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `crypt32`
+kablam! 
+kablam! error[E0425]: cannot find value `TRUE` in module `winapi`
+kablam!    --> src/cert_context.rs:200:31
+kablam!     |
+kablam! 200 |             if ret != winapi::TRUE {
+kablam!     |                               ^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!    --> src/cert_context.rs:212:20
+kablam!     |
+kablam! 212 |     flags: winapi::DWORD,
+kablam!     |                    ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!    --> src/cert_context.rs:228:38
+kablam!     |
+kablam! 228 |     fn flag(&mut self, flag: winapi::DWORD, set: bool) -> &mut AcquirePrivateKeyOptions<'a> {
+kablam!     |                                      ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `FALSE` in module `winapi`
+kablam!    --> src/cert_context.rs:243:36
+kablam!     |
+kablam! 243 |             let mut free = winapi::FALSE;
+kablam!     |                                    ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `CryptAcquireCertificatePrivateKey` in module `crypt32`
+kablam!    --> src/cert_context.rs:244:32
+kablam!     |
+kablam! 244 |             let res = crypt32::CryptAcquireCertificatePrivateKey(self.cert.0,
+kablam!     |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `crypt32`
+kablam! 
+kablam! error[E0425]: cannot find value `TRUE` in module `winapi`
+kablam!    --> src/cert_context.rs:250:31
+kablam!     |
+kablam! 250 |             if res != winapi::TRUE {
+kablam!     |                               ^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `TRUE` in module `winapi`
+kablam!    --> src/cert_context.rs:253:37
+kablam!     |
+kablam! 253 |             assert!(free == winapi::TRUE);
+kablam!     |                                     ^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `CertDuplicateCertificateContext` in module `crypt32`
+kablam!    --> src/cert_context.rs:262:34
+kablam!     |
+kablam! 262 |             CertContext(crypt32::CertDuplicateCertificateContext(self.0))
+kablam!     |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `crypt32`
+kablam! 
+kablam! error[E0425]: cannot find function `CertFreeCertificateContext` in module `crypt32`
+kablam!    --> src/cert_context.rs:270:22
+kablam!     |
+kablam! 270 |             crypt32::CertFreeCertificateContext(self.0);
+kablam!     |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `crypt32`
+kablam! 
+kablam! error[E0412]: cannot find type `PCCERT_CONTEXT` in module `winapi`
+kablam!    --> src/cert_context.rs:275:20
+kablam!     |
+kablam! 275 | impl Inner<winapi::PCCERT_CONTEXT> for CertContext {
+kablam!     |                    ^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `PCCERT_CONTEXT` in module `winapi`
+kablam!    --> src/cert_context.rs:276:37
+kablam!     |
+kablam! 276 |     unsafe fn from_inner(t: winapi::PCCERT_CONTEXT) -> CertContext {
+kablam!     |                                     ^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `PCCERT_CONTEXT` in module `winapi`
+kablam!    --> src/cert_context.rs:280:35
+kablam!     |
+kablam! 280 |     fn as_inner(&self) -> winapi::PCCERT_CONTEXT {
+kablam!     |                                   ^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `PCCERT_CONTEXT` in module `winapi`
+kablam!    --> src/cert_context.rs:284:43
+kablam!     |
+kablam! 284 |     fn get_mut(&mut self) -> &mut winapi::PCCERT_CONTEXT {
+kablam!     |                                           ^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!   --> src/cert_store.rs:19:51
+kablam!    |
+kablam! 19 | const PKCS12_INCLUDE_EXTENDED_PROPERTIES: winapi::DWORD = 0x10;
+kablam!    |                                                   ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!   --> src/cert_store.rs:20:38
+kablam!    |
+kablam! 20 | const PKCS12_NO_PERSIST_KEY: winapi::DWORD = 0x8000;
+kablam!    |                                      ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `HCERTSTORE` in module `winapi`
+kablam!   --> src/cert_store.rs:23:30
+kablam!    |
+kablam! 23 | pub struct CertStore(winapi::HCERTSTORE);
+kablam!    |                              ^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `CertCloseStore` in module `crypt32`
+kablam!   --> src/cert_store.rs:37:22
+kablam!    |
+kablam! 37 |             crypt32::CertCloseStore(self.0, 0);
+kablam!    |                      ^^^^^^^^^^^^^^ not found in `crypt32`
+kablam! 
+kablam! error[E0425]: cannot find function `CertDuplicateStore` in module `crypt32`
+kablam!   --> src/cert_store.rs:44:37
+kablam!    |
+kablam! 44 |         unsafe { CertStore(crypt32::CertDuplicateStore(self.0)) }
+kablam!    |                                     ^^^^^^^^^^^^^^^^^^ not found in `crypt32`
+kablam! 
+kablam! error[E0412]: cannot find type `HCERTSTORE` in module `winapi`
+kablam!   --> src/cert_store.rs:48:20
+kablam!    |
+kablam! 48 | impl Inner<winapi::HCERTSTORE> for CertStore {
+kablam!    |                    ^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `HCERTSTORE` in module `winapi`
+kablam!   --> src/cert_store.rs:49:37
+kablam!    |
+kablam! 49 |     unsafe fn from_inner(t: winapi::HCERTSTORE) -> CertStore {
+kablam!    |                                     ^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `HCERTSTORE` in module `winapi`
+kablam!   --> src/cert_store.rs:53:35
+kablam!    |
+kablam! 53 |     fn as_inner(&self) -> winapi::HCERTSTORE {
+kablam!    |                                   ^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `HCERTSTORE` in module `winapi`
+kablam!   --> src/cert_store.rs:57:43
+kablam!    |
+kablam! 57 |     fn get_mut(&mut self) -> &mut winapi::HCERTSTORE {
+kablam!    |                                           ^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CERT_STORE_ADD_ALWAYS` in module `winapi`
+kablam!   --> src/cert_store.rs:68:22
+kablam!    |
+kablam! 68 |     Always = winapi::CERT_STORE_ADD_ALWAYS as isize,
+kablam!    |                      ^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CERT_STORE_ADD_NEW` in module `winapi`
+kablam!   --> src/cert_store.rs:72:19
+kablam!    |
+kablam! 72 |     New = winapi::CERT_STORE_ADD_NEW as isize,
+kablam!    |                   ^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CERT_STORE_ADD_NEWER` in module `winapi`
+kablam!   --> src/cert_store.rs:83:21
+kablam!    |
+kablam! 83 |     Newer = winapi::CERT_STORE_ADD_NEWER as isize,
+kablam!    |                     ^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CERT_STORE_ADD_NEWER_INHERIT_PROPERTIES` in module `winapi`
+kablam!   --> src/cert_store.rs:93:38
+kablam!    |
+kablam! 93 |     NewerInheritProperties = winapi::CERT_STORE_ADD_NEWER_INHERIT_PROPERTIES as isize,
+kablam!    |                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CERT_STORE_ADD_REPLACE_EXISTING` in module `winapi`
+kablam!   --> src/cert_store.rs:99:31
+kablam!    |
+kablam! 99 |     ReplaceExisting = winapi::CERT_STORE_ADD_REPLACE_EXISTING as isize,
+kablam!    |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CERT_STORE_ADD_REPLACE_EXISTING_INHERIT_PROPERTIES` in module `winapi`
+kablam!    --> src/cert_store.rs:105:17
+kablam!     |
+kablam! 105 |         winapi::CERT_STORE_ADD_REPLACE_EXISTING_INHERIT_PROPERTIES as isize,
+kablam!     |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CERT_STORE_ADD_USE_EXISTING` in module `winapi`
+kablam!    --> src/cert_store.rs:114:27
+kablam!     |
+kablam! 114 |     UseExisting = winapi::CERT_STORE_ADD_USE_EXISTING as isize,
+kablam!     |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `CertOpenStore` in module `crypt32`
+kablam!    --> src/cert_store.rs:127:34
+kablam!     |
+kablam! 127 |             let store = crypt32::CertOpenStore(winapi::CERT_STORE_PROV_SYSTEM_W as winapi::LPCSTR,
+kablam!     |                                  ^^^^^^^^^^^^^ not found in `crypt32`
+kablam! 
+kablam! error[E0425]: cannot find value `CERT_STORE_PROV_SYSTEM_W` in module `winapi`
+kablam!    --> src/cert_store.rs:127:56
+kablam!     |
+kablam! 127 |             let store = crypt32::CertOpenStore(winapi::CERT_STORE_PROV_SYSTEM_W as winapi::LPCSTR,
+kablam!     |                                                        ^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `LPCSTR` in module `winapi`
+kablam!    --> src/cert_store.rs:127:92
+kablam!     |
+kablam! 127 |             let store = crypt32::CertOpenStore(winapi::CERT_STORE_PROV_SYSTEM_W as winapi::LPCSTR,
+kablam!     |                                                                                            ^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CERT_SYSTEM_STORE_CURRENT_USER` in module `winapi`
+kablam!    --> src/cert_store.rs:130:56
+kablam!     |
+kablam! 130 |                                                winapi::CERT_SYSTEM_STORE_CURRENT_USER,
+kablam!     |                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `CertOpenStore` in module `crypt32`
+kablam!    --> src/cert_store.rs:150:34
+kablam!     |
+kablam! 150 |             let store = crypt32::CertOpenStore(winapi::CERT_STORE_PROV_SYSTEM_W as winapi::LPCSTR,
+kablam!     |                                  ^^^^^^^^^^^^^ not found in `crypt32`
+kablam! 
+kablam! error[E0425]: cannot find value `CERT_STORE_PROV_SYSTEM_W` in module `winapi`
+kablam!    --> src/cert_store.rs:150:56
+kablam!     |
+kablam! 150 |             let store = crypt32::CertOpenStore(winapi::CERT_STORE_PROV_SYSTEM_W as winapi::LPCSTR,
+kablam!     |                                                        ^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `LPCSTR` in module `winapi`
+kablam!    --> src/cert_store.rs:150:92
+kablam!     |
+kablam! 150 |             let store = crypt32::CertOpenStore(winapi::CERT_STORE_PROV_SYSTEM_W as winapi::LPCSTR,
+kablam!     |                                                                                            ^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CERT_SYSTEM_STORE_LOCAL_MACHINE` in module `winapi`
+kablam!    --> src/cert_store.rs:153:56
+kablam!     |
+kablam! 153 |                                                winapi::CERT_SYSTEM_STORE_LOCAL_MACHINE,
+kablam!     |                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0422]: cannot find struct, variant or union type `CRYPT_INTEGER_BLOB` in module `winapi`
+kablam!    --> src/cert_store.rs:171:36
+kablam!     |
+kablam! 171 |             let mut blob = winapi::CRYPT_INTEGER_BLOB {
+kablam!     |                                    ^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!    --> src/cert_store.rs:172:47
+kablam!     |
+kablam! 172 |                 cbData: data.len() as winapi::DWORD,
+kablam!     |                                               ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `PFXImportCertStore` in module `crypt32`
+kablam!    --> src/cert_store.rs:182:32
+kablam!     |
+kablam! 182 |             let res = crypt32::PFXImportCertStore(&mut blob,
+kablam!     |                                ^^^^^^^^^^^^^^^^^^ not found in `crypt32`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!    --> src/cert_store.rs:206:38
+kablam!     |
+kablam! 206 |             let how = how as winapi::DWORD;
+kablam!     |                                      ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `CertAddCertificateContextToStore` in module `crypt32`
+kablam!    --> src/cert_store.rs:208:32
+kablam!     |
+kablam! 208 |             let res = crypt32::CertAddCertificateContextToStore(self.0,
+kablam!     |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `crypt32`
+kablam! 
+kablam! error[E0425]: cannot find value `TRUE` in module `winapi`
+kablam!    --> src/cert_store.rs:212:31
+kablam!     |
+kablam! 212 |             if res != winapi::TRUE {
+kablam!     |                               ^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!    --> src/cert_store.rs:225:44
+kablam!     |
+kablam! 225 |         const EXPORT_PRIVATE_KEYS: winapi::DWORD = 0x4;
+kablam!     |                                            ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0422]: cannot find struct, variant or union type `CRYPT_DATA_BLOB` in module `winapi`
+kablam!    --> src/cert_store.rs:229:36
+kablam!     |
+kablam! 229 |             let mut blob = winapi::CRYPT_DATA_BLOB {
+kablam!     |                                    ^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `PFXExportCertStore` in module `crypt32`
+kablam!    --> src/cert_store.rs:233:32
+kablam!     |
+kablam! 233 |             let res = crypt32::PFXExportCertStore(self.0,
+kablam!     |                                ^^^^^^^^^^^^^^^^^^ not found in `crypt32`
+kablam! 
+kablam! error[E0425]: cannot find value `TRUE` in module `winapi`
+kablam!    --> src/cert_store.rs:237:31
+kablam!     |
+kablam! 237 |             if res != winapi::TRUE {
+kablam!     |                               ^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `PFXExportCertStore` in module `crypt32`
+kablam!    --> src/cert_store.rs:242:32
+kablam!     |
+kablam! 242 |             let res = crypt32::PFXExportCertStore(self.0,
+kablam!     |                                ^^^^^^^^^^^^^^^^^^ not found in `crypt32`
+kablam! 
+kablam! error[E0425]: cannot find value `TRUE` in module `winapi`
+kablam!    --> src/cert_store.rs:246:31
+kablam!     |
+kablam! 246 |             if res != winapi::TRUE {
+kablam!     |                               ^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `CertEnumCertificatesInStore` in module `crypt32`
+kablam!    --> src/cert_store.rs:273:33
+kablam!     |
+kablam! 273 |             let next = crypt32::CertEnumCertificatesInStore(self.store.0, cur);
+kablam!     |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `crypt32`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!    --> src/cert_store.rs:291:20
+kablam!     |
+kablam! 291 |     flags: winapi::DWORD,
+kablam!     |                    ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!    --> src/cert_store.rs:320:38
+kablam!     |
+kablam! 320 |     fn flag(&mut self, flag: winapi::DWORD, set: bool) -> &mut PfxImportOptions {
+kablam!     |                                      ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0422]: cannot find struct, variant or union type `CRYPT_DATA_BLOB` in module `winapi`
+kablam!    --> src/cert_store.rs:332:36
+kablam!     |
+kablam! 332 |             let mut blob = winapi::CRYPT_DATA_BLOB {
+kablam!     |                                    ^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `DWORD` in `winapi`
+kablam!    --> src/cert_store.rs:333:46
+kablam!     |
+kablam! 333 |                 cbData: cmp::min(data.len(), winapi::DWORD::max_value() as usize) as winapi::DWORD,
+kablam!     |                                              ^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `DWORD` in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!    --> src/cert_store.rs:333:94
+kablam!     |
+kablam! 333 |                 cbData: cmp::min(data.len(), winapi::DWORD::max_value() as usize) as winapi::DWORD,
+kablam!     |                                                                                              ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `PFXImportCertStore` in module `crypt32`
+kablam!    --> src/cert_store.rs:338:34
+kablam!     |
+kablam! 338 |             let store = crypt32::PFXImportCertStore(&mut blob, password, self.flags);
+kablam!     |                                  ^^^^^^^^^^^^^^^^^^ not found in `crypt32`
+kablam! 
+kablam! error[E0425]: cannot find function `CertOpenStore` in module `crypt32`
+kablam!    --> src/cert_store.rs:359:34
+kablam!     |
+kablam! 359 |             let store = crypt32::CertOpenStore(winapi::CERT_STORE_PROV_MEMORY as winapi::LPCSTR,
+kablam!     |                                  ^^^^^^^^^^^^^ not found in `crypt32`
+kablam! 
+kablam! error[E0425]: cannot find value `CERT_STORE_PROV_MEMORY` in module `winapi`
+kablam!    --> src/cert_store.rs:359:56
+kablam!     |
+kablam! 359 |             let store = crypt32::CertOpenStore(winapi::CERT_STORE_PROV_MEMORY as winapi::LPCSTR,
+kablam!     |                                                        ^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `LPCSTR` in module `winapi`
+kablam!    --> src/cert_store.rs:359:90
+kablam!     |
+kablam! 359 |             let store = crypt32::CertOpenStore(winapi::CERT_STORE_PROV_MEMORY as winapi::LPCSTR,
+kablam!     |                                                                                          ^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `CertAddEncodedCertificateToStore` in module `crypt32`
+kablam!    --> src/cert_store.rs:379:32
+kablam!     |
+kablam! 379 |             let res = crypt32::CertAddEncodedCertificateToStore((self.0).0,
+kablam!     |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `crypt32`
+kablam! 
+kablam! error[E0425]: cannot find value `X509_ASN_ENCODING` in module `winapi`
+kablam!    --> src/cert_store.rs:380:73
+kablam!     |
+kablam! 380 |                                                                 winapi::X509_ASN_ENCODING |
+kablam!     |                                                                         ^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `PKCS_7_ASN_ENCODING` in module `winapi`
+kablam!    --> src/cert_store.rs:381:73
+kablam!     |
+kablam! 381 |                                                                 winapi::PKCS_7_ASN_ENCODING,
+kablam!     |                                                                         ^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!    --> src/cert_store.rs:383:87
+kablam!     |
+kablam! 383 |                                                                 cert.len() as winapi::DWORD,
+kablam!     |                                                                                       ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CERT_STORE_ADD_ALWAYS` in module `winapi`
+kablam!    --> src/cert_store.rs:384:73
+kablam!     |
+kablam! 384 |                                                                 winapi::CERT_STORE_ADD_ALWAYS,
+kablam!     |                                                                         ^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `TRUE` in module `winapi`
+kablam!    --> src/cert_store.rs:386:31
+kablam!     |
+kablam! 386 |             if res == winapi::TRUE {
+kablam!     |                               ^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `CertAddEncodedCTLToStore` in module `crypt32`
+kablam!    --> src/cert_store.rs:401:32
+kablam!     |
+kablam! 401 |             let res = crypt32::CertAddEncodedCTLToStore((self.0).0,
+kablam!     |                                ^^^^^^^^^^^^^^^^^^^^^^^^ not found in `crypt32`
+kablam! 
+kablam! error[E0425]: cannot find value `X509_ASN_ENCODING` in module `winapi`
+kablam!    --> src/cert_store.rs:402:65
+kablam!     |
+kablam! 402 |                                                         winapi::X509_ASN_ENCODING |
+kablam!     |                                                                 ^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `PKCS_7_ASN_ENCODING` in module `winapi`
+kablam!    --> src/cert_store.rs:403:65
+kablam!     |
+kablam! 403 |                                                         winapi::PKCS_7_ASN_ENCODING,
+kablam!     |                                                                 ^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!    --> src/cert_store.rs:405:78
+kablam!     |
+kablam! 405 |                                                         ctl.len() as winapi::DWORD,
+kablam!     |                                                                              ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CERT_STORE_ADD_ALWAYS` in module `winapi`
+kablam!    --> src/cert_store.rs:406:65
+kablam!     |
+kablam! 406 |                                                         winapi::CERT_STORE_ADD_ALWAYS,
+kablam!     |                                                                 ^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `TRUE` in module `winapi`
+kablam!    --> src/cert_store.rs:408:31
+kablam!     |
+kablam! 408 |             if res == winapi::TRUE {
+kablam!     |                               ^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `szOID_OIWSEC_sha1` in module `winapi`
+kablam!   --> src/ctl_context.rs:16:11
+kablam!    |
+kablam! 16 | 		winapi::szOID_OIWSEC_sha1.bytes().chain(Some(0)).collect();
+kablam!    | 		        ^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use ctl_context::szOID_OIWSEC_sha1;`
+kablam! 
+kablam! error[E0412]: cannot find type `PCCTL_CONTEXT` in module `winapi`
+kablam!   --> src/ctl_context.rs:21:31
+kablam!    |
+kablam! 21 | pub struct CtlContext(winapi::PCCTL_CONTEXT);
+kablam!    |                               ^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `CertFreeCTLContext` in module `crypt32`
+kablam!   --> src/ctl_context.rs:29:22
+kablam!    |
+kablam! 29 |             crypt32::CertFreeCTLContext(self.0);
+kablam!    |                      ^^^^^^^^^^^^^^^^^^ not found in `crypt32`
+kablam! 
+kablam! error[E0412]: cannot find type `PCCTL_CONTEXT` in module `winapi`
+kablam!   --> src/ctl_context.rs:34:20
+kablam!    |
+kablam! 34 | impl Inner<winapi::PCCTL_CONTEXT> for CtlContext {
+kablam!    |                    ^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `PCCTL_CONTEXT` in module `winapi`
+kablam!   --> src/ctl_context.rs:35:37
+kablam!    |
+kablam! 35 |     unsafe fn from_inner(t: winapi::PCCTL_CONTEXT) -> CtlContext {
+kablam!    |                                     ^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `PCCTL_CONTEXT` in module `winapi`
+kablam!   --> src/ctl_context.rs:39:35
+kablam!    |
+kablam! 39 |     fn as_inner(&self) -> winapi::PCCTL_CONTEXT {
+kablam!    |                                   ^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `PCCTL_CONTEXT` in module `winapi`
+kablam!   --> src/ctl_context.rs:43:43
+kablam!    |
+kablam! 43 |     fn get_mut(&mut self) -> &mut winapi::PCCTL_CONTEXT {
+kablam!    |                                           ^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `X509_ASN_ENCODING` in module `winapi`
+kablam!   --> src/ctl_context.rs:87:36
+kablam!    |
+kablam! 87 |             let encoding = winapi::X509_ASN_ENCODING | winapi::PKCS_7_ASN_ENCODING;
+kablam!    |                                    ^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `PKCS_7_ASN_ENCODING` in module `winapi`
+kablam!   --> src/ctl_context.rs:87:64
+kablam!    |
+kablam! 87 |             let encoding = winapi::X509_ASN_ENCODING | winapi::PKCS_7_ASN_ENCODING;
+kablam!    |                                                                ^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `CTL_ENTRY` in module `winapi`
+kablam!   --> src/ctl_context.rs:94:64
+kablam!    |
+kablam! 94 |                 entries.push(*(data.as_ptr() as *const winapi::CTL_ENTRY));
+kablam!    |                                                                ^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `CTL_INFO` in module `winapi`
+kablam!   --> src/ctl_context.rs:98:39
+kablam!    |
+kablam! 98 |             let mut ctl_info: winapi::CTL_INFO = mem::zeroed();
+kablam!    |                                       ^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CTL_V1` in module `winapi`
+kablam!   --> src/ctl_context.rs:99:42
+kablam!    |
+kablam! 99 |             ctl_info.dwVersion = winapi::CTL_V1;
+kablam!    |                                          ^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!    --> src/ctl_context.rs:100:78
+kablam!     |
+kablam! 100 |             ctl_info.SubjectUsage.cUsageIdentifier = usages.len() as winapi::DWORD;
+kablam!     |                                                                              ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `LPSTR` in module `winapi`
+kablam!    --> src/ctl_context.rs:101:94
+kablam!     |
+kablam! 101 |             ctl_info.SubjectUsage.rgpszUsageIdentifier = usages.as_mut_ptr() as *mut winapi::LPSTR;
+kablam!     |                                                                                              ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `LPSTR` in module `winapi`
+kablam!    --> src/ctl_context.rs:102:88
+kablam!     |
+kablam! 102 |             ctl_info.SubjectAlgorithm.pszObjId = szOID_OIWSEC_sha1.as_ptr() as winapi::LPSTR;
+kablam!     |                                                                                        ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!    --> src/ctl_context.rs:103:59
+kablam!     |
+kablam! 103 |             ctl_info.cCTLEntry = entries.len() as winapi::DWORD;
+kablam!     |                                                           ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `CMSG_SIGNED_ENCODE_INFO` in module `winapi`
+kablam!    --> src/ctl_context.rs:106:40
+kablam!     |
+kablam! 106 |             let mut sign_info: winapi::CMSG_SIGNED_ENCODE_INFO = mem::zeroed();
+kablam!     |                                        ^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!    --> src/ctl_context.rs:107:72
+kablam!     |
+kablam! 107 |             sign_info.cbSize = mem::size_of_val(&sign_info) as winapi::DWORD;
+kablam!     |                                                                        ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0422]: cannot find struct, variant or union type `CERT_BLOB` in module `winapi`
+kablam!    --> src/ctl_context.rs:111:29
+kablam!     |
+kablam! 111 |                     winapi::CERT_BLOB {
+kablam!     |                             ^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!    --> src/ctl_context.rs:118:69
+kablam!     |
+kablam! 118 |             sign_info.cCertEncoded = encoded_certs.len() as winapi::DWORD;
+kablam!     |                                                                     ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CMSG_ENCODE_SORTED_CTL_FLAG` in module `winapi`
+kablam!    --> src/ctl_context.rs:120:33
+kablam!     |
+kablam! 120 |             let flags = winapi::CMSG_ENCODE_SORTED_CTL_FLAG |
+kablam!     |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CMSG_ENCODE_HASHED_SUBJECT_IDENTIFIER_FLAG` in module `winapi`
+kablam!    --> src/ctl_context.rs:121:33
+kablam!     |
+kablam! 121 |                         winapi::CMSG_ENCODE_HASHED_SUBJECT_IDENTIFIER_FLAG;
+kablam!     |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `CryptMsgEncodeAndSignCTL` in module `crypt32`
+kablam!    --> src/ctl_context.rs:125:32
+kablam!     |
+kablam! 125 |             let res = crypt32::CryptMsgEncodeAndSignCTL(encoding,
+kablam!     |                                ^^^^^^^^^^^^^^^^^^^^^^^^ not found in `crypt32`
+kablam! 
+kablam! error[E0425]: cannot find value `FALSE` in module `winapi`
+kablam!    --> src/ctl_context.rs:131:31
+kablam!     |
+kablam! 131 |             if res == winapi::FALSE {
+kablam!     |                               ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `CryptMsgEncodeAndSignCTL` in module `crypt32`
+kablam!    --> src/ctl_context.rs:137:32
+kablam!     |
+kablam! 137 |             let res = crypt32::CryptMsgEncodeAndSignCTL(encoding,
+kablam!     |                                ^^^^^^^^^^^^^^^^^^^^^^^^ not found in `crypt32`
+kablam! 
+kablam! error[E0412]: cannot find type `BYTE` in module `winapi`
+kablam!    --> src/ctl_context.rs:141:94
+kablam!     |
+kablam! 141 |                                                         encoded.as_mut_ptr() as *mut winapi::BYTE,
+kablam!     |                                                                                              ^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `FALSE` in module `winapi`
+kablam!    --> src/ctl_context.rs:143:31
+kablam!     |
+kablam! 143 |             if res == winapi::FALSE {
+kablam!     |                               ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `CertCreateCTLEntryFromCertificateContextProperties` in module `crypt32`
+kablam!    --> src/ctl_context.rs:156:28
+kablam!     |
+kablam! 156 |         let res = crypt32::CertCreateCTLEntryFromCertificateContextProperties(
+kablam!     |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `crypt32`
+kablam! 
+kablam! error[E0425]: cannot find value `CTL_ENTRY_FROM_PROP_CHAIN_FLAG` in module `winapi`
+kablam!    --> src/ctl_context.rs:160:12
+kablam!     |
+kablam! 160 | 			winapi::CTL_ENTRY_FROM_PROP_CHAIN_FLAG,
+kablam!     | 			        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `FALSE` in module `winapi`
+kablam!    --> src/ctl_context.rs:164:27
+kablam!     |
+kablam! 164 |         if res == winapi::FALSE {
+kablam!     |                           ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `CertCreateCTLEntryFromCertificateContextProperties` in module `crypt32`
+kablam!    --> src/ctl_context.rs:169:28
+kablam!     |
+kablam! 169 |         let res = crypt32::CertCreateCTLEntryFromCertificateContextProperties(
+kablam!     |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `crypt32`
+kablam! 
+kablam! error[E0425]: cannot find value `CTL_ENTRY_FROM_PROP_CHAIN_FLAG` in module `winapi`
+kablam!    --> src/ctl_context.rs:173:12
+kablam!     |
+kablam! 173 | 			winapi::CTL_ENTRY_FROM_PROP_CHAIN_FLAG,
+kablam!     | 			        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `PCTL_ENTRY` in module `winapi`
+kablam!    --> src/ctl_context.rs:175:34
+kablam!     |
+kablam! 175 | 			entry.as_mut_ptr() as winapi::PCTL_ENTRY,
+kablam!     | 			                              ^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `FALSE` in module `winapi`
+kablam!    --> src/ctl_context.rs:177:27
+kablam!     |
+kablam! 177 |         if res == winapi::FALSE {
+kablam!     |                           ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `HCRYPTPROV_OR_NCRYPT_KEY_HANDLE` in module `winapi`
+kablam!   --> src/key_handle.rs:10:21
+kablam!    |
+kablam! 10 |     handle: winapi::HCRYPTPROV_OR_NCRYPT_KEY_HANDLE,
+kablam!    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!   --> src/key_handle.rs:11:19
+kablam!    |
+kablam! 11 |     spec: winapi::DWORD,
+kablam!    |                   ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `NCRYPT_HANDLE` in module `winapi`
+kablam!   --> src/key_handle.rs:16:41
+kablam!    |
+kablam! 16 |     fn NCryptFreeObject(handle: winapi::NCRYPT_HANDLE) -> winapi::SECURITY_STATUS;
+kablam!    |                                         ^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `SECURITY_STATUS` in module `winapi`
+kablam!   --> src/key_handle.rs:16:67
+kablam!    |
+kablam! 16 |     fn NCryptFreeObject(handle: winapi::NCRYPT_HANDLE) -> winapi::SECURITY_STATUS;
+kablam!    |                                                                   ^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CERT_NCRYPT_KEY_SPEC` in module `winapi`
+kablam!   --> src/key_handle.rs:22:37
+kablam!    |
+kablam! 22 |             if self.spec == winapi::CERT_NCRYPT_KEY_SPEC {
+kablam!    |                                     ^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `CryptReleaseContext` in module `advapi32`
+kablam!   --> src/key_handle.rs:25:27
+kablam!    |
+kablam! 25 |                 advapi32::CryptReleaseContext(self.handle, 0);
+kablam!    |                           ^^^^^^^^^^^^^^^^^^^ not found in `advapi32`
+kablam! 
+kablam! error[E0412]: cannot find type `HCRYPTPROV_OR_NCRYPT_KEY_HANDLE` in module `winapi`
+kablam!   --> src/key_handle.rs:32:28
+kablam!    |
+kablam! 32 |     fn new(handle: winapi::HCRYPTPROV_OR_NCRYPT_KEY_HANDLE, spec: winapi::DWORD) -> KeyHandle {
+kablam!    |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!   --> src/key_handle.rs:32:75
+kablam!    |
+kablam! 32 |     fn new(handle: winapi::HCRYPTPROV_OR_NCRYPT_KEY_HANDLE, spec: winapi::DWORD) -> KeyHandle {
+kablam!    |                                                                           ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `UNISP_NAME` in module `winapi`
+kablam!   --> src/schannel_cred.rs:12:46
+kablam!    |
+kablam! 12 |     static ref UNISP_NAME: Vec<u8> = winapi::UNISP_NAME.bytes().chain(Some(0)).collect();
+kablam!    |                                              ^^^^^^^^^^ not found in `winapi`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use schannel_cred::UNISP_NAME;`
+kablam! 
+kablam! error[E0425]: cannot find value `CALG_AES` in module `winapi`
+kablam!   --> src/schannel_cred.rs:30:19
+kablam!    |
+kablam! 30 |     Aes = winapi::CALG_AES,
+kablam!    |                   ^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CALG_AES_128` in module `winapi`
+kablam!   --> src/schannel_cred.rs:32:22
+kablam!    |
+kablam! 32 |     Aes128 = winapi::CALG_AES_128,
+kablam!    |                      ^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CALG_AES_192` in module `winapi`
+kablam!   --> src/schannel_cred.rs:34:22
+kablam!    |
+kablam! 34 |     Aes192 = winapi::CALG_AES_192,
+kablam!    |                      ^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CALG_AES_256` in module `winapi`
+kablam!   --> src/schannel_cred.rs:36:22
+kablam!    |
+kablam! 36 |     Aes256 = winapi::CALG_AES_256,
+kablam!    |                      ^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CALG_AGREEDKEY_ANY` in module `winapi`
+kablam!   --> src/schannel_cred.rs:38:28
+kablam!    |
+kablam! 38 |     AgreedkeyAny = winapi::CALG_AGREEDKEY_ANY,
+kablam!    |                            ^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CALG_CYLINK_MEK` in module `winapi`
+kablam!   --> src/schannel_cred.rs:41:25
+kablam!    |
+kablam! 41 |     CylinkMek = winapi::CALG_CYLINK_MEK,
+kablam!    |                         ^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CALG_DES` in module `winapi`
+kablam!   --> src/schannel_cred.rs:43:19
+kablam!    |
+kablam! 43 |     Des = winapi::CALG_DES,
+kablam!    |                   ^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CALG_DESX` in module `winapi`
+kablam!   --> src/schannel_cred.rs:45:20
+kablam!    |
+kablam! 45 |     Desx = winapi::CALG_DESX,
+kablam!    |                    ^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CALG_DH_EPHEM` in module `winapi`
+kablam!   --> src/schannel_cred.rs:47:23
+kablam!    |
+kablam! 47 |     DhEphem = winapi::CALG_DH_EPHEM,
+kablam!    |                       ^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CALG_DH_SF` in module `winapi`
+kablam!   --> src/schannel_cred.rs:49:20
+kablam!    |
+kablam! 49 |     DhSf = winapi::CALG_DH_SF,
+kablam!    |                    ^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CALG_DSS_SIGN` in module `winapi`
+kablam!   --> src/schannel_cred.rs:51:23
+kablam!    |
+kablam! 51 |     DssSign = winapi::CALG_DSS_SIGN,
+kablam!    |                       ^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CALG_ECDH` in module `winapi`
+kablam!   --> src/schannel_cred.rs:53:20
+kablam!    |
+kablam! 53 |     Ecdh = winapi::CALG_ECDH,
+kablam!    |                    ^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CALG_ECDSA` in module `winapi`
+kablam!   --> src/schannel_cred.rs:58:21
+kablam!    |
+kablam! 58 |     Ecdsa = winapi::CALG_ECDSA,
+kablam!    |                     ^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CALG_HASH_REPLACE_OWF` in module `winapi`
+kablam!   --> src/schannel_cred.rs:60:30
+kablam!    |
+kablam! 60 |     HashReplaceOwf = winapi::CALG_HASH_REPLACE_OWF,
+kablam!    |                              ^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CALG_HUGHES_MD5` in module `winapi`
+kablam!   --> src/schannel_cred.rs:62:25
+kablam!    |
+kablam! 62 |     HughesMd5 = winapi::CALG_HUGHES_MD5,
+kablam!    |                         ^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CALG_HMAC` in module `winapi`
+kablam!   --> src/schannel_cred.rs:64:20
+kablam!    |
+kablam! 64 |     Hmac = winapi::CALG_HMAC,
+kablam!    |                    ^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CALG_MAC` in module `winapi`
+kablam!   --> src/schannel_cred.rs:66:19
+kablam!    |
+kablam! 66 |     Mac = winapi::CALG_MAC,
+kablam!    |                   ^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CALG_MD2` in module `winapi`
+kablam!   --> src/schannel_cred.rs:68:19
+kablam!    |
+kablam! 68 |     Md2 = winapi::CALG_MD2,
+kablam!    |                   ^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CALG_MD4` in module `winapi`
+kablam!   --> src/schannel_cred.rs:70:19
+kablam!    |
+kablam! 70 |     Md4 = winapi::CALG_MD4,
+kablam!    |                   ^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CALG_MD5` in module `winapi`
+kablam!   --> src/schannel_cred.rs:72:19
+kablam!    |
+kablam! 72 |     Md5 = winapi::CALG_MD5,
+kablam!    |                   ^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CALG_NO_SIGN` in module `winapi`
+kablam!   --> src/schannel_cred.rs:74:22
+kablam!    |
+kablam! 74 |     NoSign = winapi::CALG_NO_SIGN,
+kablam!    |                      ^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CALG_RC2` in module `winapi`
+kablam!   --> src/schannel_cred.rs:76:19
+kablam!    |
+kablam! 76 |     Rc2 = winapi::CALG_RC2,
+kablam!    |                   ^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CALG_RC4` in module `winapi`
+kablam!   --> src/schannel_cred.rs:78:19
+kablam!    |
+kablam! 78 |     Rc4 = winapi::CALG_RC4,
+kablam!    |                   ^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CALG_RC5` in module `winapi`
+kablam!   --> src/schannel_cred.rs:80:19
+kablam!    |
+kablam! 80 |     Rc5 = winapi::CALG_RC5,
+kablam!    |                   ^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CALG_RSA_KEYX` in module `winapi`
+kablam!   --> src/schannel_cred.rs:82:23
+kablam!    |
+kablam! 82 |     RsaKeyx = winapi::CALG_RSA_KEYX,
+kablam!    |                       ^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CALG_RSA_SIGN` in module `winapi`
+kablam!   --> src/schannel_cred.rs:84:23
+kablam!    |
+kablam! 84 |     RsaSign = winapi::CALG_RSA_SIGN,
+kablam!    |                       ^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CALG_SHA1` in module `winapi`
+kablam!   --> src/schannel_cred.rs:86:20
+kablam!    |
+kablam! 86 |     Sha1 = winapi::CALG_SHA1,
+kablam!    |                    ^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CALG_SHA_256` in module `winapi`
+kablam!   --> src/schannel_cred.rs:88:22
+kablam!    |
+kablam! 88 |     Sha256 = winapi::CALG_SHA_256,
+kablam!    |                      ^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CALG_SHA_384` in module `winapi`
+kablam!   --> src/schannel_cred.rs:90:22
+kablam!    |
+kablam! 90 |     Sha384 = winapi::CALG_SHA_384,
+kablam!    |                      ^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CALG_SHA_512` in module `winapi`
+kablam!   --> src/schannel_cred.rs:92:22
+kablam!    |
+kablam! 92 |     Sha512 = winapi::CALG_SHA_512,
+kablam!    |                      ^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CALG_3DES` in module `winapi`
+kablam!   --> src/schannel_cred.rs:94:25
+kablam!    |
+kablam! 94 |     TripleDes = winapi::CALG_3DES,
+kablam!    |                         ^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CALG_3DES_112` in module `winapi`
+kablam!   --> src/schannel_cred.rs:96:28
+kablam!    |
+kablam! 96 |     TripleDes112 = winapi::CALG_3DES_112,
+kablam!    |                            ^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!    --> src/schannel_cred.rs:117:53
+kablam!     |
+kablam! 117 |     fn dword(self, direction: Direction) -> winapi::DWORD {
+kablam!     |                                                     ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SP_PROT_SSL3_SERVER` in module `winapi`
+kablam!    --> src/schannel_cred.rs:119:61
+kablam!     |
+kablam! 119 |             (Protocol::Ssl3, Direction::Inbound) => winapi::SP_PROT_SSL3_SERVER,
+kablam!     |                                                             ^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SP_PROT_TLS1_0_SERVER` in module `winapi`
+kablam!    --> src/schannel_cred.rs:120:62
+kablam!     |
+kablam! 120 |             (Protocol::Tls10, Direction::Inbound) => winapi::SP_PROT_TLS1_0_SERVER,
+kablam!     |                                                              ^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SP_PROT_TLS1_1_SERVER` in module `winapi`
+kablam!    --> src/schannel_cred.rs:121:62
+kablam!     |
+kablam! 121 |             (Protocol::Tls11, Direction::Inbound) => winapi::SP_PROT_TLS1_1_SERVER,
+kablam!     |                                                              ^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SP_PROT_TLS1_2_SERVER` in module `winapi`
+kablam!    --> src/schannel_cred.rs:122:62
+kablam!     |
+kablam! 122 |             (Protocol::Tls12, Direction::Inbound) => winapi::SP_PROT_TLS1_2_SERVER,
+kablam!     |                                                              ^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SP_PROT_SSL3_CLIENT` in module `winapi`
+kablam!    --> src/schannel_cred.rs:123:62
+kablam!     |
+kablam! 123 |             (Protocol::Ssl3, Direction::Outbound) => winapi::SP_PROT_SSL3_CLIENT,
+kablam!     |                                                              ^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SP_PROT_TLS1_0_CLIENT` in module `winapi`
+kablam!    --> src/schannel_cred.rs:124:63
+kablam!     |
+kablam! 124 |             (Protocol::Tls10, Direction::Outbound) => winapi::SP_PROT_TLS1_0_CLIENT,
+kablam!     |                                                               ^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SP_PROT_TLS1_1_CLIENT` in module `winapi`
+kablam!    --> src/schannel_cred.rs:125:63
+kablam!     |
+kablam! 125 |             (Protocol::Tls11, Direction::Outbound) => winapi::SP_PROT_TLS1_1_CLIENT,
+kablam!     |                                                               ^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SP_PROT_TLS1_2_CLIENT` in module `winapi`
+kablam!    --> src/schannel_cred.rs:126:63
+kablam!     |
+kablam! 126 |             (Protocol::Tls12, Direction::Outbound) => winapi::SP_PROT_TLS1_2_CLIENT,
+kablam!     |                                                               ^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `SCHANNEL_CRED` in module `winapi`
+kablam!    --> src/schannel_cred.rs:194:40
+kablam!     |
+kablam! 194 |             let mut cred_data: winapi::SCHANNEL_CRED = mem::zeroed();
+kablam!     |                                        ^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SCHANNEL_CRED_VERSION` in module `winapi`
+kablam!    --> src/schannel_cred.rs:195:43
+kablam!     |
+kablam! 195 |             cred_data.dwVersion = winapi::SCHANNEL_CRED_VERSION;
+kablam!     |                                           ^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SCH_USE_STRONG_CRYPTO` in module `winapi`
+kablam!    --> src/schannel_cred.rs:196:41
+kablam!     |
+kablam! 196 |             cred_data.dwFlags = winapi::SCH_USE_STRONG_CRYPTO;
+kablam!     |                                         ^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!    --> src/schannel_cred.rs:198:82
+kablam!     |
+kablam! 198 |                 cred_data.cSupportedAlgs = supported_algorithms.len() as winapi::DWORD;
+kablam!     |                                                                                  ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!    --> src/schannel_cred.rs:207:55
+kablam!     |
+kablam! 207 |             cred_data.cCreds = certs.len() as winapi::DWORD;
+kablam!     |                                                       ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SECPKG_CRED_INBOUND` in module `winapi`
+kablam!    --> src/schannel_cred.rs:211:47
+kablam!     |
+kablam! 211 |                 Direction::Inbound => winapi::SECPKG_CRED_INBOUND,
+kablam!     |                                               ^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SECPKG_CRED_OUTBOUND` in module `winapi`
+kablam!    --> src/schannel_cred.rs:212:48
+kablam!     |
+kablam! 212 |                 Direction::Outbound => winapi::SECPKG_CRED_OUTBOUND,
+kablam!     |                                                ^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `AcquireCredentialsHandleA` in module `secur32`
+kablam!    --> src/schannel_cred.rs:215:28
+kablam!     |
+kablam! 215 |             match secur32::AcquireCredentialsHandleA(ptr::null_mut(),
+kablam!     |                            ^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `secur32`
+kablam! 
+kablam! error[E0531]: cannot find unit struct/variant or constant `SEC_E_OK` in module `winapi`
+kablam!    --> src/schannel_cred.rs:224:25
+kablam!     |
+kablam! 224 |                 winapi::SEC_E_OK => Ok(SchannelCred(handle)),
+kablam!     |                         ^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `CredHandle` in module `winapi`
+kablam!    --> src/schannel_cred.rs:232:33
+kablam!     |
+kablam! 232 | pub struct SchannelCred(winapi::CredHandle);
+kablam!     |                                 ^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `FreeCredentialsHandle` in module `secur32`
+kablam!    --> src/schannel_cred.rs:237:22
+kablam!     |
+kablam! 237 |             secur32::FreeCredentialsHandle(&mut self.0);
+kablam!     |                      ^^^^^^^^^^^^^^^^^^^^^ not found in `secur32`
+kablam! 
+kablam! error[E0412]: cannot find type `CredHandle` in module `winapi`
+kablam!    --> src/schannel_cred.rs:242:20
+kablam!     |
+kablam! 242 | impl Inner<winapi::CredHandle> for SchannelCred {
+kablam!     |                    ^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `CredHandle` in module `winapi`
+kablam!    --> src/schannel_cred.rs:243:41
+kablam!     |
+kablam! 243 |     unsafe fn from_inner(inner: winapi::CredHandle) -> SchannelCred {
+kablam!     |                                         ^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `CredHandle` in module `winapi`
+kablam!    --> src/schannel_cred.rs:247:35
+kablam!     |
+kablam! 247 |     fn as_inner(&self) -> winapi::CredHandle {
+kablam!     |                                   ^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `CredHandle` in module `winapi`
+kablam!    --> src/schannel_cred.rs:251:43
+kablam!     |
+kablam! 251 |     fn get_mut(&mut self) -> &mut winapi::CredHandle {
+kablam!     |                                           ^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `szOID_PKIX_KP_SERVER_AUTH` in module `winapi`
+kablam!   --> src/tls_stream.rs:22:17
+kablam!    |
+kablam! 22 |         winapi::szOID_PKIX_KP_SERVER_AUTH.bytes().chain(Some(0)).collect();
+kablam!    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use tls_stream::szOID_PKIX_KP_SERVER_AUTH;`
+kablam! 
+kablam! error[E0425]: cannot find value `szOID_SERVER_GATED_CRYPTO` in module `winapi`
+kablam!   --> src/tls_stream.rs:24:17
+kablam!    |
+kablam! 24 |         winapi::szOID_SERVER_GATED_CRYPTO.bytes().chain(Some(0)).collect();
+kablam!    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use tls_stream::szOID_SERVER_GATED_CRYPTO;`
+kablam! 
+kablam! error[E0425]: cannot find value `szOID_SGC_NETSCAPE` in module `winapi`
+kablam!   --> src/tls_stream.rs:26:17
+kablam!    |
+kablam! 26 |         winapi::szOID_SGC_NETSCAPE.bytes().chain(Some(0)).collect();
+kablam!    |                 ^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use tls_stream::szOID_SGC_NETSCAPE;`
+kablam! 
+kablam! error[E0412]: cannot find type `PCERT_CHAIN_CONTEXT` in module `winapi`
+kablam!   --> src/tls_stream.rs:29:33
+kablam!    |
+kablam! 29 | struct CertChainContext(winapi::PCERT_CHAIN_CONTEXT);
+kablam!    |                                 ^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `CertFreeCertificateChain` in module `crypt32`
+kablam!   --> src/tls_stream.rs:34:22
+kablam!    |
+kablam! 34 |             crypt32::CertFreeCertificateChain(self.0);
+kablam!    |                      ^^^^^^^^^^^^^^^^^^^^^^^^ not found in `crypt32`
+kablam! 
+kablam! error[E0412]: cannot find type `SecPkgContext_StreamSizes` in module `winapi`
+kablam!    --> src/tls_stream.rs:160:32
+kablam!     |
+kablam! 160 |     Streaming { sizes: winapi::SecPkgContext_StreamSizes, },
+kablam!     |                                ^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SCHANNEL_SHUTDOWN` in module `winapi`
+kablam!    --> src/tls_stream.rs:265:45
+kablam!     |
+kablam! 265 |                     let mut token = winapi::SCHANNEL_SHUTDOWN;
+kablam!     |                                             ^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SECBUFFER_TOKEN` in module `winapi`
+kablam!    --> src/tls_stream.rs:269:51
+kablam!     |
+kablam! 269 |                     let mut buf = [secbuf(winapi::SECBUFFER_TOKEN, Some(token))];
+kablam!     |                                                   ^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `ApplyControlToken` in module `secur32`
+kablam!    --> src/tls_stream.rs:272:36
+kablam!     |
+kablam! 272 |                     match secur32::ApplyControlToken(self.context.get_mut(), &mut desc) {
+kablam!     |                                    ^^^^^^^^^^^^^^^^^ not found in `secur32`
+kablam! 
+kablam! error[E0531]: cannot find unit struct/variant or constant `SEC_E_OK` in module `winapi`
+kablam!    --> src/tls_stream.rs:273:33
+kablam!     |
+kablam! 273 |                         winapi::SEC_E_OK => {}
+kablam!     |                                 ^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SECBUFFER_TOKEN` in module `winapi`
+kablam!    --> src/tls_stream.rs:293:46
+kablam!     |
+kablam! 293 |             let mut inbufs = [secbuf(winapi::SECBUFFER_TOKEN,
+kablam!     |                                              ^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SECBUFFER_EMPTY` in module `winapi`
+kablam!    --> src/tls_stream.rs:295:46
+kablam!     |
+kablam! 295 |                               secbuf(winapi::SECBUFFER_EMPTY, None)];
+kablam!     |                                              ^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SECBUFFER_TOKEN` in module `winapi`
+kablam!    --> src/tls_stream.rs:298:47
+kablam!     |
+kablam! 298 |             let mut outbufs = [secbuf(winapi::SECBUFFER_TOKEN, None),
+kablam!     |                                               ^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SECBUFFER_ALERT` in module `winapi`
+kablam!    --> src/tls_stream.rs:299:47
+kablam!     |
+kablam! 299 |                                secbuf(winapi::SECBUFFER_ALERT, None),
+kablam!     |                                               ^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SECBUFFER_EMPTY` in module `winapi`
+kablam!    --> src/tls_stream.rs:300:47
+kablam!     |
+kablam! 300 |                                secbuf(winapi::SECBUFFER_EMPTY, None)];
+kablam!     |                                               ^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `AcceptSecurityContext` in module `secur32`
+kablam!    --> src/tls_stream.rs:311:26
+kablam!     |
+kablam! 311 |                 secur32::AcceptSecurityContext(self.cred.get_mut(),
+kablam!     |                          ^^^^^^^^^^^^^^^^^^^^^ not found in `secur32`
+kablam! 
+kablam! error[E0425]: cannot find function `InitializeSecurityContextW` in module `secur32`
+kablam!    --> src/tls_stream.rs:326:26
+kablam!     |
+kablam! 326 |                 secur32::InitializeSecurityContextW(self.cred.get_mut(),
+kablam!     |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `secur32`
+kablam! 
+kablam! error[E0425]: cannot find function `FreeContextBuffer` in module `secur32`
+kablam!    --> src/tls_stream.rs:342:30
+kablam!     |
+kablam! 342 |                     secur32::FreeContextBuffer(buf.pvBuffer);
+kablam!     |                              ^^^^^^^^^^^^^^^^^ not found in `secur32`
+kablam! 
+kablam! error[E0531]: cannot find unit struct/variant or constant `SEC_I_CONTINUE_NEEDED` in module `winapi`
+kablam!    --> src/tls_stream.rs:347:25
+kablam!     |
+kablam! 347 |                 winapi::SEC_I_CONTINUE_NEEDED => {
+kablam!     |                         ^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SECBUFFER_EXTRA` in module `winapi`
+kablam!    --> src/tls_stream.rs:362:68
+kablam!     |
+kablam! 362 |                     let nread = if inbufs[1].BufferType == winapi::SECBUFFER_EXTRA {
+kablam!     |                                                                    ^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0531]: cannot find unit struct/variant or constant `SEC_E_INCOMPLETE_MESSAGE` in module `winapi`
+kablam!    --> src/tls_stream.rs:373:25
+kablam!     |
+kablam! 373 |                 winapi::SEC_E_INCOMPLETE_MESSAGE => {
+kablam!     |                         ^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SECBUFFER_MISSING` in module `winapi`
+kablam!    --> src/tls_stream.rs:374:74
+kablam!     |
+kablam! 374 |                     self.needs_read = if inbufs[1].BufferType == winapi::SECBUFFER_MISSING {
+kablam!     |                                                                          ^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0531]: cannot find unit struct/variant or constant `SEC_E_OK` in module `winapi`
+kablam!    --> src/tls_stream.rs:380:25
+kablam!     |
+kablam! 380 |                 winapi::SEC_E_OK => {
+kablam!     |                         ^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SECBUFFER_EXTRA` in module `winapi`
+kablam!    --> src/tls_stream.rs:381:68
+kablam!     |
+kablam! 381 |                     let nread = if inbufs[1].BufferType == winapi::SECBUFFER_EXTRA {
+kablam!     |                                                                    ^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `SecPkgContext_StreamSizes` in module `winapi`
+kablam!    --> src/tls_stream.rs:412:59
+kablam!     |
+kablam! 412 |     fn initialize(&mut self) -> io::Result<Option<winapi::SecPkgContext_StreamSizes>> {
+kablam!     |                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CERT_CHAIN_CACHE_END_CERT` in module `winapi`
+kablam!    --> src/tls_stream.rs:471:33
+kablam!     |
+kablam! 471 |             let flags = winapi::CERT_CHAIN_CACHE_END_CERT |
+kablam!     |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CERT_CHAIN_REVOCATION_CHECK_CACHE_ONLY` in module `winapi`
+kablam!    --> src/tls_stream.rs:472:33
+kablam!     |
+kablam! 472 |                         winapi::CERT_CHAIN_REVOCATION_CHECK_CACHE_ONLY |
+kablam!     |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CERT_CHAIN_REVOCATION_CHECK_CHAIN_EXCLUDE_ROOT` in module `winapi`
+kablam!    --> src/tls_stream.rs:473:33
+kablam!     |
+kablam! 473 |                         winapi::CERT_CHAIN_REVOCATION_CHECK_CHAIN_EXCLUDE_ROOT;
+kablam!     |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `CERT_CHAIN_PARA` in module `winapi`
+kablam!    --> src/tls_stream.rs:475:35
+kablam!     |
+kablam! 475 |             let mut para: winapi::CERT_CHAIN_PARA = mem::zeroed();
+kablam!     |                                   ^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!    --> src/tls_stream.rs:476:62
+kablam!     |
+kablam! 476 |             para.cbSize = mem::size_of_val(&para) as winapi::DWORD;
+kablam!     |                                                              ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `USAGE_MATCH_TYPE_OR` in module `winapi`
+kablam!    --> src/tls_stream.rs:477:50
+kablam!     |
+kablam! 477 |             para.RequestedUsage.dwType = winapi::USAGE_MATCH_TYPE_OR;
+kablam!     |                                                  ^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `LPSTR` in module `winapi`
+kablam!    --> src/tls_stream.rs:479:82
+kablam!     |
+kablam! 479 |             let mut identifiers = [szOID_PKIX_KP_SERVER_AUTH.as_ptr() as winapi::LPSTR,
+kablam!     |                                                                                  ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `LPSTR` in module `winapi`
+kablam!    --> src/tls_stream.rs:480:82
+kablam!     |
+kablam! 480 |                                    szOID_SERVER_GATED_CRYPTO.as_ptr() as winapi::LPSTR,
+kablam!     |                                                                                  ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `LPSTR` in module `winapi`
+kablam!    --> src/tls_stream.rs:481:75
+kablam!     |
+kablam! 481 |                                    szOID_SGC_NETSCAPE.as_ptr() as winapi::LPSTR];
+kablam!     |                                                                           ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!    --> src/tls_stream.rs:482:87
+kablam!     |
+kablam! 482 |             para.RequestedUsage.Usage.cUsageIdentifier = identifiers.len() as winapi::DWORD;
+kablam!     |                                                                                       ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `CertGetCertificateChain` in module `crypt32`
+kablam!    --> src/tls_stream.rs:487:32
+kablam!     |
+kablam! 487 |             let res = crypt32::CertGetCertificateChain(ptr::null_mut(),
+kablam!     |                                ^^^^^^^^^^^^^^^^^^^^^^^ not found in `crypt32`
+kablam! 
+kablam! error[E0425]: cannot find value `TRUE` in module `winapi`
+kablam!    --> src/tls_stream.rs:496:31
+kablam!     |
+kablam! 496 |             if res == winapi::TRUE {
+kablam!     |                               ^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `SSL_EXTRA_CERT_CHAIN_POLICY_PARA` in module `winapi`
+kablam!    --> src/tls_stream.rs:504:41
+kablam!     |
+kablam! 504 |             let mut extra_para: winapi::SSL_EXTRA_CERT_CHAIN_POLICY_PARA = mem::zeroed();
+kablam!     |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!    --> src/tls_stream.rs:505:74
+kablam!     |
+kablam! 505 |             extra_para.cbSize = mem::size_of_val(&extra_para) as winapi::DWORD;
+kablam!     |                                                                          ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `AUTHTYPE_SERVER` in module `winapi`
+kablam!    --> src/tls_stream.rs:506:45
+kablam!     |
+kablam! 506 |             extra_para.dwAuthType = winapi::AUTHTYPE_SERVER;
+kablam!     |                                             ^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `CERT_CHAIN_POLICY_PARA` in module `winapi`
+kablam!    --> src/tls_stream.rs:511:35
+kablam!     |
+kablam! 511 |             let mut para: winapi::CERT_CHAIN_POLICY_PARA = mem::zeroed();
+kablam!     |                                   ^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!    --> src/tls_stream.rs:512:62
+kablam!     |
+kablam! 512 |             para.cbSize = mem::size_of_val(&para) as winapi::DWORD;
+kablam!     |                                                              ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `CERT_CHAIN_POLICY_IGNORE_ALL_REV_UNKNOWN_FLAGS` in module `winapi`
+kablam!    --> src/tls_stream.rs:513:36
+kablam!     |
+kablam! 513 |             para.dwFlags = winapi::CERT_CHAIN_POLICY_IGNORE_ALL_REV_UNKNOWN_FLAGS;
+kablam!     |                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `CERT_CHAIN_POLICY_STATUS` in module `winapi`
+kablam!    --> src/tls_stream.rs:516:37
+kablam!     |
+kablam! 516 |             let mut status: winapi::CERT_CHAIN_POLICY_STATUS = mem::zeroed();
+kablam!     |                                     ^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!    --> src/tls_stream.rs:517:66
+kablam!     |
+kablam! 517 |             status.cbSize = mem::size_of_val(&status) as winapi::DWORD;
+kablam!     |                                                                  ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `CertVerifyCertificateChainPolicy` in module `crypt32`
+kablam!    --> src/tls_stream.rs:519:32
+kablam!     |
+kablam! 519 |             let res = crypt32::CertVerifyCertificateChainPolicy(winapi::CERT_CHAIN_POLICY_SSL as winapi::LPCSTR,
+kablam!     |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `crypt32`
+kablam! 
+kablam! error[E0425]: cannot find value `CERT_CHAIN_POLICY_SSL` in module `winapi`
+kablam!    --> src/tls_stream.rs:519:73
+kablam!     |
+kablam! 519 |             let res = crypt32::CertVerifyCertificateChainPolicy(winapi::CERT_CHAIN_POLICY_SSL as winapi::LPCSTR,
+kablam!     |                                                                         ^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `LPCSTR` in module `winapi`
+kablam!    --> src/tls_stream.rs:519:106
+kablam!     |
+kablam! 519 |             let res = crypt32::CertVerifyCertificateChainPolicy(winapi::CERT_CHAIN_POLICY_SSL as winapi::LPCSTR,
+kablam!     |                                                                                                          ^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `FALSE` in module `winapi`
+kablam!    --> src/tls_stream.rs:523:31
+kablam!     |
+kablam! 523 |             if res == winapi::FALSE {
+kablam!     |                               ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `ERROR_SUCCESS` in module `winapi`
+kablam!    --> src/tls_stream.rs:527:42
+kablam!     |
+kablam! 527 |             if status.dwError != winapi::ERROR_SUCCESS {
+kablam!     |                                          ^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SECBUFFER_DATA` in module `winapi`
+kablam!    --> src/tls_stream.rs:586:44
+kablam!     |
+kablam! 586 |             let mut bufs = [secbuf(winapi::SECBUFFER_DATA,
+kablam!     |                                            ^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SECBUFFER_EMPTY` in module `winapi`
+kablam!    --> src/tls_stream.rs:588:44
+kablam!     |
+kablam! 588 |                             secbuf(winapi::SECBUFFER_EMPTY, None),
+kablam!     |                                            ^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SECBUFFER_EMPTY` in module `winapi`
+kablam!    --> src/tls_stream.rs:589:44
+kablam!     |
+kablam! 589 |                             secbuf(winapi::SECBUFFER_EMPTY, None),
+kablam!     |                                            ^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SECBUFFER_EMPTY` in module `winapi`
+kablam!    --> src/tls_stream.rs:590:44
+kablam!     |
+kablam! 590 |                             secbuf(winapi::SECBUFFER_EMPTY, None)];
+kablam!     |                                            ^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `DecryptMessage` in module `secur32`
+kablam!    --> src/tls_stream.rs:593:28
+kablam!     |
+kablam! 593 |             match secur32::DecryptMessage(self.context.get_mut(),
+kablam!     |                            ^^^^^^^^^^^^^^ not found in `secur32`
+kablam! 
+kablam! error[E0531]: cannot find unit struct/variant or constant `SEC_E_OK` in module `winapi`
+kablam!    --> src/tls_stream.rs:597:25
+kablam!     |
+kablam! 597 |                 winapi::SEC_E_OK => {
+kablam!     |                         ^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SECBUFFER_EXTRA` in module `winapi`
+kablam!    --> src/tls_stream.rs:606:66
+kablam!     |
+kablam! 606 |                     let nread = if bufs[3].BufferType == winapi::SECBUFFER_EXTRA {
+kablam!     |                                                                  ^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0531]: cannot find unit struct/variant or constant `SEC_E_INCOMPLETE_MESSAGE` in module `winapi`
+kablam!    --> src/tls_stream.rs:615:25
+kablam!     |
+kablam! 615 |                 winapi::SEC_E_INCOMPLETE_MESSAGE => {
+kablam!     |                         ^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SECBUFFER_MISSING` in module `winapi`
+kablam!    --> src/tls_stream.rs:616:72
+kablam!     |
+kablam! 616 |                     self.needs_read = if bufs[1].BufferType == winapi::SECBUFFER_MISSING {
+kablam!     |                                                                        ^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0531]: cannot find unit struct/variant or constant `SEC_I_CONTEXT_EXPIRED` in module `winapi`
+kablam!    --> src/tls_stream.rs:623:25
+kablam!     |
+kablam! 623 |                 winapi::SEC_I_CONTEXT_EXPIRED => {
+kablam!     |                         ^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0531]: cannot find unit struct/variant or constant `SEC_I_RENEGOTIATE` in module `winapi`
+kablam!    --> src/tls_stream.rs:626:25
+kablam!     |
+kablam! 626 |                 winapi::SEC_I_RENEGOTIATE => {
+kablam!     |                         ^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SECBUFFER_EXTRA` in module `winapi`
+kablam!    --> src/tls_stream.rs:633:66
+kablam!     |
+kablam! 633 |                     let nread = if bufs[3].BufferType == winapi::SECBUFFER_EXTRA {
+kablam!     |                                                                  ^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `SecPkgContext_StreamSizes` in module `winapi`
+kablam!    --> src/tls_stream.rs:649:55
+kablam!     |
+kablam! 649 |     fn encrypt(&mut self, buf: &[u8], sizes: &winapi::SecPkgContext_StreamSizes) -> io::Result<()> {
+kablam!     |                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SECBUFFER_STREAM_HEADER` in module `winapi`
+kablam!    --> src/tls_stream.rs:668:45
+kablam!     |
+kablam! 668 |                 let header = secbuf(winapi::SECBUFFER_STREAM_HEADER,
+kablam!     |                                             ^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SECBUFFER_DATA` in module `winapi`
+kablam!    --> src/tls_stream.rs:670:43
+kablam!     |
+kablam! 670 |                 let data = secbuf(winapi::SECBUFFER_DATA,
+kablam!     |                                           ^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SECBUFFER_STREAM_TRAILER` in module `winapi`
+kablam!    --> src/tls_stream.rs:672:46
+kablam!     |
+kablam! 672 |                 let trailer = secbuf(winapi::SECBUFFER_STREAM_TRAILER,
+kablam!     |                                              ^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SECBUFFER_EMPTY` in module `winapi`
+kablam!    --> src/tls_stream.rs:674:44
+kablam!     |
+kablam! 674 |                 let empty = secbuf(winapi::SECBUFFER_EMPTY, None);
+kablam!     |                                            ^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `EncryptMessage` in module `secur32`
+kablam!    --> src/tls_stream.rs:679:28
+kablam!     |
+kablam! 679 |             match secur32::EncryptMessage(self.context.get_mut(), 0, &mut bufdesc, 0) {
+kablam!     |                            ^^^^^^^^^^^^^^ not found in `secur32`
+kablam! 
+kablam! error[E0531]: cannot find unit struct/variant or constant `SEC_E_OK` in module `winapi`
+kablam!    --> src/tls_stream.rs:680:25
+kablam!     |
+kablam! 680 |                 winapi::SEC_E_OK => {
+kablam!     |                         ^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SEC_E_CONTEXT_EXPIRED` in module `winapi`
+kablam!    --> src/tls_stream.rs:725:69
+kablam!     |
+kablam! 725 |             None => return Err(io::Error::from_raw_os_error(winapi::SEC_E_CONTEXT_EXPIRED as i32)),
+kablam!     |                                                                     ^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `SecBuffer` in module `winapi`
+kablam!  --> src/context_buffer.rs:6:38
+kablam!   |
+kablam! 6 | pub struct ContextBuffer(pub winapi::SecBuffer);
+kablam!   |                                      ^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `FreeContextBuffer` in module `secur32`
+kablam!   --> src/context_buffer.rs:11:22
+kablam!    |
+kablam! 11 |             secur32::FreeContextBuffer(self.0.pvBuffer);
+kablam!    |                      ^^^^^^^^^^^^^^^^^ not found in `secur32`
+kablam! 
+kablam! error[E0412]: cannot find type `CtxtHandle` in module `winapi`
+kablam!   --> src/security_context.rs:13:36
+kablam!    |
+kablam! 13 | pub struct SecurityContext(winapi::CtxtHandle);
+kablam!    |                                    ^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `DeleteSecurityContext` in module `secur32`
+kablam!   --> src/security_context.rs:18:22
+kablam!    |
+kablam! 18 |             secur32::DeleteSecurityContext(&mut self.0);
+kablam!    |                      ^^^^^^^^^^^^^^^^^^^^^ not found in `secur32`
+kablam! 
+kablam! error[E0412]: cannot find type `CtxtHandle` in module `winapi`
+kablam!   --> src/security_context.rs:23:20
+kablam!    |
+kablam! 23 | impl Inner<winapi::CtxtHandle> for SecurityContext {
+kablam!    |                    ^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `CtxtHandle` in module `winapi`
+kablam!   --> src/security_context.rs:24:41
+kablam!    |
+kablam! 24 |     unsafe fn from_inner(inner: winapi::CtxtHandle) -> SecurityContext {
+kablam!    |                                         ^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `CtxtHandle` in module `winapi`
+kablam!   --> src/security_context.rs:28:35
+kablam!    |
+kablam! 28 |     fn as_inner(&self) -> winapi::CtxtHandle {
+kablam!    |                                   ^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `CtxtHandle` in module `winapi`
+kablam!   --> src/security_context.rs:32:43
+kablam!    |
+kablam! 32 |     fn get_mut(&mut self) -> &mut winapi::CtxtHandle {
+kablam!    |                                           ^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SECBUFFER_EMPTY` in module `winapi`
+kablam!   --> src/security_context.rs:53:46
+kablam!    |
+kablam! 53 |             let mut outbuf = [secbuf(winapi::SECBUFFER_EMPTY, None)];
+kablam!    |                                              ^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `InitializeSecurityContextW` in module `secur32`
+kablam!   --> src/security_context.rs:58:28
+kablam!    |
+kablam! 58 |             match secur32::InitializeSecurityContextW(cred.get_mut(),
+kablam!    |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `secur32`
+kablam! 
+kablam! error[E0531]: cannot find unit struct/variant or constant `SEC_I_CONTINUE_NEEDED` in module `winapi`
+kablam!   --> src/security_context.rs:70:25
+kablam!    |
+kablam! 70 |                 winapi::SEC_I_CONTINUE_NEEDED => {
+kablam!    |                         ^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `SecPkgContext_StreamSizes` in module `winapi`
+kablam!   --> src/security_context.rs:80:58
+kablam!    |
+kablam! 80 |     pub fn stream_sizes(&mut self) -> io::Result<winapi::SecPkgContext_StreamSizes> {
+kablam!    |                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `QueryContextAttributesW` in module `secur32`
+kablam!   --> src/security_context.rs:83:35
+kablam!    |
+kablam! 83 |             let status = secur32::QueryContextAttributesW(&mut self.0,
+kablam!    |                                   ^^^^^^^^^^^^^^^^^^^^^^^ not found in `secur32`
+kablam! 
+kablam! error[E0425]: cannot find value `SECPKG_ATTR_STREAM_SIZES` in module `winapi`
+kablam!   --> src/security_context.rs:84:67
+kablam!    |
+kablam! 84 |                                                           winapi::SECPKG_ATTR_STREAM_SIZES,
+kablam!    |                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SEC_E_OK` in module `winapi`
+kablam!   --> src/security_context.rs:86:34
+kablam!    |
+kablam! 86 |             if status == winapi::SEC_E_OK {
+kablam!    |                                  ^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find function `QueryContextAttributesW` in module `secur32`
+kablam!   --> src/security_context.rs:97:35
+kablam!    |
+kablam! 97 |             let status = secur32::QueryContextAttributesW(&mut self.0,
+kablam!    |                                   ^^^^^^^^^^^^^^^^^^^^^^^ not found in `secur32`
+kablam! 
+kablam! error[E0425]: cannot find value `SECPKG_ATTR_REMOTE_CERT_CONTEXT` in module `winapi`
+kablam!   --> src/security_context.rs:98:67
+kablam!    |
+kablam! 98 |                                                           winapi::SECPKG_ATTR_REMOTE_CERT_CONTEXT,
+kablam!    |                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SEC_E_OK` in module `winapi`
+kablam!    --> src/security_context.rs:100:34
+kablam!     |
+kablam! 100 |             if status == winapi::SEC_E_OK {
+kablam!     |                                  ^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `c_ulong` in module `winapi`
+kablam!   --> src/lib.rs:31:32
+kablam!    |
+kablam! 31 | const ACCEPT_REQUESTS: winapi::c_ulong =
+kablam!    |                                ^^^^^^^ not found in `winapi`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::os::raw::c_ulong;`
+kablam! 
+kablam! error[E0425]: cannot find value `ASC_REQ_ALLOCATE_MEMORY` in module `winapi`
+kablam!   --> src/lib.rs:32:13
+kablam!    |
+kablam! 32 |     winapi::ASC_REQ_ALLOCATE_MEMORY | winapi::ASC_REQ_CONFIDENTIALITY |
+kablam!    |             ^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `ASC_REQ_CONFIDENTIALITY` in module `winapi`
+kablam!   --> src/lib.rs:32:47
+kablam!    |
+kablam! 32 |     winapi::ASC_REQ_ALLOCATE_MEMORY | winapi::ASC_REQ_CONFIDENTIALITY |
+kablam!    |                                               ^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `ASC_REQ_SEQUENCE_DETECT` in module `winapi`
+kablam!   --> src/lib.rs:33:13
+kablam!    |
+kablam! 33 |     winapi::ASC_REQ_SEQUENCE_DETECT | winapi::ASC_REQ_STREAM |
+kablam!    |             ^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `ASC_REQ_STREAM` in module `winapi`
+kablam!   --> src/lib.rs:33:47
+kablam!    |
+kablam! 33 |     winapi::ASC_REQ_SEQUENCE_DETECT | winapi::ASC_REQ_STREAM |
+kablam!    |                                               ^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `ASC_REQ_REPLAY_DETECT` in module `winapi`
+kablam!   --> src/lib.rs:34:13
+kablam!    |
+kablam! 34 |     winapi::ASC_REQ_REPLAY_DETECT;
+kablam!    |             ^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `c_ulong` in module `winapi`
+kablam!   --> src/lib.rs:36:30
+kablam!    |
+kablam! 36 | const INIT_REQUESTS: winapi::c_ulong =
+kablam!    |                              ^^^^^^^ not found in `winapi`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::os::raw::c_ulong;`
+kablam! 
+kablam! error[E0425]: cannot find value `ISC_REQ_CONFIDENTIALITY` in module `winapi`
+kablam!   --> src/lib.rs:37:13
+kablam!    |
+kablam! 37 |     winapi::ISC_REQ_CONFIDENTIALITY | winapi::ISC_REQ_INTEGRITY | winapi::ISC_REQ_REPLAY_DETECT |
+kablam!    |             ^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `ISC_REQ_INTEGRITY` in module `winapi`
+kablam!   --> src/lib.rs:37:47
+kablam!    |
+kablam! 37 |     winapi::ISC_REQ_CONFIDENTIALITY | winapi::ISC_REQ_INTEGRITY | winapi::ISC_REQ_REPLAY_DETECT |
+kablam!    |                                               ^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `ISC_REQ_REPLAY_DETECT` in module `winapi`
+kablam!   --> src/lib.rs:37:75
+kablam!    |
+kablam! 37 |     winapi::ISC_REQ_CONFIDENTIALITY | winapi::ISC_REQ_INTEGRITY | winapi::ISC_REQ_REPLAY_DETECT |
+kablam!    |                                                                           ^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `ISC_REQ_SEQUENCE_DETECT` in module `winapi`
+kablam!   --> src/lib.rs:38:13
+kablam!    |
+kablam! 38 |     winapi::ISC_REQ_SEQUENCE_DETECT | winapi::ISC_REQ_MANUAL_CRED_VALIDATION |
+kablam!    |             ^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `ISC_REQ_MANUAL_CRED_VALIDATION` in module `winapi`
+kablam!   --> src/lib.rs:38:47
+kablam!    |
+kablam! 38 |     winapi::ISC_REQ_SEQUENCE_DETECT | winapi::ISC_REQ_MANUAL_CRED_VALIDATION |
+kablam!    |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `ISC_REQ_ALLOCATE_MEMORY` in module `winapi`
+kablam!   --> src/lib.rs:39:13
+kablam!    |
+kablam! 39 |     winapi::ISC_REQ_ALLOCATE_MEMORY | winapi::ISC_REQ_STREAM;
+kablam!    |             ^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `ISC_REQ_STREAM` in module `winapi`
+kablam!   --> src/lib.rs:39:47
+kablam!    |
+kablam! 39 |     winapi::ISC_REQ_ALLOCATE_MEMORY | winapi::ISC_REQ_STREAM;
+kablam!    |                                               ^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `HCRYPTPROV_OR_NCRYPT_KEY_HANDLE` in module `winapi`
+kablam!   --> src/lib.rs:50:28
+kablam!    |
+kablam! 50 |     fn new(handle: winapi::HCRYPTPROV_OR_NCRYPT_KEY_HANDLE, spec: winapi::DWORD) -> KeyHandle;
+kablam!    |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `DWORD` in module `winapi`
+kablam!   --> src/lib.rs:50:75
+kablam!    |
+kablam! 50 |     fn new(handle: winapi::HCRYPTPROV_OR_NCRYPT_KEY_HANDLE, spec: winapi::DWORD) -> KeyHandle;
+kablam!    |                                                                           ^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `c_ulong` in module `winapi`
+kablam!   --> src/lib.rs:53:35
+kablam!    |
+kablam! 53 | unsafe fn secbuf(buftype: winapi::c_ulong,
+kablam!    |                                   ^^^^^^^ not found in `winapi`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::os::raw::c_ulong;`
+kablam! 
+kablam! error[E0412]: cannot find type `SecBuffer` in module `winapi`
+kablam!   --> src/lib.rs:54:55
+kablam!    |
+kablam! 54 |                  bytes: Option<&mut [u8]>) -> winapi::SecBuffer {
+kablam!    |                                                       ^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `c_ulong` in module `winapi`
+kablam!   --> src/lib.rs:56:68
+kablam!    |
+kablam! 56 |         Some(bytes) => (bytes.as_mut_ptr(), bytes.len() as winapi::c_ulong),
+kablam!    |                                                                    ^^^^^^^ not found in `winapi`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::os::raw::c_ulong;`
+kablam! 
+kablam! error[E0422]: cannot find struct, variant or union type `SecBuffer` in module `winapi`
+kablam!   --> src/lib.rs:59:13
+kablam!    |
+kablam! 59 |     winapi::SecBuffer {
+kablam!    |             ^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `c_void` in module `winapi`
+kablam!   --> src/lib.rs:62:39
+kablam!    |
+kablam! 62 |         pvBuffer: ptr as *mut winapi::c_void,
+kablam!    |                                       ^^^^^^ not found in `winapi`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::os::raw::c_void;`
+kablam! 
+kablam! error[E0412]: cannot find type `SecBuffer` in module `winapi`
+kablam!   --> src/lib.rs:66:43
+kablam!    |
+kablam! 66 | unsafe fn secbuf_desc(bufs: &mut [winapi::SecBuffer]) -> winapi::SecBufferDesc {
+kablam!    |                                           ^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `SecBufferDesc` in module `winapi`
+kablam!   --> src/lib.rs:66:66
+kablam!    |
+kablam! 66 | unsafe fn secbuf_desc(bufs: &mut [winapi::SecBuffer]) -> winapi::SecBufferDesc {
+kablam!    |                                                                  ^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0422]: cannot find struct, variant or union type `SecBufferDesc` in module `winapi`
+kablam!   --> src/lib.rs:67:13
+kablam!    |
+kablam! 67 |     winapi::SecBufferDesc {
+kablam!    |             ^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0425]: cannot find value `SECBUFFER_VERSION` in module `winapi`
+kablam!   --> src/lib.rs:68:28
+kablam!    |
+kablam! 68 |         ulVersion: winapi::SECBUFFER_VERSION,
+kablam!    |                            ^^^^^^^^^^^^^^^^^ not found in `winapi`
+kablam! 
+kablam! error[E0412]: cannot find type `c_ulong` in module `winapi`
+kablam!   --> src/lib.rs:69:41
+kablam!    |
+kablam! 69 |         cBuffers: bufs.len() as winapi::c_ulong,
+kablam!    |                                         ^^^^^^^ not found in `winapi`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::os::raw::c_ulong;`
+kablam! 
+kablam! error: no associated item named `from_wide` found for type `std::ffi::OsString` in the current scope
+kablam!    --> src/cert_context.rs:184:16
+kablam!     |
+kablam! 184 |             Ok(OsString::from_wide(&buf[..amt - 1]).into_string().unwrap())
+kablam!     |                ^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `encode_wide` found for type `&std::ffi::OsStr` in the current scope
+kablam!    --> src/cert_store.rs:124:31
+kablam!     |
+kablam! 124 |                              .encode_wide()
+kablam!     |                               ^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `encode_wide` found for type `&std::ffi::OsStr` in the current scope
+kablam!    --> src/cert_store.rs:147:31
+kablam!     |
+kablam! 147 |                              .encode_wide()
+kablam!     |                               ^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `encode_wide` found for type `&std::ffi::OsStr` in the current scope
+kablam!    --> src/cert_store.rs:176:31
+kablam!     |
+kablam! 176 |                 OsStr::new(s).encode_wide()
+kablam!     |                               ^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `as_inner` found for type `&cert_context::CertContext` in the current scope
+kablam!    --> src/cert_store.rs:209:68
+kablam!     |
+kablam! 209 |                                                                 cx.as_inner(),
+kablam!     |                                                                    ^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is implemented and in scope; the following traits define an item `as_inner`, perhaps you need to implement one of them:
+kablam!     = help: candidate #1: `Inner`
+kablam!     = help: candidate #2: `std::sys_common::AsInner`
+kablam! 
+kablam! error: no associated item named `from_inner` found for type `cert_context::CertContext` in the current scope
+kablam!    --> src/cert_store.rs:215:20
+kablam!     |
+kablam! 215 |                 Ok(CertContext::from_inner(ret))
+kablam!     |                    ^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is implemented and in scope; the following traits define an item `from_inner`, perhaps you need to implement one of them:
+kablam!     = help: candidate #1: `Inner`
+kablam!     = help: candidate #2: `std::sys_common::FromInner`
+kablam! 
+kablam! error: no method named `as_inner` found for type `cert_context::CertContext` in the current scope
+kablam!    --> src/cert_store.rs:268:29
+kablam!     |
+kablam! 268 |                 let ptr = p.as_inner();
+kablam!     |                             ^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is implemented and in scope; the following traits define an item `as_inner`, perhaps you need to implement one of them:
+kablam!     = help: candidate #1: `Inner`
+kablam!     = help: candidate #2: `std::sys_common::AsInner`
+kablam! 
+kablam! error: no associated item named `from_inner` found for type `cert_context::CertContext` in the current scope
+kablam!    --> src/cert_store.rs:279:28
+kablam!     |
+kablam! 279 |                 let next = CertContext::from_inner(next);
+kablam!     |                            ^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is implemented and in scope; the following traits define an item `from_inner`, perhaps you need to implement one of them:
+kablam!     = help: candidate #1: `Inner`
+kablam!     = help: candidate #2: `std::sys_common::FromInner`
+kablam! 
+kablam! error: no associated item named `from_inner` found for type `cert_context::CertContext` in the current scope
+kablam!    --> src/cert_store.rs:387:20
+kablam!     |
+kablam! 387 |                 Ok(CertContext::from_inner(cert_context))
+kablam!     |                    ^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is implemented and in scope; the following traits define an item `from_inner`, perhaps you need to implement one of them:
+kablam!     = help: candidate #1: `Inner`
+kablam!     = help: candidate #2: `std::sys_common::FromInner`
+kablam! 
+kablam! error: no associated item named `from_inner` found for type `ctl_context::CtlContext` in the current scope
+kablam!    --> src/cert_store.rs:409:20
+kablam!     |
+kablam! 409 |                 Ok(CtlContext::from_inner(ctl_context))
+kablam!     |                    ^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is implemented and in scope; the following traits define an item `from_inner`, perhaps you need to implement one of them:
+kablam!     = help: candidate #1: `Inner`
+kablam!     = help: candidate #2: `std::sys_common::FromInner`
+kablam! 
+kablam! error: no method named `as_inner` found for type `&cert_context::CertContext` in the current scope
+kablam!    --> src/ctl_context.rs:112:37
+kablam!     |
+kablam! 112 |                         cbData: (*c.as_inner()).cbCertEncoded,
+kablam!     |                                     ^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is implemented and in scope; the following traits define an item `as_inner`, perhaps you need to implement one of them:
+kablam!     = help: candidate #1: `Inner`
+kablam!     = help: candidate #2: `std::sys_common::AsInner`
+kablam! 
+kablam! error: no method named `as_inner` found for type `&cert_context::CertContext` in the current scope
+kablam!    --> src/ctl_context.rs:113:37
+kablam!     |
+kablam! 113 |                         pbData: (*c.as_inner()).pbCertEncoded,
+kablam!     |                                     ^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is implemented and in scope; the following traits define an item `as_inner`, perhaps you need to implement one of them:
+kablam!     = help: candidate #1: `Inner`
+kablam!     = help: candidate #2: `std::sys_common::AsInner`
+kablam! 
+kablam! error: no method named `as_inner` found for type `&cert_context::CertContext` in the current scope
+kablam!    --> src/ctl_context.rs:157:9
+kablam!     |
+kablam! 157 | 			cert.as_inner(),
+kablam!     | 			     ^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is implemented and in scope; the following traits define an item `as_inner`, perhaps you need to implement one of them:
+kablam!     = help: candidate #1: `Inner`
+kablam!     = help: candidate #2: `std::sys_common::AsInner`
+kablam! 
+kablam! error: no method named `as_inner` found for type `&cert_context::CertContext` in the current scope
+kablam!    --> src/ctl_context.rs:170:9
+kablam!     |
+kablam! 170 | 			cert.as_inner(),
+kablam!     | 			     ^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is implemented and in scope; the following traits define an item `as_inner`, perhaps you need to implement one of them:
+kablam!     = help: candidate #1: `Inner`
+kablam!     = help: candidate #2: `std::sys_common::AsInner`
+kablam! 
+kablam! error: no method named `as_inner` found for type `&cert_context::CertContext` in the current scope
+kablam!    --> src/schannel_cred.rs:206:57
+kablam!     |
+kablam! 206 |             let mut certs = self.certs.iter().map(|c| c.as_inner()).collect::<Vec<_>>();
+kablam!     |                                                         ^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is implemented and in scope; the following traits define an item `as_inner`, perhaps you need to implement one of them:
+kablam!     = help: candidate #1: `Inner`
+kablam!     = help: candidate #2: `std::sys_common::AsInner`
+kablam! 
+kablam! error: no method named `get_mut` found for type `security_context::SecurityContext` in the current scope
+kablam!    --> src/tls_stream.rs:272:67
+kablam!     |
+kablam! 272 |                     match secur32::ApplyControlToken(self.context.get_mut(), &mut desc) {
+kablam!     |                                                                   ^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is implemented and in scope; the following traits define an item `get_mut`, perhaps you need to implement one of them:
+kablam!     = help: candidate #1: `Inner`
+kablam!     = help: candidate #2: `core::slice::SliceExt`
+kablam!     = help: candidate #3: `std::slice::SliceIndex`
+kablam! 
+kablam! error: no method named `get_mut` found for type `security_context::SecurityContext` in the current scope
+kablam!    --> src/tls_stream.rs:309:34
+kablam!     |
+kablam! 309 |                     self.context.get_mut()
+kablam!     |                                  ^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is implemented and in scope; the following traits define an item `get_mut`, perhaps you need to implement one of them:
+kablam!     = help: candidate #1: `Inner`
+kablam!     = help: candidate #2: `core::slice::SliceExt`
+kablam!     = help: candidate #3: `std::slice::SliceIndex`
+kablam! 
+kablam! error: no method named `get_mut` found for type `schannel_cred::SchannelCred` in the current scope
+kablam!    --> src/tls_stream.rs:311:58
+kablam!     |
+kablam! 311 |                 secur32::AcceptSecurityContext(self.cred.get_mut(),
+kablam!     |                                                          ^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is implemented and in scope; the following traits define an item `get_mut`, perhaps you need to implement one of them:
+kablam!     = help: candidate #1: `Inner`
+kablam!     = help: candidate #2: `core::slice::SliceExt`
+kablam!     = help: candidate #3: `std::slice::SliceIndex`
+kablam! 
+kablam! error: no method named `get_mut` found for type `security_context::SecurityContext` in the current scope
+kablam!    --> src/tls_stream.rs:316:61
+kablam!     |
+kablam! 316 |                                                self.context.get_mut(),
+kablam!     |                                                             ^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is implemented and in scope; the following traits define an item `get_mut`, perhaps you need to implement one of them:
+kablam!     = help: candidate #1: `Inner`
+kablam!     = help: candidate #2: `core::slice::SliceExt`
+kablam!     = help: candidate #3: `std::slice::SliceIndex`
+kablam! 
+kablam! error: no method named `get_mut` found for type `schannel_cred::SchannelCred` in the current scope
+kablam!    --> src/tls_stream.rs:326:63
+kablam!     |
+kablam! 326 |                 secur32::InitializeSecurityContextW(self.cred.get_mut(),
+kablam!     |                                                               ^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is implemented and in scope; the following traits define an item `get_mut`, perhaps you need to implement one of them:
+kablam!     = help: candidate #1: `Inner`
+kablam!     = help: candidate #2: `core::slice::SliceExt`
+kablam!     = help: candidate #3: `std::slice::SliceIndex`
+kablam! 
+kablam! error: no method named `get_mut` found for type `security_context::SecurityContext` in the current scope
+kablam!    --> src/tls_stream.rs:327:66
+kablam!     |
+kablam! 327 |                                                     self.context.get_mut(),
+kablam!     |                                                                  ^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is implemented and in scope; the following traits define an item `get_mut`, perhaps you need to implement one of them:
+kablam!     = help: candidate #1: `Inner`
+kablam!     = help: candidate #2: `core::slice::SliceExt`
+kablam!     = help: candidate #3: `std::slice::SliceIndex`
+kablam! 
+kablam! error[E0277]: the trait bound `[u8]: std::marker::Sized` is not satisfied
+kablam!    --> src/tls_stream.rs:394:33
+kablam!     |
+kablam! 394 |                     if let Some(to_write) = to_write {
+kablam!     |                                 ^^^^^^^^ the trait `std::marker::Sized` is not implemented for `[u8]`
+kablam!     |
+kablam!     = note: `[u8]` does not have a constant size known at compile-time
+kablam!     = note: all local variables must have a statically known size
+kablam! 
+kablam! error[E0277]: the trait bound `[u8]: std::marker::Sized` is not satisfied
+kablam!    --> src/tls_stream.rs:394:28
+kablam!     |
+kablam! 394 |                     if let Some(to_write) = to_write {
+kablam!     |                            ^^^^^^^^^^^^^^ the trait `std::marker::Sized` is not implemented for `[u8]`
+kablam!     |
+kablam!     = note: `[u8]` does not have a constant size known at compile-time
+kablam!     = note: required by `std::prelude::v1::Some`
+kablam! 
+kablam! error: no method named `as_inner` found for type `&cert_store::CertStore` in the current scope
+kablam!    --> src/tls_stream.rs:468:28
+kablam!     |
+kablam! 468 |                 .map(|s| s.as_inner())
+kablam!     |                            ^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is implemented and in scope; the following traits define an item `as_inner`, perhaps you need to implement one of them:
+kablam!     = help: candidate #1: `Inner`
+kablam!     = help: candidate #2: `std::sys_common::AsInner`
+kablam! 
+kablam! error: no method named `as_inner` found for type `cert_context::CertContext` in the current scope
+kablam!    --> src/tls_stream.rs:488:69
+kablam!     |
+kablam! 488 |                                                        cert_context.as_inner(),
+kablam!     |                                                                     ^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is implemented and in scope; the following traits define an item `as_inner`, perhaps you need to implement one of them:
+kablam!     = help: candidate #1: `Inner`
+kablam!     = help: candidate #2: `std::sys_common::AsInner`
+kablam! 
+kablam! error: no method named `get_mut` found for type `security_context::SecurityContext` in the current scope
+kablam!    --> src/tls_stream.rs:593:56
+kablam!     |
+kablam! 593 |             match secur32::DecryptMessage(self.context.get_mut(),
+kablam!     |                                                        ^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is implemented and in scope; the following traits define an item `get_mut`, perhaps you need to implement one of them:
+kablam!     = help: candidate #1: `Inner`
+kablam!     = help: candidate #2: `core::slice::SliceExt`
+kablam!     = help: candidate #3: `std::slice::SliceIndex`
+kablam! 
+kablam! error: no method named `get_mut` found for type `security_context::SecurityContext` in the current scope
+kablam!    --> src/tls_stream.rs:679:56
+kablam!     |
+kablam! 679 |             match secur32::EncryptMessage(self.context.get_mut(), 0, &mut bufdesc, 0) {
+kablam!     |                                                        ^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is implemented and in scope; the following traits define an item `get_mut`, perhaps you need to implement one of them:
+kablam!     = help: candidate #1: `Inner`
+kablam!     = help: candidate #2: `core::slice::SliceExt`
+kablam!     = help: candidate #3: `std::slice::SliceIndex`
+kablam! 
+kablam! error: no method named `get_mut` found for type `&mut schannel_cred::SchannelCred` in the current scope
+kablam!   --> src/security_context.rs:58:60
+kablam!    |
+kablam! 58 |             match secur32::InitializeSecurityContextW(cred.get_mut(),
+kablam!    |                                                            ^^^^^^^
+kablam!    |
+kablam!    = help: items from traits can only be used if the trait is implemented and in scope; the following traits define an item `get_mut`, perhaps you need to implement one of them:
+kablam!    = help: candidate #1: `Inner`
+kablam!    = help: candidate #2: `core::slice::SliceExt`
+kablam!    = help: candidate #3: `std::slice::SliceIndex`
+kablam! 
+kablam! error: no associated item named `from_inner` found for type `cert_context::CertContext` in the current scope
+kablam!    --> src/security_context.rs:101:20
+kablam!     |
+kablam! 101 |                 Ok(CertContext::from_inner(cert_context))
+kablam!     |                    ^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: items from traits can only be used if the trait is implemented and in scope; the following traits define an item `from_inner`, perhaps you need to implement one of them:
+kablam!     = help: candidate #1: `Inner`
+kablam!     = help: candidate #2: `std::sys_common::FromInner`
+kablam! 
+kablam! error: aborting due to 29 previous errors
+kablam! 
+kablam! error: Could not compile `schannel`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 4fbbeeebd69b6362eba668eeeef81d4093c2d520dcf69a2c5680047fae08402c`
+blam! 4fbbeeebd69b6362eba668eeeef81d4093c2d520dcf69a2c5680047fae08402c

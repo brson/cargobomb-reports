@@ -1,0 +1,45 @@
+boom! testing tape-0.1.8 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 296775dee5d4ba718d851de1e3976c6cb52537288ddbc30ffe3e02ad9bc97c26
+boom! running `docker start -a 296775dee5d4ba718d851de1e3976c6cb52537288ddbc30ffe3e02ad9bc97c26`
+kablam!    Compiling libtar-sys v0.1.9
+kablam!    Compiling tape v0.1.8 (file:///source)
+kablam! error[E0432]: unresolved import `std::sync::StaticMutex`
+kablam!   --> src/lib.rs:11:17
+kablam!    |
+kablam! 11 | use std::sync::{StaticMutex, MUTEX_INIT};
+kablam!    |                 ^^^^^^^^^^^ no `StaticMutex` in `sync`
+kablam! 
+kablam! error[E0432]: unresolved import `std::sync::MUTEX_INIT`
+kablam!   --> src/lib.rs:11:30
+kablam!    |
+kablam! 11 | use std::sync::{StaticMutex, MUTEX_INIT};
+kablam!    |                              ^^^^^^^^^^ no `MUTEX_INIT` in `sync`
+kablam! 
+kablam! error[E0432]: unresolved import `libc::consts::os::posix88::O_RDONLY`
+kablam!   --> src/lib.rs:50:13
+kablam!    |
+kablam! 50 |         use libc::consts::os::posix88::O_RDONLY;
+kablam!    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `consts` in `libc`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/lib.rs:3:1
+kablam!   |
+kablam! 3 | #![feature(std_misc, unsafe_destructor)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: The attribute `unsafe_destructor` is currently unknown to the compiler and may have meaning added to it in the future (see issue #29642)
+kablam!   --> src/lib.rs:79:1
+kablam!    |
+kablam! 79 | #[unsafe_destructor]
+kablam!    | ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `tape`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 296775dee5d4ba718d851de1e3976c6cb52537288ddbc30ffe3e02ad9bc97c26`
+blam! 296775dee5d4ba718d851de1e3976c6cb52537288ddbc30ffe3e02ad9bc97c26

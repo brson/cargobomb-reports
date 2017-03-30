@@ -1,0 +1,29 @@
+boom! testing gnutls-sys-0.1.2 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 4cf3c8a4f8addb1d80231a3c5178da5b94b3b604f5032f6c417d5f7b2029730b
+boom! running `docker start -a 4cf3c8a4f8addb1d80231a3c5178da5b94b3b604f5032f6c417d5f7b2029730b`
+kablam!    Compiling gnutls-sys v0.1.2 (file:///source)
+kablam! warning: unreachable statement, #[warn(unreachable_code)] on by default
+kablam!   --> build.rs:10:5
+kablam!    |
+kablam! 10 |     println!("cargo:rustc-link-lib=gnutls");
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error: failed to run custom build command for `gnutls-sys v0.1.2 (file:///source)`
+kablam! process didn't exit successfully: `/target/debug/build/gnutls-sys-af18217bfacfff5e/build-script-build` (exit code: 101)
+kablam! --- stderr
+kablam! thread 'main' panicked at 'GnuTLS not found: `"pkg-config" "--libs" "--cflags" "gnutls"` did not exit successfully: exit code: 1
+kablam! --- stderr
+kablam! Package gnutls was not found in the pkg-config search path.
+kablam! Perhaps you should add the directory containing `gnutls.pc'
+kablam! to the PKG_CONFIG_PATH environment variable
+kablam! No package 'gnutls' found
+kablam! ', build.rs:7
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f 4cf3c8a4f8addb1d80231a3c5178da5b94b3b604f5032f6c417d5f7b2029730b`
+blam! 4cf3c8a4f8addb1d80231a3c5178da5b94b3b604f5032f6c417d5f7b2029730b

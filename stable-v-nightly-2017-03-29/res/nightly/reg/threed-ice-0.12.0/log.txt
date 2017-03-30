@@ -1,0 +1,44 @@
+boom! testing threed-ice-0.12.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! b726f0ef9c97eb6f9634f64179815c0c3a6d9f5b890a5666683c0f7bf48ea714
+boom! running `docker start -a b726f0ef9c97eb6f9634f64179815c0c3a6d9f5b890a5666683c0f7bf48ea714`
+kablam!    Compiling superlu-sys v0.3.1
+kablam!    Compiling openblas-src v0.5.3
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: failed to run custom build command for `superlu-sys v0.3.1`
+kablam! process didn't exit successfully: `/target/debug/build/superlu-sys-27d1eb57455f354e/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! /usr/bin/cc -O3 -DNDEBUG -DPRNTlevel=0 -fPIC -w   -c sgssv.c 
+kablam! Makefile:122: recipe for target 'sgssv.o' failed
+kablam! 
+kablam! --- stderr
+kablam! Assembler messages:
+kablam! Fatal error: can't create sgssv.o: Read-only file system
+kablam! make: *** [sgssv.o] Error 1
+kablam! thread 'main' panicked at 'assertion failed: cmd!("make").current_dir(&source.join("SRC")).arg("NOOPTS=-O0 -fPIC -w").arg("CFLAGS=-O3 -DNDEBUG -DPRNTlevel=0 -fPIC -w").arg("DZAUX=").arg("SCAUX=").arg(&format!("SuperLUroot={}"
+kablam!                                                                                                                                                                     ,
+kablam!                                                                                                                                                                     source
+kablam!                                                                                                                                                                     .
+kablam!                                                                                                                                                                     display
+kablam!                                                                                                                                                                     (
+kablam! 
+kablam!                                                                                                                                                                     ))).arg(&format!("SUPERLULIB={}"
+kablam!                                                                                                                                                                                      ,
+kablam!                                                                                                                                                                                      lib
+kablam!                                                                                                                                                                                      .
+kablam!                                                                                                                                                                                      join
+kablam!                                                                                                                                                                                      (
+kablam!                                                                                                                                                                                      "libsuperlu.a"
+kablam!                                                                                                                                                                                      )
+kablam!                                                                                                                                                                                      .
+kablam!                                                                                                                                                                                      display
+kablam!                                                                                                                                                                                      (
+kablam! 
+kablam!                                                                                                                                                                                      ))).stdout(process::Stdio::inherit()).stderr(process::Stdio::inherit()).status().unwrap().success()', /cargo-home/registry/src/github.com-1ecc6299db9ec823/superlu-sys-0.3.1/build.rs:40
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f b726f0ef9c97eb6f9634f64179815c0c3a6d9f5b890a5666683c0f7bf48ea714`
+blam! b726f0ef9c97eb6f9634f64179815c0c3a6d9f5b890a5666683c0f7bf48ea714

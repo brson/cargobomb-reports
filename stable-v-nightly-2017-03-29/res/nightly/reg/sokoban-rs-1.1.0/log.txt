@@ -1,0 +1,36 @@
+boom! testing sokoban-rs-1.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! bb6990e61720c54749c1fd24505abc6f4b48d77f67f0eb1956d0502d2ac5792d
+boom! running `docker start -a bb6990e61720c54749c1fd24505abc6f4b48d77f67f0eb1956d0502d2ac5792d`
+kablam!    Compiling sdl2 v0.18.0
+kablam!    Compiling sdl2 v0.16.1
+kablam!    Compiling sdl2_ttf v0.16.2
+kablam!    Compiling sdl2_image v0.16.0
+kablam!    Compiling sokoban-rs v1.1.0 (file:///source)
+kablam! error[E0277]: the trait bound `sdl2::pixels::Color: std::convert::From<sdl2::pixels::Color>` is not satisfied
+kablam!    --> src/render.rs:167:46
+kablam!     |
+kablam! 167 |         let surface = self.font.render(text).blended(self.bar_text_color).unwrap();
+kablam!     |                                              ^^^^^^^ the trait `std::convert::From<sdl2::pixels::Color>` is not implemented for `sdl2::pixels::Color`
+kablam!     |
+kablam!     = note: required because of the requirements on the impl of `std::convert::Into<sdl2::pixels::Color>` for `sdl2::pixels::Color`
+kablam! 
+kablam! error[E0277]: the trait bound `sdl2::surface::Surface<'_>: std::convert::AsRef<sdl2::surface::SurfaceRef>` is not satisfied
+kablam!    --> src/render.rs:168:37
+kablam!     |
+kablam! 168 |         let texture = self.renderer.create_texture_from_surface(&surface).unwrap();
+kablam!     |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::convert::AsRef<sdl2::surface::SurfaceRef>` is not implemented for `sdl2::surface::Surface<'_>`
+kablam!     |
+kablam!     = help: the following implementations were found:
+kablam!               <sdl2::surface::Surface<'a> as std::convert::AsRef<sdl2::surface::SurfaceRef>>
+kablam!     = note: required because of the requirements on the impl of `std::convert::AsRef<sdl2::surface::SurfaceRef>` for `&sdl2::surface::Surface<'_>`
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `sokoban-rs`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f bb6990e61720c54749c1fd24505abc6f4b48d77f67f0eb1956d0502d2ac5792d`
+blam! bb6990e61720c54749c1fd24505abc6f4b48d77f67f0eb1956d0502d2ac5792d

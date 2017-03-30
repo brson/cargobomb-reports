@@ -1,0 +1,450 @@
+boom! testing urchin-0.1.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 3f9c798f8b2f970cbb0e69d1c9291a126ca8b7eda206646acf38ce80efaf111c
+boom! running `docker start -a 3f9c798f8b2f970cbb0e69d1c9291a126ca8b7eda206646acf38ce80efaf111c`
+kablam!    Compiling urchin v0.1.1 (file:///source)
+kablam! warning: enum is never used: `FutureState`
+kablam!   --> src/future.rs:6:1
+kablam!    |
+kablam! 6  |   enum FutureState<T, E> {
+kablam!    |  _^ starting here...
+kablam! 7  | |     Promised,
+kablam! 8  | |     Ok(T),
+kablam! 9  | |     Err(E),
+kablam! 10 | | }
+kablam!    | |_^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: struct is never used: `FutureInner`
+kablam!   --> src/future.rs:13:1
+kablam!    |
+kablam! 13 |   pub struct FutureInner<T, E> {
+kablam!    |  _^ starting here...
+kablam! 14 | |     state: FutureState<T, E>,
+kablam! 15 | | }
+kablam!    | |_^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `promised`
+kablam!   --> src/future.rs:18:5
+kablam!    |
+kablam! 18 |       fn promised() -> FutureInner<T, E> {
+kablam!    |  _____^ starting here...
+kablam! 19 | |         FutureInner {
+kablam! 20 | |             state: FutureState::Promised,
+kablam! 21 | |         }
+kablam! 22 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `from_val`
+kablam!   --> src/future.rs:24:5
+kablam!    |
+kablam! 24 |       fn from_val(val: T) -> FutureInner<T, E> {
+kablam!    |  _____^ starting here...
+kablam! 25 | |         FutureInner {
+kablam! 26 | |             state: FutureState::Ok(val),
+kablam! 27 | |         }
+kablam! 28 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `from_err`
+kablam!   --> src/future.rs:30:5
+kablam!    |
+kablam! 30 |       fn from_err(err: E) -> FutureInner<T, E> {
+kablam!    |  _____^ starting here...
+kablam! 31 | |         FutureInner {
+kablam! 32 | |             state: FutureState::Err(err),
+kablam! 33 | |         }
+kablam! 34 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `unwrap`
+kablam!   --> src/future.rs:36:5
+kablam!    |
+kablam! 36 |       fn unwrap(self) -> T {
+kablam!    |  _____^ starting here...
+kablam! 37 | |         match self.state {
+kablam! 38 | |             FutureState::Ok(val) => val,
+kablam! 39 | |             _ => panic!("unwrap failed"),
+kablam! 40 | |         }
+kablam! 41 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `unwrap_err`
+kablam!   --> src/future.rs:43:5
+kablam!    |
+kablam! 43 |       fn unwrap_err(self) -> E {
+kablam!    |  _____^ starting here...
+kablam! 44 | |         match self.state {
+kablam! 45 | |             FutureState::Err(err) => err,
+kablam! 46 | |             _ => panic!("unwrap failed"),
+kablam! 47 | |         }
+kablam! 48 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `expect`
+kablam!   --> src/future.rs:50:5
+kablam!    |
+kablam! 50 |       fn expect(self, _msg: &str) -> T {
+kablam!    |  _____^ starting here...
+kablam! 51 | |         match self.state {
+kablam! 52 | |             FutureState::Ok(val) => val,
+kablam! 53 | |             _ => panic!("expect failed"),
+kablam! 54 | |         }
+kablam! 55 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `is_promised`
+kablam!   --> src/future.rs:57:5
+kablam!    |
+kablam! 57 |       fn is_promised(&self) -> bool {
+kablam!    |  _____^ starting here...
+kablam! 58 | |         match self.state {
+kablam! 59 | |             FutureState::Promised => true,
+kablam! 60 | |             _ => false,
+kablam! 61 | |         }
+kablam! 62 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `is_err`
+kablam!   --> src/future.rs:64:5
+kablam!    |
+kablam! 64 |       fn is_err(&self) -> bool {
+kablam!    |  _____^ starting here...
+kablam! 65 | |         match self.state {
+kablam! 66 | |             FutureState::Err(_) => true,
+kablam! 67 | |             _ => false,
+kablam! 68 | |         }
+kablam! 69 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `is_ok`
+kablam!   --> src/future.rs:71:5
+kablam!    |
+kablam! 71 |       fn is_ok(&self) -> bool {
+kablam!    |  _____^ starting here...
+kablam! 72 | |         match self.state {
+kablam! 73 | |             FutureState::Ok(_) => true,
+kablam! 74 | |             _ => false,
+kablam! 75 | |         }
+kablam! 76 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `ok`
+kablam!   --> src/future.rs:78:5
+kablam!    |
+kablam! 78 |       fn ok(self) -> Option<T> {
+kablam!    |  _____^ starting here...
+kablam! 79 | |         match self.state {
+kablam! 80 | |             FutureState::Ok(val) => Some(val),
+kablam! 81 | |             _ => None,
+kablam! 82 | |         }
+kablam! 83 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `err`
+kablam!   --> src/future.rs:85:5
+kablam!    |
+kablam! 85 |       fn err(self) -> Option<E> {
+kablam!    |  _____^ starting here...
+kablam! 86 | |         match self.state {
+kablam! 87 | |             FutureState::Err(err) => Some(err),
+kablam! 88 | |             _ => None,
+kablam! 89 | |         }
+kablam! 90 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `set_ok`
+kablam!   --> src/future.rs:92:5
+kablam!    |
+kablam! 92 |       fn set_ok(&mut self, val: T) {
+kablam!    |  _____^ starting here...
+kablam! 93 | |         assert!(self.is_promised());
+kablam! 94 | |         self.state = FutureState::Ok(val);
+kablam! 95 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `set_err`
+kablam!    --> src/future.rs:97:5
+kablam!     |
+kablam! 97  |       fn set_err(&mut self, err: E) {
+kablam!     |  _____^ starting here...
+kablam! 98  | |         assert!(self.is_promised());
+kablam! 99  | |         self.state = FutureState::Err(err);
+kablam! 100 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: struct is never used: `Future`
+kablam!    --> src/future.rs:104:1
+kablam!     |
+kablam! 104 |   pub struct Future<T, E> {
+kablam!     |  _^ starting here...
+kablam! 105 | |     inner: Rc<RefCell<FutureInner<T, E>>>,
+kablam! 106 | | }
+kablam!     | |_^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `promised`
+kablam!    --> src/future.rs:112:5
+kablam!     |
+kablam! 112 |       pub fn promised() -> (Future<T, E>, Promise<T, E>) {
+kablam!     |  _____^ starting here...
+kablam! 113 | |         let inner = Rc::new(RefCell::new(FutureInner::promised()));
+kablam! 114 | |         let future = Future::new(inner.clone());
+kablam! 115 | |         let promise = Promise::new(inner);
+kablam! 116 | |         (future, promise)
+kablam! 117 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `from_val`
+kablam!    --> src/future.rs:119:5
+kablam!     |
+kablam! 119 |       pub fn from_val(val: T) -> Future<T, E> {
+kablam!     |  _____^ starting here...
+kablam! 120 | |         let inner = Rc::new(RefCell::new(FutureInner::from_val(val)));
+kablam! 121 | |         Future::new(inner.clone())
+kablam! 122 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `from_err`
+kablam!    --> src/future.rs:124:5
+kablam!     |
+kablam! 124 |       pub fn from_err(err: E) -> Future<T, E> {
+kablam!     |  _____^ starting here...
+kablam! 125 | |         Future::new(Rc::new(RefCell::new(FutureInner::from_err(err))))
+kablam! 126 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `new`
+kablam!    --> src/future.rs:128:5
+kablam!     |
+kablam! 128 |       fn new(inner: Rc<RefCell<FutureInner<T, E>>>) -> Future<T, E> {
+kablam!     |  _____^ starting here...
+kablam! 129 | |         Future {
+kablam! 130 | |             inner: inner,
+kablam! 131 | |         }
+kablam! 132 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `is_promised`
+kablam!    --> src/future.rs:135:5
+kablam!     |
+kablam! 135 |       pub fn is_promised(&self) -> bool {
+kablam!     |  _____^ starting here...
+kablam! 136 | |         self.inner.borrow().is_promised()
+kablam! 137 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `is_ok`
+kablam!    --> src/future.rs:141:5
+kablam!     |
+kablam! 141 |       pub fn is_ok(&self) -> bool {
+kablam!     |  _____^ starting here...
+kablam! 142 | |         self.inner.borrow().is_ok()
+kablam! 143 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `is_err`
+kablam!    --> src/future.rs:146:5
+kablam!     |
+kablam! 146 |       pub fn is_err(&self) -> bool {
+kablam!     |  _____^ starting here...
+kablam! 147 | |         self.inner.borrow().is_err()
+kablam! 148 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `err`
+kablam!    --> src/future.rs:152:5
+kablam!     |
+kablam! 152 |       pub fn err(self) -> Option<E> {
+kablam!     |  _____^ starting here...
+kablam! 153 | |         match Rc::try_unwrap(self.inner) {
+kablam! 154 | |             Ok(ref_cell) => ref_cell.into_inner().err(),
+kablam! 155 | |             _ => None
+kablam! 156 | |         }
+kablam! 157 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `ok`
+kablam!    --> src/future.rs:160:5
+kablam!     |
+kablam! 160 |       pub fn ok(self) -> Option<T> {
+kablam!     |  _____^ starting here...
+kablam! 161 | |         match Rc::try_unwrap(self.inner) {
+kablam! 162 | |             Ok(ref_cell) => ref_cell.into_inner().ok(),
+kablam! 163 | |             _ => None
+kablam! 164 | |         }
+kablam! 165 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `unwrap_err`
+kablam!    --> src/future.rs:169:5
+kablam!     |
+kablam! 169 |       pub fn unwrap_err(self) -> E {
+kablam!     |  _____^ starting here...
+kablam! 170 | |         match Rc::try_unwrap(self.inner) {
+kablam! 171 | |             Ok(ref_cell) => ref_cell.into_inner().unwrap_err(),
+kablam! 172 | |             _ => panic!("could not unwrap inner")
+kablam! 173 | |         }
+kablam! 174 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `unwrap`
+kablam!    --> src/future.rs:177:5
+kablam!     |
+kablam! 177 |       pub fn unwrap(self) -> T {
+kablam!     |  _____^ starting here...
+kablam! 178 | |         match Rc::try_unwrap(self.inner) {
+kablam! 179 | |             Ok(ref_cell) => ref_cell.into_inner().unwrap(),
+kablam! 180 | |             _ => panic!("could not unwrap inner")
+kablam! 181 | |         }
+kablam! 182 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: struct is never used: `Promise`
+kablam!    --> src/future.rs:188:1
+kablam!     |
+kablam! 188 |   pub struct Promise<T, E> {
+kablam!     |  _^ starting here...
+kablam! 189 | |     inner: Rc<RefCell<FutureInner<T, E>>>,
+kablam! 190 | | }
+kablam!     | |_^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `new`
+kablam!    --> src/future.rs:195:5
+kablam!     |
+kablam! 195 |       fn new(inner: Rc<RefCell<FutureInner<T, E>>>) -> Promise<T, E> {
+kablam!     |  _____^ starting here...
+kablam! 196 | |         Promise {
+kablam! 197 | |             inner: inner,
+kablam! 198 | |         }
+kablam! 199 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `resolve`
+kablam!    --> src/future.rs:201:5
+kablam!     |
+kablam! 201 |       pub fn resolve(self, res: Result<T, E>) {
+kablam!     |  _____^ starting here...
+kablam! 202 | |         match res {
+kablam! 203 | |             Ok(val) => self.inner.borrow_mut().set_ok(val),
+kablam! 204 | |             Err(err) => self.inner.borrow_mut().set_err(err),
+kablam! 205 | |         }
+kablam! 206 | |     }
+kablam!     | |_____^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.48 secs
+boom! running `docker rm -f 3f9c798f8b2f970cbb0e69d1c9291a126ca8b7eda206646acf38ce80efaf111c`
+blam! 3f9c798f8b2f970cbb0e69d1c9291a126ca8b7eda206646acf38ce80efaf111c
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 9a660ff7e1a2993a28e8bc74c37c920162ca2c3a4485b136de0fc6cf59be820c
+boom! running `docker start -a 9a660ff7e1a2993a28e8bc74c37c920162ca2c3a4485b136de0fc6cf59be820c`
+kablam!    Compiling urchin v0.1.1 (file:///source)
+kablam! warning: method is never used: `expect`
+kablam!   --> src/future.rs:50:5
+kablam!    |
+kablam! 50 |       fn expect(self, _msg: &str) -> T {
+kablam!    |  _____^ starting here...
+kablam! 51 | |         match self.state {
+kablam! 52 | |             FutureState::Ok(val) => val,
+kablam! 53 | |             _ => panic!("expect failed"),
+kablam! 54 | |         }
+kablam! 55 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.9 secs
+boom! running `docker rm -f 9a660ff7e1a2993a28e8bc74c37c920162ca2c3a4485b136de0fc6cf59be820c`
+blam! 9a660ff7e1a2993a28e8bc74c37c920162ca2c3a4485b136de0fc6cf59be820c
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 553c3b97a568480978f6163f5a7c845310b4c57a601caf3daedcc5b2e6365c79
+boom! running `docker start -a 553c3b97a568480978f6163f5a7c845310b4c57a601caf3daedcc5b2e6365c79`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/urchin-53a52041610a1521
+blam! 
+blam! running 10 tests
+blam! test future::test::future_err ... ok
+blam! test future::test::future_ok ... ok
+blam! test future::test::future_err_unwrap ... ok
+blam! test future::test::future_promise_ok ... ok
+blam! test future::test::future_promised_unwrap ... ok
+blam! test future::test::future_promise_err ... ok
+kablam!    Doc-tests urchin
+blam! test future::test::future_ok_unwrap_err ... ok
+blam! test future::test::future_unwrap ... ok
+blam! test future::test::future_promised_unwrap_err ... ok
+blam! test future::test::future_unwrap_err ... ok
+blam! 
+blam! test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+blam! 
+blam! running 0 tests
+blam! 
+blam! test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f 553c3b97a568480978f6163f5a7c845310b4c57a601caf3daedcc5b2e6365c79`
+blam! 553c3b97a568480978f6163f5a7c845310b4c57a601caf3daedcc5b2e6365c79

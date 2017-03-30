@@ -1,0 +1,37 @@
+boom! testing rand-distributions-0.1.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! be7d48d74e75d95231c6ac1e7dc55568a2555ec024f876037e781c3c9d38527f
+boom! running `docker start -a be7d48d74e75d95231c6ac1e7dc55568a2555ec024f876037e781c3c9d38527f`
+kablam!    Compiling rand-distributions v0.1.2 (file:///source)
+kablam! error[E0277]: the trait bound `Self: std::marker::Sized` is not satisfied
+kablam!   --> src/core.rs:45:1
+kablam!    |
+kablam! 45 |   pub trait DefaultDistribution {
+kablam!    |  _^ starting here...
+kablam! 46 | |     type Distribution: Distribution<Output=Self>;
+kablam! 47 | |
+kablam! 48 | |     fn default_distribution() -> <Self as DefaultDistribution>::Distribution;
+kablam! 49 | | }
+kablam!    | |_^ ...ending here: the trait `std::marker::Sized` is not implemented for `Self`
+kablam!    |
+kablam!    = help: consider adding a `where Self: std::marker::Sized` bound
+kablam!    = note: required by `core::Distribution`
+kablam! 
+kablam! error[E0277]: the trait bound `Self: std::marker::Sized` is not satisfied
+kablam!   --> src/core.rs:48:5
+kablam!    |
+kablam! 48 |     fn default_distribution() -> <Self as DefaultDistribution>::Distribution;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::marker::Sized` is not implemented for `Self`
+kablam!    |
+kablam!    = help: consider adding a `where Self: std::marker::Sized` bound
+kablam!    = note: required by `core::Distribution`
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `rand-distributions`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f be7d48d74e75d95231c6ac1e7dc55568a2555ec024f876037e781c3c9d38527f`
+blam! be7d48d74e75d95231c6ac1e7dc55568a2555ec024f876037e781c3c9d38527f

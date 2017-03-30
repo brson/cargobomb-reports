@@ -1,0 +1,26 @@
+boom! testing kythe-indexer-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 31e44d59a7de860f54d94d701476f10be7cd469764e10b3495936d8ce637e660
+boom! running `docker start -a 31e44d59a7de860f54d94d701476f10be7cd469764e10b3495936d8ce637e660`
+kablam!    Compiling kythe-indexer v0.1.0 (file:///source)
+kablam! error[E0432]: unresolved import `rustc::middle::cstore::LOCAL_CRATE`
+kablam!   --> src/visitor.rs:24:5
+kablam!    |
+kablam! 24 | use rustc::middle::cstore::LOCAL_CRATE;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `LOCAL_CRATE` in `middle::cstore`
+kablam! 
+kablam! error[E0106]: missing lifetime specifiers
+kablam!   --> src/pass.rs:40:10
+kablam!    |
+kablam! 40 | impl<'a> LateLintPass for KytheLintPass {
+kablam!    |          ^^^^^^^^^^^^ expected 2 lifetime parameters
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `kythe-indexer`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 31e44d59a7de860f54d94d701476f10be7cd469764e10b3495936d8ce637e660`
+blam! 31e44d59a7de860f54d94d701476f10be7cd469764e10b3495936d8ce637e660

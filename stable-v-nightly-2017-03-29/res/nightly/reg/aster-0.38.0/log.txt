@@ -1,0 +1,218 @@
+boom! testing aster-0.38.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 467b1c191a0fa5651387f66539f2d156e7d54d25f477616c84afa53743689e43
+boom! running `docker start -a 467b1c191a0fa5651387f66539f2d156e7d54d25f477616c84afa53743689e43`
+kablam!    Compiling aster v0.38.0 (file:///source)
+kablam! error[E0560]: struct `syntax::ast::Attribute` has no field named `value`
+kablam!   --> src/attr.rs:59:13
+kablam!    |
+kablam! 59 |             value: item,
+kablam!    |             ^^^^^^ field does not exist - did you mean `path`?
+kablam! 
+kablam! error[E0063]: missing field `attrs` in initializer of `syntax::ast::Field`
+kablam!     --> src/expr.rs:1108:21
+kablam!      |
+kablam! 1108 |         let field = ast::Field {
+kablam!      |                     ^^^^^^^^^^ missing `attrs`
+kablam! 
+kablam! error: no associated item named `Vec` found for type `syntax::ast::ExprKind` in the current scope
+kablam!     --> src/expr.rs:1907:38
+kablam!      |
+kablam! 1907 |         self.builder.build_expr_kind(ast::ExprKind::Vec(self.exprs))
+kablam!      |                                      ^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `into_vec` found for type `std::vec::Vec<syntax::ast::TyParam>` in the current scope
+kablam!   --> src/generics.rs:53:43
+kablam!    |
+kablam! 53 |             ty_params: generics.ty_params.into_vec(),
+kablam!    |                                           ^^^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/generics.rs:203:31
+kablam!     |
+kablam! 203 |             ty_param.bounds = P::new();
+kablam!     |                               ^^^^^^^^ expected struct `std::vec::Vec`, found struct `syntax::ptr::P`
+kablam!     |
+kablam!     = note: expected type `std::vec::Vec<syntax::ast::TyParamBound>`
+kablam!                found type `syntax::ptr::P<[_]>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .into_vec()
+kablam!             - .to_vec()
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/generics.rs:216:24
+kablam!     |
+kablam! 216 |             ty_params: P::from_vec(self.ty_params),
+kablam!     |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `std::vec::Vec`, found struct `syntax::ptr::P`
+kablam!     |
+kablam!     = note: expected type `std::vec::Vec<syntax::ast::TyParam>`
+kablam!                found type `syntax::ptr::P<[syntax::ast::TyParam]>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .into_vec()
+kablam!             - .to_vec()
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/item.rs:912:13
+kablam!     |
+kablam! 912 |             P::from_vec(self.bounds),
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `std::vec::Vec`, found struct `syntax::ptr::P`
+kablam!     |
+kablam!     = note: expected type `std::vec::Vec<syntax::ast::TyParamBound>`
+kablam!                found type `syntax::ptr::P<[syntax::ast::TyParamBound]>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .into_vec()
+kablam!             - .to_vec()
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!     --> src/item.rs:1126:45
+kablam!      |
+kablam! 1126 |         let node = ast::TraitItemKind::Type(bounds, ty);
+kablam!      |                                             ^^^^^^ expected struct `std::vec::Vec`, found struct `syntax::ptr::P`
+kablam!      |
+kablam!      = note: expected type `std::vec::Vec<syntax::ast::TyParamBound>`
+kablam!                 found type `syntax::ptr::P<[syntax::ast::TyParamBound]>`
+kablam!      = help: here are some functions which might fulfill your needs:
+kablam!              - .into_vec()
+kablam!              - .to_vec()
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/mac.rs:110:18
+kablam!     |
+kablam! 110 |             tts: self.tokens,
+kablam!     |                  ^^^^^^^^^^^ expected struct `syntax::tokenstream::ThinTokenStream`, found struct `std::vec::Vec`
+kablam!     |
+kablam!     = note: expected type `syntax::tokenstream::ThinTokenStream`
+kablam!                found type `std::vec::Vec<syntax::tokenstream::TokenTree>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .remove(...)
+kablam!             - .swap_remove(...)
+kablam! 
+kablam! error[E0061]: this function takes 3 parameters but 2 parameters were supplied
+kablam!    --> src/pat.rs:124:49
+kablam!     |
+kablam! 124 |         self.build_pat_kind(ast::PatKind::Range(lhs, rhs))
+kablam!     |                                                 ^^^^^^^^ expected 3 parameters
+kablam! 
+kablam! error[E0063]: missing field `attrs` in initializer of `syntax::ast::FieldPat`
+kablam!    --> src/pat.rs:431:29
+kablam!     |
+kablam! 431 |         self.with_field_pat(ast::FieldPat {
+kablam!     |                             ^^^^^^^^^^^^^ missing `attrs`
+kablam! 
+kablam! error[E0063]: missing field `attrs` in initializer of `syntax::ast::FieldPat`
+kablam!    --> src/pat.rs:445:29
+kablam!     |
+kablam! 445 |         self.with_field_pat(ast::FieldPat {
+kablam!     |                             ^^^^^^^^^^^^^ missing `attrs`
+kablam! 
+kablam! error[E0063]: missing field `attrs` in initializer of `syntax::ast::FieldPat`
+kablam!    --> src/pat.rs:474:37
+kablam!     |
+kablam! 474 |         self.builder.with_field_pat(ast::FieldPat {
+kablam!     |                                     ^^^^^^^^^^^^^ missing `attrs`
+kablam! 
+kablam! error[E0063]: missing field `span` in initializer of `syntax::ast::PathSegment`
+kablam!    --> src/path.rs:303:30
+kablam!     |
+kablam! 303 |         self.callback.invoke(ast::PathSegment {
+kablam!     |                              ^^^^^^^^^^^^^^^^ missing `span`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/path.rs:317:24
+kablam!     |
+kablam! 317 |                 types: P::from_vec(self.tys),
+kablam!     |                        ^^^^^^^^^^^^^^^^^^^^^ expected struct `std::vec::Vec`, found struct `syntax::ptr::P`
+kablam!     |
+kablam!     = note: expected type `std::vec::Vec<syntax::ptr::P<syntax::ast::Ty>>`
+kablam!                found type `syntax::ptr::P<[syntax::ptr::P<syntax::ast::Ty>]>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .into_vec()
+kablam!             - .to_vec()
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/path.rs:318:27
+kablam!     |
+kablam! 318 |                 bindings: P::from_vec(self.bindings),
+kablam!     |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `std::vec::Vec`, found struct `syntax::ptr::P`
+kablam!     |
+kablam!     = note: expected type `std::vec::Vec<syntax::ast::TypeBinding>`
+kablam!                found type `syntax::ptr::P<[syntax::ast::TypeBinding]>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .into_vec()
+kablam!             - .to_vec()
+kablam! 
+kablam! error[E0063]: missing field `span` in initializer of `syntax::ast::PathSegment`
+kablam!    --> src/path.rs:324:30
+kablam!     |
+kablam! 324 |         self.callback.invoke(ast::PathSegment {
+kablam!     |                              ^^^^^^^^^^^^^^^^ missing `span`
+kablam! 
+kablam! error: no associated item named `ObjectSum` found for type `syntax::ast::TyKind` in the current scope
+kablam!    --> src/ty.rs:526:36
+kablam!     |
+kablam! 526 |         self.builder.build_ty_kind(ast::TyKind::ObjectSum(self.ty, bounds))
+kablam!     |                                    ^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/ty.rs:592:59
+kablam!     |
+kablam! 592 |         self.builder.build_ty_kind(ast::TyKind::ImplTrait(bounds))
+kablam!     |                                                           ^^^^^^ expected struct `std::vec::Vec`, found struct `syntax::ptr::P`
+kablam!     |
+kablam!     = note: expected type `std::vec::Vec<syntax::ast::TyParamBound>`
+kablam!                found type `syntax::ptr::P<[syntax::ast::TyParamBound]>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .into_vec()
+kablam!             - .to_vec()
+kablam! 
+kablam! error: no method named `into_vec` found for type `std::vec::Vec<syntax::ast::TyParamBound>` in the current scope
+kablam!   --> src/ty_param.rs:54:37
+kablam!    |
+kablam! 54 |             bounds: ty_param.bounds.into_vec(),
+kablam!    |                                     ^^^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/ty_param.rs:107:21
+kablam!     |
+kablam! 107 |             bounds: P::from_vec(self.bounds),
+kablam!     |                     ^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `std::vec::Vec`, found struct `syntax::ptr::P`
+kablam!     |
+kablam!     = note: expected type `std::vec::Vec<syntax::ast::TyParamBound>`
+kablam!                found type `syntax::ptr::P<[syntax::ast::TyParamBound]>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .into_vec()
+kablam!             - .to_vec()
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/where_predicate.rs:243:21
+kablam!     |
+kablam! 243 |             bounds: P::from_vec(self.bounds),
+kablam!     |                     ^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `std::vec::Vec`, found struct `syntax::ptr::P`
+kablam!     |
+kablam!     = note: expected type `std::vec::Vec<syntax::ast::TyParamBound>`
+kablam!                found type `syntax::ptr::P<[syntax::ast::TyParamBound]>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .into_vec()
+kablam!             - .to_vec()
+kablam! 
+kablam! error[E0560]: struct `syntax::ast::WhereEqPredicate` has no field named `path`
+kablam!    --> src/where_predicate.rs:322:13
+kablam!     |
+kablam! 322 |             path: path,
+kablam!     |             ^^^^^ `syntax::ast::WhereEqPredicate` does not have this field
+kablam! 
+kablam! error[E0560]: struct `syntax::ast::WhereEqPredicate` has no field named `ty`
+kablam!    --> src/where_predicate.rs:323:13
+kablam!     |
+kablam! 323 |             ty: ty,
+kablam!     |             ^^^ `syntax::ast::WhereEqPredicate` does not have this field
+kablam! 
+kablam! error: aborting due to 24 previous errors
+kablam! 
+kablam! error: Could not compile `aster`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 467b1c191a0fa5651387f66539f2d156e7d54d25f477616c84afa53743689e43`
+blam! 467b1c191a0fa5651387f66539f2d156e7d54d25f477616c84afa53743689e43

@@ -1,0 +1,47 @@
+boom! testing rraf-0.0.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! ee340bc89e883553b5318f9f9adbc044d425201384daa179a5ba0420491b5f5b
+boom! running `docker start -a ee340bc89e883553b5318f9f9adbc044d425201384daa179a5ba0420491b5f5b`
+kablam!    Compiling rraf v0.0.1 (file:///source)
+kablam! error[E0432]: unresolved import `std::fs::PathExt`
+kablam!  --> src/main.rs:8:21
+kablam!   |
+kablam! 8 | use std::fs::{self, PathExt,walk_dir, Metadata};
+kablam!   |                     ^^^^^^^ no `PathExt` in `fs`
+kablam! 
+kablam! error[E0432]: unresolved import `std::fs::walk_dir`
+kablam!  --> src/main.rs:8:29
+kablam!   |
+kablam! 8 | use std::fs::{self, PathExt,walk_dir, Metadata};
+kablam!   |                             ^^^^^^^^ no `walk_dir` in `fs`
+kablam! 
+kablam! error[E0277]: the trait bound `[u8]: std::marker::Sized` is not satisfied in `std::path::Path`
+kablam!   --> src/main.rs:95:7
+kablam!    |
+kablam! 95 | 		let path = ent.path();
+kablam!    | 		    ^^^^ within `std::path::Path`, the trait `std::marker::Sized` is not implemented for `[u8]`
+kablam!    |
+kablam!    = note: `[u8]` does not have a constant size known at compile-time
+kablam!    = note: required because it appears within the type `std::path::Path`
+kablam!    = note: all local variables must have a statically known size
+kablam! 
+kablam! error[E0277]: the trait bound `[u8]: std::marker::Sized` is not satisfied in `std::path::Path`
+kablam!    --> src/main.rs:104:4
+kablam!     |
+kablam! 104 | 			println!("D: {:?}", path );
+kablam!     | 			^^^^^^^^^^^^^^^^^^^^^^^^^^^ within `std::path::Path`, the trait `std::marker::Sized` is not implemented for `[u8]`
+kablam!     |
+kablam!     = note: `[u8]` does not have a constant size known at compile-time
+kablam!     = note: required because it appears within the type `std::path::Path`
+kablam!     = note: required by `std::fmt::ArgumentV1::new`
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `rraf`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f ee340bc89e883553b5318f9f9adbc044d425201384daa179a5ba0420491b5f5b`
+blam! ee340bc89e883553b5318f9f9adbc044d425201384daa179a5ba0420491b5f5b

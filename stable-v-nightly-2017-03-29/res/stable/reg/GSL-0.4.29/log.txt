@@ -1,0 +1,17 @@
+boom! testing GSL-0.4.29 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! b1b60a0894b7f0648d19b49633231e3a43b5498be922e12f18e6a95c33a53601
+boom! running `docker start -a b1b60a0894b7f0648d19b49633231e3a43b5498be922e12f18e6a95c33a53601`
+kablam!    Compiling c_vec v1.0.12
+kablam!    Compiling pkg-config v0.3.9
+kablam!    Compiling GSL v0.4.29 (file:///source)
+kablam! error: failed to run custom build command for `GSL v0.4.29 (file:///source)`
+kablam! process didn't exit successfully: `/target/debug/build/GSL-67331169310b3204/build-script-build` (exit code: 101)
+kablam! --- stderr
+kablam! thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: Failure { command: "\"pkg-config\" \"--libs\" \"--cflags\" \"gsl\"", output: Output { status: ExitStatus(ExitStatus(256)), stdout: "", stderr: "Package gsl was not found in the pkg-config search path.\nPerhaps you should add the directory containing `gsl.pc\'\nto the PKG_CONFIG_PATH environment variable\nNo package \'gsl\' found\n" } }', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f b1b60a0894b7f0648d19b49633231e3a43b5498be922e12f18e6a95c33a53601`
+blam! b1b60a0894b7f0648d19b49633231e3a43b5498be922e12f18e6a95c33a53601

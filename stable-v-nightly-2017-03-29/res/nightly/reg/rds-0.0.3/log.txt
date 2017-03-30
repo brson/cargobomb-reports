@@ -1,0 +1,86 @@
+boom! testing rds-0.0.3 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 3c9299f3a95a0c28907a48797278b81ebb0cfb73e7e0357d7cb7bcd65ca1c244
+boom! running `docker start -a 3c9299f3a95a0c28907a48797278b81ebb0cfb73e7e0357d7cb7bcd65ca1c244`
+kablam!    Compiling rds v0.0.3 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 2.90 secs
+boom! running `docker rm -f 3c9299f3a95a0c28907a48797278b81ebb0cfb73e7e0357d7cb7bcd65ca1c244`
+blam! 3c9299f3a95a0c28907a48797278b81ebb0cfb73e7e0357d7cb7bcd65ca1c244
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 89387dd70ab2ac50ac4f1bc080fca0494057b687c660dd71f96e16ec0253dc16
+boom! running `docker start -a 89387dd70ab2ac50ac4f1bc080fca0494057b687c660dd71f96e16ec0253dc16`
+kablam!    Compiling rds v0.0.3 (file:///source)
+kablam! warning: this expression will panic at run-time
+kablam!   --> src/array/csv.rs:87:110
+kablam!    |
+kablam! 87 |                             return Err(format!("Failed to parse value '{:}' at column {:} of row {:}", item, shape[1], row_idx));
+kablam!    |                                                                                                              ^^^^^^^^ index out of bounds: the len is 1 but the index is 1
+kablam! 
+kablam! warning: this expression will panic at run-time
+kablam!    --> src/array/csv.rs:123:128
+kablam!     |
+kablam! 123 |                                 return Err(format!("Failed to parse value '{:}' at row {:} of column {:}", record[column_idx], shape[1], column_idx));
+kablam!     |                                                                                                                                ^^^^^^^^ index out of bounds: the len is 1 but the index is 1
+kablam! 
+kablam! warning: this expression will panic at run-time
+kablam!    --> src/array/csv.rs:128:91
+kablam!     |
+kablam! 128 |                         return Err(format!("Column {:} not found in row {:}", column_idx, shape[1]));
+kablam!     |                                                                                           ^^^^^^^^ index out of bounds: the len is 1 but the index is 1
+kablam! 
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/rds-19aec49a75be78ca.0.o" "-o" "/target/debug/deps/rds-19aec49a75be78ca" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "-l" "blas" "/target/debug/deps/libcsv-409fb1ac4ede067a.rlib" "/target/debug/deps/liblibc-5dc7b85e748840b4.rlib" "/target/debug/deps/libbyteorder-fab4d718c73e8b35.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-6c35a477e7bec8d3.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-fa872424129019f5.rlib" "/target/debug/deps/librustc_serialize-54d2bf33b1d4b0b0.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-a80f7c589731de53.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-f4594d3e53dcb114.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-a0157c0ca919c364.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-488b4ab4bd53a138.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-1efbcfd8938372b6.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-532a3dbf317eff86.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-ca07b617414dd0fa.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-492d8ea7fa3384ff.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-88c194c15fdb6521.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-cfbd6648f7db2ee5.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-687e6a964d22cbb4.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-987729be881d4d32.rlib" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lblas
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `rds`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 89387dd70ab2ac50ac4f1bc080fca0494057b687c660dd71f96e16ec0253dc16`
+blam! 89387dd70ab2ac50ac4f1bc080fca0494057b687c660dd71f96e16ec0253dc16
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 143ee922854bee5c5e6a2a138fd8b039d32396bd2d31683353a56986b7ba5279
+boom! running `docker start -a 143ee922854bee5c5e6a2a138fd8b039d32396bd2d31683353a56986b7ba5279`
+kablam!    Compiling rds v0.0.3 (file:///source)
+kablam! warning: this expression will panic at run-time
+kablam!   --> src/array/csv.rs:87:110
+kablam!    |
+kablam! 87 |                             return Err(format!("Failed to parse value '{:}' at column {:} of row {:}", item, shape[1], row_idx));
+kablam!    |                                                                                                              ^^^^^^^^ index out of bounds: the len is 1 but the index is 1
+kablam! 
+kablam! warning: this expression will panic at run-time
+kablam!    --> src/array/csv.rs:123:128
+kablam!     |
+kablam! 123 |                                 return Err(format!("Failed to parse value '{:}' at row {:} of column {:}", record[column_idx], shape[1], column_idx));
+kablam!     |                                                                                                                                ^^^^^^^^ index out of bounds: the len is 1 but the index is 1
+kablam! 
+kablam! warning: this expression will panic at run-time
+kablam!    --> src/array/csv.rs:128:91
+kablam!     |
+kablam! 128 |                         return Err(format!("Column {:} not found in row {:}", column_idx, shape[1]));
+kablam!     |                                                                                           ^^^^^^^^ index out of bounds: the len is 1 but the index is 1
+kablam! 
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/rds-19aec49a75be78ca.0.o" "-o" "/target/debug/deps/rds-19aec49a75be78ca" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "-l" "blas" "/target/debug/deps/libcsv-409fb1ac4ede067a.rlib" "/target/debug/deps/liblibc-5dc7b85e748840b4.rlib" "/target/debug/deps/libbyteorder-fab4d718c73e8b35.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-6c35a477e7bec8d3.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-fa872424129019f5.rlib" "/target/debug/deps/librustc_serialize-54d2bf33b1d4b0b0.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-a80f7c589731de53.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-f4594d3e53dcb114.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-a0157c0ca919c364.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-488b4ab4bd53a138.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-1efbcfd8938372b6.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-532a3dbf317eff86.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-ca07b617414dd0fa.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-492d8ea7fa3384ff.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-88c194c15fdb6521.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-cfbd6648f7db2ee5.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-687e6a964d22cbb4.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-987729be881d4d32.rlib" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lblas
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `rds`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 143ee922854bee5c5e6a2a138fd8b039d32396bd2d31683353a56986b7ba5279`
+blam! 143ee922854bee5c5e6a2a138fd8b039d32396bd2d31683353a56986b7ba5279

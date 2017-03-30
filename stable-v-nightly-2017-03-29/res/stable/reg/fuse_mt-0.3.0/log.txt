@@ -1,0 +1,15 @@
+boom! testing fuse_mt-0.3.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 3e211733d6a88e779d21ed9bb7264e32083e6c6c5144ec2c5b1d28bb0223e146
+boom! running `docker start -a 3e211733d6a88e779d21ed9bb7264e32083e6c6c5144ec2c5b1d28bb0223e146`
+kablam!    Compiling fuse v0.3.0
+kablam! error: failed to run custom build command for `fuse v0.3.0`
+kablam! process didn't exit successfully: `/target/debug/build/fuse-5812ebeca3eb6259/build-script-build` (exit code: 101)
+kablam! --- stderr
+kablam! thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: Failure { command: "\"pkg-config\" \"--libs\" \"--cflags\" \"fuse\"", output: Output { status: ExitStatus(ExitStatus(256)), stdout: "", stderr: "Package fuse was not found in the pkg-config search path.\nPerhaps you should add the directory containing `fuse.pc\'\nto the PKG_CONFIG_PATH environment variable\nNo package \'fuse\' found\n" } }', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f 3e211733d6a88e779d21ed9bb7264e32083e6c6c5144ec2c5b1d28bb0223e146`
+blam! 3e211733d6a88e779d21ed9bb7264e32083e6c6c5144ec2c5b1d28bb0223e146

@@ -1,0 +1,26 @@
+boom! testing egc-0.1.2 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 6bfe8d81d4ba010cc481e0f5d2f9bf4b5014a7916fc35b4a3981afff40ad872b
+boom! running `docker start -a 6bfe8d81d4ba010cc481e0f5d2f9bf4b5014a7916fc35b4a3981afff40ad872b`
+kablam!    Compiling egc v0.1.2 (file:///source)
+kablam!    Compiling url v0.2.38
+kablam!    Compiling serde v0.6.15
+kablam!    Compiling libedgegrid v0.1.1
+kablam! error[E0308]: mismatched types
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/libedgegrid-0.1.1/build.rs:65:37
+kablam!    |
+kablam! 65 |             serde_codegen::register(&mut registry);
+kablam!    |                                     ^^^^^^^^^^^^^ expected struct `syntex::Registry`, found struct `inner::syntex::Registry`
+kablam!    |
+kablam!    = note: expected type `&mut syntex::Registry`
+kablam!               found type `&mut inner::syntex::Registry`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `libedgegrid`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f 6bfe8d81d4ba010cc481e0f5d2f9bf4b5014a7916fc35b4a3981afff40ad872b`
+blam! 6bfe8d81d4ba010cc481e0f5d2f9bf4b5014a7916fc35b4a3981afff40ad872b

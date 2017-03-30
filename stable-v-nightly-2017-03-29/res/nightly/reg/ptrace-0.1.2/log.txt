@@ -1,0 +1,44 @@
+boom! testing ptrace-0.1.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 1f01c08329429c0a6f8ed23642dbbb524f75e296a1bf2a35e64f167740fedb48
+boom! running `docker start -a 1f01c08329429c0a6f8ed23642dbbb524f75e296a1bf2a35e64f167740fedb48`
+kablam!    Compiling posix-ipc v0.0.3
+kablam! error[E0432]: unresolved import `std::num::FromPrimitive`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/posix-ipc-0.0.3/src/lib.rs:70:13
+kablam!    |
+kablam! 70 |         use std::num::FromPrimitive;
+kablam!    |             ^^^^^^^^^^^^^^^^^^^^^^^ no `FromPrimitive` in `num`
+kablam! 
+kablam! error: cannot find derive macro `FromPrimitive` in this scope
+kablam!  --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/posix-ipc-0.0.3/src/lib.rs:7:48
+kablam!   |
+kablam! 7 |     #[derive(Hash, Eq, PartialEq, Copy, Debug, FromPrimitive)]
+kablam!   |                                                ^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0425]: cannot find function `errno` in module `os`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/posix-ipc-0.0.3/src/lib.rs:47:38
+kablam!    |
+kablam! 47 |                 _ => Result::Err(os::errno())
+kablam!    |                                      ^^^^^ not found in `os`
+kablam! 
+kablam! error[E0425]: cannot find function `errno` in module `os`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/posix-ipc-0.0.3/src/lib.rs:54:38
+kablam!    |
+kablam! 54 |                 _ => Result::Err(os::errno())
+kablam!    |                                      ^^^^^ not found in `os`
+kablam! 
+kablam! error[E0425]: cannot find function `errno` in module `os`
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/posix-ipc-0.0.3/src/lib.rs:60:39
+kablam!    |
+kablam! 60 |                 -1 => Result::Err(os::errno()),
+kablam!    |                                       ^^^^^ not found in `os`
+kablam! 
+kablam! error: aborting due to 5 previous errors
+kablam! 
+kablam! error: Could not compile `posix-ipc`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 1f01c08329429c0a6f8ed23642dbbb524f75e296a1bf2a35e64f167740fedb48`
+blam! 1f01c08329429c0a6f8ed23642dbbb524f75e296a1bf2a35e64f167740fedb48

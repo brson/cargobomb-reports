@@ -1,0 +1,32 @@
+boom! testing civet-sys-0.1.4 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! a5ffe411ac4b7a77f754b558b9ddcf4634690b8a7f72cc018452a40ee061b67d
+boom! running `docker start -a a5ffe411ac4b7a77f754b558b9ddcf4634690b8a7f72cc018452a40ee061b67d`
+kablam!    Compiling civet-sys v0.1.4 (file:///source)
+kablam! error: failed to run custom build command for `civet-sys v0.1.4 (file:///source)`
+kablam! process didn't exit successfully: `/target/debug/build/civet-sys-8f4144ee56a398ee/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! cc -c -W -Wall -O2 -DLINUX -Iinclude -fPIC -DNDEBUG src/civetweb.c -o /target/debug/build/civet-sys-009786e126a5a618/out/src/civetweb.o
+kablam! ar cq libcivetweb.a /target/debug/build/civet-sys-009786e126a5a618/out/src/civetweb.o
+kablam! Makefile:213: recipe for target 'libcivetweb.a' failed
+kablam! 
+kablam! --- stderr
+kablam! src/civetweb.c: In function 'authorize':
+kablam! src/civetweb.c:3219:12: warning: missing initializer for field 'ah' of 'struct read_auth_file_struct' [-Wmissing-field-initializers]
+kablam!      struct read_auth_file_struct workdata = {conn};
+kablam!             ^
+kablam! src/civetweb.c:3141:15: note: 'ah' declared here
+kablam!      struct ah ah;
+kablam!                ^
+kablam! ar: libcivetweb.a: Read-only file system
+kablam! make: *** [libcivetweb.a] Error 1
+kablam! thread 'main' panicked at 'assertion failed: Command::new("make").current_dir("civetweb").arg("lib").arg(&format!("BUILD_DIR={}"
+kablam!                                                                      ,
+kablam!                                                                      dst)).env("COPT",
+kablam!                                                                                "-fPIC").status().unwrap().success()', build.rs:9
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f a5ffe411ac4b7a77f754b558b9ddcf4634690b8a7f72cc018452a40ee061b67d`
+blam! a5ffe411ac4b7a77f754b558b9ddcf4634690b8a7f72cc018452a40ee061b67d

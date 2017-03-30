@@ -1,0 +1,51 @@
+[badges]
+[badges.appveyor]
+repository = "alexcrichton/git2-rs"
+
+[badges.travis-ci]
+repository = "alexcrichton/git2-rs"
+
+[dependencies]
+bitflags = "0.7"
+libc = "0.2"
+url = "1.0"
+
+[dependencies.libgit2-sys]
+version = "0.6.6"
+
+[dev-dependencies]
+docopt = "0.6"
+rustc-serialize = "0.3"
+tempdir = "0.3"
+time = "0.1"
+
+[features]
+curl = ["libgit2-sys/curl"]
+default = ["ssh", "https", "curl"]
+https = ["libgit2-sys/https", "openssl-sys", "openssl-probe"]
+ssh = ["libgit2-sys/ssh"]
+unstable = []
+
+[package]
+authors = ["Alex Crichton <alex@alexcrichton.com>"]
+categories = ["api-bindings"]
+description = "Bindings to libgit2 for interoperating with git repositories. This library is\nboth threadsafe and memory safe and allows both reading and writing git\nrepositories.\n"
+documentation = "https://docs.rs/git2-rs"
+homepage = "https://github.com/alexcrichton/git2-rs"
+keywords = ["git"]
+license = "MIT/Apache-2.0"
+name = "git2"
+readme = "README.md"
+repository = "https://github.com/alexcrichton/git2-rs"
+version = "0.6.4"
+
+[target]
+[target."cfg(all(unix, not(target_os = \"macos\")))"]
+[target."cfg(all(unix, not(target_os = \"macos\")))".dependencies]
+[target."cfg(all(unix, not(target_os = \"macos\")))".dependencies.openssl-probe]
+optional = true
+version = "0.1"
+
+[target."cfg(all(unix, not(target_os = \"macos\")))".dependencies.openssl-sys]
+optional = true
+version = "0.9.0"

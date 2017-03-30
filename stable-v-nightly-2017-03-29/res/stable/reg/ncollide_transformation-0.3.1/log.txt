@@ -1,0 +1,151 @@
+boom! testing ncollide_transformation-0.3.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! ad4a14aa55534d2e5445dd55f703082cb61c38db4b41c60a04a03c822de8156a
+boom! running `docker start -a ad4a14aa55534d2e5445dd55f703082cb61c38db4b41c60a04a03c822de8156a`
+kablam!    Compiling ncollide_procedural v0.3.0
+kablam!    Compiling ncollide_transformation v0.3.1 (file:///source)
+kablam! error[E0425]: cannot find function `point_cloud_support_point` in module `utils`
+kablam!    --> hacd.rs:743:18
+kablam!     |
+kablam! 743 |         let sa = utils::point_cloud_support_point(dir, self.a);
+kablam!     |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `utils`
+kablam! 
+kablam! error[E0425]: cannot find function `point_cloud_support_point` in module `utils`
+kablam!    --> hacd.rs:744:18
+kablam!     |
+kablam! 744 |         let sb = utils::point_cloud_support_point(dir, self.b);
+kablam!     |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `utils`
+kablam! 
+kablam! error[E0425]: cannot find function `point_cloud_support_point` in module `utils`
+kablam!    --> convex_hull.rs:175:13
+kablam!     |
+kablam! 175 |     let a = utils::point_cloud_support_point(dir, points);
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `utils`
+kablam! 
+kablam! error[E0425]: cannot find function `point_cloud_support_point` in module `utils`
+kablam!    --> convex_hull.rs:176:13
+kablam!     |
+kablam! 176 |     let b = utils::point_cloud_support_point(&-*dir, points);
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `utils`
+kablam! 
+kablam! error[E0277]: the trait bound `N: ncollide_math::Scalar` is not satisfied
+kablam!  --> to_trimesh/mesh_to_trimesh.rs:8:17
+kablam!   |
+kablam! 8 | impl<N: Scalar> ToTriMesh<Point3<N>, ()> for shape::TriMesh3<N> {
+kablam!   |                 ^^^^^^^^^^^^^^^^^^^^^^^^ the trait `ncollide_math::Scalar` is not implemented for `N`
+kablam!   |
+kablam!   = help: consider adding a `where N: ncollide_math::Scalar` bound
+kablam!   = note: required because of the requirements on the impl of `ncollide_math::Point` for `na::Point3<N>`
+kablam!   = note: required by `geometry::shape::TriMesh`
+kablam! 
+kablam! error[E0277]: the trait bound `N: ncollide_math::Scalar` is not satisfied
+kablam!    --> hacd.rs:434:9
+kablam!     |
+kablam! 434 |         fn cast_ray<'a, N: Scalar>(chull:      &ConvexPair<'a, N>,
+kablam!     |         ^ the trait `ncollide_math::Scalar` is not implemented for `N`
+kablam!     |
+kablam!     = help: consider adding a `where N: ncollide_math::Scalar` bound
+kablam!     = note: required because of the requirements on the impl of `ncollide_math::Point` for `na::Point3<N>`
+kablam!     = note: required by `geometry::query::Ray`
+kablam! 
+kablam! error[E0277]: the trait bound `N: ncollide_math::Scalar` is not satisfied
+kablam!    --> hacd.rs:627:1
+kablam!     |
+kablam! 627 |   fn compute_ray_bvt<N: Scalar>(rays: &[Ray<Point3<N>>]) -> BVT<usize, AABB<Point3<N>>> {
+kablam!     |  _^ starting here...
+kablam! 628 | |     let aabbs = rays.iter().enumerate().map(|(i, r)| (i, AABB::new(r.origin, r.origin))).collect();
+kablam! 629 | |
+kablam! 630 | |     BVT::new_balanced(aabbs)
+kablam! 631 | | }
+kablam!     | |_^ ...ending here: the trait `ncollide_math::Scalar` is not implemented for `N`
+kablam!     |
+kablam!     = help: consider adding a `where N: ncollide_math::Scalar` bound
+kablam!     = note: required because of the requirements on the impl of `ncollide_math::Point` for `na::Point3<N>`
+kablam!     = note: required because it appears within the type `geometry::query::Ray<na::Point3<N>>`
+kablam!     = note: slice and array elements must have `Sized` type
+kablam! 
+kablam! error[E0277]: the trait bound `N: ncollide_math::Scalar` is not satisfied
+kablam!    --> hacd.rs:633:1
+kablam!     |
+kablam! 633 | fn compute_rays<N: Scalar>(mesh: &TriMesh<Point3<N>>) -> (Vec<Ray<Point3<N>>>, HashMap<(u32, u32), usize>) {
+kablam!     | ^ the trait `ncollide_math::Scalar` is not implemented for `N`
+kablam!     |
+kablam!     = help: consider adding a `where N: ncollide_math::Scalar` bound
+kablam!     = note: required because of the requirements on the impl of `ncollide_math::Point` for `na::Point3<N>`
+kablam!     = note: required because it appears within the type `geometry::query::Ray<na::Point3<N>>`
+kablam!     = note: required by `std::vec::Vec`
+kablam! 
+kablam! error[E0277]: the trait bound `N: ncollide_math::Scalar` is not satisfied
+kablam!    --> hacd.rs:740:21
+kablam!     |
+kablam! 740 | impl<'a, N: Scalar> SupportMap<Point3<N>, Identity> for ConvexPair<'a, N> {
+kablam!     |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `ncollide_math::Scalar` is not implemented for `N`
+kablam!     |
+kablam!     = help: consider adding a `where N: ncollide_math::Scalar` bound
+kablam!     = note: required because of the requirements on the impl of `ncollide_math::Point` for `na::Point3<N>`
+kablam!     = note: required by `geometry::shape::SupportMap`
+kablam! 
+kablam! error[E0277]: the trait bound `N: ncollide_math::Scalar` is not satisfied
+kablam!    --> hacd.rs:755:21
+kablam!     |
+kablam! 755 | impl<'a, N: Scalar> RayCast<Point3<N>, Identity> for ConvexPair<'a, N> {
+kablam!     |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `ncollide_math::Scalar` is not implemented for `N`
+kablam!     |
+kablam!     = help: consider adding a `where N: ncollide_math::Scalar` bound
+kablam!     = note: required because of the requirements on the impl of `ncollide_math::Point` for `na::Point3<N>`
+kablam!     = note: required by `geometry::query::RayCast`
+kablam! 
+kablam! error[E0277]: the trait bound `N: ncollide_math::Scalar` is not satisfied
+kablam!   --> to_trimesh/mesh_to_trimesh.rs:9:5
+kablam!    |
+kablam! 9  |       fn to_trimesh(&self, _: ()) -> TriMesh3<N> {
+kablam!    |  _____^ starting here...
+kablam! 10 | |         TriMesh::new((**self.vertices()).clone(),
+kablam! 11 | |         self.normals().as_ref().map(|ns| (**ns).clone()),
+kablam! 12 | |         self.uvs().as_ref().map(|ns| (**ns).clone()),
+kablam! 13 | |         Some(IndexBuffer::Unified((**self.indices()).iter().map(|e| na::cast(*e)).collect())))
+kablam! 14 | |     }
+kablam!    | |_____^ ...ending here: the trait `ncollide_math::Scalar` is not implemented for `N`
+kablam!    |
+kablam!    = help: consider adding a `where N: ncollide_math::Scalar` bound
+kablam!    = note: required because of the requirements on the impl of `ncollide_math::Point` for `na::Point3<N>`
+kablam!    = note: required by `geometry::shape::TriMesh`
+kablam! 
+kablam! error[E0277]: the trait bound `N: ncollide_math::Scalar` is not satisfied
+kablam!    --> hacd.rs:410:5
+kablam!     |
+kablam! 410 |     pub fn compute_decimation_cost(&mut self,
+kablam!     |     ^ the trait `ncollide_math::Scalar` is not implemented for `N`
+kablam!     |
+kablam!     = help: consider adding a `where N: ncollide_math::Scalar` bound
+kablam!     = note: required because of the requirements on the impl of `ncollide_math::Point` for `na::Point3<N>`
+kablam!     = note: required because it appears within the type `geometry::query::Ray<na::Point3<N>>`
+kablam!     = note: slice and array elements must have `Sized` type
+kablam! 
+kablam! error[E0277]: the trait bound `N: ncollide_math::Scalar` is not satisfied
+kablam!    --> hacd.rs:757:5
+kablam!     |
+kablam! 757 |       fn toi_and_normal_with_ray(&self, id: &Identity, ray: &Ray<Point3<N>>, solid: bool) -> Option<RayIntersection<Vector3<N>>> {
+kablam!     |  _____^ starting here...
+kablam! 758 | |         ray_internal::implicit_toi_and_normal_with_ray(
+kablam! 759 | |             id,
+kablam! 760 | |             self,
+kablam! 761 | |             &mut JohnsonSimplex::<Point3<N>>::new_w_tls(),
+kablam! 762 | |             ray,
+kablam! 763 | |             solid)
+kablam! 764 | |     }
+kablam!     | |_____^ ...ending here: the trait `ncollide_math::Scalar` is not implemented for `N`
+kablam!     |
+kablam!     = help: consider adding a `where N: ncollide_math::Scalar` bound
+kablam!     = note: required because of the requirements on the impl of `ncollide_math::Point` for `na::Point3<N>`
+kablam!     = note: required by `geometry::query::Ray`
+kablam! 
+kablam! error: aborting due to 9 previous errors
+kablam! 
+kablam! error: Could not compile `ncollide_transformation`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f ad4a14aa55534d2e5445dd55f703082cb61c38db4b41c60a04a03c822de8156a`
+blam! ad4a14aa55534d2e5445dd55f703082cb61c38db4b41c60a04a03c822de8156a

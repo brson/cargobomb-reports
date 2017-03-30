@@ -1,0 +1,62 @@
+boom! testing power-assert-0.3.9 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 6b3c888c5c0f4211d61dfe2a5bd4ce6a69dfb59e4078f76a955da8e27acc2717
+boom! running `docker start -a 6b3c888c5c0f4211d61dfe2a5bd4ce6a69dfb59e4078f76a955da8e27acc2717`
+kablam!    Compiling power-assert v0.3.9 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::ast::TokenTree`
+kablam!  --> src/expand.rs:3:32
+kablam!   |
+kablam! 3 | use syntax::ast::{Expr, Ident, TokenTree, Stmt};
+kablam!   |                                ^^^^^^^^^ no `TokenTree` in `ast`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::ast::TokenTree`
+kablam!  --> src/convert.rs:3:32
+kablam!   |
+kablam! 3 | use syntax::ast::{Expr, Ident, TokenTree};
+kablam!   |                                ^^^^^^^^^ no `TokenTree` in `ast`
+kablam! 
+kablam! error[E0425]: cannot find function `gensym_ident` in module `token`
+kablam!   --> src/expand.rs:97:20
+kablam!    |
+kablam! 97 |             ident: token::gensym_ident(ident),
+kablam!    |                    ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `gensym_ident` in module `token`
+kablam!    --> src/convert.rs:193:30
+kablam!     |
+kablam! 193 |                     let id = token::gensym_ident("a");
+kablam!     |                              ^^^^^^^^^^^^^^^^^^^ not found in `token`
+kablam! 
+kablam! error[E0532]: expected tuple struct/variant, found unit variant `MetaItemKind::Word`
+kablam!   --> src/lib.rs:39:17
+kablam!    |
+kablam! 39 |                 MetaItemKind::Word(ref ns) => {
+kablam!    |                 ^^^^^^^^^^^^^^^^^^ not a tuple struct/variant
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!   --> src/lib.rs:10:1
+kablam!    |
+kablam! 10 | #![feature(plugin_registrar)]
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!   --> src/lib.rs:11:1
+kablam!    |
+kablam! 11 | #![feature(rustc_private)]
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!   --> src/lib.rs:12:1
+kablam!    |
+kablam! 12 | #![feature(quote)]
+kablam!    | ^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `power-assert`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 6b3c888c5c0f4211d61dfe2a5bd4ce6a69dfb59e4078f76a955da8e27acc2717`
+blam! 6b3c888c5c0f4211d61dfe2a5bd4ce6a69dfb59e4078f76a955da8e27acc2717

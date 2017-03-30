@@ -1,0 +1,29 @@
+boom! testing twists-0.1.8 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 380766358e78fd11d48654e03077b440c9c230a1383f1a258773dc13ea623741
+boom! running `docker start -a 380766358e78fd11d48654e03077b440c9c230a1383f1a258773dc13ea623741`
+kablam!    Compiling tokio-tls v0.1.2
+kablam!    Compiling twist v0.5.3
+kablam!    Compiling twist-lz4 v0.1.6
+kablam!    Compiling twists v0.1.8 (file:///source)
+kablam! error[E0277]: the trait bound `twist_lz4::Lz4: twist::PerMessage` is not satisfied
+kablam!    --> src/main.rs:204:14
+kablam!     |
+kablam! 204 |     ws_proto.per_message(lz4);
+kablam!     |              ^^^^^^^^^^^ the trait `twist::PerMessage` is not implemented for `twist_lz4::Lz4`
+kablam! 
+kablam! error[E0277]: the trait bound `twist_lz4::Lz4: twist::PerMessage` is not satisfied
+kablam!    --> src/main.rs:246:14
+kablam!     |
+kablam! 246 |     ws_proto.per_message(lz4);
+kablam!     |              ^^^^^^^^^^^ the trait `twist::PerMessage` is not implemented for `twist_lz4::Lz4`
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `twists`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 380766358e78fd11d48654e03077b440c9c230a1383f1a258773dc13ea623741`
+blam! 380766358e78fd11d48654e03077b440c9c230a1383f1a258773dc13ea623741

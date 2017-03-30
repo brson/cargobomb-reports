@@ -1,0 +1,36 @@
+boom! testing egc-0.1.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! dd71e7bf8ef23e12b124f59e1273541c0429109ec1d178399961e18dc919ae7f
+boom! running `docker start -a dd71e7bf8ef23e12b124f59e1273541c0429109ec1d178399961e18dc919ae7f`
+kablam!    Compiling serde v0.6.15
+kablam!    Compiling url v0.2.38
+kablam!    Compiling egc v0.1.2 (file:///source)
+kablam!    Compiling syntex v0.26.0
+kablam!    Compiling quasi_codegen v0.7.0
+kablam! error[E0271]: type mismatch resolving `for<'cx, 'r, 'r> <fn(&mut syntax::ext::base::ExtCtxt<'_>, syntax::codemap::Span, &[syntax::ast::TokenTree]) -> std::boxed::Box<syntax::ext::base::MacResult> {expand_quote_stmt::<'_>} as std::ops::FnOnce<(&'cx mut syntax::ext::base::ExtCtxt<'r>, syntax::codemap::Span, &'r [syntax::ast::TokenTree])>>::Output == std::boxed::Box<syntax::ext::base::MacResult + 'cx>`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/quasi_codegen-0.7.0/src/lib.rs:728:9
+kablam!     |
+kablam! 728 |     reg.add_macro("quote_stmt", expand_quote_stmt);
+kablam!     |         ^^^^^^^^^ expected bound lifetime parameter 'cx, found concrete lifetime
+kablam!     |
+kablam!     = note: concrete lifetime that was found is lifetime '_#61r
+kablam!     = note: required because of the requirements on the impl of `syntax::ext::base::TTMacroExpander` for `fn(&mut syntax::ext::base::ExtCtxt<'_>, syntax::codemap::Span, &[syntax::ast::TokenTree]) -> std::boxed::Box<syntax::ext::base::MacResult> {expand_quote_stmt::<'_>}`
+kablam! 
+kablam! error[E0271]: type mismatch resolving `for<'cx, 'r, 'r> <fn(&mut syntax::ext::base::ExtCtxt<'_>, syntax::codemap::Span, &[syntax::ast::TokenTree]) -> std::boxed::Box<syntax::ext::base::MacResult> {expand_quote_item::<'_>} as std::ops::FnOnce<(&'cx mut syntax::ext::base::ExtCtxt<'r>, syntax::codemap::Span, &'r [syntax::ast::TokenTree])>>::Output == std::boxed::Box<syntax::ext::base::MacResult + 'cx>`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/quasi_codegen-0.7.0/src/lib.rs:733:9
+kablam!     |
+kablam! 733 |     reg.add_macro("quote_item", expand_quote_item);
+kablam!     |         ^^^^^^^^^ expected bound lifetime parameter 'cx, found concrete lifetime
+kablam!     |
+kablam!     = note: concrete lifetime that was found is lifetime '_#137r
+kablam!     = note: required because of the requirements on the impl of `syntax::ext::base::TTMacroExpander` for `fn(&mut syntax::ext::base::ExtCtxt<'_>, syntax::codemap::Span, &[syntax::ast::TokenTree]) -> std::boxed::Box<syntax::ext::base::MacResult> {expand_quote_item::<'_>}`
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `quasi_codegen`.
+kablam! error: build failed
+boom! running `docker rm -f dd71e7bf8ef23e12b124f59e1273541c0429109ec1d178399961e18dc919ae7f`
+blam! dd71e7bf8ef23e12b124f59e1273541c0429109ec1d178399961e18dc919ae7f

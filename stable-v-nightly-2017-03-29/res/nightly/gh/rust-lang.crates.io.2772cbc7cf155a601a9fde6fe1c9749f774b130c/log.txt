@@ -1,0 +1,30 @@
+boom! testing https://github.com/rust-lang/crates.io#2772cbc7cf155a601a9fde6fe1c9749f774b130c against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! ac41a578aaefbc19cdbb952db4aea50159ff3f1214a2c332605ab79ea51acd65
+boom! running `docker start -a ac41a578aaefbc19cdbb952db4aea50159ff3f1214a2c332605ab79ea51acd65`
+kablam!    Compiling license-exprs v1.3.0
+kablam!    Compiling conduit-mime-types v0.7.3
+kablam!    Compiling libz-sys v1.0.12
+kablam!    Compiling curl-sys v0.3.7
+kablam!    Compiling civet-sys v0.1.4
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: failed to run custom build command for `civet-sys v0.1.4`
+kablam! process didn't exit successfully: `/target/debug/build/civet-sys-823a8b89f14de1f3/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! ar cq libcivetweb.a /target/debug/build/civet-sys-6e1066cf35382e69/out/src/civetweb.o
+kablam! Makefile:213: recipe for target 'libcivetweb.a' failed
+kablam! 
+kablam! --- stderr
+kablam! ar: libcivetweb.a: Read-only file system
+kablam! make: *** [libcivetweb.a] Error 1
+kablam! thread 'main' panicked at 'assertion failed: Command::new("make").current_dir("civetweb").arg("lib").arg(&format!("BUILD_DIR={}"
+kablam!                                                                      ,
+kablam!                                                                      dst)).env("COPT",
+kablam!                                                                                "-fPIC").status().unwrap().success()', /cargo-home/registry/src/github.com-1ecc6299db9ec823/civet-sys-0.1.4/build.rs:9
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f ac41a578aaefbc19cdbb952db4aea50159ff3f1214a2c332605ab79ea51acd65`
+blam! ac41a578aaefbc19cdbb952db4aea50159ff3f1214a2c332605ab79ea51acd65

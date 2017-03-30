@@ -1,0 +1,41 @@
+boom! testing reactor-0.1.4 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 550e48b2d46d2f6365355065a4fe950db4e5c17f21d614676a8cf6d378cf517e
+boom! running `docker start -a 550e48b2d46d2f6365355065a4fe950db4e5c17f21d614676a8cf6d378cf517e`
+kablam!    Compiling reactor v0.1.4 (file:///source)
+kablam! error[E0308]: mismatched types
+kablam!    --> src/reactor_ctrl.rs:109:29
+kablam!     |
+kablam! 109 |                             Ok(SocketAddr::V4(sa4)) =>
+kablam!     |                             ^^^^^^^^^^^^^^^^^^^^^^^ expected enum `std::net::SocketAddr`, found enum `std::result::Result`
+kablam!     |
+kablam!     = note: expected type `std::net::SocketAddr`
+kablam!                found type `std::result::Result<_, _>`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/reactor_ctrl.rs:111:29
+kablam!     |
+kablam! 111 |                             Ok(SocketAddr::V6(sa6)) =>
+kablam!     |                             ^^^^^^^^^^^^^^^^^^^^^^^ expected enum `std::net::SocketAddr`, found enum `std::result::Result`
+kablam!     |
+kablam!     = note: expected type `std::net::SocketAddr`
+kablam!                found type `std::result::Result<_, _>`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/reactor_ctrl.rs:113:29
+kablam!     |
+kablam! 113 |                             Err(_) => return Err(Error::new(ErrorKind::Other,
+kablam!     |                             ^^^^^^ expected enum `std::net::SocketAddr`, found enum `std::result::Result`
+kablam!     |
+kablam!     = note: expected type `std::net::SocketAddr`
+kablam!                found type `std::result::Result<_, _>`
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `reactor`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 550e48b2d46d2f6365355065a4fe950db4e5c17f21d614676a8cf6d378cf517e`
+blam! 550e48b2d46d2f6365355065a4fe950db4e5c17f21d614676a8cf6d378cf517e

@@ -1,0 +1,75 @@
+boom! testing interpolate_idents-0.1.4 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! f1dc84465a5eff0e2592fbee7a93ed632c594b49375b314267941fa1f89b7f45
+boom! running `docker start -a f1dc84465a5eff0e2592fbee7a93ed632c594b49375b314267941fa1f89b7f45`
+kablam!    Compiling interpolate_idents v0.1.4 (file:///source)
+kablam! error[E0422]: cannot find struct, variant or union type `SequenceRepetition` in module `syntax::tokenstream`
+kablam!   --> src/lib.rs:71:81
+kablam!    |
+kablam! 71 |                     TokenTree::Sequence(s.clone(), Rc::new(syntax::tokenstream::SequenceRepetition {
+kablam!    |                                                                                 ^^^^^^^^^^^^^^^^^^ not found in `syntax::tokenstream`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use syntax::ext::tt::quoted::SequenceRepetition;`
+kablam! 
+kablam! error: no associated item named `Sequence` found for type `syntax::tokenstream::TokenTree` in the current scope
+kablam!   --> src/lib.rs:70:18
+kablam!    |
+kablam! 70 |                 &TokenTree::Sequence(ref s, ref d) => {
+kablam!    |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/lib.rs:60:41
+kablam!    |
+kablam! 60 |                     match concat_idents(&d.tts, d.delim) {
+kablam!    |                                         ^^^^^^ expected struct `std::vec::Vec`, found struct `syntax::tokenstream::ThinTokenStream`
+kablam!    |
+kablam!    = note: expected type `&std::vec::Vec<syntax::tokenstream::TokenTree>`
+kablam!               found type `&syntax::tokenstream::ThinTokenStream`
+kablam! 
+kablam! error: type `syntax::tokenstream::ThinTokenStream` cannot be dereferenced
+kablam!   --> src/lib.rs:65:47
+kablam!    |
+kablam! 65 |                                 tts: map_tts(&*d.tts),
+kablam!    |                                               ^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/lib.rs:65:38
+kablam!    |
+kablam! 65 |                                 tts: map_tts(&*d.tts),
+kablam!    |                                      ^^^^^^^^^^^^^^^^ expected struct `syntax::tokenstream::ThinTokenStream`, found struct `std::vec::Vec`
+kablam!    |
+kablam!    = note: expected type `syntax::tokenstream::ThinTokenStream`
+kablam!               found type `std::vec::Vec<syntax::tokenstream::TokenTree>`
+kablam!    = help: here are some functions which might fulfill your needs:
+kablam!            - .remove(...)
+kablam!            - .swap_remove(...)
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/lib.rs:63:61
+kablam!    |
+kablam! 63 |                               TokenTree::Delimited(s.clone(), Rc::new(syntax::tokenstream::Delimited {
+kablam!    |  _____________________________________________________________^ starting here...
+kablam! 64 | |                                 delim: d.delim,
+kablam! 65 | |                                 tts: map_tts(&*d.tts),
+kablam! 66 | |                             }))
+kablam!    | |______________________________^ ...ending here: expected struct `syntax::tokenstream::Delimited`, found struct `std::rc::Rc`
+kablam!    |
+kablam!    = note: expected type `syntax::tokenstream::Delimited`
+kablam!               found type `std::rc::Rc<syntax::tokenstream::Delimited>`
+kablam! 
+kablam! error: no associated item named `Sequence` found for type `syntax::tokenstream::TokenTree` in the current scope
+kablam!   --> src/lib.rs:71:21
+kablam!    |
+kablam! 71 |                     TokenTree::Sequence(s.clone(), Rc::new(syntax::tokenstream::SequenceRepetition {
+kablam!    |                     ^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 6 previous errors
+kablam! 
+kablam! error: Could not compile `interpolate_idents`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f1dc84465a5eff0e2592fbee7a93ed632c594b49375b314267941fa1f89b7f45`
+blam! f1dc84465a5eff0e2592fbee7a93ed632c594b49375b314267941fa1f89b7f45

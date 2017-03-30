@@ -1,0 +1,107 @@
+boom! testing terminal_cli-0.1.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! cde96ba044a68706b14fd3b3ee5552751c3e810418acbd3ad4b4ae74eef5444b
+boom! running `docker start -a cde96ba044a68706b14fd3b3ee5552751c3e810418acbd3ad4b4ae74eef5444b`
+kablam!    Compiling terminal_cli v0.1.2 (file:///source)
+kablam! error: use of unstable library feature 'fn_traits' (see issue #29625)
+kablam!   --> src/commands.rs:17:15
+kablam!    |
+kablam! 17 | 		self.action.call((line, cli));
+kablam!    | 		            ^^^^
+kablam!    |
+kablam!    = help: add #![feature(fn_traits)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'fn_traits' (see issue #29625)
+kablam!    --> src/commands.rs:146:28
+kablam!     |
+kablam! 146 | 			let d = self.var_output.call((&self.var_value,));
+kablam!     | 			                        ^^^^
+kablam!     |
+kablam!     = help: add #![feature(fn_traits)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'fn_traits' (see issue #29625)
+kablam!    --> src/commands.rs:158:21
+kablam!     |
+kablam! 158 | 					self.var_input.call((l,))
+kablam!     | 					               ^^^^
+kablam!     |
+kablam!     = help: add #![feature(fn_traits)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'fn_traits' (see issue #29625)
+kablam!    --> src/commands.rs:196:19
+kablam!     |
+kablam! 196 | 		self.var_output.call((&self.var_value,))
+kablam!     | 		                ^^^^
+kablam!     |
+kablam!     = help: add #![feature(fn_traits)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'fn_traits' (see issue #29625)
+kablam!    --> src/commands.rs:200:26
+kablam!     |
+kablam! 200 | 		let s = self.var_input.call((new_val,));
+kablam!     | 		                       ^^^^
+kablam!     |
+kablam!     = help: add #![feature(fn_traits)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'fn_traits' (see issue #29625)
+kablam!    --> src/commands.rs:215:28
+kablam!     |
+kablam! 215 | 			let d = self.var_output.call(());
+kablam!     | 			                        ^^^^
+kablam!     |
+kablam!     = help: add #![feature(fn_traits)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'fn_traits' (see issue #29625)
+kablam!    --> src/commands.rs:224:20
+kablam!     |
+kablam! 224 | 				self.var_input.call((l, cli));
+kablam!     | 				               ^^^^
+kablam!     |
+kablam!     = help: add #![feature(fn_traits)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'fn_traits' (see issue #29625)
+kablam!    --> src/commands.rs:256:19
+kablam!     |
+kablam! 256 | 		self.var_output.call(())
+kablam!     | 		                ^^^^
+kablam!     |
+kablam!     = help: add #![feature(fn_traits)] to the crate attributes to enable
+kablam! 
+kablam! error: use of unstable library feature 'fn_traits' (see issue #29625)
+kablam!    --> src/commands.rs:260:26
+kablam!     |
+kablam! 260 | 		let s = self.var_input.call((new_val, &mut CliTerminalNull));
+kablam!     | 		                       ^^^^
+kablam!     |
+kablam!     = help: add #![feature(fn_traits)] to the crate attributes to enable
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/utils.rs:60:44
+kablam!    |
+kablam! 60 | 	let max_len = strings.iter().max_by(|s| { s.len() }).unwrap().len() as u16;
+kablam!    | 	                                          ^^^^^^^ expected enum `core::cmp::Ordering`, found usize
+kablam!    |
+kablam!    = note: expected type `core::cmp::Ordering`
+kablam!               found type `usize`
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@src/utils.rs:60:38: 60:53]` implements the trait `for<'r> core::ops::FnMut<(&'r &&str,)>`, but the trait `for<'r, 'r> core::ops::FnMut<(&'r &&str, &'r &&str)>` is required (expected a tuple with 2 elements, found one with 1 elements)
+kablam!   --> src/utils.rs:60:31
+kablam!    |
+kablam! 60 | 	let max_len = strings.iter().max_by(|s| { s.len() }).unwrap().len() as u16;
+kablam!    | 	                             ^^^^^^
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@src/utils.rs:60:38: 60:53]` implements the trait `for<'r> core::ops::FnOnce<(&'r &&str,)>`, but the trait `for<'r, 'r> core::ops::FnOnce<(&'r &&str, &'r &&str)>` is required (expected a tuple with 2 elements, found one with 1 elements)
+kablam!   --> src/utils.rs:60:31
+kablam!    |
+kablam! 60 | 	let max_len = strings.iter().max_by(|s| { s.len() }).unwrap().len() as u16;
+kablam!    | 	                             ^^^^^^
+kablam! 
+kablam! error: aborting due to 12 previous errors
+kablam! 
+kablam! error: Could not compile `terminal_cli`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f cde96ba044a68706b14fd3b3ee5552751c3e810418acbd3ad4b4ae74eef5444b`
+blam! cde96ba044a68706b14fd3b3ee5552751c3e810418acbd3ad4b4ae74eef5444b

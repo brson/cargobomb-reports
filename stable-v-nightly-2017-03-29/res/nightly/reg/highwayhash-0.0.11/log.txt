@@ -1,0 +1,22 @@
+boom! testing highwayhash-0.0.11 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 8f65b65f1c01ac7f98d1da9fef2486763b7b9d08746c7668dc504ee8a6d17546
+boom! running `docker start -a 8f65b65f1c01ac7f98d1da9fef2486763b7b9d08746c7668dc504ee8a6d17546`
+kablam!    Compiling highwayhash v0.0.11 (file:///source)
+kablam! error: failed to run custom build command for `highwayhash v0.0.11 (file:///source)`
+kablam! process didn't exit successfully: `/target/debug/build/highwayhash-3455057be8e7e6c0/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! g++ -I. -std=c++11 -Wall -O3 -mavx2 -fPIC   -c -o highwayhash/sip_hash.o highwayhash/sip_hash.cc
+kablam! <builtin>: recipe for target 'highwayhash/sip_hash.o' failed
+kablam! 
+kablam! --- stderr
+kablam! Assembler messages:
+kablam! Fatal error: can't create highwayhash/sip_hash.o: Read-only file system
+kablam! make: *** [highwayhash/sip_hash.o] Error 1
+kablam! thread 'main' panicked at 'make exited with an error.', build.rs:12
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f 8f65b65f1c01ac7f98d1da9fef2486763b7b9d08746c7668dc504ee8a6d17546`
+blam! 8f65b65f1c01ac7f98d1da9fef2486763b7b9d08746c7668dc504ee8a6d17546

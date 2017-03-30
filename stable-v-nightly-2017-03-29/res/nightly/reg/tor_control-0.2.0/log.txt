@@ -1,0 +1,28 @@
+boom! testing tor_control-0.2.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! f0f313896bb21c3fc755ad6ca3aad7051dfd9d5d3c27d94cee0e04d96966130a
+boom! running `docker start -a f0f313896bb21c3fc755ad6ca3aad7051dfd9d5d3c27d94cee0e04d96966130a`
+kablam!    Compiling tor_control v0.2.0 (file:///source)
+kablam! error[E0437]: type `Err` is not a member of trait `TryFrom`
+kablam!    --> src/lib.rs:180:5
+kablam!     |
+kablam! 180 |     type Err = ();
+kablam!     |     ^^^^^^^^^^^^^^ not a member of trait `TryFrom`
+kablam! 
+kablam! error[E0046]: not all trait items implemented, missing: `Error`
+kablam!    --> src/lib.rs:179:1
+kablam!     |
+kablam! 179 | impl TryFrom<u32> for TCErrorKind {
+kablam!     | ^ missing `Error` in implementation
+kablam!     |
+kablam!     = note: `Error` from trait: `type Error;`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `tor_control`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f0f313896bb21c3fc755ad6ca3aad7051dfd9d5d3c27d94cee0e04d96966130a`
+blam! f0f313896bb21c3fc755ad6ca3aad7051dfd9d5d3c27d94cee0e04d96966130a

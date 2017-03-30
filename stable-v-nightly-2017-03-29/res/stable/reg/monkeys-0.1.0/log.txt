@@ -1,0 +1,74 @@
+boom! testing monkeys-0.1.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 0a6daedf844a3463ca03e0757eaa584e4eec53974e03a4713a380f13ae98df6c
+boom! running `docker start -a 0a6daedf844a3463ca03e0757eaa584e4eec53974e03a4713a380f13ae98df6c`
+kablam!    Compiling monkeys v0.1.0 (file:///source)
+kablam! error[E0432]: unresolved import `std::marker::Reflect`
+kablam!   --> src/lib.rs:10:32
+kablam!    |
+kablam! 10 | use std::marker::{PhantomData, Reflect};
+kablam!    |                                ^^^^^^^ no `Reflect` in `marker`
+kablam! 
+kablam! error[E0432]: unresolved import `std::panic::AssertRecoverSafe`
+kablam!   --> src/lib.rs:15:24
+kablam!    |
+kablam! 15 | use std::panic::{self, AssertRecoverSafe};
+kablam!    |                        ^^^^^^^^^^^^^^^^^ no `AssertRecoverSafe` in `panic`
+kablam! 
+kablam! error[E0425]: cannot find function `propagate` in module `panic`
+kablam!   --> src/lib.rs:90:5
+kablam!    |
+kablam! 90 |     panic::propagate(Box::new(ForceUnwind));
+kablam!    |     ^^^^^^^^^^^^^^^^ not found in `panic`
+kablam! 
+kablam! error[E0425]: cannot find function `recover` in module `panic`
+kablam!    --> src/lib.rs:124:22
+kablam!     |
+kablam! 124 |         let result = panic::recover(move || {
+kablam!     |                      ^^^^^^^^^^^^^^ not found in `panic`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/lib.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(box_syntax)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/lib.rs:2:1
+kablam!   |
+kablam! 2 | #![feature(fnbox)]
+kablam!   | ^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/lib.rs:3:1
+kablam!   |
+kablam! 3 | #![feature(recover, std_panic)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/lib.rs:4:1
+kablam!   |
+kablam! 4 | #![feature(reflect_marker)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/lib.rs:5:1
+kablam!   |
+kablam! 5 | #![feature(const_fn)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/lib.rs:6:1
+kablam!   |
+kablam! 6 | #![feature(panic_propagate)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 6 previous errors
+kablam! 
+kablam! error: Could not compile `monkeys`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 0a6daedf844a3463ca03e0757eaa584e4eec53974e03a4713a380f13ae98df6c`
+blam! 0a6daedf844a3463ca03e0757eaa584e4eec53974e03a4713a380f13ae98df6c

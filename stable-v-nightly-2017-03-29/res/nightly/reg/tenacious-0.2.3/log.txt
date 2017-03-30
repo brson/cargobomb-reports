@@ -1,0 +1,44 @@
+boom! testing tenacious-0.2.3 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! a01588157a5a5802c0f71f2322256a64ca98f5df43fa801403c74dbae682f13c
+boom! running `docker start -a a01588157a5a5802c0f71f2322256a64ca98f5df43fa801403c74dbae682f13c`
+kablam!    Compiling tenacious v0.2.3 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::attr::AttrMetaMethods`
+kablam!   --> src/lib.rs:25:5
+kablam!    |
+kablam! 25 | use syntax::attr::AttrMetaMethods;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `AttrMetaMethods` in `attr`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `TyStruct` in module `ty`
+kablam!    --> src/lib.rs:141:17
+kablam!     |
+kablam! 141 |             ty::TyStruct(did, _) | ty::TyEnum(did, _) => {
+kablam!     |                 ^^^^^^^^ not found in `ty`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `TyEnum` in module `ty`
+kablam!    --> src/lib.rs:141:40
+kablam!     |
+kablam! 141 |             ty::TyStruct(did, _) | ty::TyEnum(did, _) => {
+kablam!     |                                        ^^^^^^ not found in `ty`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `TyBox` in module `ty`
+kablam!    --> src/lib.rs:155:52
+kablam!     |
+kablam! 155 |             ty::TyRef(..) | ty::TyRawPtr(..) | ty::TyBox(..) => false, // don't recurse down ptrs
+kablam!     |                                                    ^^^^^ not found in `ty`
+kablam! 
+kablam! error[E0106]: missing lifetime specifiers
+kablam!   --> src/lib.rs:62:6
+kablam!    |
+kablam! 62 | impl LateLintPass for TenaciousPass {
+kablam!    |      ^^^^^^^^^^^^ expected 2 lifetime parameters
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `tenacious`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f a01588157a5a5802c0f71f2322256a64ca98f5df43fa801403c74dbae682f13c`
+blam! a01588157a5a5802c0f71f2322256a64ca98f5df43fa801403c74dbae682f13c

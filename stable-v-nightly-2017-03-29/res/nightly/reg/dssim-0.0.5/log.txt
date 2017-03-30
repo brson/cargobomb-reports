@@ -1,0 +1,22 @@
+boom! testing dssim-0.0.5 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! f5ccb47eef8d826f4d08ebb47cf4bc060cdb10595fc27c4753f04335cd8a1064
+boom! running `docker start -a f5ccb47eef8d826f4d08ebb47cf4bc060cdb10595fc27c4753f04335cd8a1064`
+kablam!    Compiling dssim v0.0.5 (file:///source)
+kablam! error: failed to run custom build command for `dssim v0.0.5 (file:///source)`
+kablam! process didn't exit successfully: `/target/debug/build/dssim-305b4ebe3da8c234/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! cc -Wall -I. -DNDEBUG -O3 -fstrict-aliasing -ffast-math -funroll-loops -fomit-frame-pointer -ffinite-math-only -std=c99 `pkg-config libpng --cflags || pkg-config libpng16 --cflags`  -c -o src/dssim.o src/dssim.c
+kablam! Makefile:26: recipe for target 'src/dssim.o' failed
+kablam! 
+kablam! --- stderr
+kablam! Assembler messages:
+kablam! Fatal error: can't create src/dssim.o: Read-only file system
+kablam! make: *** [src/dssim.o] Error 1
+kablam! thread 'main' panicked at 'Script failed', src/build.rs:20
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f f5ccb47eef8d826f4d08ebb47cf4bc060cdb10595fc27c4753f04335cd8a1064`
+blam! f5ccb47eef8d826f4d08ebb47cf4bc060cdb10595fc27c4753f04335cd8a1064

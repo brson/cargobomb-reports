@@ -1,0 +1,82 @@
+boom! testing gopher-0.0.3 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 13ff2a535659a06b382750605f686862d0c9a1e1d8f1e63c19fb248ca74ba42c
+boom! running `docker start -a 13ff2a535659a06b382750605f686862d0c9a1e1d8f1e63c19fb248ca74ba42c`
+kablam!    Compiling gopher v0.0.3 (file:///source)
+kablam! error[E0432]: unresolved import `std::io::IoResult`
+kablam!  --> src/client.rs:1:5
+kablam!   |
+kablam! 1 | use std::io::IoResult;
+kablam!   |     ^^^^^^^^^^^^^^^^^ no `IoResult` in `io`. Did you mean to use `Result`?
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::net::tcp::TcpStream`
+kablam!  --> src/client.rs:2:5
+kablam!   |
+kablam! 2 | use std::io::net::tcp::TcpStream;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `net` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::BufferedReader`
+kablam!   --> src/client.rs:30:13
+kablam!    |
+kablam! 30 |         use std::io::BufferedReader;
+kablam!    |             ^^^^^^^^^^^^^^^^^^^^^^^ no `BufferedReader` in `io`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::Reader`
+kablam!  --> src/protocol.rs:3:15
+kablam!   |
+kablam! 3 | use std::io::{Reader, IoResult};
+kablam!   |               ^^^^^^ no `Reader` in `io`. Did you mean to use `Read`?
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::IoResult`
+kablam!  --> src/protocol.rs:3:23
+kablam!   |
+kablam! 3 | use std::io::{Reader, IoResult};
+kablam!   |                       ^^^^^^^^ no `IoResult` in `io`. Did you mean to use `Result`?
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `FromPrimitive`
+kablam!   --> src/protocol.rs:34:15
+kablam!    |
+kablam! 34 |         match FromPrimitive::from_u8(byte) {
+kablam!    |               ^^^^^^^^^^^^^^^^^^^^^^ Use of undeclared type or module `FromPrimitive`
+kablam! 
+kablam! error: The attribute `deriving` is currently unknown to the compiler and may have meaning added to it in the future (see issue #29642)
+kablam!  --> src/protocol.rs:6:1
+kablam!   |
+kablam! 6 | #[deriving(Copy, Show, PartialEq, Eq, FromPrimitive)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = help: add #![feature(custom_attribute)] to the crate attributes to enable
+kablam! 
+kablam! error: The attribute `deriving` is currently unknown to the compiler and may have meaning added to it in the future (see issue #29642)
+kablam!   --> src/protocol.rs:26:1
+kablam!    |
+kablam! 26 | #[deriving(Copy, Show, PartialEq, Eq)]
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: add #![feature(custom_attribute)] to the crate attributes to enable
+kablam! 
+kablam! error: The attribute `deriving` is currently unknown to the compiler and may have meaning added to it in the future (see issue #29642)
+kablam!   --> src/protocol.rs:41:1
+kablam!    |
+kablam! 41 | #[deriving(Show, PartialEq, Eq)]
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: add #![feature(custom_attribute)] to the crate attributes to enable
+kablam! 
+kablam! error: box expression syntax is experimental; you can call `Box::new` instead. (see issue #27779)
+kablam!   --> src/protocol.rs:78:21
+kablam!    |
+kablam! 78 |             reader: box reader as Box<Reader>,
+kablam!    |                     ^^^^^^^^^^
+kablam!    |
+kablam!    = help: add #![feature(box_syntax)] to the crate attributes to enable
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `gopher`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 13ff2a535659a06b382750605f686862d0c9a1e1d8f1e63c19fb248ca74ba42c`
+blam! 13ff2a535659a06b382750605f686862d0c9a1e1d8f1e63c19fb248ca74ba42c

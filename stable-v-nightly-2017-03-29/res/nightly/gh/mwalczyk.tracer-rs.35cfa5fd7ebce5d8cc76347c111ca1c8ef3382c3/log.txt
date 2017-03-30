@@ -1,0 +1,145 @@
+boom! testing https://github.com/mwalczyk/tracer-rs#35cfa5fd7ebce5d8cc76347c111ca1c8ef3382c3 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! c36caa4836cffc3c09807aa0dbbda143353e656437f6fb4609b3fffa1740d902
+boom! running `docker start -a c36caa4836cffc3c09807aa0dbbda143353e656437f6fb4609b3fffa1740d902`
+kablam!    Compiling rand v0.3.14
+kablam!    Compiling raytracer v0.1.0 (file:///source)
+kablam! warning: unnecessary parentheses around assigned value
+kablam!    --> src/material.rs:126:25
+kablam!     |
+kablam! 126 |               scattered = ((incident.direction * ior) +
+kablam!     |  _________________________^ starting here...
+kablam! 127 | |                          (outward_normal * (ior * cos_theta_i - cos_theta_t.sqrt())));
+kablam!     | |_____________________________________________________________________________________^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(unused_parens)] on by default
+kablam! 
+kablam! warning: value assigned to `p` is never read
+kablam!   --> src/vector.rs:76:13
+kablam!    |
+kablam! 76 |         let mut p = Vector::origin();
+kablam!    |             ^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_assignments)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/material.rs:123:13
+kablam!     |
+kablam! 123 |         let mut scattered: Vector;
+kablam!     |             ^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: unused import: `shape::Shape`
+kablam!   --> src/main.rs:28:5
+kablam!    |
+kablam! 28 | use shape::Shape;
+kablam!    |     ^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `shape::DifferentialGeometry`
+kablam!   --> src/main.rs:29:5
+kablam!    |
+kablam! 29 | use shape::DifferentialGeometry;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `material::Material`
+kablam!   --> src/main.rs:32:5
+kablam!    |
+kablam! 32 | use material::Material;
+kablam!    |     ^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `material::Dielectric`
+kablam!   --> src/main.rs:35:5
+kablam!    |
+kablam! 35 | use material::Dielectric;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 4.71 secs
+boom! running `docker rm -f c36caa4836cffc3c09807aa0dbbda143353e656437f6fb4609b3fffa1740d902`
+blam! c36caa4836cffc3c09807aa0dbbda143353e656437f6fb4609b3fffa1740d902
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! cc2ec5d53f343c3445786b8700f68756f8c731b7a63dde53a163cd0ade4a2c1d
+boom! running `docker start -a cc2ec5d53f343c3445786b8700f68756f8c731b7a63dde53a163cd0ade4a2c1d`
+kablam!    Compiling raytracer v0.1.0 (file:///source)
+kablam! warning: unnecessary parentheses around assigned value
+kablam!    --> src/material.rs:126:25
+kablam!     |
+kablam! 126 |               scattered = ((incident.direction * ior) +
+kablam!     |  _________________________^ starting here...
+kablam! 127 | |                          (outward_normal * (ior * cos_theta_i - cos_theta_t.sqrt())));
+kablam!     | |_____________________________________________________________________________________^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(unused_parens)] on by default
+kablam! 
+kablam! error[E0369]: binary operation `==` cannot be applied to type `vector::Vector`
+kablam!    --> src/vector.rs:264:5
+kablam!     |
+kablam! 264 |       assert_eq!(lhs + rhs,
+kablam!     |  _____^ starting here...
+kablam! 265 | |                Vector {
+kablam! 266 | |                    x: 1.0,
+kablam! 267 | |                    y: 3.0,
+kablam! 268 | |                    z: 5.0,
+kablam! 269 | |                });
+kablam!     | |__________________^ ...ending here
+kablam!     |
+kablam!     = note: an implementation of `std::cmp::PartialEq` might be missing for `vector::Vector`
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `raytracer`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f cc2ec5d53f343c3445786b8700f68756f8c731b7a63dde53a163cd0ade4a2c1d`
+blam! cc2ec5d53f343c3445786b8700f68756f8c731b7a63dde53a163cd0ade4a2c1d
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 721b0cf6d56c73758cd0db9d5657044c8909e950cab09d208fb606dc3bc50879
+boom! running `docker start -a 721b0cf6d56c73758cd0db9d5657044c8909e950cab09d208fb606dc3bc50879`
+kablam!    Compiling raytracer v0.1.0 (file:///source)
+kablam! warning: unnecessary parentheses around assigned value
+kablam!    --> src/material.rs:126:25
+kablam!     |
+kablam! 126 |               scattered = ((incident.direction * ior) +
+kablam!     |  _________________________^ starting here...
+kablam! 127 | |                          (outward_normal * (ior * cos_theta_i - cos_theta_t.sqrt())));
+kablam!     | |_____________________________________________________________________________________^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(unused_parens)] on by default
+kablam! 
+kablam! error[E0369]: binary operation `==` cannot be applied to type `vector::Vector`
+kablam!    --> src/vector.rs:264:5
+kablam!     |
+kablam! 264 |       assert_eq!(lhs + rhs,
+kablam!     |  _____^ starting here...
+kablam! 265 | |                Vector {
+kablam! 266 | |                    x: 1.0,
+kablam! 267 | |                    y: 3.0,
+kablam! 268 | |                    z: 5.0,
+kablam! 269 | |                });
+kablam!     | |__________________^ ...ending here
+kablam!     |
+kablam!     = note: an implementation of `std::cmp::PartialEq` might be missing for `vector::Vector`
+kablam!     = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `raytracer`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 721b0cf6d56c73758cd0db9d5657044c8909e950cab09d208fb606dc3bc50879`
+blam! 721b0cf6d56c73758cd0db9d5657044c8909e950cab09d208fb606dc3bc50879

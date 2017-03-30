@@ -1,0 +1,21 @@
+boom! testing feedreader-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 3eb890b15598c45b5089289dc190b171d37103a22bd3dd34ac8975037f27360e
+boom! running `docker start -a 3eb890b15598c45b5089289dc190b171d37103a22bd3dd34ac8975037f27360e`
+kablam!    Compiling rss v0.2.3
+kablam!    Compiling feedreader v0.1.0 (file:///source)
+kablam! error[E0277]: the trait bound `&url::Url: curl::http::handle::ToUrl` is not satisfied
+kablam!   --> src/lib.rs:29:31
+kablam!    |
+kablam! 29 |     let resp = http::handle().get(&feed_url).exec().unwrap();
+kablam!    |                               ^^^ the trait `curl::http::handle::ToUrl` is not implemented for `&url::Url`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `feedreader`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 3eb890b15598c45b5089289dc190b171d37103a22bd3dd34ac8975037f27360e`
+blam! 3eb890b15598c45b5089289dc190b171d37103a22bd3dd34ac8975037f27360e

@@ -1,0 +1,172 @@
+boom! testing encode_unicode-0.2.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 81577d792aede90e0266f46bea7456c6a0b583416b3d2bc58cb9dfd357924432
+boom! running `docker start -a 81577d792aede90e0266f46bea7456c6a0b583416b3d2bc58cb9dfd357924432`
+kablam!    Compiling encode_unicode v0.2.0 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 2.21 secs
+boom! running `docker rm -f 81577d792aede90e0266f46bea7456c6a0b583416b3d2bc58cb9dfd357924432`
+blam! 81577d792aede90e0266f46bea7456c6a0b583416b3d2bc58cb9dfd357924432
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 7f363e377bac6902a7d2d1fc9ef3d55664421459b0f14160d2ab918f03524f3b
+boom! running `docker start -a 7f363e377bac6902a7d2d1fc9ef3d55664421459b0f14160d2ab918f03524f3b`
+kablam!    Compiling encode_unicode v0.2.0 (file:///source)
+kablam! error[E0061]: this function takes 1 parameter but 0 parameters were supplied
+kablam!    --> tests/pass_tests.rs:103:26
+kablam!     |
+kablam! 103 |     let mut iter_ref = c.encode_utf8();
+kablam!     |                          ^^^^^^^^^^^ expected 1 parameter
+kablam! 
+kablam! error: no method named `size_hint` found for type `&mut str` in the current scope
+kablam!    --> tests/pass_tests.rs:105:47
+kablam!     |
+kablam! 105 |         assert_eq!(iter.size_hint(), iter_ref.size_hint());
+kablam!     |                                               ^^^^^^^^^
+kablam!     |
+kablam!     = note: the method `size_hint` exists but the following trait bounds were not satisfied: `str : std::iter::Iterator`
+kablam! 
+kablam! error: no method named `next` found for type `&mut str` in the current scope
+kablam!    --> tests/pass_tests.rs:106:42
+kablam!     |
+kablam! 106 |         assert_eq!(iter.next(), iter_ref.next());
+kablam!     |                                          ^^^^
+kablam!     |
+kablam!     = note: the method `next` exists but the following trait bounds were not satisfied: `str : std::iter::Iterator`
+kablam! 
+kablam! error[E0061]: this function takes 1 parameter but 0 parameters were supplied
+kablam!    --> tests/pass_tests.rs:110:26
+kablam!     |
+kablam! 110 |     let mut iter_ref = c.encode_utf16();
+kablam!     |                          ^^^^^^^^^^^^ expected 1 parameter
+kablam! 
+kablam! error: no method named `size_hint` found for type `&mut [u16]` in the current scope
+kablam!    --> tests/pass_tests.rs:112:47
+kablam!     |
+kablam! 112 |         assert_eq!(iter.size_hint(), iter_ref.size_hint());
+kablam!     |                                               ^^^^^^^^^
+kablam!     |
+kablam!     = note: the method `size_hint` exists but the following trait bounds were not satisfied: `[u16] : std::iter::Iterator`
+kablam! 
+kablam! error: no method named `next` found for type `&mut [u16]` in the current scope
+kablam!    --> tests/pass_tests.rs:113:42
+kablam!     |
+kablam! 113 |         assert_eq!(iter.next(), iter_ref.next());
+kablam!     |                                          ^^^^
+kablam!     |
+kablam!     = note: the method `next` exists but the following trait bounds were not satisfied: `[u16] : std::iter::Iterator`
+kablam! 
+kablam! error[E0061]: this function takes 1 parameter but 0 parameters were supplied
+kablam!    --> tests/pass_tests.rs:124:23
+kablam!     |
+kablam! 124 |     let reference = c.encode_utf8();
+kablam!     |                       ^^^^^^^^^^^ expected 1 parameter
+kablam! 
+kablam! error: no method named `as_slice` found for type `&mut str` in the current scope
+kablam!    --> tests/pass_tests.rs:125:31
+kablam!     |
+kablam! 125 |     let reference = reference.as_slice();
+kablam!     |                               ^^^^^^^^
+kablam! 
+kablam! error[E0061]: this function takes 1 parameter but 0 parameters were supplied
+kablam!    --> tests/pass_tests.rs:158:23
+kablam!     |
+kablam! 158 |     let reference = c.encode_utf16();
+kablam!     |                       ^^^^^^^^^^^^ expected 1 parameter
+kablam! 
+kablam! error: no method named `as_slice` found for type `&mut [u16]` in the current scope
+kablam!    --> tests/pass_tests.rs:159:31
+kablam!     |
+kablam! 159 |     let reference = reference.as_slice();
+kablam!     |                               ^^^^^^^^
+kablam! 
+kablam! error: aborting due to 10 previous errors
+kablam! 
+kablam! error: Could not compile `encode_unicode`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f 7f363e377bac6902a7d2d1fc9ef3d55664421459b0f14160d2ab918f03524f3b`
+blam! 7f363e377bac6902a7d2d1fc9ef3d55664421459b0f14160d2ab918f03524f3b
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 0a8e5961721b660b3b16595638465f785c8a50deb386945e4665b82450556868
+boom! running `docker start -a 0a8e5961721b660b3b16595638465f785c8a50deb386945e4665b82450556868`
+kablam!    Compiling encode_unicode v0.2.0 (file:///source)
+kablam! error[E0061]: this function takes 1 parameter but 0 parameters were supplied
+kablam!    --> tests/pass_tests.rs:103:26
+kablam!     |
+kablam! 103 |     let mut iter_ref = c.encode_utf8();
+kablam!     |                          ^^^^^^^^^^^ expected 1 parameter
+kablam! 
+kablam! error: no method named `size_hint` found for type `&mut str` in the current scope
+kablam!    --> tests/pass_tests.rs:105:47
+kablam!     |
+kablam! 105 |         assert_eq!(iter.size_hint(), iter_ref.size_hint());
+kablam!     |                                               ^^^^^^^^^
+kablam!     |
+kablam!     = note: the method `size_hint` exists but the following trait bounds were not satisfied: `str : std::iter::Iterator`
+kablam! 
+kablam! error: no method named `next` found for type `&mut str` in the current scope
+kablam!    --> tests/pass_tests.rs:106:42
+kablam!     |
+kablam! 106 |         assert_eq!(iter.next(), iter_ref.next());
+kablam!     |                                          ^^^^
+kablam!     |
+kablam!     = note: the method `next` exists but the following trait bounds were not satisfied: `str : std::iter::Iterator`
+kablam! 
+kablam! error[E0061]: this function takes 1 parameter but 0 parameters were supplied
+kablam!    --> tests/pass_tests.rs:110:26
+kablam!     |
+kablam! 110 |     let mut iter_ref = c.encode_utf16();
+kablam!     |                          ^^^^^^^^^^^^ expected 1 parameter
+kablam! 
+kablam! error: no method named `size_hint` found for type `&mut [u16]` in the current scope
+kablam!    --> tests/pass_tests.rs:112:47
+kablam!     |
+kablam! 112 |         assert_eq!(iter.size_hint(), iter_ref.size_hint());
+kablam!     |                                               ^^^^^^^^^
+kablam!     |
+kablam!     = note: the method `size_hint` exists but the following trait bounds were not satisfied: `[u16] : std::iter::Iterator`
+kablam! 
+kablam! error: no method named `next` found for type `&mut [u16]` in the current scope
+kablam!    --> tests/pass_tests.rs:113:42
+kablam!     |
+kablam! 113 |         assert_eq!(iter.next(), iter_ref.next());
+kablam!     |                                          ^^^^
+kablam!     |
+kablam!     = note: the method `next` exists but the following trait bounds were not satisfied: `[u16] : std::iter::Iterator`
+kablam! 
+kablam! error[E0061]: this function takes 1 parameter but 0 parameters were supplied
+kablam!    --> tests/pass_tests.rs:124:23
+kablam!     |
+kablam! 124 |     let reference = c.encode_utf8();
+kablam!     |                       ^^^^^^^^^^^ expected 1 parameter
+kablam! 
+kablam! error: no method named `as_slice` found for type `&mut str` in the current scope
+kablam!    --> tests/pass_tests.rs:125:31
+kablam!     |
+kablam! 125 |     let reference = reference.as_slice();
+kablam!     |                               ^^^^^^^^
+kablam! 
+kablam! error[E0061]: this function takes 1 parameter but 0 parameters were supplied
+kablam!    --> tests/pass_tests.rs:158:23
+kablam!     |
+kablam! 158 |     let reference = c.encode_utf16();
+kablam!     |                       ^^^^^^^^^^^^ expected 1 parameter
+kablam! 
+kablam! error: no method named `as_slice` found for type `&mut [u16]` in the current scope
+kablam!    --> tests/pass_tests.rs:159:31
+kablam!     |
+kablam! 159 |     let reference = reference.as_slice();
+kablam!     |                               ^^^^^^^^
+kablam! 
+kablam! error: aborting due to 10 previous errors
+kablam! 
+kablam! error: Could not compile `encode_unicode`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 0a8e5961721b660b3b16595638465f785c8a50deb386945e4665b82450556868`
+blam! 0a8e5961721b660b3b16595638465f785c8a50deb386945e4665b82450556868

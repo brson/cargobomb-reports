@@ -1,0 +1,15 @@
+boom! testing ffmpeg-sys-3.2.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! b1f6ed96a168b1089f72b2e728d14755cc7f95b459ac270c30b3fc56049ce731
+boom! running `docker start -a b1f6ed96a168b1089f72b2e728d14755cc7f95b459ac270c30b3fc56049ce731`
+kablam!    Compiling ffmpeg-sys v3.2.1 (file:///source)
+kablam! error: failed to run custom build command for `ffmpeg-sys v3.2.1 (file:///source)`
+kablam! process didn't exit successfully: `/target/debug/build/ffmpeg-sys-99cee3c70c16132a/build-script-build` (exit code: 101)
+kablam! --- stderr
+kablam! thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: Failure { command: "\"pkg-config\" \"--libs\" \"--cflags\" \"libavcodec\"", output: Output { status: ExitStatus(ExitStatus(256)), stdout: "", stderr: "Package libavcodec was not found in the pkg-config search path.\nPerhaps you should add the directory containing `libavcodec.pc\'\nto the PKG_CONFIG_PATH environment variable\nNo package \'libavcodec\' found\n" } }', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f b1f6ed96a168b1089f72b2e728d14755cc7f95b459ac270c30b3fc56049ce731`
+blam! b1f6ed96a168b1089f72b2e728d14755cc7f95b459ac270c30b3fc56049ce731

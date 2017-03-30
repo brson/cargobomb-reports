@@ -1,0 +1,80 @@
+boom! testing lz4-1.20.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 7fa33ae49cea82547278933655b75a2c4763f698888f34718ccc659c734d8a46
+boom! running `docker start -a 7fa33ae49cea82547278933655b75a2c4763f698888f34718ccc659c734d8a46`
+kablam!    Compiling lz4 v1.20.0 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 2.12 secs
+boom! running `docker rm -f 7fa33ae49cea82547278933655b75a2c4763f698888f34718ccc659c734d8a46`
+blam! 7fa33ae49cea82547278933655b75a2c4763f698888f34718ccc659c734d8a46
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 82c85da79a464464219cd0acbc635118c633813e89e7507a0f85c6bdc6bc8921
+boom! running `docker start -a 82c85da79a464464219cd0acbc635118c633813e89e7507a0f85c6bdc6bc8921`
+kablam!    Compiling lz4 v1.20.0 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.57 secs
+boom! running `docker rm -f 82c85da79a464464219cd0acbc635118c633813e89e7507a0f85c6bdc6bc8921`
+blam! 82c85da79a464464219cd0acbc635118c633813e89e7507a0f85c6bdc6bc8921
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! ceead377ca491f135b565ddc1243d8298073db92f2d275693d346cc19fd37c11
+boom! running `docker start -a ceead377ca491f135b565ddc1243d8298073db92f2d275693d346cc19fd37c11`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/lz4-d06ca48bc182cf0c
+blam! 
+blam! running 9 tests
+blam! test decoder::test::test_decoder_send ... ok
+blam! test decoder::test::test_decoder_empty ... ok
+blam! test decoder::test::test_decoder_random ... ok
+blam! test decoder::test::test_decoder_smoke ... ok
+blam! test encoder::test::test_encoder_send ... ok
+blam! test decoder::test::test_retry_read ... ok
+blam! test encoder::test::test_encoder_smoke ... ok
+blam! test liblz4::test_version_number ... ok
+blam! test encoder::test::test_encoder_random ... ok
+blam! 
+blam! test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/skeptic-d9268b335c188c3c
+blam! 
+blam! running 1 test
+kablam! error[E0464]: multiple matching crates for `lz4`
+kablam!  --> /tmp/rust-skeptic.n08ydEgKvuNN/test.rs:1:1
+kablam!   |
+kablam! 1 | extern crate lz4;
+kablam!   | ^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: candidates:
+kablam!   = note: path: /target/debug/deps/liblz4-8a9f3b9fa9d21ec3.rlib
+kablam!   = note: crate name: lz4
+kablam!   = note: path: /target/debug/deps/liblz4-799aedb4c2709246.rlib
+kablam!   = note: crate name: lz4
+kablam! 
+kablam! error[E0463]: can't find crate for `lz4`
+kablam!  --> /tmp/rust-skeptic.n08ydEgKvuNN/test.rs:1:1
+kablam!   |
+kablam! 1 | extern crate lz4;
+kablam!   | ^^^^^^^^^^^^^^^^^ can't find crate
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+blam! test readme_0 ... FAILED
+blam! 
+blam! failures:
+blam! 
+blam! ---- readme_0 stdout ----
+blam! 	thread 'readme_0' panicked at 'command `compile` failed', /cargo-home/registry/src/github.com-1ecc6299db9ec823/skeptic-0.6.1/lib.rs:391
+blam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+blam! 
+blam! 
+blam! failures:
+blam!     readme_0
+blam! 
+blam! test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured
+blam! 
+kablam! error: test failed
+boom! running `docker rm -f ceead377ca491f135b565ddc1243d8298073db92f2d275693d346cc19fd37c11`
+blam! ceead377ca491f135b565ddc1243d8298073db92f2d275693d346cc19fd37c11

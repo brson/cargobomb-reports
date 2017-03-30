@@ -1,0 +1,33 @@
+boom! testing rcmark-0.1.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 5f8cc42aef63b31cfae8fd8bf7f05b551d0411f14faa106a8d05a5cb779ac339
+boom! running `docker start -a 5f8cc42aef63b31cfae8fd8bf7f05b551d0411f14faa106a8d05a5cb779ac339`
+kablam!    Compiling libcmark-sys v0.1.0
+kablam!    Compiling rcmark v0.1.0 (file:///source)
+kablam! warning: use of extern static requires unsafe function or block (error E0133)
+kablam!    --> src/lib.rs:293:5
+kablam!     |
+kablam! 293 |     raw::cmark_version as i32
+kablam!     |     ^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(safe_extern_statics)] on by default
+kablam!     = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+kablam!     = note: for more information, see issue #36247 <https://github.com/rust-lang/rust/issues/35112>
+kablam! 
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/rcmark-7e6923c5949e703a.0.o" "-o" "/target/debug/deps/rcmark-7e6923c5949e703a" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/target/debug/build/libcmark-sys-18af5eedaa4733fb/out/build/src" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "/target/debug/deps/librcmark-9a999f3e88803978.rlib" "/target/debug/deps/libbitflags-40d5f21fa7fcd83a.rlib" "/target/debug/deps/liblibcmark_sys-7b94cd0273b27c47.rlib" "/target/debug/deps/liblibc-75e9a9d6ae05fbe7.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-f4594d3e53dcb114.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-a0157c0ca919c364.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-488b4ab4bd53a138.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-1efbcfd8938372b6.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-532a3dbf317eff86.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-ca07b617414dd0fa.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-492d8ea7fa3384ff.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-88c194c15fdb6521.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-cfbd6648f7db2ee5.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-687e6a964d22cbb4.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-987729be881d4d32.rlib" "-l" "c" "-l" "m" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: /target/debug/deps/liblibcmark_sys-7b94cd0273b27c47.rlib(node.c.o): relocation R_X86_64_32 against `.rodata.str1.1' can not be used when making a shared object; recompile with -fPIC
+kablam!           /target/debug/deps/liblibcmark_sys-7b94cd0273b27c47.rlib: error adding symbols: Bad value
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `rcmark`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 5f8cc42aef63b31cfae8fd8bf7f05b551d0411f14faa106a8d05a5cb779ac339`
+blam! 5f8cc42aef63b31cfae8fd8bf7f05b551d0411f14faa106a8d05a5cb779ac339

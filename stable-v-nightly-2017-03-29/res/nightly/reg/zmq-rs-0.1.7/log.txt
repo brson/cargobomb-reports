@@ -1,0 +1,27 @@
+boom! testing zmq-rs-0.1.7 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 671d998cdb52ac1d483af57238ff225c549381603629cf506978c4ba95c5983d
+boom! running `docker start -a 671d998cdb52ac1d483af57238ff225c549381603629cf506978c4ba95c5983d`
+kablam!    Compiling zmq-ffi v0.1.2
+kablam!    Compiling zmq-rs v0.1.7 (file:///source)
+kablam! error[E0591]: `unsafe extern "C" fn(*mut libc::c_void, *mut libc::c_void) {zmq_free_fn}` is zero-sized and can't be transmuted to `*mut unsafe extern "C" fn(*mut libc::c_void, *mut libc::c_void)`
+kablam!    --> src/lib.rs:317:32
+kablam!     |
+kablam! 317 |         let free_fn = unsafe { transmute(zmq_free_fn) };
+kablam!     |                                ^^^^^^^^^
+kablam!     |
+kablam! note: cast with `as` to a pointer instead
+kablam!    --> src/lib.rs:317:32
+kablam!     |
+kablam! 317 |         let free_fn = unsafe { transmute(zmq_free_fn) };
+kablam!     |                                ^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `zmq-rs`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 671d998cdb52ac1d483af57238ff225c549381603629cf506978c4ba95c5983d`
+blam! 671d998cdb52ac1d483af57238ff225c549381603629cf506978c4ba95c5983d

@@ -1,0 +1,778 @@
+boom! testing httpbis-0.1.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 7004810ace7ae94dcf9ff1d15d980119ad8b881973e429cf56f862fe52863abc
+boom! running `docker start -a 7004810ace7ae94dcf9ff1d15d980119ad8b881973e429cf56f862fe52863abc`
+kablam!    Compiling httpbis v0.1.1 (file:///source)
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!   --> src/client_conn.rs:16:5
+kablam!    |
+kablam! 16 | use tokio_core::io::Io;
+kablam!    |     ^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!   --> src/client_conn.rs:50:21
+kablam!    |
+kablam! 50 |         if let Some(mut response_handler) = self.response_handler.take() {
+kablam!    |                     ^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!    --> src/client_conn.rs:157:10
+kablam!     |
+kablam! 157 | impl<I : Io + Send + 'static> ClientWriteLoop<I> {
+kablam!     |          ^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/client_conn.rs:173:13
+kablam!     |
+kablam! 173 |         let mut to_write_tx_1 = self.inner.with(|inner| inner.to_write_tx.clone());
+kablam!     |             ^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/client_conn.rs:174:13
+kablam!     |
+kablam! 174 |         let mut to_write_tx_2 = to_write_tx_1.clone();
+kablam!     |             ^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!    --> src/client_conn.rs:257:22
+kablam!     |
+kablam! 257 |     fn connected<I : Io + Send + 'static>(lh: reactor::Handle, connect: HttpFutureSend<I>) -> (Self, HttpFuture<()>) {
+kablam!     |                      ^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!    --> src/client_conn.rs:274:38
+kablam!     |
+kablam! 274 |             let (read, write) = conn.split();
+kablam!     |                                      ^^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/client_conn.rs:335:13
+kablam!     |
+kablam! 335 |         let mut call_tx = self.call_tx.clone();
+kablam!     |             ^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: use of deprecated item: renamed to `send`
+kablam!    --> src/client_conn.rs:348:12
+kablam!     |
+kablam! 348 |         tx.complete(stream_with_eof_and_error(req_rx, || HttpError::from(io::Error::new(io::ErrorKind::Other, "unexpected eof"))));
+kablam!     |            ^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: renamed to `send`
+kablam!    --> src/client_conn.rs:371:21
+kablam!     |
+kablam! 371 |         drop(sender.complete(self.inner.with(|inner| inner.common.dump_state())));
+kablam!     |                     ^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!   --> src/server_conn.rs:16:5
+kablam!    |
+kablam! 16 | use tokio_core::io::Io;
+kablam!    |     ^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!   --> src/server_conn.rs:56:21
+kablam!    |
+kablam! 56 |         if let Some(mut sender) = self.request_handler.take() {
+kablam!    |                     ^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/server_conn.rs:102:17
+kablam!     |
+kablam! 102 |             let mut to_write_tx = self.session_state.to_write_tx.clone();
+kablam!     |                 ^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/server_conn.rs:103:17
+kablam!     |
+kablam! 103 |             let mut to_write_tx2 = to_write_tx.clone();
+kablam!     |                 ^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!    --> src/server_conn.rs:199:27
+kablam!     |
+kablam! 199 | impl<F : HttpService, I : Io + Send> ServerWriteLoop<F, I> {
+kablam!     |                           ^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: renamed to `send`
+kablam!    --> src/server_conn.rs:279:21
+kablam!     |
+kablam! 279 |         drop(sender.complete(self.inner.with(|inner| inner.common.dump_state())));
+kablam!     |                     ^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!    --> src/server_conn.rs:309:17
+kablam!     |
+kablam! 309 |             I : Io + Send + 'static,
+kablam!     |                 ^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!    --> src/server_conn.rs:322:40
+kablam!     |
+kablam! 322 |             let (read, write) = socket.split();
+kablam!     |                                        ^^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!  --> src/http_common.rs:9:5
+kablam!   |
+kablam! 9 | use tokio_core::io::ReadHalf;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!   --> src/http_common.rs:10:5
+kablam!    |
+kablam! 10 | use tokio_core::io::WriteHalf;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!   --> src/http_common.rs:11:5
+kablam!    |
+kablam! 11 | use tokio_core::io::Io;
+kablam!    |     ^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!   --> src/http_common.rs:12:5
+kablam!    |
+kablam! 12 | use tokio_core::io as tokio_io;
+kablam!    |     ^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!    --> src/http_common.rs:544:13
+kablam!     |
+kablam! 544 |         I : Io + 'static,
+kablam!     |             ^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!    --> src/http_common.rs:547:15
+kablam!     |
+kablam! 547 |     pub read: ReadHalf<I>,
+kablam!     |               ^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!    --> src/http_common.rs:553:13
+kablam!     |
+kablam! 553 |         I : Io + 'static,
+kablam!     |             ^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!    --> src/http_common.rs:556:16
+kablam!     |
+kablam! 556 |     pub write: WriteHalf<I>,
+kablam!     |                ^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!    --> src/http_common.rs:570:13
+kablam!     |
+kablam! 570 |         I : Io + Send + 'static,
+kablam!     |             ^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!    --> src/http_common.rs:607:13
+kablam!     |
+kablam! 607 |         I : Io + Send + 'static,
+kablam!     |             ^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!    --> src/http_common.rs:613:18
+kablam!     |
+kablam! 613 |         Box::new(tokio_io::write_all(write, buf)
+kablam!     |                  ^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!   --> src/tokio_oneshot.rs:28:17
+kablam!    |
+kablam! 28 |     pub fn send(mut self, t: T) -> Result<(), futures::sync::mpsc::SendError<T>> {
+kablam!    |                 ^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!   --> src/solicit_async.rs:10:5
+kablam!    |
+kablam! 10 | use tokio_core::io::read_exact;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!   --> src/solicit_async.rs:11:5
+kablam!    |
+kablam! 11 | use tokio_core::io::write_all;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!   --> src/solicit_async.rs:12:5
+kablam!    |
+kablam! 12 | use tokio_core::io::Io;
+kablam!    |     ^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!   --> src/solicit_async.rs:44:18
+kablam!    |
+kablam! 44 |     let header = read_exact(read, [0; 9]);
+kablam!    |                  ^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!   --> src/solicit_async.rs:58:9
+kablam!    |
+kablam! 58 |         read_exact(read, full_frame)
+kablam!    |         ^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!   --> src/solicit_async.rs:89:14
+kablam!    |
+kablam! 89 |     Box::new(write_all(write, bytes)
+kablam!    |              ^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!   --> src/solicit_async.rs:97:14
+kablam!    |
+kablam! 97 |     Box::new(write_all(write, buf.into_inner())
+kablam!    |              ^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!    --> src/solicit_async.rs:104:29
+kablam!     |
+kablam! 104 | pub fn client_handshake<I : Io + Send + 'static>(conn: I) -> HttpFuture<I> {
+kablam!     |                             ^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!    --> src/solicit_async.rs:105:24
+kablam!     |
+kablam! 105 |     let send_preface = write_all(conn, PREFACE)
+kablam!     |                        ^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!    --> src/solicit_async.rs:127:29
+kablam!     |
+kablam! 127 | pub fn server_handshake<I : Io + Send + 'static>(conn: I) -> HttpFuture<I> {
+kablam!     |                             ^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!    --> src/solicit_async.rs:130:24
+kablam!     |
+kablam! 130 |     let recv_preface = read_exact(conn, preface_buf)
+kablam!     |                        ^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 11.82 secs
+boom! running `docker rm -f 7004810ace7ae94dcf9ff1d15d980119ad8b881973e429cf56f862fe52863abc`
+blam! 7004810ace7ae94dcf9ff1d15d980119ad8b881973e429cf56f862fe52863abc
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 7f38b1cbaa066122ca3875d1b5c93a242fafc66dbd4cf60f61fc02a13852736a
+boom! running `docker start -a 7f38b1cbaa066122ca3875d1b5c93a242fafc66dbd4cf60f61fc02a13852736a`
+kablam!    Compiling httpbis v0.1.1 (file:///source)
+kablam! error[E0463]: can't find crate for `http2`
+kablam!  --> tests/http_client.rs:1:1
+kablam!   |
+kablam! 1 | extern crate http2;
+kablam!   | ^^^^^^^^^^^^^^^^^^^ can't find crate
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `httpbis`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error[E0463]: can't find crate for `http2`
+kablam!  --> tests/http_server.rs:4:1
+kablam!   |
+kablam! 4 | extern crate http2;
+kablam!   | ^^^^^^^^^^^^^^^^^^^ can't find crate
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `httpbis`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! warning: unused import: `std::rc::Rc`
+kablam!  --> src/solicit/tests/common.rs:4:5
+kablam!   |
+kablam! 4 | use std::rc::Rc;
+kablam!   |     ^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused imports: `Cell`, `RefCell`
+kablam!  --> src/solicit/tests/common.rs:5:17
+kablam!   |
+kablam! 5 | use std::cell::{RefCell, Cell};
+kablam!   |                 ^^^^^^^  ^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `std::borrow::Cow`
+kablam!  --> src/solicit/tests/common.rs:6:5
+kablam!   |
+kablam! 6 | use std::borrow::Cow;
+kablam!   |     ^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused imports: `Cursor`, `Read`
+kablam!  --> src/solicit/tests/common.rs:7:15
+kablam!   |
+kablam! 7 | use std::io::{Cursor, Read, Write};
+kablam!   |               ^^^^^^  ^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused imports: `ErrorCode`, `Header`, `OwnedHeader`
+kablam!  --> src/solicit/tests/common.rs:9:15
+kablam!   |
+kablam! 9 | use solicit::{Header, OwnedHeader, ErrorCode};
+kablam!   |               ^^^^^^  ^^^^^^^^^^^  ^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `solicit::session::StreamState`
+kablam!   --> src/solicit/tests/common.rs:11:5
+kablam!    |
+kablam! 11 | use solicit::session::StreamState;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused imports: `DataChunk`, `EndStream`, `HttpConnection`, `HttpFrame`, `ReceiveFrame`, `SendFrame`
+kablam!   --> src/solicit/tests/common.rs:12:27
+kablam!    |
+kablam! 12 | use solicit::connection::{SendFrame, ReceiveFrame, HttpFrame, HttpConnection, EndStream, DataChunk};
+kablam!    |                           ^^^^^^^^^  ^^^^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!   --> src/client_conn.rs:16:5
+kablam!    |
+kablam! 16 | use tokio_core::io::Io;
+kablam!    |     ^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!   --> src/client_conn.rs:50:21
+kablam!    |
+kablam! 50 |         if let Some(mut response_handler) = self.response_handler.take() {
+kablam!    |                     ^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!    --> src/client_conn.rs:157:10
+kablam!     |
+kablam! 157 | impl<I : Io + Send + 'static> ClientWriteLoop<I> {
+kablam!     |          ^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/client_conn.rs:173:13
+kablam!     |
+kablam! 173 |         let mut to_write_tx_1 = self.inner.with(|inner| inner.to_write_tx.clone());
+kablam!     |             ^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/client_conn.rs:174:13
+kablam!     |
+kablam! 174 |         let mut to_write_tx_2 = to_write_tx_1.clone();
+kablam!     |             ^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!    --> src/client_conn.rs:257:22
+kablam!     |
+kablam! 257 |     fn connected<I : Io + Send + 'static>(lh: reactor::Handle, connect: HttpFutureSend<I>) -> (Self, HttpFuture<()>) {
+kablam!     |                      ^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!    --> src/client_conn.rs:274:38
+kablam!     |
+kablam! 274 |             let (read, write) = conn.split();
+kablam!     |                                      ^^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/client_conn.rs:335:13
+kablam!     |
+kablam! 335 |         let mut call_tx = self.call_tx.clone();
+kablam!     |             ^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: use of deprecated item: renamed to `send`
+kablam!    --> src/client_conn.rs:348:12
+kablam!     |
+kablam! 348 |         tx.complete(stream_with_eof_and_error(req_rx, || HttpError::from(io::Error::new(io::ErrorKind::Other, "unexpected eof"))));
+kablam!     |            ^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: renamed to `send`
+kablam!    --> src/client_conn.rs:371:21
+kablam!     |
+kablam! 371 |         drop(sender.complete(self.inner.with(|inner| inner.common.dump_state())));
+kablam!     |                     ^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!   --> src/server_conn.rs:16:5
+kablam!    |
+kablam! 16 | use tokio_core::io::Io;
+kablam!    |     ^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!   --> src/server_conn.rs:56:21
+kablam!    |
+kablam! 56 |         if let Some(mut sender) = self.request_handler.take() {
+kablam!    |                     ^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/server_conn.rs:102:17
+kablam!     |
+kablam! 102 |             let mut to_write_tx = self.session_state.to_write_tx.clone();
+kablam!     |                 ^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/server_conn.rs:103:17
+kablam!     |
+kablam! 103 |             let mut to_write_tx2 = to_write_tx.clone();
+kablam!     |                 ^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!    --> src/server_conn.rs:199:27
+kablam!     |
+kablam! 199 | impl<F : HttpService, I : Io + Send> ServerWriteLoop<F, I> {
+kablam!     |                           ^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: renamed to `send`
+kablam!    --> src/server_conn.rs:279:21
+kablam!     |
+kablam! 279 |         drop(sender.complete(self.inner.with(|inner| inner.common.dump_state())));
+kablam!     |                     ^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!    --> src/server_conn.rs:309:17
+kablam!     |
+kablam! 309 |             I : Io + Send + 'static,
+kablam!     |                 ^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!    --> src/server_conn.rs:322:40
+kablam!     |
+kablam! 322 |             let (read, write) = socket.split();
+kablam!     |                                        ^^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!  --> src/http_common.rs:9:5
+kablam!   |
+kablam! 9 | use tokio_core::io::ReadHalf;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!   --> src/http_common.rs:10:5
+kablam!    |
+kablam! 10 | use tokio_core::io::WriteHalf;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!   --> src/http_common.rs:11:5
+kablam!    |
+kablam! 11 | use tokio_core::io::Io;
+kablam!    |     ^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!   --> src/http_common.rs:12:5
+kablam!    |
+kablam! 12 | use tokio_core::io as tokio_io;
+kablam!    |     ^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!    --> src/http_common.rs:544:13
+kablam!     |
+kablam! 544 |         I : Io + 'static,
+kablam!     |             ^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!    --> src/http_common.rs:547:15
+kablam!     |
+kablam! 547 |     pub read: ReadHalf<I>,
+kablam!     |               ^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!    --> src/http_common.rs:553:13
+kablam!     |
+kablam! 553 |         I : Io + 'static,
+kablam!     |             ^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!    --> src/http_common.rs:556:16
+kablam!     |
+kablam! 556 |     pub write: WriteHalf<I>,
+kablam!     |                ^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!    --> src/http_common.rs:570:13
+kablam!     |
+kablam! 570 |         I : Io + Send + 'static,
+kablam!     |             ^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!    --> src/http_common.rs:607:13
+kablam!     |
+kablam! 607 |         I : Io + Send + 'static,
+kablam!     |             ^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!    --> src/http_common.rs:613:18
+kablam!     |
+kablam! 613 |         Box::new(tokio_io::write_all(write, buf)
+kablam!     |                  ^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!   --> src/tokio_oneshot.rs:28:17
+kablam!    |
+kablam! 28 |     pub fn send(mut self, t: T) -> Result<(), futures::sync::mpsc::SendError<T>> {
+kablam!    |                 ^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!   --> src/solicit_async.rs:10:5
+kablam!    |
+kablam! 10 | use tokio_core::io::read_exact;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!   --> src/solicit_async.rs:11:5
+kablam!    |
+kablam! 11 | use tokio_core::io::write_all;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!   --> src/solicit_async.rs:12:5
+kablam!    |
+kablam! 12 | use tokio_core::io::Io;
+kablam!    |     ^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!   --> src/solicit_async.rs:44:18
+kablam!    |
+kablam! 44 |     let header = read_exact(read, [0; 9]);
+kablam!    |                  ^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!   --> src/solicit_async.rs:58:9
+kablam!    |
+kablam! 58 |         read_exact(read, full_frame)
+kablam!    |         ^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!   --> src/solicit_async.rs:89:14
+kablam!    |
+kablam! 89 |     Box::new(write_all(write, bytes)
+kablam!    |              ^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!   --> src/solicit_async.rs:97:14
+kablam!    |
+kablam! 97 |     Box::new(write_all(write, buf.into_inner())
+kablam!    |              ^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!    --> src/solicit_async.rs:104:29
+kablam!     |
+kablam! 104 | pub fn client_handshake<I : Io + Send + 'static>(conn: I) -> HttpFuture<I> {
+kablam!     |                             ^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!    --> src/solicit_async.rs:105:24
+kablam!     |
+kablam! 105 |     let send_preface = write_all(conn, PREFACE)
+kablam!     |                        ^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!    --> src/solicit_async.rs:127:29
+kablam!     |
+kablam! 127 | pub fn server_handshake<I : Io + Send + 'static>(conn: I) -> HttpFuture<I> {
+kablam!     |                             ^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate
+kablam!    --> src/solicit_async.rs:130:24
+kablam!     |
+kablam! 130 |     let recv_preface = read_exact(conn, preface_buf)
+kablam!     |                        ^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f 7f38b1cbaa066122ca3875d1b5c93a242fafc66dbd4cf60f61fc02a13852736a`
+blam! 7f38b1cbaa066122ca3875d1b5c93a242fafc66dbd4cf60f61fc02a13852736a
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! e53343a3da24ca6ed34dc153a43fc80547c0ff4a4cdb4067619a138ea87a2573
+boom! running `docker start -a e53343a3da24ca6ed34dc153a43fc80547c0ff4a4cdb4067619a138ea87a2573`
+kablam!    Compiling httpbis v0.1.1 (file:///source)
+kablam! error[E0463]: can't find crate for `http2`
+kablam!  --> tests/http_client.rs:1:1
+kablam!   |
+kablam! 1 | extern crate http2;
+kablam!   | ^^^^^^^^^^^^^^^^^^^ can't find crate
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `httpbis`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error[E0463]: can't find crate for `http2`
+kablam!  --> tests/http_server.rs:4:1
+kablam!   |
+kablam! 4 | extern crate http2;
+kablam!   | ^^^^^^^^^^^^^^^^^^^ can't find crate
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f e53343a3da24ca6ed34dc153a43fc80547c0ff4a4cdb4067619a138ea87a2573`
+blam! e53343a3da24ca6ed34dc153a43fc80547c0ff4a4cdb4067619a138ea87a2573

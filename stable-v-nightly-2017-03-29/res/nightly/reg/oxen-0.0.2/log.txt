@@ -1,0 +1,85 @@
+boom! testing oxen-0.0.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 831444c0c24c18559faad32304405d68abed9a0137b71d26cc24232649075f14
+boom! running `docker start -a 831444c0c24c18559faad32304405d68abed9a0137b71d26cc24232649075f14`
+kablam!    Compiling oxen v0.0.2 (file:///source)
+kablam! error: no method named `per_instance_if_supported` found for type `glium::vertex::VertexBufferAny` in the current scope
+kablam!   --> src/lib.rs:99:57
+kablam!    |
+kablam! 99 |                     (&render_object.vertices, instances.per_instance_if_supported().unwrap()),
+kablam!    |                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:173:42
+kablam!     |
+kablam! 173 |         VertexBuffer::new(&self.display, data).into_vertex_buffer_any()
+kablam!     |                                          ^^^^ expected &[_], found struct `std::vec::Vec`
+kablam!     |
+kablam!     = note: expected type `&[_]`
+kablam!                found type `std::vec::Vec<Oxen::instances::ModelTransform>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .as_slice()
+kablam! 
+kablam! error: no method named `into_vertex_buffer_any` found for type `std::result::Result<glium::VertexBuffer<_>, glium::vertex::CreationError>` in the current scope
+kablam!    --> src/lib.rs:173:48
+kablam!     |
+kablam! 173 |         VertexBuffer::new(&self.display, data).into_vertex_buffer_any()
+kablam!     |                                                ^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/models.rs:32:9
+kablam!    |
+kablam! 32 |           vec![
+kablam!    |  _________^ starting here...
+kablam! 33 | |             Vertex { vertex_position: [ -0.5,  0.5], vertex_color: colour },
+kablam! 34 | |             Vertex { vertex_position: [  0.5,  0.5], vertex_color: colour },
+kablam! 35 | |             Vertex { vertex_position: [  0.5, -0.5], vertex_color: colour },
+kablam! 36 | |             Vertex { vertex_position: [ -0.5, -0.5], vertex_color: colour },
+kablam! 37 | |         ]
+kablam!    | |_________^ ...ending here: expected &[_], found struct `std::vec::Vec`
+kablam!    |
+kablam!    = note: expected type `&[_]`
+kablam!               found type `std::vec::Vec<models::square_vertices::Vertex>`
+kablam!    = help: here are some functions which might fulfill your needs:
+kablam!            - .as_slice()
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error: no method named `into_vertex_buffer_any` found for type `std::result::Result<glium::VertexBuffer<_>, glium::vertex::CreationError>` in the current scope
+kablam!   --> src/models.rs:38:7
+kablam!    |
+kablam! 38 |     ).into_vertex_buffer_any()
+kablam!    |       ^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/models.rs:42:46
+kablam!    |
+kablam! 42 |     IndexBuffer::new(display, TrianglesList, vec![0, 1, 2, 0, 2, 3])
+kablam!    |                                              ^^^^^^^^^^^^^^^^^^^^^^ expected &[_], found struct `std::vec::Vec`
+kablam!    |
+kablam!    = note: expected type `&[_]`
+kablam!               found type `std::vec::Vec<{integer}>`
+kablam!    = help: here are some functions which might fulfill your needs:
+kablam!            - .as_slice()
+kablam!    = note: this error originates in a macro outside of the current crate
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> src/models.rs:42:5
+kablam!    |
+kablam! 42 |     IndexBuffer::new(display, TrianglesList, vec![0, 1, 2, 0, 2, 3])
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `glium::IndexBuffer`, found enum `std::result::Result`
+kablam!    |
+kablam!    = note: expected type `glium::IndexBuffer<u16>`
+kablam!               found type `std::result::Result<glium::IndexBuffer<_>, glium::index::CreationError>`
+kablam!    = help: here are some functions which might fulfill your needs:
+kablam!            - .unwrap()
+kablam!            - .unwrap_err()
+kablam! 
+kablam! error: aborting due to 7 previous errors
+kablam! 
+kablam! error: Could not compile `oxen`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 831444c0c24c18559faad32304405d68abed9a0137b71d26cc24232649075f14`
+blam! 831444c0c24c18559faad32304405d68abed9a0137b71d26cc24232649075f14

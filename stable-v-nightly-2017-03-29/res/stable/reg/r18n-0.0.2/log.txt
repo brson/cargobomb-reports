@@ -1,0 +1,44 @@
+boom! testing r18n-0.0.2 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! ea46369b309ea02826be55d560bf365bba78f1149e9a147a6f6ab7604098ec7e
+boom! running `docker start -a ea46369b309ea02826be55d560bf365bba78f1149e9a147a6f6ab7604098ec7e`
+kablam!    Compiling r18n v0.0.2 (file:///source)
+kablam! error[E0432]: unresolved import `std::path::AsPath`
+kablam!   --> src/lib.rs:14:5
+kablam!    |
+kablam! 14 | use std::path::AsPath;
+kablam!    |     ^^^^^^^^^^^^^^^^^ no `AsPath` in `path`. Did you mean to use `Path`?
+kablam! 
+kablam! error[E0432]: unresolved import `std::error::FromError`
+kablam!   --> src/lib.rs:16:5
+kablam!    |
+kablam! 16 | use std::error::FromError;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^ no `FromError` in `error`
+kablam! 
+kablam! error[E0412]: cannot find type `ParserError` in module `toml`
+kablam!    --> src/lib.rs:101:20
+kablam!     |
+kablam! 101 | impl FromError<Vec<toml::ParserError>> for Error{
+kablam!     |                    ^^^^^^^^^^^^^^^^^ not found in `toml`
+kablam! 
+kablam! error[E0412]: cannot find type `ParserError` in module `toml`
+kablam!    --> src/lib.rs:102:28
+kablam!     |
+kablam! 102 |     fn from_error(err: Vec<toml::ParserError>) -> Error {
+kablam!     |                            ^^^^^^^^^^^^^^^^^ not found in `toml`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/lib.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(custom_derive, path, io, collections, core, libc)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `r18n`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f ea46369b309ea02826be55d560bf365bba78f1149e9a147a6f6ab7604098ec7e`
+blam! ea46369b309ea02826be55d560bf365bba78f1149e9a147a6f6ab7604098ec7e

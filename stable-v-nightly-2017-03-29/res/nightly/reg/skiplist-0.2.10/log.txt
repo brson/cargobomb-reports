@@ -1,0 +1,156 @@
+boom! testing skiplist-0.2.10 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 8e188fc0cfe8ff2932f0e2e624d9216a7f4c821695b13634d0ecc7a49dcb6854
+boom! running `docker start -a 8e188fc0cfe8ff2932f0e2e624d9216a7f4c821695b13634d0ecc7a49dcb6854`
+kablam!    Compiling skiplist v0.2.10 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.39 secs
+boom! running `docker rm -f 8e188fc0cfe8ff2932f0e2e624d9216a7f4c821695b13634d0ecc7a49dcb6854`
+blam! 8e188fc0cfe8ff2932f0e2e624d9216a7f4c821695b13634d0ecc7a49dcb6854
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! a782692317f63a0e16ff1237b102ac57d43e3325f25221435382058694919e29
+boom! running `docker start -a a782692317f63a0e16ff1237b102ac57d43e3325f25221435382058694919e29`
+kablam!    Compiling skiplist v0.2.10 (file:///source)
+kablam! error: no method named `range` found for type `ordered_skiplist::OrderedSkipList<{integer}>` in the current scope
+kablam!     --> src/ordered_skiplist.rs:1733:27
+kablam!      |
+kablam! 1733 |         for (&v, i) in sl.range(Included(&2), Unbounded).zip(2..size) {
+kablam!      |                           ^^^^^
+kablam! 
+kablam! error: no method named `range` found for type `&ordered_skiplist::OrderedSkipList<u32>` in the current scope
+kablam!     --> src/ordered_skiplist.rs:1746:33
+kablam!      |
+kablam! 1746 |             let mut values = sl.range(min, max).map(|&i| i);
+kablam!      |                                 ^^^^^
+kablam! 
+kablam! error: no method named `range` found for type `ordered_skiplist::OrderedSkipList<{integer}>` in the current scope
+kablam!     --> src/ordered_skiplist.rs:1770:37
+kablam!      |
+kablam! 1770 |                 let mut values = sl.range(Included(&i), Included(&j)).map(|&i| i);
+kablam!      |                                     ^^^^^
+kablam! 
+kablam! error: no method named `range` found for type `skipmap::SkipMap<{integer}, {integer}>` in the current scope
+kablam!     --> src/skipmap.rs:1851:33
+kablam!      |
+kablam! 1851 |         for ((&k, &v), i) in sm.range(Included(&2), Unbounded).zip(2..size) {
+kablam!      |                                 ^^^^^
+kablam! 
+kablam! error: no method named `range` found for type `&skipmap::SkipMap<u32, u32>` in the current scope
+kablam!     --> src/skipmap.rs:1865:33
+kablam!      |
+kablam! 1865 |             let mut values = sm.range(min, max).map(|(&a, &b)| (a, b));
+kablam!      |                                 ^^^^^
+kablam! 
+kablam! error: no method named `range` found for type `skipmap::SkipMap<{integer}, {integer}>` in the current scope
+kablam!     --> src/skipmap.rs:1890:37
+kablam!      |
+kablam! 1890 |                 let mut values = sm.range(Included(&i), Included(&j)).map(|(&a, &b)| (a, b));
+kablam!      |                                     ^^^^^
+kablam! 
+kablam! error: no method named `range` found for type `skiplist::SkipList<{integer}>` in the current scope
+kablam!     --> src/skiplist.rs:1529:27
+kablam!      |
+kablam! 1529 |         for (&v, i) in sl.range(Included(2), Unbounded).zip(2..size) {
+kablam!      |                           ^^^^^
+kablam! 
+kablam! error: no method named `range` found for type `&skiplist::SkipList<usize>` in the current scope
+kablam!     --> src/skiplist.rs:1542:33
+kablam!      |
+kablam! 1542 |             let mut values = sl.range(min, max).map(|&i| i);
+kablam!      |                                 ^^^^^
+kablam! 
+kablam! error: no method named `range` found for type `skiplist::SkipList<{integer}>` in the current scope
+kablam!     --> src/skiplist.rs:1566:37
+kablam!      |
+kablam! 1566 |                 let mut values = sl.range(Included(i), Included(j)).map(|&i| i);
+kablam!      |                                     ^^^^^
+kablam! 
+kablam! error: no method named `range` found for type `skiplist::SkipList<{integer}>` in the current scope
+kablam!     --> src/skiplist.rs:1579:37
+kablam!      |
+kablam! 1579 |                 let mut values = sl.range(Included(i), Included(j)).rev().map(|&i| i);
+kablam!      |                                     ^^^^^
+kablam! 
+kablam! error: aborting due to 10 previous errors
+kablam! 
+kablam! error: Could not compile `skiplist`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f a782692317f63a0e16ff1237b102ac57d43e3325f25221435382058694919e29`
+blam! a782692317f63a0e16ff1237b102ac57d43e3325f25221435382058694919e29
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 7035f450b7d5b33aa3d3ea582e411426ee2ec56637b08d652cc569498def706e
+boom! running `docker start -a 7035f450b7d5b33aa3d3ea582e411426ee2ec56637b08d652cc569498def706e`
+kablam!    Compiling skiplist v0.2.10 (file:///source)
+kablam! error: no method named `range` found for type `ordered_skiplist::OrderedSkipList<{integer}>` in the current scope
+kablam!     --> src/ordered_skiplist.rs:1733:27
+kablam!      |
+kablam! 1733 |         for (&v, i) in sl.range(Included(&2), Unbounded).zip(2..size) {
+kablam!      |                           ^^^^^
+kablam! 
+kablam! error: no method named `range` found for type `&ordered_skiplist::OrderedSkipList<u32>` in the current scope
+kablam!     --> src/ordered_skiplist.rs:1746:33
+kablam!      |
+kablam! 1746 |             let mut values = sl.range(min, max).map(|&i| i);
+kablam!      |                                 ^^^^^
+kablam! 
+kablam! error: no method named `range` found for type `ordered_skiplist::OrderedSkipList<{integer}>` in the current scope
+kablam!     --> src/ordered_skiplist.rs:1770:37
+kablam!      |
+kablam! 1770 |                 let mut values = sl.range(Included(&i), Included(&j)).map(|&i| i);
+kablam!      |                                     ^^^^^
+kablam! 
+kablam! error: no method named `range` found for type `skipmap::SkipMap<{integer}, {integer}>` in the current scope
+kablam!     --> src/skipmap.rs:1851:33
+kablam!      |
+kablam! 1851 |         for ((&k, &v), i) in sm.range(Included(&2), Unbounded).zip(2..size) {
+kablam!      |                                 ^^^^^
+kablam! 
+kablam! error: no method named `range` found for type `&skipmap::SkipMap<u32, u32>` in the current scope
+kablam!     --> src/skipmap.rs:1865:33
+kablam!      |
+kablam! 1865 |             let mut values = sm.range(min, max).map(|(&a, &b)| (a, b));
+kablam!      |                                 ^^^^^
+kablam! 
+kablam! error: no method named `range` found for type `skipmap::SkipMap<{integer}, {integer}>` in the current scope
+kablam!     --> src/skipmap.rs:1890:37
+kablam!      |
+kablam! 1890 |                 let mut values = sm.range(Included(&i), Included(&j)).map(|(&a, &b)| (a, b));
+kablam!      |                                     ^^^^^
+kablam! 
+kablam! error: no method named `range` found for type `skiplist::SkipList<{integer}>` in the current scope
+kablam!     --> src/skiplist.rs:1529:27
+kablam!      |
+kablam! 1529 |         for (&v, i) in sl.range(Included(2), Unbounded).zip(2..size) {
+kablam!      |                           ^^^^^
+kablam! 
+kablam! error: no method named `range` found for type `&skiplist::SkipList<usize>` in the current scope
+kablam!     --> src/skiplist.rs:1542:33
+kablam!      |
+kablam! 1542 |             let mut values = sl.range(min, max).map(|&i| i);
+kablam!      |                                 ^^^^^
+kablam! 
+kablam! error: no method named `range` found for type `skiplist::SkipList<{integer}>` in the current scope
+kablam!     --> src/skiplist.rs:1566:37
+kablam!      |
+kablam! 1566 |                 let mut values = sl.range(Included(i), Included(j)).map(|&i| i);
+kablam!      |                                     ^^^^^
+kablam! 
+kablam! error: no method named `range` found for type `skiplist::SkipList<{integer}>` in the current scope
+kablam!     --> src/skiplist.rs:1579:37
+kablam!      |
+kablam! 1579 |                 let mut values = sl.range(Included(i), Included(j)).rev().map(|&i| i);
+kablam!      |                                     ^^^^^
+kablam! 
+kablam! error: aborting due to 10 previous errors
+kablam! 
+kablam! error: Could not compile `skiplist`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 7035f450b7d5b33aa3d3ea582e411426ee2ec56637b08d652cc569498def706e`
+blam! 7035f450b7d5b33aa3d3ea582e411426ee2ec56637b08d652cc569498def706e

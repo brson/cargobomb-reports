@@ -1,0 +1,24 @@
+boom! testing storage-0.5.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! fa2f4a4c14306429a33f2584a180990fee0ac58e36e7622d3cf2604b28361849
+boom! running `docker start -a fa2f4a4c14306429a33f2584a180990fee0ac58e36e7622d3cf2604b28361849`
+kablam!    Compiling openblas-src v0.5.3
+kablam! error: failed to run custom build command for `openblas-src v0.5.3`
+kablam! process didn't exit successfully: `/target/debug/build/openblas-src-831bb206365816b9/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! Running: `"make" "libs" "netlib" "shared" "BINARY=64" "YES_CBLAS=1" "YES_LAPACKE=1" "-j4"`
+kablam! 
+kablam! --- stderr
+kablam! /usr/bin/ld: cannot open output file getarch: Read-only file system
+kablam! collect2: error: ld returned 1 exit status
+kablam! make: *** [getarch] Error 1
+kablam! Makefile.system:165: Makefile.conf: No such file or directory
+kablam! Makefile.system:912: Makefile.: No such file or directory
+kablam! make: *** No rule to make target 'Makefile.'.  Stop.
+kablam! thread 'main' panicked at 'Failed: `"make" "libs" "netlib" "shared" "BINARY=64" "YES_CBLAS=1" "YES_LAPACKE=1" "-j4"` (exit code: 2)', /cargo-home/registry/src/github.com-1ecc6299db9ec823/openblas-src-0.5.3/build.rs:39
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f fa2f4a4c14306429a33f2584a180990fee0ac58e36e7622d3cf2604b28361849`
+blam! fa2f4a4c14306429a33f2584a180990fee0ac58e36e7622d3cf2604b28361849

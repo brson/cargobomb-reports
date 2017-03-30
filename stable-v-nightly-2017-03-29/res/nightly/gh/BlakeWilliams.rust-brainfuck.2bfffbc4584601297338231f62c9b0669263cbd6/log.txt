@@ -1,0 +1,91 @@
+boom! testing https://github.com/BlakeWilliams/rust-brainfuck#2bfffbc4584601297338231f62c9b0669263cbd6 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 5c29280fa389df245a1221ff0d76a9073a2ca26168d7e556fd81246c04903868
+boom! running `docker start -a 5c29280fa389df245a1221ff0d76a9073a2ca26168d7e556fd81246c04903868`
+kablam!    Compiling brainfuck v0.0.1 (file:///source)
+kablam! error: invalid suffix `us` for numeric literal
+kablam!   --> src/brainfuck/tape.rs:12:45
+kablam!    |
+kablam! 12 |             content: iter::repeat(0u8).take(30_000us).collect(),
+kablam!    |                                             ^^^^^^^^
+kablam!    |
+kablam!    = help: the suffix must be one of the integral types (`u32`, `isize`, etc)
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::stdio::StdinReader`
+kablam!  --> src/brainfuck/tape.rs:2:5
+kablam!   |
+kablam! 2 | use std::io::stdio::StdinReader;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `StdinReader` in `io::stdio`
+kablam! 
+kablam! error[E0432]: unresolved import `std::io::File`
+kablam!  --> src/brainfuck/program.rs:1:5
+kablam!   |
+kablam! 1 | use std::io::File;
+kablam!   |     ^^^^^^^^^^^^^ no `File` in `io`
+kablam! 
+kablam! error[E0412]: cannot find type `Path` in this scope
+kablam!  --> src/brainfuck/program.rs:9:28
+kablam!   |
+kablam! 9 |     pub fn new(file_path: &Path) -> Program {
+kablam!   |                            ^^^^ not found in this scope
+kablam!   |
+kablam!   = help: possible candidate is found in another module, you can import it into scope:
+kablam!             `use std::path::Path;`
+kablam! 
+kablam! error[E0412]: cannot find type `Path` in this scope
+kablam!   --> src/brainfuck/program.rs:57:28
+kablam!    |
+kablam! 57 |     fn read_program(path: &Path) -> Vec<char> {
+kablam!    |                            ^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::path::Path;`
+kablam! 
+kablam! error[E0412]: cannot find type `Path` in this scope
+kablam!   --> src/main.rs:35:18
+kablam!    |
+kablam! 35 | fn get_path() -> Path {
+kablam!    |                  ^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::path::Path;`
+kablam! 
+kablam! error[E0425]: cannot find function `args` in module `std::os`
+kablam!   --> src/main.rs:36:25
+kablam!    |
+kablam! 36 |     let args = std::os::args().clone();
+kablam!    |                         ^^^^ not found in `std::os`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::env::args;`
+kablam! 
+kablam! error[E0425]: cannot find function `args` in module `std::os`
+kablam!   --> src/main.rs:42:32
+kablam!    |
+kablam! 42 |     let path_string = std::os::args()[1].clone();
+kablam!    |                                ^^^^ not found in `std::os`
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use std::env::args;`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `Path`
+kablam!   --> src/main.rs:43:5
+kablam!    |
+kablam! 43 |     Path::new(path_string)
+kablam!    |     ^^^^^^^^^ Use of undeclared type or module `Path`
+kablam! 
+kablam! error: module `stdio` is private
+kablam!  --> src/brainfuck/tape.rs:2:5
+kablam!   |
+kablam! 2 | use std::io::stdio::StdinReader;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 10 previous errors
+kablam! 
+kablam! error: Could not compile `brainfuck`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 5c29280fa389df245a1221ff0d76a9073a2ca26168d7e556fd81246c04903868`
+blam! 5c29280fa389df245a1221ff0d76a9073a2ca26168d7e556fd81246c04903868

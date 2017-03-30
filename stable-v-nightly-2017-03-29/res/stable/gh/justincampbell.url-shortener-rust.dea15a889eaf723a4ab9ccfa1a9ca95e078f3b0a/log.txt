@@ -1,0 +1,97 @@
+boom! testing https://github.com/justincampbell/url-shortener-rust#dea15a889eaf723a4ab9ccfa1a9ca95e078f3b0a against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 3c71b910eed8807e900fa161c516a85a8147241058ef765795c4bee474c6be0d
+boom! running `docker start -a 3c71b910eed8807e900fa161c516a85a8147241058ef765795c4bee474c6be0d`
+kablam!    Compiling shortener v0.0.1 (file:///source)
+kablam! warning: type alias is never used: `Token`, #[warn(dead_code)] on by default
+kablam!  --> src/shortener.rs:3:1
+kablam!   |
+kablam! 3 | type Token = String;
+kablam!   | ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: type alias is never used: `Url`, #[warn(dead_code)] on by default
+kablam!  --> src/shortener.rs:4:1
+kablam!   |
+kablam! 4 | type Url = String;
+kablam!   | ^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: struct is never used: `World`, #[warn(dead_code)] on by default
+kablam!  --> src/shortener.rs:6:1
+kablam!   |
+kablam! 6 |   pub struct World {
+kablam!   |  _^ starting here...
+kablam! 7 | |     id: i32,
+kablam! 8 | |     urls: HashMap<Token, Url>
+kablam! 9 | | }
+kablam!   | |_^ ...ending here
+kablam! 
+kablam! warning: method is never used: `empty`, #[warn(dead_code)] on by default
+kablam!   --> src/shortener.rs:12:5
+kablam!    |
+kablam! 12 |       pub fn empty() -> World {
+kablam!    |  _____^ starting here...
+kablam! 13 | |         World { urls: HashMap::new(), id: 0 }
+kablam! 14 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `shorten`, #[warn(dead_code)] on by default
+kablam!   --> src/shortener.rs:16:5
+kablam!    |
+kablam! 16 |       pub fn shorten(&mut self, url: &Url) -> Token {
+kablam!    |  _____^ starting here...
+kablam! 17 | |         self.id += 1;
+kablam! 18 | |         let token = World::tokenize(self.id);
+kablam! 19 | |
+kablam! 20 | |         self.urls.insert(token.to_string(), url.clone());
+kablam! 21 | |
+kablam! 22 | |         token
+kablam! 23 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `expand`, #[warn(dead_code)] on by default
+kablam!   --> src/shortener.rs:25:5
+kablam!    |
+kablam! 25 |       pub fn expand(&self, token: Token) -> Option<&Url> {
+kablam!    |  _____^ starting here...
+kablam! 26 | |         self.urls.get(&token)
+kablam! 27 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `tokenize`, #[warn(dead_code)] on by default
+kablam!   --> src/shortener.rs:29:5
+kablam!    |
+kablam! 29 |       fn tokenize(id: i32) -> String {
+kablam!    |  _____^ starting here...
+kablam! 30 | |         id.to_string()
+kablam! 31 | |     }
+kablam!    | |_____^ ...ending here
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.62 secs
+boom! running `docker rm -f 3c71b910eed8807e900fa161c516a85a8147241058ef765795c4bee474c6be0d`
+blam! 3c71b910eed8807e900fa161c516a85a8147241058ef765795c4bee474c6be0d
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 61bbd6274637460d295b8ed9748b0948e38ff463ceb6495d4e68c763ff1ec621
+boom! running `docker start -a 61bbd6274637460d295b8ed9748b0948e38ff463ceb6495d4e68c763ff1ec621`
+kablam!    Compiling shortener v0.0.1 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 1.41 secs
+boom! running `docker rm -f 61bbd6274637460d295b8ed9748b0948e38ff463ceb6495d4e68c763ff1ec621`
+blam! 61bbd6274637460d295b8ed9748b0948e38ff463ceb6495d4e68c763ff1ec621
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! 09cdda028131fe0c2481d5ff38571f012164644a778f1601329644893272513f
+boom! running `docker start -a 09cdda028131fe0c2481d5ff38571f012164644a778f1601329644893272513f`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/shortener-74c216f2e0cb3244
+blam! 
+blam! running 1 test
+blam! test shortener::shorten_and_expand ... ok
+blam! 
+blam! test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f 09cdda028131fe0c2481d5ff38571f012164644a778f1601329644893272513f`
+blam! 09cdda028131fe0c2481d5ff38571f012164644a778f1601329644893272513f

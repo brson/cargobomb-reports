@@ -1,0 +1,32 @@
+boom! testing crypto_vault-0.0.3 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 409d406fcd1a6018572f6aac15c98238fd8a1a1f08c9634df4d10962e5baca2e
+boom! running `docker start -a 409d406fcd1a6018572f6aac15c98238fd8a1a1f08c9634df4d10962e5baca2e`
+kablam!    Compiling crypto_vault v0.0.3 (file:///source)
+kablam! error[E0432]: unresolved import `openssl::crypto::pkcs5::pbkdf2_hmac_sha1`
+kablam!  --> src/crypto.rs:1:5
+kablam!   |
+kablam! 1 | use openssl::crypto::pkcs5::pbkdf2_hmac_sha1;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `pkcs5` in `crypto`
+kablam! 
+kablam! error[E0432]: unresolved import `openssl::crypto::symm`
+kablam!  --> src/crypto.rs:2:5
+kablam!   |
+kablam! 2 | use openssl::crypto::symm;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^ no `symm` in `crypto`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!   --> src/lib.rs:37:1
+kablam!    |
+kablam! 37 | #![feature(vec_push_all, plugin)]
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `crypto_vault`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 409d406fcd1a6018572f6aac15c98238fd8a1a1f08c9634df4d10962e5baca2e`
+blam! 409d406fcd1a6018572f6aac15c98238fd8a1a1f08c9634df4d10962e5baca2e

@@ -1,0 +1,44 @@
+boom! testing catapult-0.1.2 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 7458d2dd1191531f2e4ecac7571cf175bcf4f8738b59196908489d1b64a2ba73
+boom! running `docker start -a 7458d2dd1191531f2e4ecac7571cf175bcf4f8738b59196908489d1b64a2ba73`
+kablam!    Compiling catapult v0.1.2 (file:///source)
+kablam! error[E0432]: unresolved import `nom::eof`
+kablam!  --> src/config.rs:3:32
+kablam!   |
+kablam! 3 | use nom::{IResult, multispace, eof, alphanumeric, space, not_line_ending};
+kablam!   |                                ^^^ no `eof` in the root. Did you mean to use `eol`?
+kablam! 
+kablam! error[E0432]: unresolved import `serde::json`
+kablam!  --> src/filters.rs:3:5
+kablam!   |
+kablam! 3 | use serde::json;
+kablam!   |     ^^^^^^^^^^^ no `json` in the root
+kablam! 
+kablam! error[E0432]: unresolved import `serde::json::value`
+kablam!  --> src/filters.rs:4:5
+kablam!   |
+kablam! 4 | use serde::json::value;
+kablam!   |     ^^^^^^^^^^^^^^^^^^ Could not find `json` in `serde`
+kablam! 
+kablam! error[E0432]: unresolved import `serde::json::Value`
+kablam!  --> src/filters.rs:5:5
+kablam!   |
+kablam! 5 | use serde::json::Value;
+kablam!   |     ^^^^^^^^^^^^^^^^^^ Could not find `json` in `serde`
+kablam! 
+kablam! error: the type of this value must be known in this context
+kablam!   --> src/filters.rs:34:6
+kablam!    |
+kablam! 34 |   if input.contains_key("time") {
+kablam!    |      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `catapult`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 7458d2dd1191531f2e4ecac7571cf175bcf4f8738b59196908489d1b64a2ba73`
+blam! 7458d2dd1191531f2e4ecac7571cf175bcf4f8738b59196908489d1b64a2ba73

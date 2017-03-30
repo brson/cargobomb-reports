@@ -1,0 +1,35 @@
+boom! testing https://github.com/reeze/remcached#5d8aba20667010415592bcb328f71cc788ec9b8b against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 66100bb52f116c7a252b969a496ae72537ba210a95fbc72b8f2221b8b457a15f
+boom! running `docker start -a 66100bb52f116c7a252b969a496ae72537ba210a95fbc72b8f2221b8b457a15f`
+kablam!    Compiling regex-syntax v0.3.1
+kablam!    Compiling nix v0.4.2
+kablam!    Compiling mempool v0.3.1
+kablam!    Compiling kernel32-sys v0.2.1
+kablam!    Compiling ws2_32-sys v0.2.1
+kablam!    Compiling memcached v0.0.0 (file:///source/libmemcached)
+kablam!    Compiling log v0.3.5
+kablam!    Compiling time v0.1.34
+kablam!    Compiling memchr v0.1.11
+kablam! error[E0591]: `extern "C" fn(*mut std::boxed::Box<std::ops::FnMut() -> isize>) -> i32 {sched::clone::callback}` is zero-sized and can't be transmuted to `*const extern "C" fn(*const std::boxed::Box<std::ops::FnMut() -> isize>) -> i32`
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/nix-0.4.2/src/sched.rs:168:20
+kablam!     |
+kablam! 168 |         ffi::clone(mem::transmute(callback), ptr as *mut c_void, flags, &mut cb)
+kablam!     |                    ^^^^^^^^^^^^^^
+kablam!     |
+kablam! note: cast with `as` to a pointer instead
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/nix-0.4.2/src/sched.rs:168:20
+kablam!     |
+kablam! 168 |         ffi::clone(mem::transmute(callback), ptr as *mut c_void, flags, &mut cb)
+kablam!     |                    ^^^^^^^^^^^^^^
+kablam! 
+kablam!    Compiling aho-corasick v0.5.1
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `nix`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f 66100bb52f116c7a252b969a496ae72537ba210a95fbc72b8f2221b8b457a15f`
+blam! 66100bb52f116c7a252b969a496ae72537ba210a95fbc72b8f2221b8b457a15f

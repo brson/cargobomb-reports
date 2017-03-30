@@ -1,0 +1,22 @@
+boom! testing wiringpi-0.2.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 1a60add7289d743a508e59eec2710f1c8aa6c7d7eec48a6f77bb1b76678f0904
+boom! running `docker start -a 1a60add7289d743a508e59eec2710f1c8aa6c7d7eec48a6f77bb1b76678f0904`
+kablam!    Compiling wiringpi v0.2.0 (file:///source)
+kablam! error: failed to run custom build command for `wiringpi v0.2.0 (file:///source)`
+kablam! process didn't exit successfully: `/target/debug/build/wiringpi-4fed1984c40d4e49/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! make -C wiringPi/wiringPi clean
+kablam! Makefile:3: recipe for target 'wiringpi' failed
+kablam! 
+kablam! --- stderr
+kablam! 
+kablam! make[1]: *** wiringPi/wiringPi: No such file or directory.  Stop.
+kablam! make: *** [wiringpi] Error 2
+kablam! thread 'main' panicked at 'failed to build wiringPi C library (exit code Some(2))', build.rs:12
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f 1a60add7289d743a508e59eec2710f1c8aa6c7d7eec48a6f77bb1b76678f0904`
+blam! 1a60add7289d743a508e59eec2710f1c8aa6c7d7eec48a6f77bb1b76678f0904

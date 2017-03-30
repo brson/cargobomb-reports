@@ -1,0 +1,38 @@
+boom! testing pseudotcp-0.2.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 3c24cadedf77832236cb7377b61a63169284691a3447fd241e69d480990cdb37
+boom! running `docker start -a 3c24cadedf77832236cb7377b61a63169284691a3447fd241e69d480990cdb37`
+kablam!    Compiling pseudotcp v0.2.0 (file:///source)
+kablam! error: struct `PseudoTcpDebugLevel` is private
+kablam!    --> src/api.rs:250:32
+kablam!     |
+kablam! 250 | 	pub fn set_debug_level(level: ffi::PseudoTcpDebugLevel) {
+kablam!     | 	                              ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: struct `PseudoTcpState` is private
+kablam!    --> src/api.rs:292:29
+kablam!     |
+kablam! 292 | 	pub fn get_state(&self) -> ffi::PseudoTcpState {
+kablam!     | 	                           ^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: struct `PseudoTcpState` is private
+kablam!    --> src/api.rs:301:3
+kablam!     |
+kablam! 301 | 		ffi::PseudoTcpState::from_bits(value as u32).unwrap()
+kablam!     | 		^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: struct `PseudoTcpState` is private
+kablam!    --> src/pseudo_tcp_stream.rs:269:29
+kablam!     |
+kablam! 269 | 	pub fn get_state(&self) -> ffi::PseudoTcpState {
+kablam!     | 	                           ^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `pseudotcp`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 3c24cadedf77832236cb7377b61a63169284691a3447fd241e69d480990cdb37`
+blam! 3c24cadedf77832236cb7377b61a63169284691a3447fd241e69d480990cdb37

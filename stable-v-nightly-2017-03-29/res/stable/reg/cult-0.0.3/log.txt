@@ -1,0 +1,324 @@
+boom! testing cult-0.0.3 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 37ae4f438d945b05d9ef343200ac504e7fd44904a2cef023b2b802616ce9d447
+boom! running `docker start -a 37ae4f438d945b05d9ef343200ac504e7fd44904a2cef023b2b802616ce9d447`
+kablam!    Compiling cult v0.0.3 (file:///source)
+kablam! warning: found struct without foreign-function-safe representation annotation in foreign module, consider adding a #[repr(C)] attribute to the type, #[warn(improper_ctypes)] on by default
+kablam!   --> src/lib.rs:69:34
+kablam!    |
+kablam! 69 |                        user_ptr: *const AudioStream) -> libc::c_int;
+kablam!    |                                  ^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: function is never used: `noopcallback`, #[warn(dead_code)] on by default
+kablam!   --> src/lib.rs:82:1
+kablam!    |
+kablam! 82 |   fn noopcallback(buffer: &mut [f32]) -> i32
+kablam!    |  _^ starting here...
+kablam! 83 | | {
+kablam! 84 | |   buffer.len() as i32
+kablam! 85 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/lib.rs:115:9
+kablam!     |
+kablam! 115 |     let mut rv;
+kablam!     |         ^^^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/lib.rs:155:9
+kablam!     |
+kablam! 155 |     let mut rv;
+kablam!     |         ^^^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/lib.rs:167:9
+kablam!     |
+kablam! 167 |     let mut rv;
+kablam!     |         ^^^^^^
+kablam! 
+kablam! warning: unused variable: `stm`, #[warn(unused_variables)] on by default
+kablam!    --> src/lib.rs:188:23
+kablam!     |
+kablam! 188 | extern fn refill_glue(stm: CubebStreamPtr,
+kablam!     |                       ^^^
+kablam! 
+kablam! warning: unused variable: `stm`, #[warn(unused_variables)] on by default
+kablam!    --> src/lib.rs:204:17
+kablam!     |
+kablam! 204 | extern fn state(stm: CubebStreamPtr,
+kablam!     |                 ^^^
+kablam! 
+kablam! warning: unused variable: `user`, #[warn(unused_variables)] on by default
+kablam!    --> src/lib.rs:205:17
+kablam!     |
+kablam! 205 |                 user: *mut c_void,
+kablam!     |                 ^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/lib.rs:220:9
+kablam!     |
+kablam! 220 |     let mut rv;
+kablam!     |         ^^^^^^
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.34 secs
+boom! running `docker rm -f 37ae4f438d945b05d9ef343200ac504e7fd44904a2cef023b2b802616ce9d447`
+blam! 37ae4f438d945b05d9ef343200ac504e7fd44904a2cef023b2b802616ce9d447
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 1f063162bc54e862edafbf6042dacf50b1158871ab6fc633896f06c7c16ede58
+boom! running `docker start -a 1f063162bc54e862edafbf6042dacf50b1158871ab6fc633896f06c7c16ede58`
+kablam!    Compiling cult v0.0.3 (file:///source)
+kablam! error[E0432]: unresolved import `std::num::Float`
+kablam!  --> tests/sine.rs:6:5
+kablam!   |
+kablam! 6 | use std::num::Float;
+kablam!   |     ^^^^^^^^^^^^^^^ no `Float` in `num`
+kablam! 
+kablam! error[E0432]: unresolved import `std::sync::StaticMutex`
+kablam!  --> tests/sine.rs:7:17
+kablam!   |
+kablam! 7 | use std::sync::{StaticMutex, MUTEX_INIT, StaticCondvar, CONDVAR_INIT};
+kablam!   |                 ^^^^^^^^^^^ no `StaticMutex` in `sync`
+kablam! 
+kablam! error[E0432]: unresolved import `std::sync::MUTEX_INIT`
+kablam!  --> tests/sine.rs:7:30
+kablam!   |
+kablam! 7 | use std::sync::{StaticMutex, MUTEX_INIT, StaticCondvar, CONDVAR_INIT};
+kablam!   |                              ^^^^^^^^^^ no `MUTEX_INIT` in `sync`
+kablam! 
+kablam! error[E0432]: unresolved import `std::sync::StaticCondvar`
+kablam!  --> tests/sine.rs:7:42
+kablam!   |
+kablam! 7 | use std::sync::{StaticMutex, MUTEX_INIT, StaticCondvar, CONDVAR_INIT};
+kablam!   |                                          ^^^^^^^^^^^^^ no `StaticCondvar` in `sync`
+kablam! 
+kablam! error[E0432]: unresolved import `std::sync::CONDVAR_INIT`
+kablam!  --> tests/sine.rs:7:57
+kablam!   |
+kablam! 7 | use std::sync::{StaticMutex, MUTEX_INIT, StaticCondvar, CONDVAR_INIT};
+kablam!   |                                                         ^^^^^^^^^^^^ no `CONDVAR_INIT` in `sync`
+kablam! 
+kablam! error[E0425]: cannot find function `range` in this scope
+kablam!   --> tests/sine.rs:22:16
+kablam!    |
+kablam! 22 |       for j in range(0, 1) {
+kablam!    |                ^^^^^ not found in this scope
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> tests/sine.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(core)]
+kablam!   | ^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> tests/sine.rs:2:1
+kablam!   |
+kablam! 2 | #![feature(std_misc)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `cult`.
+kablam! warning: found struct without foreign-function-safe representation annotation in foreign module, consider adding a #[repr(C)] attribute to the type, #[warn(improper_ctypes)] on by default
+kablam!   --> src/lib.rs:69:34
+kablam!    |
+kablam! 69 |                        user_ptr: *const AudioStream) -> libc::c_int;
+kablam!    |                                  ^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: function is never used: `noopcallback`, #[warn(dead_code)] on by default
+kablam!   --> src/lib.rs:82:1
+kablam!    |
+kablam! 82 |   fn noopcallback(buffer: &mut [f32]) -> i32
+kablam!    |  _^ starting here...
+kablam! 83 | | {
+kablam! 84 | |   buffer.len() as i32
+kablam! 85 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/lib.rs:115:9
+kablam!     |
+kablam! 115 |     let mut rv;
+kablam!     |         ^^^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/lib.rs:155:9
+kablam!     |
+kablam! 155 |     let mut rv;
+kablam!     |         ^^^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/lib.rs:167:9
+kablam!     |
+kablam! 167 |     let mut rv;
+kablam!     |         ^^^^^^
+kablam! 
+kablam! warning: unused variable: `stm`, #[warn(unused_variables)] on by default
+kablam!    --> src/lib.rs:188:23
+kablam!     |
+kablam! 188 | extern fn refill_glue(stm: CubebStreamPtr,
+kablam!     |                       ^^^
+kablam! 
+kablam! warning: unused variable: `stm`, #[warn(unused_variables)] on by default
+kablam!    --> src/lib.rs:204:17
+kablam!     |
+kablam! 204 | extern fn state(stm: CubebStreamPtr,
+kablam!     |                 ^^^
+kablam! 
+kablam! warning: unused variable: `user`, #[warn(unused_variables)] on by default
+kablam!    --> src/lib.rs:205:17
+kablam!     |
+kablam! 205 |                 user: *mut c_void,
+kablam!     |                 ^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/lib.rs:220:9
+kablam!     |
+kablam! 220 |     let mut rv;
+kablam!     |         ^^^^^^
+kablam! 
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/cult-2aa962dee555fc83.0.o" "-o" "/target/debug/deps/cult-2aa962dee555fc83" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "-l" "cubeb" "/target/debug/deps/liblibc-5dc7b85e748840b4.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-2efd40164e9eb949.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-0ed6e2f3d67b4012.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-b979e1c23fc9ba25.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-13f36e2630c2d79b.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-3b9d178f1de89528.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-93bb403c9fc56f72.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-a2ef7979b4b3e1d5.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-d22754c8c52de3a1.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-c53f99154bf815c4.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-f1bb04f5989dcb98.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-739908a2e215dd88.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-1cc5fcd37568ebc4.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-3f4289353c600297.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-07bfb3bcb2a51da0.rlib" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lcubeb
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f 1f063162bc54e862edafbf6042dacf50b1158871ab6fc633896f06c7c16ede58`
+blam! 1f063162bc54e862edafbf6042dacf50b1158871ab6fc633896f06c7c16ede58
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! 9a28ac2616b2b7704baa2397fa075e14b99ce5c06c3290045097e1859ec3e43c
+boom! running `docker start -a 9a28ac2616b2b7704baa2397fa075e14b99ce5c06c3290045097e1859ec3e43c`
+kablam!    Compiling cult v0.0.3 (file:///source)
+kablam! error[E0432]: unresolved import `std::num::Float`
+kablam!  --> tests/sine.rs:6:5
+kablam!   |
+kablam! 6 | use std::num::Float;
+kablam!   |     ^^^^^^^^^^^^^^^ no `Float` in `num`
+kablam! 
+kablam! error[E0432]: unresolved import `std::sync::StaticMutex`
+kablam!  --> tests/sine.rs:7:17
+kablam!   |
+kablam! 7 | use std::sync::{StaticMutex, MUTEX_INIT, StaticCondvar, CONDVAR_INIT};
+kablam!   |                 ^^^^^^^^^^^ no `StaticMutex` in `sync`
+kablam! 
+kablam! error[E0432]: unresolved import `std::sync::MUTEX_INIT`
+kablam!  --> tests/sine.rs:7:30
+kablam!   |
+kablam! 7 | use std::sync::{StaticMutex, MUTEX_INIT, StaticCondvar, CONDVAR_INIT};
+kablam!   |                              ^^^^^^^^^^ no `MUTEX_INIT` in `sync`
+kablam! 
+kablam! error[E0432]: unresolved import `std::sync::StaticCondvar`
+kablam!  --> tests/sine.rs:7:42
+kablam!   |
+kablam! 7 | use std::sync::{StaticMutex, MUTEX_INIT, StaticCondvar, CONDVAR_INIT};
+kablam!   |                                          ^^^^^^^^^^^^^ no `StaticCondvar` in `sync`
+kablam! 
+kablam! error[E0432]: unresolved import `std::sync::CONDVAR_INIT`
+kablam!  --> tests/sine.rs:7:57
+kablam!   |
+kablam! 7 | use std::sync::{StaticMutex, MUTEX_INIT, StaticCondvar, CONDVAR_INIT};
+kablam!   |                                                         ^^^^^^^^^^^^ no `CONDVAR_INIT` in `sync`
+kablam! 
+kablam! error[E0425]: cannot find function `range` in this scope
+kablam!   --> tests/sine.rs:22:16
+kablam!    |
+kablam! 22 |       for j in range(0, 1) {
+kablam!    |                ^^^^^ not found in this scope
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> tests/sine.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(core)]
+kablam!   | ^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> tests/sine.rs:2:1
+kablam!   |
+kablam! 2 | #![feature(std_misc)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `cult`.
+kablam! warning: found struct without foreign-function-safe representation annotation in foreign module, consider adding a #[repr(C)] attribute to the type, #[warn(improper_ctypes)] on by default
+kablam!   --> src/lib.rs:69:34
+kablam!    |
+kablam! 69 |                        user_ptr: *const AudioStream) -> libc::c_int;
+kablam!    |                                  ^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: function is never used: `noopcallback`, #[warn(dead_code)] on by default
+kablam!   --> src/lib.rs:82:1
+kablam!    |
+kablam! 82 |   fn noopcallback(buffer: &mut [f32]) -> i32
+kablam!    |  _^ starting here...
+kablam! 83 | | {
+kablam! 84 | |   buffer.len() as i32
+kablam! 85 | | }
+kablam!    | |_^ ...ending here
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/lib.rs:115:9
+kablam!     |
+kablam! 115 |     let mut rv;
+kablam!     |         ^^^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/lib.rs:155:9
+kablam!     |
+kablam! 155 |     let mut rv;
+kablam!     |         ^^^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/lib.rs:167:9
+kablam!     |
+kablam! 167 |     let mut rv;
+kablam!     |         ^^^^^^
+kablam! 
+kablam! warning: unused variable: `stm`, #[warn(unused_variables)] on by default
+kablam!    --> src/lib.rs:188:23
+kablam!     |
+kablam! 188 | extern fn refill_glue(stm: CubebStreamPtr,
+kablam!     |                       ^^^
+kablam! 
+kablam! warning: unused variable: `stm`, #[warn(unused_variables)] on by default
+kablam!    --> src/lib.rs:204:17
+kablam!     |
+kablam! 204 | extern fn state(stm: CubebStreamPtr,
+kablam!     |                 ^^^
+kablam! 
+kablam! warning: unused variable: `user`, #[warn(unused_variables)] on by default
+kablam!    --> src/lib.rs:205:17
+kablam!     |
+kablam! 205 |                 user: *mut c_void,
+kablam!     |                 ^^^^
+kablam! 
+kablam! warning: variable does not need to be mutable, #[warn(unused_mut)] on by default
+kablam!    --> src/lib.rs:220:9
+kablam!     |
+kablam! 220 |     let mut rv;
+kablam!     |         ^^^^^^
+kablam! 
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/cult-2aa962dee555fc83.0.o" "-o" "/target/debug/deps/cult-2aa962dee555fc83" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "-l" "cubeb" "/target/debug/deps/liblibc-5dc7b85e748840b4.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-2efd40164e9eb949.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-0ed6e2f3d67b4012.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-b979e1c23fc9ba25.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-13f36e2630c2d79b.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-3b9d178f1de89528.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-93bb403c9fc56f72.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-a2ef7979b4b3e1d5.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-d22754c8c52de3a1.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-c53f99154bf815c4.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-f1bb04f5989dcb98.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-739908a2e215dd88.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-1cc5fcd37568ebc4.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-3f4289353c600297.rlib" "/rustup-home/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-07bfb3bcb2a51da0.rlib" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lcubeb
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: build failed
+boom! running `docker rm -f 9a28ac2616b2b7704baa2397fa075e14b99ce5c06c3290045097e1859ec3e43c`
+blam! 9a28ac2616b2b7704baa2397fa075e14b99ce5c06c3290045097e1859ec3e43c

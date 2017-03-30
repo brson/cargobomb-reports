@@ -1,0 +1,68 @@
+boom! testing dbus-rs-0.0.4 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 73476240b63ec84bf462eba650ba4343e7a4f62c90ddc23d003582052115d30b
+boom! running `docker start -a 73476240b63ec84bf462eba650ba4343e7a4f62c90ddc23d003582052115d30b`
+kablam!    Compiling dbus-rs v0.0.4 (file:///source)
+kablam! error[E0432]: unresolved import `std::ptr::PtrExt`
+kablam!   --> src/lib.rs:17:22
+kablam!    |
+kablam! 17 | use std::ptr::{self, PtrExt};
+kablam!    |                      ^^^^^^ no `PtrExt` in `ptr`
+kablam! 
+kablam! error[E0432]: unresolved import `std::collections::DList`
+kablam!   --> src/lib.rs:18:5
+kablam!    |
+kablam! 18 | use std::collections::DList;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^ no `DList` in `collections`
+kablam! 
+kablam! error[E0432]: unresolved import `std::borrow::IntoCow`
+kablam!  --> src/objpath.rs:5:5
+kablam!   |
+kablam! 5 | use std::borrow::IntoCow;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^ no `IntoCow` in `borrow`
+kablam! 
+kablam! error[E0432]: unresolved import `std::borrow::IntoCow`
+kablam!    --> src/lib.rs:231:13
+kablam!     |
+kablam! 231 |         use std::borrow::IntoCow;
+kablam!     |             ^^^^^^^^^^^^^^^^^^^^ no `IntoCow` in `borrow`
+kablam! 
+kablam! error[E0412]: cannot find type `CowString` in module `std::string`
+kablam!   --> src/lib.rs:21:24
+kablam!    |
+kablam! 21 | pub type TypeSig<'a> = std::string::CowString<'a>;
+kablam!    |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^ did you mean `std::string::ToString`?
+kablam! 
+kablam! error[E0425]: cannot find function `c_str_to_bytes` in module `cstr`
+kablam!   --> src/lib.rs:46:42
+kablam!    |
+kablam! 46 |     else { std::str::from_utf8( unsafe { cstr::c_str_to_bytes(c) }).ok() }
+kablam!    |                                          ^^^^^^^^^^^^^^^^^^^^ not found in `cstr`
+kablam! 
+kablam! error[E0405]: cannot find trait `Str` in this scope
+kablam!   --> src/lib.rs:49:16
+kablam!    |
+kablam! 49 | fn to_c_str<S: Str>(n: S) -> CString { CString::from_slice(n.as_slice().as_bytes()) }
+kablam!    |                ^^^ not found in this scope
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!  --> src/lib.rs:1:1
+kablam!   |
+kablam! 1 | #![feature(unsafe_destructor, alloc, core, libc, std_misc)]
+kablam!   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: The attribute `unsafe_destructor` is currently unknown to the compiler and may have meaning added to it in the future (see issue #29642)
+kablam!    --> src/objpath.rs:114:1
+kablam!     |
+kablam! 114 | #[unsafe_destructor]
+kablam!     | ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `dbus-rs`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 73476240b63ec84bf462eba650ba4343e7a4f62c90ddc23d003582052115d30b`
+blam! 73476240b63ec84bf462eba650ba4343e7a4f62c90ddc23d003582052115d30b

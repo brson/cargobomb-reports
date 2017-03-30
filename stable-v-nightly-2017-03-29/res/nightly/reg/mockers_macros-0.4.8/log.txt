@@ -1,0 +1,81 @@
+boom! testing mockers_macros-0.4.8 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! aa5ba4da2d1c0927e8414534d6759c0a67213d90ea1e772cc4919cb19c0a993a
+boom! running `docker start -a aa5ba4da2d1c0927e8414534d6759c0a67213d90ea1e772cc4919cb19c0a993a`
+kablam!    Compiling mockers_macros v0.4.8 (file:///source)
+kablam! error[E0432]: unresolved import `syntax::parse::token::keywords`
+kablam!   --> src/lib.rs:20:34
+kablam!    |
+kablam! 20 | use syntax::parse::token::{self, keywords, Token, intern};
+kablam!    |                                  ^^^^^^^^ no `keywords` in `parse::token`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::token::intern`
+kablam!   --> src/lib.rs:20:51
+kablam!    |
+kablam! 20 | use syntax::parse::token::{self, keywords, Token, intern};
+kablam!    |                                                   ^^^^^^ no `intern` in `parse::token`
+kablam! 
+kablam! error[E0560]: struct `syntax::ast::Path` has no field named `global`
+kablam!    --> src/lib.rs:153:50
+kablam!     |
+kablam! 153 |                         None => Path { span: sp, global: false, segments: vec![] },
+kablam!     |                                                  ^^^^^^^ `syntax::ast::Path` does not have this field
+kablam! 
+kablam! error: no associated item named `none` found for type `syntax::ast::PathParameters` in the current scope
+kablam!    --> src/lib.rs:157:37
+kablam!     |
+kablam! 157 |                         parameters: PathParameters::none(),
+kablam!     |                                     ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error[E0063]: missing field `span` in initializer of `syntax::ast::PathSegment`
+kablam!    --> src/lib.rs:155:46
+kablam!     |
+kablam! 155 |                     trait_path.segments.push(PathSegment {
+kablam!     |                                              ^^^^^^^^^^^ missing `span`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:351:35
+kablam!     |
+kablam! 351 |     new_args.push(cx.expr_str(sp, method_ident.name.as_str()));
+kablam!     |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `syntax::ast::Symbol`, found struct `syntax::symbol::InternedString`
+kablam!     |
+kablam!     = note: expected type `syntax::ast::Symbol`
+kablam!                found type `syntax::symbol::InternedString`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:362:43
+kablam!     |
+kablam! 362 |                                             P::from_vec(vec![
+kablam!     |  ___________________________________________^ starting here...
+kablam! 363 | |                                               cx.typarambound(match_arg_path),
+kablam! 364 | |                                               TyParamBound::RegionTyParamBound(cx.lifetime(sp, cx.name_of("'static"))),
+kablam! 365 | |                                           ]),
+kablam!     | |____________________________________________^ ...ending here: expected struct `std::vec::Vec`, found struct `syntax::ptr::P`
+kablam!     |
+kablam!     = note: expected type `std::vec::Vec<syntax::ast::TyParamBound>`
+kablam!                found type `syntax::ptr::P<[syntax::ast::TyParamBound]>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .into_vec()
+kablam!             - .to_vec()
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!    --> src/lib.rs:389:20
+kablam!     |
+kablam! 389 |         ty_params: P::from_vec(arg_matcher_types),
+kablam!     |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `std::vec::Vec`, found struct `syntax::ptr::P`
+kablam!     |
+kablam!     = note: expected type `std::vec::Vec<syntax::ast::TyParam>`
+kablam!                found type `syntax::ptr::P<[syntax::ast::TyParam]>`
+kablam!     = help: here are some functions which might fulfill your needs:
+kablam!             - .into_vec()
+kablam!             - .to_vec()
+kablam! 
+kablam! error: aborting due to 6 previous errors
+kablam! 
+kablam! error: Could not compile `mockers_macros`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f aa5ba4da2d1c0927e8414534d6759c0a67213d90ea1e772cc4919cb19c0a993a`
+blam! aa5ba4da2d1c0927e8414534d6759c0a67213d90ea1e772cc4919cb19c0a993a

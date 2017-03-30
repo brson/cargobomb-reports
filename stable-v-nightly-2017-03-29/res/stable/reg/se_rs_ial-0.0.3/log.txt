@@ -1,0 +1,143 @@
+boom! testing se_rs_ial-0.0.3 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 8f247021eae0dd58dc3c4589b54c350a3acbda07e708b202f03424b1b318872c
+boom! running `docker start -a 8f247021eae0dd58dc3c4589b54c350a3acbda07e708b202f03424b1b318872c`
+kablam!    Compiling se_rs_ial v0.0.3 (file:///source)
+kablam! error[E0432]: unresolved import `libc::consts::os::extra::*`
+kablam!   --> src/lib.rs:31:5
+kablam!    |
+kablam! 31 | use libc::consts::os::extra::*;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `consts` in `libc`
+kablam! 
+kablam! error[E0432]: unresolved import `libc::funcs::extra::kernel32`
+kablam!   --> src/lib.rs:32:5
+kablam!    |
+kablam! 32 | use libc::funcs::extra::kernel32;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `funcs` in `libc`
+kablam! 
+kablam! error[E0432]: unresolved import `libc::HANDLE`
+kablam!   --> src/lib.rs:33:28
+kablam!    |
+kablam! 33 | use libc::{ c_void, c_int, HANDLE, DWORD };
+kablam!    |                            ^^^^^^ no `HANDLE` in the root
+kablam! 
+kablam! error[E0432]: unresolved import `libc::DWORD`
+kablam!   --> src/lib.rs:33:36
+kablam!    |
+kablam! 33 | use libc::{ c_void, c_int, HANDLE, DWORD };
+kablam!    |                                    ^^^^^ no `DWORD` in the root
+kablam! 
+kablam! error[E0432]: unresolved import `libc::LPOVERLAPPED`
+kablam!   --> src/ffi.rs:25:28
+kablam!    |
+kablam! 25 | use libc::{ c_int, c_char, LPOVERLAPPED, HANDLE, DWORD, WORD, BOOL, BYTE };
+kablam!    |                            ^^^^^^^^^^^^ no `LPOVERLAPPED` in the root
+kablam! 
+kablam! error[E0432]: unresolved import `libc::HANDLE`
+kablam!   --> src/ffi.rs:25:42
+kablam!    |
+kablam! 25 | use libc::{ c_int, c_char, LPOVERLAPPED, HANDLE, DWORD, WORD, BOOL, BYTE };
+kablam!    |                                          ^^^^^^ no `HANDLE` in the root
+kablam! 
+kablam! error[E0432]: unresolved import `libc::DWORD`
+kablam!   --> src/ffi.rs:25:50
+kablam!    |
+kablam! 25 | use libc::{ c_int, c_char, LPOVERLAPPED, HANDLE, DWORD, WORD, BOOL, BYTE };
+kablam!    |                                                  ^^^^^ no `DWORD` in the root
+kablam! 
+kablam! error[E0432]: unresolved import `libc::WORD`
+kablam!   --> src/ffi.rs:25:57
+kablam!    |
+kablam! 25 | use libc::{ c_int, c_char, LPOVERLAPPED, HANDLE, DWORD, WORD, BOOL, BYTE };
+kablam!    |                                                         ^^^^ no `WORD` in the root
+kablam! 
+kablam! error[E0432]: unresolved import `libc::BOOL`
+kablam!   --> src/ffi.rs:25:63
+kablam!    |
+kablam! 25 | use libc::{ c_int, c_char, LPOVERLAPPED, HANDLE, DWORD, WORD, BOOL, BYTE };
+kablam!    |                                                               ^^^^ no `BOOL` in the root
+kablam! 
+kablam! error[E0432]: unresolved import `libc::BYTE`
+kablam!   --> src/ffi.rs:25:69
+kablam!    |
+kablam! 25 | use libc::{ c_int, c_char, LPOVERLAPPED, HANDLE, DWORD, WORD, BOOL, BYTE };
+kablam!    |                                                                     ^^^^ no `BYTE` in the root
+kablam! 
+kablam! error[E0412]: cannot find type `CommEventFlags` in this scope
+kablam!   --> src/lib.rs:43:45
+kablam!    |
+kablam! 43 | 	pub fn wait_for_event(&mut self) -> Result<CommEventFlags, DWORD> {
+kablam!    | 	                                           ^^^^^^^^^^^^^^ not found in this scope
+kablam!    |
+kablam!    = help: possible candidate is found in another module, you can import it into scope:
+kablam!              `use ffi::CommEventFlags;`
+kablam! 
+kablam! error[E0433]: failed to resolve. Use of undeclared type or module `CommEventFlags`
+kablam!   --> src/lib.rs:44:20
+kablam!    |
+kablam! 44 | 		let mut events = CommEventFlags::empty();
+kablam!    | 		                 ^^^^^^^^^^^^^^^^^^^^^ Use of undeclared type or module `CommEventFlags`
+kablam! 
+kablam! error[E0425]: cannot find value `GENERIC_READ` in this scope
+kablam!   --> src/lib.rs:72:6
+kablam!    |
+kablam! 72 | 					GENERIC_READ | GENERIC_WRITE,
+kablam!    | 					^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `GENERIC_WRITE` in this scope
+kablam!   --> src/lib.rs:72:21
+kablam!    |
+kablam! 72 | 					GENERIC_READ | GENERIC_WRITE,
+kablam!    | 					               ^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `OPEN_EXISTING` in this scope
+kablam!   --> src/lib.rs:75:6
+kablam!    |
+kablam! 75 | 					OPEN_EXISTING,
+kablam!    | 					^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `FILE_ATTRIBUTE_NORMAL` in module `libc`
+kablam!   --> src/lib.rs:76:6
+kablam!    |
+kablam! 76 | 					libc::FILE_ATTRIBUTE_NORMAL,
+kablam!    | 					^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `libc`
+kablam! 
+kablam! error[E0425]: cannot find value `INVALID_HANDLE_VALUE` in this scope
+kablam!   --> src/lib.rs:82:21
+kablam!    |
+kablam! 82 | 		if comm_handle == INVALID_HANDLE_VALUE {
+kablam!    | 		                  ^^^^^^^^^^^^^^^^^^^^ not found in this scope
+kablam! 
+kablam! error[E0425]: cannot find value `PURGE_RXCLEAR` in this scope
+kablam!    --> src/lib.rs:106:42
+kablam!     |
+kablam! 106 | 				unsafe { PurgeComm(conn.comm_handle, PURGE_RXCLEAR | PURGE_TXCLEAR); }
+kablam!     | 				                                     ^^^^^^^^^^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidate is found in another module, you can import it into scope:
+kablam!               `use ffi::PURGE_RXCLEAR;`
+kablam! 
+kablam! error[E0425]: cannot find value `PURGE_TXCLEAR` in this scope
+kablam!    --> src/lib.rs:106:58
+kablam!     |
+kablam! 106 | 				unsafe { PurgeComm(conn.comm_handle, PURGE_RXCLEAR | PURGE_TXCLEAR); }
+kablam!     | 				                                                     ^^^^^^^^^^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidate is found in another module, you can import it into scope:
+kablam!               `use ffi::PURGE_TXCLEAR;`
+kablam! 
+kablam! error[E0554]: #[feature] may not be used on the stable release channel
+kablam!   --> src/lib.rs:23:1
+kablam!    |
+kablam! 23 | #![feature(collections, step_by)]
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `se_rs_ial`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 8f247021eae0dd58dc3c4589b54c350a3acbda07e708b202f03424b1b318872c`
+blam! 8f247021eae0dd58dc3c4589b54c350a3acbda07e708b202f03424b1b318872c

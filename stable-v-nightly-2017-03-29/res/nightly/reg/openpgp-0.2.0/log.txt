@@ -1,0 +1,98 @@
+boom! testing openpgp-0.2.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 45b5648d8f49c60158683c4c4b9a041c92f61c59916f8a116fdd87a421c9c57a
+boom! running `docker start -a 45b5648d8f49c60158683c4c4b9a041c92f61c59916f8a116fdd87a421c9c57a`
+kablam!    Compiling openpgp v0.2.0 (file:///source)
+kablam! warning: unused import: `algorithm::*;`
+kablam!  --> src/key.rs:9:5
+kablam!   |
+kablam! 9 | use algorithm::*;
+kablam!   |     ^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: function is never used: `make_pk_session_key`
+kablam!    --> src/lib.rs:517:1
+kablam!     |
+kablam! 517 | fn make_pk_session_key<W:Write, K:key::Encrypt+key::KeyType>(writer:&mut W, keyid:u64, key:&K) -> Result<SymmetricKey, Error> {
+kablam!     | ^
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 3.77 secs
+boom! running `docker rm -f 45b5648d8f49c60158683c4c4b9a041c92f61c59916f8a116fdd87a421c9c57a`
+blam! 45b5648d8f49c60158683c4c4b9a041c92f61c59916f8a116fdd87a421c9c57a
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 3341738178c8d14eb62223f41c5ebc54efb15ce877cf9d799d25606963e27803
+boom! running `docker start -a 3341738178c8d14eb62223f41c5ebc54efb15ce877cf9d799d25606963e27803`
+kablam!    Compiling openpgp v0.2.0 (file:///source)
+kablam! warning: unused import: `algorithm::*;`
+kablam!  --> src/key.rs:9:5
+kablam!   |
+kablam! 9 | use algorithm::*;
+kablam!   |     ^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused variable: `sigtype`
+kablam!    --> src/lib.rs:600:39
+kablam!     |
+kablam! 600 |         fn get_signed_data(&mut self, sigtype: signature::Type) -> &[u8] {
+kablam!     |                                       ^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/openpgp-76d6aef1d6684150.0.o" "-o" "/target/debug/deps/openpgp-76d6aef1d6684150" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/target/debug/build/openssl-1d3ea894fa03cc5a/out" "-L" "/target/debug/build/openssl-sys-extras-8e2dc543f8892677/out" "-L" "/usr/lib/x86_64-linux-gnu" "-L" "/target/debug/build/miniz-sys-18005000ddedadf4/out" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "-l" "sodium" "/target/debug/deps/libflate2-8c506f1983161f68.rlib" "/target/debug/deps/libenv_logger-25d6e02029b27322.rlib" "/target/debug/deps/liblog-d4c0e5c2504fbbea.rlib" "/target/debug/deps/librustc_serialize-54d2bf33b1d4b0b0.rlib" "/target/debug/deps/libopenssl-7dee98bba2a50a21.rlib" "/target/debug/deps/liblazy_static-82c2efae9a7bf732.rlib" "/target/debug/deps/libopenssl_sys_extras-4ac2796f892018db.rlib" "/target/debug/deps/librand-c9d9fbdab2355ee4.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-6c35a477e7bec8d3.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-a80f7c589731de53.rlib" "/target/debug/deps/libbyteorder-fab4d718c73e8b35.rlib" "/target/debug/deps/libbitflags-65ddff5d2b91509e.rlib" "/target/debug/deps/libopenssl_sys-cd7d5f9119b7dcb7.rlib" "/target/debug/deps/libminiz_sys-371886580b0e42eb.rlib" "/target/debug/deps/libregex-bf57a839db75dbae.rlib" "/target/debug/deps/libregex_syntax-8b74a2985735b213.rlib" "/target/debug/deps/libaho_corasick-c795bbd3a96f4a35.rlib" "/target/debug/deps/libmemchr-4c3682d5f0e14581.rlib" "/target/debug/deps/libthread_local-a561abce7ea185f1.rlib" "/target/debug/deps/libthread_id-e41c347f28e6505f.rlib" "/target/debug/deps/liblibc-5dc7b85e748840b4.rlib" "/target/debug/deps/libutf8_ranges-142806e76d52d8c6.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-fa872424129019f5.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-f4594d3e53dcb114.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-a0157c0ca919c364.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-488b4ab4bd53a138.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-1efbcfd8938372b6.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-532a3dbf317eff86.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-ca07b617414dd0fa.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-492d8ea7fa3384ff.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-88c194c15fdb6521.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-cfbd6648f7db2ee5.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-687e6a964d22cbb4.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-987729be881d4d32.rlib" "-l" "ssl" "-l" "crypto" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lsodium
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `openpgp`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 3341738178c8d14eb62223f41c5ebc54efb15ce877cf9d799d25606963e27803`
+blam! 3341738178c8d14eb62223f41c5ebc54efb15ce877cf9d799d25606963e27803
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 7da04c38f3a7395650d41799a7534440c5ce5d0ccf227574e302ba16aed0083e
+boom! running `docker start -a 7da04c38f3a7395650d41799a7534440c5ce5d0ccf227574e302ba16aed0083e`
+kablam!    Compiling openpgp v0.2.0 (file:///source)
+kablam! warning: unused import: `algorithm::*;`
+kablam!  --> src/key.rs:9:5
+kablam!   |
+kablam! 9 | use algorithm::*;
+kablam!   |     ^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused variable: `sigtype`
+kablam!    --> src/lib.rs:600:39
+kablam!     |
+kablam! 600 |         fn get_signed_data(&mut self, sigtype: signature::Type) -> &[u8] {
+kablam!     |                                       ^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! error: linking with `cc` failed: exit code: 1
+kablam!   |
+kablam!   = note: "cc" "-Wl,--as-needed" "-Wl,-z,noexecstack" "-m64" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "/target/debug/deps/openpgp-76d6aef1d6684150.0.o" "-o" "/target/debug/deps/openpgp-76d6aef1d6684150" "-Wl,--gc-sections" "-pie" "-nodefaultlibs" "-L" "/target/debug/deps" "-L" "/target/debug/build/openssl-1d3ea894fa03cc5a/out" "-L" "/usr/lib/x86_64-linux-gnu" "-L" "/target/debug/build/openssl-sys-extras-8e2dc543f8892677/out" "-L" "/target/debug/build/miniz-sys-18005000ddedadf4/out" "-L" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-Wl,-Bstatic" "-Wl,-Bdynamic" "-l" "sodium" "/target/debug/deps/libflate2-8c506f1983161f68.rlib" "/target/debug/deps/libenv_logger-25d6e02029b27322.rlib" "/target/debug/deps/liblog-d4c0e5c2504fbbea.rlib" "/target/debug/deps/librustc_serialize-54d2bf33b1d4b0b0.rlib" "/target/debug/deps/libopenssl-7dee98bba2a50a21.rlib" "/target/debug/deps/liblazy_static-82c2efae9a7bf732.rlib" "/target/debug/deps/libopenssl_sys_extras-4ac2796f892018db.rlib" "/target/debug/deps/librand-c9d9fbdab2355ee4.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-6c35a477e7bec8d3.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-a80f7c589731de53.rlib" "/target/debug/deps/libbyteorder-fab4d718c73e8b35.rlib" "/target/debug/deps/libbitflags-65ddff5d2b91509e.rlib" "/target/debug/deps/libopenssl_sys-cd7d5f9119b7dcb7.rlib" "/target/debug/deps/libminiz_sys-371886580b0e42eb.rlib" "/target/debug/deps/libregex-bf57a839db75dbae.rlib" "/target/debug/deps/libregex_syntax-8b74a2985735b213.rlib" "/target/debug/deps/libaho_corasick-c795bbd3a96f4a35.rlib" "/target/debug/deps/libmemchr-4c3682d5f0e14581.rlib" "/target/debug/deps/libthread_local-a561abce7ea185f1.rlib" "/target/debug/deps/libthread_id-e41c347f28e6505f.rlib" "/target/debug/deps/liblibc-5dc7b85e748840b4.rlib" "/target/debug/deps/libutf8_ranges-142806e76d52d8c6.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libterm-fa872424129019f5.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-f4594d3e53dcb114.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-a0157c0ca919c364.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-488b4ab4bd53a138.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librand-1efbcfd8938372b6.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcollections-532a3dbf317eff86.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-ca07b617414dd0fa.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc_jemalloc-492d8ea7fa3384ff.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-88c194c15fdb6521.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_unicode-cfbd6648f7db2ee5.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-687e6a964d22cbb4.rlib" "/rustup-home/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-987729be881d4d32.rlib" "-l" "ssl" "-l" "crypto" "-l" "util" "-l" "dl" "-l" "rt" "-l" "pthread" "-l" "gcc_s" "-l" "pthread" "-l" "c" "-l" "m" "-l" "rt" "-l" "util"
+kablam!   = note: /usr/bin/ld: cannot find -lsodium
+kablam!           collect2: error: ld returned 1 exit status
+kablam!           
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `openpgp`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 7da04c38f3a7395650d41799a7534440c5ce5d0ccf227574e302ba16aed0083e`
+blam! 7da04c38f3a7395650d41799a7534440c5ce5d0ccf227574e302ba16aed0083e

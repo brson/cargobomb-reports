@@ -1,0 +1,24 @@
+boom! testing graphml-0.1.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 6d12a200985d6460e774bcfc3977af95ef3511249fb865c29cb7251a2bcc6f43
+boom! running `docker start -a 6d12a200985d6460e774bcfc3977af95ef3511249fb865c29cb7251a2bcc6f43`
+kablam!    Compiling serde_xml v0.6.3
+kablam!    Compiling graphml v0.1.0 (file:///source)
+kablam! error[E0308]: mismatched types
+kablam!   --> build.rs:29:37
+kablam!    |
+kablam! 29 |             serde_codegen::register(&mut registry);
+kablam!    |                                     ^^^^^^^^^^^^^ expected struct `syntex::Registry`, found struct `codegen::syntex::Registry`
+kablam!    |
+kablam!    = note: expected type `&mut syntex::Registry`
+kablam!               found type `&mut codegen::syntex::Registry`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `graphml`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f 6d12a200985d6460e774bcfc3977af95ef3511249fb865c29cb7251a2bcc6f43`
+blam! 6d12a200985d6460e774bcfc3977af95ef3511249fb865c29cb7251a2bcc6f43

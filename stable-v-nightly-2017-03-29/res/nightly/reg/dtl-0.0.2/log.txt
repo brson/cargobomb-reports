@@ -1,0 +1,30 @@
+boom! testing dtl-0.0.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! d0ab329facc176277f901e621b499d2a431c6e346c2a8f37f6e96108cc7a6e53
+boom! running `docker start -a d0ab329facc176277f901e621b499d2a431c6e346c2a8f37f6e96108cc7a6e53`
+kablam!    Compiling dtl v0.0.2 (file:///source)
+kablam! warning: unnecessary parentheses around `for` head expression
+kablam!   --> src/compiler.rs:27:12
+kablam!    |
+kablam! 27 | 		for i in (0..filters.len()) {
+kablam!    | 		         ^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_parens)] on by default
+kablam! 
+kablam! error[E0275]: overflow evaluating the requirement `std::string::String: value::Value`
+kablam!  --> src/filter/default_filters/default.rs:6:16
+kablam!   |
+kablam! 6 | 		None => Some(Box::new(arg.to_string())),
+kablam!   | 		             ^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: required for the cast to the object type `value::Value`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `dtl`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f d0ab329facc176277f901e621b499d2a431c6e346c2a8f37f6e96108cc7a6e53`
+blam! d0ab329facc176277f901e621b499d2a431c6e346c2a8f37f6e96108cc7a6e53

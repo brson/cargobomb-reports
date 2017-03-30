@@ -1,0 +1,27 @@
+boom! testing mixpanel-0.1.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! e892e072c99d7f11bf3b72157828cd60b96fff8ca5cbf90cad5a94621b6a4b5b
+boom! running `docker start -a e892e072c99d7f11bf3b72157828cd60b96fff8ca5cbf90cad5a94621b6a4b5b`
+kablam! warning: file found to be present in multiple build targets: /source/examples/example.rs
+kablam!    Compiling serde v0.6.15
+kablam!    Compiling serde v0.4.3
+kablam! error[E0277]: the trait bound `Self: std::marker::Sized` is not satisfied
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/serde-0.4.3/src/de/mod.rs:22:5
+kablam!    |
+kablam! 22 |       fn deserialize<D>(deserializer: &mut D) -> Result<Self, D::Error>
+kablam!    |  _____^ starting here...
+kablam! 23 | |         where D: Deserializer;
+kablam!    | |______________________________^ ...ending here: the trait `std::marker::Sized` is not implemented for `Self`
+kablam!    |
+kablam!    = help: consider adding a `where Self: std::marker::Sized` bound
+kablam!    = note: required by `std::result::Result`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `serde`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f e892e072c99d7f11bf3b72157828cd60b96fff8ca5cbf90cad5a94621b6a4b5b`
+blam! e892e072c99d7f11bf3b72157828cd60b96fff8ca5cbf90cad5a94621b6a4b5b

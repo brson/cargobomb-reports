@@ -1,0 +1,38 @@
+boom! testing stainless-0.1.10 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 81981ff7b1223468f160f6616c68e61fb2c8d33c3cb24c73b31a2c5bfa0c1413
+boom! running `docker start -a 81981ff7b1223468f160f6616c68e61fb2c8d33c3cb24c73b31a2c5bfa0c1413`
+kablam!    Compiling stainless v0.1.10 (file:///source)
+kablam! error[E0425]: cannot find function `tts_to_parser` in module `parse`
+kablam!   --> src/describe.rs:68:57
+kablam!    |
+kablam! 68 |     let state: DescribeState = Parse::parse(&mut parse::tts_to_parser(cx.parse_sess(), tokens), (sp, &mut*cx, Some(name)));
+kablam!    |                                                         ^^^^^^^^^^^^^ not found in `parse`
+kablam! 
+kablam! error: no method named `bump_and_get` found for type `&mut syntax::parse::parser::Parser<'_>` in the current scope
+kablam!   --> src/parse.rs:46:34
+kablam!    |
+kablam! 46 |         let name = match (parser.bump_and_get(), parser.parse_ident().unwrap(), parser.bump_and_get()) {
+kablam!    |                                  ^^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `bump_and_get` found for type `&mut syntax::parse::parser::Parser<'_>` in the current scope
+kablam!   --> src/parse.rs:46:88
+kablam!    |
+kablam! 46 |         let name = match (parser.bump_and_get(), parser.parse_ident().unwrap(), parser.bump_and_get()) {
+kablam!    |                                                                                        ^^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `bump_and_get` found for type `&mut syntax::parse::parser::Parser<'_>` in the current scope
+kablam!    --> src/parse.rs:183:23
+kablam!     |
+kablam! 183 |     let real = parser.bump_and_get();
+kablam!     |                       ^^^^^^^^^^^^
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `stainless`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 81981ff7b1223468f160f6616c68e61fb2c8d33c3cb24c73b31a2c5bfa0c1413`
+blam! 81981ff7b1223468f160f6616c68e61fb2c8d33c3cb24c73b31a2c5bfa0c1413

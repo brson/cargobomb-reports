@@ -1,0 +1,35 @@
+boom! testing sorty-0.1.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 18a04a16493f7b57532bce7c1a01560d1bd2cb90df022266319076615dee717a
+boom! running `docker start -a 18a04a16493f7b57532bce7c1a01560d1bd2cb90df022266319076615dee717a`
+kablam!    Compiling sorty v0.1.1 (file:///source)
+kablam! error: no field `value` on type `&syntax::ast::Attribute`
+kablam!    --> src/sorty.rs:134:33
+kablam!     |
+kablam! 134 |                 let name = attr.value.name.as_str();
+kablam!     |                                 ^^^^^
+kablam! 
+kablam! error: no field `value` on type `&syntax::ast::Attribute`
+kablam!    --> src/sorty.rs:135:33
+kablam!     |
+kablam! 135 |                 let kind = attr.value.node.clone();
+kablam!     |                                 ^^^^^
+kablam! 
+kablam! error[E0277]: the trait bound `str: std::marker::Sized` is not satisfied
+kablam!    --> src/sorty.rs:134:21
+kablam!     |
+kablam! 134 |                 let name = attr.value.name.as_str();
+kablam!     |                     ^^^^ the trait `std::marker::Sized` is not implemented for `str`
+kablam!     |
+kablam!     = note: `str` does not have a constant size known at compile-time
+kablam!     = note: all local variables must have a statically known size
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `sorty`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 18a04a16493f7b57532bce7c1a01560d1bd2cb90df022266319076615dee717a`
+blam! 18a04a16493f7b57532bce7c1a01560d1bd2cb90df022266319076615dee717a

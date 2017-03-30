@@ -1,0 +1,33 @@
+boom! testing mioco-0.7.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 7424867432e0f93ff8d2af9dcb42dc2631746f9d06ec3d0787172f0513cf4a45
+boom! running `docker start -a 7424867432e0f93ff8d2af9dcb42dc2631746f9d06ec3d0787172f0513cf4a45`
+kablam!    Compiling owning_ref v0.1.4
+kablam!    Compiling miow v0.1.5
+kablam! error[E0207]: the lifetime parameter `'a` is not constrained by the impl trait, self type, or predicates
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/owning_ref-0.1.4/src/lib.rs:445:13
+kablam!     |
+kablam! 445 | unsafe impl<'a, T: 'a> IntoErased for Box<T> {
+kablam!     |             ^^ unconstrained lifetime parameter
+kablam! 
+kablam! error[E0207]: the lifetime parameter `'a` is not constrained by the impl trait, self type, or predicates
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/owning_ref-0.1.4/src/lib.rs:449:13
+kablam!     |
+kablam! 449 | unsafe impl<'a, T: 'a> IntoErased for Rc<T> {
+kablam!     |             ^^ unconstrained lifetime parameter
+kablam! 
+kablam! error[E0207]: the lifetime parameter `'a` is not constrained by the impl trait, self type, or predicates
+kablam!    --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/owning_ref-0.1.4/src/lib.rs:453:13
+kablam!     |
+kablam! 453 | unsafe impl<'a, T: 'a> IntoErased for Arc<T> {
+kablam!     |             ^^ unconstrained lifetime parameter
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `owning_ref`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f 7424867432e0f93ff8d2af9dcb42dc2631746f9d06ec3d0787172f0513cf4a45`
+blam! 7424867432e0f93ff8d2af9dcb42dc2631746f9d06ec3d0787172f0513cf4a45

@@ -1,0 +1,484 @@
+boom! testing https://github.com/problame/rust-srs#ebd1c093a7d949f120301a1794d26e37ed56916b against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 1bcb4ae5a10ce96d905853b51c54b24c94979bfb64cc0a43d7c7f1b596745624
+boom! running `docker start -a 1bcb4ae5a10ce96d905853b51c54b24c94979bfb64cc0a43d7c7f1b596745624`
+kablam!    Compiling rustsrsd v0.1.0 (file:///source)
+kablam! warning: method is never used: `get_version`
+kablam!   --> src/srs/parser.rs:11:5
+kablam!    |
+kablam! 11 |       fn get_version(&self) -> u8 {
+kablam!    |  _____^ starting here...
+kablam! 12 | |         match self {
+kablam! 13 | |             &SRS0(_) => 0,
+kablam! 14 | |             &SRS1(_) => 1,
+kablam! 15 | |         }
+kablam! 16 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `is_0`
+kablam!   --> src/srs/parser.rs:17:5
+kablam!    |
+kablam! 17 |     pub fn is_0(&self) -> bool { return self.get_version() == 0; }
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `is_1`
+kablam!   --> src/srs/parser.rs:18:5
+kablam!    |
+kablam! 18 |     pub fn is_1(&self) -> bool { return self.get_version() == 1; }
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `srs0`
+kablam!   --> src/srs/parser.rs:19:5
+kablam!    |
+kablam! 19 |       pub fn srs0(self) -> SRS0Address {
+kablam!    |  _____^ starting here...
+kablam! 20 | |         match self {
+kablam! 21 | |             SRS0(srs) => srs,
+kablam! 22 | |             _         => panic!("not an SRS0"),
+kablam! 23 | |         }
+kablam! 24 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `srs1`
+kablam!   --> src/srs/parser.rs:25:5
+kablam!    |
+kablam! 25 |       pub fn srs1(self) -> SRS1Address {
+kablam!    |  _____^ starting here...
+kablam! 26 | |         match self {
+kablam! 27 | |             SRS1(srs) => srs,
+kablam! 28 | |             _         => panic!("not an SRS1"),
+kablam! 29 | |         }
+kablam! 30 | |     }
+kablam!    | |_____^ ...ending here
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused import: `base64_email_safe_decode`
+kablam!   --> src/srs/transformers.rs:12:42
+kablam!    |
+kablam! 12 | use srs::util::{base64_email_safe_encode,base64_email_safe_decode};
+kablam!    |                                          ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: value assigned to `res` is never read
+kablam!   --> src/srs/transformers.rs:59:13
+kablam!    |
+kablam! 59 |         let mut res: u16 = 0;
+kablam!    |             ^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_assignments)] on by default
+kablam! 
+kablam! warning: unused variable: `substr`
+kablam!    --> src/srs/transformers.rs:149:30
+kablam!     |
+kablam! 149 | fn is_email_compatible_ascii(substr: &[u8]) -> bool {
+kablam!     |                              ^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: function is never used: `is_valid_srs_separator`
+kablam!    --> src/srs/transformers.rs:157:1
+kablam!     |
+kablam! 157 |   fn is_valid_srs_separator(separator: &str) -> bool {
+kablam!     |  _^ starting here...
+kablam! 158 | |     match separator {
+kablam! 159 | |         "=" | "+" | "-" => true,
+kablam! 160 | |         _               => false,
+kablam! 161 | |     }
+kablam! 162 | | }
+kablam!     | |_^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: struct is never used: `Forwarder`
+kablam!    --> src/srs/transformers.rs:256:1
+kablam!     |
+kablam! 256 |   pub struct Forwarder<T> where T: Timestamper {
+kablam!     |  _^ starting here...
+kablam! 257 | |     secret_pkey: PKey,
+kablam! 258 | |     pub hostname: Vec<u8>,
+kablam! 259 | |     pub md: MessageDigest,
+kablam! 260 | |     pub separator: String,
+kablam! 261 | |     pub timestamper: T,
+kablam! 262 | | }
+kablam!     | |_^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: enum is never used: `ForwarderInitializationError`
+kablam!    --> src/srs/transformers.rs:265:1
+kablam!     |
+kablam! 265 |   pub enum ForwarderInitializationError {
+kablam!     |  _^ starting here...
+kablam! 266 | |     HostnameInvalidChars,
+kablam! 267 | |     InvalidSRSSeparator,
+kablam! 268 | | }
+kablam!     | |_^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: enum is never used: `ForwarderError`
+kablam!    --> src/srs/transformers.rs:271:1
+kablam!     |
+kablam! 271 |   pub enum ForwarderError {
+kablam!     |  _^ starting here...
+kablam! 272 | |     HashingError(ErrorStack),
+kablam! 273 | | }
+kablam!     | |_^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: enum is never used: `ForwardableAddress`
+kablam!    --> src/srs/transformers.rs:276:1
+kablam!     |
+kablam! 276 |   pub enum ForwardableAddress {
+kablam!     |  _^ starting here...
+kablam! 277 | |     SRS(SRSAddress),
+kablam! 278 | |     Plain{
+kablam! 279 | |         local: String,
+kablam! 280 | |         domain: String
+kablam! 281 | |     },
+kablam! 282 | | }
+kablam!     | |_^ ...ending here
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `new`
+kablam!    --> src/srs/transformers.rs:286:5
+kablam!     |
+kablam! 286 |     pub fn new(secret: Vec<u8>, hostname: Vec<u8>, md: MessageDigest, separator: &str, timestamper: T) -> Result<Forwarder<T>,ForwarderInitializationError> {
+kablam!     |     ^
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `update_hash`
+kablam!    --> src/srs/transformers.rs:307:5
+kablam!     |
+kablam! 307 |     fn update_hash(&self, address: &mut SRSAddress) -> Result<(), ForwarderError> {
+kablam!     |     ^
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: method is never used: `forward`
+kablam!    --> src/srs/transformers.rs:319:5
+kablam!     |
+kablam! 319 |     pub fn forward(&self, address: ForwardableAddress) -> Result<SRSAddress,ForwarderError> {
+kablam!     |     ^
+kablam!     |
+kablam!     = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: variant is never used: `DecodingErr`
+kablam!  --> src/srs/util.rs:4:5
+kablam!   |
+kablam! 4 |     DecodingErr,
+kablam!   |     ^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: function is never used: `base64_email_safe_decode`
+kablam!   --> src/srs/util.rs:38:1
+kablam!    |
+kablam! 38 | pub fn base64_email_safe_decode(s: &str) -> Result<Vec<u8>, Base64Err> {
+kablam!    | ^
+kablam!    |
+kablam!    = note: #[warn(dead_code)] on by default
+kablam! 
+kablam! warning: unused import: `openssl::hash::MessageDigest`
+kablam!  --> src/main.rs:7:5
+kablam!   |
+kablam! 7 | use openssl::hash::MessageDigest;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `Write`
+kablam!   --> src/main.rs:12:20
+kablam!    |
+kablam! 12 | use std::io::{Read,Write};
+kablam!    |                    ^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused variable: `e`
+kablam!   --> src/main.rs:33:13
+kablam!    |
+kablam! 33 |         Err(e) => {
+kablam!    |             ^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `e`
+kablam!   --> src/main.rs:44:17
+kablam!    |
+kablam! 44 |             Err(e) => {
+kablam!    |                 ^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!   --> src/main.rs:51:21
+kablam!    |
+kablam! 51 |                 let mut bufsize: usize = matches.opt_str("bufsize").unwrap().parse().expect("bufsize must be an unsigned integer");
+kablam!    |                     ^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> src/main.rs:97:17
+kablam!    |
+kablam! 97 |                 stream.shutdown(Shutdown::Both);
+kablam!    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 2.57 secs
+boom! running `docker rm -f 1bcb4ae5a10ce96d905853b51c54b24c94979bfb64cc0a43d7c7f1b596745624`
+blam! 1bcb4ae5a10ce96d905853b51c54b24c94979bfb64cc0a43d7c7f1b596745624
+boom! running: cargo +nightly test --frozen --no-run
+boom! creating container for: cargo +nightly test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen --no-run cargobomb`
+blam! 8e6c629f7bd9c8114f693c43dd24f574b4ff1ebd02a43d23fc66a51ede3ab873
+boom! running `docker start -a 8e6c629f7bd9c8114f693c43dd24f574b4ff1ebd02a43d23fc66a51ede3ab873`
+kablam!    Compiling rustsrsd v0.1.0 (file:///source)
+kablam! warning: unused import: `base64_email_safe_decode`
+kablam!   --> src/srs/transformers.rs:12:42
+kablam!    |
+kablam! 12 | use srs::util::{base64_email_safe_encode,base64_email_safe_decode};
+kablam!    |                                          ^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: value assigned to `res` is never read
+kablam!   --> src/srs/transformers.rs:59:13
+kablam!    |
+kablam! 59 |         let mut res: u16 = 0;
+kablam!    |             ^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_assignments)] on by default
+kablam! 
+kablam! warning: unused variable: `substr`
+kablam!    --> src/srs/transformers.rs:149:30
+kablam!     |
+kablam! 149 | fn is_email_compatible_ascii(substr: &[u8]) -> bool {
+kablam!     |                              ^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused import: `ForwarderError`
+kablam!  --> src/srs/transformer_tests.rs:6:62
+kablam!   |
+kablam! 6 |     use srs::transformers::{Receiver,ReceiverError,Forwarder,ForwarderError,Timestamper,SRSTimestamper};
+kablam!   |                                                              ^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused variable: `ts`
+kablam!   --> src/srs/transformer_tests.rs:25:35
+kablam!    |
+kablam! 25 |                 verify: Box::new(|ts| Ok(())),
+kablam!    |                                   ^^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `ts`
+kablam!    --> src/srs/transformer_tests.rs:124:35
+kablam!     |
+kablam! 124 |                 verify: Box::new(|ts| Err(23)),
+kablam!     |                                   ^^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused import: `Forwarder`
+kablam!    --> src/srs/transformer_tests.rs:135:52
+kablam!     |
+kablam! 135 |         use srs::transformers::{ForwardableAddress,Forwarder};
+kablam!     |                                                    ^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/srs/transformer_tests.rs:147:13
+kablam!     |
+kablam! 147 |         let mut res = res.srs0();
+kablam!     |             ^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: unused import: `Forwarder`
+kablam!    --> src/srs/transformer_tests.rs:163:52
+kablam!     |
+kablam! 163 |         use srs::transformers::{ForwardableAddress,Forwarder};
+kablam!     |                                                    ^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `SRS1`
+kablam!    --> src/srs/transformer_tests.rs:164:44
+kablam!     |
+kablam! 164 |         use srs::parser::SRSAddress::{SRS0,SRS1};
+kablam!     |                                            ^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/srs/transformer_tests.rs:181:13
+kablam!     |
+kablam! 181 |         let mut res = res.srs1();
+kablam!     |             ^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: unused import: `Forwarder`
+kablam!    --> src/srs/transformer_tests.rs:197:52
+kablam!     |
+kablam! 197 |         use srs::transformers::{ForwardableAddress,Forwarder};
+kablam!     |                                                    ^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `SRS0`
+kablam!    --> src/srs/transformer_tests.rs:198:39
+kablam!     |
+kablam! 198 |         use srs::parser::SRSAddress::{SRS0,SRS1};
+kablam!     |                                       ^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused imports: `ForwardableAddress`, `Forwarder`
+kablam!    --> src/srs/transformer_tests.rs:226:33
+kablam!     |
+kablam! 226 |         use srs::transformers::{ForwardableAddress,Forwarder};
+kablam!     |                                 ^^^^^^^^^^^^^^^^^^ ^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused variable: `r_c`
+kablam!    --> src/srs/transformer_tests.rs:241:13
+kablam!     |
+kablam! 241 |         let r_c = make_receiver("csecret", "c");
+kablam!     |             ^^^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!    --> src/srs/transformer_tests.rs:280:13
+kablam!     |
+kablam! 280 |         let mut t = SRSTimestamper {
+kablam!     |             ^^^^^
+kablam!     |
+kablam!     = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: unused variable: `t`
+kablam!    --> src/srs/transformer_tests.rs:302:13
+kablam!     |
+kablam! 302 |         let t = SRSTimestamper {
+kablam!     |             ^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `t`
+kablam!    --> src/srs/transformer_tests.rs:319:13
+kablam!     |
+kablam! 319 |         let t = SRSTimestamper {
+kablam!     |             ^
+kablam!     |
+kablam!     = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused import: `openssl::hash::MessageDigest`
+kablam!  --> src/main.rs:7:5
+kablam!   |
+kablam! 7 | use openssl::hash::MessageDigest;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!   |
+kablam!   = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused import: `Write`
+kablam!   --> src/main.rs:12:20
+kablam!    |
+kablam! 12 | use std::io::{Read,Write};
+kablam!    |                    ^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_imports)] on by default
+kablam! 
+kablam! warning: unused variable: `e`
+kablam!   --> src/main.rs:33:13
+kablam!    |
+kablam! 33 |         Err(e) => {
+kablam!    |             ^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: unused variable: `e`
+kablam!   --> src/main.rs:44:17
+kablam!    |
+kablam! 44 |             Err(e) => {
+kablam!    |                 ^
+kablam!    |
+kablam!    = note: #[warn(unused_variables)] on by default
+kablam! 
+kablam! warning: variable does not need to be mutable
+kablam!   --> src/main.rs:51:21
+kablam!    |
+kablam! 51 |                 let mut bufsize: usize = matches.opt_str("bufsize").unwrap().parse().expect("bufsize must be an unsigned integer");
+kablam!    |                     ^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_mut)] on by default
+kablam! 
+kablam! warning: unused result which must be used
+kablam!   --> src/main.rs:97:17
+kablam!    |
+kablam! 97 |                 stream.shutdown(Shutdown::Both);
+kablam!    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[warn(unused_must_use)] on by default
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 3.30 secs
+boom! running `docker rm -f 8e6c629f7bd9c8114f693c43dd24f574b4ff1ebd02a43d23fc66a51ede3ab873`
+blam! 8e6c629f7bd9c8114f693c43dd24f574b4ff1ebd02a43d23fc66a51ede3ab873
+boom! running: cargo +nightly test --frozen
+boom! creating container for: cargo +nightly test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly test --frozen cargobomb`
+blam! 7e21c3fb5860d202c8808daa0155fa26af60ac227396087af5b60cef24830657
+boom! running `docker start -a 7e21c3fb5860d202c8808daa0155fa26af60ac227396087af5b60cef24830657`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/rustsrsd-37c32760807cc4e9
+blam! 
+blam! running 22 tests
+blam! test srs::parser_tests::parser_tests::it_does_not_accept_empty_locals_for_srs0 ... ok
+blam! test srs::parser_tests::parser_tests::it_does_not_accept_empty_locals_for_srs1 ... ok
+blam! test srs::parser_tests::parser_tests::it_handles_mixed_separators_srs0 ... ok
+blam! test srs::parser_tests::parser_tests::it_handles_mixed_separators_srs1_srs0 ... ok
+blam! test srs::parser_tests::parser_tests::it_parses_basic_srs0 ... ok
+blam! test srs::parser_tests::parser_tests::it_parses_basic_srs1 ... ok
+blam! test srs::transformer_tests::transformer_tests::it_allows_changed_case_in_hmac ... ok
+blam! test srs::transformer_tests::transformer_tests::it_adds_srs1_prefix_to_srs0 ... ok
+blam! test srs::transformer_tests::transformer_tests::it_handles_full_chain_simulation ... ok
+blam! test srs::transformer_tests::transformer_tests::it_updates_domain_on_srs1_address ... ok
+blam! test srs::transformer_tests::transformer_tests::it_adds_srs0_prefix ... ok
+blam! test srs::transformer_tests::transformer_tests::it_uses_the_timestamper_to_check_timestamp ... ok
+blam! test srs::transformer_tests::transformer_tests::it_validates_srs0_hmac_and_reports_expected_hmac_on_failure ... ok
+blam! test srs::transformer_tests::transformer_tests::it_validates_srs1_hmac_and_reports_expected_hmac_on_failure ... ok
+blam! test srs::transformer_tests::transformer_tests::it_rewrites_srs1_to_srs0_to_plain ... ok
+blam! test srs::transformer_tests::transformer_tests::srstimestamper_respects_max_valid_delta ... ok
+blam! test srs::transformer_tests::transformer_tests::srstimestamper_base32_works_for_example ... ok
+blam! test srs::util::test::it_base64_decodes ... ok
+blam! test srs::util::test::it_can_decode_its_encoding ... ok
+blam! test srs::util::test::it_base64_encodes_only_supports_lengths_multiples_of_3 ... ok
+blam! test srs::util::test::test_base64 ... ok
+blam! test srs::transformer_tests::transformer_tests::srstimestamper_base32_works_for_all_10bit_numbers ... ok
+blam! 
+blam! test result: ok. 22 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f 7e21c3fb5860d202c8808daa0155fa26af60ac227396087af5b60cef24830657`
+blam! 7e21c3fb5860d202c8808daa0155fa26af60ac227396087af5b60cef24830657

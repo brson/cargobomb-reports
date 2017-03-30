@@ -1,0 +1,19 @@
+boom! testing vpx-0.3.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! a8a06cb98b147d416c6876fe7d366813394f85b522355762bb2448b0c5535d1e
+boom! running `docker start -a a8a06cb98b147d416c6876fe7d366813394f85b522355762bb2448b0c5535d1e`
+kablam!    Compiling libvpx-sys v1.4.2
+kablam! error: failed to run custom build command for `libvpx-sys v1.4.2`
+kablam! process didn't exit successfully: `/target/debug/build/libvpx-sys-0a32e3bb5df3f60e/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! TARGET = Some("x86_64-unknown-linux-gnu")
+kablam! TARGET = Some("x86_64-unknown-linux-gnu")
+kablam! 
+kablam! --- stderr
+kablam! thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: "`\"pkg-config\" \"--static\" \"--libs\" \"--cflags\" \"vpx\"` did not exit successfully: exit code: 1\n--- stderr\nPackage vpx was not found in the pkg-config search path.\nPerhaps you should add the directory containing `vpx.pc\'\nto the PKG_CONFIG_PATH environment variable\nNo package \'vpx\' found\n"', /checkout/src/libcore/result.rs:859
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f a8a06cb98b147d416c6876fe7d366813394f85b522355762bb2448b0c5535d1e`
+blam! a8a06cb98b147d416c6876fe7d366813394f85b522355762bb2448b0c5535d1e

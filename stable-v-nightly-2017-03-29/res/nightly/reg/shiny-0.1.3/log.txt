@@ -1,0 +1,94 @@
+boom! testing shiny-0.1.3 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! b9ec143ec19d29430d7ae1bfde450d3ea379197e3a708d262ae1d7cfbaae812d
+boom! running `docker start -a b9ec143ec19d29430d7ae1bfde450d3ea379197e3a708d262ae1d7cfbaae812d`
+kablam!    Compiling shiny v0.1.3 (file:///source)
+kablam! error[E0432]: unresolved import `rustc::plugin::Registry`
+kablam!   --> src/lib.rs:23:5
+kablam!    |
+kablam! 23 | use rustc::plugin::Registry;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^ Could not find `plugin` in `rustc`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::ast_util::empty_generics`
+kablam!   --> src/lib.rs:27:5
+kablam!    |
+kablam! 27 | use syntax::ast_util::empty_generics;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `ast_util` in `syntax`
+kablam! 
+kablam! error[E0432]: unresolved import `syntax::parse::tts_to_parser`
+kablam!   --> src/lib.rs:33:5
+kablam!    |
+kablam! 33 | use syntax::parse::tts_to_parser;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `tts_to_parser` in `parse`
+kablam! 
+kablam! error[E0412]: cannot find type `TokenTree` in module `ast`
+kablam!   --> src/lib.rs:41:62
+kablam!    |
+kablam! 41 | pub fn macro_describe(cx: &mut ExtCtxt, _: Span, tts: &[ast::TokenTree]) -> Box<MacResult+'static> {
+kablam!    |                                                              ^^^^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use syntax::ext::tt::quoted::TokenTree;`
+kablam!              `use syntax::tokenstream::TokenTree;`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `InternedString` in `token`
+kablam!   --> src/lib.rs:93:36
+kablam!    |
+kablam! 93 |             cx.meta_word(DUMMY_SP, token::InternedString::new("test")));
+kablam!    |                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `InternedString` in `token`
+kablam! 
+kablam! error[E0425]: cannot find function `ItemFn` in module `ast`
+kablam!   --> src/lib.rs:99:24
+kablam!    |
+kablam! 99 |             node: ast::ItemFn(
+kablam!    |                        ^^^^^^ not found in `ast`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use rustc::hir::ItemFn;`
+kablam!              `use rustc::hir::Item_::ItemFn;`
+kablam!              `use rustc::hir::intravisit::FnKind::ItemFn;`
+kablam!              `use syntax::visit::FnKind::ItemFn;`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `Ty_` in `ast`
+kablam!    --> src/lib.rs:100:56
+kablam!     |
+kablam! 100 |                 cx.fn_decl(Vec::new(), cx.ty(DUMMY_SP, ast::Ty_::TyTup(Vec::new()))),
+kablam!     |                                                        ^^^^^^^^^^^^^^^ Could not find `Ty_` in `ast`
+kablam! 
+kablam! error[E0425]: cannot find value `Rust` in module `abi`
+kablam!    --> src/lib.rs:102:22
+kablam!     |
+kablam! 102 |                 abi::Rust,
+kablam!     |                      ^^^^ not found in `abi`
+kablam!     |
+kablam!     = help: possible candidate is found in another module, you can import it into scope:
+kablam!               `use syntax::abi::Abi::Rust;`
+kablam! 
+kablam! error[E0425]: cannot find value `Inherited` in module `ast`
+kablam!    --> src/lib.rs:105:23
+kablam!     |
+kablam! 105 |             vis: ast::Inherited,
+kablam!     |                       ^^^^^^^^^ not found in `ast`
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use rustc::hir::Inherited;`
+kablam!               `use rustc::hir::Visibility::Inherited;`
+kablam!               `use syntax::ast::Visibility::Inherited;`
+kablam! 
+kablam! error: box expression syntax is experimental; you can call `Box::new` instead. (see issue #27779)
+kablam!    --> src/lib.rs:120:9
+kablam!     |
+kablam! 120 |         box MacItems { items: items } as Box<MacResult>
+kablam!     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = help: add #![feature(box_syntax)] to the crate attributes to enable
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `shiny`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f b9ec143ec19d29430d7ae1bfde450d3ea379197e3a708d262ae1d7cfbaae812d`
+blam! b9ec143ec19d29430d7ae1bfde450d3ea379197e3a708d262ae1d7cfbaae812d

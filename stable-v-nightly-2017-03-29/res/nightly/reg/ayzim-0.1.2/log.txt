@@ -1,0 +1,70 @@
+boom! testing ayzim-0.1.2 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 84efb627be096060a903985c0e82c97d899583246680f861f3f80f620cbda31f
+boom! running `docker start -a 84efb627be096060a903985c0e82c97d899583246680f861f3f80f620cbda31f`
+kablam!    Compiling odds v0.2.25
+kablam!    Compiling custom_derive v0.1.7
+kablam!    Compiling cfor v1.1.0
+kablam!    Compiling phf_generator v0.7.21
+kablam!    Compiling ayzim-macros v0.1.0
+kablam!    Compiling interpolate_idents v0.1.5
+kablam!    Compiling conv v0.3.3
+kablam! error[E0023]: this pattern has 2 fields, but the corresponding tuple variant has 3 fields
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/ayzim-macros-0.1.0/src/lib.rs:50:9
+kablam!    |
+kablam! 50 |         PatKind::Range(_, _) |
+kablam!    |         ^^^^^^^^^^^^^^^^^^^^ expected 3 fields, found 2
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/interpolate_idents-0.1.5/src/lib.rs:60:41
+kablam!    |
+kablam! 60 |                     match concat_idents(&d.tts, d.delim) {
+kablam!    |                                         ^^^^^^ expected struct `std::vec::Vec`, found struct `syntax::tokenstream::ThinTokenStream`
+kablam!    |
+kablam!    = note: expected type `&std::vec::Vec<syntax::tokenstream::TokenTree>`
+kablam!               found type `&syntax::tokenstream::ThinTokenStream`
+kablam! 
+kablam! error: type `syntax::tokenstream::ThinTokenStream` cannot be dereferenced
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/interpolate_idents-0.1.5/src/lib.rs:65:47
+kablam!    |
+kablam! 65 |                                 tts: map_tts(&*d.tts),
+kablam!    |                                               ^^^^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/interpolate_idents-0.1.5/src/lib.rs:65:38
+kablam!    |
+kablam! 65 |                                 tts: map_tts(&*d.tts),
+kablam!    |                                      ^^^^^^^^^^^^^^^^ expected struct `syntax::tokenstream::ThinTokenStream`, found struct `std::vec::Vec`
+kablam!    |
+kablam!    = note: expected type `syntax::tokenstream::ThinTokenStream`
+kablam!               found type `std::vec::Vec<syntax::tokenstream::TokenTree>`
+kablam!    = help: here are some functions which might fulfill your needs:
+kablam!            - .remove(...)
+kablam!            - .swap_remove(...)
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/interpolate_idents-0.1.5/src/lib.rs:63:61
+kablam!    |
+kablam! 63 |                               TokenTree::Delimited(s.clone(), Rc::new(syntax::tokenstream::Delimited {
+kablam!    |  _____________________________________________________________^ starting here...
+kablam! 64 | |                                 delim: d.delim,
+kablam! 65 | |                                 tts: map_tts(&*d.tts),
+kablam! 66 | |                             }))
+kablam!    | |______________________________^ ...ending here: expected struct `syntax::tokenstream::Delimited`, found struct `std::rc::Rc`
+kablam!    |
+kablam!    = note: expected type `syntax::tokenstream::Delimited`
+kablam!               found type `std::rc::Rc<syntax::tokenstream::Delimited>`
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `interpolate_idents`.
+kablam! error: aborting due to previous error
+kablam! 
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: Could not compile `ayzim-macros`.
+kablam! error: build failed
+boom! running `docker rm -f 84efb627be096060a903985c0e82c97d899583246680f861f3f80f620cbda31f`
+blam! 84efb627be096060a903985c0e82c97d899583246680f861f3f80f620cbda31f

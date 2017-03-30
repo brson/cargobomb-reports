@@ -1,0 +1,44 @@
+boom! testing cargo-doc-coverage-1.0.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 5c8617e3901f8912f32a940823a3917eb30770dbcf11037967fe31c200d60f2a
+boom! running `docker start -a 5c8617e3901f8912f32a940823a3917eb30770dbcf11037967fe31c200d60f2a`
+kablam!    Compiling cargo-doc-coverage v1.0.0 (file:///source)
+kablam! error[E0531]: cannot find tuple struct/variant `ConstTraitItem` in module `hir`
+kablam!    --> src/doc_coverage.rs:221:18
+kablam!     |
+kablam! 221 |             hir::ConstTraitItem(..) => "an associated constant",
+kablam!     |                  ^^^^^^^^^^^^^^ not found in `hir`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `MethodTraitItem` in module `hir`
+kablam!    --> src/doc_coverage.rs:222:18
+kablam!     |
+kablam! 222 |             hir::MethodTraitItem(..) => "a trait method",
+kablam!     |                  ^^^^^^^^^^^^^^^ not found in `hir`
+kablam! 
+kablam! error[E0531]: cannot find tuple struct/variant `TypeTraitItem` in module `hir`
+kablam!    --> src/doc_coverage.rs:223:18
+kablam!     |
+kablam! 223 |             hir::TypeTraitItem(..) => "an associated type",
+kablam!     |                  ^^^^^^^^^^^^^ not found in `hir`
+kablam! 
+kablam! error[E0106]: missing lifetime specifiers
+kablam!    --> src/doc_coverage.rs:123:6
+kablam!     |
+kablam! 123 | impl LateLintPass for DocCoverage {
+kablam!     |      ^^^^^^^^^^^^ expected 2 lifetime parameters
+kablam! 
+kablam! error[E0106]: missing lifetime specifier
+kablam!   --> src/utils/mod.rs:13:20
+kablam!    |
+kablam! 13 | pub fn in_macro<T: LintContext>(cx: &T, span: Span) -> bool {
+kablam!    |                    ^^^^^^^^^^^ expected lifetime parameter
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `cargo-doc-coverage`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 5c8617e3901f8912f32a940823a3917eb30770dbcf11037967fe31c200d60f2a`
+blam! 5c8617e3901f8912f32a940823a3917eb30770dbcf11037967fe31c200d60f2a

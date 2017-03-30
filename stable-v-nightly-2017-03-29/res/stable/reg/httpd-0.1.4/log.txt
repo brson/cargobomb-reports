@@ -1,0 +1,36 @@
+boom! testing httpd-0.1.4 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! e09b139514df99722a4f5a44a464a90d5c0c6113ce1df1644ded5eaba912821c
+boom! running `docker start -a e09b139514df99722a4f5a44a464a90d5c0c6113ce1df1644ded5eaba912821c`
+kablam!    Compiling spmc v0.2.1
+kablam!    Compiling slog-scope v0.2.2
+kablam!    Compiling slog v2.0.0-2.2
+kablam!    Compiling slog-serde v1.0.0-alpha9
+kablam!    Compiling unreachable v0.1.1
+kablam!    Compiling pretty_env_logger v0.1.0
+kablam!    Compiling phf_generator v0.7.21
+kablam!    Compiling thread_local v0.3.3
+kablam!    Compiling slog-syslog v0.9.0
+kablam!    Compiling phf_codegen v0.7.21
+kablam!    Compiling slog-extra v0.1.2
+kablam!    Compiling regex v0.2.1
+kablam!    Compiling mime_guess v1.8.1
+kablam!    Compiling lsio v0.1.17
+kablam! error[E0277]: the trait bound `&&[std::string::String]: std::iter::Iterator` is not satisfied
+kablam!   --> /cargo-home/registry/src/github.com-1ecc6299db9ec823/lsio-0.1.17/src/commands.rs:35:45
+kablam!    |
+kablam! 35 |             output = try!(Command::new(cmd).args(&args).output());
+kablam!    |                                             ^^^^ the trait `std::iter::Iterator` is not implemented for `&&[std::string::String]`
+kablam!    |
+kablam!    = note: `&&[std::string::String]` is not an iterator; maybe try calling `.iter()` or a similar method
+kablam!    = note: required because of the requirements on the impl of `std::iter::IntoIterator` for `&&[std::string::String]`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `lsio`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f e09b139514df99722a4f5a44a464a90d5c0c6113ce1df1644ded5eaba912821c`
+blam! e09b139514df99722a4f5a44a464a90d5c0c6113ce1df1644ded5eaba912821c

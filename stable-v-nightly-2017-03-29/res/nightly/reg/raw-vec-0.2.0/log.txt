@@ -1,0 +1,42 @@
+boom! testing raw-vec-0.2.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 5572d35223050e5a5f62f6e9f3b3830a8a777ac71932b86c50eaeb13a57a5fab
+boom! running `docker start -a 5572d35223050e5a5f62f6e9f3b3830a8a777ac71932b86c50eaeb13a57a5fab`
+kablam!    Compiling raw-vec v0.2.0 (file:///source)
+kablam! error[E0557]: feature has been removed
+kablam!   --> src/lib.rs:11:12
+kablam!    |
+kablam! 11 | #![feature(unsafe_no_drop_flag, unique, filling_drop, dropck_parametricity, allocator, box_syntax, alloc, heap_api, oom)]
+kablam!    |            ^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: use of deprecated attribute `dropck_parametricity`: unsafe_destructor_blind_to_params has been replaced by may_dangle and will be removed in the future. See https://github.com/rust-lang/rust/issues/34761
+kablam!    --> src/lib.rs:564:5
+kablam!     |
+kablam! 564 |     #[unsafe_destructor_blind_to_params]
+kablam!     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!     |
+kablam!     = note: #[warn(deprecated)] on by default
+kablam! 
+kablam! error[E0425]: cannot find value `POST_DROP_USIZE` in module `mem`
+kablam!    --> src/lib.rs:559:26
+kablam!     |
+kablam! 559 |         self.cap != mem::POST_DROP_USIZE
+kablam!     |                          ^^^^^^^^^^^^^^^ not found in `mem`
+kablam! 
+kablam! error: The attribute `unsafe_no_drop_flag` is currently unknown to the compiler and may have meaning added to it in the future (see issue #29642)
+kablam!   --> src/lib.rs:52:1
+kablam!    |
+kablam! 52 | #[unsafe_no_drop_flag]
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = help: add #![feature(custom_attribute)] to the crate attributes to enable
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `raw-vec`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 5572d35223050e5a5f62f6e9f3b3830a8a777ac71932b86c50eaeb13a57a5fab`
+blam! 5572d35223050e5a5f62f6e9f3b3830a8a777ac71932b86c50eaeb13a57a5fab

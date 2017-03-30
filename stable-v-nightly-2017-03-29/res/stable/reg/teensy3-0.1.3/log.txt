@@ -1,0 +1,23 @@
+boom! testing teensy3-0.1.3 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! e006ca7a82e3f704b30fbed468ef8463eff77b89657be212469c1059e361385b
+boom! running `docker start -a e006ca7a82e3f704b30fbed468ef8463eff77b89657be212469c1059e361385b`
+kablam!    Compiling teensy3-sys v0.1.0
+kablam! error: failed to run custom build command for `teensy3-sys v0.1.0`
+kablam! process didn't exit successfully: `/target/debug/build/teensy3-sys-855dcb58a725672c/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! cargo:rustc-link-search=native=/target/debug/build/teensy3-sys-8cfb2bc49ef89cce/out
+kablam! arm-none-eabi-gcc  -Wall -g -Os -mcpu=cortex-m4 -mthumb -MMD -DF_CPU=48000000 -DUSB_SERIAL -DLAYOUT_US_ENGLISH -DUSING_MAKEFILE -DCORE_TEENSY -D__MK20DX256__ -DARDUINO=10600 -DTEENSYDUINO=121 -I.  -c -o serial3.o serial3.c
+kablam! <builtin>: recipe for target 'serial3.o' failed
+kablam! 
+kablam! --- stderr
+kablam! make: arm-none-eabi-gcc: Command not found
+kablam! make: *** [serial3.o] Error 127
+kablam! thread 'main' panicked at 'assertion failed: Command::new("make").args(&["--no-print-directory", "-C", "teensy3-core",
+kablam!                             "NO_ARDUINO=1"]).status().expect("failed to build Teensyduino libs").success()', /cargo-home/registry/src/github.com-1ecc6299db9ec823/teensy3-sys-0.1.0/build.rs:9
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f e006ca7a82e3f704b30fbed468ef8463eff77b89657be212469c1059e361385b`
+blam! e006ca7a82e3f704b30fbed468ef8463eff77b89657be212469c1059e361385b

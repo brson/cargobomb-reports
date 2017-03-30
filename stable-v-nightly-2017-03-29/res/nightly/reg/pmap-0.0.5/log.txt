@@ -1,0 +1,26 @@
+boom! testing pmap-0.0.5 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! 5e70b74e35dd190bb5f1782336d78f34226a632f1b813c6f846660c200434454
+boom! running `docker start -a 5e70b74e35dd190bb5f1782336d78f34226a632f1b813c6f846660c200434454`
+kablam!    Compiling pmap v0.0.5 (file:///source)
+kablam! error[E0412]: cannot find type `JoinGuard` in module `thread`
+kablam!   --> src/lib.rs:16:38
+kablam!    |
+kablam! 16 |         let mut threads: Vec<thread::JoinGuard<bool>> = Vec::new();
+kablam!    |                                      ^^^^^^^^^ not found in `thread`
+kablam! 
+kablam! error[E0425]: cannot find function `scoped` in module `thread`
+kablam!   --> src/lib.rs:21:31
+kablam!    |
+kablam! 21 |             let trd = thread::scoped(move|| {
+kablam!    |                               ^^^^^^ not found in `thread`
+kablam! 
+kablam! error: aborting due to 2 previous errors
+kablam! 
+kablam! error: Could not compile `pmap`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 5e70b74e35dd190bb5f1782336d78f34226a632f1b813c6f846660c200434454`
+blam! 5e70b74e35dd190bb5f1782336d78f34226a632f1b813c6f846660c200434454

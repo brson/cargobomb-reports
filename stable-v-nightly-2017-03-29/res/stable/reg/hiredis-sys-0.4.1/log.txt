@@ -1,0 +1,27 @@
+boom! testing hiredis-sys-0.4.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! a72e592622212e35ee641aab8be59f63f9db4d4b0bb17008a8c23d29c7d53174
+boom! running `docker start -a a72e592622212e35ee641aab8be59f63f9db4d4b0bb17008a8c23d29c7d53174`
+kablam!    Compiling hiredis-sys v0.4.1 (file:///source)
+kablam! error: failed to run custom build command for `hiredis-sys v0.4.1 (file:///source)`
+kablam! process didn't exit successfully: `/target/debug/build/hiredis-sys-a13fc45a1d8e0228/build-script-build` (exit code: 101)
+kablam! --- stdout
+kablam! cc -std=c99 -pedantic -c -O3 -fPIC  -Wall -W -Wstrict-prototypes -Wwrite-strings   net.c
+kablam! Makefile:156: recipe for target 'net.o' failed
+kablam! 
+kablam! --- stderr
+kablam! Assembler messages:
+kablam! Fatal error: can't create net.o: Read-only file system
+kablam! make: *** [net.o] Error 1
+kablam! thread 'main' panicked at 'assertion failed: cmd!("make").arg("install").arg("DEBUG=").arg("PREFIX=").arg(&format!("DESTDIR={}"
+kablam!                                                                       , output
+kablam!                                                                       .
+kablam!                                                                       display
+kablam!                                                                       (
+kablam!                                                                       ))).current_dir(&source).stdout(process::Stdio::inherit()).stderr(process::Stdio::inherit()).status().unwrap().success()', build.rs:28
+kablam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+kablam! 
+boom! running `docker rm -f a72e592622212e35ee641aab8be59f63f9db4d4b0bb17008a8c23d29c7d53174`
+blam! a72e592622212e35ee641aab8be59f63f9db4d4b0bb17008a8c23d29c7d53174

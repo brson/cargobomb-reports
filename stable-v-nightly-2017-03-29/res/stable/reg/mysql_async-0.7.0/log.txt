@@ -1,0 +1,294 @@
+boom! testing mysql_async-0.7.0 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! f6b69c4dfa2c853ec63cce08c2911e2f1a765ed59c404231aa4e0967f0457012
+boom! running `docker start -a f6b69c4dfa2c853ec63cce08c2911e2f1a765ed59c404231aa4e0967f0457012`
+kablam!    Compiling unreachable v0.1.1
+kablam!    Compiling thread_local v0.3.3
+kablam!    Compiling regex v0.2.1
+kablam!    Compiling mysql_async v0.7.0 (file:///source)
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate, #[warn(deprecated)] on by default
+kablam!   --> src/conn/futures/handle_local_infile.rs:21:5
+kablam!    |
+kablam! 21 | use tokio::io as tokio_io;
+kablam!    |     ^^^^^^^^^
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate, #[warn(deprecated)] on by default
+kablam!   --> src/conn/futures/handle_local_infile.rs:25:14
+kablam!    |
+kablam! 25 |     ReadData(tokio_io::Read<Box<Read>, Vec<u8>>),
+kablam!    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate, #[warn(deprecated)] on by default
+kablam!   --> src/conn/futures/handle_local_infile.rs:75:42
+kablam!    |
+kablam! 75 |                     step: Step::ReadData(tokio_io::read(reader, buf)),
+kablam!    |                                          ^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate, #[warn(deprecated)] on by default
+kablam!    --> src/conn/futures/handle_local_infile.rs:117:44
+kablam!     |
+kablam! 117 |                 self.step = Step::ReadData(tokio_io::read(reader, buf));
+kablam!     |                                            ^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate, #[warn(deprecated)] on by default
+kablam!   --> src/io/futures/write_packet.rs:17:5
+kablam!    |
+kablam! 17 | use tokio::io::write_all;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate, #[warn(deprecated)] on by default
+kablam!   --> src/io/futures/write_packet.rs:18:5
+kablam!    |
+kablam! 18 | use tokio::io::WriteAll;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate, #[warn(deprecated)] on by default
+kablam!   --> src/io/futures/write_packet.rs:24:13
+kablam!    |
+kablam! 24 |     future: WriteAll<Stream, Vec<u8>>,
+kablam!    |             ^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate, #[warn(deprecated)] on by default
+kablam!   --> src/io/futures/write_packet.rs:54:17
+kablam!    |
+kablam! 54 |         future: write_all(stream, data),
+kablam!    |                 ^^^^^^^^^
+kablam! 
+kablam! warning: method is never used: `charset`, #[warn(dead_code)] on by default
+kablam!    --> src/proto.rs:440:5
+kablam!     |
+kablam! 440 |       pub fn charset(&self) -> Option<u8> {
+kablam!     |  _____^ starting here...
+kablam! 441 | |         let offset = 1 + self.srv_ver_len + 1 + 4 + 8 + 1 + 2;
+kablam! 442 | |         if self.more_data {
+kablam! 443 | |             Some(self.packet.payload[offset])
+kablam! 444 | |         } else {
+kablam! 445 | |             None
+kablam! 446 | |         }
+kablam! 447 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `auth_plugin_name_bytes`, #[warn(dead_code)] on by default
+kablam!    --> src/proto.rs:449:5
+kablam!     |
+kablam! 449 |     pub fn auth_plugin_name_bytes(&self) -> Option<&[u8]> {
+kablam!     |     ^
+kablam! 
+kablam! warning: method is never used: `auth_plugin_name`, #[warn(dead_code)] on by default
+kablam!    --> src/proto.rs:461:5
+kablam!     |
+kablam! 461 |       pub fn auth_plugin_name(&self) -> Option<Cow<str>> {
+kablam!     |  _____^ starting here...
+kablam! 462 | |         self.auth_plugin_name_bytes().map(|bytes| String::from_utf8_lossy(bytes))
+kablam! 463 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 25.54 secs
+boom! running `docker rm -f f6b69c4dfa2c853ec63cce08c2911e2f1a765ed59c404231aa4e0967f0457012`
+blam! f6b69c4dfa2c853ec63cce08c2911e2f1a765ed59c404231aa4e0967f0457012
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! f9ad6a8879fc922112cc1992021ddf57217e0f7a2014b91a729cbbce7d574c6e
+boom! running `docker start -a f9ad6a8879fc922112cc1992021ddf57217e0f7a2014b91a729cbbce7d574c6e`
+kablam!    Compiling mysql_async v0.7.0 (file:///source)
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate, #[warn(deprecated)] on by default
+kablam!   --> src/conn/futures/handle_local_infile.rs:21:5
+kablam!    |
+kablam! 21 | use tokio::io as tokio_io;
+kablam!    |     ^^^^^^^^^
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate, #[warn(deprecated)] on by default
+kablam!   --> src/conn/futures/handle_local_infile.rs:25:14
+kablam!    |
+kablam! 25 |     ReadData(tokio_io::Read<Box<Read>, Vec<u8>>),
+kablam!    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate, #[warn(deprecated)] on by default
+kablam!   --> src/conn/futures/handle_local_infile.rs:75:42
+kablam!    |
+kablam! 75 |                     step: Step::ReadData(tokio_io::read(reader, buf)),
+kablam!    |                                          ^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate, #[warn(deprecated)] on by default
+kablam!    --> src/conn/futures/handle_local_infile.rs:117:44
+kablam!     |
+kablam! 117 |                 self.step = Step::ReadData(tokio_io::read(reader, buf));
+kablam!     |                                            ^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate, #[warn(deprecated)] on by default
+kablam!   --> src/io/futures/write_packet.rs:17:5
+kablam!    |
+kablam! 17 | use tokio::io::write_all;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate, #[warn(deprecated)] on by default
+kablam!   --> src/io/futures/write_packet.rs:18:5
+kablam!    |
+kablam! 18 | use tokio::io::WriteAll;
+kablam!    |     ^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate, #[warn(deprecated)] on by default
+kablam!   --> src/io/futures/write_packet.rs:24:13
+kablam!    |
+kablam! 24 |     future: WriteAll<Stream, Vec<u8>>,
+kablam!    |             ^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! warning: use of deprecated item: moved to the `tokio-io` crate, #[warn(deprecated)] on by default
+kablam!   --> src/io/futures/write_packet.rs:54:17
+kablam!    |
+kablam! 54 |         future: write_all(stream, data),
+kablam!    |                 ^^^^^^^^^
+kablam! 
+kablam! warning: method is never used: `charset`, #[warn(dead_code)] on by default
+kablam!    --> src/proto.rs:440:5
+kablam!     |
+kablam! 440 |       pub fn charset(&self) -> Option<u8> {
+kablam!     |  _____^ starting here...
+kablam! 441 | |         let offset = 1 + self.srv_ver_len + 1 + 4 + 8 + 1 + 2;
+kablam! 442 | |         if self.more_data {
+kablam! 443 | |             Some(self.packet.payload[offset])
+kablam! 444 | |         } else {
+kablam! 445 | |             None
+kablam! 446 | |         }
+kablam! 447 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam! warning: method is never used: `auth_plugin_name_bytes`, #[warn(dead_code)] on by default
+kablam!    --> src/proto.rs:449:5
+kablam!     |
+kablam! 449 |     pub fn auth_plugin_name_bytes(&self) -> Option<&[u8]> {
+kablam!     |     ^
+kablam! 
+kablam! warning: method is never used: `auth_plugin_name`, #[warn(dead_code)] on by default
+kablam!    --> src/proto.rs:461:5
+kablam!     |
+kablam! 461 |       pub fn auth_plugin_name(&self) -> Option<Cow<str>> {
+kablam!     |  _____^ starting here...
+kablam! 462 | |         self.auth_plugin_name_bytes().map(|bytes| String::from_utf8_lossy(bytes))
+kablam! 463 | |     }
+kablam!     | |_____^ ...ending here
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 47.49 secs
+boom! running `docker rm -f f9ad6a8879fc922112cc1992021ddf57217e0f7a2014b91a729cbbce7d574c6e`
+blam! f9ad6a8879fc922112cc1992021ddf57217e0f7a2014b91a729cbbce7d574c6e
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! d05d86e2e21a523e6f5fe206fdab907c3a65315862695233109836b6be88a012
+boom! running `docker start -a d05d86e2e21a523e6f5fe206fdab907c3a65315862695233109836b6be88a012`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/mysql_async-e13e14fd1ddef30e
+blam! 
+blam! running 25 tests
+blam! test conn::named_params::test::should_allow_numbers_in_param_name ... ok
+blam! test conn::named_params::test::should_parse_named_params ... ok
+blam! test conn::named_params::test::special_characters_in_query ... ok
+blam! test conn::pool::test::should_connect ... FAILED
+blam! test conn::test::should_connect ... FAILED
+blam! test conn::pool::test::should_hold_bounds ... FAILED
+blam! test conn::test::should_execute_init_queryes_on_new_connection ... FAILED
+blam! test conn::test::should_drop_query ... FAILED
+blam! test conn::test::should_handle_local_infile ... FAILED
+blam! test conn::test::should_first_exec_statement ... FAILED
+blam! test conn::test::should_execute_statement ... FAILED
+blam! test conn::test::should_handle_mutliresult_set ... FAILED
+blam! test conn::test::should_iterate_over_resultset ... FAILED
+blam! test conn::test::should_map_resultset ... FAILED
+blam! test conn::test::should_perform_queries ... FAILED
+blam! test conn::test::should_reset_the_connection ... FAILED
+blam! test conn::test::should_prepare_statement ... FAILED
+blam! test conn::test::should_prep_exec_statement ... FAILED
+blam! test conn::test::should_use_statement_cache ... FAILED
+blam! test conn::test::should_reduce_resultset ... FAILED
+blam! test opts::test::should_convert_url_into_opts ... ok
+blam! test conn::test::should_run_transactions ... FAILED
+blam! test opts::test::should_panic_on_invalid_url ... ok
+blam! test opts::test::should_panic_on_invalid_scheme ... ok
+blam! test opts::test::should_panic_on_unknown_query_param ... ok
+blam! 
+blam! failures:
+blam! 
+blam! ---- conn::pool::test::should_connect stdout ----
+blam! 	thread 'conn::pool::test::should_connect' panicked at 'called `Result::unwrap()` on an `Err` value: Error(Io(Error { repr: Os { code: 111, message: "Connection refused" } }), State { next_error: None, backtrace: None })', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+blam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+blam! 
+blam! ---- conn::test::should_connect stdout ----
+blam! 	thread 'conn::test::should_connect' panicked at 'called `Result::unwrap()` on an `Err` value: Error(Io(Error { repr: Os { code: 111, message: "Connection refused" } }), State { next_error: None, backtrace: None })', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+blam! 
+blam! ---- conn::pool::test::should_hold_bounds stdout ----
+blam! 	thread 'conn::pool::test::should_hold_bounds' panicked at 'called `Result::unwrap()` on an `Err` value: Error(Io(Error { repr: Os { code: 111, message: "Connection refused" } }), State { next_error: None, backtrace: None })', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+blam! 
+blam! ---- conn::test::should_execute_init_queryes_on_new_connection stdout ----
+blam! 	thread 'conn::test::should_execute_init_queryes_on_new_connection' panicked at 'called `Result::unwrap()` on an `Err` value: Error(Io(Error { repr: Os { code: 111, message: "Connection refused" } }), State { next_error: None, backtrace: None })', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+blam! 
+blam! ---- conn::test::should_drop_query stdout ----
+blam! 	thread 'conn::test::should_drop_query' panicked at 'called `Result::unwrap()` on an `Err` value: Error(Io(Error { repr: Os { code: 111, message: "Connection refused" } }), State { next_error: None, backtrace: None })', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+blam! 
+blam! ---- conn::test::should_handle_local_infile stdout ----
+blam! 	thread 'conn::test::should_handle_local_infile' panicked at 'called `Result::unwrap()` on an `Err` value: Error(Io(Error { repr: Os { code: 111, message: "Connection refused" } }), State { next_error: None, backtrace: None })', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+blam! 
+blam! ---- conn::test::should_first_exec_statement stdout ----
+blam! 	thread 'conn::test::should_first_exec_statement' panicked at 'called `Result::unwrap()` on an `Err` value: Error(Io(Error { repr: Os { code: 111, message: "Connection refused" } }), State { next_error: None, backtrace: None })', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+blam! 
+blam! ---- conn::test::should_execute_statement stdout ----
+blam! 	thread 'conn::test::should_execute_statement' panicked at 'called `Result::unwrap()` on an `Err` value: Error(Io(Error { repr: Os { code: 111, message: "Connection refused" } }), State { next_error: None, backtrace: None })', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+blam! 
+blam! ---- conn::test::should_handle_mutliresult_set stdout ----
+blam! 	thread 'conn::test::should_handle_mutliresult_set' panicked at 'called `Result::unwrap()` on an `Err` value: Error(Io(Error { repr: Os { code: 111, message: "Connection refused" } }), State { next_error: None, backtrace: None })', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+blam! 
+blam! ---- conn::test::should_iterate_over_resultset stdout ----
+blam! 	thread 'conn::test::should_iterate_over_resultset' panicked at 'called `Result::unwrap()` on an `Err` value: Error(Io(Error { repr: Os { code: 111, message: "Connection refused" } }), State { next_error: None, backtrace: None })', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+blam! 
+blam! ---- conn::test::should_map_resultset stdout ----
+blam! 	thread 'conn::test::should_map_resultset' panicked at 'called `Result::unwrap()` on an `Err` value: Error(Io(Error { repr: Os { code: 111, message: "Connection refused" } }), State { next_error: None, backtrace: None })', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+blam! 
+blam! ---- conn::test::should_perform_queries stdout ----
+blam! 	thread 'conn::test::should_perform_queries' panicked at 'called `Result::unwrap()` on an `Err` value: Error(Io(Error { repr: Os { code: 111, message: "Connection refused" } }), State { next_error: None, backtrace: None })', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+blam! 
+blam! ---- conn::test::should_reset_the_connection stdout ----
+blam! 	thread 'conn::test::should_reset_the_connection' panicked at 'called `Result::unwrap()` on an `Err` value: Error(Io(Error { repr: Os { code: 111, message: "Connection refused" } }), State { next_error: None, backtrace: None })', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+blam! 
+blam! ---- conn::test::should_prepare_statement stdout ----
+blam! 	thread 'conn::test::should_prepare_statement' panicked at 'called `Result::unwrap()` on an `Err` value: Error(Io(Error { repr: Os { code: 111, message: "Connection refused" } }), State { next_error: None, backtrace: None })', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+blam! 
+blam! ---- conn::test::should_prep_exec_statement stdout ----
+blam! 	thread 'conn::test::should_prep_exec_statement' panicked at 'called `Result::unwrap()` on an `Err` value: Error(Io(Error { repr: Os { code: 111, message: "Connection refused" } }), State { next_error: None, backtrace: None })', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+blam! 
+blam! ---- conn::test::should_use_statement_cache stdout ----
+blam! 	thread 'conn::test::should_use_statement_cache' panicked at 'called `Result::unwrap()` on an `Err` value: Error(Io(Error { repr: Os { code: 111, message: "Connection refused" } }), State { next_error: None, backtrace: None })', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+blam! 
+blam! ---- conn::test::should_reduce_resultset stdout ----
+blam! 	thread 'conn::test::should_reduce_resultset' panicked at 'called `Result::unwrap()` on an `Err` value: Error(Io(Error { repr: Os { code: 111, message: "Connection refused" } }), State { next_error: None, backtrace: None })', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+blam! 
+blam! ---- conn::test::should_run_transactions stdout ----
+blam! 	thread 'conn::test::should_run_transactions' panicked at 'called `Result::unwrap()` on an `Err` value: Error(Io(Error { repr: Os { code: 111, message: "Connection refused" } }), State { next_error: None, backtrace: None })', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+blam! 
+blam! 
+blam! failures:
+blam!     conn::pool::test::should_connect
+blam!     conn::pool::test::should_hold_bounds
+blam!     conn::test::should_connect
+blam!     conn::test::should_drop_query
+blam!     conn::test::should_execute_init_queryes_on_new_connection
+blam!     conn::test::should_execute_statement
+blam!     conn::test::should_first_exec_statement
+blam!     conn::test::should_handle_local_infile
+blam!     conn::test::should_handle_mutliresult_set
+blam!     conn::test::should_iterate_over_resultset
+blam!     conn::test::should_map_resultset
+blam!     conn::test::should_perform_queries
+blam!     conn::test::should_prep_exec_statement
+blam!     conn::test::should_prepare_statement
+blam!     conn::test::should_reduce_resultset
+blam!     conn::test::should_reset_the_connection
+blam!     conn::test::should_run_transactions
+blam!     conn::test::should_use_statement_cache
+blam! 
+blam! test result: FAILED. 7 passed; 18 failed; 0 ignored; 0 measured
+blam! 
+kablam! error: test failed
+boom! running `docker rm -f d05d86e2e21a523e6f5fe206fdab907c3a65315862695233109836b6be88a012`
+blam! d05d86e2e21a523e6f5fe206fdab907c3a65315862695233109836b6be88a012

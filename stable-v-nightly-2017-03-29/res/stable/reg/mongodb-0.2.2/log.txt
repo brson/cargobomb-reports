@@ -1,0 +1,525 @@
+boom! testing mongodb-0.2.2 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! fd923af865cb2018885b71f84ad56929c23d0fdd9057973d21790c816a49fb25
+boom! running `docker start -a fd923af865cb2018885b71f84ad56929c23d0fdd9057973d21790c816a49fb25`
+kablam!    Compiling bson v0.4.4
+kablam!    Compiling mongodb v0.2.2 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 15.71 secs
+boom! running `docker rm -f fd923af865cb2018885b71f84ad56929c23d0fdd9057973d21790c816a49fb25`
+blam! fd923af865cb2018885b71f84ad56929c23d0fdd9057973d21790c816a49fb25
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! f4bfc106ee6bd82168ca7f14ced52e6a9bc3bbc57d1b265329437004f0b9ce29
+boom! running `docker start -a f4bfc106ee6bd82168ca7f14ced52e6a9bc3bbc57d1b265329437004f0b9ce29`
+kablam!    Compiling mongodb v0.2.2 (file:///source)
+kablam! error[E0308]: mismatched types
+kablam!   --> tests/json/crud/reader.rs:83:31
+kablam!    |
+kablam! 83 |         match Bson::from_json(&json) {
+kablam!    |                               ^^^^^ expected enum `serde_json::value::Value`, found enum `rustc_serialize::json::Json`
+kablam!    |
+kablam!    = note: expected type `&serde_json::value::Value`
+kablam!               found type `&rustc_serialize::json::Json`
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:59:17: 59:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!   --> tests/json/crud/arguments.rs:61:56
+kablam!    |
+kablam! 61 |           let array = val_or_err!(object.get("pipeline").and_then(f),
+kablam!    |  _____________________- starting here...                 ^^^^^^^^
+kablam! 62 | |                                    Some(Bson::Array(arr)) => arr,
+kablam! 63 | |                                    "`aggregate` requires pipeline array");
+kablam!    | |_________________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:90:17: 90:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!   --> tests/json/crud/arguments.rs:91:49
+kablam!    |
+kablam! 91 |         let filter = match object.get("filter").and_then(f) {
+kablam!    |                                                 ^^^^^^^^
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:103:17: 103:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/arguments.rs:104:57
+kablam!     |
+kablam! 104 |           let document = val_or_err!(object.get("filter").and_then(f),
+kablam!     |  ________________________- starting here...               ^^^^^^^^
+kablam! 105 | |                                    Some(Bson::Document(doc)) => doc,
+kablam! 106 | |                                    "`delete` requires document");
+kablam!     | |________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:115:17: 115:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/arguments.rs:116:62
+kablam!     |
+kablam! 116 |           let field_name = val_or_err!(object.get("fieldName").and_then(f),
+kablam!     |  __________________________- starting here...                  ^^^^^^^^
+kablam! 117 | |                                      Some(Bson::String(ref s)) => s.to_owned(),
+kablam! 118 | |                                      "`distinct` requires field name");
+kablam!     | |______________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:120:17: 120:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/arguments.rs:121:49
+kablam!     |
+kablam! 121 |         let filter = match object.get("filter").and_then(f) {
+kablam!     |                                                 ^^^^^^^^
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:135:17: 135:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/arguments.rs:136:49
+kablam!     |
+kablam! 136 |         let filter = match object.get("filter").and_then(f) {
+kablam!     |                                                 ^^^^^^^^
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:150:17: 150:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/arguments.rs:151:55
+kablam!     |
+kablam! 151 |           let filter = val_or_err!(object.get("filter").and_then(f),
+kablam!     |  ______________________- starting here...               ^^^^^^^^
+kablam! 152 | |                                  Some(Bson::Document(doc)) => doc,
+kablam! 153 | |                                  "`find_one_and_delete` requires filter document");
+kablam!     | |__________________________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:164:17: 164:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/arguments.rs:165:55
+kablam!     |
+kablam! 165 |           let filter = val_or_err!(object.get("filter").and_then(f),
+kablam!     |  ______________________- starting here...               ^^^^^^^^
+kablam! 166 | |                                  Some(Bson::Document(doc)) => doc,
+kablam! 167 | |                                  "`find_one_and_update` requires filter document");
+kablam!     | |__________________________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:169:17: 169:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/arguments.rs:170:65
+kablam!     |
+kablam! 170 |           let replacement = val_or_err!(object.get("replacement").and_then(f),
+kablam!     |  ___________________________- starting here...                    ^^^^^^^^
+kablam! 171 | |                                  Some(Bson::Document(doc)) => doc,
+kablam! 172 | |                                  "`find_one_and_replace` requires replacement document");
+kablam!     | |________________________________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:184:17: 184:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/arguments.rs:185:55
+kablam!     |
+kablam! 185 |           let filter = val_or_err!(object.get("filter").and_then(f),
+kablam!     |  ______________________- starting here...               ^^^^^^^^
+kablam! 186 | |                                  Some(Bson::Document(doc)) => doc,
+kablam! 187 | |                                  "`find_one_and_update` requires filter document");
+kablam!     | |__________________________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:189:17: 189:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/arguments.rs:190:55
+kablam!     |
+kablam! 190 |           let update = val_or_err!(object.get("update").and_then(f),
+kablam!     |  ______________________- starting here...               ^^^^^^^^
+kablam! 191 | |                                  Some(Bson::Document(doc)) => doc,
+kablam! 192 | |                                  "`find_one_and_update` requires update document");
+kablam!     | |__________________________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:202:17: 202:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/arguments.rs:204:57
+kablam!     |
+kablam! 204 |           let bsons = val_or_err!(object.get("documents").and_then(f),
+kablam!     |  _____________________- starting here...                  ^^^^^^^^
+kablam! 205 | |                                 Some(Bson::Array(arr)) => arr,
+kablam! 206 | |                                 "`insert_many` requires documents");
+kablam!     | |___________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:221:17: 221:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/arguments.rs:222:59
+kablam!     |
+kablam! 222 |           let document = val_or_err!(object.get("document").and_then(f),
+kablam!     |  ________________________- starting here...                 ^^^^^^^^
+kablam! 223 | |                                    Some(Bson::Document(doc)) => doc,
+kablam! 224 | |                                    "`delete_one` requires document");
+kablam!     | |____________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:230:17: 230:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/arguments.rs:231:55
+kablam!     |
+kablam! 231 |           let filter = val_or_err!(object.get("filter").and_then(f),
+kablam!     |  ______________________- starting here...               ^^^^^^^^
+kablam! 232 | |                                  Some(Bson::Document(doc)) => doc,
+kablam! 233 | |                                  "`update` requires filter document");
+kablam!     | |_____________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:235:17: 235:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/arguments.rs:236:65
+kablam!     |
+kablam! 236 |           let replacement = val_or_err!(object.get("replacement").and_then(f),
+kablam!     |  ___________________________- starting here...                    ^^^^^^^^
+kablam! 237 | |                                  Some(Bson::Document(doc)) => doc,
+kablam! 238 | |                                  "`update` requires update document");
+kablam!     | |_____________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:240:17: 240:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/arguments.rs:241:54
+kablam!     |
+kablam! 241 |           let upsert = var_match!(object.get("upsert").and_then(f),
+kablam!     |  ______________________- starting here...              ^^^^^^^^
+kablam! 242 | |                                 Some(Bson::Boolean(b)) => b);
+kablam!     | |____________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:252:17: 252:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/arguments.rs:253:55
+kablam!     |
+kablam! 253 |           let filter = val_or_err!(object.get("filter").and_then(f),
+kablam!     |  ______________________- starting here...               ^^^^^^^^
+kablam! 254 | |                                  Some(Bson::Document(doc)) => doc,
+kablam! 255 | |                                  "`update` requires filter document");
+kablam!     | |_____________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:257:17: 257:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/arguments.rs:258:55
+kablam!     |
+kablam! 258 |           let update = val_or_err!(object.get("update").and_then(f),
+kablam!     |  ______________________- starting here...               ^^^^^^^^
+kablam! 259 | |                                  Some(Bson::Document(doc)) => doc,
+kablam! 260 | |                                  "`update` requires update document");
+kablam!     | |_____________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:262:17: 262:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/arguments.rs:263:54
+kablam!     |
+kablam! 263 |           let upsert = var_match!(object.get("upsert").and_then(f),
+kablam!     |  ______________________- starting here...              ^^^^^^^^
+kablam! 264 | |                                 Some(Bson::Boolean(b)) => b);
+kablam!     | |____________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/options.rs:50:17: 50:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!   --> tests/json/crud/options.rs:51:49
+kablam!    |
+kablam! 51 |         options.sort = match object.get("sort").and_then(f) {
+kablam!    |                                                 ^^^^^^^^
+kablam! 
+kablam! error[E0281]: type mismatch: the type `fn(&serde_json::value::Value) -> bson::Bson {bson::Bson::from_json}` implements the trait `for<'r> std::ops::FnOnce<(&'r serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!   --> tests/json/crud/options.rs:85:76
+kablam!    |
+kablam! 85 |         if let Some(Bson::Document(projection)) = object.get("projection").map(Bson::from_json) {
+kablam!    |                                                                            ^^^
+kablam! 
+kablam! error[E0281]: type mismatch: the type `fn(&serde_json::value::Value) -> bson::Bson {bson::Bson::from_json}` implements the trait `for<'r> std::ops::FnOnce<(&'r serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!   --> tests/json/crud/options.rs:89:64
+kablam!    |
+kablam! 89 |         if let Some(Bson::Document(sort)) = object.get("sort").map(Bson::from_json) {
+kablam!    |                                                                ^^^
+kablam! 
+kablam! error[E0281]: type mismatch: the type `fn(&serde_json::value::Value) -> bson::Bson {bson::Bson::from_json}` implements the trait `for<'r> std::ops::FnOnce<(&'r serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/options.rs:101:76
+kablam!     |
+kablam! 101 |         if let Some(Bson::Document(projection)) = object.get("projection").map(Bson::from_json) {
+kablam!     |                                                                            ^^^
+kablam! 
+kablam! error[E0281]: type mismatch: the type `fn(&serde_json::value::Value) -> bson::Bson {bson::Bson::from_json}` implements the trait `for<'r> std::ops::FnOnce<(&'r serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/options.rs:105:69
+kablam!     |
+kablam! 105 |         if let Some(Bson::String(s)) = object.get("returnDocument").map(Bson::from_json) {
+kablam!     |                                                                     ^^^
+kablam! 
+kablam! error[E0281]: type mismatch: the type `fn(&serde_json::value::Value) -> bson::Bson {bson::Bson::from_json}` implements the trait `for<'r> std::ops::FnOnce<(&'r serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/options.rs:114:64
+kablam!     |
+kablam! 114 |         if let Some(Bson::Document(sort)) = object.get("sort").map(Bson::from_json) {
+kablam!     |                                                                ^^^
+kablam! 
+kablam! error[E0281]: type mismatch: the type `fn(&serde_json::value::Value) -> bson::Bson {bson::Bson::from_json}` implements the trait `for<'r> std::ops::FnOnce<(&'r serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/options.rs:118:67
+kablam!     |
+kablam! 118 |         if let Some(Bson::Boolean(upsert)) = object.get("upsert").map(Bson::from_json) {
+kablam!     |                                                                   ^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> tests/json/crud/outcome.rs:17:43
+kablam!    |
+kablam! 17 |             Some(json) => Bson::from_json(json),
+kablam!    |                                           ^^^^ expected enum `serde_json::value::Value`, found enum `rustc_serialize::json::Json`
+kablam!    |
+kablam!    = note: expected type `&serde_json::value::Value`
+kablam!               found type `&rustc_serialize::json::Json`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> tests/json/crud/outcome.rs:43:35
+kablam!    |
+kablam! 43 |             match Bson::from_json(json) {
+kablam!    |                                   ^^^^ expected enum `serde_json::value::Value`, found enum `rustc_serialize::json::Json`
+kablam!    |
+kablam!    = note: expected type `&serde_json::value::Value`
+kablam!               found type `&rustc_serialize::json::Json`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> tests/json/sdam/responses.rs:29:58
+kablam!    |
+kablam! 27 |               let ismaster = val_or_err!(
+kablam!    |  ____________________________- starting here...
+kablam! 28 | |                 inner_array[1],
+kablam! 29 | |                 Json::Object(ref obj) => Bson::from_json(&Json::Object(obj.clone())),
+kablam!    | |                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `serde_json::value::Value`, found enum `rustc_serialize::json::Json`
+kablam! 30 | |                 "Response item must contain the ismaster object as \
+kablam! 31 | |                 the second argument.");
+kablam!    | |______________________________________- ...ending here: in this macro invocation
+kablam!    |
+kablam!    = note: expected type `&serde_json::value::Value`
+kablam!               found type `&rustc_serialize::json::Json`
+kablam! 
+kablam! error: aborting due to 30 previous errors
+kablam! 
+kablam! error: Could not compile `mongodb`.
+blam! Build failed, waiting for other jobs to finish...
+kablam! error: build failed
+boom! running `docker rm -f f4bfc106ee6bd82168ca7f14ced52e6a9bc3bbc57d1b265329437004f0b9ce29`
+blam! f4bfc106ee6bd82168ca7f14ced52e6a9bc3bbc57d1b265329437004f0b9ce29
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! 9fbad6e3d1eeb32a145fc15711b4a357e6b578461dd9a97ff498363e62111a08
+boom! running `docker start -a 9fbad6e3d1eeb32a145fc15711b4a357e6b578461dd9a97ff498363e62111a08`
+kablam!    Compiling mongodb v0.2.2 (file:///source)
+kablam! error[E0308]: mismatched types
+kablam!   --> tests/json/crud/reader.rs:83:31
+kablam!    |
+kablam! 83 |         match Bson::from_json(&json) {
+kablam!    |                               ^^^^^ expected enum `serde_json::value::Value`, found enum `rustc_serialize::json::Json`
+kablam!    |
+kablam!    = note: expected type `&serde_json::value::Value`
+kablam!               found type `&rustc_serialize::json::Json`
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:59:17: 59:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!   --> tests/json/crud/arguments.rs:61:56
+kablam!    |
+kablam! 61 |           let array = val_or_err!(object.get("pipeline").and_then(f),
+kablam!    |  _____________________- starting here...                 ^^^^^^^^
+kablam! 62 | |                                    Some(Bson::Array(arr)) => arr,
+kablam! 63 | |                                    "`aggregate` requires pipeline array");
+kablam!    | |_________________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:90:17: 90:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!   --> tests/json/crud/arguments.rs:91:49
+kablam!    |
+kablam! 91 |         let filter = match object.get("filter").and_then(f) {
+kablam!    |                                                 ^^^^^^^^
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:103:17: 103:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/arguments.rs:104:57
+kablam!     |
+kablam! 104 |           let document = val_or_err!(object.get("filter").and_then(f),
+kablam!     |  ________________________- starting here...               ^^^^^^^^
+kablam! 105 | |                                    Some(Bson::Document(doc)) => doc,
+kablam! 106 | |                                    "`delete` requires document");
+kablam!     | |________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:115:17: 115:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/arguments.rs:116:62
+kablam!     |
+kablam! 116 |           let field_name = val_or_err!(object.get("fieldName").and_then(f),
+kablam!     |  __________________________- starting here...                  ^^^^^^^^
+kablam! 117 | |                                      Some(Bson::String(ref s)) => s.to_owned(),
+kablam! 118 | |                                      "`distinct` requires field name");
+kablam!     | |______________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:120:17: 120:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/arguments.rs:121:49
+kablam!     |
+kablam! 121 |         let filter = match object.get("filter").and_then(f) {
+kablam!     |                                                 ^^^^^^^^
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:135:17: 135:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/arguments.rs:136:49
+kablam!     |
+kablam! 136 |         let filter = match object.get("filter").and_then(f) {
+kablam!     |                                                 ^^^^^^^^
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:150:17: 150:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/arguments.rs:151:55
+kablam!     |
+kablam! 151 |           let filter = val_or_err!(object.get("filter").and_then(f),
+kablam!     |  ______________________- starting here...               ^^^^^^^^
+kablam! 152 | |                                  Some(Bson::Document(doc)) => doc,
+kablam! 153 | |                                  "`find_one_and_delete` requires filter document");
+kablam!     | |__________________________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:164:17: 164:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/arguments.rs:165:55
+kablam!     |
+kablam! 165 |           let filter = val_or_err!(object.get("filter").and_then(f),
+kablam!     |  ______________________- starting here...               ^^^^^^^^
+kablam! 166 | |                                  Some(Bson::Document(doc)) => doc,
+kablam! 167 | |                                  "`find_one_and_update` requires filter document");
+kablam!     | |__________________________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:169:17: 169:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/arguments.rs:170:65
+kablam!     |
+kablam! 170 |           let replacement = val_or_err!(object.get("replacement").and_then(f),
+kablam!     |  ___________________________- starting here...                    ^^^^^^^^
+kablam! 171 | |                                  Some(Bson::Document(doc)) => doc,
+kablam! 172 | |                                  "`find_one_and_replace` requires replacement document");
+kablam!     | |________________________________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:184:17: 184:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/arguments.rs:185:55
+kablam!     |
+kablam! 185 |           let filter = val_or_err!(object.get("filter").and_then(f),
+kablam!     |  ______________________- starting here...               ^^^^^^^^
+kablam! 186 | |                                  Some(Bson::Document(doc)) => doc,
+kablam! 187 | |                                  "`find_one_and_update` requires filter document");
+kablam!     | |__________________________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:189:17: 189:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/arguments.rs:190:55
+kablam!     |
+kablam! 190 |           let update = val_or_err!(object.get("update").and_then(f),
+kablam!     |  ______________________- starting here...               ^^^^^^^^
+kablam! 191 | |                                  Some(Bson::Document(doc)) => doc,
+kablam! 192 | |                                  "`find_one_and_update` requires update document");
+kablam!     | |__________________________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:202:17: 202:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/arguments.rs:204:57
+kablam!     |
+kablam! 204 |           let bsons = val_or_err!(object.get("documents").and_then(f),
+kablam!     |  _____________________- starting here...                  ^^^^^^^^
+kablam! 205 | |                                 Some(Bson::Array(arr)) => arr,
+kablam! 206 | |                                 "`insert_many` requires documents");
+kablam!     | |___________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:221:17: 221:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/arguments.rs:222:59
+kablam!     |
+kablam! 222 |           let document = val_or_err!(object.get("document").and_then(f),
+kablam!     |  ________________________- starting here...                 ^^^^^^^^
+kablam! 223 | |                                    Some(Bson::Document(doc)) => doc,
+kablam! 224 | |                                    "`delete_one` requires document");
+kablam!     | |____________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:230:17: 230:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/arguments.rs:231:55
+kablam!     |
+kablam! 231 |           let filter = val_or_err!(object.get("filter").and_then(f),
+kablam!     |  ______________________- starting here...               ^^^^^^^^
+kablam! 232 | |                                  Some(Bson::Document(doc)) => doc,
+kablam! 233 | |                                  "`update` requires filter document");
+kablam!     | |_____________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:235:17: 235:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/arguments.rs:236:65
+kablam!     |
+kablam! 236 |           let replacement = val_or_err!(object.get("replacement").and_then(f),
+kablam!     |  ___________________________- starting here...                    ^^^^^^^^
+kablam! 237 | |                                  Some(Bson::Document(doc)) => doc,
+kablam! 238 | |                                  "`update` requires update document");
+kablam!     | |_____________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:240:17: 240:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/arguments.rs:241:54
+kablam!     |
+kablam! 241 |           let upsert = var_match!(object.get("upsert").and_then(f),
+kablam!     |  ______________________- starting here...              ^^^^^^^^
+kablam! 242 | |                                 Some(Bson::Boolean(b)) => b);
+kablam!     | |____________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:252:17: 252:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/arguments.rs:253:55
+kablam!     |
+kablam! 253 |           let filter = val_or_err!(object.get("filter").and_then(f),
+kablam!     |  ______________________- starting here...               ^^^^^^^^
+kablam! 254 | |                                  Some(Bson::Document(doc)) => doc,
+kablam! 255 | |                                  "`update` requires filter document");
+kablam!     | |_____________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:257:17: 257:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/arguments.rs:258:55
+kablam!     |
+kablam! 258 |           let update = val_or_err!(object.get("update").and_then(f),
+kablam!     |  ______________________- starting here...               ^^^^^^^^
+kablam! 259 | |                                  Some(Bson::Document(doc)) => doc,
+kablam! 260 | |                                  "`update` requires update document");
+kablam!     | |_____________________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/arguments.rs:262:17: 262:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/arguments.rs:263:54
+kablam!     |
+kablam! 263 |           let upsert = var_match!(object.get("upsert").and_then(f),
+kablam!     |  ______________________- starting here...              ^^^^^^^^
+kablam! 264 | |                                 Some(Bson::Boolean(b)) => b);
+kablam!     | |____________________________________________________________- ...ending here: in this macro invocation
+kablam! 
+kablam! error[E0281]: type mismatch: the type `[closure@tests/json/crud/options.rs:50:17: 50:45]` implements the trait `std::ops::FnOnce<(&serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!   --> tests/json/crud/options.rs:51:49
+kablam!    |
+kablam! 51 |         options.sort = match object.get("sort").and_then(f) {
+kablam!    |                                                 ^^^^^^^^
+kablam! 
+kablam! error[E0281]: type mismatch: the type `fn(&serde_json::value::Value) -> bson::Bson {bson::Bson::from_json}` implements the trait `for<'r> std::ops::FnOnce<(&'r serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!   --> tests/json/crud/options.rs:85:76
+kablam!    |
+kablam! 85 |         if let Some(Bson::Document(projection)) = object.get("projection").map(Bson::from_json) {
+kablam!    |                                                                            ^^^
+kablam! 
+kablam! error[E0281]: type mismatch: the type `fn(&serde_json::value::Value) -> bson::Bson {bson::Bson::from_json}` implements the trait `for<'r> std::ops::FnOnce<(&'r serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!   --> tests/json/crud/options.rs:89:64
+kablam!    |
+kablam! 89 |         if let Some(Bson::Document(sort)) = object.get("sort").map(Bson::from_json) {
+kablam!    |                                                                ^^^
+kablam! 
+kablam! error[E0281]: type mismatch: the type `fn(&serde_json::value::Value) -> bson::Bson {bson::Bson::from_json}` implements the trait `for<'r> std::ops::FnOnce<(&'r serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/options.rs:101:76
+kablam!     |
+kablam! 101 |         if let Some(Bson::Document(projection)) = object.get("projection").map(Bson::from_json) {
+kablam!     |                                                                            ^^^
+kablam! 
+kablam! error[E0281]: type mismatch: the type `fn(&serde_json::value::Value) -> bson::Bson {bson::Bson::from_json}` implements the trait `for<'r> std::ops::FnOnce<(&'r serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/options.rs:105:69
+kablam!     |
+kablam! 105 |         if let Some(Bson::String(s)) = object.get("returnDocument").map(Bson::from_json) {
+kablam!     |                                                                     ^^^
+kablam! 
+kablam! error[E0281]: type mismatch: the type `fn(&serde_json::value::Value) -> bson::Bson {bson::Bson::from_json}` implements the trait `for<'r> std::ops::FnOnce<(&'r serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/options.rs:114:64
+kablam!     |
+kablam! 114 |         if let Some(Bson::Document(sort)) = object.get("sort").map(Bson::from_json) {
+kablam!     |                                                                ^^^
+kablam! 
+kablam! error[E0281]: type mismatch: the type `fn(&serde_json::value::Value) -> bson::Bson {bson::Bson::from_json}` implements the trait `for<'r> std::ops::FnOnce<(&'r serde_json::value::Value,)>`, but the trait `std::ops::FnOnce<(&rustc_serialize::json::Json,)>` is required (expected enum `rustc_serialize::json::Json`, found enum `serde_json::value::Value`)
+kablam!    --> tests/json/crud/options.rs:118:67
+kablam!     |
+kablam! 118 |         if let Some(Bson::Boolean(upsert)) = object.get("upsert").map(Bson::from_json) {
+kablam!     |                                                                   ^^^
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> tests/json/crud/outcome.rs:17:43
+kablam!    |
+kablam! 17 |             Some(json) => Bson::from_json(json),
+kablam!    |                                           ^^^^ expected enum `serde_json::value::Value`, found enum `rustc_serialize::json::Json`
+kablam!    |
+kablam!    = note: expected type `&serde_json::value::Value`
+kablam!               found type `&rustc_serialize::json::Json`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> tests/json/crud/outcome.rs:43:35
+kablam!    |
+kablam! 43 |             match Bson::from_json(json) {
+kablam!    |                                   ^^^^ expected enum `serde_json::value::Value`, found enum `rustc_serialize::json::Json`
+kablam!    |
+kablam!    = note: expected type `&serde_json::value::Value`
+kablam!               found type `&rustc_serialize::json::Json`
+kablam! 
+kablam! error[E0308]: mismatched types
+kablam!   --> tests/json/sdam/responses.rs:29:58
+kablam!    |
+kablam! 27 |               let ismaster = val_or_err!(
+kablam!    |  ____________________________- starting here...
+kablam! 28 | |                 inner_array[1],
+kablam! 29 | |                 Json::Object(ref obj) => Bson::from_json(&Json::Object(obj.clone())),
+kablam!    | |                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `serde_json::value::Value`, found enum `rustc_serialize::json::Json`
+kablam! 30 | |                 "Response item must contain the ismaster object as \
+kablam! 31 | |                 the second argument.");
+kablam!    | |______________________________________- ...ending here: in this macro invocation
+kablam!    |
+kablam!    = note: expected type `&serde_json::value::Value`
+kablam!               found type `&rustc_serialize::json::Json`
+kablam! 
+kablam! error: aborting due to 30 previous errors
+kablam! 
+kablam! error: Could not compile `mongodb`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 9fbad6e3d1eeb32a145fc15711b4a357e6b578461dd9a97ff498363e62111a08`
+blam! 9fbad6e3d1eeb32a145fc15711b4a357e6b578461dd9a97ff498363e62111a08

@@ -1,0 +1,34 @@
+boom! testing bytestool-0.2.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! cbfbd0c73a62344edce64c3be517ab1729622556dc76d839b598ec55d6863b1d
+boom! running `docker start -a cbfbd0c73a62344edce64c3be517ab1729622556dc76d839b598ec55d6863b1d`
+kablam!    Compiling bytestool v0.2.0 (file:///source)
+kablam! error: no associated item named `Vec` found for type `syntax::ast::ExprKind` in the current scope
+kablam!    --> src/lib.rs:125:10
+kablam!     |
+kablam! 125 |         &ast::ExprKind::Vec(ref v) => return extract_vec_from_vec(cx, sp, &(*v).clone()),
+kablam!     |          ^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam! 
+kablam! error: no method named `iter` found for type `syntax::tokenstream::ThinTokenStream` in the current scope
+kablam!    --> src/lib.rs:157:32
+kablam!     |
+kablam! 157 |     for (idx, elem) in del.tts.iter().enumerate() {
+kablam!     |                                ^^^^
+kablam! 
+kablam! error: no method named `as_ref` found for type `&syntax::tokenstream::Delimited` in the current scope
+kablam!    --> src/lib.rs:223:65
+kablam!     |
+kablam! 223 |             return extract_vec_from_delimited(cx, sp, delimited.as_ref())
+kablam!     |                                                                 ^^^^^^
+kablam!     |
+kablam!     = note: the method `as_ref` exists but the following trait bounds were not satisfied: `syntax::tokenstream::Delimited : std::convert::AsRef<_>`
+kablam! 
+kablam! error: aborting due to 3 previous errors
+kablam! 
+kablam! error: Could not compile `bytestool`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f cbfbd0c73a62344edce64c3be517ab1729622556dc76d839b598ec55d6863b1d`
+blam! cbfbd0c73a62344edce64c3be517ab1729622556dc76d839b598ec55d6863b1d

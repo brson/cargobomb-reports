@@ -1,0 +1,56 @@
+boom! testing pistoncore-current-0.0.1 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! f373b745f98eb25abb61c25b4577104d70a3b6bad78c5922641aa3fe5b915314
+boom! running `docker start -a f373b745f98eb25abb61c25b4577104d70a3b6bad78c5922641aa3fe5b915314`
+kablam!    Compiling pistoncore-current v0.0.1 (file:///source)
+kablam! error[E0432]: unresolved import `std::thread_local::scoped::Key`
+kablam!  --> src/current.rs:2:5
+kablam!   |
+kablam! 2 | use std::thread_local::scoped::Key;
+kablam!   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `thread_local` in `std`
+kablam! 
+kablam! error[E0432]: unresolved import `std::intrinsics::get_tydesc`
+kablam!   --> src/current.rs:91:21
+kablam!    |
+kablam! 91 |                 use std::intrinsics::get_tydesc;
+kablam!    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `get_tydesc` in `intrinsics`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `kinds` in `std`
+kablam!   --> src/current.rs:62:13
+kablam!    |
+kablam! 62 |     marker: ::std::kinds::marker::NoSync,
+kablam!    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `kinds` in `std`
+kablam! 
+kablam! error[E0433]: failed to resolve. Could not find `kinds` in `std`
+kablam!   --> src/current.rs:68:37
+kablam!    |
+kablam! 68 |         Current { key: key, marker: ::std::kinds::marker::NoSync }
+kablam!    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Could not find `kinds` in `std`
+kablam! 
+kablam! error[E0405]: cannot find trait `Deref` in this scope
+kablam!    --> src/current.rs:100:18
+kablam!     |
+kablam! 100 | impl<T: 'static> Deref<T> for Current<T> {
+kablam!     |                  ^^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidate is found in another module, you can import it into scope:
+kablam!               `use std::ops::Deref;`
+kablam! 
+kablam! error[E0405]: cannot find trait `DerefMut` in this scope
+kablam!    --> src/current.rs:112:18
+kablam!     |
+kablam! 112 | impl<T: 'static> DerefMut<T> for Current<T> {
+kablam!     |                  ^^^^^^^^ not found in this scope
+kablam!     |
+kablam!     = help: possible candidate is found in another module, you can import it into scope:
+kablam!               `use std::ops::DerefMut;`
+kablam! 
+kablam! error: cannot continue compilation due to previous error
+kablam! 
+kablam! error: Could not compile `pistoncore-current`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f373b745f98eb25abb61c25b4577104d70a3b6bad78c5922641aa3fe5b915314`
+blam! f373b745f98eb25abb61c25b4577104d70a3b6bad78c5922641aa3fe5b915314

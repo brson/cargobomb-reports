@@ -1,0 +1,130 @@
+boom! testing claxon-0.2.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! e51eff115a4a3755f5a1ef8ed7d3e85e27b5e7fb65dabf020c5416b9da3ebb68
+boom! running `docker start -a e51eff115a4a3755f5a1ef8ed7d3e85e27b5e7fb65dabf020c5416b9da3ebb68`
+kablam!    Compiling claxon v0.2.1 (file:///source)
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 2.48 secs
+boom! running `docker rm -f e51eff115a4a3755f5a1ef8ed7d3e85e27b5e7fb65dabf020c5416b9da3ebb68`
+blam! e51eff115a4a3755f5a1ef8ed7d3e85e27b5e7fb65dabf020c5416b9da3ebb68
+boom! running: cargo +stable test --frozen --no-run
+boom! creating container for: cargo +stable test --frozen --no-run
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen --no-run cargobomb`
+blam! 93a0733f63d60c5a16aab44c7c9b7d187699f99efc2429593e56705e0c368c04
+boom! running `docker start -a 93a0733f63d60c5a16aab44c7c9b7d187699f99efc2429593e56705e0c368c04`
+kablam!    Compiling claxon v0.2.1 (file:///source)
+kablam! warning: function is never used: `verify_crc16`, #[warn(dead_code)] on by default
+kablam!    --> src/crc.rs:142:1
+kablam!     |
+kablam! 142 |   fn verify_crc16(test_vector: Vec<u8>, result: u16) {
+kablam!     |  _^ starting here...
+kablam! 143 | |     use std::io::Read;
+kablam! 144 | |     let data = io::Cursor::new(test_vector);
+kablam! 145 | |     let mut reader = Crc16Reader::new(data);
+kablam! 146 | |     reader.read_to_end(&mut Vec::new()).unwrap();
+kablam! 147 | |     assert_eq!(reader.crc(), result);
+kablam! 148 | | }
+kablam!     | |_^ ...ending here
+kablam! 
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 6.71 secs
+boom! running `docker rm -f 93a0733f63d60c5a16aab44c7c9b7d187699f99efc2429593e56705e0c368c04`
+blam! 93a0733f63d60c5a16aab44c7c9b7d187699f99efc2429593e56705e0c368c04
+boom! running: cargo +stable test --frozen
+boom! creating container for: cargo +stable test --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable test --frozen cargobomb`
+blam! e9bf544f6929e21629855a525a429b43f151169b774d5039ebb8b388eac23760
+boom! running `docker start -a e9bf544f6929e21629855a525a429b43f151169b774d5039ebb8b388eac23760`
+kablam!     Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+kablam!      Running /target/debug/deps/claxon-df8905e8a7914b9b
+blam! 
+blam! running 21 tests
+blam! test crc::verify_crc16_test_vectors ... ok
+blam! test crc::verify_crc8_test_vectors ... ok
+blam! test frame::verify_decode_left_side ... ok
+blam! test frame::verify_decode_mid_side ... ok
+blam! test frame::verify_block_sample ... ok
+blam! test frame::verify_read_var_length_int ... ok
+blam! test frame::verify_decode_right_side ... ok
+blam! test input::verify_read_be_u16 ... ok
+blam! test input::verify_read_be_u24 ... ok
+blam! test input::verify_read_be_u32 ... ok
+blam! test input::verify_read_into ... ok
+blam! test input::verify_read_into_or_eof ... ok
+blam! test input::verify_read_leq_u16 ... ok
+blam! test input::verify_read_leq_u8 ... ok
+blam! test subframe::verify_extend_sign_u16 ... ok
+blam! test subframe::verify_extend_sign_u32 ... ok
+blam! test input::verify_read_mixed ... ok
+blam! test input::verify_read_leq_u32 ... ok
+blam! test subframe::verify_predict_fixed ... ok
+blam! test subframe::verify_predict_lpc ... ok
+blam! test subframe::verify_rice_to_signed ... ok
+blam! 
+blam! test result: ok. 21 passed; 0 failed; 0 ignored; 0 measured
+blam! 
+kablam!      Running /target/debug/deps/testsamples-4b1c74867aa19126
+blam! 
+blam! running 10 tests
+blam! test verify_decoded_stream_p3 ... FAILED
+blam! test verify_decoded_stream_p2 ... FAILED
+blam! test verify_decoded_stream_p1 ... FAILED
+blam! test verify_decoded_stream_p0 ... FAILED
+blam! test verify_streaminfo_p0 ... FAILED
+blam! test verify_streaminfo_p1 ... FAILED
+blam! test verify_decoded_stream_p4 ... FAILED
+blam! test verify_streaminfo_p2 ... FAILED
+blam! test verify_streaminfo_p4 ... FAILED
+blam! test verify_streaminfo_p3 ... FAILED
+blam! 
+blam! failures:
+blam! 
+blam! ---- verify_decoded_stream_p3 stdout ----
+blam! 	thread 'verify_decoded_stream_p3' panicked at 'failed to run flac: Error { repr: Os { code: 2, message: "No such file or directory" } }', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+blam! note: Run with `RUST_BACKTRACE=1` for a backtrace.
+blam! 
+blam! ---- verify_decoded_stream_p2 stdout ----
+blam! 	thread 'verify_decoded_stream_p2' panicked at 'failed to run flac: Error { repr: Os { code: 2, message: "No such file or directory" } }', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+blam! 
+blam! ---- verify_decoded_stream_p1 stdout ----
+blam! 	thread 'verify_decoded_stream_p1' panicked at 'failed to run flac: Error { repr: Os { code: 2, message: "No such file or directory" } }', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+blam! 
+blam! ---- verify_decoded_stream_p0 stdout ----
+blam! 	thread 'verify_decoded_stream_p0' panicked at 'failed to run flac: Error { repr: Os { code: 2, message: "No such file or directory" } }', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+blam! 
+blam! ---- verify_streaminfo_p0 stdout ----
+blam! 	thread 'verify_streaminfo_p0' panicked at 'failed to run metaflac: Error { repr: Os { code: 2, message: "No such file or directory" } }', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+blam! 
+blam! ---- verify_streaminfo_p1 stdout ----
+blam! 	thread 'verify_streaminfo_p1' panicked at 'failed to run metaflac: Error { repr: Os { code: 2, message: "No such file or directory" } }', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+blam! 
+blam! ---- verify_decoded_stream_p4 stdout ----
+blam! 	thread 'verify_decoded_stream_p4' panicked at 'failed to run flac: Error { repr: Os { code: 2, message: "No such file or directory" } }', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+blam! 
+blam! ---- verify_streaminfo_p2 stdout ----
+blam! 	thread 'verify_streaminfo_p2' panicked at 'failed to run metaflac: Error { repr: Os { code: 2, message: "No such file or directory" } }', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+blam! 
+blam! ---- verify_streaminfo_p4 stdout ----
+blam! 	thread 'verify_streaminfo_p4' panicked at 'failed to run metaflac: Error { repr: Os { code: 2, message: "No such file or directory" } }', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+blam! 
+blam! ---- verify_streaminfo_p3 stdout ----
+blam! 	thread 'verify_streaminfo_p3' panicked at 'failed to run metaflac: Error { repr: Os { code: 2, message: "No such file or directory" } }', /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/src/libcore/result.rs:868
+blam! 
+blam! 
+blam! failures:
+blam!     verify_decoded_stream_p0
+kablam! error: test failed
+blam!     verify_decoded_stream_p1
+blam!     verify_decoded_stream_p2
+blam!     verify_decoded_stream_p3
+blam!     verify_decoded_stream_p4
+blam!     verify_streaminfo_p0
+blam!     verify_streaminfo_p1
+blam!     verify_streaminfo_p2
+blam!     verify_streaminfo_p3
+blam!     verify_streaminfo_p4
+blam! 
+blam! test result: FAILED. 0 passed; 10 failed; 0 ignored; 0 measured
+blam! 
+boom! running `docker rm -f e9bf544f6929e21629855a525a429b43f151169b774d5039ebb8b388eac23760`
+blam! e9bf544f6929e21629855a525a429b43f151169b774d5039ebb8b388eac23760

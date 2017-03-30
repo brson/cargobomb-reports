@@ -1,0 +1,27 @@
+boom! testing backtrace-0.3.0 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! f7aeff1370e5073788d2ee3b34f6c8773b57149da358a27c3956798438758930
+boom! running `docker start -a f7aeff1370e5073788d2ee3b34f6c8773b57149da358a27c3956798438758930`
+kablam!    Compiling backtrace v0.3.0 (file:///source)
+kablam! error: type alias is never used: `FileLine`
+kablam!   --> src/symbolize/libbacktrace.rs:25:1
+kablam!    |
+kablam! 25 | type FileLine = (*const c_char, c_int);
+kablam!    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kablam!    |
+kablam!    = note: #[deny(dead_code)] implied by #[deny(warnings)]
+kablam! note: lint level defined here
+kablam!   --> src/lib.rs:70:9
+kablam!    |
+kablam! 70 | #![deny(warnings)]
+kablam!    |         ^^^^^^^^
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `backtrace`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f f7aeff1370e5073788d2ee3b34f6c8773b57149da358a27c3956798438758930`
+blam! f7aeff1370e5073788d2ee3b34f6c8773b57149da358a27c3956798438758930

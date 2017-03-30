@@ -1,0 +1,63 @@
+boom! testing ber-0.0.6 against nightly for nightly
+boom! running: cargo +nightly build --frozen
+boom! creating container for: cargo +nightly build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/nightly:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/nightly:/target:rw -e USER_ID=500 -e CMD=cargo +nightly build --frozen cargobomb`
+blam! e4c1618fd4860320a4d9e4d075e15f4beac64aedc79c5113a1be7cfe3faba270
+boom! running `docker start -a e4c1618fd4860320a4d9e4d075e15f4beac64aedc79c5113a1be7cfe3faba270`
+kablam!    Compiling ber v0.0.6 (file:///source)
+kablam! error[E0412]: cannot find type `Error` in module `byteorder`
+kablam!   --> src/err.rs:13:26
+kablam!    |
+kablam! 13 |     Byteorder(byteorder::Error),
+kablam!    |                          ^^^^^ not found in `byteorder`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use err::Error;`
+kablam!              `use std::error::Error;`
+kablam!              `use std::fmt::Error;`
+kablam!              `use std::io::Error;`
+kablam! 
+kablam! error[E0412]: cannot find type `Error` in module `byteorder`
+kablam!   --> src/err.rs:76:22
+kablam!    |
+kablam! 76 | impl From<byteorder::Error> for Error {
+kablam!    |                      ^^^^^ not found in `byteorder`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use err::Error;`
+kablam!              `use std::error::Error;`
+kablam!              `use std::fmt::Error;`
+kablam!              `use std::io::Error;`
+kablam! 
+kablam! error[E0412]: cannot find type `Error` in module `byteorder`
+kablam!   --> src/err.rs:77:30
+kablam!    |
+kablam! 77 |     fn from (err: byteorder::Error) -> Error {
+kablam!    |                              ^^^^^ not found in `byteorder`
+kablam!    |
+kablam!    = help: possible candidates are found in other modules, you can import them into scope:
+kablam!              `use err::Error;`
+kablam!              `use std::error::Error;`
+kablam!              `use std::fmt::Error;`
+kablam!              `use std::io::Error;`
+kablam! 
+kablam! error[E0412]: cannot find type `Result` in module `byteorder`
+kablam!    --> src/tag.rs:311:68
+kablam!     |
+kablam! 311 | fn write_length (mut w: &mut Write, length: &Length) -> byteorder::Result<()> {
+kablam!     |                                                                    ^^^^^^ not found in `byteorder`
+kablam!     |
+kablam!     = help: possible candidates are found in other modules, you can import them into scope:
+kablam!               `use std::fmt::Result;`
+kablam!               `use std::io::Result;`
+kablam!               `use std::prelude::v1::Result;`
+kablam!               `use std::result::Result;`
+kablam!             and 1 other candidates
+kablam! 
+kablam! error: aborting due to 4 previous errors
+kablam! 
+kablam! error: Could not compile `ber`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f e4c1618fd4860320a4d9e4d075e15f4beac64aedc79c5113a1be7cfe3faba270`
+blam! e4c1618fd4860320a4d9e4d075e15f4beac64aedc79c5113a1be7cfe3faba270

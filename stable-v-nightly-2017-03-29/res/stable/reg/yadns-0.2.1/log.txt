@@ -1,0 +1,23 @@
+boom! testing yadns-0.2.1 against stable for nightly
+boom! running: cargo +stable build --frozen
+boom! creating container for: cargo +stable build --frozen
+boom! running `docker create -v /home/ec2-user/cargobomb/./work/local/test-source/nightly/stable:/source:ro -v /home/ec2-user/cargobomb/./work/local/cargo-home:/cargo-home:ro -v /home/ec2-user/cargobomb/./work/local/rustup-home:/rustup-home:ro -v /home/ec2-user/cargobomb/./work/local/target-dirs/nightly/stable:/target:rw -e USER_ID=500 -e CMD=cargo +stable build --frozen cargobomb`
+blam! 59bd408e6d44c9269f51c76790700c24f2e7bb0e6eddfd49cd279c426fc53930
+boom! running `docker start -a 59bd408e6d44c9269f51c76790700c24f2e7bb0e6eddfd49cd279c426fc53930`
+kablam!    Compiling yadns v0.2.1 (file:///source)
+kablam! error[E0308]: mismatched types
+kablam!   --> build.rs:20:33
+kablam!    |
+kablam! 20 |         serde_codegen::register(&mut registry);
+kablam!    |                                 ^^^^^^^^^^^^^ expected struct `syntex::Registry`, found struct `inner::syntex::Registry`
+kablam!    |
+kablam!    = note: expected type `&mut syntex::Registry`
+kablam!               found type `&mut inner::syntex::Registry`
+kablam! 
+kablam! error: aborting due to previous error
+kablam! 
+kablam! error: Could not compile `yadns`.
+kablam! 
+kablam! To learn more, run the command again with --verbose.
+boom! running `docker rm -f 59bd408e6d44c9269f51c76790700c24f2e7bb0e6eddfd49cd279c426fc53930`
+blam! 59bd408e6d44c9269f51c76790700c24f2e7bb0e6eddfd49cd279c426fc53930
